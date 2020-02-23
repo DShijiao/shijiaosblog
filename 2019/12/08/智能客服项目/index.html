@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="智能客服项目智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。 FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。 任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。判断任务型对话是否">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能客服项目">
+<meta property="og:url" content="http://yoursite.com/2019/12/08/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="诗娇的博客">
+<meta property="og:description" content="智能客服项目智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。 FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。 任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。判断任务型对话是否">
+<meta property="article:published_time" content="2019-12-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-02-22T05:40:41.450Z">
+<meta property="article:author" content="Shijiao DENG">
+<meta property="article:tag" content="智能客服">
+<meta property="article:tag" content="CNN">
+<meta property="article:tag" content="stacking">
+<meta property="article:tag" content="LR">
+<meta property="article:tag" content="SVM">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/08/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>智能客服项目 | 诗娇的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诗娇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right"></div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          智能客服项目
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-08T00:00:00+08:00">2019-12-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-22 13:40:41" itemprop="dateModified" datetime="2020-02-22T13:40:41+08:00">2020-02-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="智能客服项目"><a href="#智能客服项目" class="headerlink" title="智能客服项目"></a>智能客服项目</h2><p>智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。</p>
+<p>FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。</p>
+<p>任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。<br>判断任务型对话是否结束有两种方式，一是这个任务已经完成，二是虽然任务还未完成，但是模型判断需要跳出任务，则直接结束任务返回通过顶层分类器进行模块判别的进程。</p>
+<h3 id="顶层分类器"><a href="#顶层分类器" class="headerlink" title="顶层分类器"></a>顶层分类器</h3><h4 id="full-connection"><a href="#full-connection" class="headerlink" title="full connection"></a>full connection</h4><h4 id="online-offline采样"><a href="#online-offline采样" class="headerlink" title="online/offline采样"></a>online/offline采样</h4><h4 id="LOSS"><a href="#LOSS" class="headerlink" title="LOSS"></a>LOSS</h4><p>最开始使用的是余弦相似度</p>
+<p>缺点：</p>
+<ul>
+<li><p>有些句子可能在距离上更接近A类句子，其实却属于B类，比如句式相似，只有一两个重点字不同</p>
+</li>
+<li><p>太过依赖句子本身的向量，而没有和拉开和不同类别句子间的距离</p>
+</li>
+</ul>
+<p>之后是triplet loss</p>
+<p>缺点：</p>
+<ul>
+<li>因为负采样的原因不稳定，每一对&lt;a,p,n&gt;中，正采样可以用的样本过少，负采样样本较多，且不能保证负采样样本的稳定性</li>
+</ul>
+<p>然后是am-softmax</p>
+<p>为什么？</p>
+<h3 id="任务型对话"><a href="#任务型对话" class="headerlink" title="任务型对话"></a>任务型对话</h3><p>任务型对话主要有时效运费、查单、转寄退回等几个场景，这里主要用时效运费的场景来说明项目过程。</p>
+<p>在时效运费场景中，NLU主要有两个模块，意图识别和NER。</p>
+<h4 id="意图识别"><a href="#意图识别" class="headerlink" title="意图识别"></a>意图识别</h4><p>意图识别总共有8类，总数据量是1万5，留了1500个数据做测试集，3000个数据做验证集。</p>
+<p>最开始使用的是stacking，后来随着数据量的增加，改用深度学习。<br>深度学习测试了cnn+rnn和cnn，发现cnn的效果比cnn+rnn好，应该是：</p>
+<ul>
+<li><p>数据本身都是比较短的句子，且序列性不强，所以rnn的优势没有体现出来</p>
+</li>
+<li><p>cnn特征提取的效果更好，优化了分类效果</p>
+</li>
+</ul>
+<h5 id="说一下stacking以及它在这个项目中的应用"><a href="#说一下stacking以及它在这个项目中的应用" class="headerlink" title="说一下stacking以及它在这个项目中的应用"></a>说一下stacking以及它在这个项目中的应用</h5><p>stacking中我们用了两层分类器，第一层有三个基分类器，第二层分类器是LR，folder=3，</p>
+<ol>
+<li><p>第二层的输入为第一层的输出，不包括原始数据</p>
+</li>
+<li><p>第二层分类器如果是更简单的分类器，效果更好，比如我们用的是罗辑回归。</p>
+<ul>
+<li><p>可能因为上一层的几个基分类器多维度提取特征已经比较复杂，所以第二层的分类器过于复杂会造成过拟合。</p>
+</li>
+<li><p>输出是概率，更符合分类的要求</p>
+</li>
+</ul>
+</li>
+<li><p>较小数据集上stacking的表现并非非常突出，比单独的分类器效果稍微好一点点，但是消耗要大的很多</p>
+</li>
+<li><p>基分类器中如果有效果特别差的，可以将其移除，可能优化最后的结果</p>
+</li>
+<li><p>stacking的预测需要时间相对较长</p>
+</li>
+<li><p>第一层基分类器用的是RF，NB，KNN</p>
+</li>
+</ol>
+<p>代码找到了，直接运行写心得吧！然后完成几个经典机器学习的复习并记录。</p>
+<h6 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h6><p>逻辑回归假设数据符合伯努利分布，所以是一个参数模型。<br>通过引入sigmoid函数，将输出映射到[0,1]之间，使逻辑回归成为一个概率预测问题，但正因它对sigmoid的引入，逻辑回归对极值</p>
+<p>逻辑回归本来是二元分类，但是也可以用作多元分类。<br>如果逻辑回归中引入正则化，我们需要对特征进行标准化，在这标准化也可以加快训练。</p>
+<p>方法：</p>
+<ul>
+<li><p>one VS all，选择计算结果最高的那个类。</p>
+</li>
+<li><p>引入softmax</p>
+</li>
+</ul>
+<p>缺点：样本不均衡，因为1 VS all</p>
+<ol>
+<li>损失函数</li>
+</ol>
+<p>欠拟合：增加特性，增加数据<br>过拟合：正则化，dropout，提前停止训练，减少模型复杂度</p>
+<h6 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h6><h5 id="介绍一下CNN以及在这个项目中的应用"><a href="#介绍一下CNN以及在这个项目中的应用" class="headerlink" title="介绍一下CNN以及在这个项目中的应用"></a>介绍一下CNN以及在这个项目中的应用</h5><h5 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h5><ol>
+<li><p>样本不均衡</p>
+<p> 除了样本不均衡本身带来的训练问题，在测试集中，因为样本严重不均衡，且需要尽量保证测试集和训练集的分布一样，所以可能存在测试集中某些类只有几个数据，导致结果随机性较大不可靠。</p>
+</li>
+<li><p>阈值难以确定</p>
+</li>
+<li><p>任务结束前如何判断用户是否更改意图，跳出当前场景</p>
+<p> 我们增加了一个类others，包含所有肯定不属于当前场景的对话数据，比如：“我要投诉”，“今天天气适合登山”等等。</p>
+<p> 对于需要跳出当前场景的对话，如果我们没有跳出，比不需要跳出场景对话但是却跳出了的结果要更严重，所以我们主要要考虑others类的准确率，其次是F1值和召回率。</p>
+<p> 这里为了使得others相对于召回率有更大的准确率，我们增加了这个类的权重。如果训练时间足够长，是否增加权重最后的结果都是相同的，但是增加权重后，模型会优先保证others这一类的准确率，所以我们可以让训练停在others有较大准确率、且总体结果比较符合我们要求的时候。即牺牲别的类的准确率来优先保证others的准确率。</p>
+</li>
+<li><p>过拟合</p>
+<p> 表现为训练集的F1值不断上升但是验证集的变化不大。原因是数据量很多，但是类别很少，且句子都很简短。</p>
+<p> 解决方法：</p>
+<ul>
+<li>加入L2正则化：加入L2正则化初期效果很好，后面慢慢还是会过拟合</li>
+<li>停止训练：在发现训练集不断上升但是验证集结果变化不大时，及时停止训练。</li>
+</ul>
+</li>
+</ol>
+<h4 id="NER"><a href="#NER" class="headerlink" title="NER"></a>NER</h4><h4 id="LSTM-CRF"><a href="#LSTM-CRF" class="headerlink" title="LSTM+CRF"></a>LSTM+CRF</h4><h5 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h5><h4 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice+LSTM"></a>Lattice+LSTM</h4><h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4><h3 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h3><p>有三个输入：字向量，位置向量，句子向量<br>15%的词mask，这15%中有80%是真的用MASK来代替，10%是原有单词，10%是随机选择的单词<br>优点：</p>
+<ul>
+<li>只有80%的字为MASK是因为微调时，输入数据中不会有MASK</li>
+<li>10%错误是因为这样模型不能100%确定当前字一定是正确的，所以迫使模型更多的依赖上下文</li>
+</ul>
+<h4 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h4><h4 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h4><h3 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h3><p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句于回答的余弦相似性来减少重复问题的回答</p>
+<h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><h4 id="anti-lm"><a href="#anti-lm" class="headerlink" title="anti-lm"></a>anti-lm</h4><h5 id="最大互信息"><a href="#最大互信息" class="headerlink" title="最大互信息"></a>最大互信息</h5><h4 id="attention-LSTM"><a href="#attention-LSTM" class="headerlink" title="attention+LSTM"></a>attention+LSTM</h4><h5 id="attention-1"><a href="#attention-1" class="headerlink" title="attention"></a>attention</h5><h5 id="transformer-1"><a href="#transformer-1" class="headerlink" title="transformer"></a>transformer</h5><h3 id="概述历程"><a href="#概述历程" class="headerlink" title="概述历程"></a>概述历程</h3><h4 id="法国"><a href="#法国" class="headerlink" title="法国"></a>法国</h4><h4 id="顺丰"><a href="#顺丰" class="headerlink" title="顺丰"></a>顺丰</h4><h3 id="几大模块"><a href="#几大模块" class="headerlink" title="几大模块"></a>几大模块</h3><h2 id="待写文章"><a href="#待写文章" class="headerlink" title="待写文章"></a>待写文章</h2><ol>
+<li><p>过拟合欠拟合</p>
+</li>
+<li><p>样本不均衡</p>
+</li>
+<li><p>batch norm详述及优缺点</p>
+</li>
+<li><p>batch norm和layer norm的不同</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D/" rel="tag"># 智能客服</a>
+              <a href="/tags/CNN/" rel="tag"># CNN</a>
+              <a href="/tags/stacking/" rel="tag"># stacking</a>
+              <a href="/tags/LR/" rel="tag"># LR</a>
+              <a href="/tags/SVM/" rel="tag"># SVM</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/07/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8/" rel="prev" title="梯度消失和梯度爆炸">
+      <i class="fa fa-chevron-left"></i> 梯度消失和梯度爆炸
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/19/python%E7%82%B9%E6%BB%B4/" rel="next" title="python的点滴">
+      python的点滴 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#智能客服项目"><span class="nav-number">1.</span> <span class="nav-text">智能客服项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顶层分类器"><span class="nav-number">1.1.</span> <span class="nav-text">顶层分类器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#full-connection"><span class="nav-number">1.1.1.</span> <span class="nav-text">full connection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#online-offline采样"><span class="nav-number">1.1.2.</span> <span class="nav-text">online&#x2F;offline采样</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LOSS"><span class="nav-number">1.1.3.</span> <span class="nav-text">LOSS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务型对话"><span class="nav-number">1.2.</span> <span class="nav-text">任务型对话</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#意图识别"><span class="nav-number">1.2.1.</span> <span class="nav-text">意图识别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#说一下stacking以及它在这个项目中的应用"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">说一下stacking以及它在这个项目中的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#逻辑回归"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">逻辑回归</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SVM"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text">SVM</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#介绍一下CNN以及在这个项目中的应用"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">介绍一下CNN以及在这个项目中的应用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#碰到的问题"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">碰到的问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NER"><span class="nav-number">1.2.2.</span> <span class="nav-text">NER</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LSTM-CRF"><span class="nav-number">1.2.3.</span> <span class="nav-text">LSTM+CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CRF"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">CRF</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lattice-LSTM"><span class="nav-number">1.2.4.</span> <span class="nav-text">Lattice+LSTM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比"><span class="nav-number">1.2.5.</span> <span class="nav-text">对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bert"><span class="nav-number">1.3.</span> <span class="nav-text">Bert</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#transformer"><span class="nav-number">1.3.1.</span> <span class="nav-text">transformer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attention"><span class="nav-number">1.3.2.</span> <span class="nav-text">attention</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闲聊"><span class="nav-number">1.4.</span> <span class="nav-text">闲聊</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#seq2seq"><span class="nav-number">1.4.1.</span> <span class="nav-text">seq2seq</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#anti-lm"><span class="nav-number">1.4.2.</span> <span class="nav-text">anti-lm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#最大互信息"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">最大互信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attention-LSTM"><span class="nav-number">1.4.3.</span> <span class="nav-text">attention+LSTM</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#attention-1"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">attention</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#transformer-1"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">transformer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概述历程"><span class="nav-number">1.5.</span> <span class="nav-text">概述历程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#法国"><span class="nav-number">1.5.1.</span> <span class="nav-text">法国</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#顺丰"><span class="nav-number">1.5.2.</span> <span class="nav-text">顺丰</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几大模块"><span class="nav-number">1.6.</span> <span class="nav-text">几大模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待写文章"><span class="nav-number">2.</span> <span class="nav-text">待写文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Shijiao DENG</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shijiao DENG</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
