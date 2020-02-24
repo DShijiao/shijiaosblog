@@ -1,247 +1,20 @@
-<!DOCTYPE html>
-<html lang="zh-Hans">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
-  <link rel="mask-icon" href="/images/avatar.jpg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Microsoft:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":18,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":true,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="诗娇的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="诗娇的博客">
-<meta property="article:author" content="Shijiao DENG">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://yoursite.com/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: true,
-    isPost: false
-  };
-</script>
-
-  <title>诗娇的博客</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">诗娇的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-  </div>
-
-  <div class="site-nav-right"></div>
-</div>
-
-
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
-
-</nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">使用hexo搭建博客</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-24 14:36:49" itemprop="dateModified" datetime="2020-02-24T14:36:49+08:00">2020-02-24</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Hexo-github"><a href="#Hexo-github" class="headerlink" title="Hexo + github"></a>Hexo + github</h2><h3 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h3><ol>
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>使用hexo搭建博客</title>
+    <url>/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="Hexo-github"><a href="#Hexo-github" class="headerlink" title="Hexo + github"></a>Hexo + github</h2><h3 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h3><ol>
 <li><p><code>github</code>上创建仓库，仓库名必须严格是<code>username.github.io</code></p>
 </li>
 <li><p>创建本地写博客的hexo文件夹MyHexo，然后进入文件夹，执行命令行<code>hexo init</code>，如果报错，会提示输入<code>npm install hexo --save</code></p>
 </li>
 <li><p>进入根目录下的<code>_config.yml</code>，增加</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repository: git@github.com:username&#x2F;username.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repository: git@github.com:username&#x2F;username.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>执行命令<code>hexo g</code>，如果报错，一般是因为没有安装<code>git</code>，执行<code>npm install hexo-deployer-git --save</code>安装<code>hexo</code>下的<code>git</code>，然后重新<code>hexo g</code></p>
 </li>
 <li><p>执行<code>hexo d</code>，如果没有关联<code>git</code>和<code>hexo</code>，会自动提醒输入</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Username for &#39;https:&#x2F;&#x2F;github.com&#39;:</span><br><span class="line">Password for &#39;https:&#x2F;&#x2F;github.com&#39;:</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Username for &#39;https:&#x2F;&#x2F;github.com&#39;:</span><br><span class="line">Password for &#39;https:&#x2F;&#x2F;github.com&#39;:</span><br></pre></td></tr></table></figure>
 <p> 这里我用了<code>ssh</code>钥匙。</p>
 <ul>
 <li>执行命令<code>ssh-keygen -t rsa -C github_de_email@gmail.com</code></li>
@@ -252,78 +25,76 @@
 <li><p>自己博客的域名为 <a href="https://shijiaod.github.io/" target="_blank" rel="noopener">https://shijiaod.github.io/</a><br>有时<code>hexo d</code>后页面没有变化，可以尝试重启电脑…</p>
 </li>
 </ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+<a id="more"></a>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+<h4 id="踩过的坑之血与泪的教训"><a href="#踩过的坑之血与泪的教训" class="headerlink" title="踩过的坑之血与泪的教训"></a>踩过的坑之血与泪的教训</h4><ol>
+<li><p><strong>⚠️ 注 ⚠️</strong>：硬是弄了一天才发现，是仓库名见错了，所以怎么<code>hexo d</code>都报错，说<code>ERROR: Repository not found.</code>，后来发现仓库名后面应该跟上<code>github.io</code>，即完整仓库名应该是<code>username.github.io</code>而不是<code>username</code>！</p>
+</li>
+<li><p>当时在<code>hexo d</code>一直报错要输入<code>username</code>和<code>password</code>时，尝试使用<code>git remote add origin</code>来连接<code>github</code>，但是更换到正确的仓库名后，发现自己删除掉以前建立的<code>origin</code>也不影响，可见这里其实不需要更多的步骤</p>
+</li>
+<li><p>执行命令<code>ssh -T git@github.com</code>后出现</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">The authenticity of host &#39;github.com (13.229.188.59)&#39; can&#39;t be established.</span><br><span class="line">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</span><br><span class="line">Are you sure you want to continue connecting (yes&#x2F;no)?</span><br></pre></td></tr></table></figure>
+<p> 是因为没有配置<code>ssh</code>，或者本地缺少一个文件夹（什么文件夹我也不清楚…）<br> 如果是没有配置<code>ssh</code>见上方如何配置，如果是后者，输入<code>yes</code>，而非回车或者<code>y</code></p>
+</li>
+<li><p>在升级npm，安装hexo下的git，重新安装hexo时，都会报错</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">No receipt for &#39;com.apple.pkg.CLTools_Executables&#39; found at &#39;&#x2F;&#39;.</span><br><span class="line"></span><br><span class="line">No receipt for &#39;com.apple.pkg.DeveloperToolsCLILeo&#39; found at &#39;&#x2F;&#39;.</span><br><span class="line"></span><br><span class="line">No receipt for &#39;com.apple.pkg.DeveloperToolsCLI&#39; found at &#39;&#x2F;&#39;.</span><br><span class="line"></span><br><span class="line">gyp: No Xcode or CLT version detected!</span><br><span class="line">gyp ERR! configure error</span><br><span class="line">gyp ERR! stack Error: &#96;gyp&#96; failed with exit code: 1</span><br><span class="line">gyp ERR! stack     at ChildProcess.onCpExit (&#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules&#x2F;npm&#x2F;node_modules&#x2F;node-gyp&#x2F;lib&#x2F;configure.js:351:16)</span><br><span class="line">gyp ERR! stack     at ChildProcess.emit (events.js:210:5)</span><br><span class="line">gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal&#x2F;child_process.js:272:12)</span><br><span class="line">gyp ERR! System Darwin 19.3.0</span><br><span class="line">gyp ERR! command &quot;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;node&quot; &quot;&#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules&#x2F;npm&#x2F;node_modules&#x2F;node-gyp&#x2F;bin&#x2F;node-gyp.js&quot; &quot;rebuild&quot;</span><br><span class="line">gyp ERR! cwd &#x2F;Users&#x2F;shijiaodeng&#x2F;Documents&#x2F;MyBlog&#x2F;shijiaod&#x2F;node_modules&#x2F;nunjucks&#x2F;node_modules&#x2F;fsevents</span><br><span class="line">gyp ERR! node -v v12.13.1</span><br><span class="line">gyp ERR! node-gyp -v v5.0.5</span><br><span class="line">gyp ERR! not ok</span><br></pre></td></tr></table></figure>
+<p> 是升级了mac的原因（到版本10.15.3），所以下载并安装Xcode并同意它的相关协议，问题就解决了。具体详见<a href="https://segmentfault.com/a/1190000021394623?utm_source=tag-newest" target="_blank" rel="noopener">这片文章</a></p>
+</li>
+</ol>
+<h3 id="内容更丰富的博客"><a href="#内容更丰富的博客" class="headerlink" title="内容更丰富的博客"></a>内容更丰富的博客</h3><h4 id="博客主题"><a href="#博客主题" class="headerlink" title="博客主题"></a>博客主题</h4><ol>
+<li><code>hexo</code>根目录下安装主题nexT<code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code></li>
+<li><code>hexo</code>根目录下修改文件<code>_config.yml</code>中的主题为<code>nexT</code>：<code>theme: next</code></li>
+<li>到next主题下更改配置文件<code>/hexo/theme/next/_config.yml</code>中的<code>scheme: pisce</code>，里面有四种主题可以选，<code>pisce</code>是经典的旁边有小栏框的格式</li>
+<li>我喜欢把<code>sidebar</code>放在右边:<code>/hexo/theme/next/_config.yml</code>中改为 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line"># Sidebar Position.</span><br><span class="line"># position: left</span><br><span class="line">position: right</span><br></pre></td></tr></table></figure></li>
+<li>进入主题目录下的languages文件夹中，<code>cp zh-CN.yml zh-Hans.yml</code>，然后再进入<code>hexo</code>根目录下修改<strong>语言</strong>、名字等一些基本信息（我也不知道为什么要改成<code>zh-Hans</code>而不是直接用<code>zh-CN</code>…） <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: 诗娇的博客</span><br><span class="line">subtitle: &#39;&#39;</span><br><span class="line">description: &#39;&#39;</span><br><span class="line">keywords:</span><br><span class="line">author: Shijiao DENG</span><br><span class="line">language: zh-Hans</span><br><span class="line">timezone: &#39;&#39;</span><br></pre></td></tr></table></figure></li>
+<li>在<code>/hexo/theme/next/_config.yml</code>中配置<code>avatar</code>设置图像 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line">  url: #&#x2F;images&#x2F;avatar.gif  #头像图片路径 图片放置在hexo&#x2F;public&#x2F;images</span><br><span class="line">  rounded: false  #是否显示圆形头像，true表示圆形，false默认</span><br><span class="line">  opacity: 0.7  #透明度0~1之间</span><br><span class="line">  rotated: false  #是否旋转 true表示旋转，false默认</span><br></pre></td></tr></table></figure>
+ ???是public下面的images还是theme/next/sourcs下的images???</li>
+</ol>
+<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ol>
+<li><p>进入主题目录下的<code>_config.yml</code>修改主页目录，可以更改配置里的上下顺序来更改他们在主页各自排列的顺序，比如<code>about</code>本来在<code>home</code>下面，我们把它移到了最下面</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F; || home</span><br><span class="line">  #about: &#x2F;about&#x2F; || user</span><br><span class="line">  tags: &#x2F;tags&#x2F; || tags</span><br><span class="line">  categories: &#x2F;categories&#x2F; || th</span><br><span class="line">  archives: &#x2F;archives&#x2F; || archive</span><br><span class="line">  schedule: &#x2F;schedule&#x2F; || calendar</span><br><span class="line">  #sitemap: &#x2F;sitemap.xml || sitemap</span><br><span class="line">  #commonweal: &#x2F;404&#x2F; || heartbeat</span><br><span class="line">  about: &#x2F;about&#x2F; || user</span><br></pre></td></tr></table></figure>
+<p> 也可以自己增加一个目录内容，不过这些配置都要与主题目录下的languages文件中对应的<code>yml</code>文档里配置相关联。比如你在站点根目录中的配置文件设置<code>language</code>为<code>zh-Hans</code>，那么就要进入到主题目录下的languages文件中修改<code>zh-Hans.yml</code>，这样才能显示出菜单项新增的中文内容（以something为例子）</p>
+</li>
+<li><p>前面通过修改next主题下的<code>_config.yml</code>文件中的<code>menu</code>选项，可以在主页面的菜单栏添加”标签”选项，但是此时点击”标签”，跳转的页面会显示”page not found”。此时我们要新建一个页面<br>XXXXXX 第一张图   XXXXX<br>在新建的<code>index.md</code>文件中添加<code>type: &quot;tags&quot;</code><br>XXXXXX 第二张图   XXXXXX<br><code>categories</code>等同理</p>
+</li>
+<li><p>设置头像：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line">  url: &#x2F;images&#x2F;avatar.gif  #头像图片路径 图片放置在next&#x2F;source&#x2F;images</span><br><span class="line">  rounded: false  #是否显示圆形头像，true表示圆形，false默认</span><br><span class="line">  opacity: 0.7  #透明度0~1之间</span><br><span class="line">  rotated: false  #是否旋转 true表示旋转，false默认</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>/hexo/theme/next/_config.yml</code>的<code>menu_settings</code>如果设置<code>icon: false</code>则无前面的图标，<code>badges: true</code>则标签都会显示数字</p>
+</li>
+<li><p>社交设置<code>/hexo/theme/next/_config.yml</code>里的<code>social</code></p>
+</li>
+<li><p>自动在文章中生成目录，在文章最前面加入<code>[toc]</code>，具体设置如下</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">toc:</span><br><span class="line">  enable: false #是否启动侧边栏</span><br><span class="line">  number: true  #自动将列表编号添加到toc。</span><br><span class="line">  wrap: false #true时是当标题宽度很长时，自动换到下一行</span><br></pre></td></tr></table></figure>
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/Markdown%E8%AF%AD%E6%B3%95/">
+</li>
+</ol>
+<h4 id="添加站内搜索"><a href="#添加站内搜索" class="headerlink" title="添加站内搜索"></a>添加站内搜索</h4><ol>
+<li>安装站内搜索插件 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure></li>
+<li>在根目录下的<code>_config.yml</code>添加 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure></li>
+<li>在<code>themes/next/_config.yml</code>文件中搜索<code>local_search</code>,进行设置 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true  # 设置为true</span><br><span class="line">  trigger: auto  # auto &#x2F;  manual，auto 自动搜索、manual：按回车[enter ]键手动搜索</span><br><span class="line">  top_n_per_article: 3 # 每篇博客显示搜索的结果数</span><br><span class="line">  unescape: true</span><br></pre></td></tr></table></figure>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/Markdown%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Markdown语法</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-24 14:34:51" itemprop="dateModified" datetime="2020-02-24T14:34:51+08:00">2020-02-24</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>[TOC]</p>
+</li>
+</ol>
+<h4 id="不显示整篇文章"><a href="#不显示整篇文章" class="headerlink" title="不显示整篇文章"></a>不显示整篇文章</h4><p>在文章中想要显示的部分后面加上<code>&lt;!--more--&gt;</code>，从这里开始，后面文章会隐藏，只会显示”阅读全文”按钮</p>
+<h4 id="更多惊喜"><a href="#更多惊喜" class="headerlink" title="更多惊喜"></a>更多惊喜</h4><p>还有很多细节，可参见以下两个网站：</p>
+<p><a href="https://www.jianshu.com/p/3a05351a37dc" target="_blank" rel="noopener">网站一</a></p>
+<p><a href="https://eirunye.github.io/2018/09/15/Hexo搭建GitHub博客—打造炫酷的NexT主题—高级—四/#more" target="_blank" rel="noopener">网站二</a></p>
+<h2 id="如何把本地写好的-md文件推倒github网站上"><a href="#如何把本地写好的-md文件推倒github网站上" class="headerlink" title="如何把本地写好的.md文件推倒github网站上"></a>如何把本地写好的.md文件推倒github网站上</h2><ul>
+<li>进入到根目录（<code>/Documents/xxxx.github.io/</code>）下，输入命令行<code>hexo g</code> (<code>hexo generate</code>)生成静态页面</li>
+<li>输入命令<code>hexo d</code> (<code>hexo deploy</code>)上传到<code>github</code>上<br>这时就可以在网站上看到刚刚写的博客了。<br>如果想要先本地预览效果，可以使用<code>hexo s</code> (<code>hexo server</code>)</li>
+</ul>
+<h3 id="如何更好的放图片"><a href="#如何更好的放图片" class="headerlink" title="如何更好的放图片"></a>如何更好的放图片</h3><h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><h3 id="添加评论等"><a href="#添加评论等" class="headerlink" title="添加评论等"></a>添加评论等</h3>]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>github</tag>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown语法</title>
+    <url>/2020/02/19/Markdown%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<p>[TOC]</p>
 <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><ol>
 <li>安装插件<code>Markdown All in One</code>，包含了最常用的<code>Markdown</code>优化。</li>
 <li>安装插件<code>Markdown Preview Github Styling</code>，专门针对<code>github pages</code>的预览，功能有限，但是正是我需要的</li>
@@ -339,7 +110,7 @@
 <li><p>代码</p>
 <p> 正文中的代码块，在前后加上”`”，如果是一段代码段落，前后分别加上”```”</p>
 <p> <strong>注：可以根据不同的语言配置不同的代码着色</strong></p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wenzi</span><span class="params">(self, n)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wenzi</span><span class="params">(self, n)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>列表</p>
 <p> 有序列表：输入数字 + 一个点”.” + 一个空格</p>
@@ -398,81 +169,25 @@
 </ul>
 </li>
 <li><p>数学公式<br>主题目录下<code>/hexo/theme/next/_config.yml</code>设置<code>mathjax</code>里的<code>enable: true</code><br>并且在需要使用数学公式的博客里打开公式开关：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: index.html</span><br><span class="line">date: 2016-12-28 21:01:30</span><br><span class="line">tags:</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: index.html</span><br><span class="line">date: 2016-12-28 21:01:30</span><br><span class="line">tags:</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/python%E7%82%B9%E6%BB%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/python%E7%82%B9%E6%BB%B4/" class="post-title-link" itemprop="url">python的点滴</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-22 13:40:44" itemprop="dateModified" datetime="2020-02-22T13:40:44+08:00">2020-02-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="map-zip"><a href="#map-zip" class="headerlink" title="map, zip"></a>map, zip</h3><p>map和zip配合使用，实现矩阵转置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix &#x3D; [</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [4,5,6],</span><br><span class="line">  [7,8,9]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def rotate(self, matrix):  </span><br><span class="line">        matrix[:] &#x3D; map(list,zip(*matrix))</span><br><span class="line">        return matrix</span><br><span class="line"></span><br><span class="line">print(Solution().rotate(matrix))</span><br><span class="line"></span><br><span class="line">&gt;&gt; [</span><br><span class="line">    [1,4,7],</span><br><span class="line">    [2,5,8],</span><br><span class="line">    [3,6,9]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python的点滴</title>
+    <url>/2020/02/19/python%E7%82%B9%E6%BB%B4/</url>
+    <content><![CDATA[<h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="map-zip"><a href="#map-zip" class="headerlink" title="map, zip"></a>map, zip</h3><p>map和zip配合使用，实现矩阵转置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix &#x3D; [</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [4,5,6],</span><br><span class="line">  [7,8,9]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def rotate(self, matrix):  </span><br><span class="line">        matrix[:] &#x3D; map(list,zip(*matrix))</span><br><span class="line">        return matrix</span><br><span class="line"></span><br><span class="line">print(Solution().rotate(matrix))</span><br><span class="line"></span><br><span class="line">&gt;&gt; [</span><br><span class="line">    [1,4,7],</span><br><span class="line">    [2,5,8],</span><br><span class="line">    [3,6,9]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
 
 <p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a href="https://blog.csdn.net/shawpan/article/details/69663710" target="_blank" rel="noopener">一行代码搞定矩阵旋转——python</a>。</p>
 <h3 id="defaultdict-function-factory"><a href="#defaultdict-function-factory" class="headerlink" title="defaultdict(function_factory)"></a>defaultdict(function_factory)</h3><p><strong>defaultdict</strong></p>
 <p>dict subclass that calls a factory function to supply missing values</p>
 <p><code>defaultdict</code>构建的是一个类似<code>dictionary</code>的对象，其中<code>keys</code>值自行确定赋值，但是<code>values</code>的类型是<code>fucntion_factory</code>的类实例，而且<strong>具有默认值</strong>。比如<code>defaultdict(list)</code>创建一个<code>dict</code>,对于任何一个还不存在的<code>dict[newkey]</code>都已经有一个默认<code>list</code>使得<code>dict[newkey].append</code>可以直接运行而不需要先运行<code>dict[newkey]=[]</code>。</p>
 <p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; s &#x3D; [(&#39;yellow&#39;, 1), (&#39;blue&#39;, 2), (&#39;yellow&#39;, 3), (&#39;blue&#39;, 4), (&#39;red&#39;, 1)]</span><br><span class="line">&gt;&gt; import collections</span><br><span class="line">&gt;&gt; d &#x3D; collections.defaultdict(list)</span><br><span class="line">&gt;&gt; for k, v in s:</span><br><span class="line">&gt;&gt;     d[k].append(v)</span><br><span class="line">&gt;&gt; list(d.items())</span><br><span class="line">[(&#39;blue&#39;, [2, 4]), (&#39;red&#39;, [1]), (&#39;yellow&#39;, [1, 3])]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt; s &#x3D; [(&#39;yellow&#39;, 1), (&#39;blue&#39;, 2), (&#39;yellow&#39;, 3), (&#39;blue&#39;, 4), (&#39;red&#39;, 1)]</span><br><span class="line">&gt;&gt; import collections</span><br><span class="line">&gt;&gt; d &#x3D; collections.defaultdict(list)</span><br><span class="line">&gt;&gt; for k, v in s:</span><br><span class="line">&gt;&gt;     d[k].append(v)</span><br><span class="line">&gt;&gt; list(d.items())</span><br><span class="line">[(&#39;blue&#39;, [2, 4]), (&#39;red&#39;, [1]), (&#39;yellow&#39;, [1, 3])]</span><br></pre></td></tr></table></figure>
 
 <h2 id="python中一些看似简单的运算需求"><a href="#python中一些看似简单的运算需求" class="headerlink" title="python中一些看似简单的运算需求"></a>python中一些看似简单的运算需求</h2><h3 id="求list的绝对值"><a href="#求list的绝对值" class="headerlink" title="求list的绝对值"></a>求list的绝对值</h3><p>求<code>list l = [-1,2,3,-4,-5,-6]</code>的绝对值的三种方法</p>
 <ol>
@@ -480,73 +195,17 @@
 </li>
 <li><p><code>list_abs = [abs(i) for i in l]</code></p>
 </li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; import numpy as np</span><br><span class="line">&gt;&gt; list_abs &#x3D; list(np.abs(l))</span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt; import numpy as np</span><br><span class="line">&gt;&gt; list_abs &#x3D; list(np.abs(l))</span><br></pre></td></tr></table></figure></li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/08/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">智能客服项目</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-08T00:00:00+08:00">2019-12-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-22 13:40:41" itemprop="dateModified" datetime="2020-02-22T13:40:41+08:00">2020-02-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="智能客服项目"><a href="#智能客服项目" class="headerlink" title="智能客服项目"></a>智能客服项目</h2><p>智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。</p>
+]]></content>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能客服项目</title>
+    <url>/2019/12/08/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<h2 id="智能客服项目"><a href="#智能客服项目" class="headerlink" title="智能客服项目"></a>智能客服项目</h2><p>智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。</p>
 <p>FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。</p>
 <p>任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。<br>判断任务型对话是否结束有两种方式，一是这个任务已经完成，二是虽然任务还未完成，但是模型判断需要跳出任务，则直接结束任务返回通过顶层分类器进行模块判别的进程。</p>
 <h3 id="顶层分类器"><a href="#顶层分类器" class="headerlink" title="顶层分类器"></a>顶层分类器</h3><h4 id="full-connection"><a href="#full-connection" class="headerlink" title="full connection"></a>full connection</h4><h4 id="online-offline采样"><a href="#online-offline采样" class="headerlink" title="online/offline采样"></a>online/offline采样</h4><h4 id="LOSS"><a href="#LOSS" class="headerlink" title="LOSS"></a>LOSS</h4><p>最开始使用的是余弦相似度</p>
@@ -646,71 +305,19 @@
 <li><p>batch norm和layer norm的不同</p>
 </li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/07/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8/" class="post-title-link" itemprop="url">梯度消失和梯度爆炸</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-07 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-07T00:00:00+08:00">2019-12-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-22 21:05:57" itemprop="dateModified" datetime="2020-02-22T21:05:57+08:00">2020-02-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>[toc]</p>
+]]></content>
+      <tags>
+        <tag>智能客服</tag>
+        <tag>CNN</tag>
+        <tag>stacking</tag>
+        <tag>LR</tag>
+        <tag>SVM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>梯度消失和梯度爆炸</title>
+    <url>/2019/12/07/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8/</url>
+    <content><![CDATA[<p>[toc]</p>
 <h2 id="什么是梯度消失-梯度爆炸"><a href="#什么是梯度消失-梯度爆炸" class="headerlink" title="什么是梯度消失/梯度爆炸"></a>什么是梯度消失/梯度爆炸</h2><p>梯度消失或梯度爆炸是指在神经网络权重更新的反向传播中，$\frac{\partial Loss}{\partial W}$过小或过大的现象</p>
 <h2 id="梯度消失-梯度爆炸会产生什么问题"><a href="#梯度消失-梯度爆炸会产生什么问题" class="headerlink" title="梯度消失/梯度爆炸会产生什么问题"></a>梯度消失/梯度爆炸会产生什么问题</h2><p>梯度爆炸会导致权重的更新过大（表现为LOSS出现Nan）<br>梯度消失会导致权重的更新过慢或者几乎不更新</p>
 <h2 id="为什么会有梯度消失和梯度爆炸"><a href="#为什么会有梯度消失和梯度爆炸" class="headerlink" title="为什么会有梯度消失和梯度爆炸"></a>为什么会有梯度消失和梯度爆炸</h2><p>一种是任务梯度消失/梯度爆炸的原因是反向传播过程中的叠成导致的<br>另一种认为反向传播不该背这个锅，反向传播求导只是一种求最优解的方式，最根本的原因还是网络结构的问题（线性和非线性公式连成组合）</p>
@@ -819,235 +426,74 @@
 <li><p>尝试了很多插入图片的方法。只有复制github上图片连接最好用，这样在markdown，首页和文章中都可以正确显示图片。如果只是在<code>_config.yml</code>中修改<code>post_asset_folder:true</code>，再使用相对路径来显示图片，那么图片只能在文章首页正确显示，但是不能在文章中正确显示，并且在markdown中的相对路径和在网页上的，不一定是一样的。</p>
 </li>
 </ol>
+]]></content>
+      <tags>
+        <tag>梯度消失</tag>
+        <tag>梯度爆炸</tag>
+        <tag>DNN</tag>
+        <tag>RNN</tag>
+        <tag>LSTM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LSTM</title>
+    <url>/2019/12/06/LSTM/</url>
+    <content><![CDATA[<h2 id="LSTM来源"><a href="#LSTM来源" class="headerlink" title="LSTM来源"></a>LSTM来源</h2><p>LSTM由RNN变化而来，所以在介绍LSTM前，我们先了解一下RNN。</p>
+<p>RNN是一类用来处理序列数据的神经网络，当前状态不仅受到当前输入$x_t$的影响，也受前面状态$h_{t-1}$的影响</p>
+<p>$h_t=\delta (W^{h_{t-1}} \cdot h_{t-1} + W^{x_t} \cdot x_t)$<br>$y=\delta (W^y \cdot h_t)$</p>
+<pre><code>ignore bais here</code></pre><p>且神经元是共享权重W的，即:<br>$W^{h_{t-1}}=W^{h_{t}}$<br>$W^{x_{t-1}}=W^{x_t}$<br>$W^{y-1}=W^y$</p>
+<h2 id="RNN问题"><a href="#RNN问题" class="headerlink" title="RNN问题"></a>RNN问题</h2><h3 id="长期依赖"><a href="#长期依赖" class="headerlink" title="长期依赖"></a>长期依赖</h3><p>RNN在实际应用中又一个很大的问题，就是长期依赖性问题，即一个输出$y_t$主要受到其前面几个输入和状态的影响，对较长时间前的输入和状态则非常不敏感，这是由于反向传播中梯度消失引起的。<br>为了解决这一问题，我们引入了LSTM（门机制）。</p>
+<h3 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h3><p>我们在计算RNN反向传播的梯度时会发现，因为RNN是一个共享权重的神经网络，所以当权重W可以特征分解为$W=Q \cdot \Lambda \cdot Q^T$且Q为正交矩阵时，则梯度包含特征值矩阵的幂次方，因此当特征值&gt;1时，则会梯度爆炸，反之则会梯度消失。<br>梯度爆炸比较容易察觉，一般表现为loss变为Nan<br>梯度消失则相对比较难以察觉，一般表现为loss几乎不变，但是loss几乎不变不代表就是产生了梯度消失</p>
+<h2 id="LSTM基本描述"><a href="#LSTM基本描述" class="headerlink" title="LSTM基本描述"></a>LSTM基本描述</h2><p>LSTM一定程度上解决了RNN梯度消失和梯度爆炸的问题，得益于三个门的引入</p>
+<h3 id="LSTM的三个门"><a href="#LSTM的三个门" class="headerlink" title="LSTM的三个门"></a>LSTM的三个门</h3><p>在LSTM中引入了三个门：输入门，输出门和遗忘门</p>
+<p>遗忘门：控制了上一个cell的状态$C_{t-1}$中有多少信息进入到当前状态$C_t$中<br>输入门：控制了有多少信息会被保存到cell状态$C_t$中<br>输出门：控制了当前cell的状态$C_t$(cell state)有多少信息会输出到下一个神经元（即隐藏单元输出hidden state）</p>
+<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/LSTM3-chain.png" alt="LSTM"></p>
+<h3 id="LSTM特点"><a href="#LSTM特点" class="headerlink" title="LSTM特点"></a>LSTM特点</h3><p>LSTM一定程度上将RNN中反向传播中梯度中的叠成关系转换成叠加关系，所以缓解了梯度消失和梯度爆炸的问题。</p>
+<h3 id="LSTM和GRU的比较"><a href="#LSTM和GRU的比较" class="headerlink" title="LSTM和GRU的比较"></a>LSTM和GRU的比较</h3><p>LSTM有三个门，GRU只有两个（更新门update和相关门revelance），所以LSTM的运算更为复杂。<br>GRU是在LSTM后出来的，为了缓解LSTM的计算问题，但是在一些实际应用中，GRU的效果并不比LSTM差，所以应用越来越广泛。</p>
+<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/GRU.png" alt="GRU"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li><p>关于RNN的长期依赖性问题，看了很多文章，一直不能确到底是因</p>
+<ul>
+<li><p>$h_t=Q^T \cdot \Lambda^t \cdot Q \cdot h_{(0)}$导致的在<strong>前向传播</strong>中$h_{(0)}$对$h_t$的影响因为幂次方的关系而非常小</p>
+</li>
+<li><p>还是因为梯度消失导致的长期依赖关系.</p>
+<p>直到看到Andrew Ng在<a href="https://www.coursera.org/learn/nlp-sequence-models/lecture/PKMRR/vanishing-gradients-with-rnns" target="_blank" rel="noopener">视频</a>中明确指出：RNN的长期依赖性问题来源于<strong>梯度消失</strong>，并且在<a href="http://pelhans.com/2019/04/24/deepdive_tensorflow-note9/#长期依赖问题" target="_blank" rel="noopener">文章</a>中看到公式$\Delta_{h^{(0)}}$的求解，才理解：RNN的长期依赖性问题来源于反向传播中因共享权重W产生的$\Delta$的幂次方，造成了梯度消失，而使得当前状态对前面序列的依赖过小。</p>
+</li>
+</ul>
+</li>
+<li><p>在LSTM中有几种激活函数：</p>
+<ul>
+<li>sigmoid主要用在门的计算中，因为sigmoid很容易趋近于0或者1，所以使得门可以控制保存（等于1时）或不保存（等于0时）信息</li>
+<li>softmax一般用于输出y之前</li>
+<li>tanh用于求$\tilde{C}^t$和$h_{t}$的时候</li>
+</ul>
+</li>
+<li><p>hexo中并不支持LaTex格式写公式的问题见<a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/" target="_blank" rel="noopener">此文章</a></p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>RNN</tag>
+        <tag>LSTM</tag>
+        <tag>长期依赖性</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2019/11/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
-      
-    </div>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-  </div>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Shijiao DENG"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">Shijiao DENG</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">7</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Shijiao DENG</span>
-</div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
-
-  
-
-</body>
-</html>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
