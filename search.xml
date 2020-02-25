@@ -172,7 +172,18 @@
   <center>这一行居中</center>
 </li>
 <li><p>换色 + 变化大小：</p>
-<p>  接下来就是见证奇迹的时刻<br>  <font color="#FF0000"> 我可以设置这一句的颜色哈哈 </font><br>  <font size=6> 我还可以设置这一句的大小嘻嘻 </font><br>  <font size=5 color="#FF0000"> 我甚至可以设置这一句的颜色和大小呵呵</font> </p>
+<p>  接下来就是见证奇迹的时刻</p>
+<p>  <font color="#545454"> 我爱用的注释颜色 </font></p>
+<p>  <font color="#FF0000"> 我可以设置这一句的颜色哈哈 </font> </p>
+<p>  <font size=6> 我还可以设置这一句的大小嘻嘻 </font> </p>
+<p>  <font size=5 color="#FF0000"> 我甚至可以设置这一句的颜色和大小呵呵</font> </p>
+</li>
+<li><p>分段、分行</p>
+<p>  分段：<code>&lt;p&gt;&lt;/p&gt;</code></p>
+<p>  分行：<code>&lt;br&gt;</code></p>
+</li>
+<li><p>有序、无序列表</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;无序列表&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;ol&gt;</span><br><span class="line">    &lt;li&gt;有序列表&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ol&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -718,48 +729,40 @@ e, f, g, &lt;eos&gt;</code></pre><p>可以看出，<code>&lt;sos&gt;</code>是�
 </li>
 <li><p>server上运行</p>
  <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">sudo nvidia-docker run -i -t --rm -p &lt;随便设置_1&gt;:8888 -p &lt;随便设置_2&gt;:6006 -v /HDATA/1/01366808/shijiao/test_map:/shijiao 10.202.107.19/sfai/tf1.12-cuda10-cudnn7-speech:latest bash</span><br></pre></td></tr></table></figure>
- <font color=#545454>
- <br>
- 1. `<随便设置_1>` & `<随便设置_2>` 按个人喜好自行更改，避免冲突</br>
- 2. 我把所有的代码以及数据放在了server上个人文件夹`~/kxie/`里面</br>
- 3. 之后打开Jupyter Notebook页面的时候由于映射关系，能看到所有数据以及代码！很方便！！
- </font>
+ <p><font color="#545454">
+ <ul>
+ <li>`<随便设置_1>` & `<随便设置_2>` 按个人喜好自行更改，避免冲突</li>
+ <li>我把所有的代码以及数据放在了server上个人文件夹`~/kxie/`里面</li>
+ <li>之后打开Jupyter Notebook页面的时候由于映射关系，能看到所有数据以及代码！很方便！！</li>
+ </ul>
+ </font></p>
 
 <p> 运行 <code>ternsorboard</code> &amp; <code>Jupyter Notebook</code>：</p>
  <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash -</span></span><br><span class="line">nohup tensorboard --host=0.0.0.0 --logdir=/data/<span class="built_in">log</span>/kxie &amp;</span><br><span class="line">/opt/conda/bin/jupyter notebook  --ip=<span class="string">'*'</span> --no-browser --allow-root --NotebookApp.token= --notebook-dir=<span class="string">'/shijiao'</span></span><br></pre></td></tr></table></figure>
 <p> 这样就可以打开网页 <code>http://10.202.90.201:&lt;随便设置_1&gt;</code> 跑代码了！Jupyter的可视化还是很方便的，从本地copy paste也容易！</p>
+<p> <strong>具体命令分析，可以看新工作笔记第二页</strong></p>
 </li>
 </ol>
-<p><strong>具体命令分析，可以看新工作笔记第二页</strong></p>
-<ol>
-<li><p>其他</p>
-<p> 想修改镜像内容怎么办？ </p>
-<p> 进入docker镜像里面改：</p>
- <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker run -it 10.202.107.19/sfai/lakers_champion /bin/bash </span><br><span class="line">修改内容 <span class="comment"># 然后退出并记住 ***Container ID***</span></span><br><span class="line">docker commit &lt;ID&gt; 10.202.107.19/sfai/lakers_champion</span><br><span class="line">docker push 10.202.107.19/sfai/lakers_champion:latest</span><br><span class="line">server上重新pull: sudo docker pull 10.202.107.19/sfai/lakers_champion</span><br></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h3 id="想修改镜像内容怎么办？"><a href="#想修改镜像内容怎么办？" class="headerlink" title="想修改镜像内容怎么办？"></a>想修改镜像内容怎么办？</h3><p>进入docker镜像里面改：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker run -it 10.202.107.19/sfai/lakers_champion /bin/bash </span><br><span class="line">修改内容 <span class="comment"># 然后退出并记住 ***Container ID***</span></span><br><span class="line">docker commit &lt;ID&gt; 10.202.107.19/sfai/lakers_champion</span><br><span class="line">docker push 10.202.107.19/sfai/lakers_champion:latest</span><br><span class="line">server上重新pull: sudo docker pull 10.202.107.19/sfai/lakers_champion</span><br></pre></td></tr></table></figure>
 
-<p> e.g., 修改本地镜像，使得能够使用<code>fzf</code>:</p>
- <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker run -it 10.202.107.19/sfai/lakers_champion</span><br><span class="line"><span class="comment"># after enter into this image:</span></span><br><span class="line"><span class="built_in">cd</span></span><br><span class="line">git <span class="built_in">clone</span> --depth 1 https://github.com/junegunn/fzf.git ~/.fzf</span><br><span class="line">~/.fzf/install</span><br><span class="line">vi .vimrc</span><br><span class="line"><span class="built_in">set</span> rtp+=~/.fzf</span><br><span class="line"><span class="built_in">exit</span> <span class="comment"># and remember container id</span></span><br><span class="line">docker commit &lt;container id&gt; 10.202.107.19/sfai/lakers_champion:latest</span><br><span class="line">docker push 10.202.107.19/sfai/lakers_champion:latest</span><br></pre></td></tr></table></figure>
-<p> <a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener">GitHub - junegunn/fzf: A command-line fuzzy finder</a></p>
-<p> 将本地文件添加到镜像中：</p>
- <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker cp &lt;<span class="built_in">local</span> <span class="built_in">source</span>&gt; &lt;Container ID&gt;:&lt;dest&gt;</span><br><span class="line"><span class="comment"># 然后同上commit</span></span><br></pre></td></tr></table></figure>
+<p>e.g., 修改本地镜像，使得能够使用<code>fzf</code>:</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker run -it 10.202.107.19/sfai/lakers_champion</span><br><span class="line"><span class="comment"># after enter into this image:</span></span><br><span class="line"><span class="built_in">cd</span></span><br><span class="line">git <span class="built_in">clone</span> --depth 1 https://github.com/junegunn/fzf.git ~/.fzf</span><br><span class="line">~/.fzf/install</span><br><span class="line">vi .vimrc</span><br><span class="line"><span class="built_in">set</span> rtp+=~/.fzf</span><br><span class="line"><span class="built_in">exit</span> <span class="comment"># and remember container id</span></span><br><span class="line">docker commit &lt;container id&gt; 10.202.107.19/sfai/lakers_champion:latest</span><br><span class="line">docker push 10.202.107.19/sfai/lakers_champion:latest</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener">GitHub - junegunn/fzf: A command-line fuzzy finder</a></p>
+<p>将本地文件添加到镜像中：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker cp &lt;<span class="built_in">local</span> <span class="built_in">source</span>&gt; &lt;Container ID&gt;:&lt;dest&gt;</span><br><span class="line"><span class="comment"># 然后同上commit</span></span><br></pre></td></tr></table></figure>
 
-<p> Terminal过段时间就会中断 <code>timed out: Connection to 10.202.90.201 closed.</code> 如何重新进入正在后台运行的Docker？<br> (当然也有办法永不中断，自行Google)</p>
- <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ssh 01366808@10.202.90.201</span></span><br><span class="line">sudo docker <span class="built_in">exec</span> -it &lt;ID&gt; bash</span><br></pre></td></tr></table></figure>
+<p>Terminal过段时间就会中断 <code>timed out: Connection to 10.202.90.201 closed.</code> 如何重新进入正在后台运行的Docker？<br>(当然也有办法永不中断，自行Google)</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ssh 01366808@10.202.90.201</span></span><br><span class="line">sudo docker <span class="built_in">exec</span> -it &lt;ID&gt; bash</span><br></pre></td></tr></table></figure>
 
-<p> <img src="attachments/58057f8e.png" alt="58057f8e.png"></p>
-<blockquote>
 <p>可以用 <code>docker ps</code> 查看Docker进程以及ID</p>
-</blockquote>
-<p> 删除镜像：<code>sudo docker rmi &lt;ID&gt;</code></p>
-<p> 结束运行的容器：<code>sudo docker stop &lt;ID&gt;</code></p>
-<p> 修改镜像名字或者tag：</p>
- <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker tag &lt;old_name:old_tag&gt; &lt;new_name:new_tag&gt;</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">docker tag &lt;ID&gt; &lt;new_name:new_tag&gt;</span><br></pre></td></tr></table></figure>
+<p>删除镜像：<code>sudo docker rmi &lt;ID&gt;</code></p>
+<p>结束运行的容器：<code>sudo docker stop &lt;ID&gt;</code></p>
+<p>修改镜像名字或者tag：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker tag &lt;old_name:old_tag&gt; &lt;new_name:new_tag&gt;</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">docker tag &lt;ID&gt; &lt;new_name:new_tag&gt;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
-<h3 id="Sync"><a href="#Sync" class="headerlink" title="Sync"></a>Sync</h3><blockquote>
-<p>好像server上不连网的，没法Git同步，影响效率！</p>
-</blockquote>
+<h3 id="Sync"><a href="#Sync" class="headerlink" title="Sync"></a>Sync</h3><p><font color="#545454">好像server上不连网的，没法Git同步，影响效率！</font></p>
+
 <ol>
 <li><p>从本地scp到服务器上:</p>
  <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">scp -r &lt;<span class="built_in">source</span>&gt; 01366808@10.202.90.201:~/&lt;dest&gt;</span><br></pre></td></tr></table></figure>
@@ -768,9 +771,12 @@ e, f, g, &lt;eos&gt;</code></pre><p>可以看出，<code>&lt;sos&gt;</code>是�
  <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">rsync -av -e ssh --exclude=<span class="string">'excluded dir'</span> &lt;<span class="built_in">source</span>&gt; 01366808@10.202.90.201:~/&lt;dest&gt;</span><br></pre></td></tr></table></figure>
 
 <p> <code>--exclude=&#39;excluded dir&#39;</code>：本地<source>中有些目录的内容是你不想传到server上的</p>
-<blockquote>
-<p>一般情况：本地修改完代码，使用上面rysnc命令同步到server上 (或者简单点通过Jupyter copy paste)，然后跑吧！<br>交换 source dest 位置实现反向同步</p>
-</blockquote>
+ <p><font color="#545454">
+ <ul>
+ <li>一般情况：本地修改完代码，使用上面rysnc命令同步到server上 (或者简单点通过Jupyter copy paste)，然后跑吧！</li>
+ <li>交换 source dest 位置实现反向同步</li>
+ </ul>
+ </font></p>
 </li>
 </ol>
 ]]></content>
