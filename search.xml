@@ -172,10 +172,9 @@
   <center>这一行居中</center>
 </li>
 <li><p>换色 + 变化大小：</p>
-<p>  接下来就是见证奇迹的时刻<br>  <font color="#545454"> 我爱用的注释颜色 </font><br>  <font color="#FF0000"> 我可以设置这一句的颜色哈哈 </font><br>  <font size=6> 我还可以设置这一句的大小嘻嘻 </font><br>  <font size=5 color="#FF0000"> 我甚至可以设置这一句的颜色和大小呵呵</font> </p>
+<p>  接下来就是见证奇迹的时刻<br>  <font color="#989898"> 我爱用的注释颜色 </font><br>  <font color="#FF0000"> 我可以设置这一句的颜色哈哈 </font><br>  <font size=6> 我还可以设置这一句的大小嘻嘻 </font><br>  <font size=5 color="#FF0000"> 我甚至可以设置这一句的颜色和大小呵呵</font> </p>
 </li>
-<li><p>分段、分行<br>  分段：<code>&lt;p&gt;&lt;/p&gt;</code></p>
-<p>  分行：<code>&lt;br&gt;</code></p>
+<li><p>分段、分行<br>  分段：<code>&lt;p&gt;&lt;/p&gt;</code><br>  分行：<code>&lt;br&gt;</code></p>
 </li>
 <li><p>有序、无序列表</p>
   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;无序列表&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;ol&gt;</span><br><span class="line">    &lt;li&gt;有序列表&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ol&gt;</span><br></pre></td></tr></table></figure>
@@ -524,15 +523,24 @@
     <content><![CDATA[<h2 id="Chitchat"><a href="#Chitchat" class="headerlink" title="Chitchat"></a>Chitchat</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>chitchat持续的时间很长了。每次进步不大，但是至少都在前进。因为持续时间长，每次想法和改动的地方比较多，也是学到了不少东西，想要把这些都记录下来，所以开了这个文档。</p>
 <p>chitchat 目前已经自己改进到v1.5了。虽然每一次改动的内容并不大，但是每一次都是一个尝试。</p>
 <h4 id="到目前为止，每个version的改进简介"><a href="#到目前为止，每个version的改进简介" class="headerlink" title="到目前为止，每个version的改进简介"></a>到目前为止，每个version的改进简介</h4><ul>
-<li>v1.1 是所有以前的版本，但是因为隔的太久，当时又没有记录，所以都不太记得了。</li>
-<li>v1.2 是自己重构代码，除此之外，和第一个版本的差别不大。</li>
-<li>v1.3 是在<code>seq2seq</code>的基础上加入了<code>bert</code>的<code>get_pooled_output</code>。</li>
-<li>v1.4</li>
-<li>v1.4 这个版本在v1.2版本上改变了loss。因为在同时训练了v1.3版本和v1.2版本后进行比较，发现相同时间内训练出来的结果（因为版本v1.3中加入了<code>bert</code>，所以相同时间内训练出来的<code>epoch</code>数相差很大），v1.2版本的更好。因为考虑到时间成本，所以v1.4版本是在v1.2版本的基础上进行改进的。<br>具体内容可以看v1.4的<code>README.md</code>。</li>
+<li><p>v1.1 是所有以前的版本，但是因为隔的太久，当时又没有记录，所以都不太记得了。</p>
+</li>
+<li><p>v1.2 是自己重构代码，除此之外，和第一个版本的差别不大。</p>
+</li>
+<li><p>v1.3 是在<code>seq2seq</code>的基础上加入了<code>bert</code>的<code>get_pooled_output</code>。</p>
+</li>
+<li><p>v1.4</p>
+<ul>
+<li>v1.4 这个版本在v1.2版本上改变了loss。因为在同时训练了v1.3版本和v1.2版本后进行比较，发现相同时间内训练出来的结果（因为版本v1.3中加入了<code>bert</code>，所以相同时间内训练出来的<code>epoch</code>数相差很大），v1.2版本的更好。因为考虑到时间成本，所以v1.4版本是在v1.2版本的基础上进行改进的。具体内容可以看v1.4的<code>README.md</code>。</li>
 <li>v1.4里也加入了一些“问候”，“再见”等的规则。</li>
-<li>v1.5 <code>seq2seq</code>中在<code>train</code>时，一般用上一步正确的输出作为下一步的输入，但是这里改成用上一步真实的输出作为下一步的输入。具体内容可见这个文件夹下的《变形seq2seq，即在training时，上一步的输出成为下一步的输入。》</li>
-<li>又把<code>learning_rate</code>调小了，在训练了100个epoch，但是结果还是很糟糕。</li>
-<li>v1.6 尝试在v1.4的基础上把<code>layer</code>从3改成6</li>
+</ul>
+</li>
+<li><p>v1.5 <code>seq2seq</code>中在<code>train</code>时，一般用上一步正确的输出作为下一步的输入，但是这里改成用上一步真实的输出作为下一步的输入。具体内容可见这个文件夹下的《变形seq2seq，即在training时，上一步的输出成为下一步的输入》</p>
+</li>
+<li><p>又把<code>learning_rate</code>调小了，在训练了100个epoch，但是结果还是很糟糕。</p>
+</li>
+<li><p>v1.6 尝试在v1.4的基础上把<code>layer</code>从3改成6</p>
+</li>
 </ul>
 <h4 id="还有的问题"><a href="#还有的问题" class="headerlink" title="还有的问题"></a>还有的问题</h4><ul>
 <li>回答和问题太相似</li>
@@ -724,7 +732,7 @@ e, f, g, &lt;eos&gt;</code></pre><p>可以看出，<code>&lt;sos&gt;</code>是�
 </li>
 <li><p>server上运行</p>
  <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">sudo nvidia-docker run -i -t --rm -p &lt;随便设置_1&gt;:8888 -p &lt;随便设置_2&gt;:6006 -v /HDATA/1/01366808/shijiao/test_map:/shijiao 10.202.107.19/sfai/tf1.12-cuda10-cudnn7-speech:latest bash</span><br></pre></td></tr></table></figure>
- <p><font color="#545454">
+ <p><font color="#989898">
  <ul>
  <li>`<随便设置_1>` & `<随便设置_2>` 按个人喜好自行更改，避免冲突</li>
  <li>我把所有的代码以及数据放在了server上个人文件夹`~/kxie/`里面</li>
@@ -756,7 +764,7 @@ e, f, g, &lt;eos&gt;</code></pre><p>可以看出，<code>&lt;sos&gt;</code>是�
 <p>修改镜像名字或者tag：</p>
 <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker tag &lt;old_name:old_tag&gt; &lt;new_name:new_tag&gt;</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">docker tag &lt;ID&gt; &lt;new_name:new_tag&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Sync"><a href="#Sync" class="headerlink" title="Sync"></a>Sync</h3><p><font color="#545454">好像server上不连网的，没法Git同步，影响效率！</font></p>
+<h3 id="Sync"><a href="#Sync" class="headerlink" title="Sync"></a>Sync</h3><p><font color="#989898">好像server上不连网的，没法Git同步，影响效率！</font></p>
 
 <ol>
 <li><p>从本地scp到服务器上:</p>
@@ -766,7 +774,7 @@ e, f, g, &lt;eos&gt;</code></pre><p>可以看出，<code>&lt;sos&gt;</code>是�
  <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">rsync -av -e ssh --exclude=<span class="string">'excluded dir'</span> &lt;<span class="built_in">source</span>&gt; 01366808@10.202.90.201:~/&lt;dest&gt;</span><br></pre></td></tr></table></figure>
 
 <p> <code>--exclude=&#39;excluded dir&#39;</code>：本地<source>中有些目录的内容是你不想传到server上的</p>
- <p><font color="#545454">
+ <p><font color="#989898">
  <ul>
  <li>一般情况：本地修改完代码，使用上面rysnc命令同步到server上 (或者简单点通过Jupyter copy paste)，然后跑吧！</li>
  <li>交换 source dest 位置实现反向同步</li>
