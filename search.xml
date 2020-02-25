@@ -172,14 +172,9 @@
   <center>这一行居中</center>
 </li>
 <li><p>换色 + 变化大小：</p>
-<p>  接下来就是见证奇迹的时刻</p>
-<p>  <font color="#545454"> 我爱用的注释颜色 </font></p>
-<p>  <font color="#FF0000"> 我可以设置这一句的颜色哈哈 </font> </p>
-<p>  <font size=6> 我还可以设置这一句的大小嘻嘻 </font> </p>
-<p>  <font size=5 color="#FF0000"> 我甚至可以设置这一句的颜色和大小呵呵</font> </p>
+<p>  接下来就是见证奇迹的时刻<br>  <font color="#545454"> 我爱用的注释颜色 </font><br>  <font color="#FF0000"> 我可以设置这一句的颜色哈哈 </font><br>  <font size=6> 我还可以设置这一句的大小嘻嘻 </font><br>  <font size=5 color="#FF0000"> 我甚至可以设置这一句的颜色和大小呵呵</font> </p>
 </li>
-<li><p>分段、分行</p>
-<p>  分段：<code>&lt;p&gt;&lt;/p&gt;</code></p>
+<li><p>分段、分行<br>  分段：<code>&lt;p&gt;&lt;/p&gt;</code></p>
 <p>  分行：<code>&lt;br&gt;</code></p>
 </li>
 <li><p>有序、无序列表</p>
