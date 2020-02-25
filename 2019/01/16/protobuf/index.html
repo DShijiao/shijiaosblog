@@ -20,14 +20,14 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":18,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":true,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="protobuf  protobuf：把消息序列化的工具  rpc： 远程方法调用  redis：缓存  mysql：持久储存 搭建微服务实例  ML Client&#x2F;Server Using gRPC in Python – Good Audience 安装Protocol Buffers： ruby -e “$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.c">
+  <meta name="description" content="protobuf protobuf：把消息序列化的工具 rpc： 远程方法调用 redis：缓存 mysql：持久储存  搭建微服务实例ML Client&#x2F;Server Using gRPC in Python – Good Audience 安装Protocol Buffers： ruby -e “$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Ho">
 <meta property="og:type" content="article">
 <meta property="og:title" content="protobuf">
 <meta property="og:url" content="http://yoursite.com/2019/01/16/protobuf/index.html">
 <meta property="og:site_name" content="诗娇的博客">
-<meta property="og:description" content="protobuf  protobuf：把消息序列化的工具  rpc： 远程方法调用  redis：缓存  mysql：持久储存 搭建微服务实例  ML Client&#x2F;Server Using gRPC in Python – Good Audience 安装Protocol Buffers： ruby -e “$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.c">
+<meta property="og:description" content="protobuf protobuf：把消息序列化的工具 rpc： 远程方法调用 redis：缓存 mysql：持久储存  搭建微服务实例ML Client&#x2F;Server Using gRPC in Python – Good Audience 安装Protocol Buffers： ruby -e “$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Ho">
 <meta property="article:published_time" content="2019-01-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-02-25T05:15:10.418Z">
+<meta property="article:modified_time" content="2020-02-25T06:36:37.300Z">
 <meta property="article:author" content="Shijiao DENG">
 <meta property="article:tag" content="protobuf">
 <meta name="twitter:card" content="summary">
@@ -220,7 +220,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-25 13:15:10" itemprop="dateModified" datetime="2020-02-25T13:15:10+08:00">2020-02-25</time>
+                <time title="修改时间：2020-02-25 14:36:37" itemprop="dateModified" datetime="2020-02-25T14:36:37+08:00">2020-02-25</time>
               </span>
 
           
@@ -234,48 +234,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h2><p>  <code>protobuf</code>：把消息序列化的工具<br>  <code>rpc</code>： 远程方法调用<br>  <code>redis</code>：缓存<br>  <code>mysql</code>：持久储存</p>
-<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p>  <a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5" target="_blank" rel="noopener">ML Client/Server Using gRPC in Python – Good Audience</a></p>
+        <h4 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h4><ul>
+<li><code>protobuf</code>：把消息序列化的工具</li>
+<li><code>rpc</code>： 远程方法调用</li>
+<li><code>redis</code>：缓存</li>
+<li><code>mysql</code>：持久储存</li>
+</ul>
+<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p><a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5" target="_blank" rel="noopener">ML Client/Server Using gRPC in Python – Good Audience</a></p>
 <h4 id="安装Protocol-Buffers："><a href="#安装Protocol-Buffers：" class="headerlink" title="安装Protocol Buffers："></a>安装Protocol Buffers：</h4><ol>
 <li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
 <li>brew install protobuf</li>
 <li>安装gRPC：pip install grpcio</li>
 <li>安装gRPC：pip install grpcio-tools</li>
 </ol>
-<h4 id="编译proto"><a href="#编译proto" class="headerlink" title="编译proto"></a>编译proto</h4><p>  <code>python -m grpc_tools.protoc -I ./protos --python_out=. --grpc_python_out=. ./protos/intent.proto</code></p>
-<pre><code>a. `-I`
-指定生成的`pb2.py`和`pb2_grpc.py`文件的储存路径
+<h4 id="编译proto"><a href="#编译proto" class="headerlink" title="编译proto"></a>编译proto</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m grpc_tools.protoc -I .&#x2F;protos --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;intent.proto</span><br></pre></td></tr></table></figure>
 
-b. `./protos/intent.proto`
-需要编译的`.proto`文件的位置
+<ul>
+<li><code>-I</code><br>指定生成的<code>pb2.py</code>和<code>pb2_grpc.py</code>文件的储存路径</li>
+<li><code>./protos/intent.proto</code><br>需要编译的<code>.proto</code>文件的位置</li>
+</ul>
+<p>如果文件原来的位置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
 
+<p>在根目录上运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I .&#x2F;protos&#x2F; --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
+<p>后会变成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br></pre></td></tr></table></figure>
 
-  如果文件原来的位置如下：
-  - protos
-    - intent.proto
-  - client.py
-  - server.py
-  - predict.py
+<p>在根目录上运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I . --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
+<p>后会变成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
 
-  在根目录上运行`python3 -m grpc_tools.protoc -I ./protos/ --python_out=. --grpc_python_out=. ./protos/price.proto`后会变成：
-  - protos
-    - intent.proto
-  - client.py
-  - server.py
-  - predict.py
-  - intent_pb2.py
-  - intent_pb2_grpc.py
-
-  在根目录上运行`python3 -m grpc_tools.protoc -I . --python_out=. --grpc_python_out=. ./protos/price.proto`后会变成：
-  - protos
-    - intent.proto
-    - intent_pb2.py
-    - intent_pb2_grpc.py
-  - client.py
-  - server.py
-  - predict.py
-
-  没弄明白为什么，不过为了方便函数之间的调用，一般使用第一种方法。</code></pre><h4 id="http-VS-grpc"><a href="#http-VS-grpc" class="headerlink" title="http VS grpc"></a>http VS grpc</h4><ol>
+<p>没弄明白为什么，不过为了方便函数之间的调用，一般使用第一种方法。</p>
+<h4 id="http-VS-grpc"><a href="#http-VS-grpc" class="headerlink" title="http VS grpc"></a>http VS grpc</h4><ol>
 <li><code>http</code>和<code>grpc</code>都是通过<code>tcp</code>运行。</li>
 <li>不同的是<code>grpc</code>会将信息转换成二进制格式，因此传输更快，所需内存更小，效率更高。<br>但是因为<code>grpc</code>中，双方都需要编写相同的<code>.proto</code>，彼此传输的格式要固定，因此要求相对更严格一些。而http则没有这种要求，双方并没有格式的约定，所以<code>http</code>也更大一些，速度相对更慢一些。</li>
 <li><code>http</code>通过<code>&quot;\\r\\n&quot;</code>来分隔信息。<code>grpc</code>则要通过<code>.proto</code>文件里的<code>message</code>严格规范信息的数目、类型等。</li>
@@ -364,7 +356,7 @@ b. `./protos/intent.proto`
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#protobuf"><span class="nav-number">1.</span> <span class="nav-text">protobuf</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#搭建微服务实例"><span class="nav-number">1.0.1.</span> <span class="nav-text">搭建微服务实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Protocol-Buffers："><span class="nav-number">1.0.2.</span> <span class="nav-text">安装Protocol Buffers：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译proto"><span class="nav-number">1.0.3.</span> <span class="nav-text">编译proto</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http-VS-grpc"><span class="nav-number">1.0.4.</span> <span class="nav-text">http VS grpc</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#protobuf"><span class="nav-number">1.</span> <span class="nav-text">protobuf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#搭建微服务实例"><span class="nav-number">2.</span> <span class="nav-text">搭建微服务实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Protocol-Buffers："><span class="nav-number">3.</span> <span class="nav-text">安装Protocol Buffers：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译proto"><span class="nav-number">4.</span> <span class="nav-text">编译proto</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http-VS-grpc"><span class="nav-number">5.</span> <span class="nav-text">http VS grpc</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

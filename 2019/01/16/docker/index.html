@@ -20,20 +20,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":18,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":true,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="docker 挂载  前面是本地文件，后面是镜像文件：  1sudo docker run -it --cpus&#x3D;3 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash   --cpus&#x3D;8设置的是cpu利用百分比，而不是个数，因为报错中，R">
+  <meta name="description" content="docker 挂载前面是本地文件，后面是镜像文件： 1sudo docker run -it --cpus&#x3D;3 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash  --cpus&#x3D;8设置的是cpu利用百分比，而不是个数，因为报错中，Range">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker">
 <meta property="og:url" content="http://yoursite.com/2019/01/16/docker/index.html">
 <meta property="og:site_name" content="诗娇的博客">
-<meta property="og:description" content="docker 挂载  前面是本地文件，后面是镜像文件：  1sudo docker run -it --cpus&#x3D;3 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash   --cpus&#x3D;8设置的是cpu利用百分比，而不是个数，因为报错中，R">
-<meta property="og:image" content="http://yoursite.com/2019/01/16/docker/:storage/bac818fc-0903-43b2-80fc-8083c4593968/46752aa2.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/16/docker/:storage/d5c9c9ec-efa0-4e03-949e-0a694f8fbd7b/85965d9e.png">
+<meta property="og:description" content="docker 挂载前面是本地文件，后面是镜像文件： 1sudo docker run -it --cpus&#x3D;3 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash  --cpus&#x3D;8设置的是cpu利用百分比，而不是个数，因为报错中，Range">
+<meta property="og:image" content="http://yoursite.com/2019/01/16/docker/attachments/58057f8e.png">
 <meta property="article:published_time" content="2019-01-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-02-25T05:15:17.463Z">
+<meta property="article:modified_time" content="2020-02-25T06:54:37.750Z">
 <meta property="article:author" content="Shijiao DENG">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/16/docker/:storage/bac818fc-0903-43b2-80fc-8083c4593968/46752aa2.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/16/docker/attachments/58057f8e.png">
 
 <link rel="canonical" href="http://yoursite.com/2019/01/16/docker/">
 
@@ -223,7 +222,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-25 13:15:17" itemprop="dateModified" datetime="2020-02-25T13:15:17+08:00">2020-02-25</time>
+                <time title="修改时间：2020-02-25 14:54:37" itemprop="dateModified" datetime="2020-02-25T14:54:37+08:00">2020-02-25</time>
               </span>
 
           
@@ -237,55 +236,126 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="docker-挂载"><a href="#docker-挂载" class="headerlink" title="docker 挂载"></a>docker 挂载</h2><p>  前面是本地文件，后面是镜像文件：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -it --cpus&#x3D;3 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash</span><br></pre></td></tr></table></figure></p>
-<p>  <code>--cpus=8</code>设置的是cpu利用百分比，而不是个数，因为报错中，<code>Range of CPUs</code>是小数，而不是整数。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -it --cpus&#x3D;8 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash</span><br><span class="line">Error response from daemon: Range of CPUs is from 0.01 to 6.00, as there are only 6 CPUs available.</span><br></pre></td></tr></table></figure></p>
-<h2 id="iTerm2-安装agnoster"><a href="#iTerm2-安装agnoster" class="headerlink" title="iTerm2 安装agnoster"></a>iTerm2 安装agnoster</h2><p>  <a href="https://www.jianshu.com/p/60a11f762f62" target="_blank" rel="noopener">30分钟利用oh-my-zsh打造漂亮的终端 - 简书</a></p>
-<p>  <img src=":storage/bac818fc-0903-43b2-80fc-8083c4593968/46752aa2.png" alt="屏幕快照 2019-01-14 下午2.09.16.png"></p>
-<h2 id="tf分布式-–-DistributionStrategy"><a href="#tf分布式-–-DistributionStrategy" class="headerlink" title="tf分布式 – DistributionStrategy"></a>tf分布式 – DistributionStrategy</h2><p>  以下内容摘抄自：<br>  <a href="http://jcf94.com/2018/10/21/2018-10-21-tfunpacking9/" target="_blank" rel="noopener">TensorFlow 拆包（九）：High Level APIs \| Chenfan Blog</a></p>
-<p>  <strong>看一下官方文档中对 <code>DistributionStrategy</code> 的设计思想。</strong></p>
-<p>  首先是一些底层的概念：</p>
-<ul>
-<li>Wrapped values：跨设备相关的变量可以被封装为两种类别，PerDevice 对象表示的变量在每个设备上的值不同，Mirrored 对象表示的变量在每个设备上的值都相同</li>
-<li>Unwrapping and merging：考虑前面提过的这个函数 <code>call_for_each_tower(fn, w)</code>，<code>fn</code> 是模型函数，<code>w</code> 代表一些 Wrapped values。这个函数的调用过程中就包含了变量的 unwrapping 和 merging，假定在设备 <code>d0</code> 上 <code>fn(w0)</code> 得到的结果是 <code>(x, a, v0)</code>，在设备 <code>d1</code> 上 <code>fn(w1)</code> 得到的结果是 <code>(x, b, v1)</code>。首先在调用函数之前，w 需要被解包变成 w0 和 w1 然后分别调用 fn 函数。返回的结果有三种情况，第一个值都返回了一个相同的对象 x，则最终 merge 之后还是对象 x；第二个值是每个设备不一样的，则 merge 之后是一个 PerDevice 对象（其实就是个设备和对应值的 map）；第三个值是每个设备返回的分别是一组 Mirrored 对象的成员，则 merge 之后是一个 Mirrored 对象。所以 call_for_each_tower(fn, w) 在这里返回得到的就是一组 (x, PerDevice{…}, Mirrored{…})</li>
-<li>Tower context vs. Cross-tower context：Tower context 指的是对每个设备的封装上下文，通常对每个设备分别跑一遍模型函数就需要这种封装；Cross-tower context 指的是跨设备的封装上下文，比如说像 reduce() 这种所有设备共同参与的一个操作就需要这种封装</li>
-<li>Worker devices vs. parameter devices：负责计算的设备和存参数的设备，没啥好说的。</li>
-</ul>
-<p>  更新一个变量的常规操作如下：</p>
-<ol>
-<li>把输入数据集封装在 <code>d.distribute_dataset()</code> 中，然后创建一个 iterator</li>
-<li>对每一个设备共同调用 d.call_for_each_tower() 来分别创建网络模型，并且最终各自得到一组梯度/变量对：<code>d0</code> 上有 <code>{(g0, v0), (g1, v1), ...}</code>，<code>d1</code> 上有 <code>{(g&#39;0, v0), (g&#39;1, v1), ...}</code> 等等这样</li>
-<li>调用<code>d.reduce(VariableAggregation.SUM, t, v)</code> 或者 <code>d.batch_reduce()</code> 来对梯度求和，并且对应到各自的变量上：<code>{(Sum(g0, g&#39;0), v0), (Sum(g1, g&#39;1), v1), ...}</code></li>
-<li>调用 <code>d.update(v)</code> 来对每一个变量进行更新</li>
-</ol>
-<p>  3、4 两步如果用 <code>Optimizer</code> 中的 <code>apply_gradients()</code> 方法可以自动完成（……这就是 <code>Optimizer</code> 后来加进去那部分代码的作用），或者在一个 <code>Cross-tower context</code> 中调用 <code>_distributed_apply()</code> 方法也可以。常规的网络层都应该在 <code>Tower context</code> 中被调用。</p>
-<h2 id="tensorflow-重新加载并继续训练模型"><a href="#tensorflow-重新加载并继续训练模型" class="headerlink" title="tensorflow 重新加载并继续训练模型"></a>tensorflow 重新加载并继续训练模型</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ckpt_file &#x3D; tf.train.latest_checkpoint(path_save_model)</span><br><span class="line">if ckpt_file:</span><br><span class="line">    saver.restore(sess, ckpt_file)</span><br></pre></td></tr></table></figure>
+        <h2 id="docker-挂载"><a href="#docker-挂载" class="headerlink" title="docker 挂载"></a>docker 挂载</h2><p>前面是本地文件，后面是镜像文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -it --cpus&#x3D;3 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash</span><br></pre></td></tr></table></figure>
 
-<p>  这里<code>ckpt_file</code>是文件<code>checkpoint</code>里<code>model_checkpoint_path</code>的值。<br>  只要<code>model_checkpoint_path</code>指定的<code>checkpoint</code>在路径下存在，就会直接加载这个<code>checkpoint</code>继续训练。否则就会重新从<code>0</code>开始。</p>
-<h3 id="tensorboard"><a href="#tensorboard" class="headerlink" title="tensorboard"></a>tensorboard</h3><p>  <code>log/</code>中会因为重新加载，有几个分开的文件，但是对于同一个变量（如<code>loss</code>）会在同一个图内显示所有其随着<code>steps</code>变化的曲线。<br>  <img src=":storage/d5c9c9ec-efa0-4e03-949e-0a694f8fbd7b/85965d9e.png" alt="tensorboard_tf.train.latest_checkpoint.png"></p>
-<h2 id="用tensorflow实现seq2seq的细节问题"><a href="#用tensorflow实现seq2seq的细节问题" class="headerlink" title="用tensorflow实现seq2seq的细节问题"></a>用tensorflow实现seq2seq的细节问题</h2><h4 id="1-maximum-iteration"><a href="#1-maximum-iteration" class="headerlink" title="1. maximum_iteration"></a>1. maximum_iteration</h4><p>  在<code>dynamic_decode</code>中有参数<code>maximum_iteration</code>。</p>
-<p>  这个参数在<code>training</code>的时候并没有什么作用，因为在<code>training</code>时，<code>TrainingHelper</code>中有参数<code>sequence_length</code>，在解码到<code>sequence_length</code>的长度后，<code>TrainingHelper</code>会通过参数<code>finished</code>来告诉模型，解码已经结束。</p>
-<p>  在<code>inference</code>的时候，则会因为没有<code>sequence_length</code>的限制，而会不知道该在哪里停止，或者解码的句子过长。所以<code>maximum_iteration</code>在<code>inference</code>的时候，最好是有设定的。</p>
-<h4 id="2-具体的seq2seq模型的输入和输出实例"><a href="#2-具体的seq2seq模型的输入和输出实例" class="headerlink" title="2. 具体的seq2seq模型的输入和输出实例"></a>2. 具体的seq2seq模型的输入和输出实例</h4><p>  <code>encoder_inputs</code>：length = [3, 4]<br>  \<sos>, a, b, c, \<eos>, \<pad><br>  \<sos>, c, b, a, d, \<eos></p>
-<p>  <code>decoder_inputs</code>: length = [2, 3]<br>  \<sos>, e, f, \<eos><br>  \<sos>, e, f, g</p>
-<p>  <code>decoder_outputs</code>: length = [2, 3]<br>  e, f, \<eos>, \<eos><br>  e, f, g, \<eos></p>
-<p>  可以看出，<code>&lt;sos&gt;</code>是不会出现在<code>decoder_outputs</code>里面的，无论是在<code>training</code>还是<code>inference</code>里，<code>decoder</code>的第一个输入都是<code>&lt;sos&gt;</code>，<code>decoder</code>的第一个输出就直接是句子的第一个字/词。</p>
-<h2 id="修改vscode默认终端"><a href="#修改vscode默认终端" class="headerlink" title="修改vscode默认终端"></a>修改vscode默认终端</h2><p>  <a href="https://blog.csdn.net/u013517122/article/details/82776607" target="_blank" rel="noopener">修改 vscode 默认的终端 - LikeShadow - CSDN博客</a></p>
-<h2 id="变形seq2seq，即在training时，上一步的输出成为下一步的输入。"><a href="#变形seq2seq，即在training时，上一步的输出成为下一步的输入。" class="headerlink" title="变形seq2seq，即在training时，上一步的输出成为下一步的输入。"></a>变形seq2seq，即在training时，上一步的输出成为下一步的输入。</h2><p>  <strong>用<code>GreedyEmbeddingHelper</code>替换<code>TrainingHelper</code></strong></p>
-<h4 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h4><pre><code>在seq2seq的training中，我们一般用`target`，即上一步正确的输出，作为下一步的输入。但是因为这样，同样一句话在train时的输出，后infer时的输出是完全不一样的（同事说是因为模型训练的还不够好，这点有待考证）。为了使自己在infer时的输出更可控，我改变了train时的模型，下一步的输入不再是`target`（上一步的**正确输出**），而是上一步模型的**真实输出**。</code></pre><h4 id="2-困难"><a href="#2-困难" class="headerlink" title="2. 困难"></a>2. 困难</h4><ul>
-<li>这样最大的困难就是在<code>sequence_loss</code>的计算时会因为shape不同而报错。<br>因为少了y_label的约束，真实输出的句子长度是完全不可控的，但是在计算<code>sequence_loss</code>时计算的是两者<code>label</code>的熵（<code>nn_ops.sparse_softmax_cross_entropy_with_logits</code>），所以我们需要统一两者的<code>shape</code>。</li>
-</ul>
+<p><code>--cpus=8</code>设置的是cpu利用百分比，而不是个数，因为报错中，<code>Range of CPUs</code>是小数，而不是整数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -it --cpus&#x3D;8 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash</span><br><span class="line">Error response from daemon: Range of CPUs is from 0.01 to 6.00, as there are only 6 CPUs available.</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="SF-配置并使用-Docker"><a href="#SF-配置并使用-Docker" class="headerlink" title="SF 配置并使用 Docker"></a>SF 配置并使用 Docker</h2><h3 id="Install-Docker"><a href="#Install-Docker" class="headerlink" title="Install Docker"></a>Install Docker</h3><ol>
+<li><p>Homebrew 安装命令：</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install docker</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试 Docker：</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 80:80 --name webserver nginx</span><br></pre></td></tr></table></figure>
+
+<p> 打开 <code>http://localhost</code>，看到 <code>Welcome to nginx!</code> 说明 Docker 安装成功！</p>
 <ul>
-<li>真实输出<code>self.decoder_logits_train=outputs.rnn_outputs</code>。<code>self.decoder_logits_train</code>的<code>shape</code>是<code>[batch_size, sequence_len, vocab_size]</code>。这里的<code>sequence_len</code>实际上是这个<code>batch_size</code>中，真实输出的<strong>最长句子的长度</strong>。<br>同样，这个<code>batch_size</code>的<code>targets</code>，也会有个最长句子的长度<code>self.max_decode_length</code>。我们只需要让每个<code>batch_size</code>中的<code>sequence_len=self.max_decode_length</code>就可以了。<br>如果<code>sequence_len</code>太短，就加到<code>self.max_decode_length</code>的长度，如果太长，就用<code>tf.slice</code>给切断。<br>但是问题又来了：<ul>
-<li>因为<code>self.decoder_logits_train.shape[1]</code> <code>type</code>的问题，又因为它的值是<code>None</code>，想要比较它和<code>self.max_decode_length</code>非常困难</li>
-<li>就算比较了两者的值，想要把<code>self.decoder_logits_train</code>的第二维<code>tf.concat</code>到<code>self.max_decode_length</code>也要进行<code>tf.subtract(self.max_decode_length, self.decoder_logits_train.shape[1])</code>的运算。也会增加困难</li>
+<li>-d: 让容器在后台运行</li>
+<li>-p: 将容器内部使用的网络端口映射到我们使用的主机上</li>
 </ul>
 </li>
+<li><p>停止 Nginx 服务器并删除：</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker stop webserver</span><br><span class="line">docker rm webserver</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>国内镜像加速</p>
+<p> Docker -&gt; Preferences -&gt; Daemon -&gt; Registry mirrors 添加：<code>https://registry.docker-cn.com</code></p>
+</li>
+<li><p>测试加速器</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<p> 如有以下配置内容，说明加速器配置成功：</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Registry Mirrors:</span><br><span class="line">    https://registry.docker-cn.com/</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="Docker-Image"><a href="#Docker-Image" class="headerlink" title="Docker Image"></a>Docker Image</h3><blockquote>
+<p>个人偏好：仅配置一个镜像 (我以<strong><em>湖人总冠军</em></strong>命名 <code>lakers_champion</code>，不包含任何代码数据)，仅仅把需要安装的package封装好<br>这样就避免不用每个项目都给它单独弄一个镜像，10G+占空间啊！</p>
+</blockquote>
+<ol>
+<li><p>本地build镜像</p>
+<p> 新建 Dockerfile，e.g.,</p>
+ <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> okwrtdsh/anaconda3:pytorch-<span class="number">10.0</span>-cudnn7</span><br><span class="line"><span class="keyword">MAINTAINER</span> kun.xie@sfmail.sf-express.com</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \\</span></span><br><span class="line"><span class="bash">&amp;&amp; pip install --upgrade pip \\</span></span><br><span class="line"><span class="bash">&amp;&amp; pip install tqdm \\</span></span><br><span class="line"><span class="bash">&amp;&amp; pip install jieba \\</span></span><br><span class="line"><span class="bash">&amp;&amp; pip install gensim \\</span></span><br><span class="line"><span class="bash">&amp;&amp; apt-get install -y vim</span></span><br><span class="line">&amp;&amp; apt-get install -y git</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com tensorflow tensorboardX</span></span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple cupy pynvrtc --trusted-host mirrors.aliyun.com</span><br><span class="line">&amp;&amp; pip install git+https://github.com/salesforce/pytorch-qrnn</span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com torchtext</span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com jieba gensim</span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com opencc-python-reimplemented</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span></span><br><span class="line">&amp;&amp; conda config --<span class="keyword">add</span><span class="bash"> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span></span><br><span class="line">&amp;&amp; conda config --<span class="keyword">add</span><span class="bash"> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</span></span><br><span class="line">&amp;&amp; conda config --<span class="keyword">add</span><span class="bash"> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/</span></span><br><span class="line">&amp;&amp; conda config --set show_channel_urls yes</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> conda install jupyter -y --quiet</span></span><br><span class="line">&amp;&amp; conda install pytorch torchvision -c pytorch</span><br><span class="line">&amp;&amp; conda install scikit-learn -y --quiet</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ADD . /kxie</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir kxie</span></span><br><span class="line"><span class="comment">### 其实以上安装的package可以简单点写到文件requirements.txt中，以下一行命令就能完成安装操作 -- 因为懒没做！ ###</span></span><br><span class="line"><span class="comment"># RUN pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com -r ./requirements.txt</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /kxie</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">"/bin/bash"</span> ]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>加了 命令 <code>CMD [&quot;/bin/bash&quot;]</code>后，我们直接<code>docker run -it name_of_mirror</code>后就能直接进入<code>/bin/bash/</code>了。</p>
+</li>
+<li><p>我们也可以在运行时指定别的命令，如<code>docker run -it name_of_mirror cat /etc/os-release</code>，就是用<code>cat /etc/os-release</code>替换了<code>/bin/bash</code>命令。</p>
+<p>随后在当前目录下 <code>build</code>：</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">docker build -t 10.202.107.19/sfai/lakers_champion .</span><br></pre></td></tr></table></figure>
+<p>可以查看本地已经build好的镜像：<code>docker images</code></p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker images</span><br><span class="line">REPOSITORY                                            TAG                 IMAGE ID               CREATED                   SIZE</span><br><span class="line">10.202.107.19/sfai/lakers_champion   latest               25473e876cd6        About an hour ago   11.1GB</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h4 id="3-解决方案"><a href="#3-解决方案" class="headerlink" title="3. 解决方案"></a>3. 解决方案</h4><pre><code>好在我们在数据整理的时候去除了过长的句子，使得`targets`的最大长度不会超过50。所以`self.max_decode_length`不会大于50。
-  我们可以直接`tf.concat` `self.decoder_logits_train`和一个`shape`为`[batch_size, 50, vocab_size]`的矩阵，然后用`tf.slice`把第二维按`self.max_decoce_length`来切断。这样无论`self.decoder_logits_train`是过长还是过短，我们都能得到最终想要的结果。</code></pre><h4 id="4-遗留问题"><a href="#4-遗留问题" class="headerlink" title="4.遗留问题"></a>4.遗留问题</h4><ul>
-<li>因为这里我们知道<code>self.max_decode_length</code>的最大长度，所以可以取巧，如果不知道的话，可能更麻烦一些。</li>
-<li>当句子过短时，会因为后面都是用<code>&lt;pad&gt;</code>补上，因此可以计算出正确的<code>loss</code>。<br>但是当句子过长时，因为我们把<code>self.max_decode_length</code>后面部分全部截断，因此这里<code>loss</code>只计算了前面一部分的句子，后面部分的句子并不可控（可能后面部分非常长，但是仍然只有截断时的那个字符的差别产生<code>loss</code>——即<strong>真实输出</strong>文字，<strong>正确输出</strong>是”\<eos>“）。<br>所以<strong>可能</strong>会导致模型生成特别特别长的句子，但是只有前半部分是我们想要的。</li>
-</ul>
+</li>
+<li><p>把本地build好的镜像push到Harbor</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">docker login 10.202.107.19</span><br><span class="line">docker push 10.202.107.19/sfai/lakers_champion:latest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在server上把镜像从Harbor中pull下来</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ssh 01366808@10.202.90.201</span></span><br><span class="line">sudo docker pull 10.202.107.19/sfai/lakers_champion:latest</span><br></pre></td></tr></table></figure>
+
+<p> <code>docker images</code> 同样可以查看server上目前已有的镜像</p>
+</li>
+<li><p>server上运行</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nvidia-docker run -i -t --rm -p &lt;随便设置_1&gt;:8888 -p &lt;随便设置_2&gt;:6006 -v /HDATA/1/01366808/shijiao/test_map:/shijiao 10.202.107.19/sfai/tf1.12-cuda10-cudnn7-speech:latest bash</span><br></pre></td></tr></table></figure>
+ <font color=#545454>
+ <br>
+ 1. `<随便设置_1>` & `<随便设置_2>` 按个人喜好自行更改，避免冲突</br>
+ 2. 我把所有的代码以及数据放在了server上个人文件夹`~/kxie/`里面</br>
+ 3. 之后打开Jupyter Notebook页面的时候由于映射关系，能看到所有数据以及代码！很方便！！
+ </font>
+
+<p> 运行 <code>ternsorboard</code> &amp; <code>Jupyter Notebook</code>：</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash -</span></span><br><span class="line">nohup tensorboard --host=0.0.0.0 --logdir=/data/<span class="built_in">log</span>/kxie &amp;</span><br><span class="line">/opt/conda/bin/jupyter notebook  --ip=<span class="string">'*'</span> --no-browser --allow-root --NotebookApp.token= --notebook-dir=<span class="string">'/shijiao'</span></span><br></pre></td></tr></table></figure>
+<p> 这样就可以打开网页 <code>http://10.202.90.201:&lt;随便设置_1&gt;</code> 跑代码了！Jupyter的可视化还是很方便的，从本地copy paste也容易！</p>
+</li>
+</ol>
+<p><strong>具体命令分析，可以看新工作笔记第二页</strong></p>
+<ol>
+<li><p>其他</p>
+<p> 想修改镜像内容怎么办？ </p>
+<p> 进入docker镜像里面改：</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -it 10.202.107.19/sfai/lakers_champion /bin/bash </span><br><span class="line">修改内容 <span class="comment"># 然后退出并记住 ***Container ID***</span></span><br><span class="line">docker commit &lt;ID&gt; 10.202.107.19/sfai/lakers_champion</span><br><span class="line">docker push 10.202.107.19/sfai/lakers_champion:latest</span><br><span class="line">server上重新pull: sudo docker pull 10.202.107.19/sfai/lakers_champion</span><br></pre></td></tr></table></figure>
+
+<p> e.g., 修改本地镜像，使得能够使用<code>fzf</code>:</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run -it 10.202.107.19/sfai/lakers_champion</span><br><span class="line"><span class="comment"># after enter into this image:</span></span><br><span class="line"><span class="built_in">cd</span></span><br><span class="line">git <span class="built_in">clone</span> --depth 1 https://github.com/junegunn/fzf.git ~/.fzf</span><br><span class="line">~/.fzf/install</span><br><span class="line">vi .vimrc</span><br><span class="line"><span class="built_in">set</span> rtp+=~/.fzf</span><br><span class="line"><span class="built_in">exit</span> <span class="comment"># and remember container id</span></span><br><span class="line">docker commit &lt;container id&gt; 10.202.107.19/sfai/lakers_champion:latest</span><br><span class="line">docker push 10.202.107.19/sfai/lakers_champion:latest</span><br></pre></td></tr></table></figure>
+<p> <a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener">GitHub - junegunn/fzf: A command-line fuzzy finder</a></p>
+<p> 将本地文件添加到镜像中：</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker cp &lt;<span class="built_in">local</span> <span class="built_in">source</span>&gt; &lt;Container ID&gt;:&lt;dest&gt;</span><br><span class="line"><span class="comment"># 然后同上commit</span></span><br></pre></td></tr></table></figure>
+
+<p> Terminal过段时间就会中断 <code>timed out: Connection to 10.202.90.201 closed.</code> 如何重新进入正在后台运行的Docker？<br> (当然也有办法永不中断，自行Google)</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ssh 01366808@10.202.90.201</span></span><br><span class="line">sudo docker <span class="built_in">exec</span> -it &lt;ID&gt; bash</span><br></pre></td></tr></table></figure>
+
+<p> <img src="attachments/58057f8e.png" alt="58057f8e.png"></p>
+<blockquote>
+<p>可以用 <code>docker ps</code> 查看Docker进程以及ID</p>
+</blockquote>
+<p> 删除镜像：<code>sudo docker rmi &lt;ID&gt;</code></p>
+<p> 结束运行的容器：<code>sudo docker stop &lt;ID&gt;</code></p>
+<p> 修改镜像名字或者tag：</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker tag &lt;old_name:old_tag&gt; &lt;new_name:new_tag&gt;</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">docker tag &lt;ID&gt; &lt;new_name:new_tag&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="Sync"><a href="#Sync" class="headerlink" title="Sync"></a>Sync</h3><blockquote>
+<p>好像server上不连网的，没法Git同步，影响效率！</p>
+</blockquote>
+<ol>
+<li><p>从本地scp到服务器上:</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r &lt;<span class="built_in">source</span>&gt; 01366808@10.202.90.201:~/&lt;dest&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>rsync</code>：</p>
+ <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -av -e ssh --exclude=<span class="string">'excluded dir'</span> &lt;<span class="built_in">source</span>&gt; 01366808@10.202.90.201:~/&lt;dest&gt;</span><br></pre></td></tr></table></figure>
+
+<p> <code>--exclude=&#39;excluded dir&#39;</code>：本地<source>中有些目录的内容是你不想传到server上的</p>
+<blockquote>
+<p>一般情况：本地修改完代码，使用上面rysnc命令同步到server上 (或者简单点通过Jupyter copy paste)，然后跑吧！<br>交换 source dest 位置实现反向同步</p>
+</blockquote>
+</li>
+</ol>
 
     </div>
 
@@ -367,7 +437,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-挂载"><span class="nav-number">1.</span> <span class="nav-text">docker 挂载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iTerm2-安装agnoster"><span class="nav-number">2.</span> <span class="nav-text">iTerm2 安装agnoster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf分布式-–-DistributionStrategy"><span class="nav-number">3.</span> <span class="nav-text">tf分布式 – DistributionStrategy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tensorflow-重新加载并继续训练模型"><span class="nav-number">4.</span> <span class="nav-text">tensorflow 重新加载并继续训练模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tensorboard"><span class="nav-number">4.1.</span> <span class="nav-text">tensorboard</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用tensorflow实现seq2seq的细节问题"><span class="nav-number">5.</span> <span class="nav-text">用tensorflow实现seq2seq的细节问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-maximum-iteration"><span class="nav-number">5.0.1.</span> <span class="nav-text">1. maximum_iteration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-具体的seq2seq模型的输入和输出实例"><span class="nav-number">5.0.2.</span> <span class="nav-text">2. 具体的seq2seq模型的输入和输出实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改vscode默认终端"><span class="nav-number">6.</span> <span class="nav-text">修改vscode默认终端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变形seq2seq，即在training时，上一步的输出成为下一步的输入。"><span class="nav-number">7.</span> <span class="nav-text">变形seq2seq，即在training时，上一步的输出成为下一步的输入。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-背景"><span class="nav-number">7.0.1.</span> <span class="nav-text">1. 背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-困难"><span class="nav-number">7.0.2.</span> <span class="nav-text">2. 困难</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-解决方案"><span class="nav-number">7.0.3.</span> <span class="nav-text">3. 解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-遗留问题"><span class="nav-number">7.0.4.</span> <span class="nav-text">4.遗留问题</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-挂载"><span class="nav-number">1.</span> <span class="nav-text">docker 挂载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SF-配置并使用-Docker"><span class="nav-number">2.</span> <span class="nav-text">SF 配置并使用 Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-Docker"><span class="nav-number">2.1.</span> <span class="nav-text">Install Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-Image"><span class="nav-number">2.2.</span> <span class="nav-text">Docker Image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sync"><span class="nav-number">2.3.</span> <span class="nav-text">Sync</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
