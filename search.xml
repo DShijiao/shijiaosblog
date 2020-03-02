@@ -199,10 +199,10 @@
   <entry>
     <title>python的点滴</title>
     <url>/2020/02/19/python%E7%82%B9%E6%BB%B4/</url>
-    <content><![CDATA[<h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"></p>
+    <content><![CDATA[<h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"></p>
 <a id="more"></a>
 
-<p><img src="images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="图片二"><br><img src="images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A63.png" alt="图片三"></p>
+<p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="图片二"><br><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A63.png" alt="图片三"></p>
 <h3 id="map-zip"><a href="#map-zip" class="headerlink" title="map, zip"></a>map, zip</h3><p>map和zip配合使用，实现矩阵转置</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix &#x3D; [</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [4,5,6],</span><br><span class="line">  [7,8,9]</span><br><span class="line">]</span><br><span class="line">class Solution:</span><br><span class="line">    def rotate(self, matrix):  </span><br><span class="line">        matrix[:] &#x3D; map(list,zip(*matrix))</span><br><span class="line">        return matrix</span><br><span class="line">print(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [1,4,7],</span><br><span class="line">    [2,5,8],</span><br><span class="line">    [3,6,9]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
 
