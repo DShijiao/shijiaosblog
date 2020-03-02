@@ -65,7 +65,7 @@
 <p> 也可以自己增加一个目录内容，不过这些配置都要与主题目录下的languages文件中对应的<code>yml</code>文档里配置相关联。比如你在站点根目录中的配置文件设置<code>language</code>为<code>zh-Hans</code>，那么就要进入到主题目录下的languages文件中修改<code>zh-Hans.yml</code>，这样才能显示出菜单项新增的中文内容（以something为例子）</p>
 </li>
 <li><p>前面通过修改next主题下的<code>_config.yml</code>文件中的<code>menu</code>选项，可以在主页面的菜单栏添加”标签”选项，但是此时点击”标签”，跳转的页面会显示”page not found”。此时我们要新建一个页面</p>
-<p> <img src="images/image/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A201.png" alt="图一"><br> 在新建的<code>index.md</code>文件中添加<code>type: &quot;tags&quot;</code><br> <img src="images/image/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A202.png" alt="图二"><br> <code>categories</code>等同理</p>
+<p> <img src="/images/image/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A201.png" alt="图一"><br> 在新建的<code>index.md</code>文件中添加<code>type: &quot;tags&quot;</code><br> <img src="/images/image/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A202.png" alt="图二"><br> <code>categories</code>等同理</p>
 </li>
 <li><p>设置头像：</p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line">  url: &#x2F;images&#x2F;avatar.gif  #头像图片路径 图片放置在next&#x2F;source&#x2F;images</span><br><span class="line">  rounded: false  #是否显示圆形头像，true表示圆形，false默认</span><br><span class="line">  opacity: 0.7  #透明度0~1之间</span><br><span class="line">  rotated: false  #是否旋转 true表示旋转，false默认</span><br></pre></td></tr></table></figure>
@@ -388,12 +388,12 @@
 <p>无论是因为网络结构还是反向传播，不可否认的是梯度消失和梯度传播确实来源于对权重求导后很多小于1的数值的连乘，下面我门主要看一下为什么会产生这些小于1的数值。</p>
 <h3 id="几个激活函数"><a href="#几个激活函数" class="headerlink" title="几个激活函数"></a>几个激活函数</h3><p>在进入反向传播求导前，先认识一下神经网络中我们经常用到的激活函数</p>
 <h4 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h4><p>sigmoid 常见于CNN中，在RNN和LSTM中一般不会用到sigmoid<br>sigmoid的公式为$S(x)=\frac{1}{1+e^{-x}}$<br>其函数和导数图如下</p>
-<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/sigmoid.png" alt="sigmoid"></p>
+<p><img src="/images/image/sigmoid.png" alt="sigmoid"></p>
 <h4 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h4><p>LSTM和RNN中会用到tanh，详情可以看上一篇文章<br>tanh的公式为$tanh(x)=\frac{e^{x}-e^{-x}}{e^{x}+e^{x}}$<br>其函数和导数图如下</p>
-<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/tanh.png" alt="tanh"></p>
+<p><img src="/images/image/tanh.png" alt="tanh"></p>
 <h4 id="Relu"><a href="#Relu" class="headerlink" title="Relu"></a>Relu</h4><p>Relu主要是为了解决梯度消失和梯度爆炸的问题<br>其公式为：<br>$<br>relu(x)=\begin{cases}<br>0, x&lt;0 \\<br>x, x&gt;0<br>\end{cases}<br>$</p>
 <p>其函数和导数图如下</p>
-<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/relu.jpg" alt="relu"></p>
+<p><img src="/images/image/relu.jpg" alt="relu"></p>
 <p>relu的优点：</p>
 <ul>
 <li>解决了梯度消失/梯度爆炸的问题</li>
@@ -407,8 +407,8 @@
 </blockquote>
 <h3 id="为什么会产生梯度消失和梯度爆炸"><a href="#为什么会产生梯度消失和梯度爆炸" class="headerlink" title="为什么会产生梯度消失和梯度爆炸"></a>为什么会产生梯度消失和梯度爆炸</h3><p>DNN和RNN中的梯度消失和梯度爆炸是不同的</p>
 <h4 id="DNN"><a href="#DNN" class="headerlink" title="DNN"></a>DNN</h4><p>写比较麻烦，下次有时间再看看专门推一遍公式写一遍吧，这里直接贴吧：</p>
-<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/nn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADw%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="nn反向传播w导数解释"></p>
-<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/nn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADb%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="nn反向传播b导数解释"></p>
+<p><img src="/images/image/nn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADw%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="nn反向传播w导数解释"></p>
+<p><img src="/images/image/nn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADb%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="nn反向传播b导数解释"></p>
 <p>没有手动推导，所以曲折的理解过程如下：</p>
 <ol>
 <li><p>我当时看到两个博客里的公式不一样很困惑，后来发现是自己粗心，因为第一个是对W求导，第二个是对b求导。但是看到很多博客里其实都写的是第二种情况。<br>其实更应该考虑的是第一种情况，因为在神经网络中，bias是为了防止wx等于零起的辅助作用，真正有意义的是讨论W。</p>
@@ -420,10 +420,10 @@
 <p>当然，当w特别大是，我们会有$\vert \delta’(z) \cdot w_i \vert&gt;1$，就会导致梯度爆炸。</p>
 <p>从上我们可以看到DNN中的梯度爆炸或者梯度消失，本质是大于1或者小于1的数的<strong>连乘</strong>（注意这里不是幂次方，RNN中才是幂次方，下面会细说）导致的。</p>
 <h4 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h4><p>RNN中很重要的一点是权重共享。一样贴图</p>
-<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADw%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="rnn反向传播w导数解释"></p>
+<p><img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADw%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="rnn反向传播w导数解释"></p>
 <p>这里有几个点需要解释：</p>
 <ul>
-<li><p>为什么DNN中就连乘，但是RNN的导数中有加法呢？<br>DNN中写出的公式是<strong>每一层</strong>$w_i$前的求导公式<br>RNN这里写出的是<strong>所有层数</strong>的$w_x$前的求导公式的和，因为RNN是权重共享，所以对$W_x$的更新就是每一层需要对$W_x$更新的和。<br>因此第三层$W_x$前的导数是<img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%B8%89%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第三层导数">)，第二层$W_x$前的导数是<img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%BA%8C%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第二层导数">)，第一层$W_x$前的导数是<img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%B8%80%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第一层导数"></p>
+<li><p>为什么DNN中就连乘，但是RNN的导数中有加法呢？<br>DNN中写出的公式是<strong>每一层</strong>$w_i$前的求导公式<br>RNN这里写出的是<strong>所有层数</strong>的$w_x$前的求导公式的和，因为RNN是权重共享，所以对$W_x$的更新就是每一层需要对$W_x$更新的和。<br>因此第三层$W_x$前的导数是<img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%B8%89%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第三层导数">)，第二层$W_x$前的导数是<img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%BA%8C%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第二层导数">)，第一层$W_x$前的导数是<img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%B8%80%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第一层导数"></p>
 </li>
 <li><p>公式中$\frac{\partial S_i}{\partial S_i-1}$和DNN中的$\frac{\partial f_i}{\partial f_i-1}$是一样的性质，唯一不同的是这里$\frac{\partial S_i}{\partial S_i-1}=\frac{\partial S_i-1}{\partial S_i-2}=tanh’\cdot W_s$，所以这里其实是一个小于1的数的<strong>幂次方</strong></p>
 </li>
@@ -513,12 +513,10 @@
 <h2 id="LSTM基本描述"><a href="#LSTM基本描述" class="headerlink" title="LSTM基本描述"></a>LSTM基本描述</h2><p>LSTM一定程度上解决了RNN梯度消失和梯度爆炸的问题，得益于三个门的引入</p>
 <h3 id="LSTM的三个门"><a href="#LSTM的三个门" class="headerlink" title="LSTM的三个门"></a>LSTM的三个门</h3><p>在LSTM中引入了三个门：输入门，输出门和遗忘门</p>
 <p>遗忘门：控制了上一个cell的状态$C_{t-1}$中有多少信息进入到当前状态$C_t$中<br>输入门：控制了有多少信息会被保存到cell状态$C_t$中<br>输出门：控制了当前cell的状态$C_t$(cell state)有多少信息会输出到下一个神经元（即隐藏单元输出hidden state）</p>
-<p><img src="https://github.com/shijiaod/shijiaod.github.io/blob/master/images/image/LSTM3-chain.png" alt="LSTM"></p>
+<p><img src="/images/image/LSTM3-chain.png" alt="LSTM"></p>
 <h3 id="LSTM特点"><a href="#LSTM特点" class="headerlink" title="LSTM特点"></a>LSTM特点</h3><p>LSTM一定程度上将RNN中反向传播中梯度中的叠成关系转换成叠加关系，所以缓解了梯度消失和梯度爆炸的问题。</p>
 <h3 id="LSTM和GRU的比较"><a href="#LSTM和GRU的比较" class="headerlink" title="LSTM和GRU的比较"></a>LSTM和GRU的比较</h3><p>LSTM有三个门，GRU只有两个（更新门update和相关门revelance），所以LSTM的运算更为复杂。<br>GRU是在LSTM后出来的，为了缓解LSTM的计算问题，但是在一些实际应用中，GRU的效果并不比LSTM差，所以应用越来越广泛。</p>
-<p><img src="images/image/GRU.png" alt="GRU"></p>
-<p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="python"></p>
-<p><img src="images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="python"></p>
+<p><img src="/images/image/GRU.png" alt="GRU"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li><p>关于RNN的长期依赖性问题，看了很多文章，一直不能确到底是因</p>
 <ul>
@@ -653,7 +651,7 @@
 <p>这里<code>ckpt_file</code>是文件<code>checkpoint</code>里<code>model_checkpoint_path</code>的值。<br>只要<code>model_checkpoint_path</code>指定的<code>checkpoint</code>在路径下存在，就会直接加载这个<code>checkpoint</code>继续训练。否则就会重新从<code>0</code>开始。</p>
 <a id="more"></a>
 
-<h3 id="tensorboard"><a href="#tensorboard" class="headerlink" title="tensorboard"></a>tensorboard</h3><p><code>log/</code>中会因为重新加载，有几个分开的文件，但是对于同一个变量（如<code>loss</code>）会在同一个图内显示所有其随着<code>steps</code>变化的曲线。<br><img src="images/image/tensorboard.png" alt="tensorboard_tf.train.latest_checkpoint.png"></p>
+<h3 id="tensorboard"><a href="#tensorboard" class="headerlink" title="tensorboard"></a>tensorboard</h3><p><code>log/</code>中会因为重新加载，有几个分开的文件，但是对于同一个变量（如<code>loss</code>）会在同一个图内显示所有其随着<code>steps</code>变化的曲线。<br><img src="/images/image/tensorboard.png" alt="tensorboard_tf.train.latest_checkpoint.png"></p>
 <hr>
 <h2 id="用tensorflow实现seq2seq的细节问题"><a href="#用tensorflow实现seq2seq的细节问题" class="headerlink" title="用tensorflow实现seq2seq的细节问题"></a>用tensorflow实现seq2seq的细节问题</h2><h3 id="1-maximum-iteration"><a href="#1-maximum-iteration" class="headerlink" title="1. maximum_iteration"></a>1. maximum_iteration</h3><p>在<code>dynamic_decode</code>中有参数<code>maximum_iteration</code>。</p>
 <p>这个参数在<code>training</code>的时候并没有什么作用，因为在<code>training</code>时，<code>TrainingHelper</code>中有参数<code>sequence_length</code>，在解码到<code>sequence_length</code>的长度后，<code>TrainingHelper</code>会通过参数<code>finished</code>来告诉模型，解码已经结束。</p>
