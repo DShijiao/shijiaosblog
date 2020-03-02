@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/LSTM3-chain.png">
 <meta property="og:image" content="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/GRU.png">
 <meta property="article:published_time" content="2019-12-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-02-22T05:40:40.487Z">
+<meta property="article:modified_time" content="2020-03-02T03:29:01.056Z">
 <meta property="article:author" content="Shijiao DENG">
 <meta property="article:tag" content="RNN">
 <meta property="article:tag" content="LSTM">
@@ -220,7 +220,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-22 13:40:40" itemprop="dateModified" datetime="2020-02-22T13:40:40+08:00">2020-02-22</time>
+                <time title="修改时间：2020-03-02 11:29:01" itemprop="dateModified" datetime="2020-03-02T11:29:01+08:00">2020-03-02</time>
               </span>
 
           
@@ -238,6 +238,8 @@
 <p>RNN是一类用来处理序列数据的神经网络，当前状态不仅受到当前输入$x_t$的影响，也受前面状态$h_{t-1}$的影响</p>
 <p>$h_t=\delta (W^{h_{t-1}} \cdot h_{t-1} + W^{x_t} \cdot x_t)$<br>$y=\delta (W^y \cdot h_t)$</p>
 <pre><code>ignore bais here</code></pre><p>且神经元是共享权重W的，即:<br>$W^{h_{t-1}}=W^{h_{t}}$<br>$W^{x_{t-1}}=W^{x_t}$<br>$W^{y-1}=W^y$</p>
+<a id="more"></a>
+
 <h2 id="RNN问题"><a href="#RNN问题" class="headerlink" title="RNN问题"></a>RNN问题</h2><h3 id="长期依赖"><a href="#长期依赖" class="headerlink" title="长期依赖"></a>长期依赖</h3><p>RNN在实际应用中又一个很大的问题，就是长期依赖性问题，即一个输出$y_t$主要受到其前面几个输入和状态的影响，对较长时间前的输入和状态则非常不敏感，这是由于反向传播中梯度消失引起的。<br>为了解决这一问题，我们引入了LSTM（门机制）。</p>
 <h3 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h3><p>我们在计算RNN反向传播的梯度时会发现，因为RNN是一个共享权重的神经网络，所以当权重W可以特征分解为$W=Q \cdot \Lambda \cdot Q^T$且Q为正交矩阵时，则梯度包含特征值矩阵的幂次方，因此当特征值&gt;1时，则会梯度爆炸，反之则会梯度消失。<br>梯度爆炸比较容易察觉，一般表现为loss变为Nan<br>梯度消失则相对比较难以察觉，一般表现为loss几乎不变，但是loss几乎不变不代表就是产生了梯度消失</p>
 <h2 id="LSTM基本描述"><a href="#LSTM基本描述" class="headerlink" title="LSTM基本描述"></a>LSTM基本描述</h2><p>LSTM一定程度上解决了RNN梯度消失和梯度爆炸的问题，得益于三个门的引入</p>

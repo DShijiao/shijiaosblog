@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/06/LSTM/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -194,181 +194,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/12/06/LSTM/" class="post-title-link" itemprop="url">LSTM</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-06T00:00:00+08:00">2019-12-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-22 13:40:40" itemprop="dateModified" datetime="2020-02-22T13:40:40+08:00">2020-02-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="LSTM来源"><a href="#LSTM来源" class="headerlink" title="LSTM来源"></a>LSTM来源</h2><p>LSTM由RNN变化而来，所以在介绍LSTM前，我们先了解一下RNN。</p>
-<p>RNN是一类用来处理序列数据的神经网络，当前状态不仅受到当前输入$x_t$的影响，也受前面状态$h_{t-1}$的影响</p>
-<p>$h_t=\delta (W^{h_{t-1}} \cdot h_{t-1} + W^{x_t} \cdot x_t)$<br>$y=\delta (W^y \cdot h_t)$</p>
-<pre><code>ignore bais here</code></pre><p>且神经元是共享权重W的，即:<br>$W^{h_{t-1}}=W^{h_{t}}$<br>$W^{x_{t-1}}=W^{x_t}$<br>$W^{y-1}=W^y$</p>
-<h2 id="RNN问题"><a href="#RNN问题" class="headerlink" title="RNN问题"></a>RNN问题</h2><h3 id="长期依赖"><a href="#长期依赖" class="headerlink" title="长期依赖"></a>长期依赖</h3><p>RNN在实际应用中又一个很大的问题，就是长期依赖性问题，即一个输出$y_t$主要受到其前面几个输入和状态的影响，对较长时间前的输入和状态则非常不敏感，这是由于反向传播中梯度消失引起的。<br>为了解决这一问题，我们引入了LSTM（门机制）。</p>
-<h3 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h3><p>我们在计算RNN反向传播的梯度时会发现，因为RNN是一个共享权重的神经网络，所以当权重W可以特征分解为$W=Q \cdot \Lambda \cdot Q^T$且Q为正交矩阵时，则梯度包含特征值矩阵的幂次方，因此当特征值&gt;1时，则会梯度爆炸，反之则会梯度消失。<br>梯度爆炸比较容易察觉，一般表现为loss变为Nan<br>梯度消失则相对比较难以察觉，一般表现为loss几乎不变，但是loss几乎不变不代表就是产生了梯度消失</p>
-<h2 id="LSTM基本描述"><a href="#LSTM基本描述" class="headerlink" title="LSTM基本描述"></a>LSTM基本描述</h2><p>LSTM一定程度上解决了RNN梯度消失和梯度爆炸的问题，得益于三个门的引入</p>
-<h3 id="LSTM的三个门"><a href="#LSTM的三个门" class="headerlink" title="LSTM的三个门"></a>LSTM的三个门</h3><p>在LSTM中引入了三个门：输入门，输出门和遗忘门</p>
-<p>遗忘门：控制了上一个cell的状态$C_{t-1}$中有多少信息进入到当前状态$C_t$中<br>输入门：控制了有多少信息会被保存到cell状态$C_t$中<br>输出门：控制了当前cell的状态$C_t$(cell state)有多少信息会输出到下一个神经元（即隐藏单元输出hidden state）</p>
-<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/LSTM3-chain.png" alt="LSTM"></p>
-<h3 id="LSTM特点"><a href="#LSTM特点" class="headerlink" title="LSTM特点"></a>LSTM特点</h3><p>LSTM一定程度上将RNN中反向传播中梯度中的叠成关系转换成叠加关系，所以缓解了梯度消失和梯度爆炸的问题。</p>
-<h3 id="LSTM和GRU的比较"><a href="#LSTM和GRU的比较" class="headerlink" title="LSTM和GRU的比较"></a>LSTM和GRU的比较</h3><p>LSTM有三个门，GRU只有两个（更新门update和相关门revelance），所以LSTM的运算更为复杂。<br>GRU是在LSTM后出来的，为了缓解LSTM的计算问题，但是在一些实际应用中，GRU的效果并不比LSTM差，所以应用越来越广泛。</p>
-<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/GRU.png" alt="GRU"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li><p>关于RNN的长期依赖性问题，看了很多文章，一直不能确到底是因</p>
-<ul>
-<li><p>$h_t=Q^T \cdot \Lambda^t \cdot Q \cdot h_{(0)}$导致的在<strong>前向传播</strong>中$h_{(0)}$对$h_t$的影响因为幂次方的关系而非常小</p>
-</li>
-<li><p>还是因为梯度消失导致的长期依赖关系.</p>
-<p>直到看到Andrew Ng在<a href="https://www.coursera.org/learn/nlp-sequence-models/lecture/PKMRR/vanishing-gradients-with-rnns" target="_blank" rel="noopener">视频</a>中明确指出：RNN的长期依赖性问题来源于<strong>梯度消失</strong>，并且在<a href="http://pelhans.com/2019/04/24/deepdive_tensorflow-note9/#长期依赖问题" target="_blank" rel="noopener">文章</a>中看到公式$\Delta_{h^{(0)}}$的求解，才理解：RNN的长期依赖性问题来源于反向传播中因共享权重W产生的$\Delta$的幂次方，造成了梯度消失，而使得当前状态对前面序列的依赖过小。</p>
-</li>
-</ul>
-</li>
-<li><p>在LSTM中有几种激活函数：</p>
-<ul>
-<li>sigmoid主要用在门的计算中，因为sigmoid很容易趋近于0或者1，所以使得门可以控制保存（等于1时）或不保存（等于0时）信息</li>
-<li>softmax一般用于输出y之前</li>
-<li>tanh用于求$\tilde{C}^t$和$h_{t}$的时候</li>
-</ul>
-</li>
-<li><p>hexo中并不支持LaTex格式写公式的问题见<a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/" target="_blank" rel="noopener">此文章</a></p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/29/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/29/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-29 10:03:18" itemprop="dateCreated datePublished" datetime="2019-11-29T10:03:18+08:00">2019-11-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-22 13:40:39" itemprop="dateModified" datetime="2020-02-22T13:40:39+08:00">2020-02-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/chitchat/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/16/chitchat/" class="post-title-link" itemprop="url">Chitchat</a>
+            <a href="/2019/01/16/docker/" class="post-title-link" itemprop="url">docker</a>
         </h1>
 
         <div class="post-meta">
@@ -385,7 +211,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-25 15:33:11" itemprop="dateModified" datetime="2020-02-25T15:33:11+08:00">2020-02-25</time>
+                <time title="修改时间：2020-03-02 11:28:39" itemprop="dateModified" datetime="2020-03-02T11:28:39+08:00">2020-03-02</time>
               </span>
 
           
@@ -399,256 +225,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Chitchat"><a href="#Chitchat" class="headerlink" title="Chitchat"></a>Chitchat</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>chitchat持续的时间很长了。每次进步不大，但是至少都在前进。因为持续时间长，每次想法和改动的地方比较多，也是学到了不少东西，想要把这些都记录下来，所以开了这个文档。</p>
-<p>chitchat 目前已经自己改进到v1.5了。虽然每一次改动的内容并不大，但是每一次都是一个尝试。</p>
-<h4 id="到目前为止，每个version的改进简介"><a href="#到目前为止，每个version的改进简介" class="headerlink" title="到目前为止，每个version的改进简介"></a>到目前为止，每个version的改进简介</h4><ul>
-<li><p>v1.1 是所有以前的版本，但是因为隔的太久，当时又没有记录，所以都不太记得了。</p>
-</li>
-<li><p>v1.2 是自己重构代码，除此之外，和第一个版本的差别不大。</p>
-</li>
-<li><p>v1.3 是在<code>seq2seq</code>的基础上加入了<code>bert</code>的<code>get_pooled_output</code>。</p>
-</li>
-<li><p>v1.4</p>
-<ul>
-<li>v1.4 这个版本在v1.2版本上改变了loss。因为在同时训练了v1.3版本和v1.2版本后进行比较，发现相同时间内训练出来的结果（因为版本v1.3中加入了<code>bert</code>，所以相同时间内训练出来的<code>epoch</code>数相差很大），v1.2版本的更好。因为考虑到时间成本，所以v1.4版本是在v1.2版本的基础上进行改进的。具体内容可以看v1.4的<code>README.md</code>。</li>
-<li>v1.4里也加入了一些“问候”，“再见”等的规则。</li>
-</ul>
-</li>
-<li><p>v1.5 <code>seq2seq</code>中在<code>train</code>时，一般用上一步正确的输出作为下一步的输入，但是这里改成用上一步真实的输出作为下一步的输入。具体内容可见这个文件夹下的《变形seq2seq，即在training时，上一步的输出成为下一步的输入》</p>
-</li>
-<li><p>又把<code>learning_rate</code>调小了，在训练了100个epoch，但是结果还是很糟糕。</p>
-</li>
-<li><p>v1.6 尝试在v1.4的基础上把<code>layer</code>从3改成6</p>
-</li>
-</ul>
-<h4 id="还有的问题"><a href="#还有的问题" class="headerlink" title="还有的问题"></a>还有的问题</h4><ul>
-<li>回答和问题太相似</li>
-<li>无意义回答过多</li>
-<li>对话内容大多无意义，无法深入交谈具体事情</li>
-</ul>
-<h4 id="一些想法和接下来前进的方向"><a href="#一些想法和接下来前进的方向" class="headerlink" title="一些想法和接下来前进的方向"></a>一些想法和接下来前进的方向</h4><ul>
-<li>增加<code>layer</code>层数，比如6，让模型更好的拟合 (v1.6)</li>
-<li>试一试用明翔的转化模型，把一批聊天节目等的语音转换乘文字后用来作为数据训练？</li>
-</ul>
+          <h2 id="docker-挂载"><a href="#docker-挂载" class="headerlink" title="docker 挂载"></a>docker 挂载</h2><p>前面是本地文件，后面是镜像文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -it --cpus&#x3D;3 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
+<p><code>--cpus=8</code>设置的是cpu利用百分比，而不是个数，因为报错中，<code>Range of CPUs</code>是小数，而不是整数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -it --cpus&#x3D;8 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash</span><br><span class="line">Error response from daemon: Range of CPUs is from 0.01 to 6.00, as there are only 6 CPUs available.</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/01/16/docker/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/protobuf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/16/protobuf/" class="post-title-link" itemprop="url">protobuf</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-16T00:00:00+08:00">2019-01-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-25 14:36:37" itemprop="dateModified" datetime="2020-02-25T14:36:37+08:00">2020-02-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h4><ul>
-<li><code>protobuf</code>：把消息序列化的工具</li>
-<li><code>rpc</code>： 远程方法调用</li>
-<li><code>redis</code>：缓存</li>
-<li><code>mysql</code>：持久储存</li>
-</ul>
-<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p><a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5" target="_blank" rel="noopener">ML Client/Server Using gRPC in Python – Good Audience</a></p>
-<h4 id="安装Protocol-Buffers："><a href="#安装Protocol-Buffers：" class="headerlink" title="安装Protocol Buffers："></a>安装Protocol Buffers：</h4><ol>
-<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
-<li>brew install protobuf</li>
-<li>安装gRPC：pip install grpcio</li>
-<li>安装gRPC：pip install grpcio-tools</li>
-</ol>
-<h4 id="编译proto"><a href="#编译proto" class="headerlink" title="编译proto"></a>编译proto</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m grpc_tools.protoc -I .&#x2F;protos --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;intent.proto</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>-I</code><br>指定生成的<code>pb2.py</code>和<code>pb2_grpc.py</code>文件的储存路径</li>
-<li><code>./protos/intent.proto</code><br>需要编译的<code>.proto</code>文件的位置</li>
-</ul>
-<p>如果文件原来的位置如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
-
-<p>在根目录上运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I .&#x2F;protos&#x2F; --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
-<p>后会变成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br></pre></td></tr></table></figure>
-
-<p>在根目录上运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I . --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
-<p>后会变成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
-
-<p>没弄明白为什么，不过为了方便函数之间的调用，一般使用第一种方法。</p>
-<h4 id="http-VS-grpc"><a href="#http-VS-grpc" class="headerlink" title="http VS grpc"></a>http VS grpc</h4><ol>
-<li><code>http</code>和<code>grpc</code>都是通过<code>tcp</code>运行。</li>
-<li>不同的是<code>grpc</code>会将信息转换成二进制格式，因此传输更快，所需内存更小，效率更高。<br>但是因为<code>grpc</code>中，双方都需要编写相同的<code>.proto</code>，彼此传输的格式要固定，因此要求相对更严格一些。而http则没有这种要求，双方并没有格式的约定，所以<code>http</code>也更大一些，速度相对更慢一些。</li>
-<li><code>http</code>通过<code>&quot;\\r\\n&quot;</code>来分隔信息。<code>grpc</code>则要通过<code>.proto</code>文件里的<code>message</code>严格规范信息的数目、类型等。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/16/tensorflow/" class="post-title-link" itemprop="url">tensorflow实战应用</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-16T00:00:00+08:00">2019-01-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-25 14:05:59" itemprop="dateModified" datetime="2020-02-25T14:05:59+08:00">2020-02-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="tensorflow-重新加载并继续训练模型"><a href="#tensorflow-重新加载并继续训练模型" class="headerlink" title="tensorflow 重新加载并继续训练模型"></a>tensorflow 重新加载并继续训练模型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ckpt_file &#x3D; tf.train.latest_checkpoint(path_save_model)</span><br><span class="line">if ckpt_file:</span><br><span class="line">    saver.restore(sess, ckpt_file)</span><br></pre></td></tr></table></figure>
-
-<p>这里<code>ckpt_file</code>是文件<code>checkpoint</code>里<code>model_checkpoint_path</code>的值。<br>只要<code>model_checkpoint_path</code>指定的<code>checkpoint</code>在路径下存在，就会直接加载这个<code>checkpoint</code>继续训练。否则就会重新从<code>0</code>开始。</p>
-<h3 id="tensorboard"><a href="#tensorboard" class="headerlink" title="tensorboard"></a>tensorboard</h3><p><code>log/</code>中会因为重新加载，有几个分开的文件，但是对于同一个变量（如<code>loss</code>）会在同一个图内显示所有其随着<code>steps</code>变化的曲线。<br><img src="/public/images/image/tensorboard.png" alt="tensorboard_tf.train.latest_checkpoint.png"></p>
-<hr>
-<h2 id="用tensorflow实现seq2seq的细节问题"><a href="#用tensorflow实现seq2seq的细节问题" class="headerlink" title="用tensorflow实现seq2seq的细节问题"></a>用tensorflow实现seq2seq的细节问题</h2><h4 id="1-maximum-iteration"><a href="#1-maximum-iteration" class="headerlink" title="1. maximum_iteration"></a>1. maximum_iteration</h4><p>在<code>dynamic_decode</code>中有参数<code>maximum_iteration</code>。</p>
-<p>这个参数在<code>training</code>的时候并没有什么作用，因为在<code>training</code>时，<code>TrainingHelper</code>中有参数<code>sequence_length</code>，在解码到<code>sequence_length</code>的长度后，<code>TrainingHelper</code>会通过参数<code>finished</code>来告诉模型，解码已经结束。</p>
-<p>在<code>inference</code>的时候，则会因为没有<code>sequence_length</code>的限制，而会不知道该在哪里停止，或者解码的句子过长。所以<code>maximum_iteration</code>在<code>inference</code>的时候，最好是有设定的。</p>
-<h4 id="2-具体的seq2seq模型的输入和输出实例"><a href="#2-具体的seq2seq模型的输入和输出实例" class="headerlink" title="2. 具体的seq2seq模型的输入和输出实例"></a>2. 具体的seq2seq模型的输入和输出实例</h4><p><code>encoder_inputs</code>：length = [3, 4]</p>
-<pre><code>&lt;sos&gt;, a, b, c, &lt;eos&gt;, &lt;pad&gt;
-&lt;sos&gt;, c, b, a, d, &lt;eos&gt;</code></pre><p><code>decoder_inputs</code>: length = [2, 3]</p>
-<pre><code>&lt;sos&gt;, e, f, &lt;eos&gt;
-&lt;sos&gt;, e, f, g</code></pre><p><code>decoder_outputs</code>: length = [2, 3]</p>
-<pre><code>e, f, &lt;eos&gt;, &lt;eos&gt;
-e, f, g, &lt;eos&gt;</code></pre><p>可以看出，<code>&lt;sos&gt;</code>是不会出现在<code>decoder_outputs</code>里面的，无论是在<code>training</code>还是<code>inference</code>里，<code>decoder</code>的第一个输入都是<code>&lt;sos&gt;</code>，<code>decoder</code>的第一个输出就直接是句子的第一个字/词。</p>
-<hr>
-<h2 id="变形seq2seq，即在training时，上一步的输出成为下一步的输入。"><a href="#变形seq2seq，即在training时，上一步的输出成为下一步的输入。" class="headerlink" title="变形seq2seq，即在training时，上一步的输出成为下一步的输入。"></a>变形seq2seq，即在training时，上一步的输出成为下一步的输入。</h2><p><strong>用<code>GreedyEmbeddingHelper</code>替换<code>TrainingHelper</code></strong></p>
-<h4 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h4><p>在seq2seq的training中，我们一般用<code>target</code>，即上一步正确的输出，作为下一步的输入。但是因为这样，同样一句话在train时的输出，后infer时的输出是完全不一样的（同事说是因为模型训练的还不够好，这点有待考证）。为了使自己在infer时的输出更可控，我改变了train时的模型，下一步的输入不再是<code>target</code>（上一步的<strong>正确输出</strong>），而是上一步模型的<strong>真实输出</strong>。</p>
-<h4 id="2-困难"><a href="#2-困难" class="headerlink" title="2. 困难"></a>2. 困难</h4><ul>
-<li>这样最大的困难就是在<code>sequence_loss</code>的计算时会因为shape不同而报错。<br>因为少了y_label的约束，真实输出的句子长度是完全不可控的，但是在计算<code>sequence_loss</code>时计算的是两者<code>label</code>的熵（<code>nn_ops.sparse_softmax_cross_entropy_with_logits</code>），所以我们需要统一两者的<code>shape</code>。</li>
-</ul>
-<ul>
-<li>真实输出<code>self.decoder_logits_train=outputs.rnn_outputs</code>。<code>self.decoder_logits_train</code>的<code>shape</code>是<code>[batch_size, sequence_len, vocab_size]</code>。这里的<code>sequence_len</code>实际上是这个<code>batch_size</code>中，真实输出的<strong>最长句子的长度</strong>。<br>同样，这个<code>batch_size</code>的<code>targets</code>，也会有个最长句子的长度<code>self.max_decode_length</code>。我们只需要让每个<code>batch_size</code>中的<code>sequence_len=self.max_decode_length</code>就可以了。<br>如果<code>sequence_len</code>太短，就加到<code>self.max_decode_length</code>的长度，如果太长，就用<code>tf.slice</code>给切断。<br>但是问题又来了：<ul>
-<li>因为<code>self.decoder_logits_train.shape[1]</code> <code>type</code>的问题，又因为它的值是<code>None</code>，想要比较它和<code>self.max_decode_length</code>非常困难</li>
-<li>就算比较了两者的值，想要把<code>self.decoder_logits_train</code>的第二维<code>tf.concat</code>到<code>self.max_decode_length</code>也要进行<code>tf.subtract(self.max_decode_length, self.decoder_logits_train.shape[1])</code>的运算。也会增加困难</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-解决方案"><a href="#3-解决方案" class="headerlink" title="3. 解决方案"></a>3. 解决方案</h4><p>好在我们在数据整理的时候去除了过长的句子，使得<code>targets</code>的最大长度不会超过50。所以<code>self.max_decode_length</code>不会大于50。</p>
-<p>我们可以直接<code>tf.concat</code> <code>self.decoder_logits_train</code>和一个<code>shape</code>为<code>[batch_size, 50, vocab_size]</code>的矩阵，然后用<code>tf.slice</code>把第二维按<code>self.max_decoce_length</code>来切断。这样无论<code>self.decoder_logits_train</code>是过长还是过短，我们都能得到最终想要的结果。</p>
-<h4 id="4-遗留问题"><a href="#4-遗留问题" class="headerlink" title="4.遗留问题"></a>4.遗留问题</h4><ul>
-<li>因为这里我们知道<code>self.max_decode_length</code>的最大长度，所以可以取巧，如果不知道的话，可能更麻烦一些。</li>
-<li>当句子过短时，会因为后面都是用<code>&lt;pad&gt;</code>补上，因此可以计算出正确的<code>loss</code>。<br>但是当句子过长时，因为我们把<code>self.max_decode_length</code>后面部分全部截断，因此这里<code>loss</code>只计算了前面一部分的句子，后面部分的句子并不可控（可能后面部分非常长，但是仍然只有截断时的那个字符的差别产生<code>loss</code>——即<strong>真实输出</strong>文字，<strong>正确输出</strong>是”\<eos>“）。<br>所以<strong>可能</strong>会导致模型生成特别特别长的句子，但是只有前半部分是我们想要的。</li>
-</ul>
-<hr>
-<h2 id="tf分布式-–-DistributionStrategy"><a href="#tf分布式-–-DistributionStrategy" class="headerlink" title="tf分布式 – DistributionStrategy"></a>tf分布式 – DistributionStrategy</h2><p>以下内容摘抄自：<br><a href="http://jcf94.com/2018/10/21/2018-10-21-tfunpacking9/" target="_blank" rel="noopener">TensorFlow 拆包（九）：High Level APIs \| Chenfan Blog</a></p>
-<p><strong>看一下官方文档中对 <code>DistributionStrategy</code> 的设计思想。</strong></p>
-<p>首先是一些底层的概念：</p>
-<ul>
-<li>Wrapped values：跨设备相关的变量可以被封装为两种类别，PerDevice 对象表示的变量在每个设备上的值不同，Mirrored 对象表示的变量在每个设备上的值都相同</li>
-<li>Unwrapping and merging：考虑前面提过的这个函数 <code>call_for_each_tower(fn, w)</code>，<code>fn</code> 是模型函数，<code>w</code> 代表一些 Wrapped values。这个函数的调用过程中就包含了变量的 unwrapping 和 merging，假定在设备 <code>d0</code> 上 <code>fn(w0)</code> 得到的结果是 <code>(x, a, v0)</code>，在设备 <code>d1</code> 上 <code>fn(w1)</code> 得到的结果是 <code>(x, b, v1)</code>。首先在调用函数之前，<code>w</code> 需要被解包变成 <code>w0</code> 和 <code>w1</code> 然后分别调用 <code>fn</code> 函数。返回的结果有三种情况，第一个值都返回了一个相同的对象 <code>x</code>，则最终 <code>merge</code> 之后还是对象 <code>x</code>；第二个值是每个设备不一样的，则 <code>merge</code> 之后是一个 <code>PerDevice</code> 对象（其实就是个设备和对应值的 <code>map</code>）；第三个值是每个设备返回的分别是一组 <code>Mirrored</code> 对象的成员，则 <code>merge</code> 之后是一个 <code>Mirrored</code> 对象。所以 <code>call_for_each_tower(fn, w)</code> 在这里返回得到的就是一组 <code>(x, PerDevice{...}, Mirrored{...})</code></li>
-<li>Tower context vs. Cross-tower context：Tower context 指的是对每个设备的封装上下文，通常对每个设备分别跑一遍模型函数就需要这种封装；Cross-tower context 指的是跨设备的封装上下文，比如说像 <code>reduce()</code> 这种所有设备共同参与的一个操作就需要这种封装</li>
-<li>Worker devices vs. parameter devices：负责计算的设备和存参数的设备，没啥好说的。</li>
-</ul>
-<p>更新一个变量的常规操作如下：</p>
-<ol>
-<li>把输入数据集封装在 <code>d.distribute_dataset()</code> 中，然后创建一个 iterator</li>
-<li>对每一个设备共同调用 d.call_for_each_tower() 来分别创建网络模型，并且最终各自得到一组梯度/变量对：<code>d0</code> 上有 <code>{(g0, v0), (g1, v1), ...}</code>，<code>d1</code> 上有 <code>{(g&#39;0, v0), (g&#39;1, v1), ...}</code> 等等这样</li>
-<li>调用<code>d.reduce(VariableAggregation.SUM, t, v)</code> 或者 <code>d.batch_reduce()</code> 来对梯度求和，并且对应到各自的变量上：<code>{(Sum(g0, g&#39;0), v0), (Sum(g1, g&#39;1), v1), ...}</code></li>
-<li>调用 <code>d.update(v)</code> 来对每一个变量进行更新</li>
-</ol>
-<p>3、4 两步如果用 <code>Optimizer</code> 中的 <code>apply_gradients()</code> 方法可以自动完成（……这就是 <code>Optimizer</code> 后来加进去那部分代码的作用），或者在一个 <code>Cross-tower context</code> 中调用 <code>_distributed_apply()</code> 方法也可以。常规的网络层都应该在 <code>Tower context</code> 中被调用。</p>
-
       
     </div>
 
@@ -667,7 +256,7 @@ e, f, g, &lt;eos&gt;</code></pre><p>可以看出，<code>&lt;sos&gt;</code>是�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 

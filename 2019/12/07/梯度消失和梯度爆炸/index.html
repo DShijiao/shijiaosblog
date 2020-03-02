@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":18,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":true,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="[toc] 什么是梯度消失&#x2F;梯度爆炸梯度消失或梯度爆炸是指在神经网络权重更新的反向传播中，$\frac{\partial Loss}{\partial W}$过小或过大的现象 梯度消失&#x2F;梯度爆炸会产生什么问题梯度爆炸会导致权重的更新过大（表现为LOSS出现Nan）梯度消失会导致权重的更新过慢或者几乎不更新 为什么会有梯度消失和梯度爆炸一种是任务梯度消失&#x2F;梯度爆炸的原因是反向传播过程中的叠成导致的另">
+  <meta name="description" content="什么是梯度消失&#x2F;梯度爆炸梯度消失或梯度爆炸是指在神经网络权重更新的反向传播中，$\frac{\partial Loss}{\partial W}$过小或过大的现象 梯度消失&#x2F;梯度爆炸会产生什么问题梯度爆炸会导致权重的更新过大（表现为LOSS出现Nan）梯度消失会导致权重的更新过慢或者几乎不更新">
 <meta property="og:type" content="article">
 <meta property="og:title" content="梯度消失和梯度爆炸">
 <meta property="og:url" content="http://yoursite.com/2019/12/07/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8/index.html">
 <meta property="og:site_name" content="诗娇的博客">
-<meta property="og:description" content="[toc] 什么是梯度消失&#x2F;梯度爆炸梯度消失或梯度爆炸是指在神经网络权重更新的反向传播中，$\frac{\partial Loss}{\partial W}$过小或过大的现象 梯度消失&#x2F;梯度爆炸会产生什么问题梯度爆炸会导致权重的更新过大（表现为LOSS出现Nan）梯度消失会导致权重的更新过慢或者几乎不更新 为什么会有梯度消失和梯度爆炸一种是任务梯度消失&#x2F;梯度爆炸的原因是反向传播过程中的叠成导致的另">
+<meta property="og:description" content="什么是梯度消失&#x2F;梯度爆炸梯度消失或梯度爆炸是指在神经网络权重更新的反向传播中，$\frac{\partial Loss}{\partial W}$过小或过大的现象 梯度消失&#x2F;梯度爆炸会产生什么问题梯度爆炸会导致权重的更新过大（表现为LOSS出现Nan）梯度消失会导致权重的更新过慢或者几乎不更新">
 <meta property="og:image" content="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/sigmoid.png">
 <meta property="og:image" content="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/tanh.png">
 <meta property="og:image" content="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/relu.jpg">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%BA%8C%E5%B1%82%E5%AF%BC%E6%95%B0.png">
 <meta property="og:image" content="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%B8%80%E5%B1%82%E5%AF%BC%E6%95%B0.png">
 <meta property="article:published_time" content="2019-12-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-02-22T13:05:57.325Z">
+<meta property="article:modified_time" content="2020-03-02T03:28:16.503Z">
 <meta property="article:author" content="Shijiao DENG">
 <meta property="article:tag" content="梯度消失">
 <meta property="article:tag" content="梯度爆炸">
@@ -229,7 +229,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-22 21:05:57" itemprop="dateModified" datetime="2020-02-22T21:05:57+08:00">2020-02-22</time>
+                <time title="修改时间：2020-03-02 11:28:16" itemprop="dateModified" datetime="2020-03-02T11:28:16+08:00">2020-03-02</time>
               </span>
 
           
@@ -243,9 +243,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>[toc]</p>
-<h2 id="什么是梯度消失-梯度爆炸"><a href="#什么是梯度消失-梯度爆炸" class="headerlink" title="什么是梯度消失/梯度爆炸"></a>什么是梯度消失/梯度爆炸</h2><p>梯度消失或梯度爆炸是指在神经网络权重更新的反向传播中，$\frac{\partial Loss}{\partial W}$过小或过大的现象</p>
+        <h2 id="什么是梯度消失-梯度爆炸"><a href="#什么是梯度消失-梯度爆炸" class="headerlink" title="什么是梯度消失/梯度爆炸"></a>什么是梯度消失/梯度爆炸</h2><p>梯度消失或梯度爆炸是指在神经网络权重更新的反向传播中，$\frac{\partial Loss}{\partial W}$过小或过大的现象</p>
 <h2 id="梯度消失-梯度爆炸会产生什么问题"><a href="#梯度消失-梯度爆炸会产生什么问题" class="headerlink" title="梯度消失/梯度爆炸会产生什么问题"></a>梯度消失/梯度爆炸会产生什么问题</h2><p>梯度爆炸会导致权重的更新过大（表现为LOSS出现Nan）<br>梯度消失会导致权重的更新过慢或者几乎不更新</p>
+<a id="more"></a>
+
 <h2 id="为什么会有梯度消失和梯度爆炸"><a href="#为什么会有梯度消失和梯度爆炸" class="headerlink" title="为什么会有梯度消失和梯度爆炸"></a>为什么会有梯度消失和梯度爆炸</h2><p>一种是任务梯度消失/梯度爆炸的原因是反向传播过程中的叠成导致的<br>另一种认为反向传播不该背这个锅，反向传播求导只是一种求最优解的方式，最根本的原因还是网络结构的问题（线性和非线性公式连成组合）</p>
 <blockquote>
 <p>看到<a href="https://www.zhihu.com/question/34878706" target="_blank" rel="noopener">有个文章</a>说我们不应该纠结于梯度消失和梯度爆炸，应该从不同的角度看LSTM，比如选择性、信息不变性等等，觉得这是个很好的想法。当然，他对于RNN和DNN中梯度消失和梯度爆炸的看法也相对详细正确，下面会细说。</p>
