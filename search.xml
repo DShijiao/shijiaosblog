@@ -517,6 +517,8 @@
 <h3 id="LSTM特点"><a href="#LSTM特点" class="headerlink" title="LSTM特点"></a>LSTM特点</h3><p>LSTM一定程度上将RNN中反向传播中梯度中的叠成关系转换成叠加关系，所以缓解了梯度消失和梯度爆炸的问题。</p>
 <h3 id="LSTM和GRU的比较"><a href="#LSTM和GRU的比较" class="headerlink" title="LSTM和GRU的比较"></a>LSTM和GRU的比较</h3><p>LSTM有三个门，GRU只有两个（更新门update和相关门revelance），所以LSTM的运算更为复杂。<br>GRU是在LSTM后出来的，为了缓解LSTM的计算问题，但是在一些实际应用中，GRU的效果并不比LSTM差，所以应用越来越广泛。</p>
 <p><img src="images/image/GRU.png" alt="GRU"></p>
+<p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="python"></p>
+<p><img src="images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="python"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li><p>关于RNN的长期依赖性问题，看了很多文章，一直不能确到底是因</p>
 <ul>
