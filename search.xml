@@ -513,7 +513,7 @@
 <h2 id="LSTM基本描述"><a href="#LSTM基本描述" class="headerlink" title="LSTM基本描述"></a>LSTM基本描述</h2><p>LSTM一定程度上解决了RNN梯度消失和梯度爆炸的问题，得益于三个门的引入</p>
 <h3 id="LSTM的三个门"><a href="#LSTM的三个门" class="headerlink" title="LSTM的三个门"></a>LSTM的三个门</h3><p>在LSTM中引入了三个门：输入门，输出门和遗忘门</p>
 <p>遗忘门：控制了上一个cell的状态$C_{t-1}$中有多少信息进入到当前状态$C_t$中<br>输入门：控制了有多少信息会被保存到cell状态$C_t$中<br>输出门：控制了当前cell的状态$C_t$(cell state)有多少信息会输出到下一个神经元（即隐藏单元输出hidden state）</p>
-<p><img src="images/image/LSTM3-chain.png" alt="LSTM"></p>
+<p><img src="https://github.com/shijiaod/shijiaod.github.io/blob/master/images/image/LSTM3-chain.png" alt="LSTM"></p>
 <h3 id="LSTM特点"><a href="#LSTM特点" class="headerlink" title="LSTM特点"></a>LSTM特点</h3><p>LSTM一定程度上将RNN中反向传播中梯度中的叠成关系转换成叠加关系，所以缓解了梯度消失和梯度爆炸的问题。</p>
 <h3 id="LSTM和GRU的比较"><a href="#LSTM和GRU的比较" class="headerlink" title="LSTM和GRU的比较"></a>LSTM和GRU的比较</h3><p>LSTM有三个门，GRU只有两个（更新门update和相关门revelance），所以LSTM的运算更为复杂。<br>GRU是在LSTM后出来的，为了缓解LSTM的计算问题，但是在一些实际应用中，GRU的效果并不比LSTM差，所以应用越来越广泛。</p>
 <p><img src="images/image/GRU.png" alt="GRU"></p>
