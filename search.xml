@@ -95,6 +95,9 @@
 <li>输入命令<code>hexo d</code> (<code>hexo deploy</code>)上传到<code>github</code>上<br>这时就可以在网站上看到刚刚写的博客了。<br>如果想要先本地预览效果，可以使用<code>hexo s</code> (<code>hexo server</code>)</li>
 </ul>
 <h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><h3 id="添加评论等"><a href="#添加评论等" class="headerlink" title="添加评论等"></a>添加评论等</h3><h3 id="增加归档页面文章数目"><a href="#增加归档页面文章数目" class="headerlink" title="增加归档页面文章数目"></a>增加归档页面文章数目</h3>]]></content>
+      <categories>
+        <category>周边辅助</category>
+      </categories>
       <tags>
         <tag>hexo</tag>
         <tag>github</tag>
@@ -185,6 +188,9 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: index.html</span><br><span class="line">date: 2016-12-28 21:01:30</span><br><span class="line">tags:</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li>
 </ol>
 ]]></content>
+      <categories>
+        <category>周边辅助</category>
+      </categories>
       <tags>
         <tag>Markdown</tag>
       </tags>
@@ -192,7 +198,7 @@
   <entry>
     <title>python的点滴</title>
     <url>/2020/02/19/python%E7%82%B9%E6%BB%B4/</url>
-    <content><![CDATA[<h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="../../public/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"><br><img src="../../public/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="图片二"><br><img src="../../public/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A63.png" alt="图片三"></p>
+    <content><![CDATA[<h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"><br><img src="../../public/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="图片二"><br><img src="../../public/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A63.png" alt="图片三"></p>
 <a id="more"></a>
 
 <h3 id="map-zip"><a href="#map-zip" class="headerlink" title="map, zip"></a>map, zip</h3><p>map和zip配合使用，实现矩阵转置</p>
@@ -242,6 +248,9 @@
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>周边辅助</category>
+      </categories>
       <tags>
         <tag>python</tag>
       </tags>
@@ -352,6 +361,9 @@
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
       <tags>
         <tag>智能客服</tag>
         <tag>CNN</tag>
@@ -521,6 +533,9 @@
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>项目总结</category>
+      </categories>
       <tags>
         <tag>RNN</tag>
         <tag>LSTM</tag>
@@ -564,6 +579,9 @@
 <li>试一试用明翔的转化模型，把一批聊天节目等的语音转换乘文字后用来作为数据训练？</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>项目总结</category>
+      </categories>
       <tags>
         <tag>chitchat</tag>
         <tag>seq2seq</tag>
@@ -613,6 +631,9 @@
 <li><code>http</code>通过<code>&quot;\\r\\n&quot;</code>来分隔信息。<code>grpc</code>则要通过<code>.proto</code>文件里的<code>message</code>严格规范信息的数目、类型等。</li>
 </ol>
 ]]></content>
+      <categories>
+        <category>项目问题</category>
+      </categories>
       <tags>
         <tag>protobuf</tag>
       </tags>
@@ -675,6 +696,9 @@ e, f, g, &lt;eos&gt;</code></pre><p>可以看出，<code>&lt;sos&gt;</code>是�
 </ol>
 <p>3、4 两步如果用 <code>Optimizer</code> 中的 <code>apply_gradients()</code> 方法可以自动完成（……这就是 <code>Optimizer</code> 后来加进去那部分代码的作用），或者在一个 <code>Cross-tower context</code> 中调用 <code>_distributed_apply()</code> 方法也可以。常规的网络层都应该在 <code>Tower context</code> 中被调用。</p>
 ]]></content>
+      <categories>
+        <category>实战问题</category>
+      </categories>
       <tags>
         <tag>seq2seq</tag>
         <tag>tensorflow</tag>
@@ -800,6 +824,9 @@ e, f, g, &lt;eos&gt;</code></pre><p>可以看出，<code>&lt;sos&gt;</code>是�
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>实战问题</category>
+      </categories>
       <tags>
         <tag>docker</tag>
       </tags>
