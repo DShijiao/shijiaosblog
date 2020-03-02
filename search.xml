@@ -65,7 +65,7 @@
 <p> 也可以自己增加一个目录内容，不过这些配置都要与主题目录下的languages文件中对应的<code>yml</code>文档里配置相关联。比如你在站点根目录中的配置文件设置<code>language</code>为<code>zh-Hans</code>，那么就要进入到主题目录下的languages文件中修改<code>zh-Hans.yml</code>，这样才能显示出菜单项新增的中文内容（以something为例子）</p>
 </li>
 <li><p>前面通过修改next主题下的<code>_config.yml</code>文件中的<code>menu</code>选项，可以在主页面的菜单栏添加”标签”选项，但是此时点击”标签”，跳转的页面会显示”page not found”。此时我们要新建一个页面</p>
-<p> <img src="/public/images/image/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A201.png" alt="图一"><br> 在新建的<code>index.md</code>文件中添加<code>type: &quot;tags&quot;</code><br> <img src="/public/images/image/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A202.png" alt="图二"><br> <code>categories</code>等同理</p>
+<p> <img src="images/image/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A201.png" alt="图一"><br> 在新建的<code>index.md</code>文件中添加<code>type: &quot;tags&quot;</code><br> <img src="images/image/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A202.png" alt="图二"><br> <code>categories</code>等同理</p>
 </li>
 <li><p>设置头像：</p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line">  url: &#x2F;images&#x2F;avatar.gif  #头像图片路径 图片放置在next&#x2F;source&#x2F;images</span><br><span class="line">  rounded: false  #是否显示圆形头像，true表示圆形，false默认</span><br><span class="line">  opacity: 0.7  #透明度0~1之间</span><br><span class="line">  rotated: false  #是否旋转 true表示旋转，false默认</span><br></pre></td></tr></table></figure>
@@ -163,10 +163,11 @@
 <p> <a href="https://markdown-zh.readthedocs.io/en/latest/" target="_blank" rel="noopener">Markdown中文文档</a></p>
 </li>
 <li><p><strong>插入图片</strong></p>
-<p> <img src="/public/images/avatar.jpeg" alt="avatar"></p>
+<p> <img src="images/avatar.jpeg" alt="avatar"></p>
 <ul>
 <li>可以在图片上传到<code>github</code>后，用github上图片的地址链接，这样网页上可以正常显示</li>
 <li>可以把包含图片的文件夹docs放到本地/hexo/public/images里，用相对路径/public/images/docs/images.jpg来调用</li>
+<li>更多方式参考<a href="https://fuhailin.github.io/Hexo-images/" target="_blank" rel="noopener">这个文章</a></li>
 </ul>
 </li>
 <li><p><strong>文字的个性设置</strong>：可以直接用html语法对正文进行编辑，达到想要的展示效果</p>
@@ -198,9 +199,10 @@
   <entry>
     <title>python的点滴</title>
     <url>/2020/02/19/python%E7%82%B9%E6%BB%B4/</url>
-    <content><![CDATA[<h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"><br><img src="../../public/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="图片二"><br><img src="../../public/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A63.png" alt="图片三"></p>
+    <content><![CDATA[<h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"></p>
 <a id="more"></a>
 
+<p><img src="images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="图片二"><br><img src="images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A63.png" alt="图片三"></p>
 <h3 id="map-zip"><a href="#map-zip" class="headerlink" title="map, zip"></a>map, zip</h3><p>map和zip配合使用，实现矩阵转置</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix &#x3D; [</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [4,5,6],</span><br><span class="line">  [7,8,9]</span><br><span class="line">]</span><br><span class="line">class Solution:</span><br><span class="line">    def rotate(self, matrix):  </span><br><span class="line">        matrix[:] &#x3D; map(list,zip(*matrix))</span><br><span class="line">        return matrix</span><br><span class="line">print(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [1,4,7],</span><br><span class="line">    [2,5,8],</span><br><span class="line">    [3,6,9]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
 
@@ -249,7 +251,7 @@
 </ol>
 ]]></content>
       <categories>
-        <category>周边辅助</category>
+        <category>-周边辅助</category>
       </categories>
       <tags>
         <tag>python</tag>
@@ -486,6 +488,9 @@
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
       <tags>
         <tag>梯度消失</tag>
         <tag>梯度爆炸</tag>
@@ -508,10 +513,10 @@
 <h2 id="LSTM基本描述"><a href="#LSTM基本描述" class="headerlink" title="LSTM基本描述"></a>LSTM基本描述</h2><p>LSTM一定程度上解决了RNN梯度消失和梯度爆炸的问题，得益于三个门的引入</p>
 <h3 id="LSTM的三个门"><a href="#LSTM的三个门" class="headerlink" title="LSTM的三个门"></a>LSTM的三个门</h3><p>在LSTM中引入了三个门：输入门，输出门和遗忘门</p>
 <p>遗忘门：控制了上一个cell的状态$C_{t-1}$中有多少信息进入到当前状态$C_t$中<br>输入门：控制了有多少信息会被保存到cell状态$C_t$中<br>输出门：控制了当前cell的状态$C_t$(cell state)有多少信息会输出到下一个神经元（即隐藏单元输出hidden state）</p>
-<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/LSTM3-chain.png" alt="LSTM"></p>
+<p><img src="images/image/LSTM3-chain.png" alt="LSTM"></p>
 <h3 id="LSTM特点"><a href="#LSTM特点" class="headerlink" title="LSTM特点"></a>LSTM特点</h3><p>LSTM一定程度上将RNN中反向传播中梯度中的叠成关系转换成叠加关系，所以缓解了梯度消失和梯度爆炸的问题。</p>
 <h3 id="LSTM和GRU的比较"><a href="#LSTM和GRU的比较" class="headerlink" title="LSTM和GRU的比较"></a>LSTM和GRU的比较</h3><p>LSTM有三个门，GRU只有两个（更新门update和相关门revelance），所以LSTM的运算更为复杂。<br>GRU是在LSTM后出来的，为了缓解LSTM的计算问题，但是在一些实际应用中，GRU的效果并不比LSTM差，所以应用越来越广泛。</p>
-<p><img src="https://github.com/DShijiao/Dshijiao.github.io/raw/master/images/image/GRU.png" alt="GRU"></p>
+<p><img src="images/image/GRU.png" alt="GRU"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li><p>关于RNN的长期依赖性问题，看了很多文章，一直不能确到底是因</p>
 <ul>
@@ -534,7 +539,7 @@
 </ol>
 ]]></content>
       <categories>
-        <category>项目总结</category>
+        <category>工作总结</category>
       </categories>
       <tags>
         <tag>RNN</tag>
@@ -580,7 +585,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>项目总结</category>
+        <category>工作总结</category>
       </categories>
       <tags>
         <tag>chitchat</tag>
@@ -632,7 +637,7 @@
 </ol>
 ]]></content>
       <categories>
-        <category>项目问题</category>
+        <category>工作总结</category>
       </categories>
       <tags>
         <tag>protobuf</tag>
@@ -646,7 +651,7 @@
 <p>这里<code>ckpt_file</code>是文件<code>checkpoint</code>里<code>model_checkpoint_path</code>的值。<br>只要<code>model_checkpoint_path</code>指定的<code>checkpoint</code>在路径下存在，就会直接加载这个<code>checkpoint</code>继续训练。否则就会重新从<code>0</code>开始。</p>
 <a id="more"></a>
 
-<h3 id="tensorboard"><a href="#tensorboard" class="headerlink" title="tensorboard"></a>tensorboard</h3><p><code>log/</code>中会因为重新加载，有几个分开的文件，但是对于同一个变量（如<code>loss</code>）会在同一个图内显示所有其随着<code>steps</code>变化的曲线。<br><img src="/public/images/image/tensorboard.png" alt="tensorboard_tf.train.latest_checkpoint.png"></p>
+<h3 id="tensorboard"><a href="#tensorboard" class="headerlink" title="tensorboard"></a>tensorboard</h3><p><code>log/</code>中会因为重新加载，有几个分开的文件，但是对于同一个变量（如<code>loss</code>）会在同一个图内显示所有其随着<code>steps</code>变化的曲线。<br><img src="images/image/tensorboard.png" alt="tensorboard_tf.train.latest_checkpoint.png"></p>
 <hr>
 <h2 id="用tensorflow实现seq2seq的细节问题"><a href="#用tensorflow实现seq2seq的细节问题" class="headerlink" title="用tensorflow实现seq2seq的细节问题"></a>用tensorflow实现seq2seq的细节问题</h2><h3 id="1-maximum-iteration"><a href="#1-maximum-iteration" class="headerlink" title="1. maximum_iteration"></a>1. maximum_iteration</h3><p>在<code>dynamic_decode</code>中有参数<code>maximum_iteration</code>。</p>
 <p>这个参数在<code>training</code>的时候并没有什么作用，因为在<code>training</code>时，<code>TrainingHelper</code>中有参数<code>sequence_length</code>，在解码到<code>sequence_length</code>的长度后，<code>TrainingHelper</code>会通过参数<code>finished</code>来告诉模型，解码已经结束。</p>
