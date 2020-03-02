@@ -388,7 +388,7 @@
 <p>无论是因为网络结构还是反向传播，不可否认的是梯度消失和梯度传播确实来源于对权重求导后很多小于1的数值的连乘，下面我门主要看一下为什么会产生这些小于1的数值。</p>
 <h3 id="几个激活函数"><a href="#几个激活函数" class="headerlink" title="几个激活函数"></a>几个激活函数</h3><p>在进入反向传播求导前，先认识一下神经网络中我们经常用到的激活函数</p>
 <h4 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h4><p>sigmoid 常见于CNN中，在RNN和LSTM中一般不会用到sigmoid<br>sigmoid的公式为$S(x)=\frac{1}{1+e^{-x}}$<br>其函数和导数图如下</p>
-<p><img src="/images/image/sigmoid.png" alt="sigmoid"></p>
+<p><img src="./images/image/sigmoid.png" alt="sigmoid"></p>
 <h4 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h4><p>LSTM和RNN中会用到tanh，详情可以看上一篇文章<br>tanh的公式为$tanh(x)=\frac{e^{x}-e^{-x}}{e^{x}+e^{x}}$<br>其函数和导数图如下</p>
 <p><img src="/images/image/tanh.png" alt="tanh"></p>
 <h4 id="Relu"><a href="#Relu" class="headerlink" title="Relu"></a>Relu</h4><p>Relu主要是为了解决梯度消失和梯度爆炸的问题<br>其公式为：<br>$<br>relu(x)=\begin{cases}<br>0, x&lt;0 \\<br>x, x&gt;0<br>\end{cases}<br>$</p>
