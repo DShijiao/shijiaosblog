@@ -1,6 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>二叉树</title>
+    <url>/2020/03/04/%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <content><![CDATA[<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="二叉树-1"><a href="#二叉树-1" class="headerlink" title="二叉树"></a>二叉树</h4><p>在计算机科学中，二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”（left subtree）和“右子树”（right subtree）。二叉树常被用于实现二叉查找树和二叉堆。</p>
+<h4 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h4><p>二叉查找树（Binary Search Tree），（又：二叉搜索树，二叉排序树）它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上<strong>所有结点</strong>的值<strong>均小于</strong>它的根结点的值； 若它的右子树不空，则右子树上<strong>所有结点</strong>的值<strong>均大于</strong>它的根结点的值； 它的左、右子树也分别为二叉查找树。</p>
+<h4 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h4><h3 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h3><h4 id="遍历介绍"><a href="#遍历介绍" class="headerlink" title="遍历介绍"></a>遍历介绍</h4><p>二叉树的遍历分<strong>广度优先遍历</strong>和<strong>深度优先遍历</strong></p>
+<p><img src="../../public/images/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A4%BA%E4%BE%8B%E5%9B%BE.jpg" alt="二叉树"></p>
+<ol>
+<li><p>广度优先遍历(层次遍历)</p>
+<p>结果为：abcdfeg</p>
+</li>
+<li><p>深度优先遍历<br>深度优先遍历有三种方法：前序遍历，中序遍历和后序遍历</p>
+<ul>
+<li><p>前序遍历：abdefgc</p>
+<p>根节点 -&gt; 左子树 -&gt; 右子树</p>
+</li>
+<li><p>中序遍历：debgfac</p>
+<p>左子树 -&gt; 根节点 -&gt; 右子树</p>
+</li>
+<li><p>后序遍历：edgfbca</p>
+<p>左子树 -&gt; 右子树 -&gt; 根节点</p>
+</li>
+</ul>
+</li>
+</ol>
+<a id="more"></a>
+
+<h4 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h4><h5 id="广度优先遍历"><a href="#广度优先遍历" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h5><h5 id="深度优先遍历"><a href="#深度优先遍历" class="headerlink" title="深度优先遍历"></a>深度优先遍历</h5><p>二叉树深度优先遍历的三种方法大同小异，唯一需要改变的只是函数helper中子树和根的代码的运行顺序</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preoderTraversal</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.result</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.result.append(root.val)</span><br><span class="line">            self.helper(root.left)</span><br><span class="line">            self.helper(root.right)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorderTraversal</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.result</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.helper(root.left)</span><br><span class="line">            self.result.append(root.val)</span><br><span class="line">            self.helper(root.right)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">postorderTraversal</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.result</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.helper(root.left)</span><br><span class="line">            self.helper(root.right)</span><br><span class="line">            self.result.append(root.val)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="二叉查找树查找"><a href="#二叉查找树查找" class="headerlink" title="二叉查找树查找"></a>二叉查找树查找</h3><ul>
+<li>DP(Dynamic programming)：动态规划</li>
+<li>DFS(Depth-First-Search)：深度优先搜索</li>
+</ul>
+<h4 id="给出一个n，求1…n能够得到的所有二叉树个数"><a href="#给出一个n，求1…n能够得到的所有二叉树个数" class="headerlink" title="给出一个n，求1…n能够得到的所有二叉树个数"></a>给出一个n，求1…n能够得到的所有二叉树个数</h4><p>(en: given n, how many structurally unique BST’s that store values 1…n?)</p>
+<ul>
+<li>n = 0，{}为空集，所以只有一种二叉树，即空树</li>
+<li>n = 1，{1}也只有一种，就是1</li>
+<li>n = 2，{1, 2}有两种，1 - 2， 2 - 1</li>
+<li>n = 3，{1, 2, 3}<br><img src="../../public/images/%E4%BA%8C%E5%8F%89%E6%A0%911-3.png" alt="二叉树1-3"><br>综上我们可以发现：</li>
+<li>n = 1时，如果根为1，有{}个二叉树</li>
+<li>n = 2时，如果根为1，有{2}个二叉树，即n=1的二叉树个数；如果根为2，只有{1}个二叉树，即n=1的二叉树个数</li>
+<li>n = 3时，如果根为1，有{2, 3}个二叉树，即n=2的二叉树个数；如果根为2，有{1}*{3}个二叉树个数；如果根为3，同根为1的情况</li>
+</ul>
+<p>当我们知道N时，它的二叉树个数即为每个{1,…,N}中数字为根时的二叉树个数的总和。</p>
+<p>当其中某个元素i为根时，它的二叉树个数即 <strong>{1,…,i-1}二叉树个数</strong> x <strong>{i+1,…,N}二叉树个数</strong>，而 <strong>{1,…,i-1}二叉树个数</strong> 就是 <strong>n=i-1的二叉树个数</strong> ，<strong>{i+1,…,N}二叉树个数</strong> 就是 <strong>n=N-i的二叉树个数</strong></p>
+<p>所以若先定义n为0，1，2时的二叉树个数<code>dp = [1, 1, 2]</code>，则:</p>
+<ul>
+<li>n = 3：<code>dp[3] = dp[0]*dp[2]+dp[1]*dp[1]+dp[2]*dp[0]</code></li>
+<li>n = 4：<code>dp[4] = dp[0]*dp[3]+dp[1]*dp[2]+dp[2]*dp[1]+dp[3]*dp[0]</code></li>
+<li>…</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numTrees</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dp = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp += [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-2</span>)]  <span class="comment"># 后面创建多个</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>, n + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, i+<span class="number">1</span>):</span><br><span class="line">                    dp[i] += dp[j<span class="number">-1</span>] * dp[i-j]</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
+
+<h4 id="给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树"><a href="#给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树" class="headerlink" title="给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树"></a>给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">分别以1...n中每个元素，如i，为根：</span><br><span class="line">    根i的左子树</span><br><span class="line">        求根i的左子树：求1...i-1的所有二叉查找树（同原始问题求1...n），所以以1...i-1中的每个元素，如j，为根：</span><br><span class="line">            根j的左子树</span><br><span class="line">                ...</span><br><span class="line">            根j的右子树</span><br><span class="line">                ...</span><br><span class="line">    根的右子树</span><br><span class="line">        求根i的右子树：求i+1...n的所有二叉查找树（同原始问题求1...n），所以以i+1...n中的每个元素，如k，为根：</span><br><span class="line">            根k的左子树</span><br><span class="line">                ...</span><br><span class="line">            根k的右子树</span><br><span class="line">                ...</span><br></pre></td></tr></table></figure>
+<p>具体代码如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.left = <span class="literal">None</span></span><br><span class="line">        self.right = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generateTrees</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">return</span> self.helper(<span class="number">1</span>, n)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, start, end)</span>:</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> start &gt; end:</span><br><span class="line">            <span class="keyword">return</span> [<span class="literal">None</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(start, end+<span class="number">1</span>):</span><br><span class="line">            leftTree = self.helper(start, i<span class="number">-1</span>)</span><br><span class="line">            rightTree = self.helper(i+<span class="number">1</span>, end)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> l <span class="keyword">in</span> range(len(leftTree)):</span><br><span class="line">                <span class="keyword">for</span> r <span class="keyword">in</span> range(len(rightTree)):</span><br><span class="line">                    root = TreeNode(i)</span><br><span class="line">                    root.left = leftTree[l]</span><br><span class="line">                    root.right = rightTree[r]</span><br><span class="line">                    result.append(root)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<h3 id="二叉树最大深度和最小深度"><a href="#二叉树最大深度和最小深度" class="headerlink" title="二叉树最大深度和最小深度"></a>二叉树最大深度和最小深度</h3><h4 id="二叉树最大深度"><a href="#二叉树最大深度" class="headerlink" title="二叉树最大深度"></a>二叉树最大深度</h4><p>二叉树最大深度可以用一下代码来求：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxDepth</span><span class="params">(self, root: TreeNode)</span> -&gt; int:</span> <span class="comment"># 60%</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        type: root:Tree</span></span><br><span class="line"><span class="string">        rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.maxDepth = <span class="number">0</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(root, depth)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                self.maxDepth = max(depth, self.maxDepth)</span><br><span class="line">            <span class="keyword">if</span> root:</span><br><span class="line">                helper(root.left, depth+<span class="number">1</span>)</span><br><span class="line">                helper(root.right, depth+<span class="number">1</span>)</span><br><span class="line">        helper(root, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> self.maxDepth</span><br></pre></td></tr></table></figure>
+<p>leetcode上没有问题，但是代码本身是有一个问题要注意的（也不完全算漏洞）</p>
+<p>比如在下图中</p>
+<p><img src="../../public/images/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A4%BA%E4%BE%8B%E5%9B%BE.jpg" alt="二叉树"></p>
+<p>当遍历到<code>d</code>的时候，<code>d</code>没有左子树，<code>d.left==None</code>，所以会进入到代码<code>root==None</code>，那么此时的<code>depth=3</code>，这个<code>depth</code>其实只是到<code>d</code>的二叉树深度。</p>
+<p>因为需要求的是<strong>最大深度</strong>，如果此节点<code>d</code>没有右子树，那么这条路径的深度就是<code>depth=3</code>；如果此节点有右子树，右子树的深度肯定比<code>depth=3</code>大，那么<code>maxDepth</code>就会被右子树的深度所取代，也就不会有 <strong>到节点<code>d</code>的路径深度<code>depth=3</code></strong> 出现了，这个问题得以被解决，但是在二叉树<strong>最小深度</strong>中，这个问题就暴露出来，不能直接套用上述代码了。</p>
+<h4 id="二叉树最小深度"><a href="#二叉树最小深度" class="headerlink" title="二叉树最小深度"></a>二叉树最小深度</h4><p>因为上面描述的原因，所以要对代码进行改进：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minDepth</span><span class="params">(self, root: TreeNode)</span> -&gt; int:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        type: root:Tree</span></span><br><span class="line"><span class="string">        rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        self.minDepth = []</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(root, depth)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> root.left == <span class="literal">None</span> <span class="keyword">and</span> root.right == <span class="literal">None</span>:</span><br><span class="line">                self.minDepth.append(depth)</span><br><span class="line">            <span class="keyword">if</span> root.left:</span><br><span class="line">                helper(root.left, depth+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> root.right:</span><br><span class="line">                helper(root.right, depth+<span class="number">1</span>)</span><br><span class="line">        helper(root, <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> min(self.minDepth)</span><br></pre></td></tr></table></figure>
+<p>代码不算简洁，但是在leetcode上跑到了94。69%，效果很不错，开心开心。</p>
+<h3 id="验证一个二叉树是否是二叉查找树"><a href="#验证一个二叉树是否是二叉查找树" class="headerlink" title="验证一个二叉树是否是二叉查找树"></a>验证一个二叉树是否是二叉查找树</h3><p>虽然二叉查找树具体到定义上比较复杂，但是可以发现，如果把二叉查找树<strong>中序遍历</strong>，则能得到一个<strong>有序数组</strong>，否则得到的数组并非完全有序的。</p>
+<p>以后如果有子树、根之间的比较等等，不妨看看是否可以通过遍历方式入手来简化。</p>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>二叉树</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用hexo搭建博客</title>
     <url>/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="Hexo-github"><a href="#Hexo-github" class="headerlink" title="Hexo + github"></a>Hexo + github</h2><h3 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h3><ol>
