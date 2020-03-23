@@ -347,24 +347,81 @@
     <url>/2019/12/08/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<h2 id="智能客服项目"><a href="#智能客服项目" class="headerlink" title="智能客服项目"></a>智能客服项目</h2><p>智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。</p>
 <p>FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。</p>
-<p>任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。<br>判断任务型对话是否结束有两种方式，一是这个任务已经完成，二是虽然任务还未完成，但是模型判断需要跳出任务，则直接结束任务返回通过顶层分类器进行模块判别的进程。</p>
+<p>任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。<br>判断任务型对话是否结束有两种方式：</p>
+<ul>
+<li>一是这个任务已经完成</li>
+<li>二是虽然任务还未完成，但是模型判断需要跳出任务，此时直接结束任务返回通过顶层分类器进行模块判别的进程。</li>
+</ul>
+<p>在所有的任务中，我们都需要先为这个任务建立一个baseline，通常为相关任务常用的相对简单的模型。</p>
 <a id="more"></a>
 
-<h3 id="顶层分类器"><a href="#顶层分类器" class="headerlink" title="顶层分类器"></a>顶层分类器</h3><h4 id="full-connection"><a href="#full-connection" class="headerlink" title="full connection"></a>full connection</h4><h4 id="online-offline采样"><a href="#online-offline采样" class="headerlink" title="online/offline采样"></a>online/offline采样</h4><h4 id="LOSS"><a href="#LOSS" class="headerlink" title="LOSS"></a>LOSS</h4><p>最开始使用的是余弦相似度</p>
-<p>缺点：</p>
+
+<hr>
+<h3 id="顶层分类器"><a href="#顶层分类器" class="headerlink" title="顶层分类器"></a>顶层分类器</h3><hr>
+<h3 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h3><p>FAQ经历的漫长的演变。</p>
+<ol>
+<li><p>第一版</p>
 <ul>
-<li><p>有些句子可能在距离上更接近A类句子，其实却属于B类，比如句式相似，只有一两个重点字不同</p>
+<li>最开始做的FAQ就是tf-idf加上余弦相似度</li>
+<li>缺点：<ul>
+<li>有些句子可能在距离上更接近A类句子，其实却属于B类，比如句式相似，只有一两个重点字不同</li>
+<li>太过依赖句子本身的向量，而没有和拉开和不同类别句子间的距离</li>
+</ul>
 </li>
-<li><p>太过依赖句子本身的向量，而没有和拉开和不同类别句子间的距离</p>
+<li>为了纠正这个方法对词汇权重计算的偏差问题（重要词汇的权重不够大），又找出了所有的重要词汇，并且计算每个句子中重要词汇的杰卡德系</li>
+<li>最后结合余弦相似度和杰卡德系数来判断两个句子的相似性</li>
+<li>此时因为数据量小，句子相对简单，top1值并不高60%，但是top3值可以达到95%，剩下的95%是因为数据库中不存在相关语句</li>
+</ul>
+</li>
+<li><p>第二版</p>
+<ul>
+<li>后来用的是深度学习加上余弦相似</li>
+<li>深度学习主要是用word2vec和LSTM得到句子的embedding</li>
+<li>有目标句子Anchor，同类（答案相同的）问题中抽取一个正例Positive，非同类问题中抽取一个负例Negative</li>
+<li>d(a,p) &lt;= d(a,n)，所以d(a,p)-d(a,n) &lt;= 0，所以d(a,p)-d(a,n)+margin &lt;= 0</li>
+<li>对于新输入的句子，训练好的模型唯一的用途就是embedding，用模型embedding出来的数值计算余弦相似度进行排序</li>
+<li>缺点：<ul>
+<li>因为负采样的原因不稳定，每一对&lt;a,p,n&gt;中，正采样可以用的样本过少，负采样样本较多，且大概率负样本很容易满足d(a,p)&lt;=d(a,n)的限制，因为一般情况下，负样本都比正样本离目标样本远的多</li>
+</ul>
 </li>
 </ul>
-<p>之后是triplet loss</p>
-<p>缺点：</p>
+</li>
+<li><p>第三版</p>
 <ul>
-<li>因为负采样的原因不稳定，每一对&lt;a,p,n&gt;中，正采样可以用的样本过少，负采样样本较多，且不能保证负采样样本的稳定性</li>
+<li><p>loss中使用am-softmax。以前的<strong>loss</strong>是简单的取交叉熵，现在是</p>
+<ul>
+<li>对两个vector都做了归一化，即求内积变为求余弦相似度</li>
+<li>增加类间距离，缩小类内距离：每个样本所属类的距离，必须<strong>远</strong>小于它跟其它类的距离。这个<strong>远</strong>可以是<strong>到其它类距离的1/2</strong>，可以是<strong>到其它类的距离减去某个值: dist()-m</strong>，等。这里用的是第二种，即余弦相似度减去某个值m</li>
+<li>为了让概率P更均匀的分布在0-1之间，对余弦相似度进行了s倍的缩放</li>
 </ul>
-<p>然后是am-softmax</p>
-<p>为什么？</p>
+</li>
+<li><p>用了triplet loss中online采样的变体：</p>
+<ul>
+<li>假设包含B个图片的banch有P个不同的人组成，每人有K个图片，即B=PK。两种在线采样策略分别是：<ul>
+<li>batch all: 取目标样本下所有的正样本和所有的负样本（PK<em>(K-1)</em>(P-1)K个triplet，PK为所有样本数，K-1为正样本树，(P-1)K为负样本树）</li>
+<li>batch hard: 取目标样本下距离最小的负样本和距离最大的正样本（PK个triplet）</li>
+</ul>
+</li>
+<li>这两个采样策略，一个太复杂，计算量太大，一个太极端，不稳定。所以我们取了中和的方法，即<strong>取目标样本下每个类别中距离最小的m个负样本和距离最大的m个正样本，然后一一对应来计算（PK * m * (P-1)m个triplet with m &lt;&lt; K）</strong></li>
+<li>offline采样：这个方法不够高效，因为最初要把所有的训练数据喂给神经网络，而且每过1个或几个epoch，可能还要重新对negative examples进行分类</li>
+</ul>
+</li>
+<li><p>triplet loss中的分类是以问答相似/相同为标准的小类大约3500个，还有一个大类，即我们把FAQ问题整体分了个类，约840个类，FAQ整体数据大概10W。我们在得到一个新的输入句子时，会从840个类中分别抽取3个query，来计算相似度，我们取平均值最高的5个类，然后在只取这5个类中所有的问题来和新输入的句子进行相似度匹配，来得到需要输出的答案。</p>
+<ul>
+<li>第一次类的寻找，是为了节约时间，不让输入的query和10W个句子暴力匹配</li>
+<li>第二次在5个类中找到需要的结果，是对具体回答的答案的寻找</li>
+<li>是否直接输出找到的最匹配的答案，还有一个阈值来决定</li>
+<li>如果我们对第一选项不确定，即没有超过相关阈值，那么我们可以推荐前三个相似度最高的问题，让用户选择</li>
+<li>用户的选择，能够为我们带来新的数据，帮助优化模型</li>
+<li>如果所有问题都没有超过推荐阈值，那么需要用户重新输入</li>
+</ul>
+</li>
+<li><p>第三版使用了triplet loss改进后，top1值提高到了87%，top3值提高到了94%</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
 <h3 id="任务型对话"><a href="#任务型对话" class="headerlink" title="任务型对话"></a>任务型对话</h3><p>任务型对话主要有时效运费、查单、转寄退回等几个场景，这里主要用时效运费的场景来说明项目过程。</p>
 <p>在时效运费场景中，NLU主要有两个模块，意图识别和NER。</p>
 <h4 id="意图识别"><a href="#意图识别" class="headerlink" title="意图识别"></a>意图识别</h4><p>意图识别总共有8类，总数据量是1万5，留了1500个数据做测试集，3000个数据做验证集。</p>
@@ -372,14 +429,18 @@
 <ul>
 <li><p>数据本身都是比较短的句子，且序列性不强，所以rnn的优势没有体现出来</p>
 </li>
-<li><p>cnn特征提取的效果更好，优化了分类效果</p>
+<li><p>只有cnn更好的保存了提取的特征，优化了分类效果</p>
 </li>
 </ul>
+<h5 id="如何优化分类问题"><a href="#如何优化分类问题" class="headerlink" title="如何优化分类问题"></a>如何优化分类问题</h5><h6 id="类别F1值分析"><a href="#类别F1值分析" class="headerlink" title="类别F1值分析"></a>类别F1值分析</h6><p>分析整体F1值，看主要影响效果的是哪一个/哪几个类，然后针对性分析，提高优化效果。<br>针对F1值过低的类别，仔细分析错误分类的数据，找出原因</p>
+<h6 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h6><p>根据学习曲线，可以找出当前模型训练出最佳结果所需要的最少的数据数，可以避免资源的浪费，也可以排除结果不佳可能是数据集不够的困惑。</p>
 <h5 id="说一下stacking以及它在这个项目中的应用"><a href="#说一下stacking以及它在这个项目中的应用" class="headerlink" title="说一下stacking以及它在这个项目中的应用"></a>说一下stacking以及它在这个项目中的应用</h5><p>stacking中我们用了两层分类器，第一层有三个基分类器，第二层分类器是LR，folder=3，</p>
 <ol>
+<li><p>先用tf-idf提取特征</p>
+</li>
 <li><p>第二层的输入为第一层的输出，不包括原始数据</p>
 </li>
-<li><p>第二层分类器如果是更简单的分类器，效果更好，比如我们用的是罗辑回归。</p>
+<li><p>第二层分类器如果是更简单的分类器，效果更好，比如我们用的是线性核函数SVM。</p>
 <ul>
 <li><p>可能因为上一层的几个基分类器多维度提取特征已经比较复杂，所以第二层的分类器过于复杂会造成过拟合。</p>
 </li>
@@ -387,16 +448,15 @@
 </li>
 </ul>
 </li>
-<li><p>较小数据集上stacking的表现并非非常突出，比单独的分类器效果稍微好一点点，但是消耗要大的很多</p>
+<li><p>较小数据集上stacking的表现并不如意，有时甚至比单独的分类器的效果要差</p>
 </li>
 <li><p>基分类器中如果有效果特别差的，可以将其移除，可能优化最后的结果</p>
 </li>
 <li><p>stacking的预测需要时间相对较长</p>
 </li>
-<li><p>第一层基分类器用的是RF，NB，KNN</p>
+<li><p>第一层基分类器用的是RF，NB，LR</p>
 </li>
 </ol>
-<p>代码找到了，直接运行写心得吧！然后完成几个经典机器学习的复习并记录。</p>
 <h6 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h6><p>逻辑回归假设数据符合伯努利分布，所以是一个参数模型。<br>通过引入sigmoid函数，将输出映射到[0,1]之间，使逻辑回归成为一个概率预测问题，但正因它对sigmoid的引入，逻辑回归对极值</p>
 <p>逻辑回归本来是二元分类，但是也可以用作多元分类。<br>如果逻辑回归中引入正则化，我们需要对特征进行标准化，在这标准化也可以加快训练。</p>
 <p>方法：</p>
@@ -411,16 +471,56 @@
 <li>损失函数</li>
 </ol>
 <p>欠拟合：增加特性，增加数据<br>过拟合：正则化，dropout，提前停止训练，减少模型复杂度</p>
-<h6 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h6><h5 id="介绍一下CNN以及在这个项目中的应用"><a href="#介绍一下CNN以及在这个项目中的应用" class="headerlink" title="介绍一下CNN以及在这个项目中的应用"></a>介绍一下CNN以及在这个项目中的应用</h5><h5 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h5><ol>
-<li><p>样本不均衡</p>
-<p> 除了样本不均衡本身带来的训练问题，在测试集中，因为样本严重不均衡，且需要尽量保证测试集和训练集的分布一样，所以可能存在测试集中某些类只有几个数据，导致结果随机性较大不可靠。</p>
+<h6 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h6><p>今天终于感觉自己终于懂了SVM的一点皮毛。</p>
+<ol>
+<li><p><strong>SVM：Support Vector Machine支持向量机</strong></p>
+<p> SVM一般用于二元分类，但是因为one-vs-all的存在，我们也可以用它来进行多元分类。</p>
+<p> SVM的效果一般特别好，特点是计算量比较大，但是他对数据的分布没有要求，它通过最大化到超平面最近点的距离，来进行分类。</p>
 </li>
-<li><p>阈值难以确定</p>
+<li><p><strong>Python &gt;&gt; sklearn中的SVM：</strong></p>
+<p> SVC: Support Vector Classification 支持向量用于分类<br> SVR: Support Vector Regression 支持向量用于回归<br> LinearSVC: Linear SVC 核函数为<strong>线性核函数</strong>的支持向量</p>
+</li>
+<li><p><strong>SVM几种常用核函数：</strong></p>
+<p><img src="../../public/images/image/SVM%E5%B8%B8%E7%94%A8%E6%A0%B8%E5%87%BD%E6%95%B0.svg" alt="核函数"></p>
+</li>
+<li><p><strong>核函数的选择</strong>（吴恩达教授说）：</p>
+<ul>
+<li>如果Feature的数量很大，跟样本数量差不多，这时候选用LR或者是Linear Kernel的SVM</li>
+<li>如果Feature的数量比较小，样本数量一般，不算大也不算小，选用SVM+Gaussian Kernel (“rbf”)</li>
+<li>如果Feature的数量比较小，而样本数量很多，需要手工添加一些feature变成第一种情况</li>
+</ul>
+</li>
+<li><p>参考视频：<br><a href="https://www.bilibili.com/video/av75892058/" target="_blank" rel="noopener">SVM核函数–表示这个视频真的很好</a></p>
+</li>
+<li><p>自己对核函数的总结：</p>
+<ul>
+<li>核函数最重要的作用就是映射，不同的核函数提供不同的映射方法</li>
+<li>核函数和normalization有点相似，都是对点的映射，只是目标和方式不同，normalization是为了让数据分布更均匀，而SVM中的核函数是为了让数据分布更开散、更易分割</li>
+<li>核函数的加入，是的SVM的计算量增大，尤其是使用高斯核函数和多项核函数的时候</li>
+<li>在文本分类项目中的stacking方法中，我们使用的是LinearSVC</li>
+<li>一般情况下，对非线性数据使用默认的高斯核函数会有比较好的效果</li>
+<li>自己只是了解皮毛，对于核函数公式的推导，如何知道一个核函数是否是有效核函数等，都还不是太清楚</li>
+</ul>
+</li>
+</ol>
+<h5 id="介绍一下CNN以及在这个项目中的应用"><a href="#介绍一下CNN以及在这个项目中的应用" class="headerlink" title="介绍一下CNN以及在这个项目中的应用"></a>介绍一下CNN以及在这个项目中的应用</h5><p>在CNN中，<strong>卷积</strong>的作用是<strong>特征提取</strong>（比如图像中的边缘检测），<strong>池化</strong>的作用是压缩特征数，对<strong>特征进行降维</strong>。</p>
+<p>在CNN分类模型中，我们简单的使用了三个卷积核(大小为filter_size*embedding_size)，加入了L2正则化。</p>
+<h5 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h5><ol>
+<li><p>样本不均衡</p>
+<ul>
+<li><p>过采样：不易太过，否则容易过拟合，但是预测效果很差</p>
+</li>
+<li><p>欠采样：当数据样本足够多时才能使用</p>
+<p>除了样本不均衡本身带来的训练问题，在测试集中，因为样本严重不均衡，且需要尽量保证测试集和训练集的分布一样，所以可能存在测试集中某些类只有几个数据，导致结果随机性较大不可靠，这时应该尽量把真实数据留在测试集中</p>
+</li>
+</ul>
+</li>
+<li><p>阈值难以确定<br>每一次的预测，有所有类别的概率[0.1, 0.2, 0.3, 0.4, 0.5]，然后取概率最大的那个类别当作预测结果。<br>但是因为这个结果在每个类别中的边界线并不稳定，所以我们尝试对预测概率[0.1, 0.2, 0.3, 0.4, 0.5]的熵的分析来进一步判别。</p>
 </li>
 <li><p>任务结束前如何判断用户是否更改意图，跳出当前场景</p>
 <p> 我们增加了一个类others，包含所有肯定不属于当前场景的对话数据，比如：“我要投诉”，“今天天气适合登山”等等。</p>
 <p> 对于需要跳出当前场景的对话，如果我们没有跳出，比不需要跳出场景对话但是却跳出了的结果要更严重，所以我们主要要考虑others类的准确率，其次是F1值和召回率。</p>
-<p> 这里为了使得others相对于召回率有更大的准确率，我们增加了这个类的权重。如果训练时间足够长，是否增加权重最后的结果都是相同的，但是增加权重后，模型会优先保证others这一类的准确率，所以我们可以让训练停在others有较大准确率、且总体结果比较符合我们要求的时候。即牺牲别的类的准确率来优先保证others的准确率。</p>
+<p> 这里为了使得others相对于召回率有更大的准确率，我们增加了这个类的权重（求完各个类的交叉熵后，乘以权重系数，即增加这个类对loss的敏感度）。如果训练时间足够长，是否增加权重最后的结果都是相同的，但是增加权重后，模型会优先保证others这一类的准确率，所以我们可以让训练停在others有较大准确率、且总体结果比较符合我们要求的时候。即牺牲别的类的准确率来优先保证others的准确率。</p>
 </li>
 <li><p>过拟合</p>
 <p> 表现为训练集的F1值不断上升但是验证集的变化不大。原因是数据量很多，但是类别很少，且句子都很简短。</p>
@@ -430,13 +530,56 @@
 <li>停止训练：在发现训练集不断上升但是验证集结果变化不大时，及时停止训练。</li>
 </ul>
 </li>
+<li><p>在计算损失函数时，不要允许概率直接等于0，而是加上一个极小的正数，这样会减少信息的丢失，整体的概率和与1有一点偏差并不影响</p>
+</li>
 </ol>
-<h4 id="NER"><a href="#NER" class="headerlink" title="NER"></a>NER</h4><h4 id="LSTM-CRF"><a href="#LSTM-CRF" class="headerlink" title="LSTM+CRF"></a>LSTM+CRF</h4><h5 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h5><h4 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice+LSTM"></a>Lattice+LSTM</h4><h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4><h3 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h3><p>有三个输入：字向量，位置向量，句子向量<br>15%的词mask，这15%中有80%是真的用MASK来代替，10%是原有单词，10%是随机选择的单词<br>优点：</p>
+<h4 id="NER"><a href="#NER" class="headerlink" title="NER"></a>NER</h4><p>一共有15000个数据，12个类别（连上不属于这12个类别的数据，如“的”、“你们”等，共13个类别），如”出发地”，”出发时间”，”类型”，”物品”，”体积”,”重量”等。</p>
+<p>训练集：14000，验证集：，测试集：1000。</p>
+<p>baseline用的是LSTM+CRF，后来改为BiLSTM+CRF后，效果有一定提升。optimizer选用的是Adam。</p>
+<p>准确率达97.4%，但F1值只有87.4%<br>主要是对时间的获取准确率太低，DUR和TIM分别只有43%和50%</p>
+<h4 id="BiLSTM-CRF"><a href="#BiLSTM-CRF" class="headerlink" title="BiLSTM+CRF"></a>BiLSTM+CRF</h4><h5 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h5><ol>
+<li>条件：判别式模型；随机场：无向图模型</li>
+<li>判别模型P(Y|X)</li>
+<li>打破了观测独立假设（朴素贝叶斯假设就是观测独立假设）</li>
+<li>全局归一化（MEMM最大熵马尔可夫模型是局部归一化）</li>
+<li>一般的深度学习模型只是学习了文本/特征上下文的关系(BiLSTM)，但是CRF的加入可以让它还学到label上下之间的关系，加入了一个相邻序列间转换的概率</li>
+<li><img src="/public/images/image/BiLSTM+CRF&#32;loss.png" alt="BiLSTM+CRF的loss求解"></li>
+</ol>
+<h6 id="Viterbi算法"><a href="#Viterbi算法" class="headerlink" title="Viterbi算法"></a>Viterbi算法</h6><h5 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice+LSTM"></a>Lattice+LSTM</h5><p>Lattice是除了使用词向量外，还把字向量作为特征也加入进去了，所以整个计算复杂度升高了很多。</p>
+<h5 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h5><p>在测试完Lattice LSTM后，发现整体F1值虽然增加了2%，但是速度却下降了特别多（将近5倍），所以最后还是选用的BiLSTM+CRF</p>
+<hr>
+<h3 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h3><p>有三个输入：字向量，位置向量，句子向量<br>15%的词mask，这15%中有80%是真的用MASK来代替，10%是原有单词，10%是随机选择的单词<br>优点：</p>
 <ul>
 <li>只有80%的字为MASK是因为微调时，输入数据中不会有MASK</li>
 <li>10%错误是因为这样模型不能100%确定当前字一定是正确的，所以迫使模型更多的依赖上下文</li>
 </ul>
-<h4 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h4><h4 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h4><h3 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h3><p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句于回答的余弦相似性来减少重复问题的回答</p>
+<h4 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h4><p><a href="https://www.bilibili.com/video/av56239558/?spm_id_from=333.788.videocard.0" target="_blank" rel="noopener">超厉害的transformer讲解视频，看完就明朗！</a></p>
+<ol>
+<li><p>transformer最重要的组成部分就是self-attention</p>
+</li>
+<li><p>attention的计算中，$alpha_{1,i} = q^1 · k^i / \sqrt{d}$，这里除以$\sqrt{d}$是因为作者认为在前面求内积时，如果$q^1$和$k^i$的dimension越大，自然$q^1 · k^i$内积也会<strong>相对</strong>越大，所以要除以$q^1$和$k^i$的dimension $d$来平衡。</p>
+</li>
+<li><p>self-attention输出的seq中，输出$y_i$是同CNN中一样，可以并行计算的</p>
+</li>
+<li><p><img src="/public/images/image/self-attention.png" alt="self-attention"></p>
+</li>
+<li><p>表示位置position的向量$e^i$不是学出来的，而是开始的时候就设置了的，通过$e^i$的数值，可以直接判断出当前输入在句子中是在什么位置</p>
+</li>
+<li><p>为什么直接把位置信息$e^i$加到$a^i$上，而不是concat呢？这样会不会造成信息混乱呢？</p>
+<p>那么我们试着不把$e^i$直接加入到$a^i$，而是在输入处，让位置信息$e$和输入信息$x$直接concat，得到比如$X$，他们乘以把$W_e$和$W_x$ concat在一起的矩阵$W$，我们会发现$W·X = W_e · e + W_x · x = W_e · e + a$，所以最后得到的结果还是相加的，具体情况如下图<br><img src="/public/images/image/self-attention-2.png" alt="positioninfo"></p>
+</li>
+<li><p>layer norm VS batch norm</p>
+</li>
+<li><p>为什么layer norm一般会搭配RNN使用？</p>
+</li>
+<li><p>在transformer的decoder中，中间的multi-head attention的前两个输入来自于encoder的输出，最后一个的输入来自于decoder，前两个是$Q$和$K$，他们是用来计算attention的，后面一个是$V$，计算出来的attention矩阵和$V$进行运算来看attention和$V$的关联度。</p>
+</li>
+<li><p>multi-head attention里之所以用几个attention是因为不同的attention专注点不同，如果句子里有很多需要关联的关系来学习的化，multi-head attention就会大大提升效果</p>
+</li>
+</ol>
+<h4 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h4><p>常见的两种attentio机制</p>
+<hr>
+<h3 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h3><p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句与回答的余弦相似性来减少重复问题的回答</p>
 <h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><h4 id="anti-lm"><a href="#anti-lm" class="headerlink" title="anti-lm"></a>anti-lm</h4><h5 id="最大互信息"><a href="#最大互信息" class="headerlink" title="最大互信息"></a>最大互信息</h5><h4 id="attention-LSTM"><a href="#attention-LSTM" class="headerlink" title="attention+LSTM"></a>attention+LSTM</h4><h5 id="attention-1"><a href="#attention-1" class="headerlink" title="attention"></a>attention</h5><h5 id="transformer-1"><a href="#transformer-1" class="headerlink" title="transformer"></a>transformer</h5><h3 id="概述历程"><a href="#概述历程" class="headerlink" title="概述历程"></a>概述历程</h3><h4 id="法国"><a href="#法国" class="headerlink" title="法国"></a>法国</h4><h4 id="顺丰"><a href="#顺丰" class="headerlink" title="顺丰"></a>顺丰</h4><h3 id="几大模块"><a href="#几大模块" class="headerlink" title="几大模块"></a>几大模块</h3><h2 id="待写文章"><a href="#待写文章" class="headerlink" title="待写文章"></a>待写文章</h2><ol>
 <li><p>过拟合欠拟合</p>
 </li>
