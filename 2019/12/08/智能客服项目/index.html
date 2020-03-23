@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://yoursite.com/public/images/image/self-attention.png">
 <meta property="og:image" content="http://yoursite.com/public/images/image/self-attention-2.png">
 <meta property="article:published_time" content="2019-12-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-23T03:33:59.292Z">
+<meta property="article:modified_time" content="2020-03-23T05:41:34.184Z">
 <meta property="article:author" content="Shijiao DENG">
 <meta property="article:tag" content="智能客服">
 <meta property="article:tag" content="CNN">
@@ -224,7 +224,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-23 11:33:59" itemprop="dateModified" datetime="2020-03-23T11:33:59+08:00">2020-03-23</time>
+                <time title="修改时间：2020-03-23 13:41:34" itemprop="dateModified" datetime="2020-03-23T13:41:34+08:00">2020-03-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,11 +268,15 @@
 <ul>
 <li>最开始做的FAQ就是tf-idf加上余弦相似度</li>
 <li>缺点：<ul>
-<li>有些句子可能在距离上更接近A类句子，其实却属于B类，比如句式相似，只有一两个重点字不同</li>
-<li>太过依赖句子本身的向量，而没有和拉开和不同类别句子间的距离</li>
+<li>词包模型，没有句子中词汇出现的顺序信息</li>
+<li>有的词汇出现频繁，但并不是很重要的词汇；相反有的词汇出现频率相对较小，但是确实非常重要的判别词汇，所以tf-idf给予字词的权重有待优化</li>
 </ul>
 </li>
-<li>为了纠正这个方法对词汇权重计算的偏差问题（重要词汇的权重不够大），又找出了所有的重要词汇，并且计算每个句子中重要词汇的杰卡德系</li>
+<li>导致：<ul>
+<li>有些句子可能在距离上更接近A句子，其实是相似于B句子，比如句式相似，只有一两个重点字不同</li>
+</ul>
+</li>
+<li>为了优化这个方法对词汇权重计算的偏差问题（重要词汇的权重不够大），又找出了所有的重要词汇，并且计算每个句子中重要词汇的杰卡德系数</li>
 <li>最后结合余弦相似度和杰卡德系数来判断两个句子的相似性</li>
 <li>此时因为数据量小，句子相对简单，top1值并不高60%，但是top3值可以达到95%，剩下的95%是因为数据库中不存在相关语句</li>
 </ul>
@@ -338,7 +342,7 @@
 </ul>
 <h5 id="如何优化分类问题"><a href="#如何优化分类问题" class="headerlink" title="如何优化分类问题"></a>如何优化分类问题</h5><h6 id="类别F1值分析"><a href="#类别F1值分析" class="headerlink" title="类别F1值分析"></a>类别F1值分析</h6><p>分析整体F1值，看主要影响效果的是哪一个/哪几个类，然后针对性分析，提高优化效果。<br>针对F1值过低的类别，仔细分析错误分类的数据，找出原因</p>
 <h6 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h6><p>根据学习曲线，可以找出当前模型训练出最佳结果所需要的最少的数据数，可以避免资源的浪费，也可以排除结果不佳可能是数据集不够的困惑。</p>
-<h5 id="说一下stacking以及它在这个项目中的应用"><a href="#说一下stacking以及它在这个项目中的应用" class="headerlink" title="说一下stacking以及它在这个项目中的应用"></a>说一下stacking以及它在这个项目中的应用</h5><p>stacking中我们用了两层分类器，第一层有三个基分类器，第二层分类器是LR，folder=3，</p>
+<h5 id="说一下stacking以及它在这个项目中的应用"><a href="#说一下stacking以及它在这个项目中的应用" class="headerlink" title="说一下stacking以及它在这个项目中的应用"></a>说一下stacking以及它在这个项目中的应用</h5><p>stacking中我们用了两层分类器，第一层有三个基分类器RF，NB，LR，第二层分类器是线性核函数的SVM，folder=3，</p>
 <ol>
 <li><p>先用tf-idf提取特征</p>
 </li>
@@ -358,11 +362,11 @@
 </li>
 <li><p>stacking的预测需要时间相对较长</p>
 </li>
-<li><p>第一层基分类器用的是RF，NB，LR</p>
-</li>
 </ol>
-<h6 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h6><p>逻辑回归假设数据符合伯努利分布，所以是一个参数模型。<br>通过引入sigmoid函数，将输出映射到[0,1]之间，使逻辑回归成为一个概率预测问题，但正因它对sigmoid的引入，逻辑回归对极值</p>
+<h6 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h6><p>逻辑回归是一个判别模型<br>通过对激活函数sigmoid的引入，使得线性回归中的$W^T · x$映射到(0,1)之间，使逻辑回归成为一个概率预测问题，参数就是$W^T$<br>为了使逻辑回归公式$P(y|x) = p_1^y·p_0^{1-y}$最大，我们引入最大似然估计</p>
+<p>逻辑回归假设数据符合伯努利分布，所以是一个参数模型。<br>通过引入sigmoid函数，将输出映射到[0,1]之间，</p>
 <p>逻辑回归本来是二元分类，但是也可以用作多元分类。<br>如果逻辑回归中引入正则化，我们需要对特征进行标准化，在这标准化也可以加快训练。</p>
+<p>最大似然(max最大化问题) 可以导出 loss funcition(min Cross Entropy最小化问题)</p>
 <p>方法：</p>
 <ul>
 <li><p>one VS all，选择计算结果最高的那个类。</p>
@@ -482,6 +486,16 @@
 </li>
 </ol>
 <h4 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h4><p>常见的两种attentio机制</p>
+<h4 id="数据增广"><a href="#数据增广" class="headerlink" title="数据增广"></a>数据增广</h4><ul>
+<li>数据增广中，我们不需要用到segment embedding，因为我们都是同一个句子，但是我们可以加入intent embedding</li>
+<li>随机mask 15%的token，其中10%的单词会被替代成其他单词，10%的单词不替换，剩下80%才被替换为[MASK]</li>
+<li>当作一个seq2seq模型来使用，让模型直接输出句子，即mask会被替换成别的单词/词语</li>
+<li><ol>
+<li>用词向量比字向量好，用字向量会出现错误的词组</li>
+<li>词向量需要自己重新训练，中文的Bert是字向量，所以失去了迁移模型的优势</li>
+</ol>
+</li>
+</ul>
 <hr>
 <h3 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h3><p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句与回答的余弦相似性来减少重复问题的回答</p>
 <h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><h4 id="anti-lm"><a href="#anti-lm" class="headerlink" title="anti-lm"></a>anti-lm</h4><h5 id="最大互信息"><a href="#最大互信息" class="headerlink" title="最大互信息"></a>最大互信息</h5><h4 id="attention-LSTM"><a href="#attention-LSTM" class="headerlink" title="attention+LSTM"></a>attention+LSTM</h4><h5 id="attention-1"><a href="#attention-1" class="headerlink" title="attention"></a>attention</h5><h5 id="transformer-1"><a href="#transformer-1" class="headerlink" title="transformer"></a>transformer</h5><h3 id="概述历程"><a href="#概述历程" class="headerlink" title="概述历程"></a>概述历程</h3><h4 id="法国"><a href="#法国" class="headerlink" title="法国"></a>法国</h4><h4 id="顺丰"><a href="#顺丰" class="headerlink" title="顺丰"></a>顺丰</h4><h3 id="几大模块"><a href="#几大模块" class="headerlink" title="几大模块"></a>几大模块</h3><h2 id="待写文章"><a href="#待写文章" class="headerlink" title="待写文章"></a>待写文章</h2><ol>
@@ -582,7 +596,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#智能客服项目"><span class="nav-number">1.</span> <span class="nav-text">智能客服项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顶层分类器"><span class="nav-number">1.1.</span> <span class="nav-text">顶层分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FAQ"><span class="nav-number">1.2.</span> <span class="nav-text">FAQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务型对话"><span class="nav-number">1.3.</span> <span class="nav-text">任务型对话</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#意图识别"><span class="nav-number">1.3.1.</span> <span class="nav-text">意图识别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何优化分类问题"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">如何优化分类问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#类别F1值分析"><span class="nav-number">1.3.1.1.1.</span> <span class="nav-text">类别F1值分析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#学习曲线"><span class="nav-number">1.3.1.1.2.</span> <span class="nav-text">学习曲线</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#说一下stacking以及它在这个项目中的应用"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">说一下stacking以及它在这个项目中的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#逻辑回归"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">逻辑回归</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SVM"><span class="nav-number">1.3.1.2.2.</span> <span class="nav-text">SVM</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#介绍一下CNN以及在这个项目中的应用"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">介绍一下CNN以及在这个项目中的应用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#碰到的问题"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">碰到的问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NER"><span class="nav-number">1.3.2.</span> <span class="nav-text">NER</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BiLSTM-CRF"><span class="nav-number">1.3.3.</span> <span class="nav-text">BiLSTM+CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CRF"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Viterbi算法"><span class="nav-number">1.3.3.1.1.</span> <span class="nav-text">Viterbi算法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Lattice-LSTM"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">Lattice+LSTM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对比"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">对比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bert"><span class="nav-number">1.4.</span> <span class="nav-text">Bert</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#transformer"><span class="nav-number">1.4.1.</span> <span class="nav-text">transformer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attention"><span class="nav-number">1.4.2.</span> <span class="nav-text">attention</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闲聊"><span class="nav-number">1.5.</span> <span class="nav-text">闲聊</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#seq2seq"><span class="nav-number">1.5.1.</span> <span class="nav-text">seq2seq</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#anti-lm"><span class="nav-number">1.5.2.</span> <span class="nav-text">anti-lm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#最大互信息"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">最大互信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attention-LSTM"><span class="nav-number">1.5.3.</span> <span class="nav-text">attention+LSTM</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#attention-1"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">attention</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#transformer-1"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">transformer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概述历程"><span class="nav-number">1.6.</span> <span class="nav-text">概述历程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#法国"><span class="nav-number">1.6.1.</span> <span class="nav-text">法国</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#顺丰"><span class="nav-number">1.6.2.</span> <span class="nav-text">顺丰</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几大模块"><span class="nav-number">1.7.</span> <span class="nav-text">几大模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待写文章"><span class="nav-number">2.</span> <span class="nav-text">待写文章</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#智能客服项目"><span class="nav-number">1.</span> <span class="nav-text">智能客服项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顶层分类器"><span class="nav-number">1.1.</span> <span class="nav-text">顶层分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FAQ"><span class="nav-number">1.2.</span> <span class="nav-text">FAQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务型对话"><span class="nav-number">1.3.</span> <span class="nav-text">任务型对话</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#意图识别"><span class="nav-number">1.3.1.</span> <span class="nav-text">意图识别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何优化分类问题"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">如何优化分类问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#类别F1值分析"><span class="nav-number">1.3.1.1.1.</span> <span class="nav-text">类别F1值分析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#学习曲线"><span class="nav-number">1.3.1.1.2.</span> <span class="nav-text">学习曲线</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#说一下stacking以及它在这个项目中的应用"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">说一下stacking以及它在这个项目中的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#逻辑回归"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">逻辑回归</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SVM"><span class="nav-number">1.3.1.2.2.</span> <span class="nav-text">SVM</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#介绍一下CNN以及在这个项目中的应用"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">介绍一下CNN以及在这个项目中的应用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#碰到的问题"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">碰到的问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NER"><span class="nav-number">1.3.2.</span> <span class="nav-text">NER</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BiLSTM-CRF"><span class="nav-number">1.3.3.</span> <span class="nav-text">BiLSTM+CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CRF"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Viterbi算法"><span class="nav-number">1.3.3.1.1.</span> <span class="nav-text">Viterbi算法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Lattice-LSTM"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">Lattice+LSTM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对比"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">对比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bert"><span class="nav-number">1.4.</span> <span class="nav-text">Bert</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#transformer"><span class="nav-number">1.4.1.</span> <span class="nav-text">transformer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attention"><span class="nav-number">1.4.2.</span> <span class="nav-text">attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据增广"><span class="nav-number">1.4.3.</span> <span class="nav-text">数据增广</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闲聊"><span class="nav-number">1.5.</span> <span class="nav-text">闲聊</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#seq2seq"><span class="nav-number">1.5.1.</span> <span class="nav-text">seq2seq</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#anti-lm"><span class="nav-number">1.5.2.</span> <span class="nav-text">anti-lm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#最大互信息"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">最大互信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attention-LSTM"><span class="nav-number">1.5.3.</span> <span class="nav-text">attention+LSTM</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#attention-1"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">attention</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#transformer-1"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">transformer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概述历程"><span class="nav-number">1.6.</span> <span class="nav-text">概述历程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#法国"><span class="nav-number">1.6.1.</span> <span class="nav-text">法国</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#顺丰"><span class="nav-number">1.6.2.</span> <span class="nav-text">顺丰</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几大模块"><span class="nav-number">1.7.</span> <span class="nav-text">几大模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待写文章"><span class="nav-number">2.</span> <span class="nav-text">待写文章</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
