@@ -357,6 +357,31 @@
 
 
 <hr>
+<h3 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h3><h4 id="词嵌入"><a href="#词嵌入" class="headerlink" title="词嵌入"></a>词嵌入</h4><p>在NLP中，词嵌入是一个非常重要和基本的点。不同于图片领域，可以直接将图片色彩值、像素值等直接拿来进行学习，在NLP领域中，字、词是需要转换成数值，然后才能用一些算法来进行学习，而这个将词/字转换成数值的方法，就叫做词嵌入 word embedding。</p>
+<p>最简单的词嵌入就是ont-hot方法了，但是在都拥有大数据集的情况下，one-hot不仅使得词维度过大，而且并不能够表示文档、字词之间的表意关系。</p>
+<p>词嵌入如此重要，我们在词嵌入方向也做了很多研究，并且现在已有很多种效果很好的词嵌入的方法。</p>
+<ol>
+<li><p>最开始自己在为法国农业银行做智能客服时使用的tf-idf就是一个比较经典的词嵌入方法，但是它仍然有维度过大和不能表示词表意之间的关系</p>
+</li>
+<li><p>我们这里主要要讲的就是我们经常用到的word2vec词向量方法。word2vec词向量主要有两种计算方法，一种是skip-gram，另一种就是CBOW</p>
+<ol>
+<li><p>skip-gram</p>
+<p>skip-gram是通过在已知当前词的情况下，预测前n个词和后n个词</p>
+<p>当前词作为中心词时，因此要预测前n个词和后n个词，所以是从2*n个词的地方来进行参数优化，即进行学习，所以得到的词向量更准确一些，因此对于一些低频词较多的情况下，可以酌情使用这种方法，但是计算量会更大一些</p>
+</li>
+<li><p>CBOW</p>
+<p>CBOW是在已知前面n个词和后面n个词的情况下，对当前词进行预测</p>
+<p>通过前n个词和后n个词来预测当前词，学习效率快，但是相对而言，优化的次数要少，因此得到的词向量会相对没有那么精确，但是因为计算量相对较小，而且这种方法得到的词向量已经满足常规使用需求了，所以这种方法的词向量被使用的更频发</p>
+</li>
+<li><p>两者都是通过对目标函数的优化，来优化隐藏层的参数W，而这个W就是我们的词向量</p>
+</li>
+<li><p>这两种计算方法其实计算量都特别大，所以有两种优化方法，一种是负采样，一种是softmax方法，我并没有细看</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>其实并没有规避one-hot维度大、没有词表意之间练习的问题，我们只是把这个问题提前解决了之后，再拿来使用，所以这应该也算是迁移学习吧</p>
+<hr>
 <h3 id="顶层分类器"><a href="#顶层分类器" class="headerlink" title="顶层分类器"></a>顶层分类器</h3><hr>
 <h3 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h3><p>FAQ经历的漫长的演变。</p>
 <ol>
@@ -425,6 +450,11 @@
 </ul>
 </li>
 </ol>
+<h4 id="相似度计算方法"><a href="#相似度计算方法" class="headerlink" title="相似度计算方法"></a>相似度计算方法</h4><h5 id="levenshtein"><a href="#levenshtein" class="headerlink" title="levenshtein"></a>levenshtein</h5><p>当i=0 or j=0,res[i][j]=0<br>res[i][j]=min{res[i-1][j]+1,res[i][j-1]+1,res[i-1][j-1]+flag}, flag=0 if A[i]=B[j], flag=1 if A[i]!=B[j]</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">levenshtein</span><span class="params">(seq1, seq2)</span>:</span></span><br><span class="line">    size_x = len(seq1) + <span class="number">1</span></span><br><span class="line">    size_y = len(seq2) + <span class="number">1</span></span><br><span class="line">    matrix = np.zeros ((size_x, size_y))</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xrange(size_x):</span><br><span class="line">        matrix [x, <span class="number">0</span>] = x</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> xrange(size_y):</span><br><span class="line">        matrix [<span class="number">0</span>, y] = y</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">1</span>, size_x):</span><br><span class="line">        <span class="keyword">for</span> y <span class="keyword">in</span> xrange(<span class="number">1</span>, size_y):</span><br><span class="line">            <span class="keyword">if</span> seq1[x<span class="number">-1</span>] == seq2[y<span class="number">-1</span>]:</span><br><span class="line">                matrix [x,y] = min(</span><br><span class="line">                    matrix[x<span class="number">-1</span>, y] + <span class="number">1</span>,</span><br><span class="line">                    matrix[x<span class="number">-1</span>, y<span class="number">-1</span>],</span><br><span class="line">                    matrix[x, y<span class="number">-1</span>] + <span class="number">1</span></span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                matrix [x,y] = min(</span><br><span class="line">                    matrix[x<span class="number">-1</span>,y] + <span class="number">1</span>,</span><br><span class="line">                    matrix[x<span class="number">-1</span>,y<span class="number">-1</span>] + <span class="number">1</span>,</span><br><span class="line">                    matrix[x,y<span class="number">-1</span>] + <span class="number">1</span></span><br><span class="line">                )</span><br><span class="line">    <span class="keyword">print</span> (matrix)</span><br><span class="line">    <span class="keyword">return</span> (matrix[size_x - <span class="number">1</span>, size_y - <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<h5 id="最长公共子串"><a href="#最长公共子串" class="headerlink" title="最长公共子串"></a>最长公共子串</h5><p>当i=0 or j=0,res[i][j]=0<br>当A[i]=B[j],res[i][j]=res[i-1][j-1]+1<br>当A[i]!=B[j],res[i][j]=0</p>
+<h5 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h5><p>当i=0 or j=0,res[i][j]=0<br>当A[i]=B[j],res[i][j]=res[i-1][j-1]+1<br>当A[i]!=B[j],res[i][j]=max{res[i-1][j],res[i][j-1]}</p>
 <hr>
 <h3 id="任务型对话"><a href="#任务型对话" class="headerlink" title="任务型对话"></a>任务型对话</h3><p>任务型对话主要有时效运费、查单、转寄退回等几个场景，这里主要用时效运费的场景来说明项目过程。</p>
 <p>在时效运费场景中，NLU主要有两个模块，意图识别和NER。</p>
@@ -607,11 +637,8 @@
 </li>
 </ul>
 <hr>
-<h3 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h3><p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句与回答的余弦相似性来减少重复问题的回答</p>
-<p>具体代码实现：<br><a href="https://github.com/marsan-ma/tf_chatbot_seq2seq_antilm/blob/master/lib/seq2seq_model_utils.py" target="_blank" rel="noopener">https://github.com/marsan-ma/tf_chatbot_seq2seq_antilm/blob/master/lib/seq2seq_model_utils.py</a><br>对比一下第三行代码和原公式</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">all_prob_ts &#x3D; model_step(encoder_inputs, cand[&#39;dec_inp&#39;], dptr, target_weights, bucket_id)</span><br><span class="line">if args.antilm:</span><br><span class="line">  # anti-lm</span><br><span class="line">  all_prob_t  &#x3D; model_step(dummy_encoder_inputs, cand[&#39;dec_inp&#39;], dptr, target_weights, bucket_id)</span><br><span class="line">  # adjusted probability</span><br><span class="line">  all_prob    &#x3D; all_prob_ts - args.antilm * all_prob_t #+ args.n_bonus * dptr + random() * 1e-50</span><br><span class="line">else:</span><br><span class="line">  all_prob_t  &#x3D; [0]*len(all_prob_ts)</span><br><span class="line">  all_prob    &#x3D; all_prob_ts</span><br></pre></td></tr></table></figure>
-
-<h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><h4 id="anti-lm"><a href="#anti-lm" class="headerlink" title="anti-lm"></a>anti-lm</h4><h5 id="最大互信息"><a href="#最大互信息" class="headerlink" title="最大互信息"></a>最大互信息</h5><h4 id="attention-LSTM"><a href="#attention-LSTM" class="headerlink" title="attention+LSTM"></a>attention+LSTM</h4><h5 id="attention-1"><a href="#attention-1" class="headerlink" title="attention"></a>attention</h5><h5 id="transformer-1"><a href="#transformer-1" class="headerlink" title="transformer"></a>transformer</h5><h3 id="概述历程"><a href="#概述历程" class="headerlink" title="概述历程"></a>概述历程</h3><h4 id="法国"><a href="#法国" class="headerlink" title="法国"></a>法国</h4><h4 id="顺丰"><a href="#顺丰" class="headerlink" title="顺丰"></a>顺丰</h4><h3 id="几大模块"><a href="#几大模块" class="headerlink" title="几大模块"></a>几大模块</h3><h2 id="待写文章"><a href="#待写文章" class="headerlink" title="待写文章"></a>待写文章</h2><ol>
+<h3 id="纠错"><a href="#纠错" class="headerlink" title="纠错"></a>纠错</h3><h4 id="N-gram"><a href="#N-gram" class="headerlink" title="N-gram"></a>N-gram</h4><h4 id="levenshtein-1"><a href="#levenshtein-1" class="headerlink" title="levenshtein"></a>levenshtein</h4><h4 id="最长公共子串-1"><a href="#最长公共子串-1" class="headerlink" title="最长公共子串"></a>最长公共子串</h4><hr>
+<h3 id="概述历程"><a href="#概述历程" class="headerlink" title="概述历程"></a>概述历程</h3><h4 id="法国"><a href="#法国" class="headerlink" title="法国"></a>法国</h4><h4 id="顺丰"><a href="#顺丰" class="headerlink" title="顺丰"></a>顺丰</h4><h3 id="几大模块"><a href="#几大模块" class="headerlink" title="几大模块"></a>几大模块</h3><h2 id="待写文章"><a href="#待写文章" class="headerlink" title="待写文章"></a>待写文章</h2><ol>
 <li><p>过拟合欠拟合</p>
 </li>
 <li><p>样本不均衡</p>
@@ -621,6 +648,7 @@
 <li><p>batch norm和layer norm的不同</p>
 </li>
 </ol>
+<h3 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h3><p>自己的优势是对整个产品流程的理解，和对产品如何更好面向客户的技术上的着重点的理解</p>
 ]]></content>
       <categories>
         <category>工作总结</category>
@@ -848,15 +876,85 @@
 <li><p>v1.6 尝试在v1.4的基础上把<code>layer</code>从3改成6</p>
 </li>
 </ul>
-<h4 id="还有的问题"><a href="#还有的问题" class="headerlink" title="还有的问题"></a>还有的问题</h4><ul>
-<li>回答和问题太相似</li>
-<li>无意义回答过多</li>
+<h3 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h3><p>闲聊原本数据是120万左右，后来经过数据清洗后，剩下80万左右的数据。<br>数据清洗：</p>
+<ol>
+<li>删除重复对话</li>
+<li>将多轮对话剪切成单轮对话</li>
+<li>删除回复过短的回答，或者不需要的回答/问题（如 字符，笑脸符等）</li>
+<li>删除过长对话（30字以内）</li>
+<li>统一回复（如 哈哈哈哈哈哈 =&gt; 哈哈哈哈哈，如 我不知道啊，哈哈哈 =&gt; 我不知道啊）</li>
+</ol>
+<h4 id="流程设计"><a href="#流程设计" class="headerlink" title="流程设计"></a>流程设计</h4><ol>
+<li>“问候”和“再见”等，是用规则写的</li>
+<li>如果没有匹配到“问候”或者“再见”，就会进入到模型生成回复</li>
+<li>模型是seq2seq+attention</li>
+<li>attention是哪个attention，对结果影响并不大</li>
+<li>把数据分为几块，比如5-10个字的句子一起，10-20个字的句子一起，等等，然后让句子从短到长进行输入，一是让训练更稳定，二是能一定程度上加快速度</li>
+</ol>
+<h4 id="模型问题"><a href="#模型问题" class="headerlink" title="模型问题"></a>模型问题</h4><ol>
+<li>无意义回答过多 =&gt; 加入anti-LM</li>
+<li>相似回答过多 =&gt; 加入余弦相似到loss中，有一定的效果，但是很难统计，因为可能对某个测试集，效果明显，对某些测试集，效果就不是那么明显</li>
+<li>简单问题正确回答的百分比 =&gt; “问候”等对话进行了规则处理</li>
+<li>过于简短回答的百分比 =&gt; 数据集上进行了处理</li>
+</ol>
+<h5 id="anti-LM"><a href="#anti-LM" class="headerlink" title="anti-LM"></a>anti-LM</h5><p>通常情况下，我们的损失函数loss为${\hat T}=\underset{T}{argmax} {logp(T|S)}$。从损失函数我们可以看出，在给定输入$S$的情况下，模型会选择输出概率最大的句子，这回倾向输出出现频率大的句子，通常这些句子为无意义句子。<br>所以我们引入互信息作为新的目标函数，以两个句子的相关性作为度量标准。互信息公式如下：<br>$log \frac{p(S|T)}{p(S)p(T)}$<br>所以表达式可以写成</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\log p(T)-\log p(S)}$</p>
+<p>但因为$S$为输入，$\log p(S)$是固定的，所以表达式也为</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\log p(T)}$</p>
+<p>对惩罚项$-\log (T)$前加入一个参数，即为</p>
+<p>${\hat T}=\underset{T}{argmax} {logp(T|S)-\lambda logp(T)}$</p>
+<p>我们发现虽然目标函数改为互信息MMI，但是损失函数最大的改变就是加入了$-log(T)$，而$p(T)$表示一个句子出现的概率，所以这个损失函数其实是加了一个对出现概率大的句子的惩罚，$\lambda$就是那个惩罚系数。</p>
+<p>惩罚项$-logp(T)$中的</p>
+<p>$p(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
+<p>在句子$T$的生成中，第一个字$t_1$的生成一定程度上决定了后面字$t_k$的生成，所以$t_1$相对于$t_k$而言，对句子$T$的影响更大。又因为如果我们直接让</p>
+<p>$p(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
+<p>实际生成的句子可能会更容易有语法问题。所以我们取了一个折中的方法，让</p>
+<p>$U(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1}) \cdot g(k)$ </p>
+<p>with<br>$$ g(k)=<br>  \begin{cases}<br>  1 &amp; {if k \leq \gamma} \<br>  0 &amp; {if k \geq \gamma}<br>  \end{cases}<br>  $$<br>取代$p(T)$，使得损失函数为</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\lambda \log U(T)}$</p>
+<p>另外实际应用中，还加入了响应句子长度的因素$\gamma N_t$，作为模型相应的依据，因此将目标函数修正如下</p>
+<p>$Score(T) = p(T|S)-\lambda U(T) + \gamma N_t$</p>
+<p>所以损失函数应该是</p>
+<p>$\underset{T}{argmin} {-\log p(T|S)+\lambda \log p(T)-\log (\gamma N_t)}$</p>
+<h5 id="anti-bidi"><a href="#anti-bidi" class="headerlink" title="anti-bidi"></a>anti-bidi</h5><p>由上面的推导，我们从MMI得到</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\lambda \log p(T)}$</p>
+<p>我们又知道</p>
+<p>$\log p(T)=\log p(T|S) + \log p(S) - \log p(S|T)$</p>
+<p>带入得到</p>
+<p>${\hat T}=\underset{T}{argmax} {(1-\lambda)\log p(T|S)+\lambda \log p(S|T)}$</p>
+<p>因为$p(S|T)$需要通过生成的$T$来再次通过训练好的seq2seq模型再计算一遍，计算量特别大，所以我们通过beam search只取前$N$个$T$，比如200个，再计算$S$。</p>
+<p>但是在使用beam search的时候，我们知道，beam search有很多输出只是一两个字或者只是符号发生了变化，减少了取$N$个不同输出$T$的意义，因为本身输出句子的多样性不能满足这里的要求，所以我们对beam search进行了更改。</p>
+<p>一般beam search在到下一节点时，我们是通过混合所有父节点的字节点，统一进行比较，然后取整体概率最大的$N$个选择，这里我们更改为，针对每一个父节点，我们先对其对应的字节点按先后顺序将其概率从上往下减去一个越来越大的数，使得我们能更好的保存更多不同的父节点，自然句子的多样性也就增加了。具体例子见下图<img src="/public/images/image/beam_search_anti_bidi.png" alt="beamsearch_antibidi"><br>另外，也在anti-bidi中，做了同anti-LM相同的处理，增加了回复长度的影响。</p>
+<p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句与回答的余弦相似性来减少重复问题的回答</p>
+<h5 id="anti-bidi-VS-anti-LM"><a href="#anti-bidi-VS-anti-LM" class="headerlink" title="anti-bidi VS anti-LM"></a>anti-bidi VS anti-LM</h5><ol>
+<li>两者虽然都是使用的MMI，但是使用的公式不一样，背后的逻辑原理也不一样</li>
+<li>anti-bidi比anti-LM要更耗时，因为他要经过两次模型，且非常依赖于beam search生成的句子的多样性</li>
+</ol>
+<h5 id="anti-LM的具体实现"><a href="#anti-LM的具体实现" class="headerlink" title="anti-LM的具体实现"></a>anti-LM的具体实现</h5><p>如何计算P(T)<br>首先应该意识到P(T)应该是一个语言模型学习出来的结果，而不简单的是联合概率的乘积。那么如何得到这个模型学习出来的结果呢？在实现时需要在decoder的输入端输入一个全零的初始化状态，具体做法可以输入一句话长度的pad标志符，让decoder生成结果，得到P(T)</p>
+<p>详见<code>just_another_seq2seq_master</code>里<code>train-anti.py</code>中第86～88行和第98～101行。</p>
+<p>下面代码见前三行和中间的<code>add_loss</code>：</p>
+<ol>
+<li>前三行代码：输入为一定维度的PAD</li>
+<li><code>add_loss</code>计算的是输入为PAD时(即初始状态下)的输出，即$P(T)$</li>
+<li><code>add_loss *= -0.5</code>表示每次计算完$P(T)$后乘以$-0.5$，即$\lambda=0.5$</li>
+<li>我们没有用$U(T)$，但是并没有明显输出语句不通顺的情况</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dummy_encoder_inputs = np.array([</span><br><span class="line">    np.array([WordSequence.PAD]) <span class="keyword">for</span> _ <span class="keyword">in</span> range(batch_size)])</span><br><span class="line">dummy_encoder_inputs_lengths = np.array([<span class="number">1</span>] * batch_size)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(<span class="number">1</span>, n_epoch + <span class="number">1</span>):</span><br><span class="line">    costs = []</span><br><span class="line">    bar = tqdm(range(steps), total=steps,</span><br><span class="line">                desc=<span class="string">'epoch &#123;&#125;, loss=0.000000'</span>.format(epoch))</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> bar:</span><br><span class="line">        x, xl, y, yl = next(flow)</span><br><span class="line">        x = np.flip(x, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        add_loss = model.train(sess,</span><br><span class="line">                                dummy_encoder_inputs,</span><br><span class="line">                                dummy_encoder_inputs_lengths,</span><br><span class="line">                                y, yl, loss_only=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        add_loss *= <span class="number">-0.5</span></span><br><span class="line">        <span class="comment"># print(x, y)</span></span><br><span class="line">        cost, lr = model.train(sess, x, xl, y, yl,</span><br><span class="line">                                return_lr=<span class="literal">True</span>, add_loss=add_loss)</span><br><span class="line">        costs.append(cost)</span><br><span class="line">        bar.set_description(<span class="string">'epoch &#123;&#125; loss=&#123;:.6f&#125; lr=&#123;:.6f&#125;'</span>.format(</span><br><span class="line">            epoch,</span><br><span class="line">            np.mean(costs),</span><br><span class="line">            lr</span><br><span class="line">        ))</span><br><span class="line"></span><br><span class="line">    model.save(sess, save_path)</span><br></pre></td></tr></table></figure>
+
+<h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><h4 id="anti-lm"><a href="#anti-lm" class="headerlink" title="anti-lm"></a>anti-lm</h4><h5 id="最大互信息"><a href="#最大互信息" class="headerlink" title="最大互信息"></a>最大互信息</h5><h4 id="attention-LSTM"><a href="#attention-LSTM" class="headerlink" title="attention+LSTM"></a>attention+LSTM</h4><h5 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h5><h5 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h5><h4 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h4><p>闲聊的评估是带有非常大的主观性的，而且场景不同，用户不同，对相同结果的满意度也会不一样，所以我们对模型的评估希望从更客观、更基础的地方来进行评估和改进：</p>
+<ol>
+<li>无意义回答的频率/百分比</li>
+<li>相似回答的频率/百分比</li>
+<li>正确回答的百分比</li>
+<li>简单问题正确回答的百分比</li>
+<li>相同问题，是否能给出相同答案</li>
+<li>过于简短回答的百分比</li>
 <li>对话内容大多无意义，无法深入交谈具体事情</li>
-</ul>
-<h4 id="一些想法和接下来前进的方向"><a href="#一些想法和接下来前进的方向" class="headerlink" title="一些想法和接下来前进的方向"></a>一些想法和接下来前进的方向</h4><ul>
-<li>增加<code>layer</code>层数，比如6，让模型更好的拟合 (v1.6)</li>
-<li>试一试用明翔的转化模型，把一批聊天节目等的语音转换乘文字后用来作为数据训练？</li>
-</ul>
+</ol>
+<h4 id="努力方向"><a href="#努力方向" class="headerlink" title="努力方向"></a>努力方向</h4><ol>
+<li>模型优化</li>
+<li>数据集质量优化+数据集扩充</li>
+</ol>
 ]]></content>
       <categories>
         <category>工作总结</category>
