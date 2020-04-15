@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://yoursite.com/public/images/image/self-attention.png">
 <meta property="og:image" content="http://yoursite.com/public/images/image/self-attention-2.png">
 <meta property="article:published_time" content="2019-12-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-01T15:38:20.739Z">
+<meta property="article:modified_time" content="2020-04-11T09:24:35.616Z">
 <meta property="article:author" content="Shijiao DENG">
 <meta property="article:tag" content="智能客服">
 <meta property="article:tag" content="CNN">
@@ -224,7 +224,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-01 23:38:20" itemprop="dateModified" datetime="2020-04-01T23:38:20+08:00">2020-04-01</time>
+                <time title="修改时间：2020-04-11 17:24:35" itemprop="dateModified" datetime="2020-04-11T17:24:35+08:00">2020-04-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -493,7 +493,34 @@
 <li>CRF相比MEMM，统计了全局的概率，考虑的数据在全局的分布，并归一化，克服了MEMM模型标记偏置（局部归一化的原因）的缺点</li>
 <li>CRF是在给定需要标记的观察序列的条件下，计算整个标记序列的联合概率分布，而不是在给定当前状态条件下，计算下一个状态的概率分布</li>
 </ul>
-<h6 id="Viterbi算法"><a href="#Viterbi算法" class="headerlink" title="Viterbi算法"></a>Viterbi算法</h6><h5 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice+LSTM"></a>Lattice+LSTM</h5><p>Lattice是除了使用词向量外，还把字向量作为特征也加入进去了，所以整个计算复杂度升高了很多。</p>
+<h6 id="Viterbi算法"><a href="#Viterbi算法" class="headerlink" title="Viterbi算法"></a>Viterbi算法</h6><h5 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice+LSTM"></a>Lattice+LSTM</h5><p>NER中一般采用BIEO标注的方法，这种方法一般需要把字一个个的分开标注，所以用的是字向量。<br>字向量：</p>
+<ul>
+<li>优点<ul>
+<li>嵌入字向量，不会有OOV</li>
+<li>语料多少，不会影响向量整体大小所占内存</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>缺少字词之间的关系</li>
+</ul>
+</li>
+</ul>
+<p>词向量</p>
+<ul>
+<li>优点<ul>
+<li>完整的嵌入词语信息</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>性能依赖分词精度</li>
+<li>开放领域，跨领域分词是一个难题</li>
+<li>会有OOV影响模型性能</li>
+<li>语料大时，词典容量大，占用内存资源大</li>
+</ul>
+</li>
+</ul>
+<p>可见NER中用字向量有很大优势，可以在用词向量的基础上，也加入词向量来嵌入词语的信息吗？</p>
+<p>如果使用分词，对词向量进行标注<br>Lattice是除了使用词向量外，还把字向量作为特征也加入进去了，所以整个计算复杂度升高了很多。</p>
 <h5 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h5><p>在测试完Lattice LSTM后，发现整体F1值虽然增加了2%，但是速度却下降了特别多（将近5倍），所以最后还是选用的BiLSTM+CRF</p>
 <hr>
 <h3 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h3><h4 id="Bert的两大亮点"><a href="#Bert的两大亮点" class="headerlink" title="Bert的两大亮点"></a>Bert的两大亮点</h4><ul>
@@ -579,8 +606,8 @@
       <i class="fa fa-chevron-left"></i> 智能客服项目
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/02/19/python%E7%82%B9%E6%BB%B4/" rel="next" title="python的点滴">
-      python的点滴 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/02/19/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" rel="next" title="使用hexo搭建博客">
+      使用hexo搭建博客 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -657,20 +684,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
