@@ -651,6 +651,43 @@
 <li>CRF相比MEMM，统计了全局的概率，考虑的数据在全局的分布，并归一化，克服了MEMM模型标记偏置（局部归一化的原因）的缺点</li>
 <li>CRF是在给定需要标记的观察序列的条件下，计算整个标记序列的联合概率分布，而不是在给定当前状态条件下，计算下一个状态的概率分布</li>
 </ul>
+<p><strong>RF和HMM都利用了图的知识，但是CRF利用的是马尔科夫随机场（无向图），而HMM的基础是贝叶斯网络（有向图）。而且CRF也有：概率计算问题、学习问题和预测问题。大致计算方法和HMM类似，只不过不需要EM算法进行学习问题。</strong></p>
+<p><strong>HMM和CRF对比： 其根本还是在于基本的理念不同，一个是生成模型，一个是判别模型，这也就导致了求解方式的不同。</strong></p>
+<h6 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h6><p>优点：</p>
+<ul>
+<li>双向transformer，所以可以获取上下文信息</li>
+<li>用到transformer，可以并行运算</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>mask在预测中没有，影响模型的泛化能力</li>
+<li>缺乏生成能力</li>
+<li>没有考虑预测的mask间的相关性</li>
+</ul>
+<h6 id="XLNet"><a href="#XLNet" class="headerlink" title="XLNet"></a>XLNet</h6><p>优点：</p>
+<ul>
+<li>用随机采样句子分解的顺序，来解决自回归模型不能联系上下文的问题</li>
+<li>解决了预测词间没有依赖的问题</li>
+<li>attention mask是的模型可以看到自己那个词attent到它前面分解的词，但是不attent到它看不到的后面分解的词</li>
+<li>原自回归模型中永远都是预测下一个词，但是这里因为打乱了句子的分解顺序，所以不知道下一个预测的词是哪个位置的词，或者说预测哪里都一样，所以就变成了bow词包性质的预测，那么建模就没有那么强的序列性。所以我们决定，不用知道下一个词在哪里，我们就预测当前位置的词，那么我们会天然把当前输入encoder到信息中。但是这回带来另一个问题，就是可能要预测的当前词就是输入，那就没有任何意义。但是当我们到另外一个位置时，当前位置的信息需要encoder到里面，所以发生了一个矛盾点，即当前位置信息，某些情况需要encoder到信息中，某些情况又不能encoder到信息中。所以我们就提出了two stream attention，把feature拆成两组，一组encoder当前输入，一组不用，context stream encoder当前输入，用作fine-turning，query stream 不 encoder当前输入，用作预测，并且两个stream参数共享</li>
+</ul>
+<h6 id="ALBert"><a href="#ALBert" class="headerlink" title="ALBert"></a>ALBert</h6><p>改进：</p>
+<ul>
+<li>词向量降维</li>
+<li>权重共享</li>
+<li>更轻，效果更好</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>减少了内存占用，但是并没有减少计算量</li>
+</ul>
+<h6 id="RoBerta"><a href="#RoBerta" class="headerlink" title="RoBerta"></a>RoBerta</h6><p>改进：</p>
+<ul>
+<li>静态mask变为动态mask:而RoBERTa一开始把预训练的数据复制10份，每一份都随机选择15%的Tokens进行Masking，也就是说，同样的一句话有10种不同的mask方式</li>
+<li>with NSP vs without NSP:roberta用的是full-sentence</li>
+<li>更大的mini-batch：256 -&gt; 2K</li>
+<li>更多的数据和更长的训练时间</li>
+</ul>
 <h6 id="Viterbi算法"><a href="#Viterbi算法" class="headerlink" title="Viterbi算法"></a>Viterbi算法</h6><h5 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice+LSTM"></a>Lattice+LSTM</h5><p>NER中一般采用BIEO标注的方法，这种方法一般需要把字一个个的分开标注，所以用的是字向量。<br>字向量：</p>
 <ul>
 <li>优点<ul>
@@ -659,7 +696,7 @@
 </ul>
 </li>
 <li>缺点<ul>
-<li>缺少字词之间的关系</li>
+<li>缺少字词之间的语义关系</li>
 </ul>
 </li>
 </ul>
@@ -681,7 +718,7 @@
 <p>如果使用分词，对词向量进行标注<br>Lattice是除了使用词向量外，还把字向量作为特征也加入进去了，所以整个计算复杂度升高了很多。</p>
 <h5 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h5><p>在测试完Lattice LSTM后，发现整体F1值虽然增加了2%，但是速度却下降了特别多（将近5倍），所以最后还是选用的BiLSTM+CRF</p>
 <hr>
-<h3 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h3><h4 id="Bert的两大亮点"><a href="#Bert的两大亮点" class="headerlink" title="Bert的两大亮点"></a>Bert的两大亮点</h4><ul>
+<h3 id="Bert-1"><a href="#Bert-1" class="headerlink" title="Bert"></a>Bert</h3><h4 id="Bert的两大亮点"><a href="#Bert的两大亮点" class="headerlink" title="Bert的两大亮点"></a>Bert的两大亮点</h4><ul>
 <li>MASK机制：随机mask一些token来预测</li>
 <li>next sentence predict：判断句子B是否是句子A的下一句话</li>
 </ul>
@@ -923,7 +960,14 @@
 <h3 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h3><p>样本不均衡</p>
 <ul>
 <li>数据增广</li>
+<li>采样<ul>
+<li>过采样：复制 + SMOTE过采样 + 加入噪音等生成数据</li>
+<li>欠采样：删除数据 + 将多样本类的样本分为N分，只取每份的中心数据作为样本</li>
+</ul>
+</li>
 <li>loss权重调节</li>
+<li>组合集成方法，组合多个分类器，每个分类器每个类的数据是随机分成的<strong>少数类数据的量</strong></li>
+<li>特征选择（CNN其实就是做了特征选择）</li>
 </ul>
 <p>准确率如何提升</p>
 <ul>
