@@ -567,6 +567,7 @@
 <li>损失函数</li>
 </ol>
 <p>欠拟合：增加特性，增加数据<br>过拟合：正则化，dropout，提前停止训练，减少模型复杂度</p>
+<p><strong>在统计学中对变量进行线行回归分析，采用最小二乘法进行参数估计时，R平方为回归平方和与总离差平方和的比值，表示总离差平方和中可以由回归平方和解释的比例，这一比例越大知越好，模型越精确，回归效果越显著。R平方介于0~1之间，越接近1，回归拟合效果越好，一道般认为超过0.8的模型拟合优度比较高。</strong><br><img src="/public/images/image/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-R2.png" alt="逻辑回归-R2"></p>
 <h6 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h6><p>今天终于感觉自己终于懂了SVM的一点皮毛。</p>
 <ol>
 <li><p><strong>SVM：Support Vector Machine支持向量机</strong></p>
@@ -653,7 +654,10 @@
 </ul>
 <p><strong>RF和HMM都利用了图的知识，但是CRF利用的是马尔科夫随机场（无向图），而HMM的基础是贝叶斯网络（有向图）。而且CRF也有：概率计算问题、学习问题和预测问题。大致计算方法和HMM类似，只不过不需要EM算法进行学习问题。</strong></p>
 <p><strong>HMM和CRF对比： 其根本还是在于基本的理念不同，一个是生成模型，一个是判别模型，这也就导致了求解方式的不同。</strong></p>
-<h6 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h6><p>优点：</p>
+<h6 id="自编码-VS-自回归"><a href="#自编码-VS-自回归" class="headerlink" title="自编码 VS 自回归"></a>自编码 VS 自回归</h6><p>自回归模型：ELMo，GPT，GPT2，XLNet<br>自编码模型：Bert</p>
+<h6 id="ELMo"><a href="#ELMo" class="headerlink" title="ELMo"></a>ELMo</h6><p>双向自回归语言模型，使用的是从左到右、从右到左的两个LSTM的拼接，特征提取能力不如Transformer。只提供拼接后的词向量</p>
+<h6 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h6><p>单向自回归语言模型，使用的是transformer，但是是left-to-right的单向transformer：transformer decoder，用到的self-attention是masked-multi-self-attention。可以fine-turning</p>
+<h6 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h6><p>双向自编码语言模型，其中的mask有加噪音的效果，且有增强上下文信息获取的效果。可以fine-turning<br>优点：</p>
 <ul>
 <li>双向transformer，所以可以获取上下文信息</li>
 <li>用到transformer，可以并行运算</li>
@@ -676,6 +680,8 @@
 <li>词向量降维</li>
 <li>权重共享</li>
 <li>更轻，效果更好</li>
+<li>NSP 改为了 SOP，即负样本为反转句子</li>
+<li>增加了数据量和训练时间</li>
 </ul>
 <p>缺点：</p>
 <ul>
