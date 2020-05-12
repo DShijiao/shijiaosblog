@@ -332,8 +332,16 @@
 <li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">list_abs &#x3D; [abs(i) for i in l]</span><br></pre></td></tr></table></figure>
 </li>
 <li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">list_abs &#x3D; list(np.abs(l))</span><br></pre></td></tr></table></figure>
+
+
 </li>
 </ol>
+<h3 id="判断某个key值是否在dict中"><a href="#判断某个key值是否在dict中" class="headerlink" title="判断某个key值是否在dict中"></a>判断某个key值是否在dict中</h3><p>有两种方法</p>
+<p>一：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#生成一个字典</span><br><span class="line">d &#x3D; &#123;&#39;name&#39;:&#123;&#125;,&#39;age&#39;:&#123;&#125;,&#39;sex&#39;:&#123;&#125;&#125;</span><br><span class="line">#打印返回值</span><br><span class="line">print d.has_key(&#39;name&#39;)</span><br><span class="line">#结果返回True</span><br></pre></td></tr></table></figure>
+<p>二：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#生成一个字典</span><br><span class="line">d &#x3D; &#123;&#39;name&#39;:&#123;&#125;,&#39;age&#39;:&#123;&#125;,&#39;sex&#39;:&#123;&#125;&#125;</span><br><span class="line">#打印返回值，其中d.keys()是列出字典所有的key</span><br><span class="line">print name in d.keys()</span><br><span class="line">#结果返回True</span><br></pre></td></tr></table></figure>
+<p>第二中<code>in</code>的方法更好更快，但是还是不知道他的速度是不是O(1)???????</p>
 ]]></content>
       <categories>
         <category>-周边辅助</category>
@@ -343,7 +351,7 @@
       </tags>
   </entry>
   <entry>
-    <title>使用hexo搭建博客</title>
+    <title>数学公式</title>
     <url>/2020/02/19/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="最优法"><a href="#最优法" class="headerlink" title="最优法"></a>最优法</h1><h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><p>牛顿法迭代法解非线性方程，是把非线性方程$f(x)=0$线性化的一种近似方法。把$f(x)$在点$x_0$的某领域内展开成泰勒级数$f(x)=f(x_0)+f^{‘}(x_0)(x-x_0)+ \frac{f^{‘’}(x_0)(x-x_0)^2}{2!}+…+ \frac{f^{n}(x_0)(x-x_0)^n}{n!}+R_n(x)$，取其线性部分，即展开式的前两项$f(x_0)+f^{‘}(x_0)(x-x_0)$，令其等于0，以此作为非线性方程$f(x)=0$的近似方程，若$f^{‘}(x_0) \neq 0$，则解为$x_1=x_0- \frac {f(x_0)} {f^{‘}(x_0)}$，这样我们得到牛顿迭代法的一个迭代关系式</p>
 <p>Python代码实例展示求解方程$(x-3)^3=0$的根</p>
@@ -392,6 +400,47 @@
 <h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#################### 输出第n个斐波那契数 ####################</span></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci1</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment">## 这种方法，每次都要嵌套循环，不能记录上一次的结果之间用，所以时间复杂度非常高！！</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(n)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>)</span><br><span class="line">    <span class="keyword">return</span> fib(n)</span><br><span class="line"></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci2</span><span class="params">(n)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= n:</span><br><span class="line">        l.append(l[i<span class="number">-1</span>]+l[i<span class="number">-2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l[i<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(fibonacci1(<span class="number">20</span>))</span><br><span class="line">print(fibonacci2(<span class="number">20</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#################### 输出前n个斐波那契数 ####################</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">(n)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; n:</span><br><span class="line">        l.append(l[i<span class="number">-1</span>]+l[i<span class="number">-2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line">print(fibonacci(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
 
 <p>可以尝试用代码画出斐波那契函数的曲线 斐波那契弧线<br><img src="/public/images/image/fibonacci.jpg" alt="fibonacci"></p>
+]]></content>
+      <categories>
+        <category>数学公式</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>公式</tag>
+        <tag>牛顿法</tag>
+        <tag>最优法</tag>
+        <tag>迭代算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MacBook</title>
+    <url>/2020/02/19/MacBook/</url>
+    <content><![CDATA[<h4 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h4><p>Xcode更新后，可能VScode不能用，显示<code>java</code>相关问题，这时可以选择</p>
+<ol>
+<li>打开<code>launch.json</code>文件</li>
+<li>然后<code>add configuration</code></li>
+<li>选择<code>python</code></li>
+<li>删除<code>json</code>文件中关于<code>java</code>的语言设置，只保留<code>python</code>的</li>
+</ol>
+<p>这样就OK了</p>
+]]></content>
+      <categories>
+        <category>周边辅助</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法刷题总结</title>
+    <url>/2020/02/19/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<ol>
+<li>如果有搜索类循环，可以用dict来储存，这样搜索时间为O(1)，如果不行，可以考虑二叉树搜索，二叉树搜索时间小于O(n)<ol>
+<li>如找重复的数值</li>
+<li>小于/大于某个值的数值等</li>
+</ol>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>数学公式</category>
@@ -801,7 +850,7 @@
       </tags>
   </entry>
   <entry>
-    <title>智能客服项目</title>
+    <title>面试</title>
     <url>/2019/12/08/%E9%9D%A2%E8%AF%95/</url>
     <content><![CDATA[]]></content>
       <categories>
@@ -816,7 +865,7 @@
       </tags>
   </entry>
   <entry>
-    <title>智能客服项目</title>
+    <title>FAQ</title>
     <url>/2019/12/08/FAQ/</url>
     <content><![CDATA[<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为了降本增效，我们规划了八大任务型场景，并以FAQ为辅，构建智能在线客服。总场景覆盖率是87.6%，其中FAQ覆盖率为16.7%</p>
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>｜顶层分类器｜ =&gt; ｜FAQ｜+｜任务型场景｜+｜闲聊｜</p>
@@ -1031,6 +1080,18 @@
         <tag>LR</tag>
         <tag>SVM</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>面试感触</title>
+    <url>/2019/12/08/%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/</url>
+    <content><![CDATA[<h2 id="恒昌第三轮面试"><a href="#恒昌第三轮面试" class="headerlink" title="恒昌第三轮面试"></a>恒昌第三轮面试</h2><p>今年下午两点和恒昌第三轮面试完。</p>
+<p>面试官整体给我的感觉是一种艺术家气息，举例用的是文艺复兴时期绘画的例子，他说那时候有钱人才能用蓝色，特殊人，比如天使才可以用蓝色还说那时候画家并不是创作画家，而是甲方要什么，画家就要一点不差的按照他们的要求来画，和我们现在的算法工程师一样，都是工人，并不是工程师。工程师是可以从现实中抽象建模的人。但这并不是一个人题，因为凡事都是需要经历这样一个过程的，从一点一点的模仿，到熟练，再到创新。我们工程目前还处于一个比较笨的状态，还是工人角色，远没到创新的时候，而且现在人工智能的浪潮也再一次落下，我们已经在尾声，如果以后我出去说自己是做深度学习的，可能就找不到工作了。</p>
+<p>听了它说的，我越来越觉得，真的不同的人有不同的看法，他会问我是否学过scala，但是爱奇艺的面试官会说他不会因为我会Hadoop或者不会Hadoop而决定是否录用我。</p>
+<p>虽然两者并不矛盾，但是凸显了他们对这个应聘者、甚至这个领域工作者的一个不同的要求和需求。</p>
+]]></content>
+      <categories>
+        <category>La Vie</category>
+      </categories>
   </entry>
   <entry>
     <title>梯度消失和梯度爆炸</title>
