@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Préparation pour l&#39;entretien français</title>
-    <url>/2021/08/15/Preparation-pour-l-entretien-francais/</url>
+    <url>/2021/08/15/french/Preparation-pour-l-entretien-francais/</url>
     <content><![CDATA[<h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
 <p>La partie de Présentation a duré totalement 7min30 en oral.</p>
 </blockquote>
@@ -30,7 +30,7 @@
   </entry>
   <entry>
     <title>二叉树</title>
-    <url>/2020/03/04/%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <url>/2020/03/04/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="二叉树-1"><a href="#二叉树-1" class="headerlink" title="二叉树"></a>二叉树</h4><p>在计算机科学中，二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”（left subtree）和“右子树”（right subtree）。二叉树常被用于实现二叉查找树和二叉堆。</p>
 <h4 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h4><p>二叉查找树（Binary Search Tree），（又：二叉搜索树，二叉排序树）它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上<strong>所有结点</strong>的值<strong>均小于</strong>它的根结点的值； 若它的右子树不空，则右子树上<strong>所有结点</strong>的值<strong>均大于</strong>它的根结点的值； 它的左、右子树也分别为二叉查找树。</p>
 <h4 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h4><h3 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h3><h4 id="遍历介绍"><a href="#遍历介绍" class="headerlink" title="遍历介绍"></a>遍历介绍</h4><p>二叉树的遍历分<strong>广度优先遍历</strong>和<strong>深度优先遍历</strong></p>
@@ -317,7 +317,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">/Users/shijiaodeng/Documents/Travail/kaggle/<span class="number">4</span>-Quora/Python/data.py</span><br><span class="line">/Users/shijiaodeng/Documents/Travail/kaggle/<span class="number">4</span>-Quora/Python</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>-周边辅助</category>
+        <category>周边辅助</category>
       </categories>
       <tags>
         <tag>python</tag>
@@ -498,7 +498,7 @@
   </entry>
   <entry>
     <title>算法刷题总结</title>
-    <url>/2020/02/19/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/</url>
+    <url>/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<ol>
 <li>如果有搜索类循环，可以用dict来储存，这样搜索时间为O(1)，如果不行，可以考虑二叉树搜索，二叉树搜索时间小于O(n)<ol>
 <li>如找重复的数值</li>
@@ -574,8 +574,36 @@
       </tags>
   </entry>
   <entry>
+    <title>面试</title>
+    <url>/2019/12/08/interview/%E9%9D%A2%E8%AF%95/</url>
+    <content><![CDATA[<p>n个无序数组，求top K</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">TopK</span><span class="params">(listArray, K)</span>:</span></span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(listArray)):</span><br><span class="line">        <span class="keyword">if</span> k + len(listArray[i]) &gt; K:</span><br><span class="line">            listK += listArray[i][:K-k]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
+      <tags>
+        <tag>智能客服</tag>
+        <tag>CNN</tag>
+        <tag>stacking</tag>
+        <tag>LR</tag>
+        <tag>SVM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面试感触</title>
+    <url>/2019/12/08/interview/%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/</url>
+    <content><![CDATA[<h2 id="恒昌第三轮面试"><a href="#恒昌第三轮面试" class="headerlink" title="恒昌第三轮面试"></a>恒昌第三轮面试</h2><p>今年下午两点和恒昌第三轮面试完。</p>
+<p>面试官整体给我的感觉是一种艺术家气息，举例用的是文艺复兴时期绘画的例子，他说那时候有钱人才能用蓝色，特殊人，比如天使才可以用蓝色还说那时候画家并不是创作画家，而是甲方要什么，画家就要一点不差的按照他们的要求来画，和我们现在的算法工程师一样，都是工人，并不是工程师。工程师是可以从现实中抽象建模的人。但这并不是一个人题，因为凡事都是需要经历这样一个过程的，从一点一点的模仿，到熟练，再到创新。我们工程目前还处于一个比较笨的状态，还是工人角色，远没到创新的时候，而且现在人工智能的浪潮也再一次落下，我们已经在尾声，如果以后我出去说自己是做深度学习的，可能就找不到工作了。</p>
+<p>听了它说的，我越来越觉得，真的不同的人有不同的看法，他会问我是否学过scala，但是爱奇艺的面试官会说他不会因为我会Hadoop或者不会Hadoop而决定是否录用我。</p>
+<p>虽然两者并不矛盾，但是凸显了他们对这个应聘者、甚至这个领域工作者的一个不同的要求和需求。</p>
+]]></content>
+      <categories>
+        <category>La Vie</category>
+      </categories>
+  </entry>
+  <entry>
     <title>FAQ</title>
-    <url>/2019/12/08/FAQ/</url>
+    <url>/2019/12/08/interview/FAQ/</url>
     <content><![CDATA[<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为了降本增效，我们规划了八大任务型场景，并以FAQ为辅，构建智能在线客服。总场景覆盖率是87.6%，其中FAQ覆盖率为16.7%</p>
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>｜顶层分类器｜ =&gt; ｜FAQ｜+｜任务型场景｜+｜闲聊｜</p>
 <h2 id="FAQ-1"><a href="#FAQ-1" class="headerlink" title="FAQ"></a>FAQ</h2><p>出去任务型囊括的几大场景外，还有一些并不足以构建场景，但是用户会有疑问的一些问题，我们通过FAQ进行回答。</p>
@@ -791,24 +819,8 @@
       </tags>
   </entry>
   <entry>
-    <title>面试</title>
-    <url>/2019/12/08/%E9%9D%A2%E8%AF%95/</url>
-    <content><![CDATA[<p>n个无序数组，求top K</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">TopK</span><span class="params">(listArray, K)</span>:</span></span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(listArray)):</span><br><span class="line">        <span class="keyword">if</span> k + len(listArray[i]) &gt; K:</span><br><span class="line">            listK += listArray[i][:K-k]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>工作总结</category>
-      </categories>
-      <tags>
-        <tag>智能客服</tag>
-        <tag>CNN</tag>
-        <tag>stacking</tag>
-        <tag>LR</tag>
-        <tag>SVM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>智能客服项目</title>
-    <url>/2019/12/08/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/</url>
+    <url>/2019/12/08/interview/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<h2 id="智能客服项目"><a href="#智能客服项目" class="headerlink" title="智能客服项目"></a>智能客服项目</h2><p>智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。</p>
 <p>FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。</p>
 <p>任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。<br>判断任务型对话是否结束有两种方式：</p>
@@ -1206,18 +1218,6 @@
         <tag>LR</tag>
         <tag>SVM</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>面试感触</title>
-    <url>/2019/12/08/%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/</url>
-    <content><![CDATA[<h2 id="恒昌第三轮面试"><a href="#恒昌第三轮面试" class="headerlink" title="恒昌第三轮面试"></a>恒昌第三轮面试</h2><p>今年下午两点和恒昌第三轮面试完。</p>
-<p>面试官整体给我的感觉是一种艺术家气息，举例用的是文艺复兴时期绘画的例子，他说那时候有钱人才能用蓝色，特殊人，比如天使才可以用蓝色还说那时候画家并不是创作画家，而是甲方要什么，画家就要一点不差的按照他们的要求来画，和我们现在的算法工程师一样，都是工人，并不是工程师。工程师是可以从现实中抽象建模的人。但这并不是一个人题，因为凡事都是需要经历这样一个过程的，从一点一点的模仿，到熟练，再到创新。我们工程目前还处于一个比较笨的状态，还是工人角色，远没到创新的时候，而且现在人工智能的浪潮也再一次落下，我们已经在尾声，如果以后我出去说自己是做深度学习的，可能就找不到工作了。</p>
-<p>听了它说的，我越来越觉得，真的不同的人有不同的看法，他会问我是否学过scala，但是爱奇艺的面试官会说他不会因为我会Hadoop或者不会Hadoop而决定是否录用我。</p>
-<p>虽然两者并不矛盾，但是凸显了他们对这个应聘者、甚至这个领域工作者的一个不同的要求和需求。</p>
-]]></content>
-      <categories>
-        <category>La Vie</category>
-      </categories>
   </entry>
   <entry>
     <title>梯度消失和梯度爆炸</title>
