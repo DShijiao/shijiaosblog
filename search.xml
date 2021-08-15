@@ -1391,6 +1391,121 @@
       </tags>
   </entry>
   <entry>
+    <title>Chitchat</title>
+    <url>/2019/01/16/chitchat/</url>
+    <content><![CDATA[<h2 id="Chitchat"><a href="#Chitchat" class="headerlink" title="Chitchat"></a>Chitchat</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>chitchat持续的时间很长了。每次进步不大，但是至少都在前进。因为持续时间长，每次想法和改动的地方比较多，也是学到了不少东西，想要把这些都记录下来，所以开了这个文档。</p>
+<p>chitchat 目前已经自己改进到v1.5了。虽然每一次改动的内容并不大，但是每一次都是一个尝试。</p>
+<a id="more"></a>
+
+<h4 id="到目前为止，每个version的改进简介"><a href="#到目前为止，每个version的改进简介" class="headerlink" title="到目前为止，每个version的改进简介"></a>到目前为止，每个version的改进简介</h4><ul>
+<li><p>v1.1 是所有以前的版本，但是因为隔的太久，当时又没有记录，所以都不太记得了。</p>
+</li>
+<li><p>v1.2 是自己重构代码，除此之外，和第一个版本的差别不大。</p>
+</li>
+<li><p>v1.3 是在<code>seq2seq</code>的基础上加入了<code>bert</code>的<code>get_pooled_output</code>。</p>
+</li>
+<li><p>v1.4</p>
+<ul>
+<li>v1.4 这个版本在v1.2版本上改变了loss。因为在同时训练了v1.3版本和v1.2版本后进行比较，发现相同时间内训练出来的结果（因为版本v1.3中加入了<code>bert</code>，所以相同时间内训练出来的<code>epoch</code>数相差很大），v1.2版本的更好。因为考虑到时间成本，所以v1.4版本是在v1.2版本的基础上进行改进的。具体内容可以看v1.4的<code>README.md</code>。</li>
+<li>v1.4里也加入了一些“问候”，“再见”等的规则。</li>
+</ul>
+</li>
+<li><p>v1.5 <code>seq2seq</code>中在<code>train</code>时，一般用上一步正确的输出作为下一步的输入，但是这里改成用上一步真实的输出作为下一步的输入。具体内容可见这个文件夹下的《变形seq2seq，即在training时，上一步的输出成为下一步的输入》</p>
+</li>
+<li><p>又把<code>learning_rate</code>调小了，在训练了100个epoch，但是结果还是很糟糕。</p>
+</li>
+<li><p>v1.6 尝试在v1.4的基础上把<code>layer</code>从3改成6</p>
+</li>
+</ul>
+<h3 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h3><p>闲聊原本数据是120万左右，后来经过数据清洗后，剩下80万左右的数据。<br>数据清洗：</p>
+<ol>
+<li>删除重复对话</li>
+<li>将多轮对话剪切成单轮对话</li>
+<li>删除回复过短的回答，或者不需要的回答/问题（如 字符，笑脸符等）</li>
+<li>删除过长对话（30字以内）</li>
+<li>统一回复（如 哈哈哈哈哈哈 =&gt; 哈哈哈哈哈，如 我不知道啊，哈哈哈 =&gt; 我不知道啊）</li>
+</ol>
+<h4 id="流程设计"><a href="#流程设计" class="headerlink" title="流程设计"></a>流程设计</h4><ol>
+<li>“问候”和“再见”等，是用规则写的</li>
+<li>如果没有匹配到“问候”或者“再见”，就会进入到模型生成回复</li>
+<li>模型是seq2seq+attention</li>
+<li>attention是哪个attention，对结果影响并不大</li>
+<li>把数据分为几块，比如5-10个字的句子一起，10-20个字的句子一起，等等，然后让句子从短到长进行输入，一是让训练更稳定，二是能一定程度上加快速度</li>
+</ol>
+<h4 id="模型问题"><a href="#模型问题" class="headerlink" title="模型问题"></a>模型问题</h4><ol>
+<li>无意义回答过多 =&gt; 加入anti-LM</li>
+<li>相似回答过多 =&gt; 加入余弦相似到loss中，有一定的效果，但是很难统计，因为可能对某个测试集，效果明显，对某些测试集，效果就不是那么明显</li>
+<li>简单问题正确回答的百分比 =&gt; “问候”等对话进行了规则处理</li>
+<li>过于简短回答的百分比 =&gt; 数据集上进行了处理</li>
+</ol>
+<h5 id="anti-LM"><a href="#anti-LM" class="headerlink" title="anti-LM"></a>anti-LM</h5><p>通常情况下，我们的损失函数loss为${\hat T}=\underset{T}{argmax} {logp(T|S)}$。从损失函数我们可以看出，在给定输入$S$的情况下，模型会选择输出概率最大的句子，这回倾向输出出现频率大的句子，通常这些句子为无意义句子。<br>所以我们引入互信息作为新的目标函数，以两个句子的相关性作为度量标准。互信息公式如下：<br>$log \frac{p(S|T)}{p(S)p(T)}$<br>所以表达式可以写成</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\log p(T)-\log p(S)}$</p>
+<p>但因为$S$为输入，$\log p(S)$是固定的，所以表达式也为</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\log p(T)}$</p>
+<p>对惩罚项$-\log (T)$前加入一个参数，即为</p>
+<p>${\hat T}=\underset{T}{argmax} {logp(T|S)-\lambda logp(T)}$</p>
+<p>我们发现虽然目标函数改为互信息MMI，但是损失函数最大的改变就是加入了$-log(T)$，而$p(T)$表示一个句子出现的概率，所以这个损失函数其实是加了一个对出现概率大的句子的惩罚，$\lambda$就是那个惩罚系数。</p>
+<p>惩罚项$-logp(T)$中的</p>
+<p>$p(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
+<p>在句子$T$的生成中，第一个字$t_1$的生成一定程度上决定了后面字$t_k$的生成，所以$t_1$相对于$t_k$而言，对句子$T$的影响更大。又因为如果我们直接让</p>
+<p>$p(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
+<p>实际生成的句子可能会更容易有语法问题。所以我们取了一个折中的方法，让</p>
+<p>$U(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1}) \cdot g(k)$ </p>
+<p>with<br>$$ g(k)=<br>  \begin{cases}<br>  1 &amp; {if k \leq \gamma} \<br>  0 &amp; {if k \geq \gamma}<br>  \end{cases}<br>  $$<br>取代$p(T)$，使得损失函数为</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\lambda \log U(T)}$</p>
+<p>另外实际应用中，还加入了响应句子长度的因素$\gamma N_t$，作为模型相应的依据，因此将目标函数修正如下</p>
+<p>$Score(T) = p(T|S)-\lambda U(T) + \gamma N_t$</p>
+<p>所以损失函数应该是</p>
+<p>$\underset{T}{argmin} {-\log p(T|S)+\lambda \log p(T)-\log (\gamma N_t)}$</p>
+<h5 id="anti-bidi"><a href="#anti-bidi" class="headerlink" title="anti-bidi"></a>anti-bidi</h5><p>由上面的推导，我们从MMI得到</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\lambda \log p(T)}$</p>
+<p>我们又知道</p>
+<p>$\log p(T)=\log p(T|S) + \log p(S) - \log p(S|T)$</p>
+<p>带入得到</p>
+<p>${\hat T}=\underset{T}{argmax} {(1-\lambda)\log p(T|S)+\lambda \log p(S|T)}$</p>
+<p>因为$p(S|T)$需要通过生成的$T$来再次通过训练好的seq2seq模型再计算一遍，计算量特别大，所以我们通过beam search只取前$N$个$T$，比如200个，再计算$S$。</p>
+<p>但是在使用beam search的时候，我们知道，beam search有很多输出只是一两个字或者只是符号发生了变化，减少了取$N$个不同输出$T$的意义，因为本身输出句子的多样性不能满足这里的要求，所以我们对beam search进行了更改。</p>
+<p>一般beam search在到下一节点时，我们是通过混合所有父节点的字节点，统一进行比较，然后取整体概率最大的$N$个选择，这里我们更改为，针对每一个父节点，我们先对其对应的字节点按先后顺序将其概率从上往下减去一个越来越大的数，使得我们能更好的保存更多不同的父节点，自然句子的多样性也就增加了。具体例子见下图<img src="/public/images/image/beam_search_anti_bidi.png" alt="beamsearch_antibidi"><br>另外，也在anti-bidi中，做了同anti-LM相同的处理，增加了回复长度的影响。</p>
+<p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句与回答的余弦相似性来减少重复问题的回答</p>
+<h5 id="anti-bidi-VS-anti-LM"><a href="#anti-bidi-VS-anti-LM" class="headerlink" title="anti-bidi VS anti-LM"></a>anti-bidi VS anti-LM</h5><ol>
+<li>两者虽然都是使用的MMI，但是使用的公式不一样，背后的逻辑原理也不一样</li>
+<li>anti-bidi比anti-LM要更耗时，因为他要经过两次模型，且非常依赖于beam search生成的句子的多样性</li>
+</ol>
+<h5 id="anti-LM的具体实现"><a href="#anti-LM的具体实现" class="headerlink" title="anti-LM的具体实现"></a>anti-LM的具体实现</h5><p>如何计算P(T)<br>首先应该意识到P(T)应该是一个语言模型学习出来的结果，而不简单的是联合概率的乘积。那么如何得到这个模型学习出来的结果呢？在实现时需要在decoder的输入端输入一个全零的初始化状态，具体做法可以输入一句话长度的pad标志符，让decoder生成结果，得到P(T)</p>
+<p>详见<code>just_another_seq2seq_master</code>里<code>train-anti.py</code>中第86～88行和第98～101行。</p>
+<p>下面代码见前三行和中间的<code>add_loss</code>：</p>
+<ol>
+<li>前三行代码：输入为一定维度的PAD</li>
+<li><code>add_loss</code>计算的是输入为PAD时(即初始状态下)的输出，即$P(T)$</li>
+<li><code>add_loss *= -0.5</code>表示每次计算完$P(T)$后乘以$-0.5$，即$\lambda=0.5$</li>
+<li>我们没有用$U(T)$，但是并没有明显输出语句不通顺的情况</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dummy_encoder_inputs = np.array([</span><br><span class="line">    np.array([WordSequence.PAD]) <span class="keyword">for</span> _ <span class="keyword">in</span> range(batch_size)])</span><br><span class="line">dummy_encoder_inputs_lengths = np.array([<span class="number">1</span>] * batch_size)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(<span class="number">1</span>, n_epoch + <span class="number">1</span>):</span><br><span class="line">    costs = []</span><br><span class="line">    bar = tqdm(range(steps), total=steps,</span><br><span class="line">                desc=<span class="string">'epoch &#123;&#125;, loss=0.000000'</span>.format(epoch))</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> bar:</span><br><span class="line">        x, xl, y, yl = next(flow)</span><br><span class="line">        x = np.flip(x, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        add_loss = model.train(sess,</span><br><span class="line">                                dummy_encoder_inputs,</span><br><span class="line">                                dummy_encoder_inputs_lengths,</span><br><span class="line">                                y, yl, loss_only=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        add_loss *= <span class="number">-0.5</span></span><br><span class="line">        <span class="comment"># print(x, y)</span></span><br><span class="line">        cost, lr = model.train(sess, x, xl, y, yl,</span><br><span class="line">                                return_lr=<span class="literal">True</span>, add_loss=add_loss)</span><br><span class="line">        costs.append(cost)</span><br><span class="line">        bar.set_description(<span class="string">'epoch &#123;&#125; loss=&#123;:.6f&#125; lr=&#123;:.6f&#125;'</span>.format(</span><br><span class="line">            epoch,</span><br><span class="line">            np.mean(costs),</span><br><span class="line">            lr</span><br><span class="line">        ))</span><br><span class="line"></span><br><span class="line">    model.save(sess, save_path)</span><br></pre></td></tr></table></figure>
+
+<h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><h4 id="anti-lm"><a href="#anti-lm" class="headerlink" title="anti-lm"></a>anti-lm</h4><h5 id="最大互信息"><a href="#最大互信息" class="headerlink" title="最大互信息"></a>最大互信息</h5><h4 id="attention-LSTM"><a href="#attention-LSTM" class="headerlink" title="attention+LSTM"></a>attention+LSTM</h4><h5 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h5><h5 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h5><h4 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h4><p>闲聊的评估是带有非常大的主观性的，而且场景不同，用户不同，对相同结果的满意度也会不一样，所以我们对模型的评估希望从更客观、更基础的地方来进行评估和改进：</p>
+<ol>
+<li>无意义回答的频率/百分比</li>
+<li>相似回答的频率/百分比</li>
+<li>正确回答的百分比</li>
+<li>简单问题正确回答的百分比</li>
+<li>相同问题，是否能给出相同答案</li>
+<li>过于简短回答的百分比</li>
+<li>对话内容大多无意义，无法深入交谈具体事情</li>
+</ol>
+<h4 id="努力方向"><a href="#努力方向" class="headerlink" title="努力方向"></a>努力方向</h4><ol>
+<li>模型优化</li>
+<li>数据集质量优化+数据集扩充</li>
+</ol>
+]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
+      <tags>
+        <tag>chitchat</tag>
+        <tag>seq2seq</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker</title>
     <url>/2019/01/16/docker/</url>
     <content><![CDATA[<h2 id="docker-挂载"><a href="#docker-挂载" class="headerlink" title="docker 挂载"></a>docker 挂载</h2><p>前面是本地文件，后面是镜像文件：</p>
@@ -1518,6 +1633,57 @@
       </tags>
   </entry>
   <entry>
+    <title>protobuf</title>
+    <url>/2019/01/16/protobuf/</url>
+    <content><![CDATA[<h4 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h4><ul>
+<li><code>protobuf</code>：把消息序列化的工具</li>
+<li><code>rpc</code>： 远程方法调用</li>
+<li><code>redis</code>：缓存</li>
+<li><code>mysql</code>：持久储存</li>
+</ul>
+<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p><a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5" target="_blank" rel="noopener">ML Client/Server Using gRPC in Python – Good Audience</a></p>
+<h4 id="安装Protocol-Buffers："><a href="#安装Protocol-Buffers：" class="headerlink" title="安装Protocol Buffers："></a>安装Protocol Buffers：</h4><ol>
+<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
+<li>brew install protobuf</li>
+<li>安装gRPC：pip install grpcio</li>
+<li>安装gRPC：pip install grpcio-tools</li>
+</ol>
+<a id="more"></a>
+
+<h4 id="编译proto"><a href="#编译proto" class="headerlink" title="编译proto"></a>编译proto</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python -m grpc_tools.protoc -I .&#x2F;protos --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;intent.proto</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-I</code><br>指定生成的<code>pb2.py</code>和<code>pb2_grpc.py</code>文件的储存路径</li>
+<li><code>./protos/intent.proto</code><br>需要编译的<code>.proto</code>文件的位置</li>
+</ul>
+<p>如果文件原来的位置如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
+
+<p>在根目录上运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I .&#x2F;protos&#x2F; --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
+<p>后会变成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br></pre></td></tr></table></figure>
+
+<p>在根目录上运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I . --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
+<p>后会变成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
+
+<p>没弄明白为什么，不过为了方便函数之间的调用，一般使用第一种方法。</p>
+<h4 id="http-VS-grpc"><a href="#http-VS-grpc" class="headerlink" title="http VS grpc"></a>http VS grpc</h4><ol>
+<li><code>http</code>和<code>grpc</code>都是通过<code>tcp</code>运行。</li>
+<li>不同的是<code>grpc</code>会将信息转换成二进制格式，因此传输更快，所需内存更小，效率更高。<br>但是因为<code>grpc</code>中，双方都需要编写相同的<code>.proto</code>，彼此传输的格式要固定，因此要求相对更严格一些。而http则没有这种要求，双方并没有格式的约定，所以<code>http</code>也更大一些，速度相对更慢一些。</li>
+<li><code>http</code>通过<code>&quot;\\r\\n&quot;</code>来分隔信息。<code>grpc</code>则要通过<code>.proto</code>文件里的<code>message</code>严格规范信息的数目、类型等。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
+      <tags>
+        <tag>protobuf</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>tensorflow实战应用</title>
     <url>/2019/01/16/tensorflow/</url>
     <content><![CDATA[<h2 id="tensorflow-重新加载并继续训练模型"><a href="#tensorflow-重新加载并继续训练模型" class="headerlink" title="tensorflow 重新加载并继续训练模型"></a>tensorflow 重新加载并继续训练模型</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ckpt_file &#x3D; tf.train.latest_checkpoint(path_save_model)</span><br><span class="line">if ckpt_file:</span><br><span class="line">    saver.restore(sess, ckpt_file)</span><br></pre></td></tr></table></figure>
@@ -1579,174 +1745,8 @@ e, f, g, &lt;eos&gt;</code></pre><p>可以看出，<code>&lt;sos&gt;</code>是�
         <category>实战问题</category>
       </categories>
       <tags>
+        <tag>seq2seq</tag>
         <tag>tensorflow</tag>
-        <tag>seq2seq</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Chitchat</title>
-    <url>/2019/01/16/chitchat/</url>
-    <content><![CDATA[<h2 id="Chitchat"><a href="#Chitchat" class="headerlink" title="Chitchat"></a>Chitchat</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>chitchat持续的时间很长了。每次进步不大，但是至少都在前进。因为持续时间长，每次想法和改动的地方比较多，也是学到了不少东西，想要把这些都记录下来，所以开了这个文档。</p>
-<p>chitchat 目前已经自己改进到v1.5了。虽然每一次改动的内容并不大，但是每一次都是一个尝试。</p>
-<a id="more"></a>
-
-<h4 id="到目前为止，每个version的改进简介"><a href="#到目前为止，每个version的改进简介" class="headerlink" title="到目前为止，每个version的改进简介"></a>到目前为止，每个version的改进简介</h4><ul>
-<li><p>v1.1 是所有以前的版本，但是因为隔的太久，当时又没有记录，所以都不太记得了。</p>
-</li>
-<li><p>v1.2 是自己重构代码，除此之外，和第一个版本的差别不大。</p>
-</li>
-<li><p>v1.3 是在<code>seq2seq</code>的基础上加入了<code>bert</code>的<code>get_pooled_output</code>。</p>
-</li>
-<li><p>v1.4</p>
-<ul>
-<li>v1.4 这个版本在v1.2版本上改变了loss。因为在同时训练了v1.3版本和v1.2版本后进行比较，发现相同时间内训练出来的结果（因为版本v1.3中加入了<code>bert</code>，所以相同时间内训练出来的<code>epoch</code>数相差很大），v1.2版本的更好。因为考虑到时间成本，所以v1.4版本是在v1.2版本的基础上进行改进的。具体内容可以看v1.4的<code>README.md</code>。</li>
-<li>v1.4里也加入了一些“问候”，“再见”等的规则。</li>
-</ul>
-</li>
-<li><p>v1.5 <code>seq2seq</code>中在<code>train</code>时，一般用上一步正确的输出作为下一步的输入，但是这里改成用上一步真实的输出作为下一步的输入。具体内容可见这个文件夹下的《变形seq2seq，即在training时，上一步的输出成为下一步的输入》</p>
-</li>
-<li><p>又把<code>learning_rate</code>调小了，在训练了100个epoch，但是结果还是很糟糕。</p>
-</li>
-<li><p>v1.6 尝试在v1.4的基础上把<code>layer</code>从3改成6</p>
-</li>
-</ul>
-<h3 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h3><p>闲聊原本数据是120万左右，后来经过数据清洗后，剩下80万左右的数据。<br>数据清洗：</p>
-<ol>
-<li>删除重复对话</li>
-<li>将多轮对话剪切成单轮对话</li>
-<li>删除回复过短的回答，或者不需要的回答/问题（如 字符，笑脸符等）</li>
-<li>删除过长对话（30字以内）</li>
-<li>统一回复（如 哈哈哈哈哈哈 =&gt; 哈哈哈哈哈，如 我不知道啊，哈哈哈 =&gt; 我不知道啊）</li>
-</ol>
-<h4 id="流程设计"><a href="#流程设计" class="headerlink" title="流程设计"></a>流程设计</h4><ol>
-<li>“问候”和“再见”等，是用规则写的</li>
-<li>如果没有匹配到“问候”或者“再见”，就会进入到模型生成回复</li>
-<li>模型是seq2seq+attention</li>
-<li>attention是哪个attention，对结果影响并不大</li>
-<li>把数据分为几块，比如5-10个字的句子一起，10-20个字的句子一起，等等，然后让句子从短到长进行输入，一是让训练更稳定，二是能一定程度上加快速度</li>
-</ol>
-<h4 id="模型问题"><a href="#模型问题" class="headerlink" title="模型问题"></a>模型问题</h4><ol>
-<li>无意义回答过多 =&gt; 加入anti-LM</li>
-<li>相似回答过多 =&gt; 加入余弦相似到loss中，有一定的效果，但是很难统计，因为可能对某个测试集，效果明显，对某些测试集，效果就不是那么明显</li>
-<li>简单问题正确回答的百分比 =&gt; “问候”等对话进行了规则处理</li>
-<li>过于简短回答的百分比 =&gt; 数据集上进行了处理</li>
-</ol>
-<h5 id="anti-LM"><a href="#anti-LM" class="headerlink" title="anti-LM"></a>anti-LM</h5><p>通常情况下，我们的损失函数loss为${\hat T}=\underset{T}{argmax} {logp(T|S)}$。从损失函数我们可以看出，在给定输入$S$的情况下，模型会选择输出概率最大的句子，这回倾向输出出现频率大的句子，通常这些句子为无意义句子。<br>所以我们引入互信息作为新的目标函数，以两个句子的相关性作为度量标准。互信息公式如下：<br>$log \frac{p(S|T)}{p(S)p(T)}$<br>所以表达式可以写成</p>
-<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\log p(T)-\log p(S)}$</p>
-<p>但因为$S$为输入，$\log p(S)$是固定的，所以表达式也为</p>
-<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\log p(T)}$</p>
-<p>对惩罚项$-\log (T)$前加入一个参数，即为</p>
-<p>${\hat T}=\underset{T}{argmax} {logp(T|S)-\lambda logp(T)}$</p>
-<p>我们发现虽然目标函数改为互信息MMI，但是损失函数最大的改变就是加入了$-log(T)$，而$p(T)$表示一个句子出现的概率，所以这个损失函数其实是加了一个对出现概率大的句子的惩罚，$\lambda$就是那个惩罚系数。</p>
-<p>惩罚项$-logp(T)$中的</p>
-<p>$p(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
-<p>在句子$T$的生成中，第一个字$t_1$的生成一定程度上决定了后面字$t_k$的生成，所以$t_1$相对于$t_k$而言，对句子$T$的影响更大。又因为如果我们直接让</p>
-<p>$p(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
-<p>实际生成的句子可能会更容易有语法问题。所以我们取了一个折中的方法，让</p>
-<p>$U(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1}) \cdot g(k)$ </p>
-<p>with<br>$$ g(k)=<br>  \begin{cases}<br>  1 &amp; {if k \leq \gamma} \<br>  0 &amp; {if k \geq \gamma}<br>  \end{cases}<br>  $$<br>取代$p(T)$，使得损失函数为</p>
-<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\lambda \log U(T)}$</p>
-<p>另外实际应用中，还加入了响应句子长度的因素$\gamma N_t$，作为模型相应的依据，因此将目标函数修正如下</p>
-<p>$Score(T) = p(T|S)-\lambda U(T) + \gamma N_t$</p>
-<p>所以损失函数应该是</p>
-<p>$\underset{T}{argmin} {-\log p(T|S)+\lambda \log p(T)-\log (\gamma N_t)}$</p>
-<h5 id="anti-bidi"><a href="#anti-bidi" class="headerlink" title="anti-bidi"></a>anti-bidi</h5><p>由上面的推导，我们从MMI得到</p>
-<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\lambda \log p(T)}$</p>
-<p>我们又知道</p>
-<p>$\log p(T)=\log p(T|S) + \log p(S) - \log p(S|T)$</p>
-<p>带入得到</p>
-<p>${\hat T}=\underset{T}{argmax} {(1-\lambda)\log p(T|S)+\lambda \log p(S|T)}$</p>
-<p>因为$p(S|T)$需要通过生成的$T$来再次通过训练好的seq2seq模型再计算一遍，计算量特别大，所以我们通过beam search只取前$N$个$T$，比如200个，再计算$S$。</p>
-<p>但是在使用beam search的时候，我们知道，beam search有很多输出只是一两个字或者只是符号发生了变化，减少了取$N$个不同输出$T$的意义，因为本身输出句子的多样性不能满足这里的要求，所以我们对beam search进行了更改。</p>
-<p>一般beam search在到下一节点时，我们是通过混合所有父节点的字节点，统一进行比较，然后取整体概率最大的$N$个选择，这里我们更改为，针对每一个父节点，我们先对其对应的字节点按先后顺序将其概率从上往下减去一个越来越大的数，使得我们能更好的保存更多不同的父节点，自然句子的多样性也就增加了。具体例子见下图<img src="/public/images/image/beam_search_anti_bidi.png" alt="beamsearch_antibidi"><br>另外，也在anti-bidi中，做了同anti-LM相同的处理，增加了回复长度的影响。</p>
-<p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句与回答的余弦相似性来减少重复问题的回答</p>
-<h5 id="anti-bidi-VS-anti-LM"><a href="#anti-bidi-VS-anti-LM" class="headerlink" title="anti-bidi VS anti-LM"></a>anti-bidi VS anti-LM</h5><ol>
-<li>两者虽然都是使用的MMI，但是使用的公式不一样，背后的逻辑原理也不一样</li>
-<li>anti-bidi比anti-LM要更耗时，因为他要经过两次模型，且非常依赖于beam search生成的句子的多样性</li>
-</ol>
-<h5 id="anti-LM的具体实现"><a href="#anti-LM的具体实现" class="headerlink" title="anti-LM的具体实现"></a>anti-LM的具体实现</h5><p>如何计算P(T)<br>首先应该意识到P(T)应该是一个语言模型学习出来的结果，而不简单的是联合概率的乘积。那么如何得到这个模型学习出来的结果呢？在实现时需要在decoder的输入端输入一个全零的初始化状态，具体做法可以输入一句话长度的pad标志符，让decoder生成结果，得到P(T)</p>
-<p>详见<code>just_another_seq2seq_master</code>里<code>train-anti.py</code>中第86～88行和第98～101行。</p>
-<p>下面代码见前三行和中间的<code>add_loss</code>：</p>
-<ol>
-<li>前三行代码：输入为一定维度的PAD</li>
-<li><code>add_loss</code>计算的是输入为PAD时(即初始状态下)的输出，即$P(T)$</li>
-<li><code>add_loss *= -0.5</code>表示每次计算完$P(T)$后乘以$-0.5$，即$\lambda=0.5$</li>
-<li>我们没有用$U(T)$，但是并没有明显输出语句不通顺的情况</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dummy_encoder_inputs = np.array([</span><br><span class="line">    np.array([WordSequence.PAD]) <span class="keyword">for</span> _ <span class="keyword">in</span> range(batch_size)])</span><br><span class="line">dummy_encoder_inputs_lengths = np.array([<span class="number">1</span>] * batch_size)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(<span class="number">1</span>, n_epoch + <span class="number">1</span>):</span><br><span class="line">    costs = []</span><br><span class="line">    bar = tqdm(range(steps), total=steps,</span><br><span class="line">                desc=<span class="string">'epoch &#123;&#125;, loss=0.000000'</span>.format(epoch))</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> bar:</span><br><span class="line">        x, xl, y, yl = next(flow)</span><br><span class="line">        x = np.flip(x, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        add_loss = model.train(sess,</span><br><span class="line">                                dummy_encoder_inputs,</span><br><span class="line">                                dummy_encoder_inputs_lengths,</span><br><span class="line">                                y, yl, loss_only=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        add_loss *= <span class="number">-0.5</span></span><br><span class="line">        <span class="comment"># print(x, y)</span></span><br><span class="line">        cost, lr = model.train(sess, x, xl, y, yl,</span><br><span class="line">                                return_lr=<span class="literal">True</span>, add_loss=add_loss)</span><br><span class="line">        costs.append(cost)</span><br><span class="line">        bar.set_description(<span class="string">'epoch &#123;&#125; loss=&#123;:.6f&#125; lr=&#123;:.6f&#125;'</span>.format(</span><br><span class="line">            epoch,</span><br><span class="line">            np.mean(costs),</span><br><span class="line">            lr</span><br><span class="line">        ))</span><br><span class="line"></span><br><span class="line">    model.save(sess, save_path)</span><br></pre></td></tr></table></figure>
-
-<h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><h4 id="anti-lm"><a href="#anti-lm" class="headerlink" title="anti-lm"></a>anti-lm</h4><h5 id="最大互信息"><a href="#最大互信息" class="headerlink" title="最大互信息"></a>最大互信息</h5><h4 id="attention-LSTM"><a href="#attention-LSTM" class="headerlink" title="attention+LSTM"></a>attention+LSTM</h4><h5 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h5><h5 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h5><h4 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h4><p>闲聊的评估是带有非常大的主观性的，而且场景不同，用户不同，对相同结果的满意度也会不一样，所以我们对模型的评估希望从更客观、更基础的地方来进行评估和改进：</p>
-<ol>
-<li>无意义回答的频率/百分比</li>
-<li>相似回答的频率/百分比</li>
-<li>正确回答的百分比</li>
-<li>简单问题正确回答的百分比</li>
-<li>相同问题，是否能给出相同答案</li>
-<li>过于简短回答的百分比</li>
-<li>对话内容大多无意义，无法深入交谈具体事情</li>
-</ol>
-<h4 id="努力方向"><a href="#努力方向" class="headerlink" title="努力方向"></a>努力方向</h4><ol>
-<li>模型优化</li>
-<li>数据集质量优化+数据集扩充</li>
-</ol>
-]]></content>
-      <categories>
-        <category>工作总结</category>
-      </categories>
-      <tags>
-        <tag>seq2seq</tag>
-        <tag>chitchat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>protobuf</title>
-    <url>/2019/01/16/protobuf/</url>
-    <content><![CDATA[<h4 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h4><ul>
-<li><code>protobuf</code>：把消息序列化的工具</li>
-<li><code>rpc</code>： 远程方法调用</li>
-<li><code>redis</code>：缓存</li>
-<li><code>mysql</code>：持久储存</li>
-</ul>
-<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p><a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5" target="_blank" rel="noopener">ML Client/Server Using gRPC in Python – Good Audience</a></p>
-<h4 id="安装Protocol-Buffers："><a href="#安装Protocol-Buffers：" class="headerlink" title="安装Protocol Buffers："></a>安装Protocol Buffers：</h4><ol>
-<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
-<li>brew install protobuf</li>
-<li>安装gRPC：pip install grpcio</li>
-<li>安装gRPC：pip install grpcio-tools</li>
-</ol>
-<a id="more"></a>
-
-<h4 id="编译proto"><a href="#编译proto" class="headerlink" title="编译proto"></a>编译proto</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python -m grpc_tools.protoc -I .&#x2F;protos --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;intent.proto</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>-I</code><br>指定生成的<code>pb2.py</code>和<code>pb2_grpc.py</code>文件的储存路径</li>
-<li><code>./protos/intent.proto</code><br>需要编译的<code>.proto</code>文件的位置</li>
-</ul>
-<p>如果文件原来的位置如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
-
-<p>在根目录上运行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I .&#x2F;protos&#x2F; --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
-<p>后会变成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br></pre></td></tr></table></figure>
-
-<p>在根目录上运行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I . --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
-<p>后会变成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
-
-<p>没弄明白为什么，不过为了方便函数之间的调用，一般使用第一种方法。</p>
-<h4 id="http-VS-grpc"><a href="#http-VS-grpc" class="headerlink" title="http VS grpc"></a>http VS grpc</h4><ol>
-<li><code>http</code>和<code>grpc</code>都是通过<code>tcp</code>运行。</li>
-<li>不同的是<code>grpc</code>会将信息转换成二进制格式，因此传输更快，所需内存更小，效率更高。<br>但是因为<code>grpc</code>中，双方都需要编写相同的<code>.proto</code>，彼此传输的格式要固定，因此要求相对更严格一些。而http则没有这种要求，双方并没有格式的约定，所以<code>http</code>也更大一些，速度相对更慢一些。</li>
-<li><code>http</code>通过<code>&quot;\\r\\n&quot;</code>来分隔信息。<code>grpc</code>则要通过<code>.proto</code>文件里的<code>message</code>严格规范信息的数目、类型等。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>工作总结</category>
-      </categories>
-      <tags>
-        <tag>protobuf</tag>
       </tags>
   </entry>
 </search>
