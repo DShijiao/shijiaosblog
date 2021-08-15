@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>中文面试自我简介</title>
+    <url>/2021/08/15/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<h2 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h2><p>高中毕业后通过武汉大学和拉罗舍尔大学的交流项目去到法国，后来也在法国洛林大学完成了硕士学业，学生期间一直就读数学和统计专业。</p>
+<p>毕业后因为觉得直接回国会很可惜，所以尝试在法国本地就业，之后顺利拿到长居，进入了Sikim公司，也是在这家公司，通过给当地银行做个智能客服的项目，了解到并进入了NLP领域。</p>
+<p>18年回国加入到了顺丰科技，因为有过智能客服的项目经验，所以在顺丰中负责智能客服的NLU模块，这段智能客服经验加深了我对算法和深度模型的理解和落地经验，因为我一直对生成模型比较感兴趣，所以我主动申请了负责闲聊的项目，对生成模型的运行和落地有了了解</p>
+<p>20年加入到vipkid后，期间也继续过对话生成的项目，比如机器翻译，闲聊等等，但是主要负责智能客服的研发，虽然在不同公司都在做智能客服项目，但是幸运的是每次都会丰富和提升自己对对话机器人的了解。比如顺丰里主要负责的是算法的优化和准确率的提升，在vipkid，不仅需要解决算法的问题，也会专注于解决更业务层面的问题，比如DM的设计，模块之间的跳转，对话的设计（一句话多个意图，一段话分开说）等等</p>
+<p>期间当然还做过别的项目，比如主题提取，纠错，或者单纯工程开发的统计系统，但是总体，还是闲聊上对算法的实验相对较多，对对话机器人的项目了解更全面</p>
+<h4 id="自我介绍的目的"><a href="#自我介绍的目的" class="headerlink" title="自我介绍的目的"></a>自我介绍的目的</h4><ul>
+<li>我对当前职位的兴趣</li>
+<li>我的能力是否能够匹配当前职位</li>
+</ul>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：好奇心强，责任心强，抗压能力强，协作沟通能力不错<br>缺点：拖沓，钻研度不够，会因为想要尝试，有时不太分主次，导致浪费很多时间</p>
+<h4 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h4><p>我的优势：</p>
+<ol>
+<li>学历背景</li>
+<li>数学背景</li>
+<li>4年工作经验</li>
+<li>8年海外生活经验（适应力，学习能力）</li>
+<li>对智能客服了解比较全面</li>
+<li>对生成模型也有了解</li>
+<li>抗压，沟通，协作能力</li>
+<li>好奇心强，勇于实践</li>
+</ol>
+<p>职业能力：</p>
+<ol>
+<li><p>对智能客服的深耕</p>
+</li>
+<li><p>对闲聊很感兴趣，觉得闲聊是以后的重点，所以在进入顺丰后，在坚固智能客服的同时，主动选择了并不是很热门的闲聊（闲聊一定要再读几篇论文，再深耕一下）</p>
+</li>
+<li><p>对智能客服的了解比较全面，先是提高准确率的技术，后来是业务方面处理的技术（如DM，如用户一次说多句话是如何处理的，如一句话有多个意图是如何处理的，等等）</p>
+<p> <a href="https://www.infoq.cn/article/pryrhwq1pj6xkb59gbx6" target="_blank" rel="noopener">为客服构建更加智能的对话机器人：多轮应答时机触发模型</a><br> <a href="https://cloud.tencent.com/developer/news/468354" target="_blank" rel="noopener">人机对话关键技术及挑战</a><br> <a href="http://www.woshipm.com/pd/4133505.html" target="_blank" rel="noopener">任务驱动型人机对话系统设计</a></p>
+</li>
+<li><p>闲聊主要就聊技术</p>
+</li>
+<li><p>可以描述一下每次的变动是为什么，比如为什么毕业后想要留在国外，为什么会从顺丰离职，所以为什么现在会非常希望找到一个比较实践长久的工作等</p>
+</li>
+<li><p>如何在对话设计时，设计的是多次对话拼接到一起然后求他的意图，那么</p>
+<ol>
+<li>在训练时，如何解决训练的样本问题（人工可以标注，但是样本不是很多，SF为5000-10000条）</li>
+<li>训练时不会有不收敛的问题吗？因为同样一部分的语句在不同的类别中出现过（并且是肯定不能使用CNN这种对序列信息没有考虑的模型）</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>抗压能力：LP工作情况统计的项目</li>
+</ul>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+        <tag>自我介绍</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Préparation pour l&#39;entretien français</title>
     <url>/2021/08/15/french/Preparation-pour-l-entretien-francais/</url>
     <content><![CDATA[<h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
@@ -225,105 +281,6 @@
       </tags>
   </entry>
   <entry>
-    <title>python的点滴</title>
-    <url>/2020/02/19/python%E7%82%B9%E6%BB%B4/</url>
-    <content><![CDATA[<h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="找到当前index在数组位置中对称的位置"><a href="#找到当前index在数组位置中对称的位置" class="headerlink" title="找到当前index在数组位置中对称的位置"></a>找到当前index在数组位置中对称的位置</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">index = len(nums)//<span class="number">2</span></span><br><span class="line">print(index) <span class="comment"># 3</span></span><br><span class="line">print(~index) <span class="comment"># -4</span></span><br><span class="line">median = (nums[index] + nums[~index])/<span class="number">2</span></span><br><span class="line">print(median) <span class="comment"># 3.5</span></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"></p>
-<a id="more"></a>
-
-<p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="图片二"><br><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A63.png" alt="图片三"></p>
-<h3 id="map-zip"><a href="#map-zip" class="headerlink" title="map, zip"></a>map, zip</h3><p>map和zip配合使用，实现矩阵转置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, matrix)</span>:</span>  </span><br><span class="line">        matrix[:] = map(list,zip(*matrix))</span><br><span class="line">        <span class="keyword">return</span> matrix</span><br><span class="line">print(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>],</span><br><span class="line">    [<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-
-<p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a href="https://blog.csdn.net/shawpan/article/details/69663710" target="_blank" rel="noopener">一行代码搞定矩阵旋转——python</a>。</p>
-<h3 id="defaultdict-function-factory"><a href="#defaultdict-function-factory" class="headerlink" title="defaultdict(function_factory)"></a>defaultdict(function_factory)</h3><p><strong>defaultdict</strong></p>
-<p>dict subclass that calls a factory function to supply missing values</p>
-<p><code>defaultdict</code>构建的是一个类似<code>dictionary</code>的对象，其中<code>keys</code>值自行确定赋值，但是<code>values</code>的类型是<code>fucntion_factory</code>的类实例，而且<strong>具有默认值</strong>。比如<code>defaultdict(list)</code>创建一个<code>dict</code>,对于任何一个还不存在的<code>dict[newkey]</code>都已经有一个默认<code>list</code>使得<code>dict[newkey].append</code>可以直接运行而不需要先运行<code>dict[newkey]=[]</code>。</p>
-<p>例子：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = [(<span class="string">'yellow'</span>, <span class="number">1</span>), (<span class="string">'blue'</span>, <span class="number">2</span>), (<span class="string">'yellow'</span>, <span class="number">3</span>), (<span class="string">'blue'</span>, <span class="number">4</span>), (<span class="string">'red'</span>, <span class="number">1</span>)]</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">d = collections.defaultdict(list)</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> s:</span><br><span class="line">    d[k].append(v)</span><br><span class="line">list(d.items())</span><br><span class="line">[(<span class="string">'blue'</span>, [<span class="number">2</span>, <span class="number">4</span>]), (<span class="string">'red'</span>, [<span class="number">1</span>]), (<span class="string">'yellow'</span>, [<span class="number">1</span>, <span class="number">3</span>])]</span><br></pre></td></tr></table></figure>
-
-<h3 id="pandas聚合和分组运算之groupby"><a href="#pandas聚合和分组运算之groupby" class="headerlink" title="pandas聚合和分组运算之groupby"></a>pandas聚合和分组运算之groupby</h3><p>根据<code>key1</code>的值<code>a</code>,<code>b</code>来分组求<code>data1</code>的平均值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">data1     data2 key1 key2</span><br><span class="line"><span class="number">0</span> <span class="number">-0.410673</span>  <span class="number">0.519378</span>    a  one</span><br><span class="line"><span class="number">1</span> <span class="number">-2.120793</span>  <span class="number">0.199074</span>    a  two</span><br><span class="line"><span class="number">2</span>  <span class="number">0.642216</span> <span class="number">-0.143671</span>    b  one</span><br><span class="line"><span class="number">3</span>  <span class="number">0.975133</span> <span class="number">-0.592994</span>    b  two</span><br><span class="line"><span class="number">4</span> <span class="number">-1.017495</span> <span class="number">-0.530459</span>    a  one</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped = df[<span class="string">'data1'</span>].groupby(df[<span class="string">'key1'</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped</span><br><span class="line">&lt;pandas.core.groupby.SeriesGroupBy object at <span class="number">0x04120D70</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped.mean()</span><br><span class="line">key1</span><br><span class="line">a      <span class="number">-1.182987</span></span><br><span class="line">b       <span class="number">0.808674</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
-
-<p>根据<code>cpucore-</code>的类别，求所有数值形式列的平均值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>data_mac.groupby(<span class="string">'cpucore'</span>).mean()</span><br><span class="line">cpucore-	time_transform_bert	time_sess_run_bert	time_to_dict_bert	time_all_bert			</span><br><span class="line"><span class="number">1</span>	<span class="number">0.003124</span>	<span class="number">1.550403</span>	<span class="number">0.000032</span>	<span class="number">1.553559</span></span><br><span class="line"><span class="number">2</span>	<span class="number">0.001235</span>	<span class="number">0.730950</span>	<span class="number">0.000034</span>	<span class="number">0.732218</span></span><br><span class="line"><span class="number">3</span>	<span class="number">0.001565</span>	<span class="number">0.487936</span>	<span class="number">0.000037</span>	<span class="number">0.489538</span></span><br><span class="line"><span class="number">4</span>	<span class="number">0.001103</span>	<span class="number">0.323777</span>	<span class="number">0.000029</span>	<span class="number">0.324909</span></span><br><span class="line"><span class="number">5</span>	<span class="number">0.001185</span>	<span class="number">0.289874</span>	<span class="number">0.000033</span>	<span class="number">0.291093</span></span><br><span class="line"><span class="number">6</span>	<span class="number">0.001226</span>	<span class="number">0.284265</span>	<span class="number">0.000033</span>	<span class="number">0.285524</span></span><br><span class="line"><span class="number">0</span>	<span class="number">0.001225</span>	<span class="number">0.284462</span>	<span class="number">0.000032</span>	<span class="number">0.285719</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="is和-的区别"><a href="#is和-的区别" class="headerlink" title="is和==的区别"></a>is和==的区别</h3><p>在Python中一切都是对象。</p>
-<p>Python中对象包含的三个基本要素，分别是：</p>
-<ul>
-<li>id(身份标识)</li>
-<li>type(数据类型)</li>
-<li>value(值)</li>
-</ul>
-<p>对象之间比较是否相等可以用<code>==</code>，也可以用<code>is</code>。</p>
-<p><code>is</code> 和 <code>==</code> 都是对对象进行比较判断作用的，但对对象比较判断的内容并不相同。下面来看看具体区别在哪</p>
-<ul>
-<li><p><strong><code>is</code> 比较的是两个对象的 <code>id</code> 值是否相等，也就是比较两个对象是否为同一个实例对象，是否指向同一个内存地址</strong></p>
-</li>
-<li><p><strong><code>==</code> 比较的是两个对象的内容是否相等，默认会调用对象的 <code>__eq__()</code> 方法</strong></p>
-</li>
-</ul>
-<p><strong>==比较操作符和is同一性运算符区别</strong></p>
-<p>==是python标准操作符中的比较操作符，用来比较判断两个对象的value(值)是否相等。</p>
-<p>示例代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python3.5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a </span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a[:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="是什么"><a href="#是什么" class="headerlink" title="^是什么"></a>^是什么</h3><p>这是Python中的异或运算符，表示对于操作符两侧数字的二进制数进行异或操作。</p>
-<p>异或操作的含义为：同一位置上的数字相等则得0，同一位置上的数字相异则得1。（二进制表达中只有0,1两个数字）</p>
-<p>例如：计算2^3首先要求得两数的二进制表达数，（十进制➡️二进制）：2➡️10，3➡️11</p>
-<p>按位异或得（二进制➡️十进制）01➡️1</p>
-<p>既2^3=1</p>
-<h3 id="gt-gt-和-lt-lt-是什么"><a href="#gt-gt-和-lt-lt-是什么" class="headerlink" title="&gt;&gt;= 和 &lt;&lt;=是什么"></a>&gt;&gt;= 和 &lt;&lt;=是什么</h3><p>&gt;&gt; 和 &lt;&lt;都是位运算，对二进制数进bai行移位操作。</p>
-<p>&lt;&lt; 是左移，du末位补zhi0，类比十进制数在末尾添0相当于原数乘dao以10，x&lt;&lt;1是将x的二进制表示左移一位，相当于原数x乘2。比如整数4在二进制下是100，4&lt;&lt;1左移1位变成1000(二进制)，结果是8。</p>
-<p>&gt;&gt;是右移，右移1位相当于除以2。<br>而&gt;&gt;=和&lt;&lt;=，就是对变量进行位运算移位之后的结果再赋值给原来的变量，可以类比赋值运算符+=和-=可以理解。</p>
-<p>比如x&gt;&gt;=2， 就是把变量x右移2位，再保留x操作后的值。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a &gt;&gt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b &lt;&lt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h2 id="python中一些看似简单的运算需求"><a href="#python中一些看似简单的运算需求" class="headerlink" title="python中一些看似简单的运算需求"></a>python中一些看似简单的运算需求</h2><h3 id="求list的绝对值"><a href="#求list的绝对值" class="headerlink" title="求list的绝对值"></a>求list的绝对值</h3><p>求<code>list l = [-1,2,3,-4,-5,-6]</code>的绝对值的三种方法</p>
-<ol>
-<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = list(map(abs, l))</span><br></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = [abs(i) <span class="keyword">for</span> i <span class="keyword">in</span> l]</span><br></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">list_abs = list(np.abs(l))</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<h3 id="判断某个key值是否在dict中"><a href="#判断某个key值是否在dict中" class="headerlink" title="判断某个key值是否在dict中"></a>判断某个key值是否在dict中</h3><p>有两种方法</p>
-<p>一：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#生成一个字典</span></span><br><span class="line">d = &#123;<span class="string">'name'</span>:&#123;&#125;,<span class="string">'age'</span>:&#123;&#125;,<span class="string">'sex'</span>:&#123;&#125;&#125;</span><br><span class="line"><span class="comment">#打印返回值</span></span><br><span class="line"><span class="keyword">print</span> d.has_key(<span class="string">'name'</span>)</span><br><span class="line"><span class="comment">#结果返回True</span></span><br></pre></td></tr></table></figure>
-<p>二：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#生成一个字典</span></span><br><span class="line">d = &#123;<span class="string">'name'</span>:&#123;&#125;,<span class="string">'age'</span>:&#123;&#125;,<span class="string">'sex'</span>:&#123;&#125;&#125;</span><br><span class="line"><span class="comment">#打印返回值，其中d.keys()是列出字典所有的key</span></span><br><span class="line"><span class="keyword">print</span> name <span class="keyword">in</span> d.keys()</span><br><span class="line"><span class="comment">#结果返回True</span></span><br></pre></td></tr></table></figure>
-<p>第二中<code>in</code>的方法更好更快，但是还是不知道他的速度是不是O(1)???????</p>
-<h3 id="合并大list中的小list"><a href="#合并大list中的小list" class="headerlink" title="合并大list中的小list"></a>合并大list中的小list</h3><p>性能最好的一种方法，来自<a href="https://blog.csdn.net/laiyibeijiweijiu/article/details/93891635" target="_blank" rel="noopener">这里</a>，更多方法对比看<a href="https://blog.csdn.net/weixin_40539892/article/details/79103290" target="_blank" rel="noopener">这里</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c=[<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> chain</span><br><span class="line">d = list(chain(a, b, c))</span><br><span class="line">print(d)</span><br><span class="line"><span class="comment">#[1, 2, 3, 3, 4, 5, 4, 4, 4]</span></span><br></pre></td></tr></table></figure>
-<p>上面的方法是a,b,c已经知道，但是在a,b,c还在大list中时，可以如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">newnums = []</span><br><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> nums:</span><br><span class="line">    newnums.extend(l)</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h2 id="python中的加载"><a href="#python中的加载" class="headerlink" title="python中的加载"></a>python中的加载</h2><h3 id="获取当前路径的方式"><a href="#获取当前路径的方式" class="headerlink" title="获取当前路径的方式"></a>获取当前路径的方式</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">print(os.path.abspath(__file__))</span><br><span class="line">print(os.path.dirname(__file__))</span><br></pre></td></tr></table></figure>
-<p>获取当前路径的方式有两种：</p>
-<ul>
-<li>前一种返回的是当前.py的绝对路径</li>
-<li>第二种是返回当前.py所在文件夹的位置，可以在后面加入指定字段获取指定文件/路径，如<code>os.path.join(os.path.dirname(__file__),&#39;myData/mydata.csv&#39;)</code></li>
-</ul>
-<p>输出分别是</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">/Users/shijiaodeng/Documents/Travail/kaggle/<span class="number">4</span>-Quora/Python/data.py</span><br><span class="line">/Users/shijiaodeng/Documents/Travail/kaggle/<span class="number">4</span>-Quora/Python</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>周边辅助</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用hexo搭建博客</title>
     <url>/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="Hexo-github"><a href="#Hexo-github" class="headerlink" title="Hexo + github"></a>Hexo + github</h2><h3 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h3><ol>
@@ -497,6 +454,105 @@
       </tags>
   </entry>
   <entry>
+    <title>python的点滴</title>
+    <url>/2020/02/19/python%E7%82%B9%E6%BB%B4/</url>
+    <content><![CDATA[<h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="找到当前index在数组位置中对称的位置"><a href="#找到当前index在数组位置中对称的位置" class="headerlink" title="找到当前index在数组位置中对称的位置"></a>找到当前index在数组位置中对称的位置</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">index = len(nums)//<span class="number">2</span></span><br><span class="line">print(index) <span class="comment"># 3</span></span><br><span class="line">print(~index) <span class="comment"># -4</span></span><br><span class="line">median = (nums[index] + nums[~index])/<span class="number">2</span></span><br><span class="line">print(median) <span class="comment"># 3.5</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"></p>
+<a id="more"></a>
+
+<p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="图片二"><br><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A63.png" alt="图片三"></p>
+<h3 id="map-zip"><a href="#map-zip" class="headerlink" title="map, zip"></a>map, zip</h3><p>map和zip配合使用，实现矩阵转置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, matrix)</span>:</span>  </span><br><span class="line">        matrix[:] = map(list,zip(*matrix))</span><br><span class="line">        <span class="keyword">return</span> matrix</span><br><span class="line">print(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>],</span><br><span class="line">    [<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+
+<p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a href="https://blog.csdn.net/shawpan/article/details/69663710" target="_blank" rel="noopener">一行代码搞定矩阵旋转——python</a>。</p>
+<h3 id="defaultdict-function-factory"><a href="#defaultdict-function-factory" class="headerlink" title="defaultdict(function_factory)"></a>defaultdict(function_factory)</h3><p><strong>defaultdict</strong></p>
+<p>dict subclass that calls a factory function to supply missing values</p>
+<p><code>defaultdict</code>构建的是一个类似<code>dictionary</code>的对象，其中<code>keys</code>值自行确定赋值，但是<code>values</code>的类型是<code>fucntion_factory</code>的类实例，而且<strong>具有默认值</strong>。比如<code>defaultdict(list)</code>创建一个<code>dict</code>,对于任何一个还不存在的<code>dict[newkey]</code>都已经有一个默认<code>list</code>使得<code>dict[newkey].append</code>可以直接运行而不需要先运行<code>dict[newkey]=[]</code>。</p>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = [(<span class="string">'yellow'</span>, <span class="number">1</span>), (<span class="string">'blue'</span>, <span class="number">2</span>), (<span class="string">'yellow'</span>, <span class="number">3</span>), (<span class="string">'blue'</span>, <span class="number">4</span>), (<span class="string">'red'</span>, <span class="number">1</span>)]</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">d = collections.defaultdict(list)</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> s:</span><br><span class="line">    d[k].append(v)</span><br><span class="line">list(d.items())</span><br><span class="line">[(<span class="string">'blue'</span>, [<span class="number">2</span>, <span class="number">4</span>]), (<span class="string">'red'</span>, [<span class="number">1</span>]), (<span class="string">'yellow'</span>, [<span class="number">1</span>, <span class="number">3</span>])]</span><br></pre></td></tr></table></figure>
+
+<h3 id="pandas聚合和分组运算之groupby"><a href="#pandas聚合和分组运算之groupby" class="headerlink" title="pandas聚合和分组运算之groupby"></a>pandas聚合和分组运算之groupby</h3><p>根据<code>key1</code>的值<code>a</code>,<code>b</code>来分组求<code>data1</code>的平均值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">data1     data2 key1 key2</span><br><span class="line"><span class="number">0</span> <span class="number">-0.410673</span>  <span class="number">0.519378</span>    a  one</span><br><span class="line"><span class="number">1</span> <span class="number">-2.120793</span>  <span class="number">0.199074</span>    a  two</span><br><span class="line"><span class="number">2</span>  <span class="number">0.642216</span> <span class="number">-0.143671</span>    b  one</span><br><span class="line"><span class="number">3</span>  <span class="number">0.975133</span> <span class="number">-0.592994</span>    b  two</span><br><span class="line"><span class="number">4</span> <span class="number">-1.017495</span> <span class="number">-0.530459</span>    a  one</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped = df[<span class="string">'data1'</span>].groupby(df[<span class="string">'key1'</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped</span><br><span class="line">&lt;pandas.core.groupby.SeriesGroupBy object at <span class="number">0x04120D70</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped.mean()</span><br><span class="line">key1</span><br><span class="line">a      <span class="number">-1.182987</span></span><br><span class="line">b       <span class="number">0.808674</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+
+<p>根据<code>cpucore-</code>的类别，求所有数值形式列的平均值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>data_mac.groupby(<span class="string">'cpucore'</span>).mean()</span><br><span class="line">cpucore-	time_transform_bert	time_sess_run_bert	time_to_dict_bert	time_all_bert			</span><br><span class="line"><span class="number">1</span>	<span class="number">0.003124</span>	<span class="number">1.550403</span>	<span class="number">0.000032</span>	<span class="number">1.553559</span></span><br><span class="line"><span class="number">2</span>	<span class="number">0.001235</span>	<span class="number">0.730950</span>	<span class="number">0.000034</span>	<span class="number">0.732218</span></span><br><span class="line"><span class="number">3</span>	<span class="number">0.001565</span>	<span class="number">0.487936</span>	<span class="number">0.000037</span>	<span class="number">0.489538</span></span><br><span class="line"><span class="number">4</span>	<span class="number">0.001103</span>	<span class="number">0.323777</span>	<span class="number">0.000029</span>	<span class="number">0.324909</span></span><br><span class="line"><span class="number">5</span>	<span class="number">0.001185</span>	<span class="number">0.289874</span>	<span class="number">0.000033</span>	<span class="number">0.291093</span></span><br><span class="line"><span class="number">6</span>	<span class="number">0.001226</span>	<span class="number">0.284265</span>	<span class="number">0.000033</span>	<span class="number">0.285524</span></span><br><span class="line"><span class="number">0</span>	<span class="number">0.001225</span>	<span class="number">0.284462</span>	<span class="number">0.000032</span>	<span class="number">0.285719</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="is和-的区别"><a href="#is和-的区别" class="headerlink" title="is和==的区别"></a>is和==的区别</h3><p>在Python中一切都是对象。</p>
+<p>Python中对象包含的三个基本要素，分别是：</p>
+<ul>
+<li>id(身份标识)</li>
+<li>type(数据类型)</li>
+<li>value(值)</li>
+</ul>
+<p>对象之间比较是否相等可以用<code>==</code>，也可以用<code>is</code>。</p>
+<p><code>is</code> 和 <code>==</code> 都是对对象进行比较判断作用的，但对对象比较判断的内容并不相同。下面来看看具体区别在哪</p>
+<ul>
+<li><p><strong><code>is</code> 比较的是两个对象的 <code>id</code> 值是否相等，也就是比较两个对象是否为同一个实例对象，是否指向同一个内存地址</strong></p>
+</li>
+<li><p><strong><code>==</code> 比较的是两个对象的内容是否相等，默认会调用对象的 <code>__eq__()</code> 方法</strong></p>
+</li>
+</ul>
+<p><strong>==比较操作符和is同一性运算符区别</strong></p>
+<p>==是python标准操作符中的比较操作符，用来比较判断两个对象的value(值)是否相等。</p>
+<p>示例代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python3.5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a </span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a[:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="是什么"><a href="#是什么" class="headerlink" title="^是什么"></a>^是什么</h3><p>这是Python中的异或运算符，表示对于操作符两侧数字的二进制数进行异或操作。</p>
+<p>异或操作的含义为：同一位置上的数字相等则得0，同一位置上的数字相异则得1。（二进制表达中只有0,1两个数字）</p>
+<p>例如：计算2^3首先要求得两数的二进制表达数，（十进制➡️二进制）：2➡️10，3➡️11</p>
+<p>按位异或得（二进制➡️十进制）01➡️1</p>
+<p>既2^3=1</p>
+<h3 id="gt-gt-和-lt-lt-是什么"><a href="#gt-gt-和-lt-lt-是什么" class="headerlink" title="&gt;&gt;= 和 &lt;&lt;=是什么"></a>&gt;&gt;= 和 &lt;&lt;=是什么</h3><p>&gt;&gt; 和 &lt;&lt;都是位运算，对二进制数进bai行移位操作。</p>
+<p>&lt;&lt; 是左移，du末位补zhi0，类比十进制数在末尾添0相当于原数乘dao以10，x&lt;&lt;1是将x的二进制表示左移一位，相当于原数x乘2。比如整数4在二进制下是100，4&lt;&lt;1左移1位变成1000(二进制)，结果是8。</p>
+<p>&gt;&gt;是右移，右移1位相当于除以2。<br>而&gt;&gt;=和&lt;&lt;=，就是对变量进行位运算移位之后的结果再赋值给原来的变量，可以类比赋值运算符+=和-=可以理解。</p>
+<p>比如x&gt;&gt;=2， 就是把变量x右移2位，再保留x操作后的值。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a &gt;&gt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b &lt;&lt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="python中一些看似简单的运算需求"><a href="#python中一些看似简单的运算需求" class="headerlink" title="python中一些看似简单的运算需求"></a>python中一些看似简单的运算需求</h2><h3 id="求list的绝对值"><a href="#求list的绝对值" class="headerlink" title="求list的绝对值"></a>求list的绝对值</h3><p>求<code>list l = [-1,2,3,-4,-5,-6]</code>的绝对值的三种方法</p>
+<ol>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = list(map(abs, l))</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = [abs(i) <span class="keyword">for</span> i <span class="keyword">in</span> l]</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">list_abs = list(np.abs(l))</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h3 id="判断某个key值是否在dict中"><a href="#判断某个key值是否在dict中" class="headerlink" title="判断某个key值是否在dict中"></a>判断某个key值是否在dict中</h3><p>有两种方法</p>
+<p>一：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#生成一个字典</span></span><br><span class="line">d = &#123;<span class="string">'name'</span>:&#123;&#125;,<span class="string">'age'</span>:&#123;&#125;,<span class="string">'sex'</span>:&#123;&#125;&#125;</span><br><span class="line"><span class="comment">#打印返回值</span></span><br><span class="line"><span class="keyword">print</span> d.has_key(<span class="string">'name'</span>)</span><br><span class="line"><span class="comment">#结果返回True</span></span><br></pre></td></tr></table></figure>
+<p>二：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#生成一个字典</span></span><br><span class="line">d = &#123;<span class="string">'name'</span>:&#123;&#125;,<span class="string">'age'</span>:&#123;&#125;,<span class="string">'sex'</span>:&#123;&#125;&#125;</span><br><span class="line"><span class="comment">#打印返回值，其中d.keys()是列出字典所有的key</span></span><br><span class="line"><span class="keyword">print</span> name <span class="keyword">in</span> d.keys()</span><br><span class="line"><span class="comment">#结果返回True</span></span><br></pre></td></tr></table></figure>
+<p>第二中<code>in</code>的方法更好更快，但是还是不知道他的速度是不是O(1)???????</p>
+<h3 id="合并大list中的小list"><a href="#合并大list中的小list" class="headerlink" title="合并大list中的小list"></a>合并大list中的小list</h3><p>性能最好的一种方法，来自<a href="https://blog.csdn.net/laiyibeijiweijiu/article/details/93891635" target="_blank" rel="noopener">这里</a>，更多方法对比看<a href="https://blog.csdn.net/weixin_40539892/article/details/79103290" target="_blank" rel="noopener">这里</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c=[<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> chain</span><br><span class="line">d = list(chain(a, b, c))</span><br><span class="line">print(d)</span><br><span class="line"><span class="comment">#[1, 2, 3, 3, 4, 5, 4, 4, 4]</span></span><br></pre></td></tr></table></figure>
+<p>上面的方法是a,b,c已经知道，但是在a,b,c还在大list中时，可以如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">newnums = []</span><br><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> nums:</span><br><span class="line">    newnums.extend(l)</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="python中的加载"><a href="#python中的加载" class="headerlink" title="python中的加载"></a>python中的加载</h2><h3 id="获取当前路径的方式"><a href="#获取当前路径的方式" class="headerlink" title="获取当前路径的方式"></a>获取当前路径的方式</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">print(os.path.abspath(__file__))</span><br><span class="line">print(os.path.dirname(__file__))</span><br></pre></td></tr></table></figure>
+<p>获取当前路径的方式有两种：</p>
+<ul>
+<li>前一种返回的是当前.py的绝对路径</li>
+<li>第二种是返回当前.py所在文件夹的位置，可以在后面加入指定字段获取指定文件/路径，如<code>os.path.join(os.path.dirname(__file__),&#39;myData/mydata.csv&#39;)</code></li>
+</ul>
+<p>输出分别是</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">/Users/shijiaodeng/Documents/Travail/kaggle/<span class="number">4</span>-Quora/Python/data.py</span><br><span class="line">/Users/shijiaodeng/Documents/Travail/kaggle/<span class="number">4</span>-Quora/Python</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>周边辅助</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法刷题总结</title>
     <url>/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<ol>
@@ -571,251 +627,6 @@
         <tag>牛顿法</tag>
         <tag>最优法</tag>
         <tag>迭代算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>面试</title>
-    <url>/2019/12/08/interview/%E9%9D%A2%E8%AF%95/</url>
-    <content><![CDATA[<p>n个无序数组，求top K</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">TopK</span><span class="params">(listArray, K)</span>:</span></span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(listArray)):</span><br><span class="line">        <span class="keyword">if</span> k + len(listArray[i]) &gt; K:</span><br><span class="line">            listK += listArray[i][:K-k]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>工作总结</category>
-      </categories>
-      <tags>
-        <tag>智能客服</tag>
-        <tag>CNN</tag>
-        <tag>stacking</tag>
-        <tag>LR</tag>
-        <tag>SVM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>面试感触</title>
-    <url>/2019/12/08/interview/%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/</url>
-    <content><![CDATA[<h2 id="恒昌第三轮面试"><a href="#恒昌第三轮面试" class="headerlink" title="恒昌第三轮面试"></a>恒昌第三轮面试</h2><p>今年下午两点和恒昌第三轮面试完。</p>
-<p>面试官整体给我的感觉是一种艺术家气息，举例用的是文艺复兴时期绘画的例子，他说那时候有钱人才能用蓝色，特殊人，比如天使才可以用蓝色还说那时候画家并不是创作画家，而是甲方要什么，画家就要一点不差的按照他们的要求来画，和我们现在的算法工程师一样，都是工人，并不是工程师。工程师是可以从现实中抽象建模的人。但这并不是一个人题，因为凡事都是需要经历这样一个过程的，从一点一点的模仿，到熟练，再到创新。我们工程目前还处于一个比较笨的状态，还是工人角色，远没到创新的时候，而且现在人工智能的浪潮也再一次落下，我们已经在尾声，如果以后我出去说自己是做深度学习的，可能就找不到工作了。</p>
-<p>听了它说的，我越来越觉得，真的不同的人有不同的看法，他会问我是否学过scala，但是爱奇艺的面试官会说他不会因为我会Hadoop或者不会Hadoop而决定是否录用我。</p>
-<p>虽然两者并不矛盾，但是凸显了他们对这个应聘者、甚至这个领域工作者的一个不同的要求和需求。</p>
-]]></content>
-      <categories>
-        <category>La Vie</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>FAQ</title>
-    <url>/2019/12/08/interview/FAQ/</url>
-    <content><![CDATA[<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为了降本增效，我们规划了八大任务型场景，并以FAQ为辅，构建智能在线客服。总场景覆盖率是87.6%，其中FAQ覆盖率为16.7%</p>
-<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>｜顶层分类器｜ =&gt; ｜FAQ｜+｜任务型场景｜+｜闲聊｜</p>
-<h2 id="FAQ-1"><a href="#FAQ-1" class="headerlink" title="FAQ"></a>FAQ</h2><p>出去任务型囊括的几大场景外，还有一些并不足以构建场景，但是用户会有疑问的一些问题，我们通过FAQ进行回答。</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>总共大概9W数据，3W原始数据，5.6W扩充数据，总共800多个类别。扩充数据大部分是通过人工术语扩充，即针对一个标准问题，我们要扩充为不同的句式问法。<br>测试集在扩充数据以前，按分布取的8000样本。</p>
-<p>（吴恩达的那个测试集数量决定的方法，在这里不太实用，因为数据不够，所以直接取25%也是不错的选择，5%是照顾一下样本少的类别）</p>
-<h3 id="清洗"><a href="#清洗" class="headerlink" title="清洗"></a>清洗</h3><p>连续的数字统一清洗为连续的0，单位也要统一</p>
-<p>长短句：</p>
-<ul>
-<li>有不少长句是因为地址过长，所以我们会提取很长的地址，来做数据增广，让模型更多的学会句式，而忽略长地址的影响</li>
-<li>有不少长句是因为用户不满，抱怨的句子，这时需要通过顶层分类器，或者任务型场景里的分类器，分到“抱怨”这个类别，然后转人工</li>
-<li>还有一些长句，我们会人工进行压缩，只取有用的部分</li>
-</ul>
-<p>问题：</p>
-<ul>
-<li>很多非常长的句子，哪怕不是抱怨，我们也会转人工</li>
-<li>几次说一个问题，或者对上一个问题追问，我们在FAQ中目前无法解决。比如“我要寄快递”这句话我们回复完了后，如果用户再说一句“加急”，如果是在FAQ中，我们会不能够回答“加急”，会让用户再次组织语言，或者转人工</li>
-</ul>
-<h3 id="数据扩充"><a href="#数据扩充" class="headerlink" title="数据扩充"></a>数据扩充</h3><p>扩充数据大部分是通过人工术语扩充，即针对一个标准问题，我们要扩充为不同的句式问法。</p>
-<ul>
-<li>句式/问法扩充</li>
-<li>句子顺序交换</li>
-<li>过采样</li>
-</ul>
-<h3 id="词向量"><a href="#词向量" class="headerlink" title="词向量"></a>词向量</h3><p>使用的是jieba分词（jieba分词的逻辑是什么样的？效果为什么这么好？）</p>
-<p>经过比较后，我们选用公司内部领域内的词向量，效果要比word2vec要好，OOV会少一些，而且不允许词向量微调效果要更好。词向量的效果也比字向量的好。</p>
-<p>什么模型中比较的结果？每个模型都是这个比较结果吗？</p>
-<ul>
-<li>初步设置了一个baseline，用的孪生网络 LSTM + cosine similarty</li>
-<li>在这个模型中比较的结果，然后应用到后面的模型中</li>
-</ul>
-<p>word2vec向量如何得到的</p>
-<ul>
-<li>有 skip-gram 和 CBOW 两种</li>
-</ul>
-<p>训练加速方法的逻辑是什么</p>
-<ul>
-<li>负采样<ul>
-<li>取一个正样本，5个负样本，计算得到正样本和不得到负样本的概率</li>
-<li>负样本是通过词频大小来取的</li>
-<li>num_word/total_num_word 来得到每个词的词频占比，然后在[0, 1]中随机选择数字</li>
-</ul>
-</li>
-<li>分层 softmax<ul>
-<li>哈夫曼树</li>
-<li>最小路径权重（词频）</li>
-</ul>
-</li>
-</ul>
-<p>用的什么训练</p>
-<ul>
-<li>gensim.word2vec</li>
-</ul>
-<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>800多个类是怎么分的？</p>
-<ul>
-<li>人工分的</li>
-<li>很大程度上依赖于答案，所以业务同事直接给的类别和答案</li>
-</ul>
-<p>数据是怎么样的？</p>
-<ul>
-<li>ID，标准样本，答案，类别</li>
-<li>样本最后都按ID以向量的形式储存，选定匹配的序号后，可以直接从取出向量计算</li>
-<li>只需要把用户的输入重新过一遍网络来获取他的向量</li>
-</ul>
-<p>用了哪些模型</p>
-<ul>
-<li>SVM</li>
-<li>LSTM + attention，[a, a_chapeau, a-a_chapeau, a*a_chapeau] + LSTM + CNN =&gt; “分类” and “fc =&gt; similary”</li>
-<li>am-softmax + LSTM</li>
-</ul>
-<p>分别效果如何</p>
-<ul>
-<li>am-softmax + LSTM 的效果最好</li>
-<li>SVM次之</li>
-<li>LSTM + attention 最差</li>
-</ul>
-<p>为什么</p>
-<ul>
-<li>SVM本身分类效果就很好，配合if-idf + word2vec的特征提取，泛化效果特别好，但是需要大量内存和时间</li>
-<li>为了加强句子的匹配，我们尝试了更复杂的模型</li>
-<li>LSTM + attention模型过拟合很严重，而且泛化能力较弱，分类效果没有SVM好，最后匹配结果的准确度也下降很多</li>
-<li>最后我们尝试了 word2vec + am-softmax + LSTM，既可以分类，也可以匹配，还可以进行多标签分类，结果也达到了期望的效果<ul>
-<li>我们真正要做的是特征提取模型</li>
-<li>用分类作为训练方案</li>
-<li>最后对模型提取的特征进行对比排序</li>
-<li>使用 triplet-loss 增加的类间距，能更好的找到阈，很好的增加了直答的比例，但是对于一些多标签的分类，</li>
-</ul>
-</li>
-</ul>
-<p>有没有别的模型的想法？还有哪些可以改进的地方？</p>
-<p>重难点是什么？</p>
-<ul>
-<li>SVM虽然分类效果很好，但是可以用来做匹配的信息过少（只有 word embedding），或者需要重新设计一个模型计算相似度，比较复杂</li>
-<li>第二种方法更适合文本的直接匹配，不适合先分类+匹配的做法，且计算量很大</li>
-<li>am-softmax 主要是在正负样本的选择上</li>
-</ul>
-<p>如何进行的错误样本分析？</p>
-<p>是否引入了熵</p>
-<ul>
-<li>二分类器，也可以引入熵</li>
-<li>二分类器，还可以是多标签的</li>
-</ul>
-<p>如何处理多意图问题/引入了多标签吗？sigmoid</p>
-<ul>
-<li>本身是一个二分类问题</li>
-<li>在计算的过程中，就是看当前样本是正样本还是负样本</li>
-<li>所以相当于有800多个二分类器？？？</li>
-</ul>
-<p>整体准确率要达到多少？</p>
-<p>是否使用了学习曲线</p>
-<p>有没有过拟合</p>
-<ul>
-<li>有</li>
-</ul>
-<p>loss如何计算的</p>
-<ul>
-<li>用d_an,d_ap,y，计算出am-softmax</li>
-</ul>
-<p>是否用了shuffle</p>
-<ul>
-<li>用了</li>
-</ul>
-<p>dropout多少</p>
-<ul>
-<li>0.4（原文0.5）</li>
-</ul>
-<p>为什么加入高斯噪音？</p>
-<ul>
-<li>model文件里Model的self.noise</li>
-</ul>
-<p>triplet-loss里的距离为什么用欧式距离？</p>
-<ul>
-<li>计算两个句子的距离用的是欧式距离</li>
-<li>triplet文件里TripletLoss的dist_mat=euclidean_dist</li>
-</ul>
-<p>如何计算相似度的？</p>
-<ul>
-<li>先用欧式距离计算d_an,d_ap，加入y计算他们的am-softmax</li>
-<li>相似度就是用的欧式距离</li>
-</ul>
-<p>还可以怎样计算相似度</p>
-<ul>
-<li>内积</li>
-<li>余弦</li>
-<li>曼哈顿</li>
-<li>多层感知器网络（MLP）</li>
-</ul>
-<p>为什么相似度用的欧式距离？有没有尝试过别的方法？</p>
-<ul>
-<li>最先尝试的内积和余弦，但是效果没有欧式距离好</li>
-<li>后来也尝试过曼哈顿</li>
-</ul>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>覆盖率，成功率，减少客服80%咨询时间，平均降低人工咨询市场50s</p>
-<h3 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h3><p>样本不均衡</p>
-<ul>
-<li>数据增广</li>
-<li>采样<ul>
-<li>过采样：复制 + SMOTE过采样 + 加入噪音等生成数据</li>
-<li>欠采样：删除数据 + 将多样本类的样本分为N分，只取每份的中心数据作为样本</li>
-</ul>
-</li>
-<li>loss权重调节</li>
-<li>组合集成方法，组合多个分类器，每个分类器每个类的数据是随机分成的<strong>少数类数据的量</strong></li>
-<li>特征选择（CNN其实就是做了特征选择）</li>
-</ul>
-<p>准确率如何提升</p>
-<ul>
-<li>错误样本分析<ul>
-<li>数据清洗，特征提取，比如“？”</li>
-</ul>
-</li>
-<li>改善模型</li>
-<li>改善loss使用am-softmax</li>
-<li>引入熵</li>
-<li>多标签分类</li>
-</ul>
-<p>多意图分类+错分类，如何解决？</p>
-<ul>
-<li>多标签分类</li>
-<li>使用sigmoidcrossentropywithlogits</li>
-<li>引入熵</li>
-<li>引入am-softmax</li>
-</ul>
-<p>过拟合</p>
-<ul>
-<li>dropout</li>
-<li>early stopping</li>
-<li>shuffle</li>
-</ul>
-<p>上线后的问题？</p>
-<ul>
-<li>新的术语，</li>
-<li>不存在FAQ里的问题，</li>
-<li>闲聊，</li>
-<li>抱怨，</li>
-<li>多轮（信息分几次发送）</li>
-<li>未登录词</li>
-</ul>
-<h3 id="还有哪些可以改进的点"><a href="#还有哪些可以改进的点" class="headerlink" title="还有哪些可以改进的点"></a>还有哪些可以改进的点</h3><ul>
-<li>多轮，这是个大问题（在FAQ也做信息提取，保存信息）</li>
-<li>更好的做长句的扩充和数据收集，让模型对长句的泛化能力更好，比如对长句的判别（加attention+cnn）</li>
-<li>阈值问题，并不一定会游泳，但是会想尝试使用交叉法来看一下结果</li>
-</ul>
-<h3 id="自己觉得骄傲的点有哪些"><a href="#自己觉得骄傲的点有哪些" class="headerlink" title="自己觉得骄傲的点有哪些"></a>自己觉得骄傲的点有哪些</h3>]]></content>
-      <categories>
-        <category>工作总结</category>
-      </categories>
-      <tags>
-        <tag>智能客服</tag>
-        <tag>CNN</tag>
-        <tag>stacking</tag>
-        <tag>LR</tag>
-        <tag>SVM</tag>
       </tags>
   </entry>
   <entry>
@@ -1220,6 +1031,251 @@
       </tags>
   </entry>
   <entry>
+    <title>面试</title>
+    <url>/2019/12/08/interview/%E9%9D%A2%E8%AF%95/</url>
+    <content><![CDATA[<p>n个无序数组，求top K</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">TopK</span><span class="params">(listArray, K)</span>:</span></span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(listArray)):</span><br><span class="line">        <span class="keyword">if</span> k + len(listArray[i]) &gt; K:</span><br><span class="line">            listK += listArray[i][:K-k]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
+      <tags>
+        <tag>智能客服</tag>
+        <tag>CNN</tag>
+        <tag>stacking</tag>
+        <tag>LR</tag>
+        <tag>SVM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面试感触</title>
+    <url>/2019/12/08/interview/%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/</url>
+    <content><![CDATA[<h2 id="恒昌第三轮面试"><a href="#恒昌第三轮面试" class="headerlink" title="恒昌第三轮面试"></a>恒昌第三轮面试</h2><p>今年下午两点和恒昌第三轮面试完。</p>
+<p>面试官整体给我的感觉是一种艺术家气息，举例用的是文艺复兴时期绘画的例子，他说那时候有钱人才能用蓝色，特殊人，比如天使才可以用蓝色还说那时候画家并不是创作画家，而是甲方要什么，画家就要一点不差的按照他们的要求来画，和我们现在的算法工程师一样，都是工人，并不是工程师。工程师是可以从现实中抽象建模的人。但这并不是一个人题，因为凡事都是需要经历这样一个过程的，从一点一点的模仿，到熟练，再到创新。我们工程目前还处于一个比较笨的状态，还是工人角色，远没到创新的时候，而且现在人工智能的浪潮也再一次落下，我们已经在尾声，如果以后我出去说自己是做深度学习的，可能就找不到工作了。</p>
+<p>听了它说的，我越来越觉得，真的不同的人有不同的看法，他会问我是否学过scala，但是爱奇艺的面试官会说他不会因为我会Hadoop或者不会Hadoop而决定是否录用我。</p>
+<p>虽然两者并不矛盾，但是凸显了他们对这个应聘者、甚至这个领域工作者的一个不同的要求和需求。</p>
+]]></content>
+      <categories>
+        <category>La Vie</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>FAQ</title>
+    <url>/2019/12/08/interview/FAQ/</url>
+    <content><![CDATA[<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为了降本增效，我们规划了八大任务型场景，并以FAQ为辅，构建智能在线客服。总场景覆盖率是87.6%，其中FAQ覆盖率为16.7%</p>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>｜顶层分类器｜ =&gt; ｜FAQ｜+｜任务型场景｜+｜闲聊｜</p>
+<h2 id="FAQ-1"><a href="#FAQ-1" class="headerlink" title="FAQ"></a>FAQ</h2><p>出去任务型囊括的几大场景外，还有一些并不足以构建场景，但是用户会有疑问的一些问题，我们通过FAQ进行回答。</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>总共大概9W数据，3W原始数据，5.6W扩充数据，总共800多个类别。扩充数据大部分是通过人工术语扩充，即针对一个标准问题，我们要扩充为不同的句式问法。<br>测试集在扩充数据以前，按分布取的8000样本。</p>
+<p>（吴恩达的那个测试集数量决定的方法，在这里不太实用，因为数据不够，所以直接取25%也是不错的选择，5%是照顾一下样本少的类别）</p>
+<h3 id="清洗"><a href="#清洗" class="headerlink" title="清洗"></a>清洗</h3><p>连续的数字统一清洗为连续的0，单位也要统一</p>
+<p>长短句：</p>
+<ul>
+<li>有不少长句是因为地址过长，所以我们会提取很长的地址，来做数据增广，让模型更多的学会句式，而忽略长地址的影响</li>
+<li>有不少长句是因为用户不满，抱怨的句子，这时需要通过顶层分类器，或者任务型场景里的分类器，分到“抱怨”这个类别，然后转人工</li>
+<li>还有一些长句，我们会人工进行压缩，只取有用的部分</li>
+</ul>
+<p>问题：</p>
+<ul>
+<li>很多非常长的句子，哪怕不是抱怨，我们也会转人工</li>
+<li>几次说一个问题，或者对上一个问题追问，我们在FAQ中目前无法解决。比如“我要寄快递”这句话我们回复完了后，如果用户再说一句“加急”，如果是在FAQ中，我们会不能够回答“加急”，会让用户再次组织语言，或者转人工</li>
+</ul>
+<h3 id="数据扩充"><a href="#数据扩充" class="headerlink" title="数据扩充"></a>数据扩充</h3><p>扩充数据大部分是通过人工术语扩充，即针对一个标准问题，我们要扩充为不同的句式问法。</p>
+<ul>
+<li>句式/问法扩充</li>
+<li>句子顺序交换</li>
+<li>过采样</li>
+</ul>
+<h3 id="词向量"><a href="#词向量" class="headerlink" title="词向量"></a>词向量</h3><p>使用的是jieba分词（jieba分词的逻辑是什么样的？效果为什么这么好？）</p>
+<p>经过比较后，我们选用公司内部领域内的词向量，效果要比word2vec要好，OOV会少一些，而且不允许词向量微调效果要更好。词向量的效果也比字向量的好。</p>
+<p>什么模型中比较的结果？每个模型都是这个比较结果吗？</p>
+<ul>
+<li>初步设置了一个baseline，用的孪生网络 LSTM + cosine similarty</li>
+<li>在这个模型中比较的结果，然后应用到后面的模型中</li>
+</ul>
+<p>word2vec向量如何得到的</p>
+<ul>
+<li>有 skip-gram 和 CBOW 两种</li>
+</ul>
+<p>训练加速方法的逻辑是什么</p>
+<ul>
+<li>负采样<ul>
+<li>取一个正样本，5个负样本，计算得到正样本和不得到负样本的概率</li>
+<li>负样本是通过词频大小来取的</li>
+<li>num_word/total_num_word 来得到每个词的词频占比，然后在[0, 1]中随机选择数字</li>
+</ul>
+</li>
+<li>分层 softmax<ul>
+<li>哈夫曼树</li>
+<li>最小路径权重（词频）</li>
+</ul>
+</li>
+</ul>
+<p>用的什么训练</p>
+<ul>
+<li>gensim.word2vec</li>
+</ul>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>800多个类是怎么分的？</p>
+<ul>
+<li>人工分的</li>
+<li>很大程度上依赖于答案，所以业务同事直接给的类别和答案</li>
+</ul>
+<p>数据是怎么样的？</p>
+<ul>
+<li>ID，标准样本，答案，类别</li>
+<li>样本最后都按ID以向量的形式储存，选定匹配的序号后，可以直接从取出向量计算</li>
+<li>只需要把用户的输入重新过一遍网络来获取他的向量</li>
+</ul>
+<p>用了哪些模型</p>
+<ul>
+<li>SVM</li>
+<li>LSTM + attention，[a, a_chapeau, a-a_chapeau, a*a_chapeau] + LSTM + CNN =&gt; “分类” and “fc =&gt; similary”</li>
+<li>am-softmax + LSTM</li>
+</ul>
+<p>分别效果如何</p>
+<ul>
+<li>am-softmax + LSTM 的效果最好</li>
+<li>SVM次之</li>
+<li>LSTM + attention 最差</li>
+</ul>
+<p>为什么</p>
+<ul>
+<li>SVM本身分类效果就很好，配合if-idf + word2vec的特征提取，泛化效果特别好，但是需要大量内存和时间</li>
+<li>为了加强句子的匹配，我们尝试了更复杂的模型</li>
+<li>LSTM + attention模型过拟合很严重，而且泛化能力较弱，分类效果没有SVM好，最后匹配结果的准确度也下降很多</li>
+<li>最后我们尝试了 word2vec + am-softmax + LSTM，既可以分类，也可以匹配，还可以进行多标签分类，结果也达到了期望的效果<ul>
+<li>我们真正要做的是特征提取模型</li>
+<li>用分类作为训练方案</li>
+<li>最后对模型提取的特征进行对比排序</li>
+<li>使用 triplet-loss 增加的类间距，能更好的找到阈，很好的增加了直答的比例，但是对于一些多标签的分类，</li>
+</ul>
+</li>
+</ul>
+<p>有没有别的模型的想法？还有哪些可以改进的地方？</p>
+<p>重难点是什么？</p>
+<ul>
+<li>SVM虽然分类效果很好，但是可以用来做匹配的信息过少（只有 word embedding），或者需要重新设计一个模型计算相似度，比较复杂</li>
+<li>第二种方法更适合文本的直接匹配，不适合先分类+匹配的做法，且计算量很大</li>
+<li>am-softmax 主要是在正负样本的选择上</li>
+</ul>
+<p>如何进行的错误样本分析？</p>
+<p>是否引入了熵</p>
+<ul>
+<li>二分类器，也可以引入熵</li>
+<li>二分类器，还可以是多标签的</li>
+</ul>
+<p>如何处理多意图问题/引入了多标签吗？sigmoid</p>
+<ul>
+<li>本身是一个二分类问题</li>
+<li>在计算的过程中，就是看当前样本是正样本还是负样本</li>
+<li>所以相当于有800多个二分类器？？？</li>
+</ul>
+<p>整体准确率要达到多少？</p>
+<p>是否使用了学习曲线</p>
+<p>有没有过拟合</p>
+<ul>
+<li>有</li>
+</ul>
+<p>loss如何计算的</p>
+<ul>
+<li>用d_an,d_ap,y，计算出am-softmax</li>
+</ul>
+<p>是否用了shuffle</p>
+<ul>
+<li>用了</li>
+</ul>
+<p>dropout多少</p>
+<ul>
+<li>0.4（原文0.5）</li>
+</ul>
+<p>为什么加入高斯噪音？</p>
+<ul>
+<li>model文件里Model的self.noise</li>
+</ul>
+<p>triplet-loss里的距离为什么用欧式距离？</p>
+<ul>
+<li>计算两个句子的距离用的是欧式距离</li>
+<li>triplet文件里TripletLoss的dist_mat=euclidean_dist</li>
+</ul>
+<p>如何计算相似度的？</p>
+<ul>
+<li>先用欧式距离计算d_an,d_ap，加入y计算他们的am-softmax</li>
+<li>相似度就是用的欧式距离</li>
+</ul>
+<p>还可以怎样计算相似度</p>
+<ul>
+<li>内积</li>
+<li>余弦</li>
+<li>曼哈顿</li>
+<li>多层感知器网络（MLP）</li>
+</ul>
+<p>为什么相似度用的欧式距离？有没有尝试过别的方法？</p>
+<ul>
+<li>最先尝试的内积和余弦，但是效果没有欧式距离好</li>
+<li>后来也尝试过曼哈顿</li>
+</ul>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>覆盖率，成功率，减少客服80%咨询时间，平均降低人工咨询市场50s</p>
+<h3 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h3><p>样本不均衡</p>
+<ul>
+<li>数据增广</li>
+<li>采样<ul>
+<li>过采样：复制 + SMOTE过采样 + 加入噪音等生成数据</li>
+<li>欠采样：删除数据 + 将多样本类的样本分为N分，只取每份的中心数据作为样本</li>
+</ul>
+</li>
+<li>loss权重调节</li>
+<li>组合集成方法，组合多个分类器，每个分类器每个类的数据是随机分成的<strong>少数类数据的量</strong></li>
+<li>特征选择（CNN其实就是做了特征选择）</li>
+</ul>
+<p>准确率如何提升</p>
+<ul>
+<li>错误样本分析<ul>
+<li>数据清洗，特征提取，比如“？”</li>
+</ul>
+</li>
+<li>改善模型</li>
+<li>改善loss使用am-softmax</li>
+<li>引入熵</li>
+<li>多标签分类</li>
+</ul>
+<p>多意图分类+错分类，如何解决？</p>
+<ul>
+<li>多标签分类</li>
+<li>使用sigmoidcrossentropywithlogits</li>
+<li>引入熵</li>
+<li>引入am-softmax</li>
+</ul>
+<p>过拟合</p>
+<ul>
+<li>dropout</li>
+<li>early stopping</li>
+<li>shuffle</li>
+</ul>
+<p>上线后的问题？</p>
+<ul>
+<li>新的术语，</li>
+<li>不存在FAQ里的问题，</li>
+<li>闲聊，</li>
+<li>抱怨，</li>
+<li>多轮（信息分几次发送）</li>
+<li>未登录词</li>
+</ul>
+<h3 id="还有哪些可以改进的点"><a href="#还有哪些可以改进的点" class="headerlink" title="还有哪些可以改进的点"></a>还有哪些可以改进的点</h3><ul>
+<li>多轮，这是个大问题（在FAQ也做信息提取，保存信息）</li>
+<li>更好的做长句的扩充和数据收集，让模型对长句的泛化能力更好，比如对长句的判别（加attention+cnn）</li>
+<li>阈值问题，并不一定会游泳，但是会想尝试使用交叉法来看一下结果</li>
+</ul>
+<h3 id="自己觉得骄傲的点有哪些"><a href="#自己觉得骄傲的点有哪些" class="headerlink" title="自己觉得骄傲的点有哪些"></a>自己觉得骄傲的点有哪些</h3>]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
+      <tags>
+        <tag>智能客服</tag>
+        <tag>CNN</tag>
+        <tag>stacking</tag>
+        <tag>LR</tag>
+        <tag>SVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>梯度消失和梯度爆炸</title>
     <url>/2019/12/07/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8/</url>
     <content><![CDATA[<h2 id="什么是梯度消失-梯度爆炸"><a href="#什么是梯度消失-梯度爆炸" class="headerlink" title="什么是梯度消失/梯度爆炸"></a>什么是梯度消失/梯度爆炸</h2><p>梯度消失或梯度爆炸是指在神经网络权重更新的反向传播中，$\frac{\partial Loss}{\partial W}$过小或过大的现象</p>
@@ -1393,121 +1449,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Chitchat</title>
-    <url>/2019/01/16/chitchat/</url>
-    <content><![CDATA[<h2 id="Chitchat"><a href="#Chitchat" class="headerlink" title="Chitchat"></a>Chitchat</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>chitchat持续的时间很长了。每次进步不大，但是至少都在前进。因为持续时间长，每次想法和改动的地方比较多，也是学到了不少东西，想要把这些都记录下来，所以开了这个文档。</p>
-<p>chitchat 目前已经自己改进到v1.5了。虽然每一次改动的内容并不大，但是每一次都是一个尝试。</p>
-<a id="more"></a>
-
-<h4 id="到目前为止，每个version的改进简介"><a href="#到目前为止，每个version的改进简介" class="headerlink" title="到目前为止，每个version的改进简介"></a>到目前为止，每个version的改进简介</h4><ul>
-<li><p>v1.1 是所有以前的版本，但是因为隔的太久，当时又没有记录，所以都不太记得了。</p>
-</li>
-<li><p>v1.2 是自己重构代码，除此之外，和第一个版本的差别不大。</p>
-</li>
-<li><p>v1.3 是在<code>seq2seq</code>的基础上加入了<code>bert</code>的<code>get_pooled_output</code>。</p>
-</li>
-<li><p>v1.4</p>
-<ul>
-<li>v1.4 这个版本在v1.2版本上改变了loss。因为在同时训练了v1.3版本和v1.2版本后进行比较，发现相同时间内训练出来的结果（因为版本v1.3中加入了<code>bert</code>，所以相同时间内训练出来的<code>epoch</code>数相差很大），v1.2版本的更好。因为考虑到时间成本，所以v1.4版本是在v1.2版本的基础上进行改进的。具体内容可以看v1.4的<code>README.md</code>。</li>
-<li>v1.4里也加入了一些“问候”，“再见”等的规则。</li>
-</ul>
-</li>
-<li><p>v1.5 <code>seq2seq</code>中在<code>train</code>时，一般用上一步正确的输出作为下一步的输入，但是这里改成用上一步真实的输出作为下一步的输入。具体内容可见这个文件夹下的《变形seq2seq，即在training时，上一步的输出成为下一步的输入》</p>
-</li>
-<li><p>又把<code>learning_rate</code>调小了，在训练了100个epoch，但是结果还是很糟糕。</p>
-</li>
-<li><p>v1.6 尝试在v1.4的基础上把<code>layer</code>从3改成6</p>
-</li>
-</ul>
-<h3 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h3><p>闲聊原本数据是120万左右，后来经过数据清洗后，剩下80万左右的数据。<br>数据清洗：</p>
-<ol>
-<li>删除重复对话</li>
-<li>将多轮对话剪切成单轮对话</li>
-<li>删除回复过短的回答，或者不需要的回答/问题（如 字符，笑脸符等）</li>
-<li>删除过长对话（30字以内）</li>
-<li>统一回复（如 哈哈哈哈哈哈 =&gt; 哈哈哈哈哈，如 我不知道啊，哈哈哈 =&gt; 我不知道啊）</li>
-</ol>
-<h4 id="流程设计"><a href="#流程设计" class="headerlink" title="流程设计"></a>流程设计</h4><ol>
-<li>“问候”和“再见”等，是用规则写的</li>
-<li>如果没有匹配到“问候”或者“再见”，就会进入到模型生成回复</li>
-<li>模型是seq2seq+attention</li>
-<li>attention是哪个attention，对结果影响并不大</li>
-<li>把数据分为几块，比如5-10个字的句子一起，10-20个字的句子一起，等等，然后让句子从短到长进行输入，一是让训练更稳定，二是能一定程度上加快速度</li>
-</ol>
-<h4 id="模型问题"><a href="#模型问题" class="headerlink" title="模型问题"></a>模型问题</h4><ol>
-<li>无意义回答过多 =&gt; 加入anti-LM</li>
-<li>相似回答过多 =&gt; 加入余弦相似到loss中，有一定的效果，但是很难统计，因为可能对某个测试集，效果明显，对某些测试集，效果就不是那么明显</li>
-<li>简单问题正确回答的百分比 =&gt; “问候”等对话进行了规则处理</li>
-<li>过于简短回答的百分比 =&gt; 数据集上进行了处理</li>
-</ol>
-<h5 id="anti-LM"><a href="#anti-LM" class="headerlink" title="anti-LM"></a>anti-LM</h5><p>通常情况下，我们的损失函数loss为${\hat T}=\underset{T}{argmax} {logp(T|S)}$。从损失函数我们可以看出，在给定输入$S$的情况下，模型会选择输出概率最大的句子，这回倾向输出出现频率大的句子，通常这些句子为无意义句子。<br>所以我们引入互信息作为新的目标函数，以两个句子的相关性作为度量标准。互信息公式如下：<br>$log \frac{p(S|T)}{p(S)p(T)}$<br>所以表达式可以写成</p>
-<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\log p(T)-\log p(S)}$</p>
-<p>但因为$S$为输入，$\log p(S)$是固定的，所以表达式也为</p>
-<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\log p(T)}$</p>
-<p>对惩罚项$-\log (T)$前加入一个参数，即为</p>
-<p>${\hat T}=\underset{T}{argmax} {logp(T|S)-\lambda logp(T)}$</p>
-<p>我们发现虽然目标函数改为互信息MMI，但是损失函数最大的改变就是加入了$-log(T)$，而$p(T)$表示一个句子出现的概率，所以这个损失函数其实是加了一个对出现概率大的句子的惩罚，$\lambda$就是那个惩罚系数。</p>
-<p>惩罚项$-logp(T)$中的</p>
-<p>$p(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
-<p>在句子$T$的生成中，第一个字$t_1$的生成一定程度上决定了后面字$t_k$的生成，所以$t_1$相对于$t_k$而言，对句子$T$的影响更大。又因为如果我们直接让</p>
-<p>$p(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
-<p>实际生成的句子可能会更容易有语法问题。所以我们取了一个折中的方法，让</p>
-<p>$U(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1}) \cdot g(k)$ </p>
-<p>with<br>$$ g(k)=<br>  \begin{cases}<br>  1 &amp; {if k \leq \gamma} \<br>  0 &amp; {if k \geq \gamma}<br>  \end{cases}<br>  $$<br>取代$p(T)$，使得损失函数为</p>
-<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\lambda \log U(T)}$</p>
-<p>另外实际应用中，还加入了响应句子长度的因素$\gamma N_t$，作为模型相应的依据，因此将目标函数修正如下</p>
-<p>$Score(T) = p(T|S)-\lambda U(T) + \gamma N_t$</p>
-<p>所以损失函数应该是</p>
-<p>$\underset{T}{argmin} {-\log p(T|S)+\lambda \log p(T)-\log (\gamma N_t)}$</p>
-<h5 id="anti-bidi"><a href="#anti-bidi" class="headerlink" title="anti-bidi"></a>anti-bidi</h5><p>由上面的推导，我们从MMI得到</p>
-<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\lambda \log p(T)}$</p>
-<p>我们又知道</p>
-<p>$\log p(T)=\log p(T|S) + \log p(S) - \log p(S|T)$</p>
-<p>带入得到</p>
-<p>${\hat T}=\underset{T}{argmax} {(1-\lambda)\log p(T|S)+\lambda \log p(S|T)}$</p>
-<p>因为$p(S|T)$需要通过生成的$T$来再次通过训练好的seq2seq模型再计算一遍，计算量特别大，所以我们通过beam search只取前$N$个$T$，比如200个，再计算$S$。</p>
-<p>但是在使用beam search的时候，我们知道，beam search有很多输出只是一两个字或者只是符号发生了变化，减少了取$N$个不同输出$T$的意义，因为本身输出句子的多样性不能满足这里的要求，所以我们对beam search进行了更改。</p>
-<p>一般beam search在到下一节点时，我们是通过混合所有父节点的字节点，统一进行比较，然后取整体概率最大的$N$个选择，这里我们更改为，针对每一个父节点，我们先对其对应的字节点按先后顺序将其概率从上往下减去一个越来越大的数，使得我们能更好的保存更多不同的父节点，自然句子的多样性也就增加了。具体例子见下图<img src="/public/images/image/beam_search_anti_bidi.png" alt="beamsearch_antibidi"><br>另外，也在anti-bidi中，做了同anti-LM相同的处理，增加了回复长度的影响。</p>
-<p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句与回答的余弦相似性来减少重复问题的回答</p>
-<h5 id="anti-bidi-VS-anti-LM"><a href="#anti-bidi-VS-anti-LM" class="headerlink" title="anti-bidi VS anti-LM"></a>anti-bidi VS anti-LM</h5><ol>
-<li>两者虽然都是使用的MMI，但是使用的公式不一样，背后的逻辑原理也不一样</li>
-<li>anti-bidi比anti-LM要更耗时，因为他要经过两次模型，且非常依赖于beam search生成的句子的多样性</li>
-</ol>
-<h5 id="anti-LM的具体实现"><a href="#anti-LM的具体实现" class="headerlink" title="anti-LM的具体实现"></a>anti-LM的具体实现</h5><p>如何计算P(T)<br>首先应该意识到P(T)应该是一个语言模型学习出来的结果，而不简单的是联合概率的乘积。那么如何得到这个模型学习出来的结果呢？在实现时需要在decoder的输入端输入一个全零的初始化状态，具体做法可以输入一句话长度的pad标志符，让decoder生成结果，得到P(T)</p>
-<p>详见<code>just_another_seq2seq_master</code>里<code>train-anti.py</code>中第86～88行和第98～101行。</p>
-<p>下面代码见前三行和中间的<code>add_loss</code>：</p>
-<ol>
-<li>前三行代码：输入为一定维度的PAD</li>
-<li><code>add_loss</code>计算的是输入为PAD时(即初始状态下)的输出，即$P(T)$</li>
-<li><code>add_loss *= -0.5</code>表示每次计算完$P(T)$后乘以$-0.5$，即$\lambda=0.5$</li>
-<li>我们没有用$U(T)$，但是并没有明显输出语句不通顺的情况</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dummy_encoder_inputs = np.array([</span><br><span class="line">    np.array([WordSequence.PAD]) <span class="keyword">for</span> _ <span class="keyword">in</span> range(batch_size)])</span><br><span class="line">dummy_encoder_inputs_lengths = np.array([<span class="number">1</span>] * batch_size)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(<span class="number">1</span>, n_epoch + <span class="number">1</span>):</span><br><span class="line">    costs = []</span><br><span class="line">    bar = tqdm(range(steps), total=steps,</span><br><span class="line">                desc=<span class="string">'epoch &#123;&#125;, loss=0.000000'</span>.format(epoch))</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> bar:</span><br><span class="line">        x, xl, y, yl = next(flow)</span><br><span class="line">        x = np.flip(x, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        add_loss = model.train(sess,</span><br><span class="line">                                dummy_encoder_inputs,</span><br><span class="line">                                dummy_encoder_inputs_lengths,</span><br><span class="line">                                y, yl, loss_only=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        add_loss *= <span class="number">-0.5</span></span><br><span class="line">        <span class="comment"># print(x, y)</span></span><br><span class="line">        cost, lr = model.train(sess, x, xl, y, yl,</span><br><span class="line">                                return_lr=<span class="literal">True</span>, add_loss=add_loss)</span><br><span class="line">        costs.append(cost)</span><br><span class="line">        bar.set_description(<span class="string">'epoch &#123;&#125; loss=&#123;:.6f&#125; lr=&#123;:.6f&#125;'</span>.format(</span><br><span class="line">            epoch,</span><br><span class="line">            np.mean(costs),</span><br><span class="line">            lr</span><br><span class="line">        ))</span><br><span class="line"></span><br><span class="line">    model.save(sess, save_path)</span><br></pre></td></tr></table></figure>
-
-<h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><h4 id="anti-lm"><a href="#anti-lm" class="headerlink" title="anti-lm"></a>anti-lm</h4><h5 id="最大互信息"><a href="#最大互信息" class="headerlink" title="最大互信息"></a>最大互信息</h5><h4 id="attention-LSTM"><a href="#attention-LSTM" class="headerlink" title="attention+LSTM"></a>attention+LSTM</h4><h5 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h5><h5 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h5><h4 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h4><p>闲聊的评估是带有非常大的主观性的，而且场景不同，用户不同，对相同结果的满意度也会不一样，所以我们对模型的评估希望从更客观、更基础的地方来进行评估和改进：</p>
-<ol>
-<li>无意义回答的频率/百分比</li>
-<li>相似回答的频率/百分比</li>
-<li>正确回答的百分比</li>
-<li>简单问题正确回答的百分比</li>
-<li>相同问题，是否能给出相同答案</li>
-<li>过于简短回答的百分比</li>
-<li>对话内容大多无意义，无法深入交谈具体事情</li>
-</ol>
-<h4 id="努力方向"><a href="#努力方向" class="headerlink" title="努力方向"></a>努力方向</h4><ol>
-<li>模型优化</li>
-<li>数据集质量优化+数据集扩充</li>
-</ol>
-]]></content>
-      <categories>
-        <category>工作总结</category>
-      </categories>
-      <tags>
-        <tag>chitchat</tag>
-        <tag>seq2seq</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker</title>
     <url>/2019/01/16/docker/</url>
     <content><![CDATA[<h2 id="docker-挂载"><a href="#docker-挂载" class="headerlink" title="docker 挂载"></a>docker 挂载</h2><p>前面是本地文件，后面是镜像文件：</p>
@@ -1632,6 +1573,121 @@
       </categories>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Chitchat</title>
+    <url>/2019/01/16/chitchat/</url>
+    <content><![CDATA[<h2 id="Chitchat"><a href="#Chitchat" class="headerlink" title="Chitchat"></a>Chitchat</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>chitchat持续的时间很长了。每次进步不大，但是至少都在前进。因为持续时间长，每次想法和改动的地方比较多，也是学到了不少东西，想要把这些都记录下来，所以开了这个文档。</p>
+<p>chitchat 目前已经自己改进到v1.5了。虽然每一次改动的内容并不大，但是每一次都是一个尝试。</p>
+<a id="more"></a>
+
+<h4 id="到目前为止，每个version的改进简介"><a href="#到目前为止，每个version的改进简介" class="headerlink" title="到目前为止，每个version的改进简介"></a>到目前为止，每个version的改进简介</h4><ul>
+<li><p>v1.1 是所有以前的版本，但是因为隔的太久，当时又没有记录，所以都不太记得了。</p>
+</li>
+<li><p>v1.2 是自己重构代码，除此之外，和第一个版本的差别不大。</p>
+</li>
+<li><p>v1.3 是在<code>seq2seq</code>的基础上加入了<code>bert</code>的<code>get_pooled_output</code>。</p>
+</li>
+<li><p>v1.4</p>
+<ul>
+<li>v1.4 这个版本在v1.2版本上改变了loss。因为在同时训练了v1.3版本和v1.2版本后进行比较，发现相同时间内训练出来的结果（因为版本v1.3中加入了<code>bert</code>，所以相同时间内训练出来的<code>epoch</code>数相差很大），v1.2版本的更好。因为考虑到时间成本，所以v1.4版本是在v1.2版本的基础上进行改进的。具体内容可以看v1.4的<code>README.md</code>。</li>
+<li>v1.4里也加入了一些“问候”，“再见”等的规则。</li>
+</ul>
+</li>
+<li><p>v1.5 <code>seq2seq</code>中在<code>train</code>时，一般用上一步正确的输出作为下一步的输入，但是这里改成用上一步真实的输出作为下一步的输入。具体内容可见这个文件夹下的《变形seq2seq，即在training时，上一步的输出成为下一步的输入》</p>
+</li>
+<li><p>又把<code>learning_rate</code>调小了，在训练了100个epoch，但是结果还是很糟糕。</p>
+</li>
+<li><p>v1.6 尝试在v1.4的基础上把<code>layer</code>从3改成6</p>
+</li>
+</ul>
+<h3 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h3><p>闲聊原本数据是120万左右，后来经过数据清洗后，剩下80万左右的数据。<br>数据清洗：</p>
+<ol>
+<li>删除重复对话</li>
+<li>将多轮对话剪切成单轮对话</li>
+<li>删除回复过短的回答，或者不需要的回答/问题（如 字符，笑脸符等）</li>
+<li>删除过长对话（30字以内）</li>
+<li>统一回复（如 哈哈哈哈哈哈 =&gt; 哈哈哈哈哈，如 我不知道啊，哈哈哈 =&gt; 我不知道啊）</li>
+</ol>
+<h4 id="流程设计"><a href="#流程设计" class="headerlink" title="流程设计"></a>流程设计</h4><ol>
+<li>“问候”和“再见”等，是用规则写的</li>
+<li>如果没有匹配到“问候”或者“再见”，就会进入到模型生成回复</li>
+<li>模型是seq2seq+attention</li>
+<li>attention是哪个attention，对结果影响并不大</li>
+<li>把数据分为几块，比如5-10个字的句子一起，10-20个字的句子一起，等等，然后让句子从短到长进行输入，一是让训练更稳定，二是能一定程度上加快速度</li>
+</ol>
+<h4 id="模型问题"><a href="#模型问题" class="headerlink" title="模型问题"></a>模型问题</h4><ol>
+<li>无意义回答过多 =&gt; 加入anti-LM</li>
+<li>相似回答过多 =&gt; 加入余弦相似到loss中，有一定的效果，但是很难统计，因为可能对某个测试集，效果明显，对某些测试集，效果就不是那么明显</li>
+<li>简单问题正确回答的百分比 =&gt; “问候”等对话进行了规则处理</li>
+<li>过于简短回答的百分比 =&gt; 数据集上进行了处理</li>
+</ol>
+<h5 id="anti-LM"><a href="#anti-LM" class="headerlink" title="anti-LM"></a>anti-LM</h5><p>通常情况下，我们的损失函数loss为${\hat T}=\underset{T}{argmax} {logp(T|S)}$。从损失函数我们可以看出，在给定输入$S$的情况下，模型会选择输出概率最大的句子，这回倾向输出出现频率大的句子，通常这些句子为无意义句子。<br>所以我们引入互信息作为新的目标函数，以两个句子的相关性作为度量标准。互信息公式如下：<br>$log \frac{p(S|T)}{p(S)p(T)}$<br>所以表达式可以写成</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\log p(T)-\log p(S)}$</p>
+<p>但因为$S$为输入，$\log p(S)$是固定的，所以表达式也为</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\log p(T)}$</p>
+<p>对惩罚项$-\log (T)$前加入一个参数，即为</p>
+<p>${\hat T}=\underset{T}{argmax} {logp(T|S)-\lambda logp(T)}$</p>
+<p>我们发现虽然目标函数改为互信息MMI，但是损失函数最大的改变就是加入了$-log(T)$，而$p(T)$表示一个句子出现的概率，所以这个损失函数其实是加了一个对出现概率大的句子的惩罚，$\lambda$就是那个惩罚系数。</p>
+<p>惩罚项$-logp(T)$中的</p>
+<p>$p(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
+<p>在句子$T$的生成中，第一个字$t_1$的生成一定程度上决定了后面字$t_k$的生成，所以$t_1$相对于$t_k$而言，对句子$T$的影响更大。又因为如果我们直接让</p>
+<p>$p(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
+<p>实际生成的句子可能会更容易有语法问题。所以我们取了一个折中的方法，让</p>
+<p>$U(T)=\prod_{k=1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1}) \cdot g(k)$ </p>
+<p>with<br>$$ g(k)=<br>  \begin{cases}<br>  1 &amp; {if k \leq \gamma} \<br>  0 &amp; {if k \geq \gamma}<br>  \end{cases}<br>  $$<br>取代$p(T)$，使得损失函数为</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\lambda \log U(T)}$</p>
+<p>另外实际应用中，还加入了响应句子长度的因素$\gamma N_t$，作为模型相应的依据，因此将目标函数修正如下</p>
+<p>$Score(T) = p(T|S)-\lambda U(T) + \gamma N_t$</p>
+<p>所以损失函数应该是</p>
+<p>$\underset{T}{argmin} {-\log p(T|S)+\lambda \log p(T)-\log (\gamma N_t)}$</p>
+<h5 id="anti-bidi"><a href="#anti-bidi" class="headerlink" title="anti-bidi"></a>anti-bidi</h5><p>由上面的推导，我们从MMI得到</p>
+<p>${\hat T}=\underset{T}{argmax} {\log p(T|S)-\lambda \log p(T)}$</p>
+<p>我们又知道</p>
+<p>$\log p(T)=\log p(T|S) + \log p(S) - \log p(S|T)$</p>
+<p>带入得到</p>
+<p>${\hat T}=\underset{T}{argmax} {(1-\lambda)\log p(T|S)+\lambda \log p(S|T)}$</p>
+<p>因为$p(S|T)$需要通过生成的$T$来再次通过训练好的seq2seq模型再计算一遍，计算量特别大，所以我们通过beam search只取前$N$个$T$，比如200个，再计算$S$。</p>
+<p>但是在使用beam search的时候，我们知道，beam search有很多输出只是一两个字或者只是符号发生了变化，减少了取$N$个不同输出$T$的意义，因为本身输出句子的多样性不能满足这里的要求，所以我们对beam search进行了更改。</p>
+<p>一般beam search在到下一节点时，我们是通过混合所有父节点的字节点，统一进行比较，然后取整体概率最大的$N$个选择，这里我们更改为，针对每一个父节点，我们先对其对应的字节点按先后顺序将其概率从上往下减去一个越来越大的数，使得我们能更好的保存更多不同的父节点，自然句子的多样性也就增加了。具体例子见下图<img src="/public/images/image/beam_search_anti_bidi.png" alt="beamsearch_antibidi"><br>另外，也在anti-bidi中，做了同anti-LM相同的处理，增加了回复长度的影响。</p>
+<p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句与回答的余弦相似性来减少重复问题的回答</p>
+<h5 id="anti-bidi-VS-anti-LM"><a href="#anti-bidi-VS-anti-LM" class="headerlink" title="anti-bidi VS anti-LM"></a>anti-bidi VS anti-LM</h5><ol>
+<li>两者虽然都是使用的MMI，但是使用的公式不一样，背后的逻辑原理也不一样</li>
+<li>anti-bidi比anti-LM要更耗时，因为他要经过两次模型，且非常依赖于beam search生成的句子的多样性</li>
+</ol>
+<h5 id="anti-LM的具体实现"><a href="#anti-LM的具体实现" class="headerlink" title="anti-LM的具体实现"></a>anti-LM的具体实现</h5><p>如何计算P(T)<br>首先应该意识到P(T)应该是一个语言模型学习出来的结果，而不简单的是联合概率的乘积。那么如何得到这个模型学习出来的结果呢？在实现时需要在decoder的输入端输入一个全零的初始化状态，具体做法可以输入一句话长度的pad标志符，让decoder生成结果，得到P(T)</p>
+<p>详见<code>just_another_seq2seq_master</code>里<code>train-anti.py</code>中第86～88行和第98～101行。</p>
+<p>下面代码见前三行和中间的<code>add_loss</code>：</p>
+<ol>
+<li>前三行代码：输入为一定维度的PAD</li>
+<li><code>add_loss</code>计算的是输入为PAD时(即初始状态下)的输出，即$P(T)$</li>
+<li><code>add_loss *= -0.5</code>表示每次计算完$P(T)$后乘以$-0.5$，即$\lambda=0.5$</li>
+<li>我们没有用$U(T)$，但是并没有明显输出语句不通顺的情况</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dummy_encoder_inputs = np.array([</span><br><span class="line">    np.array([WordSequence.PAD]) <span class="keyword">for</span> _ <span class="keyword">in</span> range(batch_size)])</span><br><span class="line">dummy_encoder_inputs_lengths = np.array([<span class="number">1</span>] * batch_size)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(<span class="number">1</span>, n_epoch + <span class="number">1</span>):</span><br><span class="line">    costs = []</span><br><span class="line">    bar = tqdm(range(steps), total=steps,</span><br><span class="line">                desc=<span class="string">'epoch &#123;&#125;, loss=0.000000'</span>.format(epoch))</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> bar:</span><br><span class="line">        x, xl, y, yl = next(flow)</span><br><span class="line">        x = np.flip(x, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        add_loss = model.train(sess,</span><br><span class="line">                                dummy_encoder_inputs,</span><br><span class="line">                                dummy_encoder_inputs_lengths,</span><br><span class="line">                                y, yl, loss_only=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        add_loss *= <span class="number">-0.5</span></span><br><span class="line">        <span class="comment"># print(x, y)</span></span><br><span class="line">        cost, lr = model.train(sess, x, xl, y, yl,</span><br><span class="line">                                return_lr=<span class="literal">True</span>, add_loss=add_loss)</span><br><span class="line">        costs.append(cost)</span><br><span class="line">        bar.set_description(<span class="string">'epoch &#123;&#125; loss=&#123;:.6f&#125; lr=&#123;:.6f&#125;'</span>.format(</span><br><span class="line">            epoch,</span><br><span class="line">            np.mean(costs),</span><br><span class="line">            lr</span><br><span class="line">        ))</span><br><span class="line"></span><br><span class="line">    model.save(sess, save_path)</span><br></pre></td></tr></table></figure>
+
+<h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><h4 id="anti-lm"><a href="#anti-lm" class="headerlink" title="anti-lm"></a>anti-lm</h4><h5 id="最大互信息"><a href="#最大互信息" class="headerlink" title="最大互信息"></a>最大互信息</h5><h4 id="attention-LSTM"><a href="#attention-LSTM" class="headerlink" title="attention+LSTM"></a>attention+LSTM</h4><h5 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h5><h5 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h5><h4 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h4><p>闲聊的评估是带有非常大的主观性的，而且场景不同，用户不同，对相同结果的满意度也会不一样，所以我们对模型的评估希望从更客观、更基础的地方来进行评估和改进：</p>
+<ol>
+<li>无意义回答的频率/百分比</li>
+<li>相似回答的频率/百分比</li>
+<li>正确回答的百分比</li>
+<li>简单问题正确回答的百分比</li>
+<li>相同问题，是否能给出相同答案</li>
+<li>过于简短回答的百分比</li>
+<li>对话内容大多无意义，无法深入交谈具体事情</li>
+</ol>
+<h4 id="努力方向"><a href="#努力方向" class="headerlink" title="努力方向"></a>努力方向</h4><ol>
+<li>模型优化</li>
+<li>数据集质量优化+数据集扩充</li>
+</ol>
+]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
+      <tags>
+        <tag>chitchat</tag>
+        <tag>seq2seq</tag>
       </tags>
   </entry>
   <entry>
