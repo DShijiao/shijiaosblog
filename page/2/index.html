@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/interview/%E9%9D%A2%E8%AF%95/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -194,7 +194,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/12/08/interview/%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">面试</a>
+            <a href="/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">使用hexo搭建博客</a>
         </h1>
 
         <div class="post-meta">
@@ -204,14 +204,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-08T00:00:00+08:00">2019-12-08</time>
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-15 17:56:04" itemprop="dateModified" datetime="2021-08-15T17:56:04+08:00">2021-08-15</time>
+                <time title="修改时间：2021-08-15 17:19:16" itemprop="dateModified" datetime="2021-08-15T17:19:16+08:00">2021-08-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -219,8 +219,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index">
-                    <span itemprop="name">工作总结</span>
+                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index">
+                    <span itemprop="name">周边辅助</span>
                   </a>
                 </span>
             </span>
@@ -236,8 +236,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>n个无序数组，求top K</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">TopK</span><span class="params">(listArray, K)</span>:</span></span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(listArray)):</span><br><span class="line">        <span class="keyword">if</span> k + len(listArray[i]) &gt; K:</span><br><span class="line">            listK += listArray[i][:K-k]</span><br></pre></td></tr></table></figure>
+          <h2 id="Hexo-github"><a href="#Hexo-github" class="headerlink" title="Hexo + github"></a>Hexo + github</h2><h3 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h3><ol>
+<li><p><code>github</code>上创建仓库，仓库名必须严格是<code>username.github.io</code></p>
+</li>
+<li><p>创建本地写博客的hexo文件夹MyHexo，然后进入文件夹，执行命令行<code>hexo init</code>，如果报错，会提示输入<code>npm install hexo --save</code></p>
+</li>
+<li><p>进入根目录下的<code>_config.yml</code>，增加</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:username&#x2F;username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行命令<code>hexo g</code>，如果报错，一般是因为没有安装<code>git</code>，执行<code>npm install hexo-deployer-git --save</code>安装<code>hexo</code>下的<code>git</code>，然后重新<code>hexo g</code></p>
+</li>
+<li><p>执行<code>hexo d</code>，如果没有关联<code>git</code>和<code>hexo</code>，会自动提醒输入</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Username for &#39;https:&#x2F;&#x2F;github.com&#39;:</span><br><span class="line">Password for &#39;https:&#x2F;&#x2F;github.com&#39;:</span><br></pre></td></tr></table></figure>
+<p> 这里我用了<code>ssh</code>钥匙。</p>
+<ul>
+<li>执行命令<code>ssh-keygen -t rsa -C github_de_email@gmail.com</code></li>
+<li>进入<code>~/.ssh</code>复制文件<code>id_rsa.pub</code>里的公匙，进入到<code>github</code>里的<code>setting</code>，进入<code>SSH and GPG keys</code>，新建SSH钥匙<code>new SSH key</code>，粘贴公匙，<code>title</code>可以随意取或者不取，然后确定</li>
+<li>运行<code>ssh -T git@github.com</code>，如果看到<code>Hi username! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code>证明SSH连接成功。</li>
+</ul>
+</li>
+<li><p>自己博客的域名为 <a href="https://shijiaod.github.io/" target="_blank" rel="noopener">https://shijiaod.github.io/</a><br>有时<code>hexo d</code>后页面没有变化，可以尝试重启电脑…</p>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -256,7 +284,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/interview/%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/python%E7%82%B9%E6%BB%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -270,7 +298,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/12/08/interview/%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/" class="post-title-link" itemprop="url">面试感触</a>
+            <a href="/2020/02/19/python%E7%82%B9%E6%BB%B4/" class="post-title-link" itemprop="url">python的点滴</a>
         </h1>
 
         <div class="post-meta">
@@ -280,14 +308,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-08T00:00:00+08:00">2019-12-08</time>
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-15 17:56:04" itemprop="dateModified" datetime="2021-08-15T17:56:04+08:00">2021-08-15</time>
+                <time title="修改时间：2021-08-15 17:45:38" itemprop="dateModified" datetime="2021-08-15T17:45:38+08:00">2021-08-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -295,8 +323,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/La-Vie/" itemprop="url" rel="index">
-                    <span itemprop="name">La Vie</span>
+                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index">
+                    <span itemprop="name">周边辅助</span>
                   </a>
                 </span>
             </span>
@@ -312,11 +340,277 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="恒昌第三轮面试"><a href="#恒昌第三轮面试" class="headerlink" title="恒昌第三轮面试"></a>恒昌第三轮面试</h2><p>今年下午两点和恒昌第三轮面试完。</p>
-<p>面试官整体给我的感觉是一种艺术家气息，举例用的是文艺复兴时期绘画的例子，他说那时候有钱人才能用蓝色，特殊人，比如天使才可以用蓝色还说那时候画家并不是创作画家，而是甲方要什么，画家就要一点不差的按照他们的要求来画，和我们现在的算法工程师一样，都是工人，并不是工程师。工程师是可以从现实中抽象建模的人。但这并不是一个人题，因为凡事都是需要经历这样一个过程的，从一点一点的模仿，到熟练，再到创新。我们工程目前还处于一个比较笨的状态，还是工人角色，远没到创新的时候，而且现在人工智能的浪潮也再一次落下，我们已经在尾声，如果以后我出去说自己是做深度学习的，可能就找不到工作了。</p>
-<p>听了它说的，我越来越觉得，真的不同的人有不同的看法，他会问我是否学过scala，但是爱奇艺的面试官会说他不会因为我会Hadoop或者不会Hadoop而决定是否录用我。</p>
-<p>虽然两者并不矛盾，但是凸显了他们对这个应聘者、甚至这个领域工作者的一个不同的要求和需求。</p>
+          <h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="找到当前index在数组位置中对称的位置"><a href="#找到当前index在数组位置中对称的位置" class="headerlink" title="找到当前index在数组位置中对称的位置"></a>找到当前index在数组位置中对称的位置</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">index = len(nums)//<span class="number">2</span></span><br><span class="line">print(index) <span class="comment"># 3</span></span><br><span class="line">print(~index) <span class="comment"># -4</span></span><br><span class="line">median = (nums[index] + nums[~index])/<span class="number">2</span></span><br><span class="line">print(median) <span class="comment"># 3.5</span></span><br></pre></td></tr></table></figure>
 
+
+<h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/19/python%E7%82%B9%E6%BB%B4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">数学公式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-12 10:09:36" itemprop="dateModified" datetime="2020-05-12T10:09:36+08:00">2020-05-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">数学公式</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="最优法"><a href="#最优法" class="headerlink" title="最优法"></a>最优法</h1><h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><p>牛顿法迭代法解非线性方程，是把非线性方程$f(x)=0$线性化的一种近似方法。把$f(x)$在点$x_0$的某领域内展开成泰勒级数$f(x)=f(x_0)+f^{‘}(x_0)(x-x_0)+ \frac{f^{‘’}(x_0)(x-x_0)^2}{2!}+…+ \frac{f^{n}(x_0)(x-x_0)^n}{n!}+R_n(x)$，取其线性部分，即展开式的前两项$f(x_0)+f^{‘}(x_0)(x-x_0)$，令其等于0，以此作为非线性方程$f(x)=0$的近似方程，若$f^{‘}(x_0) \neq 0$，则解为$x_1=x_0- \frac {f(x_0)} {f^{‘}(x_0)}$，这样我们得到牛顿迭代法的一个迭代关系式</p>
+<p>Python代码实例展示求解方程$(x-3)^3=0$的根</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (x<span class="number">-3</span>)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fd</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*(x<span class="number">-3</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">newtonMethod</span><span class="params">(n, assum)</span>:</span></span><br><span class="line">    time = n</span><br><span class="line">    x = assum</span><br><span class="line">    Next = <span class="number">0</span></span><br><span class="line">    A = f(x)</span><br><span class="line">    B = fd(x)</span><br><span class="line">    print(<span class="string">'A = '</span> + str(A) + <span class="string">',B = '</span> + str(B) + <span class="string">',time = '</span> + str(time))</span><br><span class="line">    <span class="keyword">if</span> f(x) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> time, x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        Next = x - A/B</span><br><span class="line">        print(<span class="string">'Next x = '</span> + str(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 1.</span></span><br><span class="line">    <span class="comment">## 这里设置的迭代条件不是当前值和最优值之间的距离，而是相比于上一个值的变化要小于某个值</span></span><br><span class="line">    <span class="comment">## 但我们要求的就是最优值，所以我们并不知道最优值的具体值，不能的到他们的距离</span></span><br><span class="line">    <span class="comment">## 所以要通过每次A的变化，来估计最优值</span></span><br><span class="line">    <span class="keyword">if</span> A - f(Next) &lt; <span class="number">1e-6</span>: </span><br><span class="line">        print(<span class="string">"Meet f(x) = 0, x = "</span> + str(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 2.</span></span><br><span class="line">    <span class="comment"># ## 所以这里其实是不是也可以通过x的变化，来估计最优值？</span></span><br><span class="line">    <span class="comment"># if A/B &lt; 1e-4:</span></span><br><span class="line">    <span class="comment">#     print("Meet f(x) = 0, x = " + str(Next))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## 3.</span></span><br><span class="line">    <span class="comment"># ## 这里当然也能用 if time &gt; m 来设置跳出循环的条件，但是相对 A - f(Next) 得到的值会更不精确一些</span></span><br><span class="line">    <span class="comment"># if time &gt; 10:</span></span><br><span class="line">    <span class="comment">#     print("Meet f(x) = 0, x = " + str(Next))</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> newtonMethod(n+<span class="number">1</span>, Next)</span><br><span class="line"></span><br><span class="line">newtonMethod(<span class="number">0</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="其它迭代算法"><a href="#其它迭代算法" class="headerlink" title="其它迭代算法"></a>其它迭代算法</h2><h3 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h3><p>最大公约数：Greatest Common Divisor(GCD)</p>
+<h4 id="算法简介"><a href="#算法简介" class="headerlink" title="算法简介"></a>算法简介</h4><p>欧几里德算法是用来求两个正整数最大公约数的算法。是由古希腊数学家欧几里德在其著作《The Elements》中最早描述了这种算法,所以被命名为欧几里德算法。<br>扩展欧几里德算法可用于RSA加密等领域。</p>
+<p>假如需要求 1997 和 615 两个正整数的最大公约数,用欧几里德算法，是这样进行的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1997 &#x2F; 615 &#x3D; 3 (余 152)</span><br><span class="line">615 &#x2F; 152 &#x3D; 4(余7)</span><br><span class="line">152 &#x2F; 7 &#x3D; 21(余5)</span><br><span class="line">7 &#x2F; 5 &#x3D; 1 (余2)</span><br><span class="line">5 &#x2F; 2 &#x3D; 2 (余1)</span><br><span class="line">2 &#x2F; 1 &#x3D; 2 (余0)</span><br></pre></td></tr></table></figure>
+<p>至此，最大公约数为1<br>以除数和余数反复做除法运算，当余数为 0 时，取当前算式除数为最大公约数，所以就得出了 1997 和 615 的最大公约数 1。</p>
+<h4 id="计算证明"><a href="#计算证明" class="headerlink" title="计算证明"></a>计算证明</h4><p>其计算原理依赖于下面的定理：</p>
+<p>定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数。最大公约数（Greatest Common Divisor）缩写为GCD。<br>$gcd(a,b) = gcd(b,a \mod b)$ (不妨设$a&gt;b$ 且$r=a \mod b$ ,$r$不为$0$)</p>
+<h5 id="证法一"><a href="#证法一" class="headerlink" title="证法一"></a>证法一</h5><ul>
+<li><p>正</p>
+<ul>
+<li>$a$可以表示成$a = kb + r$（$a$，$b$，$k$，$r$皆为正整数，且$r&lt;b$），则$r = a \mod b$</li>
+<li>假设$d$是$a$,$b$的一个公约数，记作$d|a$,$d|b$，即$a$和$b$都可以被$d$整除。</li>
+<li>而$r = a - kb$，两边同时除以$d$，$r/d=a/d-kb/d=m$，由等式右边可知$m$为整数，因此$d|r$</li>
+<li>因此$d$也是$b$,$a \mod b$的公约数</li>
+</ul>
+</li>
+<li><p>反</p>
+<ul>
+<li>假设$d$是$b$,$a \mod b$的公约数, 则$d|b$,$d|(a-k*b)$,$k$是一个整数。</li>
+<li>进而$d|a$，因此$d$也是$a$,$b$的公约数</li>
+<li>因此$(a,b)$和$(b,a \mod b)$的公约数是一样的，其最大公约数也必然相等</li>
+</ul>
+</li>
+<li><p>得证</p>
+</li>
+</ul>
+<h5 id="证法二"><a href="#证法二" class="headerlink" title="证法二"></a>证法二</h5><p>假设c = gcd(a,b),则存在m,n，使a = mc, b = nc;<br>令r = a mod b，即存在k，使r = a-kb = mc - knc = (m-kn)c;<br>故gcd(b,a mod b) = gcd(b,r) = gcd(nc,(m-kn)c) = gcd(n,m-kn)*c;<br>假设d = gcd(n,m-kn), 则存在x,y, 使n = xd, m-kn = yd; 故m = yd+kn = yd+kxd = (y+kx)d;<br>故有a = mc = (y+kx)dc, b = nc = xdc; 可得 gcd(a,b) = gcd((y+kx)dc,xdc) = dc;<br>由于gcd(a,b) = c, 故d = 1;<br>即gcd(n,m-kn) = 1, 故可得gcd(b,a mod b) = c;<br>故得证gcd(a,b) = gcd(b,a mod b).<br>注意:两种方法是有区别的。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>自己写的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    c = a%b</span><br><span class="line">    <span class="keyword">return</span> print(b) <span class="keyword">if</span> c==<span class="number">0</span> <span class="keyword">else</span> gcd(b, c)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
+
+<p>百度百科上的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> a != <span class="number">0</span>:</span><br><span class="line">        a, b = b % a, a</span><br><span class="line">    <span class="keyword">return</span> print(b)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h4><p>扩展欧几里得算法（英语：Extended Euclidean algorithm）是欧几里得算法（又叫辗转相除法）的扩展。已知整数$a$、$b$，扩展欧几里得算法可以在求得$a$、$b$的最大公约数的同时，能找到整数$x$、$y$（其中一个很可能是负数），使它们满足贝祖等式</p>
+<p>$ax+by=gcd(a,b)$</p>
+<p>如果a是负数，可以把问题转化成$|a|(-x)+by=gcd(|a|,b)$，然后令$x^{‘}=(-x)$。</p>
+<p>扩展欧几里得算法可以用来计算模反元素(也叫模逆元)，而模反元素在RSA加密算法中有举足轻重的地位。</p>
+<h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ext_euclid</span><span class="params">(a, b)</span>:</span>     </span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:         </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>, <span class="number">0</span>, a     </span><br><span class="line">    <span class="keyword">else</span>:         </span><br><span class="line">        x, y, q = ext_euclid(b, a % b) </span><br><span class="line">        <span class="comment"># q = gcd(a, b) = gcd(b, a%b)   </span></span><br><span class="line"></span><br><span class="line">        <span class="comment">## 这一行怎么求的，有时间可以论证一下      </span></span><br><span class="line">        x, y = y, (x - (a // b) * y)     </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x, y, q</span><br></pre></td></tr></table></figure>
+
+<h3 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……在数学上，斐波那契数列以如下被以递推的方法定义：F(1)=1，F(2)=1, F(n)=F(n - 1)+F(n - 2)（n ≥ 3，n ∈ N*）在现代物理、准晶体结构、化学等领域，斐波纳契数列都有直接的应用，为此，美国数学会从 1963 年起出版了以《斐波纳契数列季刊》为名的一份数学杂志，用于专门刊载这方面的研究成果。</p>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#################### 输出第n个斐波那契数 ####################</span></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci1</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment">## 这种方法，每次都要嵌套循环，不能记录上一次的结果之间用，所以时间复杂度非常高！！</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(n)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>)</span><br><span class="line">    <span class="keyword">return</span> fib(n)</span><br><span class="line"></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci2</span><span class="params">(n)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= n:</span><br><span class="line">        l.append(l[i<span class="number">-1</span>]+l[i<span class="number">-2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l[i<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(fibonacci1(<span class="number">20</span>))</span><br><span class="line">print(fibonacci2(<span class="number">20</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#################### 输出前n个斐波那契数 ####################</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">(n)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; n:</span><br><span class="line">        l.append(l[i<span class="number">-1</span>]+l[i<span class="number">-2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line">print(fibonacci(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+
+<p>可以尝试用代码画出斐波那契函数的曲线 斐波那契弧线<br><img src="/public/images/image/fibonacci.jpg" alt="fibonacci"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">算法刷题总结</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-15 17:56:58" itemprop="dateModified" datetime="2021-08-15T17:56:58+08:00">2021-08-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">数学公式</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>如果有搜索类循环，可以用dict来储存，这样搜索时间为O(1)，如果不行，可以考虑二叉树搜索，二叉树搜索时间小于O(n)<ol>
+<li>如找重复的数值</li>
+<li>小于/大于某个值的数值等</li>
+</ol>
+</li>
+</ol>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="字符串反转"><a href="#字符串反转" class="headerlink" title="字符串反转"></a>字符串反转</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'abc' =&gt; 'cba'</span><br></pre></td></tr></table></figure>
+<p>方法一：</p>
+<p>用两个指针一起从两头往中间前进，每次都对调两个指针对应的数值，不需要区分数组单双数的情况。</p>
+<h3 id="最长不重复字串"><a href="#最长不重复字串" class="headerlink" title="最长不重复字串"></a>最长不重复字串</h3><p>LeetCode 3. Longest Substring Without Repeating Characters</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Given a string, find the length of the longest substring without repeating characters.</span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: &quot;abcabcbb&quot;</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: The answer is &quot;abc&quot;, with the length of 3. </span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: &quot;bbbbb&quot;</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: The answer is &quot;b&quot;, with the length of 1.</span><br><span class="line"></span><br><span class="line">Example 3:</span><br><span class="line"></span><br><span class="line">Input: &quot;pwwkew&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The answer is &quot;wke&quot;, with the length of 3. </span><br><span class="line">Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.</span><br></pre></td></tr></table></figure>
+
+<p>方法一：</p>
+<ol>
+<li>做一次for循环</li>
+<li>每一步更新指针start的位置<ol>
+<li>当start后面有重复的字符，start跳到重复的字符当前位置</li>
+<li>当start后面有重复其前面的字符，但是在start后面没有重复，dict会在后面更新，但是start指针不调整</li>
+</ol>
+</li>
+<li>核心代码如下<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j, string <span class="keyword">in</span> enumerate(s):</span><br><span class="line">  <span class="keyword">if</span> string <span class="keyword">in</span> dictOfsubstring:</span><br><span class="line">    start = max(start, dictOfsubstring[string]+<span class="number">1</span>)</span><br><span class="line">  maxlen = max(maxlen, j-start+<span class="number">1</span>)</span><br><span class="line">  dictOfsubstring.update(&#123;string:j&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>方法二：</p>
+<h3 id="最长对称字符串"><a href="#最长对称字符串" class="headerlink" title="最长对称字符串"></a>最长对称字符串</h3><p>LeetCode 5. Longest Palindromic Substring</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.</span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: &quot;babad&quot;</span><br><span class="line">Output: &quot;bab&quot;</span><br><span class="line">Note: &quot;aba&quot; is also a valid answer.</span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: &quot;cbbd&quot;</span><br><span class="line">Output: &quot;bb&quot;</span><br></pre></td></tr></table></figure>
+
+<p>方法一：</p>
+<p>暴力解法，两次for循环，然后找出最大的对称字符串</p>
+<p>方法二：</p>
+<ol>
+<li><p>一个for循环</p>
+</li>
+<li><p>加上对称判断。对称只有两种可能性：</p>
+<ol>
+<li>有一个中心字符，如’aba’</li>
+<li>没有中心字符，如’abba’</li>
+</ol>
+<p>每当找到某种的中心点时，找出其可以向两边扩展的最远距离（例如情况ii时，代码如下），然后通过记录中心点和扩展的范围，得到对称字符串本身或者长度</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line"> ...</span><br><span class="line"> <span class="keyword">if</span> i+<span class="number">1</span>&lt;len(s) <span class="keyword">and</span> s[i] == s[i+<span class="number">1</span>]:</span><br><span class="line">     mid = <span class="number">1</span></span><br><span class="line">     count1 = <span class="number">2</span></span><br><span class="line">     <span class="keyword">while</span> i-mid&gt;=<span class="number">0</span> <span class="keyword">and</span> i+<span class="number">1</span>+mid&lt;len(s) <span class="keyword">and</span> s[i-mid] == s[i+<span class="number">1</span>+mid]:</span><br><span class="line">         count1 += <span class="number">2</span></span><br><span class="line">         mid += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>字符串相关问题，好像都会上指针。最重要的点，一是上一个还是两个指针，二是指针的更新方法。</p>
+<h2 id="字符列"><a href="#字符列" class="headerlink" title="字符列"></a>字符列</h2><h3 id="最长上升子序列"><a href="#最长上升子序列" class="headerlink" title="最长上升子序列"></a>最长上升子序列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Given an unsorted array of integers, find the length of longest increasing subsequence.</span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Input: [10,9,2,5,3,7,101,18]</span><br><span class="line">Output: 4 </span><br><span class="line">Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4. </span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">There may be more than one LIS combination, it is only necessary for you to return the length.</span><br><span class="line">Your algorithm should run in O(n2) complexity.</span><br><span class="line">Follow up: Could you improve it to O(n log n) time complexity?</span><br></pre></td></tr></table></figure>
+
+<p>方法一：</p>
+<ol>
+<li>用dp记录到当前数值位置，能有的最长上升子序列，初始化为1，即最长上升子序列为当前数值本身</li>
+<li>两次for循环（即两个指针），一次记录到当前位置最长上升子序列的，一次是在当前位置前，前面位置上有的最大上升子序列</li>
+<li>注意⚠️：如果第一个指针（当前位置）对应的数值num大于第二个指针（当前位置前面的指针）的数值value，那么当前位置的dp[i]更新为max(dp[i], dp[j]+1)，j为第二个指针的位置</li>
+<li>代码如下：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">IncreasingSubsets</span><span class="params">(nums)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  dp = [<span class="number">1</span>]*len(nums)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">          <span class="keyword">if</span> nums[j] &lt; nums[i]:</span><br><span class="line">              dp[i] = max(dp[j]+<span class="number">1</span>, dp[i])</span><br><span class="line">  <span class="keyword">return</span> max(dp)</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<ol>
+<li>用dp记录最长子序列的值</li>
+<li>for循环一遍nums，把每次的num二分查找插入到dp中</li>
+</ol>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2>
       
     </div>
 
@@ -612,6 +906,251 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/interview/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/08/interview/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">智能客服项目</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-08T00:00:00+08:00">2019-12-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-15 17:57:15" itemprop="dateModified" datetime="2021-08-15T17:57:15+08:00">2021-08-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="智能客服项目"><a href="#智能客服项目" class="headerlink" title="智能客服项目"></a>智能客服项目</h2><p>智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。</p>
+<p>FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。</p>
+<p>任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。<br>判断任务型对话是否结束有两种方式：</p>
+<ul>
+<li>一是这个任务已经完成</li>
+<li>二是虽然任务还未完成，但是模型判断需要跳出任务，此时直接结束任务返回通过顶层分类器进行模块判别的进程。</li>
+</ul>
+<p>在所有的任务中，我们都需要先为这个任务建立一个baseline，通常为相关任务常用的相对简单的模型。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/08/interview/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/interview/%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/08/interview/%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">面试</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-08T00:00:00+08:00">2019-12-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-15 17:56:04" itemprop="dateModified" datetime="2021-08-15T17:56:04+08:00">2021-08-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>n个无序数组，求top K</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">TopK</span><span class="params">(listArray, K)</span>:</span></span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(listArray)):</span><br><span class="line">        <span class="keyword">if</span> k + len(listArray[i]) &gt; K:</span><br><span class="line">            listK += listArray[i][:K-k]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/interview/%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/08/interview/%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/" class="post-title-link" itemprop="url">面试感触</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-08T00:00:00+08:00">2019-12-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-15 17:56:04" itemprop="dateModified" datetime="2021-08-15T17:56:04+08:00">2021-08-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/La-Vie/" itemprop="url" rel="index">
+                    <span itemprop="name">La Vie</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="恒昌第三轮面试"><a href="#恒昌第三轮面试" class="headerlink" title="恒昌第三轮面试"></a>恒昌第三轮面试</h2><p>今年下午两点和恒昌第三轮面试完。</p>
+<p>面试官整体给我的感觉是一种艺术家气息，举例用的是文艺复兴时期绘画的例子，他说那时候有钱人才能用蓝色，特殊人，比如天使才可以用蓝色还说那时候画家并不是创作画家，而是甲方要什么，画家就要一点不差的按照他们的要求来画，和我们现在的算法工程师一样，都是工人，并不是工程师。工程师是可以从现实中抽象建模的人。但这并不是一个人题，因为凡事都是需要经历这样一个过程的，从一点一点的模仿，到熟练，再到创新。我们工程目前还处于一个比较笨的状态，还是工人角色，远没到创新的时候，而且现在人工智能的浪潮也再一次落下，我们已经在尾声，如果以后我出去说自己是做深度学习的，可能就找不到工作了。</p>
+<p>听了它说的，我越来越觉得，真的不同的人有不同的看法，他会问我是否学过scala，但是爱奇艺的面试官会说他不会因为我会Hadoop或者不会Hadoop而决定是否录用我。</p>
+<p>虽然两者并不矛盾，但是凸显了他们对这个应聘者、甚至这个领域工作者的一个不同的要求和需求。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -778,362 +1317,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/docker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/16/docker/" class="post-title-link" itemprop="url">docker</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-16T00:00:00+08:00">2019-01-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-02 11:58:26" itemprop="dateModified" datetime="2020-03-02T11:58:26+08:00">2020-03-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%9E%E6%88%98%E9%97%AE%E9%A2%98/" itemprop="url" rel="index">
-                    <span itemprop="name">实战问题</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="docker-挂载"><a href="#docker-挂载" class="headerlink" title="docker 挂载"></a>docker 挂载</h2><p>前面是本地文件，后面是镜像文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -it --cpus&#x3D;3 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash</span><br></pre></td></tr></table></figure>
-
-<p><code>--cpus=8</code>设置的是cpu利用百分比，而不是个数，因为报错中，<code>Range of CPUs</code>是小数，而不是整数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -it --cpus&#x3D;8 -v &#x2F;Users&#x2F;shijiao&#x2F;Documents&#x2F;Bert&#x2F;:&#x2F;shijiao&#x2F;mkl conda-origin bash</span><br><span class="line">Error response from daemon: Range of CPUs is from 0.01 to 6.00, as there are only 6 CPUs available.</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/01/16/docker/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/chitchat/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/16/chitchat/" class="post-title-link" itemprop="url">Chitchat</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-16T00:00:00+08:00">2019-01-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-01 22:10:19" itemprop="dateModified" datetime="2020-04-01T22:10:19+08:00">2020-04-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index">
-                    <span itemprop="name">工作总结</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Chitchat"><a href="#Chitchat" class="headerlink" title="Chitchat"></a>Chitchat</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>chitchat持续的时间很长了。每次进步不大，但是至少都在前进。因为持续时间长，每次想法和改动的地方比较多，也是学到了不少东西，想要把这些都记录下来，所以开了这个文档。</p>
-<p>chitchat 目前已经自己改进到v1.5了。虽然每一次改动的内容并不大，但是每一次都是一个尝试。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/01/16/chitchat/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/protobuf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/16/protobuf/" class="post-title-link" itemprop="url">protobuf</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-16T00:00:00+08:00">2019-01-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-02 11:58:35" itemprop="dateModified" datetime="2020-03-02T11:58:35+08:00">2020-03-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index">
-                    <span itemprop="name">工作总结</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h4><ul>
-<li><code>protobuf</code>：把消息序列化的工具</li>
-<li><code>rpc</code>： 远程方法调用</li>
-<li><code>redis</code>：缓存</li>
-<li><code>mysql</code>：持久储存</li>
-</ul>
-<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p><a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5" target="_blank" rel="noopener">ML Client/Server Using gRPC in Python – Good Audience</a></p>
-<h4 id="安装Protocol-Buffers："><a href="#安装Protocol-Buffers：" class="headerlink" title="安装Protocol Buffers："></a>安装Protocol Buffers：</h4><ol>
-<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
-<li>brew install protobuf</li>
-<li>安装gRPC：pip install grpcio</li>
-<li>安装gRPC：pip install grpcio-tools</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/01/16/protobuf/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/16/tensorflow/" class="post-title-link" itemprop="url">tensorflow实战应用</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-16T00:00:00+08:00">2019-01-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-12 10:10:33" itemprop="dateModified" datetime="2020-05-12T10:10:33+08:00">2020-05-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%9E%E6%88%98%E9%97%AE%E9%A2%98/" itemprop="url" rel="index">
-                    <span itemprop="name">实战问题</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="tensorflow-重新加载并继续训练模型"><a href="#tensorflow-重新加载并继续训练模型" class="headerlink" title="tensorflow 重新加载并继续训练模型"></a>tensorflow 重新加载并继续训练模型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ckpt_file &#x3D; tf.train.latest_checkpoint(path_save_model)</span><br><span class="line">if ckpt_file:</span><br><span class="line">    saver.restore(sess, ckpt_file)</span><br></pre></td></tr></table></figure>
-
-<p>这里<code>ckpt_file</code>是文件<code>checkpoint</code>里<code>model_checkpoint_path</code>的值。<br>只要<code>model_checkpoint_path</code>指定的<code>checkpoint</code>在路径下存在，就会直接加载这个<code>checkpoint</code>继续训练。否则就会重新从<code>0</code>开始。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/01/16/tensorflow/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1201,7 +1389,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1214,7 +1402,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

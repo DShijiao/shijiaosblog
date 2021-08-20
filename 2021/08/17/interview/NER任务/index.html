@@ -20,20 +20,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":18,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":true,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="自我介绍高中毕业后通过武汉大学和拉罗舍尔大学的交流项目去到法国，后来也在法国洛林大学完成了硕士学业，学生期间一直就读数学和统计专业。 毕业后因为觉得直接回国会很可惜，所以尝试在法国本地就业，之后顺利拿到长居，进入了Sikim公司，也是在这家公司，通过给当地银行做个智能客服的项目，了解到并进入了NLP领域。 18年回国加入到了顺丰科技，因为有过智能客服的项目经验，所以在顺丰中负责智能客服的NLU模块">
+  <meta name="description" content="项目叙述 数据如何共有15000条数据，12个类别（如「出发地」，「出发时间」，「类型」，「物品」，「体积」等）   背景如何比如其中一个多轮场景是「寄快递」  模型如何先是上的baseline，然后针对问题进行改进的（最开始尝试intent和ner一起做）baseline使用的是lstm+crf，因为一般ner的问题，都是编码获取的信息不够，所以后来上了bilstm+crf，准确率提升了1.5个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="中文面试自我简介">
-<meta property="og:url" content="http://yoursite.com/2021/08/15/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:title" content="NER任务">
+<meta property="og:url" content="http://yoursite.com/2021/08/17/interview/NER%E4%BB%BB%E5%8A%A1/index.html">
 <meta property="og:site_name" content="诗娇的博客">
-<meta property="og:description" content="自我介绍高中毕业后通过武汉大学和拉罗舍尔大学的交流项目去到法国，后来也在法国洛林大学完成了硕士学业，学生期间一直就读数学和统计专业。 毕业后因为觉得直接回国会很可惜，所以尝试在法国本地就业，之后顺利拿到长居，进入了Sikim公司，也是在这家公司，通过给当地银行做个智能客服的项目，了解到并进入了NLP领域。 18年回国加入到了顺丰科技，因为有过智能客服的项目经验，所以在顺丰中负责智能客服的NLU模块">
-<meta property="article:published_time" content="2021-08-15T10:01:36.000Z">
-<meta property="article:modified_time" content="2021-08-15T13:46:18.859Z">
+<meta property="og:description" content="项目叙述 数据如何共有15000条数据，12个类别（如「出发地」，「出发时间」，「类型」，「物品」，「体积」等）   背景如何比如其中一个多轮场景是「寄快递」  模型如何先是上的baseline，然后针对问题进行改进的（最开始尝试intent和ner一起做）baseline使用的是lstm+crf，因为一般ner的问题，都是编码获取的信息不够，所以后来上了bilstm+crf，准确率提升了1.5个">
+<meta property="article:published_time" content="2021-08-17T06:46:29.000Z">
+<meta property="article:modified_time" content="2021-08-19T11:50:13.662Z">
 <meta property="article:author" content="Shijiao DENG">
-<meta property="article:tag" content="面试">
-<meta property="article:tag" content="自我介绍">
+<meta property="article:tag" content="ner">
+<meta property="article:tag" content="lattice">
+<meta property="article:tag" content="FLAT">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2021/08/15/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/">
+<link rel="canonical" href="http://yoursite.com/2021/08/17/interview/NER%E4%BB%BB%E5%8A%A1/">
 
 
 <script id="page-configurations">
@@ -45,7 +46,7 @@
   };
 </script>
 
-  <title>中文面试自我简介 | 诗娇的博客</title>
+  <title>NER任务 | 诗娇的博客</title>
   
 
 
@@ -186,7 +187,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/15/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/17/interview/NER%E4%BB%BB%E5%8A%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -199,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          中文面试自我简介
+          NER任务
         </h1>
 
         <div class="post-meta">
@@ -208,18 +209,24 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-08-15 18:01:36 / 修改时间：21:46:18" itemprop="dateCreated datePublished" datetime="2021-08-15T18:01:36+08:00">2021-08-15</time>
+              <time title="创建时间：2021-08-17 14:46:29" itemprop="dateCreated datePublished" datetime="2021-08-17T14:46:29+08:00">2021-08-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-19 19:50:13" itemprop="dateModified" datetime="2021-08-19T19:50:13+08:00">2021-08-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">面试</span>
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
                   </a>
                 </span>
             </span>
@@ -235,49 +242,76 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h2><p>高中毕业后通过武汉大学和拉罗舍尔大学的交流项目去到法国，后来也在法国洛林大学完成了硕士学业，学生期间一直就读数学和统计专业。</p>
-<p>毕业后因为觉得直接回国会很可惜，所以尝试在法国本地就业，之后顺利拿到长居，进入了Sikim公司，也是在这家公司，通过给当地银行做个智能客服的项目，了解到并进入了NLP领域。</p>
-<p>18年回国加入到了顺丰科技，因为有过智能客服的项目经验，所以在顺丰中负责智能客服的NLU模块，这段智能客服经验加深了我对算法和深度模型的理解和落地经验，因为我一直对生成模型比较感兴趣，所以我主动申请了负责闲聊的项目，对生成模型的运行和落地有了了解</p>
-<p>20年加入到vipkid后，期间也继续过对话生成的项目，比如机器翻译，闲聊等等，但是主要负责智能客服的研发，虽然在不同公司都在做智能客服项目，但是幸运的是每次都会丰富和提升自己对对话机器人的了解。比如顺丰里主要负责的是算法的优化和准确率的提升，在vipkid，不仅需要解决算法的问题，也会专注于解决更业务层面的问题，比如DM的设计，模块之间的跳转，对话的设计（一句话多个意图，一段话分开说）等等</p>
-<p>期间当然还做过别的项目，比如主题提取，纠错，或者单纯工程开发的统计系统，但是总体，还是闲聊上对算法的实验相对较多，对对话机器人的项目了解更全面</p>
-<h4 id="自我介绍的目的"><a href="#自我介绍的目的" class="headerlink" title="自我介绍的目的"></a>自我介绍的目的</h4><ul>
-<li>我对当前职位的兴趣</li>
-<li>我的能力是否能够匹配当前职位</li>
+        <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何<br>共有15000条数据，12个类别（如「出发地」，「出发时间」，「类型」，「物品」，「体积」等）</li>
+</ol>
+<ol start="2">
+<li><p>背景如何<br>比如其中一个多轮场景是「寄快递」</p>
+</li>
+<li><p>模型如何<br>先是上的baseline，然后针对问题进行改进的（最开始尝试intent和ner一起做）<br>baseline使用的是lstm+crf，因为一般ner的问题，都是编码获取的信息不够，所以后来上了bilstm+crf，准确率提升了1.5个百分点，也尝试使用bert，发现bert效果并不比bilstm好。之后</p>
+</li>
+<li><p>准确率如何<br>最后F1值83%</p>
+</li>
+<li><p>碰到哪些问题</p>
+<ol>
+<li>整体F1值问题<ol>
+<li>F1值不是特别高，刚开始只能到达80%左右</li>
+<li>ner一般都是embedding不够丰富，所以我们尝试了bilstm和bert，两个效果差不多，但是bilstm更轻便，能够提升1.5%的F1值</li>
+<li>后来又跑了一下当时刚出的lattice lstm，效果确实还是不错的，相对bilstm能提升2个百分点，当然，后来在vipkid又尝试了FLAT，效果更好，相对lattice lstm，还能再提升2个百分点</li>
+<li>不同解码方式<ol>
+<li>CRF/指针网络/Biaffine</li>
+<li>不同解码方式差异有限</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>有的类别预测不准，有的特别准<ol>
+<li>样本不均衡<ol>
+<li>本身标注的样本，就会有些不均衡，所以自己按规律造了5000数据</li>
+<li>当然，测试集里是原始数据</li>
+<li>有一定的效果提升</li>
+</ol>
+</li>
+<li>同样量的样本，有的类别比较难预测（规律难找）<ol>
+<li>有的类别虽然样本也不算少，但是本身规律比较难找，比如「明天」，「明天下午两点」，实体变化很大，所以效果不如意</li>
+<li>这些特殊类别，我们主要是通过规则加上开源工具来兜底</li>
+<li>比如地址，我们本身有很全的字典，如果模型预测概率小于某个阈值，我们就尝试用字典进行匹配</li>
+<li>比如时间，我们用开源工具进行兜底</li>
+</ol>
+</li>
+<li>召回不高<ol>
+<li>丰富embedding</li>
+<li>检查是否有漏标的数据（标注数据的噪音去除）</li>
+</ol>
+</li>
+<li>嵌套实体/多种类别实体</li>
+<li>实体span过长（规则，引入指针网络）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>还有哪些可以改进的</p>
+<ol>
+<li>一个是可以从embedding方面进行改进</li>
+<li>另一个是嵌套实体/多类别实体的问题解决</li>
+</ol>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）</p>
+</li>
+</ol>
+<h2 id="重难点"><a href="#重难点" class="headerlink" title="重难点"></a>重难点</h2><h3 id="NER"><a href="#NER" class="headerlink" title="NER"></a>NER</h3><ul>
+<li>基于「词」的NER会受到分词的影响。比如需要预测的句子中，目标词汇被错误划分从而导致结果错误。所以目前NER主要还是基于「字」做NER，然后尽量加入「词」信息</li>
+<li>LSTM接CRF：在decoder时，对每一步的输出h，进行vitterbi编码</li>
 </ul>
-<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：好奇心强，责任心强，抗压能力强，协作沟通能力不错<br>缺点：拖沓，钻研度不够，会因为想要尝试，有时不太分主次，导致浪费很多时间</p>
-<h4 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h4><p>我的优势：</p>
-<ol>
-<li>学历背景</li>
-<li>数学背景</li>
-<li>4年工作经验</li>
-<li>8年海外生活经验（适应力，学习能力）</li>
-<li>对智能客服了解比较全面</li>
-<li>对生成模型也有了解</li>
-<li>抗压，沟通，协作能力</li>
-<li>好奇心强，勇于实践</li>
-</ol>
-<p>职业能力：</p>
-<ol>
-<li><p>对智能客服的深耕</p>
-</li>
-<li><p>对闲聊很感兴趣，觉得闲聊是以后的重点，所以在进入顺丰后，在坚固智能客服的同时，主动选择了并不是很热门的闲聊（闲聊一定要再读几篇论文，再深耕一下）</p>
-</li>
-<li><p>对智能客服的了解比较全面，先是提高准确率的技术，后来是业务方面处理的技术（如DM，如用户一次说多句话是如何处理的，如一句话有多个意图是如何处理的，等等）</p>
-<p> <a href="https://www.infoq.cn/article/pryrhwq1pj6xkb59gbx6" target="_blank" rel="noopener">为客服构建更加智能的对话机器人：多轮应答时机触发模型</a><br> <a href="https://cloud.tencent.com/developer/news/468354" target="_blank" rel="noopener">人机对话关键技术及挑战</a><br> <a href="http://www.woshipm.com/pd/4133505.html" target="_blank" rel="noopener">任务驱动型人机对话系统设计</a></p>
-</li>
-<li><p>闲聊主要就聊技术</p>
-</li>
-<li><p>可以描述一下每次的变动是为什么，比如为什么毕业后想要留在国外，为什么会从顺丰离职，所以为什么现在会非常希望找到一个比较实践长久的工作等</p>
-</li>
-<li><p>如何在对话设计时，设计的是多次对话拼接到一起然后求他的意图，那么</p>
-<ol>
-<li>在训练时，如何解决训练的样本问题（人工可以标注，但是样本不是很多，SF为5000-10000条）</li>
-<li>训练时不会有不收敛的问题吗？因为同样一部分的语句在不同的类别中出现过（并且是肯定不能使用CNN这种对序列信息没有考虑的模型）</li>
-</ol>
-</li>
-</ol>
-<ul>
-<li>抗压能力：LP工作情况统计的项目</li>
+<h3 id="Viterbi"><a href="#Viterbi" class="headerlink" title="Viterbi"></a>Viterbi</h3><p>维特比是一个动态规划算法。<br>我们需要找到最大路径，通常需要求出每一层的每一种路径的概率。<br>但是在维特比算法中，我们每次取当前层，节点个数（即可能的状态个数）的路径（每个节点取，到当前层、当前节点，概率最大的路径），因此可以减少很多运算</p>
+<h3 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h3><ul>
+<li>CRF位条件概率（判别模型）</li>
+<li>HMM是联合概率（生成模型），且有独立假设</li>
+</ul>
+<h3 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice LSTM"></a>Lattice LSTM</h3><p>Lattice LSTM在编码时在相应的字信息处加入了词信息，词信息一样有input, cell state，但是没有hidden state(output)，将词信息的cell state和字信息的cell state进行加权求和，获取新的hidden state的计算数据，并未改变原来的decoder结构和维度，因此后面也可以直接接CRF。并且因为加入了词信息，因此准确率会有提升。<br>SF中，准确率提升2%，但是速度会下降一倍。</p>
+<h3 id="FLAT"><a href="#FLAT" class="headerlink" title="FLAT"></a>FLAT</h3><ul>
+<li>计算了相对位置的四种distance</li>
+<li>使用XLNet中attention score的计算方式，来计算相对距离的attention score</li>
 </ul>
 
     </div>
@@ -288,8 +322,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
-              <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/" rel="tag"># 自我介绍</a>
+              <a href="/tags/ner/" rel="tag"># ner</a>
+              <a href="/tags/lattice/" rel="tag"># lattice</a>
+              <a href="/tags/FLAT/" rel="tag"># FLAT</a>
           </div>
 
         
@@ -298,10 +333,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/15/french/Preparation-pour-l-entretien-francais/" rel="prev" title="Préparation pour l'entretien français">
-      <i class="fa fa-chevron-left"></i> Préparation pour l'entretien français
+    <a href="/2021/08/15/interview/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/" rel="prev" title="中文面试自我简介">
+      <i class="fa fa-chevron-left"></i> 中文面试自我简介
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/19/interview/INTENT%E4%BB%BB%E5%8A%A1/" rel="next" title="INTENT任务">
+      INTENT任务 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -361,7 +399,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#自我介绍"><span class="nav-number">1.</span> <span class="nav-text">自我介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自我介绍的目的"><span class="nav-number">1.0.1.</span> <span class="nav-text">自我介绍的目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优缺点"><span class="nav-number">1.0.2.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#记录"><span class="nav-number">1.0.3.</span> <span class="nav-text">记录</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目叙述"><span class="nav-number">1.</span> <span class="nav-text">项目叙述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重难点"><span class="nav-number">2.</span> <span class="nav-text">重难点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NER"><span class="nav-number">2.1.</span> <span class="nav-text">NER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Viterbi"><span class="nav-number">2.2.</span> <span class="nav-text">Viterbi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CRF"><span class="nav-number">2.3.</span> <span class="nav-text">CRF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lattice-LSTM"><span class="nav-number">2.4.</span> <span class="nav-text">Lattice LSTM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FLAT"><span class="nav-number">2.5.</span> <span class="nav-text">FLAT</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -377,7 +415,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -390,7 +428,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

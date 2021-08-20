@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/15/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/19/interview/ChitChat%E4%BB%BB%E5%8A%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -194,7 +194,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/15/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">中文面试自我简介</a>
+            <a href="/2021/08/19/interview/ChitChat%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">ChitChat任务</a>
         </h1>
 
         <div class="post-meta">
@@ -205,8 +205,558 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-08-15 18:01:36 / 修改时间：21:46:18" itemprop="dateCreated datePublished" datetime="2021-08-15T18:01:36+08:00">2021-08-15</time>
+              <time title="创建时间：2021-08-19 19:09:48 / 修改时间：19:10:41" itemprop="dateCreated datePublished" datetime="2021-08-19T19:09:48+08:00">2021-08-19</time>
             </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何</li>
+<li>背景如何</li>
+<li>模型如何</li>
+<li>准确率如何</li>
+<li>碰到哪些问题</li>
+<li>怎么解决（trick或者模型）</li>
+<li>为什么这么解决</li>
+<li>效果怎么样</li>
+<li>还有哪些可以改进的</li>
+<li>现有哪些更好的方法吗（新的论文）</li>
+</ol>
+<p>闲聊：</p>
+<ol>
+<li>SF的闲聊中使用的是人工评价指标</li>
+<li>虽然ppl被认为是可以评估生成的文本，但其实效果并不是特别好<ol>
+<li>Perplexity的影响因素（这些是听报告了解的）：<ol>
+<li>训练数据集越大，PPL会下降得更低，1billion dataset和10万dataset训练效果是很不一样的；</li>
+<li>数据中的标点会对模型的PPL产生很大影响，一个句号能让PPL波动几十，标点的预测总是不稳定；</li>
+<li>预测语句中的“的，了”等词也对PPL有很大影响，可能“我借你的书”比“我借你书”的指标值小几十，但从语义上分析有没有这些停用词并不能完全代表句子生成的好坏。</li>
+</ol>
+</li>
+<li>需要具体了解一下ppl，出自哪里，怎么计算，如何评价生成的文本而非模型</li>
+<li>可以看一下上次做的ppt</li>
+</ol>
+</li>
+<li>20年google出了另一种评价指标BLEURT</li>
+<li><a href="https://cloud.tencent.com/developer/news/468354" target="_blank" rel="noopener">人机对话关键技术及挑战</a><br>文章提到了好几个闲聊重的优化技术，比如learning to start for sequence to sequence,Retrieval-Enhanced Adversarial Training For Neural Response Generation, etc.</li>
+</ol>
+<p>好好研究一下<a href="https://www.infoq.cn/profile/90B7FCCBE83037/publish" target="_blank" rel="noopener">滴滴技术</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/19/interview/DM%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/19/interview/DM%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">DM任务</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-19 19:08:30 / 修改时间：19:50:07" itemprop="dateCreated datePublished" datetime="2021-08-19T19:08:30+08:00">2021-08-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何</li>
+<li>背景如何</li>
+<li>模型如何</li>
+<li>准确率如何</li>
+<li>碰到哪些问题</li>
+<li>怎么解决（trick或者模型）</li>
+<li>为什么这么解决</li>
+<li>效果怎么样</li>
+<li>还有哪些可以改进的</li>
+<li>现有哪些更好的方法吗（新的论文）</li>
+</ol>
+<p>对话机器人中碰到的问题：</p>
+<ol>
+<li>解决语言的多样性和歧义性问题</li>
+<li>槽位模块中如何提高抽取模型的复用性</li>
+<li>解决实体消歧问题</li>
+<li>上下文理解</li>
+<li>场景可移植性</li>
+<li>多轮（ner可以加到多轮里，比如学生教学场景，可以聊ner和dm结合rasa的设计）</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/19/interview/FAQ%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/19/interview/FAQ%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">FAQ任务</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-19 19:08:09" itemprop="dateCreated datePublished" datetime="2021-08-19T19:08:09+08:00">2021-08-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-20 14:30:40" itemprop="dateModified" datetime="2021-08-20T14:30:40+08:00">2021-08-20</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何<br>10W数据，1600个标准问（5.6w数据是自己造的），每个标准问对应n个相似问<br>最多的能有两千左右的相似样例，较少的只有上百个</li>
+</ol>
+<p>数据不是标注，是本来业务就已经有的归类数据</p>
+<ol>
+<li><p>背景如何<br>一句话进入到系统后，先用faq进行判别，如果是比如「我要寄快递」这个标准问，那么就转入到多轮，如果是其他的faq中对应问题，有两种可能，一种是特别肯定，就直接回复，一种是不太肯定，就推荐top3进行。<br>faq做的就是对所有问题的初步判断<br>（这里和vipkid里就不一样了，因为vipkid里用的是bert模型，很难判断第一个回复是不是和第二个回复差距很大，最开始设置的差别是0.0001，后来改用意图分类来进行筛选，如果意图不能判断，再给到faq，提高直答的准确率）</p>
+</li>
+<li><p>模型如何<br>期间尝试过很多模型，用stacking，使用svm，使用双塔模型，使用lstm，最后发现lstm效果最好（在回复比率相当的情况下，直答率最高，12个百分点，直答准确率要低1个百分点）</p>
+<ol>
+<li>双塔模型+triplet loss<br>其实双塔模型效果也还不错，尤其是优化了triplet loss之后，我们使用正负样本三元组，对于每一个样本，我们取最远的k个正样本，和最近的k个负样本，然后使用triplet loss进行计算，每5个epoch更新一次距离最近的正样本和负样本，直答率确实提升了3%，但是训练时的整体性能下降很严重，对线上影响不大，线上还是过一个模型计算出embedding，然后找出最相似的句子即可（召回+精排，性能允许，直接精排，但是其实可以加一个召回）</li>
+<li>使用am softmax<br>为了更好的区分类间距离，我们使用了am softmax，softmax指数右上角本来应该是x^cos(delta)，改为s(cos(delta)-m)，m就是为了增加目标类别间的距离，s是为了控制让好的样本有一个更高的梯度，来进一步缩小类内间的距离</li>
+</ol>
+</li>
+</ol>
+<p>最后结果，top1准确率，85.9%，直答率91.3%，默认回复比率2.3%</p>
+<ol>
+<li><p>碰到哪些问题</p>
+<ol>
+<li>样本不平衡 —— 数据增强</li>
+<li>提升直答率和精排的准确率 —— 模型的改进</li>
+</ol>
+</li>
+<li><p>还有哪些可以改进的</p>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）<br>SBert<br>3w数据，200个类，最开始是直接上的bert模型，然后使用nsp来预测两个句子是否是同一类，即对每个类别做个二分类。<br>效果不是特别好，89%<br>分析是bert的NSP并不适合分类，因为我们只是微调，没有重新训练bert，之前都是判别两个句子是否是前后文，与我们的情况不同<br>所以我们尝试使用sbert模型。其实这个模型的主题思想是使用bert来产生embedding，然后在对每个句子的embedding进行softmax，triplet loss等各种尝试处理，最后发现普通的triplet loss效果就不错，能够让f1值达到93%，等于是优化了解码的embedding</p>
+</li>
+</ol>
+<p>Sbert<br>学习曲线<br>bert结果两集分化，如何平衡<br>triplet loss<br>am softmax</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/19/interview/INTENT%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/19/interview/INTENT%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">INTENT任务</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-19 19:07:22 / 修改时间：19:50:10" itemprop="dateCreated datePublished" datetime="2021-08-19T19:07:22+08:00">2021-08-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何</li>
+</ol>
+<h4 id="SF"><a href="#SF" class="headerlink" title="SF"></a>SF</h4><p>共有15000条数据，10个类别（如「信息」，「询问到达时间」，「询问费用」，「询问到达时间——是否」，「询问费用——是否」，「肯定」，「否定」，「」等） + 1个「others」类<br>其中将近5000是数据增强的</p>
+<p>样本最多的类别others，样本数可达5000<br>样本最少的类别比如「否定」，样本数只有100多（最后两少的三个类别，取了三倍过采样，过多和过少都会降低F1值）</p>
+<ol start="2">
+<li><p>背景如何<br>比如其中一个多轮场景是「寄快递」</p>
+</li>
+<li><p>模型如何<br>baseline上的是rnn<br>后来改为cnn<br>也同bert比较了，bert出了收敛较cnn更快一些外，最终效果并不比cnn好</p>
+</li>
+<li><p>准确率如何<br>最后F1达到95%，达到业务要求</p>
+</li>
+<li><p>碰到哪些问题</p>
+<ol>
+<li>F1值不够95%<ol>
+<li>数据增强</li>
+<li>错误样本分析（尤其对准确率很低的类别，针对行进行分析）<ol>
+<li>我们通过错误样本分析，找到了几个准确率特别低的样本，进行过采样，提升了效果</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>样本不均衡的问题<ol>
+<li>低样本的三个类别进行了三倍过采样</li>
+<li>数据增强（尝试了使用bert的mask进行数据增强）</li>
+</ol>
+</li>
+<li>多轮之间通过意图跳转<ol>
+<li>尝试过使用熵来替代概率，效果不好</li>
+<li>最后通过调节weight，然后跟踪整体准确率和召回率的变化，提前中断训练，使得others类的准确率能达到99%（因为在调大others的weight后，训练会优先照顾这个类别，因为一开始，others的召回特别低，但是准确率特别高，然后在整体F1值慢慢上升后，others的准确率会开始下降，这时需要终止训练，这里牺牲了整体1个百分点的F1值）</li>
+</ol>
+</li>
+<li>曾经出现过一个句子分属多个类别的情况<ol>
+<li>进行数据梳理后，发现两个类别可以分开。对这两个类别的数据重新进行梳理，准确率大幅提升</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>还有哪些可以改进的</p>
+<ol>
+<li>对于分属多个类别的语句，是否也可以尝试进行多标签分类</li>
+<li>更可以改进的是DM的设置<ol>
+<li>每个多轮都有一个others，比较累赘，说明每个多轮都需要找过others的准确率，而影响整体的准确率</li>
+<li>是否可以通过记住当前多轮所在状态和所在的bot，然后将再此进入多轮的句子进行更精确的分类和进入判别，这样就不用每个多轮里面都加一个others类别了</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）</p>
+<ol>
+<li>对于分类，cnn和rnn有时候就很够用了，再不行上bert也差不多，然后就是数据的问题了，模型帮助不大</li>
+<li>对于对话机器人更好的想法，如上5.2.2</li>
+</ol>
+</li>
+</ol>
+<h4 id="VIPKid"><a href="#VIPKid" class="headerlink" title="VIPKid"></a>VIPKid</h4><ol>
+<li>数据如何</li>
+<li>背景如何</li>
+<li>模型如何</li>
+<li>准确率如何</li>
+<li>碰到哪些问题</li>
+<li>怎么解决（trick或者模型）</li>
+<li>为什么这么解决</li>
+<li>效果怎么样</li>
+<li>还有哪些可以改进的</li>
+<li>现有哪些更好的方法吗（新的论文）</li>
+</ol>
+<h2 id="重难点"><a href="#重难点" class="headerlink" title="重难点"></a>重难点</h2><h3 id="Bert数据增强"><a href="#Bert数据增强" class="headerlink" title="Bert数据增强"></a>Bert数据增强</h3><p>分类碰到的问题：</p>
+<ol>
+<li>使用某个模型前，也可以先做一个学习曲线，判断使用的样本是否足够</li>
+<li>进行错误样本分析</li>
+<li>调节weight，优化不同类别的presicion</li>
+<li>如果某一类别的F1值过低，可以看下是否是样本不足的原因</li>
+<li>做数据增强</li>
+<li>如果是两个类别经常混淆，可以先将其归为一类，之后在下一层，用规则或模型进行细分<ol>
+<li>对下一层分类起，是模型加针对性的数据增强</li>
+<li>这里数据增强有用，但是整体数据增强，不一定能增加准确率，比如“蓝屏”，在这里是“noshow”的意思，但是在别的地方有可能是指机器故障（看下数据，找个好点的例子）</li>
+</ol>
+</li>
+<li>叠加分类器</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/17/interview/NER%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/17/interview/NER%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">NER任务</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-17 14:46:29" itemprop="dateCreated datePublished" datetime="2021-08-17T14:46:29+08:00">2021-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-19 19:50:13" itemprop="dateModified" datetime="2021-08-19T19:50:13+08:00">2021-08-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何<br>共有15000条数据，12个类别（如「出发地」，「出发时间」，「类型」，「物品」，「体积」等）</li>
+</ol>
+<ol start="2">
+<li><p>背景如何<br>比如其中一个多轮场景是「寄快递」</p>
+</li>
+<li><p>模型如何<br>先是上的baseline，然后针对问题进行改进的（最开始尝试intent和ner一起做）<br>baseline使用的是lstm+crf，因为一般ner的问题，都是编码获取的信息不够，所以后来上了bilstm+crf，准确率提升了1.5个百分点，也尝试使用bert，发现bert效果并不比bilstm好。之后</p>
+</li>
+<li><p>准确率如何<br>最后F1值83%</p>
+</li>
+<li><p>碰到哪些问题</p>
+<ol>
+<li>整体F1值问题<ol>
+<li>F1值不是特别高，刚开始只能到达80%左右</li>
+<li>ner一般都是embedding不够丰富，所以我们尝试了bilstm和bert，两个效果差不多，但是bilstm更轻便，能够提升1.5%的F1值</li>
+<li>后来又跑了一下当时刚出的lattice lstm，效果确实还是不错的，相对bilstm能提升2个百分点，当然，后来在vipkid又尝试了FLAT，效果更好，相对lattice lstm，还能再提升2个百分点</li>
+<li>不同解码方式<ol>
+<li>CRF/指针网络/Biaffine</li>
+<li>不同解码方式差异有限</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>有的类别预测不准，有的特别准<ol>
+<li>样本不均衡<ol>
+<li>本身标注的样本，就会有些不均衡，所以自己按规律造了5000数据</li>
+<li>当然，测试集里是原始数据</li>
+<li>有一定的效果提升</li>
+</ol>
+</li>
+<li>同样量的样本，有的类别比较难预测（规律难找）<ol>
+<li>有的类别虽然样本也不算少，但是本身规律比较难找，比如「明天」，「明天下午两点」，实体变化很大，所以效果不如意</li>
+<li>这些特殊类别，我们主要是通过规则加上开源工具来兜底</li>
+<li>比如地址，我们本身有很全的字典，如果模型预测概率小于某个阈值，我们就尝试用字典进行匹配</li>
+<li>比如时间，我们用开源工具进行兜底</li>
+</ol>
+</li>
+<li>召回不高<ol>
+<li>丰富embedding</li>
+<li>检查是否有漏标的数据（标注数据的噪音去除）</li>
+</ol>
+</li>
+<li>嵌套实体/多种类别实体</li>
+<li>实体span过长（规则，引入指针网络）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>还有哪些可以改进的</p>
+<ol>
+<li>一个是可以从embedding方面进行改进</li>
+<li>另一个是嵌套实体/多类别实体的问题解决</li>
+</ol>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）</p>
+</li>
+</ol>
+<h2 id="重难点"><a href="#重难点" class="headerlink" title="重难点"></a>重难点</h2><h3 id="NER"><a href="#NER" class="headerlink" title="NER"></a>NER</h3><ul>
+<li>基于「词」的NER会受到分词的影响。比如需要预测的句子中，目标词汇被错误划分从而导致结果错误。所以目前NER主要还是基于「字」做NER，然后尽量加入「词」信息</li>
+<li>LSTM接CRF：在decoder时，对每一步的输出h，进行vitterbi编码</li>
+</ul>
+<h3 id="Viterbi"><a href="#Viterbi" class="headerlink" title="Viterbi"></a>Viterbi</h3><p>维特比是一个动态规划算法。<br>我们需要找到最大路径，通常需要求出每一层的每一种路径的概率。<br>但是在维特比算法中，我们每次取当前层，节点个数（即可能的状态个数）的路径（每个节点取，到当前层、当前节点，概率最大的路径），因此可以减少很多运算</p>
+<h3 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h3><ul>
+<li>CRF位条件概率（判别模型）</li>
+<li>HMM是联合概率（生成模型），且有独立假设</li>
+</ul>
+<h3 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice LSTM"></a>Lattice LSTM</h3><p>Lattice LSTM在编码时在相应的字信息处加入了词信息，词信息一样有input, cell state，但是没有hidden state(output)，将词信息的cell state和字信息的cell state进行加权求和，获取新的hidden state的计算数据，并未改变原来的decoder结构和维度，因此后面也可以直接接CRF。并且因为加入了词信息，因此准确率会有提升。<br>SF中，准确率提升2%，但是速度会下降一倍。</p>
+<h3 id="FLAT"><a href="#FLAT" class="headerlink" title="FLAT"></a>FLAT</h3><ul>
+<li>计算了相对位置的四种distance</li>
+<li>使用XLNet中attention score的计算方式，来计算相对距离的attention score</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/15/interview/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/15/interview/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">中文面试自我简介</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-15 18:01:36" itemprop="dateCreated datePublished" datetime="2021-08-15T18:01:36+08:00">2021-08-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-19 19:50:18" itemprop="dateModified" datetime="2021-08-19T19:50:18+08:00">2021-08-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -240,6 +790,18 @@
 <li>我的能力是否能够匹配当前职位</li>
 </ul>
 <h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：好奇心强，责任心强，抗压能力强，协作沟通能力不错<br>缺点：拖沓，钻研度不够，会因为想要尝试，有时不太分主次，导致浪费很多时间</p>
+<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何</li>
+<li>背景如何</li>
+<li>模型如何</li>
+<li>准确率如何</li>
+<li>碰到哪些问题</li>
+<li>怎么解决（trick或者模型）</li>
+<li>为什么这么解决</li>
+<li>效果怎么样</li>
+<li>还有哪些可以改进的</li>
+<li>现有哪些更好的方法吗（新的论文）</li>
+</ol>
 <h4 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h4><p>我的优势：</p>
 <ol>
 <li>学历背景</li>
@@ -258,7 +820,7 @@
 <li><p>对闲聊很感兴趣，觉得闲聊是以后的重点，所以在进入顺丰后，在坚固智能客服的同时，主动选择了并不是很热门的闲聊（闲聊一定要再读几篇论文，再深耕一下）</p>
 </li>
 <li><p>对智能客服的了解比较全面，先是提高准确率的技术，后来是业务方面处理的技术（如DM，如用户一次说多句话是如何处理的，如一句话有多个意图是如何处理的，等等）</p>
-<p> <a href="https://www.infoq.cn/article/pryrhwq1pj6xkb59gbx6" target="_blank" rel="noopener">为客服构建更加智能的对话机器人：多轮应答时机触发模型</a><br> <a href="https://cloud.tencent.com/developer/news/468354" target="_blank" rel="noopener">人机对话关键技术及挑战</a><br> <a href="http://www.woshipm.com/pd/4133505.html" target="_blank" rel="noopener">任务驱动型人机对话系统设计</a></p>
+<p> <a href="https://www.infoq.cn/article/pryrhwq1pj6xkb59gbx6" target="_blank" rel="noopener">为客服构建更加智能的对话机器人：多轮应答时机触发模型</a><br> <a href="https://cloud.tencent.com/developer/news/468354" target="_blank" rel="noopener">人机对话关键技术及挑战</a><br> 文章提到了好几个闲聊重的优化技术，比如learning to start for sequence to sequence,Retrieval-Enhanced Adversarial Training For Neural Response Generation, etc.<br> <a href="http://www.woshipm.com/pd/4133505.html" target="_blank" rel="noopener">任务驱动型人机对话系统设计</a></p>
 </li>
 <li><p>闲聊主要就聊技术</p>
 </li>
@@ -267,13 +829,20 @@
 <li><p>如何在对话设计时，设计的是多次对话拼接到一起然后求他的意图，那么</p>
 <ol>
 <li>在训练时，如何解决训练的样本问题（人工可以标注，但是样本不是很多，SF为5000-10000条）</li>
-<li>训练时不会有不收敛的问题吗？因为同样一部分的语句在不同的类别中出现过（并且是肯定不能使用CNN这种对序列信息没有考虑的模型）</li>
+<li>训练时不会有不收敛的问题吗？因为同样一部分的语句在不同的类别中出现过（并且是肯定不能使用CNN这种对序列信息没有考虑的模型） </li>
+</ol>
+</li>
+<li><p>抗压能力：LP工作情况统计的项目</p>
+</li>
+</ol>
+<h2 id="明天"><a href="#明天" class="headerlink" title="明天"></a>明天</h2><ol start="5">
+<li>写下客服/对话机器人的面试文章</li>
+<li>或者整理下智能客服的面试文章<ol>
+<li>Sbert</li>
+<li>学习曲线</li>
 </ol>
 </li>
 </ol>
-<ul>
-<li>抗压能力：LP工作情况统计的项目</li>
-</ul>
 
       
     </div>
@@ -643,550 +1212,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">使用hexo搭建博客</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-15 17:19:16" itemprop="dateModified" datetime="2021-08-15T17:19:16+08:00">2021-08-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index">
-                    <span itemprop="name">周边辅助</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Hexo-github"><a href="#Hexo-github" class="headerlink" title="Hexo + github"></a>Hexo + github</h2><h3 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h3><ol>
-<li><p><code>github</code>上创建仓库，仓库名必须严格是<code>username.github.io</code></p>
-</li>
-<li><p>创建本地写博客的hexo文件夹MyHexo，然后进入文件夹，执行命令行<code>hexo init</code>，如果报错，会提示输入<code>npm install hexo --save</code></p>
-</li>
-<li><p>进入根目录下的<code>_config.yml</code>，增加</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:username&#x2F;username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行命令<code>hexo g</code>，如果报错，一般是因为没有安装<code>git</code>，执行<code>npm install hexo-deployer-git --save</code>安装<code>hexo</code>下的<code>git</code>，然后重新<code>hexo g</code></p>
-</li>
-<li><p>执行<code>hexo d</code>，如果没有关联<code>git</code>和<code>hexo</code>，会自动提醒输入</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Username for &#39;https:&#x2F;&#x2F;github.com&#39;:</span><br><span class="line">Password for &#39;https:&#x2F;&#x2F;github.com&#39;:</span><br></pre></td></tr></table></figure>
-<p> 这里我用了<code>ssh</code>钥匙。</p>
-<ul>
-<li>执行命令<code>ssh-keygen -t rsa -C github_de_email@gmail.com</code></li>
-<li>进入<code>~/.ssh</code>复制文件<code>id_rsa.pub</code>里的公匙，进入到<code>github</code>里的<code>setting</code>，进入<code>SSH and GPG keys</code>，新建SSH钥匙<code>new SSH key</code>，粘贴公匙，<code>title</code>可以随意取或者不取，然后确定</li>
-<li>运行<code>ssh -T git@github.com</code>，如果看到<code>Hi username! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code>证明SSH连接成功。</li>
-</ul>
-</li>
-<li><p>自己博客的域名为 <a href="https://shijiaod.github.io/" target="_blank" rel="noopener">https://shijiaod.github.io/</a><br>有时<code>hexo d</code>后页面没有变化，可以尝试重启电脑…</p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">数学公式</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-12 10:09:36" itemprop="dateModified" datetime="2020-05-12T10:09:36+08:00">2020-05-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">数学公式</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="最优法"><a href="#最优法" class="headerlink" title="最优法"></a>最优法</h1><h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><p>牛顿法迭代法解非线性方程，是把非线性方程$f(x)=0$线性化的一种近似方法。把$f(x)$在点$x_0$的某领域内展开成泰勒级数$f(x)=f(x_0)+f^{‘}(x_0)(x-x_0)+ \frac{f^{‘’}(x_0)(x-x_0)^2}{2!}+…+ \frac{f^{n}(x_0)(x-x_0)^n}{n!}+R_n(x)$，取其线性部分，即展开式的前两项$f(x_0)+f^{‘}(x_0)(x-x_0)$，令其等于0，以此作为非线性方程$f(x)=0$的近似方程，若$f^{‘}(x_0) \neq 0$，则解为$x_1=x_0- \frac {f(x_0)} {f^{‘}(x_0)}$，这样我们得到牛顿迭代法的一个迭代关系式</p>
-<p>Python代码实例展示求解方程$(x-3)^3=0$的根</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (x<span class="number">-3</span>)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fd</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*(x<span class="number">-3</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">newtonMethod</span><span class="params">(n, assum)</span>:</span></span><br><span class="line">    time = n</span><br><span class="line">    x = assum</span><br><span class="line">    Next = <span class="number">0</span></span><br><span class="line">    A = f(x)</span><br><span class="line">    B = fd(x)</span><br><span class="line">    print(<span class="string">'A = '</span> + str(A) + <span class="string">',B = '</span> + str(B) + <span class="string">',time = '</span> + str(time))</span><br><span class="line">    <span class="keyword">if</span> f(x) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> time, x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        Next = x - A/B</span><br><span class="line">        print(<span class="string">'Next x = '</span> + str(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 1.</span></span><br><span class="line">    <span class="comment">## 这里设置的迭代条件不是当前值和最优值之间的距离，而是相比于上一个值的变化要小于某个值</span></span><br><span class="line">    <span class="comment">## 但我们要求的就是最优值，所以我们并不知道最优值的具体值，不能的到他们的距离</span></span><br><span class="line">    <span class="comment">## 所以要通过每次A的变化，来估计最优值</span></span><br><span class="line">    <span class="keyword">if</span> A - f(Next) &lt; <span class="number">1e-6</span>: </span><br><span class="line">        print(<span class="string">"Meet f(x) = 0, x = "</span> + str(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 2.</span></span><br><span class="line">    <span class="comment"># ## 所以这里其实是不是也可以通过x的变化，来估计最优值？</span></span><br><span class="line">    <span class="comment"># if A/B &lt; 1e-4:</span></span><br><span class="line">    <span class="comment">#     print("Meet f(x) = 0, x = " + str(Next))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## 3.</span></span><br><span class="line">    <span class="comment"># ## 这里当然也能用 if time &gt; m 来设置跳出循环的条件，但是相对 A - f(Next) 得到的值会更不精确一些</span></span><br><span class="line">    <span class="comment"># if time &gt; 10:</span></span><br><span class="line">    <span class="comment">#     print("Meet f(x) = 0, x = " + str(Next))</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> newtonMethod(n+<span class="number">1</span>, Next)</span><br><span class="line"></span><br><span class="line">newtonMethod(<span class="number">0</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="其它迭代算法"><a href="#其它迭代算法" class="headerlink" title="其它迭代算法"></a>其它迭代算法</h2><h3 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h3><p>最大公约数：Greatest Common Divisor(GCD)</p>
-<h4 id="算法简介"><a href="#算法简介" class="headerlink" title="算法简介"></a>算法简介</h4><p>欧几里德算法是用来求两个正整数最大公约数的算法。是由古希腊数学家欧几里德在其著作《The Elements》中最早描述了这种算法,所以被命名为欧几里德算法。<br>扩展欧几里德算法可用于RSA加密等领域。</p>
-<p>假如需要求 1997 和 615 两个正整数的最大公约数,用欧几里德算法，是这样进行的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1997 &#x2F; 615 &#x3D; 3 (余 152)</span><br><span class="line">615 &#x2F; 152 &#x3D; 4(余7)</span><br><span class="line">152 &#x2F; 7 &#x3D; 21(余5)</span><br><span class="line">7 &#x2F; 5 &#x3D; 1 (余2)</span><br><span class="line">5 &#x2F; 2 &#x3D; 2 (余1)</span><br><span class="line">2 &#x2F; 1 &#x3D; 2 (余0)</span><br></pre></td></tr></table></figure>
-<p>至此，最大公约数为1<br>以除数和余数反复做除法运算，当余数为 0 时，取当前算式除数为最大公约数，所以就得出了 1997 和 615 的最大公约数 1。</p>
-<h4 id="计算证明"><a href="#计算证明" class="headerlink" title="计算证明"></a>计算证明</h4><p>其计算原理依赖于下面的定理：</p>
-<p>定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数。最大公约数（Greatest Common Divisor）缩写为GCD。<br>$gcd(a,b) = gcd(b,a \mod b)$ (不妨设$a&gt;b$ 且$r=a \mod b$ ,$r$不为$0$)</p>
-<h5 id="证法一"><a href="#证法一" class="headerlink" title="证法一"></a>证法一</h5><ul>
-<li><p>正</p>
-<ul>
-<li>$a$可以表示成$a = kb + r$（$a$，$b$，$k$，$r$皆为正整数，且$r&lt;b$），则$r = a \mod b$</li>
-<li>假设$d$是$a$,$b$的一个公约数，记作$d|a$,$d|b$，即$a$和$b$都可以被$d$整除。</li>
-<li>而$r = a - kb$，两边同时除以$d$，$r/d=a/d-kb/d=m$，由等式右边可知$m$为整数，因此$d|r$</li>
-<li>因此$d$也是$b$,$a \mod b$的公约数</li>
-</ul>
-</li>
-<li><p>反</p>
-<ul>
-<li>假设$d$是$b$,$a \mod b$的公约数, 则$d|b$,$d|(a-k*b)$,$k$是一个整数。</li>
-<li>进而$d|a$，因此$d$也是$a$,$b$的公约数</li>
-<li>因此$(a,b)$和$(b,a \mod b)$的公约数是一样的，其最大公约数也必然相等</li>
-</ul>
-</li>
-<li><p>得证</p>
-</li>
-</ul>
-<h5 id="证法二"><a href="#证法二" class="headerlink" title="证法二"></a>证法二</h5><p>假设c = gcd(a,b),则存在m,n，使a = mc, b = nc;<br>令r = a mod b，即存在k，使r = a-kb = mc - knc = (m-kn)c;<br>故gcd(b,a mod b) = gcd(b,r) = gcd(nc,(m-kn)c) = gcd(n,m-kn)*c;<br>假设d = gcd(n,m-kn), 则存在x,y, 使n = xd, m-kn = yd; 故m = yd+kn = yd+kxd = (y+kx)d;<br>故有a = mc = (y+kx)dc, b = nc = xdc; 可得 gcd(a,b) = gcd((y+kx)dc,xdc) = dc;<br>由于gcd(a,b) = c, 故d = 1;<br>即gcd(n,m-kn) = 1, 故可得gcd(b,a mod b) = c;<br>故得证gcd(a,b) = gcd(b,a mod b).<br>注意:两种方法是有区别的。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>自己写的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    c = a%b</span><br><span class="line">    <span class="keyword">return</span> print(b) <span class="keyword">if</span> c==<span class="number">0</span> <span class="keyword">else</span> gcd(b, c)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
-
-<p>百度百科上的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> a != <span class="number">0</span>:</span><br><span class="line">        a, b = b % a, a</span><br><span class="line">    <span class="keyword">return</span> print(b)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
-
-<h4 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h4><p>扩展欧几里得算法（英语：Extended Euclidean algorithm）是欧几里得算法（又叫辗转相除法）的扩展。已知整数$a$、$b$，扩展欧几里得算法可以在求得$a$、$b$的最大公约数的同时，能找到整数$x$、$y$（其中一个很可能是负数），使它们满足贝祖等式</p>
-<p>$ax+by=gcd(a,b)$</p>
-<p>如果a是负数，可以把问题转化成$|a|(-x)+by=gcd(|a|,b)$，然后令$x^{‘}=(-x)$。</p>
-<p>扩展欧几里得算法可以用来计算模反元素(也叫模逆元)，而模反元素在RSA加密算法中有举足轻重的地位。</p>
-<h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ext_euclid</span><span class="params">(a, b)</span>:</span>     </span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:         </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>, <span class="number">0</span>, a     </span><br><span class="line">    <span class="keyword">else</span>:         </span><br><span class="line">        x, y, q = ext_euclid(b, a % b) </span><br><span class="line">        <span class="comment"># q = gcd(a, b) = gcd(b, a%b)   </span></span><br><span class="line"></span><br><span class="line">        <span class="comment">## 这一行怎么求的，有时间可以论证一下      </span></span><br><span class="line">        x, y = y, (x - (a // b) * y)     </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x, y, q</span><br></pre></td></tr></table></figure>
-
-<h3 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……在数学上，斐波那契数列以如下被以递推的方法定义：F(1)=1，F(2)=1, F(n)=F(n - 1)+F(n - 2)（n ≥ 3，n ∈ N*）在现代物理、准晶体结构、化学等领域，斐波纳契数列都有直接的应用，为此，美国数学会从 1963 年起出版了以《斐波纳契数列季刊》为名的一份数学杂志，用于专门刊载这方面的研究成果。</p>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#################### 输出第n个斐波那契数 ####################</span></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci1</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment">## 这种方法，每次都要嵌套循环，不能记录上一次的结果之间用，所以时间复杂度非常高！！</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(n)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>)</span><br><span class="line">    <span class="keyword">return</span> fib(n)</span><br><span class="line"></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci2</span><span class="params">(n)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= n:</span><br><span class="line">        l.append(l[i<span class="number">-1</span>]+l[i<span class="number">-2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l[i<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(fibonacci1(<span class="number">20</span>))</span><br><span class="line">print(fibonacci2(<span class="number">20</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#################### 输出前n个斐波那契数 ####################</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">(n)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; n:</span><br><span class="line">        l.append(l[i<span class="number">-1</span>]+l[i<span class="number">-2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line">print(fibonacci(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
-
-<p>可以尝试用代码画出斐波那契函数的曲线 斐波那契弧线<br><img src="/public/images/image/fibonacci.jpg" alt="fibonacci"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/python%E7%82%B9%E6%BB%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/python%E7%82%B9%E6%BB%B4/" class="post-title-link" itemprop="url">python的点滴</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-15 17:45:38" itemprop="dateModified" datetime="2021-08-15T17:45:38+08:00">2021-08-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index">
-                    <span itemprop="name">周边辅助</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="找到当前index在数组位置中对称的位置"><a href="#找到当前index在数组位置中对称的位置" class="headerlink" title="找到当前index在数组位置中对称的位置"></a>找到当前index在数组位置中对称的位置</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">index = len(nums)//<span class="number">2</span></span><br><span class="line">print(index) <span class="comment"># 3</span></span><br><span class="line">print(~index) <span class="comment"># -4</span></span><br><span class="line">median = (nums[index] + nums[~index])/<span class="number">2</span></span><br><span class="line">print(median) <span class="comment"># 3.5</span></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/19/python%E7%82%B9%E6%BB%B4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">算法刷题总结</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-15 17:56:58" itemprop="dateModified" datetime="2021-08-15T17:56:58+08:00">2021-08-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">数学公式</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>如果有搜索类循环，可以用dict来储存，这样搜索时间为O(1)，如果不行，可以考虑二叉树搜索，二叉树搜索时间小于O(n)<ol>
-<li>如找重复的数值</li>
-<li>小于/大于某个值的数值等</li>
-</ol>
-</li>
-</ol>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="字符串反转"><a href="#字符串反转" class="headerlink" title="字符串反转"></a>字符串反转</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'abc' =&gt; 'cba'</span><br></pre></td></tr></table></figure>
-<p>方法一：</p>
-<p>用两个指针一起从两头往中间前进，每次都对调两个指针对应的数值，不需要区分数组单双数的情况。</p>
-<h3 id="最长不重复字串"><a href="#最长不重复字串" class="headerlink" title="最长不重复字串"></a>最长不重复字串</h3><p>LeetCode 3. Longest Substring Without Repeating Characters</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Given a string, find the length of the longest substring without repeating characters.</span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: &quot;abcabcbb&quot;</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: The answer is &quot;abc&quot;, with the length of 3. </span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: &quot;bbbbb&quot;</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: The answer is &quot;b&quot;, with the length of 1.</span><br><span class="line"></span><br><span class="line">Example 3:</span><br><span class="line"></span><br><span class="line">Input: &quot;pwwkew&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The answer is &quot;wke&quot;, with the length of 3. </span><br><span class="line">Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.</span><br></pre></td></tr></table></figure>
-
-<p>方法一：</p>
-<ol>
-<li>做一次for循环</li>
-<li>每一步更新指针start的位置<ol>
-<li>当start后面有重复的字符，start跳到重复的字符当前位置</li>
-<li>当start后面有重复其前面的字符，但是在start后面没有重复，dict会在后面更新，但是start指针不调整</li>
-</ol>
-</li>
-<li>核心代码如下<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j, string <span class="keyword">in</span> enumerate(s):</span><br><span class="line">  <span class="keyword">if</span> string <span class="keyword">in</span> dictOfsubstring:</span><br><span class="line">    start = max(start, dictOfsubstring[string]+<span class="number">1</span>)</span><br><span class="line">  maxlen = max(maxlen, j-start+<span class="number">1</span>)</span><br><span class="line">  dictOfsubstring.update(&#123;string:j&#125;)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>方法二：</p>
-<h3 id="最长对称字符串"><a href="#最长对称字符串" class="headerlink" title="最长对称字符串"></a>最长对称字符串</h3><p>LeetCode 5. Longest Palindromic Substring</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.</span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: &quot;babad&quot;</span><br><span class="line">Output: &quot;bab&quot;</span><br><span class="line">Note: &quot;aba&quot; is also a valid answer.</span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: &quot;cbbd&quot;</span><br><span class="line">Output: &quot;bb&quot;</span><br></pre></td></tr></table></figure>
-
-<p>方法一：</p>
-<p>暴力解法，两次for循环，然后找出最大的对称字符串</p>
-<p>方法二：</p>
-<ol>
-<li><p>一个for循环</p>
-</li>
-<li><p>加上对称判断。对称只有两种可能性：</p>
-<ol>
-<li>有一个中心字符，如’aba’</li>
-<li>没有中心字符，如’abba’</li>
-</ol>
-<p>每当找到某种的中心点时，找出其可以向两边扩展的最远距离（例如情况ii时，代码如下），然后通过记录中心点和扩展的范围，得到对称字符串本身或者长度</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line"> ...</span><br><span class="line"> <span class="keyword">if</span> i+<span class="number">1</span>&lt;len(s) <span class="keyword">and</span> s[i] == s[i+<span class="number">1</span>]:</span><br><span class="line">     mid = <span class="number">1</span></span><br><span class="line">     count1 = <span class="number">2</span></span><br><span class="line">     <span class="keyword">while</span> i-mid&gt;=<span class="number">0</span> <span class="keyword">and</span> i+<span class="number">1</span>+mid&lt;len(s) <span class="keyword">and</span> s[i-mid] == s[i+<span class="number">1</span>+mid]:</span><br><span class="line">         count1 += <span class="number">2</span></span><br><span class="line">         mid += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>字符串相关问题，好像都会上指针。最重要的点，一是上一个还是两个指针，二是指针的更新方法。</p>
-<h2 id="字符列"><a href="#字符列" class="headerlink" title="字符列"></a>字符列</h2><h3 id="最长上升子序列"><a href="#最长上升子序列" class="headerlink" title="最长上升子序列"></a>最长上升子序列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Given an unsorted array of integers, find the length of longest increasing subsequence.</span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Input: [10,9,2,5,3,7,101,18]</span><br><span class="line">Output: 4 </span><br><span class="line">Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4. </span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">There may be more than one LIS combination, it is only necessary for you to return the length.</span><br><span class="line">Your algorithm should run in O(n2) complexity.</span><br><span class="line">Follow up: Could you improve it to O(n log n) time complexity?</span><br></pre></td></tr></table></figure>
-
-<p>方法一：</p>
-<ol>
-<li>用dp记录到当前数值位置，能有的最长上升子序列，初始化为1，即最长上升子序列为当前数值本身</li>
-<li>两次for循环（即两个指针），一次记录到当前位置最长上升子序列的，一次是在当前位置前，前面位置上有的最大上升子序列</li>
-<li>注意⚠️：如果第一个指针（当前位置）对应的数值num大于第二个指针（当前位置前面的指针）的数值value，那么当前位置的dp[i]更新为max(dp[i], dp[j]+1)，j为第二个指针的位置</li>
-<li>代码如下：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">IncreasingSubsets</span><span class="params">(nums)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  dp = [<span class="number">1</span>]*len(nums)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">          <span class="keyword">if</span> nums[j] &lt; nums[i]:</span><br><span class="line">              dp[i] = max(dp[j]+<span class="number">1</span>, dp[i])</span><br><span class="line">  <span class="keyword">return</span> max(dp)</span><br></pre></td></tr></table></figure>
-
-<p>方法二：</p>
-<ol>
-<li>用dp记录最长子序列的值</li>
-<li>for循环一遍nums，把每次的num二分查找插入到dp中</li>
-</ol>
-<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/interview/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/08/interview/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">智能客服项目</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-08T00:00:00+08:00">2019-12-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-15 17:57:15" itemprop="dateModified" datetime="2021-08-15T17:57:15+08:00">2021-08-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index">
-                    <span itemprop="name">工作总结</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="智能客服项目"><a href="#智能客服项目" class="headerlink" title="智能客服项目"></a>智能客服项目</h2><p>智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。</p>
-<p>FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。</p>
-<p>任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。<br>判断任务型对话是否结束有两种方式：</p>
-<ul>
-<li>一是这个任务已经完成</li>
-<li>二是虽然任务还未完成，但是模型判断需要跳出任务，此时直接结束任务返回通过顶层分类器进行模块判别的进程。</li>
-</ul>
-<p>在所有的任务中，我们都需要先为这个任务建立一个baseline，通常为相关任务常用的相对简单的模型。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/08/interview/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1254,7 +1284,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1267,7 +1297,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
