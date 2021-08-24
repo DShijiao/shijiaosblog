@@ -64,31 +64,123 @@
   <entry>
     <title>FAQ任务</title>
     <url>/2021/08/19/interview/FAQ%E4%BB%BB%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+    <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><h3 id="SF"><a href="#SF" class="headerlink" title="SF"></a>SF</h3><ol>
 <li>数据如何<br>10W数据，1600个标准问（5.6w数据是自己造的），每个标准问对应n个相似问<br>最多的能有两千左右的相似样例，较少的只有上百个</li>
 </ol>
 <p>数据不是标注，是本来业务就已经有的归类数据</p>
-<ol>
-<li><p>背景如何<br>一句话进入到系统后，先用faq进行判别，如果是比如「我要寄快递」这个标准问，那么就转入到多轮，如果是其他的faq中对应问题，有两种可能，一种是特别肯定，就直接回复，一种是不太肯定，就推荐top3进行。<br>faq做的就是对所有问题的初步判断<br>（这里和vipkid里就不一样了，因为vipkid里用的是bert模型，很难判断第一个回复是不是和第二个回复差距很大，最开始设置的差别是0.0001，后来改用意图分类来进行筛选，如果意图不能判断，再给到faq，提高直答的准确率）</p>
+<ol start="2">
+<li><p>背景如何</p>
+<ul>
+<li>一句话进入到系统后，先用faq进行判别，如果是比如「我要寄快递」这个标准问，那么就转入到多轮，如果是其他的faq中对应问题，有两种可能，一种是特别肯定，就直接回复，一种是不太肯定，就推荐top3进行。</li>
+<li>faq做的就是对所有问题的初步判断</li>
+<li>（这里和vipkid里就不一样了，因为vipkid里用的是bert模型，很难判断第一个回复是不是和第二个回复差距很大，最开始设置的差别是0.0001，后来改用意图分类来进行筛选，如果意图不能判断，再给到faq，提高直答的准确率）</li>
+</ul>
 </li>
-<li><p>模型如何<br>期间尝试过很多模型，用stacking，使用svm，使用双塔模型，使用lstm，最后发现lstm效果最好（在回复比率相当的情况下，直答率最高，12个百分点，直答准确率要低1个百分点）</p>
+<li><p>模型如何<br>期间尝试过很多模型，用stacking，使用svm，使用双塔模型，使用lstm，最后发现lstm效果最好（在回复比率相当的情况下，直答率最高，较svm高12个百分点，直答准确率要低1个百分点）</p>
 <ol>
-<li>双塔模型+triplet loss<br>其实双塔模型效果也还不错，尤其是优化了triplet loss之后，我们使用正负样本三元组，对于每一个样本，我们取最远的k个正样本，和最近的k个负样本，然后使用triplet loss进行计算，每5个epoch更新一次距离最近的正样本和负样本，直答率确实提升了3%，但是训练时的整体性能下降很严重，对线上影响不大，线上还是过一个模型计算出embedding，然后找出最相似的句子即可（召回+精排，性能允许，直接精排，但是其实可以加一个召回）</li>
-<li>使用am softmax<br>为了更好的区分类间距离，我们使用了am softmax，softmax指数右上角本来应该是x^cos(delta)，改为s(cos(delta)-m)，m就是为了增加目标类别间的距离，s是为了控制让好的样本有一个更高的梯度，来进一步缩小类内间的距离</li>
+<li>双塔模型+triplet loss<ul>
+<li>其实双塔模型效果也还不错，尤其是优化了triplet loss之后，我们使用正负样本三元组，对于每一个样本，我们取最远的k个正样本，和最近的k个负样本，然后使用triplet loss进行计算</li>
+<li>loss中的距离，尝试了常用的余弦距离和欧式距离，发现欧式距离效果更好。</li>
+<li>每5个epoch更新一次距离最近的正样本和负样本，直答率确实提升了3%，但是训练时的整体性能下降很严重，对线上影响不大，线上还是过一个模型计算出embedding，然后找出最相似的句子即可（召回+精排，性能允许，直接精排，但是其实可以加一个召回）</li>
+</ul>
+</li>
+<li>使用am softmax<ul>
+<li>为了更好的区分类间距离，我们使用了am softmax，softmax指数右上角本来应该是x^cos(delta)，改为s(cos(delta)-m)，m就是为了增加目标类别间的距离，s是为了控制让好的样本有一个更高的梯度，来进一步缩小类内间的距离</li>
+<li>相比triplet loss而言，am softmax再能达到相同效果的情况下，更节省算力</li>
+</ul>
+</li>
+<li>两者相对简单的使用lsmt效果都有2%左右的提升，但是资源耗费不同<ul>
+<li>triplet loss是通过计算相似度训练出得embedding，因此应该更适用于相似度的计算</li>
+<li>这里最后还是需要进行分类的，加上am softmax更节省算力，在效果几乎相同的情况下，我们选择am softmax</li>
+</ul>
+</li>
 </ol>
 </li>
-</ol>
-<p>最后结果，top1准确率，85.9%，直答率91.3%，默认回复比率2.3%</p>
-<ol>
+<li><p>准确率如何<br>最后结果，直答准确率，85.9%，直答率91.3%，默认回复比率2.3%</p>
+</li>
 <li><p>碰到哪些问题</p>
 <ol>
+<li>也会有数据问题<ol>
+<li>最大的类别有700多个样本，最小的类别只有几十个样本</li>
+<li>我们做了数据增广，过采样加上数据增强</li>
+</ol>
+</li>
+<li>召回率和精排效果的提升<ol>
+<li>主要是对模型的尝试，希望从模型方面更好的提升直答率和直答准确率</li>
+<li>最初用了baseline是svm模型（svm模型对数据样本的分布并不敏感，只取最贴近边界的样本计算loss）</li>
+<li>改用lstm后直答率提升了12%到89%，但是准确率下降了1%</li>
+<li>改用am softmax整体效果又提升了，增加了阈值之后，直答准确率85.9%，直答率91.3%</li>
+</ol>
+</li>
+<li>某些样本很难区分<ol>
+<li>所以尝试了triplet loss和am softmax，针对性解决问题</li>
+<li>都有一定的效果提升</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>还有哪些可以改进的</p>
+<ol>
+<li></li>
+</ol>
+</li>
+</ol>
+<ol start="7">
+<li>现有哪些更好的方法吗（新的论文）</li>
+</ol>
+<ol start="8">
+<li><p>碰到哪些问题</p>
+<ol start="4">
 <li>样本不平衡 —— 数据增强</li>
 <li>提升直答率和精排的准确率 —— 模型的改进</li>
 </ol>
 </li>
 <li><p>还有哪些可以改进的</p>
 </li>
-<li><p>现有哪些更好的方法吗（新的论文）<br>SBert<br>3w数据，200个类，最开始是直接上的bert模型，然后使用nsp来预测两个句子是否是同一类，即对每个类别做个二分类。<br>效果不是特别好，89%<br>分析是bert的NSP并不适合分类，因为我们只是微调，没有重新训练bert，之前都是判别两个句子是否是前后文，与我们的情况不同<br>所以我们尝试使用sbert模型。其实这个模型的主题思想是使用bert来产生embedding，然后在对每个句子的embedding进行softmax，triplet loss等各种尝试处理，最后发现普通的triplet loss效果就不错，能够让f1值达到93%，等于是优化了解码的embedding</p>
+<li><p>现有哪些更好的方法吗（新的论文）<br>SBert</p>
+</li>
+</ol>
+<h3 id="VIPKid"><a href="#VIPKid" class="headerlink" title="VIPKid"></a>VIPKid</h3><ol>
+<li><p>数据如何</p>
+<ol>
+<li>总共2w数据，200个类别</li>
+<li>因为用的三元组重新构造的数据，某个样本有多个正样本和负样本。我们在当前类中，匹配当前问题坐在类别中的其他问题为正样本，随机选择其他类的问题为负样本，最后获得80w的三元组数据组对</li>
+<li></li>
+</ol>
+</li>
+<li><p>背景如何</p>
+<ol>
+<li>在intent不能够区分当前语句的意图时，faq进行处理并进行兜底</li>
+</ol>
+</li>
+<li><p>模型如何</p>
+<ol>
+<li>最开始用的bert模型<ol>
+<li>在对数据进行三元组处理以后，就讲数据放入bert中的nsp，进行而分类匹配，这个为基础模型，但是也不是特别差，F1值能到89.6%</li>
+</ol>
+</li>
+<li>因为NSP初衷不是用来分类的，所以我们尝试使用sbert模型，只能bert来做一个embedding的提取<ol>
+<li>先是只取的cls的embedding，尝试了triplet loss等通过相似度计算loss的方法，最后发现triplet loss效果最好</li>
+<li>之后又我们比较了cls的embedding，第一层输出的embedding，最后一层token的embedding，然后计算相似度进行训练，发现最后一层token的embedding进行concat后计算相似度效果最好，能够再提升1.5个百分点的效果</li>
+<li>最后效果是93%</li>
+</ol>
+</li>
+<li></li>
+</ol>
+</li>
+<li><p>准确率如何</p>
+</li>
+<li><p>碰到哪些问题</p>
+</li>
+<li><p>怎么解决（trick或者模型）</p>
+</li>
+<li><p>为什么这么解决</p>
+</li>
+<li><p>效果怎么样</p>
+</li>
+<li><p>还有哪些可以改进的</p>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）<br>3w数据，200个类，最开始是直接上的bert模型，然后使用nsp来预测两个句子是否是同一类，即对每个类别做个二分类。<br>效果不是特别好，89%<br>分析是bert的NSP并不适合分类，因为我们只是微调，没有重新训练bert，之前都是判别两个句子是否是前后文，与我们的情况不同<br>所以我们尝试使用sbert模型。其实这个模型的主题思想是使用bert来产生embedding，然后在对每个句子的embedding进行softmax，triplet loss等各种尝试处理，最后发现普通的triplet loss效果就不错，能够让f1值达到93%，等于是优化了解码的embedding</p>
 </li>
 </ol>
 <p>Sbert<br>学习曲线<br>bert结果两集分化，如何平衡<br>triplet loss<br>am softmax</p>
@@ -564,6 +656,105 @@
       </tags>
   </entry>
   <entry>
+    <title>python的点滴</title>
+    <url>/2020/02/19/python%E7%82%B9%E6%BB%B4/</url>
+    <content><![CDATA[<h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="找到当前index在数组位置中对称的位置"><a href="#找到当前index在数组位置中对称的位置" class="headerlink" title="找到当前index在数组位置中对称的位置"></a>找到当前index在数组位置中对称的位置</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">index = len(nums)//<span class="number">2</span></span><br><span class="line">print(index) <span class="comment"># 3</span></span><br><span class="line">print(~index) <span class="comment"># -4</span></span><br><span class="line">median = (nums[index] + nums[~index])/<span class="number">2</span></span><br><span class="line">print(median) <span class="comment"># 3.5</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"></p>
+<a id="more"></a>
+
+<p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="图片二"><br><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A63.png" alt="图片三"></p>
+<h3 id="map-zip"><a href="#map-zip" class="headerlink" title="map, zip"></a>map, zip</h3><p>map和zip配合使用，实现矩阵转置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, matrix)</span>:</span>  </span><br><span class="line">        matrix[:] = map(list,zip(*matrix))</span><br><span class="line">        <span class="keyword">return</span> matrix</span><br><span class="line">print(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>],</span><br><span class="line">    [<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+
+<p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a href="https://blog.csdn.net/shawpan/article/details/69663710" target="_blank" rel="noopener">一行代码搞定矩阵旋转——python</a>。</p>
+<h3 id="defaultdict-function-factory"><a href="#defaultdict-function-factory" class="headerlink" title="defaultdict(function_factory)"></a>defaultdict(function_factory)</h3><p><strong>defaultdict</strong></p>
+<p>dict subclass that calls a factory function to supply missing values</p>
+<p><code>defaultdict</code>构建的是一个类似<code>dictionary</code>的对象，其中<code>keys</code>值自行确定赋值，但是<code>values</code>的类型是<code>fucntion_factory</code>的类实例，而且<strong>具有默认值</strong>。比如<code>defaultdict(list)</code>创建一个<code>dict</code>,对于任何一个还不存在的<code>dict[newkey]</code>都已经有一个默认<code>list</code>使得<code>dict[newkey].append</code>可以直接运行而不需要先运行<code>dict[newkey]=[]</code>。</p>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = [(<span class="string">'yellow'</span>, <span class="number">1</span>), (<span class="string">'blue'</span>, <span class="number">2</span>), (<span class="string">'yellow'</span>, <span class="number">3</span>), (<span class="string">'blue'</span>, <span class="number">4</span>), (<span class="string">'red'</span>, <span class="number">1</span>)]</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">d = collections.defaultdict(list)</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> s:</span><br><span class="line">    d[k].append(v)</span><br><span class="line">list(d.items())</span><br><span class="line">[(<span class="string">'blue'</span>, [<span class="number">2</span>, <span class="number">4</span>]), (<span class="string">'red'</span>, [<span class="number">1</span>]), (<span class="string">'yellow'</span>, [<span class="number">1</span>, <span class="number">3</span>])]</span><br></pre></td></tr></table></figure>
+
+<h3 id="pandas聚合和分组运算之groupby"><a href="#pandas聚合和分组运算之groupby" class="headerlink" title="pandas聚合和分组运算之groupby"></a>pandas聚合和分组运算之groupby</h3><p>根据<code>key1</code>的值<code>a</code>,<code>b</code>来分组求<code>data1</code>的平均值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">data1     data2 key1 key2</span><br><span class="line"><span class="number">0</span> <span class="number">-0.410673</span>  <span class="number">0.519378</span>    a  one</span><br><span class="line"><span class="number">1</span> <span class="number">-2.120793</span>  <span class="number">0.199074</span>    a  two</span><br><span class="line"><span class="number">2</span>  <span class="number">0.642216</span> <span class="number">-0.143671</span>    b  one</span><br><span class="line"><span class="number">3</span>  <span class="number">0.975133</span> <span class="number">-0.592994</span>    b  two</span><br><span class="line"><span class="number">4</span> <span class="number">-1.017495</span> <span class="number">-0.530459</span>    a  one</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped = df[<span class="string">'data1'</span>].groupby(df[<span class="string">'key1'</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped</span><br><span class="line">&lt;pandas.core.groupby.SeriesGroupBy object at <span class="number">0x04120D70</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped.mean()</span><br><span class="line">key1</span><br><span class="line">a      <span class="number">-1.182987</span></span><br><span class="line">b       <span class="number">0.808674</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+
+<p>根据<code>cpucore-</code>的类别，求所有数值形式列的平均值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>data_mac.groupby(<span class="string">'cpucore'</span>).mean()</span><br><span class="line">cpucore-	time_transform_bert	time_sess_run_bert	time_to_dict_bert	time_all_bert			</span><br><span class="line"><span class="number">1</span>	<span class="number">0.003124</span>	<span class="number">1.550403</span>	<span class="number">0.000032</span>	<span class="number">1.553559</span></span><br><span class="line"><span class="number">2</span>	<span class="number">0.001235</span>	<span class="number">0.730950</span>	<span class="number">0.000034</span>	<span class="number">0.732218</span></span><br><span class="line"><span class="number">3</span>	<span class="number">0.001565</span>	<span class="number">0.487936</span>	<span class="number">0.000037</span>	<span class="number">0.489538</span></span><br><span class="line"><span class="number">4</span>	<span class="number">0.001103</span>	<span class="number">0.323777</span>	<span class="number">0.000029</span>	<span class="number">0.324909</span></span><br><span class="line"><span class="number">5</span>	<span class="number">0.001185</span>	<span class="number">0.289874</span>	<span class="number">0.000033</span>	<span class="number">0.291093</span></span><br><span class="line"><span class="number">6</span>	<span class="number">0.001226</span>	<span class="number">0.284265</span>	<span class="number">0.000033</span>	<span class="number">0.285524</span></span><br><span class="line"><span class="number">0</span>	<span class="number">0.001225</span>	<span class="number">0.284462</span>	<span class="number">0.000032</span>	<span class="number">0.285719</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="is和-的区别"><a href="#is和-的区别" class="headerlink" title="is和==的区别"></a>is和==的区别</h3><p>在Python中一切都是对象。</p>
+<p>Python中对象包含的三个基本要素，分别是：</p>
+<ul>
+<li>id(身份标识)</li>
+<li>type(数据类型)</li>
+<li>value(值)</li>
+</ul>
+<p>对象之间比较是否相等可以用<code>==</code>，也可以用<code>is</code>。</p>
+<p><code>is</code> 和 <code>==</code> 都是对对象进行比较判断作用的，但对对象比较判断的内容并不相同。下面来看看具体区别在哪</p>
+<ul>
+<li><p><strong><code>is</code> 比较的是两个对象的 <code>id</code> 值是否相等，也就是比较两个对象是否为同一个实例对象，是否指向同一个内存地址</strong></p>
+</li>
+<li><p><strong><code>==</code> 比较的是两个对象的内容是否相等，默认会调用对象的 <code>__eq__()</code> 方法</strong></p>
+</li>
+</ul>
+<p><strong>==比较操作符和is同一性运算符区别</strong></p>
+<p>==是python标准操作符中的比较操作符，用来比较判断两个对象的value(值)是否相等。</p>
+<p>示例代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python3.5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a </span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a[:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="是什么"><a href="#是什么" class="headerlink" title="^是什么"></a>^是什么</h3><p>这是Python中的异或运算符，表示对于操作符两侧数字的二进制数进行异或操作。</p>
+<p>异或操作的含义为：同一位置上的数字相等则得0，同一位置上的数字相异则得1。（二进制表达中只有0,1两个数字）</p>
+<p>例如：计算2^3首先要求得两数的二进制表达数，（十进制➡️二进制）：2➡️10，3➡️11</p>
+<p>按位异或得（二进制➡️十进制）01➡️1</p>
+<p>既2^3=1</p>
+<h3 id="gt-gt-和-lt-lt-是什么"><a href="#gt-gt-和-lt-lt-是什么" class="headerlink" title="&gt;&gt;= 和 &lt;&lt;=是什么"></a>&gt;&gt;= 和 &lt;&lt;=是什么</h3><p>&gt;&gt; 和 &lt;&lt;都是位运算，对二进制数进bai行移位操作。</p>
+<p>&lt;&lt; 是左移，du末位补zhi0，类比十进制数在末尾添0相当于原数乘dao以10，x&lt;&lt;1是将x的二进制表示左移一位，相当于原数x乘2。比如整数4在二进制下是100，4&lt;&lt;1左移1位变成1000(二进制)，结果是8。</p>
+<p>&gt;&gt;是右移，右移1位相当于除以2。<br>而&gt;&gt;=和&lt;&lt;=，就是对变量进行位运算移位之后的结果再赋值给原来的变量，可以类比赋值运算符+=和-=可以理解。</p>
+<p>比如x&gt;&gt;=2， 就是把变量x右移2位，再保留x操作后的值。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a &gt;&gt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b &lt;&lt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="python中一些看似简单的运算需求"><a href="#python中一些看似简单的运算需求" class="headerlink" title="python中一些看似简单的运算需求"></a>python中一些看似简单的运算需求</h2><h3 id="求list的绝对值"><a href="#求list的绝对值" class="headerlink" title="求list的绝对值"></a>求list的绝对值</h3><p>求<code>list l = [-1,2,3,-4,-5,-6]</code>的绝对值的三种方法</p>
+<ol>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = list(map(abs, l))</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = [abs(i) <span class="keyword">for</span> i <span class="keyword">in</span> l]</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">list_abs = list(np.abs(l))</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h3 id="判断某个key值是否在dict中"><a href="#判断某个key值是否在dict中" class="headerlink" title="判断某个key值是否在dict中"></a>判断某个key值是否在dict中</h3><p>有两种方法</p>
+<p>一：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#生成一个字典</span></span><br><span class="line">d = &#123;<span class="string">'name'</span>:&#123;&#125;,<span class="string">'age'</span>:&#123;&#125;,<span class="string">'sex'</span>:&#123;&#125;&#125;</span><br><span class="line"><span class="comment">#打印返回值</span></span><br><span class="line"><span class="keyword">print</span> d.has_key(<span class="string">'name'</span>)</span><br><span class="line"><span class="comment">#结果返回True</span></span><br></pre></td></tr></table></figure>
+<p>二：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#生成一个字典</span></span><br><span class="line">d = &#123;<span class="string">'name'</span>:&#123;&#125;,<span class="string">'age'</span>:&#123;&#125;,<span class="string">'sex'</span>:&#123;&#125;&#125;</span><br><span class="line"><span class="comment">#打印返回值，其中d.keys()是列出字典所有的key</span></span><br><span class="line"><span class="keyword">print</span> name <span class="keyword">in</span> d.keys()</span><br><span class="line"><span class="comment">#结果返回True</span></span><br></pre></td></tr></table></figure>
+<p>第二中<code>in</code>的方法更好更快，但是还是不知道他的速度是不是O(1)???????</p>
+<h3 id="合并大list中的小list"><a href="#合并大list中的小list" class="headerlink" title="合并大list中的小list"></a>合并大list中的小list</h3><p>性能最好的一种方法，来自<a href="https://blog.csdn.net/laiyibeijiweijiu/article/details/93891635" target="_blank" rel="noopener">这里</a>，更多方法对比看<a href="https://blog.csdn.net/weixin_40539892/article/details/79103290" target="_blank" rel="noopener">这里</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c=[<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> chain</span><br><span class="line">d = list(chain(a, b, c))</span><br><span class="line">print(d)</span><br><span class="line"><span class="comment">#[1, 2, 3, 3, 4, 5, 4, 4, 4]</span></span><br></pre></td></tr></table></figure>
+<p>上面的方法是a,b,c已经知道，但是在a,b,c还在大list中时，可以如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">newnums = []</span><br><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> nums:</span><br><span class="line">    newnums.extend(l)</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="python中的加载"><a href="#python中的加载" class="headerlink" title="python中的加载"></a>python中的加载</h2><h3 id="获取当前路径的方式"><a href="#获取当前路径的方式" class="headerlink" title="获取当前路径的方式"></a>获取当前路径的方式</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">print(os.path.abspath(__file__))</span><br><span class="line">print(os.path.dirname(__file__))</span><br></pre></td></tr></table></figure>
+<p>获取当前路径的方式有两种：</p>
+<ul>
+<li>前一种返回的是当前.py的绝对路径</li>
+<li>第二种是返回当前.py所在文件夹的位置，可以在后面加入指定字段获取指定文件/路径，如<code>os.path.join(os.path.dirname(__file__),&#39;myData/mydata.csv&#39;)</code></li>
+</ul>
+<p>输出分别是</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">/Users/shijiaodeng/Documents/Travail/kaggle/<span class="number">4</span>-Quora/Python/data.py</span><br><span class="line">/Users/shijiaodeng/Documents/Travail/kaggle/<span class="number">4</span>-Quora/Python</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>周边辅助</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用hexo搭建博客</title>
     <url>/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="Hexo-github"><a href="#Hexo-github" class="headerlink" title="Hexo + github"></a>Hexo + github</h2><h3 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h3><ol>
@@ -672,105 +863,6 @@
         <tag>hexo</tag>
         <tag>github</tag>
         <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python的点滴</title>
-    <url>/2020/02/19/python%E7%82%B9%E6%BB%B4/</url>
-    <content><![CDATA[<h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="找到当前index在数组位置中对称的位置"><a href="#找到当前index在数组位置中对称的位置" class="headerlink" title="找到当前index在数组位置中对称的位置"></a>找到当前index在数组位置中对称的位置</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">index = len(nums)//<span class="number">2</span></span><br><span class="line">print(index) <span class="comment"># 3</span></span><br><span class="line">print(~index) <span class="comment"># -4</span></span><br><span class="line">median = (nums[index] + nums[~index])/<span class="number">2</span></span><br><span class="line">print(median) <span class="comment"># 3.5</span></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"></p>
-<a id="more"></a>
-
-<p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A62.png" alt="图片二"><br><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A63.png" alt="图片三"></p>
-<h3 id="map-zip"><a href="#map-zip" class="headerlink" title="map, zip"></a>map, zip</h3><p>map和zip配合使用，实现矩阵转置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, matrix)</span>:</span>  </span><br><span class="line">        matrix[:] = map(list,zip(*matrix))</span><br><span class="line">        <span class="keyword">return</span> matrix</span><br><span class="line">print(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>],</span><br><span class="line">    [<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-
-<p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a href="https://blog.csdn.net/shawpan/article/details/69663710" target="_blank" rel="noopener">一行代码搞定矩阵旋转——python</a>。</p>
-<h3 id="defaultdict-function-factory"><a href="#defaultdict-function-factory" class="headerlink" title="defaultdict(function_factory)"></a>defaultdict(function_factory)</h3><p><strong>defaultdict</strong></p>
-<p>dict subclass that calls a factory function to supply missing values</p>
-<p><code>defaultdict</code>构建的是一个类似<code>dictionary</code>的对象，其中<code>keys</code>值自行确定赋值，但是<code>values</code>的类型是<code>fucntion_factory</code>的类实例，而且<strong>具有默认值</strong>。比如<code>defaultdict(list)</code>创建一个<code>dict</code>,对于任何一个还不存在的<code>dict[newkey]</code>都已经有一个默认<code>list</code>使得<code>dict[newkey].append</code>可以直接运行而不需要先运行<code>dict[newkey]=[]</code>。</p>
-<p>例子：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = [(<span class="string">'yellow'</span>, <span class="number">1</span>), (<span class="string">'blue'</span>, <span class="number">2</span>), (<span class="string">'yellow'</span>, <span class="number">3</span>), (<span class="string">'blue'</span>, <span class="number">4</span>), (<span class="string">'red'</span>, <span class="number">1</span>)]</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">d = collections.defaultdict(list)</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> s:</span><br><span class="line">    d[k].append(v)</span><br><span class="line">list(d.items())</span><br><span class="line">[(<span class="string">'blue'</span>, [<span class="number">2</span>, <span class="number">4</span>]), (<span class="string">'red'</span>, [<span class="number">1</span>]), (<span class="string">'yellow'</span>, [<span class="number">1</span>, <span class="number">3</span>])]</span><br></pre></td></tr></table></figure>
-
-<h3 id="pandas聚合和分组运算之groupby"><a href="#pandas聚合和分组运算之groupby" class="headerlink" title="pandas聚合和分组运算之groupby"></a>pandas聚合和分组运算之groupby</h3><p>根据<code>key1</code>的值<code>a</code>,<code>b</code>来分组求<code>data1</code>的平均值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">data1     data2 key1 key2</span><br><span class="line"><span class="number">0</span> <span class="number">-0.410673</span>  <span class="number">0.519378</span>    a  one</span><br><span class="line"><span class="number">1</span> <span class="number">-2.120793</span>  <span class="number">0.199074</span>    a  two</span><br><span class="line"><span class="number">2</span>  <span class="number">0.642216</span> <span class="number">-0.143671</span>    b  one</span><br><span class="line"><span class="number">3</span>  <span class="number">0.975133</span> <span class="number">-0.592994</span>    b  two</span><br><span class="line"><span class="number">4</span> <span class="number">-1.017495</span> <span class="number">-0.530459</span>    a  one</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped = df[<span class="string">'data1'</span>].groupby(df[<span class="string">'key1'</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped</span><br><span class="line">&lt;pandas.core.groupby.SeriesGroupBy object at <span class="number">0x04120D70</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped.mean()</span><br><span class="line">key1</span><br><span class="line">a      <span class="number">-1.182987</span></span><br><span class="line">b       <span class="number">0.808674</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
-
-<p>根据<code>cpucore-</code>的类别，求所有数值形式列的平均值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>data_mac.groupby(<span class="string">'cpucore'</span>).mean()</span><br><span class="line">cpucore-	time_transform_bert	time_sess_run_bert	time_to_dict_bert	time_all_bert			</span><br><span class="line"><span class="number">1</span>	<span class="number">0.003124</span>	<span class="number">1.550403</span>	<span class="number">0.000032</span>	<span class="number">1.553559</span></span><br><span class="line"><span class="number">2</span>	<span class="number">0.001235</span>	<span class="number">0.730950</span>	<span class="number">0.000034</span>	<span class="number">0.732218</span></span><br><span class="line"><span class="number">3</span>	<span class="number">0.001565</span>	<span class="number">0.487936</span>	<span class="number">0.000037</span>	<span class="number">0.489538</span></span><br><span class="line"><span class="number">4</span>	<span class="number">0.001103</span>	<span class="number">0.323777</span>	<span class="number">0.000029</span>	<span class="number">0.324909</span></span><br><span class="line"><span class="number">5</span>	<span class="number">0.001185</span>	<span class="number">0.289874</span>	<span class="number">0.000033</span>	<span class="number">0.291093</span></span><br><span class="line"><span class="number">6</span>	<span class="number">0.001226</span>	<span class="number">0.284265</span>	<span class="number">0.000033</span>	<span class="number">0.285524</span></span><br><span class="line"><span class="number">0</span>	<span class="number">0.001225</span>	<span class="number">0.284462</span>	<span class="number">0.000032</span>	<span class="number">0.285719</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="is和-的区别"><a href="#is和-的区别" class="headerlink" title="is和==的区别"></a>is和==的区别</h3><p>在Python中一切都是对象。</p>
-<p>Python中对象包含的三个基本要素，分别是：</p>
-<ul>
-<li>id(身份标识)</li>
-<li>type(数据类型)</li>
-<li>value(值)</li>
-</ul>
-<p>对象之间比较是否相等可以用<code>==</code>，也可以用<code>is</code>。</p>
-<p><code>is</code> 和 <code>==</code> 都是对对象进行比较判断作用的，但对对象比较判断的内容并不相同。下面来看看具体区别在哪</p>
-<ul>
-<li><p><strong><code>is</code> 比较的是两个对象的 <code>id</code> 值是否相等，也就是比较两个对象是否为同一个实例对象，是否指向同一个内存地址</strong></p>
-</li>
-<li><p><strong><code>==</code> 比较的是两个对象的内容是否相等，默认会调用对象的 <code>__eq__()</code> 方法</strong></p>
-</li>
-</ul>
-<p><strong>==比较操作符和is同一性运算符区别</strong></p>
-<p>==是python标准操作符中的比较操作符，用来比较判断两个对象的value(值)是否相等。</p>
-<p>示例代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python3.5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a </span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a[:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="是什么"><a href="#是什么" class="headerlink" title="^是什么"></a>^是什么</h3><p>这是Python中的异或运算符，表示对于操作符两侧数字的二进制数进行异或操作。</p>
-<p>异或操作的含义为：同一位置上的数字相等则得0，同一位置上的数字相异则得1。（二进制表达中只有0,1两个数字）</p>
-<p>例如：计算2^3首先要求得两数的二进制表达数，（十进制➡️二进制）：2➡️10，3➡️11</p>
-<p>按位异或得（二进制➡️十进制）01➡️1</p>
-<p>既2^3=1</p>
-<h3 id="gt-gt-和-lt-lt-是什么"><a href="#gt-gt-和-lt-lt-是什么" class="headerlink" title="&gt;&gt;= 和 &lt;&lt;=是什么"></a>&gt;&gt;= 和 &lt;&lt;=是什么</h3><p>&gt;&gt; 和 &lt;&lt;都是位运算，对二进制数进bai行移位操作。</p>
-<p>&lt;&lt; 是左移，du末位补zhi0，类比十进制数在末尾添0相当于原数乘dao以10，x&lt;&lt;1是将x的二进制表示左移一位，相当于原数x乘2。比如整数4在二进制下是100，4&lt;&lt;1左移1位变成1000(二进制)，结果是8。</p>
-<p>&gt;&gt;是右移，右移1位相当于除以2。<br>而&gt;&gt;=和&lt;&lt;=，就是对变量进行位运算移位之后的结果再赋值给原来的变量，可以类比赋值运算符+=和-=可以理解。</p>
-<p>比如x&gt;&gt;=2， 就是把变量x右移2位，再保留x操作后的值。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a &gt;&gt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b &lt;&lt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h2 id="python中一些看似简单的运算需求"><a href="#python中一些看似简单的运算需求" class="headerlink" title="python中一些看似简单的运算需求"></a>python中一些看似简单的运算需求</h2><h3 id="求list的绝对值"><a href="#求list的绝对值" class="headerlink" title="求list的绝对值"></a>求list的绝对值</h3><p>求<code>list l = [-1,2,3,-4,-5,-6]</code>的绝对值的三种方法</p>
-<ol>
-<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = list(map(abs, l))</span><br></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = [abs(i) <span class="keyword">for</span> i <span class="keyword">in</span> l]</span><br></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">list_abs = list(np.abs(l))</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<h3 id="判断某个key值是否在dict中"><a href="#判断某个key值是否在dict中" class="headerlink" title="判断某个key值是否在dict中"></a>判断某个key值是否在dict中</h3><p>有两种方法</p>
-<p>一：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#生成一个字典</span></span><br><span class="line">d = &#123;<span class="string">'name'</span>:&#123;&#125;,<span class="string">'age'</span>:&#123;&#125;,<span class="string">'sex'</span>:&#123;&#125;&#125;</span><br><span class="line"><span class="comment">#打印返回值</span></span><br><span class="line"><span class="keyword">print</span> d.has_key(<span class="string">'name'</span>)</span><br><span class="line"><span class="comment">#结果返回True</span></span><br></pre></td></tr></table></figure>
-<p>二：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#生成一个字典</span></span><br><span class="line">d = &#123;<span class="string">'name'</span>:&#123;&#125;,<span class="string">'age'</span>:&#123;&#125;,<span class="string">'sex'</span>:&#123;&#125;&#125;</span><br><span class="line"><span class="comment">#打印返回值，其中d.keys()是列出字典所有的key</span></span><br><span class="line"><span class="keyword">print</span> name <span class="keyword">in</span> d.keys()</span><br><span class="line"><span class="comment">#结果返回True</span></span><br></pre></td></tr></table></figure>
-<p>第二中<code>in</code>的方法更好更快，但是还是不知道他的速度是不是O(1)???????</p>
-<h3 id="合并大list中的小list"><a href="#合并大list中的小list" class="headerlink" title="合并大list中的小list"></a>合并大list中的小list</h3><p>性能最好的一种方法，来自<a href="https://blog.csdn.net/laiyibeijiweijiu/article/details/93891635" target="_blank" rel="noopener">这里</a>，更多方法对比看<a href="https://blog.csdn.net/weixin_40539892/article/details/79103290" target="_blank" rel="noopener">这里</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c=[<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> chain</span><br><span class="line">d = list(chain(a, b, c))</span><br><span class="line">print(d)</span><br><span class="line"><span class="comment">#[1, 2, 3, 3, 4, 5, 4, 4, 4]</span></span><br></pre></td></tr></table></figure>
-<p>上面的方法是a,b,c已经知道，但是在a,b,c还在大list中时，可以如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">newnums = []</span><br><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> nums:</span><br><span class="line">    newnums.extend(l)</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h2 id="python中的加载"><a href="#python中的加载" class="headerlink" title="python中的加载"></a>python中的加载</h2><h3 id="获取当前路径的方式"><a href="#获取当前路径的方式" class="headerlink" title="获取当前路径的方式"></a>获取当前路径的方式</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">print(os.path.abspath(__file__))</span><br><span class="line">print(os.path.dirname(__file__))</span><br></pre></td></tr></table></figure>
-<p>获取当前路径的方式有两种：</p>
-<ul>
-<li>前一种返回的是当前.py的绝对路径</li>
-<li>第二种是返回当前.py所在文件夹的位置，可以在后面加入指定字段获取指定文件/路径，如<code>os.path.join(os.path.dirname(__file__),&#39;myData/mydata.csv&#39;)</code></li>
-</ul>
-<p>输出分别是</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">/Users/shijiaodeng/Documents/Travail/kaggle/<span class="number">4</span>-Quora/Python/data.py</span><br><span class="line">/Users/shijiaodeng/Documents/Travail/kaggle/<span class="number">4</span>-Quora/Python</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>周边辅助</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -1847,6 +1939,57 @@
       </tags>
   </entry>
   <entry>
+    <title>protobuf</title>
+    <url>/2019/01/16/protobuf/</url>
+    <content><![CDATA[<h4 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h4><ul>
+<li><code>protobuf</code>：把消息序列化的工具</li>
+<li><code>rpc</code>： 远程方法调用</li>
+<li><code>redis</code>：缓存</li>
+<li><code>mysql</code>：持久储存</li>
+</ul>
+<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p><a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5" target="_blank" rel="noopener">ML Client/Server Using gRPC in Python – Good Audience</a></p>
+<h4 id="安装Protocol-Buffers："><a href="#安装Protocol-Buffers：" class="headerlink" title="安装Protocol Buffers："></a>安装Protocol Buffers：</h4><ol>
+<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
+<li>brew install protobuf</li>
+<li>安装gRPC：pip install grpcio</li>
+<li>安装gRPC：pip install grpcio-tools</li>
+</ol>
+<a id="more"></a>
+
+<h4 id="编译proto"><a href="#编译proto" class="headerlink" title="编译proto"></a>编译proto</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python -m grpc_tools.protoc -I .&#x2F;protos --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;intent.proto</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-I</code><br>指定生成的<code>pb2.py</code>和<code>pb2_grpc.py</code>文件的储存路径</li>
+<li><code>./protos/intent.proto</code><br>需要编译的<code>.proto</code>文件的位置</li>
+</ul>
+<p>如果文件原来的位置如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
+
+<p>在根目录上运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I .&#x2F;protos&#x2F; --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
+<p>后会变成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br></pre></td></tr></table></figure>
+
+<p>在根目录上运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I . --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
+<p>后会变成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
+
+<p>没弄明白为什么，不过为了方便函数之间的调用，一般使用第一种方法。</p>
+<h4 id="http-VS-grpc"><a href="#http-VS-grpc" class="headerlink" title="http VS grpc"></a>http VS grpc</h4><ol>
+<li><code>http</code>和<code>grpc</code>都是通过<code>tcp</code>运行。</li>
+<li>不同的是<code>grpc</code>会将信息转换成二进制格式，因此传输更快，所需内存更小，效率更高。<br>但是因为<code>grpc</code>中，双方都需要编写相同的<code>.proto</code>，彼此传输的格式要固定，因此要求相对更严格一些。而http则没有这种要求，双方并没有格式的约定，所以<code>http</code>也更大一些，速度相对更慢一些。</li>
+<li><code>http</code>通过<code>&quot;\\r\\n&quot;</code>来分隔信息。<code>grpc</code>则要通过<code>.proto</code>文件里的<code>message</code>严格规范信息的数目、类型等。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
+      <tags>
+        <tag>protobuf</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker</title>
     <url>/2019/01/16/docker/</url>
     <content><![CDATA[<h2 id="docker-挂载"><a href="#docker-挂载" class="headerlink" title="docker 挂载"></a>docker 挂载</h2><p>前面是本地文件，后面是镜像文件：</p>
@@ -1971,57 +2114,6 @@
       </categories>
       <tags>
         <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>protobuf</title>
-    <url>/2019/01/16/protobuf/</url>
-    <content><![CDATA[<h4 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h4><ul>
-<li><code>protobuf</code>：把消息序列化的工具</li>
-<li><code>rpc</code>： 远程方法调用</li>
-<li><code>redis</code>：缓存</li>
-<li><code>mysql</code>：持久储存</li>
-</ul>
-<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p><a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5" target="_blank" rel="noopener">ML Client/Server Using gRPC in Python – Good Audience</a></p>
-<h4 id="安装Protocol-Buffers："><a href="#安装Protocol-Buffers：" class="headerlink" title="安装Protocol Buffers："></a>安装Protocol Buffers：</h4><ol>
-<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
-<li>brew install protobuf</li>
-<li>安装gRPC：pip install grpcio</li>
-<li>安装gRPC：pip install grpcio-tools</li>
-</ol>
-<a id="more"></a>
-
-<h4 id="编译proto"><a href="#编译proto" class="headerlink" title="编译proto"></a>编译proto</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python -m grpc_tools.protoc -I .&#x2F;protos --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;intent.proto</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>-I</code><br>指定生成的<code>pb2.py</code>和<code>pb2_grpc.py</code>文件的储存路径</li>
-<li><code>./protos/intent.proto</code><br>需要编译的<code>.proto</code>文件的位置</li>
-</ul>
-<p>如果文件原来的位置如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
-
-<p>在根目录上运行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I .&#x2F;protos&#x2F; --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
-<p>后会变成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br></pre></td></tr></table></figure>
-
-<p>在根目录上运行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I . --python_out&#x3D;. --grpc_python_out&#x3D;. .&#x2F;protos&#x2F;price.proto</span><br></pre></td></tr></table></figure>
-<p>后会变成：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- protos</span><br><span class="line">- intent.proto</span><br><span class="line">- intent_pb2.py</span><br><span class="line">- intent_pb2_grpc.py</span><br><span class="line">- client.py</span><br><span class="line">- server.py</span><br><span class="line">- predict.py</span><br></pre></td></tr></table></figure>
-
-<p>没弄明白为什么，不过为了方便函数之间的调用，一般使用第一种方法。</p>
-<h4 id="http-VS-grpc"><a href="#http-VS-grpc" class="headerlink" title="http VS grpc"></a>http VS grpc</h4><ol>
-<li><code>http</code>和<code>grpc</code>都是通过<code>tcp</code>运行。</li>
-<li>不同的是<code>grpc</code>会将信息转换成二进制格式，因此传输更快，所需内存更小，效率更高。<br>但是因为<code>grpc</code>中，双方都需要编写相同的<code>.proto</code>，彼此传输的格式要固定，因此要求相对更严格一些。而http则没有这种要求，双方并没有格式的约定，所以<code>http</code>也更大一些，速度相对更慢一些。</li>
-<li><code>http</code>通过<code>&quot;\\r\\n&quot;</code>来分隔信息。<code>grpc</code>则要通过<code>.proto</code>文件里的<code>message</code>严格规范信息的数目、类型等。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>工作总结</category>
-      </categories>
-      <tags>
-        <tag>protobuf</tag>
       </tags>
   </entry>
   <entry>
