@@ -1083,20 +1083,7 @@
       </tags>
   </entry>
   <entry>
-    <title>使用hexo搭建博客</title>
-    <url>/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/LogisticRegression/</url>
-    <content><![CDATA[<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1>]]></content>
-      <categories>
-        <category>基础知识</category>
-      </categories>
-      <tags>
-        <tag>数学</tag>
-        <tag>公式</tag>
-        <tag>LR</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用hexo搭建博客</title>
+    <title>Bert</title>
     <url>/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Bert/</url>
     <content><![CDATA[<h1 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h1><h3 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h3><p>Bert中使用的是Layer Normalization，源于对batch normalization的改进。<br>batch normalization的优点：</p>
 <ul>
@@ -1135,7 +1122,7 @@
       </tags>
   </entry>
   <entry>
-    <title>使用hexo搭建博客</title>
+    <title>SBert</title>
     <url>/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/SBert/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SBert针对句子匹配问题，提出了一种新的想法。没有很复杂的公式，可以理解为，是一些常见的计算进行各种融合的实战经验总结。<br>主要思想也是对bert进行fine tuning，来获取语义上有意义的空间向量<br>    语义上有意义：论文中有解释，是指句子意思相近的句子在空间向量上也相近</p>
 <h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h3 id="速度快"><a href="#速度快" class="headerlink" title="速度快"></a>速度快</h3><p>论文中提出了，相对于通常使用的NSP，即concat sent1和sent2来判断两个句子是否相似，我们将两个句子独立分开输入到同一bert模型（两个句子使用的参数相同）中，再将得到的两个向量进行计算，要快上很多倍，主要原因如下：</p>
@@ -1171,7 +1158,7 @@
       </tags>
   </entry>
   <entry>
-    <title>使用hexo搭建博客</title>
+    <title>SVM</title>
     <url>/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/SVM/</url>
     <content><![CDATA[<h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><p>核函数的本质</p>
 <p>上面说了这么一大堆，读者可能还是没明白核函数到底是个什么东西？我再简要概括下，即以下三点：</p>
@@ -1193,8 +1180,8 @@
       </tags>
   </entry>
   <entry>
-    <title>Triplet-Loss</title>
-    <url>/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Triplet-Loss/</url>
+    <title>Triplet Loss</title>
+    <url>/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Triplet%20Loss/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Triplet-Loss最先由图像里提出来。为了解决负样本与标准样本过于相似的问题，来增加类间距离，减小类内距离<br>Triplet-Loss通过最小化dist(a,p)-dist(a,n)+margin，来训练出可以更好表征样本的embedding<br>dist()一般使用欧式距离，当然也可以用余弦等其它距离</p>
 <h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><h2 id="样本"><a href="#样本" class="headerlink" title="样本"></a>样本</h2><p>使用triplet-loss通常需要将样本组合成三元组，&lt;a, p, n&gt;<br>如何组合有很多中方法，最直接的一种，将所有正样本和所有可能的负样本与标准样本一一组成三元组，这样可组合的可能性过多，这种方法并不适用，所以作者提出了另外两种方法offline和online</p>
 <h2 id="offline"><a href="#offline" class="headerlink" title="offline"></a>offline</h2><p>每n steps后，使用当前模型，计算出离每个标准问最远的正样本和最近的负样本，然后重新接着训练</p>
@@ -1224,6 +1211,19 @@
         <tag>数学</tag>
         <tag>公式</tag>
         <tag>svm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Logistic Regression</title>
+    <url>/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Logistic%20Regression/</url>
+    <content><![CDATA[<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1>]]></content>
+      <categories>
+        <category>基础知识</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>公式</tag>
+        <tag>LR</tag>
       </tags>
   </entry>
   <entry>
