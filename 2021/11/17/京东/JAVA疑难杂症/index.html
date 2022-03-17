@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+  <link rel="mask-icon" href="/images/avatar.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Microsoft:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":18,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":true,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JAVA疑难杂症序列化&#x2F;深拷贝Java里不能直接进行浅拷贝&#x2F;深拷贝 浅拷贝看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝 深拷贝因为需要连同对象和对象的值一起拷贝到内存中一个新的地址，所以当对象为比较复杂的嵌套类时，性能就会成为一个问题，所以需要注意。一般要实现深拷贝，都是对需要拷贝的类上贴上标签implements Serializable，并且给出一个序列化号priva">
+<meta property="og:type" content="article">
+<meta property="og:title" content="京东&#x2F;JAVA疑难杂症">
+<meta property="og:url" content="http://yoursite.com/2021/11/17/%E4%BA%AC%E4%B8%9C/JAVA%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/index.html">
+<meta property="og:site_name" content="诗娇的博客">
+<meta property="og:description" content="JAVA疑难杂症序列化&#x2F;深拷贝Java里不能直接进行浅拷贝&#x2F;深拷贝 浅拷贝看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝 深拷贝因为需要连同对象和对象的值一起拷贝到内存中一个新的地址，所以当对象为比较复杂的嵌套类时，性能就会成为一个问题，所以需要注意。一般要实现深拷贝，都是对需要拷贝的类上贴上标签implements Serializable，并且给出一个序列化号priva">
+<meta property="article:published_time" content="2021-11-17T13:35:02.000Z">
+<meta property="article:modified_time" content="2021-11-17T13:35:02.000Z">
+<meta property="article:author" content="Shijiao DENG">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2021/11/17/%E4%BA%AC%E4%B8%9C/JAVA%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>京东/JAVA疑难杂症 | 诗娇的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诗娇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right"></div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/17/%E4%BA%AC%E4%B8%9C/JAVA%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          京东/JAVA疑难杂症
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-17 21:35:02" itemprop="dateCreated datePublished" datetime="2021-11-17T21:35:02+08:00">2021-11-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="JAVA疑难杂症"><a href="#JAVA疑难杂症" class="headerlink" title="JAVA疑难杂症"></a>JAVA疑难杂症</h1><h2 id="序列化-深拷贝"><a href="#序列化-深拷贝" class="headerlink" title="序列化/深拷贝"></a>序列化/深拷贝</h2><p>Java里不能直接进行浅拷贝/深拷贝</p>
+<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝</p>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>因为需要连同对象和对象的值一起拷贝到内存中一个新的地址，所以当对象为比较复杂的嵌套类时，性能就会成为一个问题，所以需要注意。<br>一般要实现深拷贝，都是对需要拷贝的类上贴上标签<code>implements Serializable</code>，并且给出一个序列化号<code>private static final long serialVersionUID = 3487495895819393L;</code><br>然后使用以下函数进行序列化和反序列化。<br>序列化和反序列化的本质是通过某种序列化的协议，将类整个转变成二进制信息，通过serialVersionUID比对再将二进制信息转换成类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class SerializationDemo implements Serializable &#123;</span><br><span class="line">    private String stringField;</span><br><span class="line">    private int intField;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 序列化</span><br><span class="line"> *</span><br><span class="line"> * @T 某个类</span><br><span class="line"> *&#x2F;</span><br><span class="line">public static void Serializable(SerializationDemo) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        ByteArrayOutputStream bout &#x3D; new ByteArrayOutputStream();</span><br><span class="line">        ObjectOutputStream out &#x3D; new ObjectOutputStream(bout);</span><br><span class="line">        out.writeObject(T);</span><br><span class="line">    &#125; catch(IOException) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 反序列化</span><br><span class="line"> *</span><br><span class="line"> * @data 二进制</span><br><span class="line"> *&#x2F;</span><br><span class="line">public static void Deserializable(data) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        byte[] data; &#x2F;&#x2F; read from file or request</span><br><span class="line">        ByteArrayInputStream bin &#x3D; new ByteArrayInputStream(data);</span><br><span class="line">        ObjectInputStream in &#x3D; new ObjectInputStream(bin);</span><br><span class="line">        SerializationDemo demo &#x3D; (SerializationDemo) in.readObject();</span><br><span class="line">        &#125; catch(ClassNotFoundException) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="FastJson-VS-Gson"><a href="#FastJson-VS-Gson" class="headerlink" title="FastJson VS Gson"></a>FastJson VS Gson</h3><p>但当是嵌套类时，需要对类中的每一个类也都贴上序列化的标签，因此会变得很复杂。<br>此时可以引入FastJson类的第三方软件帮忙。（还有gson等）。但目前主流是Gson和FastJson<br>性能上FastJson更好，功能上Gson更全，而且Gson不需要额外的jar包，且使用更简便<br>具体区别见文章<a href="https://blog.csdn.net/John8169/article/details/80767771" target="_blank" rel="noopener">Gson与FastJson比较</a>，这篇文章分析的非常细致</p>
+<p>1 FastJson需要有默认无参构造，可以直接使用@NoArgsConstructor。（有时候还需要加上@AllArgsConstructor，具体还不了解为什么）<br>2 使用FastJson会有内存泄漏问题，具体实例见<a href="https://juejin.cn/post/6960695856127279111" target="_blank" rel="noopener">FastJson使用不当导致内存泄漏排查及解决过程 ｜ Java Debug 笔记</a>，另一片文章<a href="https://segmentfault.com/a/1190000039980284" target="_blank" rel="noopener">fastjson内存泄漏解决办法 - springboot实战电商项目mall4j</a></p>
+<h5 id="关于serialVersionUID"><a href="#关于serialVersionUID" class="headerlink" title="关于serialVersionUID"></a>关于serialVersionUID</h5><p>关于serialVersionUID：<br>1、serialVersionUID是序列化前后的唯一标识符<br>2、默认如果没有人为显式定义过serialVersionUID，那编译器会为它自动声明一个</p>
+<p>为什么要定义serialVersionUID：</p>
+<ol>
+<li>serialVersionUID序列化ID，可以看成是序列化和反序列化过程中的“暗号”，在反序列化时，JVM会把字节流中的序列号ID和被序列化类中的序列号ID做比对，只有两者一致，才能重新反序列化，否则就会报异常来终止反序列化的过程。</li>
+<li>如果在定义一个可序列化的类时，没有人为显式地给它定义一个serialVersionUID的话，则Java运行时环境会根据该类的各方面信息自动地为它生成一个默认的serialVersionUID，一旦像上面一样更改了类的结构或者信息，则类的serialVersionUID也会跟着变化</li>
+<li>为了serialVersionUID的确定性，建议凡是implements Serializable的类，都人为显式地为它声明一个serialVersionUID明确值</li>
+<li>如果不想手动赋值，IntelliJ IDEA中，使用alt + enter自动生成serialVersionUID字段</li>
+</ol>
+<h5 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h5><p>Serializable接口是一个里面什么都没有的接口<br>它的源代码是public interface Serializable{}，即什么都没有。<br>如果一个接口里面什么内容都没有，那么这个接口是一个标识接口，比如，一个学生遇到一个问题，排错排了几天也没解决，此时，她举手了（示意我去帮他解决），然后我过去，帮他解决了，那么这个举手其实就是一个标识，自己不能解决的问题标示我去帮他解决，在Java中的这个Serializable接口是给JVM看的，告诉JVM，我不做这个类的序列化了，你(JVM)给我序列化，序列化就是变成二进制流，比如云计算、Hadoop，特别是Hadoop完全就是分布式环境，那么就要涉及到对象要在网络中传输，里面的全是二进制流，当然你来做这个序列化操作也可以，但是这个类里面可能还有一个类，如果你把外面的类对象Person变成二进制，那么里面也要序列化（这要用到深度遍历，很麻烦），干脆告诉JVM，让他来帮你做。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/09/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="prev" title="京东/linux常用命令">
+      <i class="fa fa-chevron-left"></i> 京东/linux常用命令
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/19/%E4%BA%AC%E4%B8%9C/%E4%BD%BF%E7%94%A8vscode%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="next" title="京东/使用vscode远程连接服务器">
+      京东/使用vscode远程连接服务器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA疑难杂症"><span class="nav-number">1.</span> <span class="nav-text">JAVA疑难杂症</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化-深拷贝"><span class="nav-number">1.1.</span> <span class="nav-text">序列化&#x2F;深拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浅拷贝"><span class="nav-number">1.1.1.</span> <span class="nav-text">浅拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深拷贝"><span class="nav-number">1.1.2.</span> <span class="nav-text">深拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FastJson-VS-Gson"><span class="nav-number">1.1.3.</span> <span class="nav-text">FastJson VS Gson</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关于serialVersionUID"><span class="nav-number">1.1.3.0.1.</span> <span class="nav-text">关于serialVersionUID</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#序列化"><span class="nav-number">1.1.3.0.2.</span> <span class="nav-text">序列化</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shijiao DENG"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shijiao DENG</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shijiao DENG</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

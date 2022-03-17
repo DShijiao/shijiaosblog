@@ -1,6 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>京东/T5</title>
+    <url>/2021/12/29/%E4%BA%AC%E4%B8%9C/T5/</url>
+    <content><![CDATA[<h1 id="T5"><a href="#T5" class="headerlink" title="T5"></a>T5</h1><h2 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h2><p>1、中文分词(Chinese Word Segmentation) 指的是将一个汉字序列切分成一个一个单独的词。分词就是将连续的字序列按照一定的规范重新组合成词序列的过程 </p>
+<p>2、现有的分词算法可分为三大类：基于字符串匹配的分词方法、基于理解的分词方法和基于统计的分词方法</p>
+<pre><code>1. 基于字符串匹配的分词方法：这种方法又叫做机械分词方法，它是按照一定的策略将待分析的汉字串与一个“充分大的”机器词典中的词条进行配，若在词典中找到某个字符串，则匹配成功（识别出一个词）
+    1）正向最大匹配法（由左到右的方向）
+    2）逆向最大匹配法（由右到左的方向）:
+    3）最少切分（使每一句中切出的词数最小）
+    4）双向最大匹配法（进行由左到右、由右到左两次扫描）
+2. 基于统计模型的分词方法
+    1) 基于 N-gram 语言模型的分词方法
+3. 基于序列标注的分词方法
+    1) 基于 HMM 的分词方法
+    2) 基于 CRF 的分词方法
+    3) 基于词感知机的分词方法
+    4) 基于深度学习的端到端的分词方法</code></pre><h3 id="基于规则或词典"><a href="#基于规则或词典" class="headerlink" title="基于规则或词典"></a>基于规则或词典</h3><h5 id="1-正向最大匹配思想MM"><a href="#1-正向最大匹配思想MM" class="headerlink" title="1 正向最大匹配思想MM"></a>1 正向最大匹配思想MM</h5><p>从左向右取待切分汉语句的m个字符作为匹配字段，m为大机器词典中最长词条个数。<br>查找大机器词典并进行匹配：<br>若匹配成功，则将这个匹配字段作为一个词切分出来。<br>若匹配不成功，则将这个匹配字段的最后一个字去掉，剩下的字符串作为新的匹配字段，进行再次匹配，重复以上过程，直到切分出所有词为止。<br>举个栗子：<br>现在，我们要对“南京市长江大桥”这个句子进行分词，根据正向最大匹配的原则：</p>
+<p>先从句子中拿出前5个字符“南京市长江”，把这5个字符到词典中匹配，发现没有这个词，那就缩短取字个数，取前四个“南京市长”，发现词库有这个词，就把该词切下来；<br>对剩余三个字“江大桥”再次进行正向最大匹配，会切成“江”、“大桥”；<br>整个句子切分完成为：南京市长、江、大桥；</p>
+<h5 id="2-逆向最大匹配算法RMM"><a href="#2-逆向最大匹配算法RMM" class="headerlink" title="2 逆向最大匹配算法RMM"></a>2 逆向最大匹配算法RMM</h5><p>该算法是正向最大匹配的逆向思维，匹配不成功，将匹配字段的最前一个字去掉，实验表明，逆向最大匹配算法要优于正向最大匹配算法。</p>
+<p>还是那个栗子：</p>
+<p>取出“南京市长江大桥”的后四个字“长江大桥”，发现词典中有匹配，切割下来；<br>对剩余的“南京市”进行分词，整体结果为：南京市、长江大桥</p>
+<h5 id="3-双向最大匹配法-Bi-directction-Matching-method-BM"><a href="#3-双向最大匹配法-Bi-directction-Matching-method-BM" class="headerlink" title="3 双向最大匹配法(Bi-directction Matching method,BM)"></a>3 双向最大匹配法(Bi-directction Matching method,BM)</h5><p>双向最大匹配法是将正向最大匹配法得到的分词结果和逆向最大匹配法的到的结果进行比较，从而决定正确的分词方法。</p>
+<p>据SunM.S. 和 Benjamin K.T.（1995）的研究表明，中文中90.0％左右的句子，正向最大匹配法和逆向最大匹配法完全重合且正确，只有大概9.0％的句子两种切分方法得到的结果不一样，但其中必有一个是正确的（歧义检测成功），只有不到1.0％的句子，或者正向最大匹配法和逆向最大匹配法的切分虽重合却是错的，或者正向最大匹配法和逆向最大匹配法切分不同但两个都不对（歧义检测失败）。这正是双向最大匹配法在实用中文信息处理系统中得以广泛使用的原因所在。</p>
+<p>正向最大匹配法，最终分词结果为：“南京市长/江/大桥”，其中，总分词数3个，单个词为1。</p>
+<p>逆向最大匹配法，最终分词结果为：“南京市/长江大桥”，其中，总分词数2个，单个词为0。</p>
+<p>选择标准：</p>
+<p>首先看两种方法结果的分词数，分词数越少越好；<br>分词数相同的情况下，看单个词的数量，越少越好；<br>因此最终输出为逆向结果。</p>
+<h5 id="4-最佳匹配（OM，分正向和逆向）"><a href="#4-最佳匹配（OM，分正向和逆向）" class="headerlink" title="4 最佳匹配（OM，分正向和逆向）"></a>4 最佳匹配（OM，分正向和逆向）</h5><p>对分词词典按词频大小顺序排列，并注明长度，降低时间复杂度。</p>
+<p>优点：易于实现<br>缺点：匹配速度慢。对于未登录词的补充较难实现。缺乏自学习。</p>
+<h5 id="5-逐词遍历法"><a href="#5-逐词遍历法" class="headerlink" title="5 逐词遍历法"></a>5 逐词遍历法</h5><p>这种方法是将词库中的词由长到短递减的顺序，逐个在待处理的材料中搜索，直到切分出所有的词为止。</p>
+<h5 id="等等"><a href="#等等" class="headerlink" title="等等"></a>等等</h5><h5 id="Trie树（前缀树）"><a href="#Trie树（前缀树）" class="headerlink" title="Trie树（前缀树）"></a>Trie树（前缀树）</h5><h3 id="基于统计的分词"><a href="#基于统计的分词" class="headerlink" title="基于统计的分词"></a>基于统计的分词</h3><h5 id="N-gram模型思想"><a href="#N-gram模型思想" class="headerlink" title="N-gram模型思想"></a>N-gram模型思想</h5><p>模型基于这样一种假设，第n个词的出现只与前面N-1个词相关，而与其它任何词都不相关，整句的概率就是各个词出现概率的乘积。</p>
+<p>我们给定一个词，然后猜测下一个词是什么。当我说“艳照门”这个词时，你想到下一个词是什么呢？我想大家很有可能会想到“陈冠希”，基本上不会有人会想到“陈志杰”吧，N-gram模型的主要思想就是这样的。</p>
+<p>对于一个句子T，我们怎么算它出现的概率呢？假设T是由词序列W1,W2,W3,…Wn组成的，那么P(T)=P(W1W2W3…Wn)=P(W1)P(W2|W1)P(W3|W1W2)…P(Wn|W1W2…Wn-1)<br>但是这种方法存在两个致命的缺陷：一个缺陷是参数空间过大，不可能实用化；另外一个缺陷是数据稀疏严重。为了解决这个问题，我们引入了马尔科夫假设：一个词的出现仅仅依赖于它前面出现的有限的一个或者几个词。如果一个词的出现仅依赖于它前面出现的一个词，那么我们就称之为bigram。即</p>
+<p>P(T) =P(W1W2W3…Wn)=P(W1)P(W2|W1)P(W3|W1W2)…P(Wn|W1W2…Wn-1)<br>≈P(W1)P(W2|W1)P(W3|W2)…P(Wn|Wn-1)</p>
+<p>如果一个词的出现仅依赖于它前面出现的两个词，那么我们就称之为trigram。</p>
+<p>在实践中用的最多的就是bigram和trigram了，而且效果很不错。高于四元的用的很少，因为训练它需要更庞大的语料，而且数据稀疏严重，时间复杂度高，精度却提高的不多。一般的小公司，用到二元的模型就够了，像Google这种巨头，也只是用到了大约四元的程度，它对计算能力和空间的需求都太大了。</p>
+<p>详细讲解和代码见<a href="https://codle.net/chinese-word-cutter-1/" target="_blank" rel="noopener">n-gram</a></p>
+<h5 id="HMM、CRF-模型思想"><a href="#HMM、CRF-模型思想" class="headerlink" title="HMM、CRF 模型思想"></a>HMM、CRF 模型思想</h5><p>以往的分词方法，无论是基于规则的还是基于统计的，一般都依赖于一个事先编制的词表(词典)，自动分词过程就是通过词表和相关信息来做出词语切分的决策。与此相反，</p>
+<p>基于字标注（或者叫基于序列标注）的分词方法实际上是构词方法，即把分词过程视为字在字串中的标注问题。</p>
+<p>由于每个字在构造一个特定的词语时都占据着一个确定的构词位置(即词位)，假如规定每个字最多只有四个构词位置：即B(词首)，M (词中)，E(词尾)和S(单独成词)，那么下面句子(甲)的分词结果就可以直接表示成如(乙)所示的逐字标注形式：</p>
+<ol>
+<li>(甲)分词结果：／上海／计划／N／本／世纪／末／实现／人均／国内／生产／总值／五千美元／ </li>
+<li>(乙)字标注形式：上／B海／E计／B划／E N／S 本／s世／B 纪／E 末／S 实／B 现／E 人／B 均／E 国／B 内／E生／B产／E总／B值／E 五／B千／M 美／M 元／E 。／S</li>
+</ol>
+<p>首先需要说明，这里说到的“字”不只限于汉字。考虑到中文真实文本中不可避免地会包含一定数量的非汉字字符，本文所说的“字”，也包括外文字母、阿拉伯数字和标点符号等字符。所有这些字符都是构词的基本单元。当然，汉字依然是这个单元集合中数量最多的一类字符。</p>
+<p>把分词过程视为字的标注问题的一个重要优势在于，它能够平衡地看待词表词和未登录词的识别问题。</p>
+<p>在这种分词技术中，文本中的词表词和未登录词都是用统一的字标注过程来实现的。在学习架构上，既可以不必专门强调词表词信息，也不用专门设计特定的未登录词(如人名、地名、机构名)识别模块。这使得分词系统的设计大大简化。在字标注过程中，所有的字根据预定义的特征进行词位特性的学习，获得一个概率模型。然后，在待分字串上，根据字与字之间的结合紧密程度，得到一个词位的标注结果。最后，根据词位定义直接获得最终的分词结果。总而言之，在这样一个分词过程中，分词成为字重组的简单过程。在学习构架上，由于可以不必特意强调词表词的信息，也不必专门设计针对未登录词的特定模块，这样使分词系统的设计变得尤为简单。</p>
+<p>2001年Lafferty在最大熵模型（MEM）和隐马尔科夫模型（HMM）的基础上提出来了一种无向图模型–条件随机场（CRF）模型，它能在给定需要标记的观察序列的条件下，最大程度提高标记序列的联合概率。常用于切分和标注序列化数据的统计模型。</p>
+<h2 id="T5中的分词"><a href="#T5中的分词" class="headerlink" title="T5中的分词"></a>T5中的分词</h2><p>T5中的分词用的是google的sentencepiece分词。类似于BPE，找出频率最高的词组合作为词典进行分词。<br>bert4keras中为了效率，不是按照原mt5的字典来进行的分词，而且作者用自己的预料进行了后处理。<br>经测试，发现分词效果并不是非常客观。<br>因此可以尝试训练一套自己领域的并且适合T5中使用的model和词典来进行分词。具体如何实现，可以看完T5论文后再进行</p>
+<ol>
+<li>T5中使用词典，那么还需要模型的概率预测来进行分词吗？</li>
+</ol>
+<h2 id="Greedy-Decoding-VS-Beam-Search"><a href="#Greedy-Decoding-VS-Beam-Search" class="headerlink" title="Greedy Decoding VS Beam Search"></a>Greedy Decoding VS Beam Search</h2><h3 id="Greedy-search"><a href="#Greedy-search" class="headerlink" title="Greedy search"></a>Greedy search</h3><p>一个自然的想法是贪心搜索(greedy search)，即decoder的每一步都选择最可能的单词，最后得到句子的每一个单词都是每一步认为最合适的单词。但这样并不保证整个句子的概率是最大的，即不能保证整个句子最合适。实际上，贪心搜索的每一步搜索都处理成仅仅与前面刚生成的一个单词相关，类似于马尔科夫假设。这显然是不合理的，具体来说，贪心搜索到的句子𝑦概率是使得下式概率最大：</p>
+<p>𝑃(𝑦|𝑥)=∏𝑛𝑘=1𝑝(𝑦𝑘|𝑥,𝑦𝑘−1)</p>
+<p>而实际上，根据全概率公式计算得到𝑃(𝑦|𝑥)为：</p>
+<p>𝑃(𝑦|𝑥)=∏𝑛𝑘=1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1)</p>
+<h3 id="Beam-search"><a href="#Beam-search" class="headerlink" title="Beam search"></a>Beam search</h3><p>译为束搜索。思想是，每步选取最可能的𝑘个结果，再从最后的𝑘个结果中选取最合适的句子。𝑘称为beam size。</p>
+<p>具体做法是：</p>
+<p>首先decoder第一步搜索出最可能的𝑘个单词，即找到𝑦11,𝑦12,…,𝑦1𝑘，他们的概率𝑝(𝑦11|𝑥),…,𝑝(𝑦1𝑘|𝑥)为最大的𝑘个。</p>
+<p>进行第二步搜索，分别进行𝑘个模型副本的搜索。每个副本𝑖，根据上一步选取的单词𝑦1𝑖，选取概率最大的𝑘个结果𝑦21,𝑦22,…,𝑦2𝑘。这样，就有了𝑘∗𝑘个可能的结果，从这些结果中选择𝑘个概率最大的结果，即𝑝(𝑦1𝑖|𝑥)∗𝑝(𝑦2𝑗|𝑥,𝑦1𝑖)最大的𝑘个结果。</p>
+<p>进行第三步搜索，从第二步中确定的𝑘个结果出发，再进行𝑘个模型副本的搜索，直到最后一步，从最后的𝑘个结果中选取概率最大者。</p>
+<p>显然，若𝑘=1则为贪心搜索，𝑘越大则占用内存越大，计算代价越大，实际应用中取10即可。</p>
+<p>另外，可以发现概率的连乘使得概率越来越小，很可能溢出，为了保证模型的稳定性，常对概率连乘计算+log变为加法。</p>
+<p>𝑃(𝑦|𝑥)=𝑙𝑜𝑔(∏𝑛𝑘=1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))</p>
+<h3 id="改进Beam-search"><a href="#改进Beam-search" class="headerlink" title="改进Beam search"></a>改进Beam search</h3><h4 id="length-penalty"><a href="#length-penalty" class="headerlink" title="length penalty"></a>length penalty</h4><p>从Beam search的搜索过程中可以发现，Beam search偏向于找到更短的句子，也就是说，如果搜索过程中有一支搜索提前发现了&lt;𝐸𝑂𝑆&gt;,而另外𝑘−1支继续搜索找到其余更长的结果，那么由于概率连乘(或log连加)，越长的结果概率肯定越小。因此有必要进行模型修正，即进行长度归一化，具体来说，即：</p>
+<p>选择概率𝑃(𝑦|𝑥)=1𝑛𝑙𝑜𝑔(∏𝑛𝑘=1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))最大的句子，式中，𝑛为该结果序列长度。</p>
+<p>另外，实践中还做了如下修正：</p>
+<p>𝑃(𝑦|𝑥)=1𝑛𝛼𝑙𝑜𝑔(∏𝑛𝑘=1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))</p>
+<p>式中，超参数𝛼取0.6或者0.7比较合适。</p>
+<h4 id="Grid-Beam-Search"><a href="#Grid-Beam-Search" class="headerlink" title="Grid Beam Search"></a>Grid Beam Search</h4><p>结合约束条件，选择模型生成的下一个结果或特定的词语或者短句</p>
+<h4 id="Best-First-Beam-Search"><a href="#Best-First-Beam-Search" class="headerlink" title="Best-First Beam Search"></a>Best-First Beam Search</h4><p>优化使用beam search解码的时间。实现比较复杂，细节较多</p>
+<h4 id="look-ahead"><a href="#look-ahead" class="headerlink" title="look ahead"></a>look ahead</h4><h4 id="on-the-fly"><a href="#on-the-fly" class="headerlink" title="on the fly"></a>on the fly</h4><h3 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h3><p>对于训练的seq2seq模型，对它输出的句子𝑦，以及实际的句子𝑦∗，若概率𝑦大于𝑦∗，（统计所有句子，平均来说是这个结果），则说明，seq2seq模型出错了。否则，说明，baem search并没有找到最合适的结果，可以考虑增大beam size大小。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>京东/python疑难杂症</title>
+    <url>/2021/11/26/%E4%BA%AC%E4%B8%9C/python%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</url>
+    <content><![CDATA[<h1 id="python疑难杂症"><a href="#python疑难杂症" class="headerlink" title="python疑难杂症"></a>python疑难杂症</h1><h2 id="args用add-argument内部-外部传参"><a href="#args用add-argument内部-外部传参" class="headerlink" title="args用add_argument内部/外部传参"></a>args用add_argument内部/外部传参</h2><p>args一般用来在外部运行convert.py时，外部传参，</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    argp &#x3D; argparse.ArgumentParser()</span><br><span class="line">    argp.add_argument(&#39;in_file&#39;, default&#x3D;datapath_abs_test_machine, help&#x3D;&#39;Input CSV file&#39;)</span><br><span class="line">    argp.add_argument(&#39;--out_name&#39;, default&#x3D;&#39;baseline-e2e-data&#39;, help&#x3D;&#39;Output files name prefix&#39;)</span><br><span class="line">    argp.add_argument(&#39;-a&#39;, &#39;--abstract&#39;, help&#x3D;&#39;Comma-separated list of slots to be abstracted&#39;)</span><br><span class="line">    argp.add_argument(&#39;-m&#39;, &#39;--multi-ref&#39;,</span><br><span class="line">                      help&#x3D;&#39;Multiple reference mode: group by the same DA&#39;, action&#x3D;&#39;store_true&#39;)</span><br><span class="line">    argp.add_argument(&#39;--no-refs&#39;, help&#x3D;&#39;Use a file without references, only produce DA files&#39;, action&#x3D;&#39;store_true&#39;)</span><br><span class="line">    argp.add_argument(&#39;-n&#39;, &#39;--slot-names&#39;, help&#x3D;&#39;Include slot names in delexicalized texts&#39;, action&#x3D;&#39;store_true&#39;)</span><br><span class="line">    args &#x3D; argp.parse_args()</span><br><span class="line">    convert(args)</span><br></pre></td></tr></table></figure>
+
+<p>运行命令行如下：<br><code>python ./convert.py -a name,near -n /root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv train</code></p>
+<p>此时 <code>args.in_file=&#39;/root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv&#39;</code></p>
+<p>但是如果想要用软件，如vscode进行软件内debug，直接这样运行会报错。此时需要在前面加上“–”，这样运行args = argp.parse_args()才不会报错，即：<br><code>argp.add_argument(&#39;--in_file&#39;, default=datapath_abs_test_machine, help=&#39;Input CSV file&#39;)</code></p>
+<h2 id="中argp-parse-args-报错"><a href="#中argp-parse-args-报错" class="headerlink" title="中argp.parse_args()报错"></a>中argp.parse_args()报错</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">发生异常: SystemExit</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>同上，也是“–”的问题，在add_argument第一个参数前加上“–”</p>
+<h2 id="pip安装本地文件包"><a href="#pip安装本地文件包" class="headerlink" title="pip安装本地文件包"></a>pip安装本地文件包</h2><p>如果是类似github上面需要下载的安装包，如<a href="https://github.com/ufal/pytreex" target="_blank" rel="noopener">pytreex</a>，在下载文件并解压到<code>pytreex</code>之后，直接使用<code>pip install pytreex</code>就可以<br>注意：解压后会生产文件包<code>pytreex-master</code>，此时如果直接<code>pip install pytreex-master</code>是不行的，需要将文件名更换成包名<code>pytreex</code>，然后再<code>pip install pytreex</code>才能成功，否则会报找不到的错误</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ERROR: Could not find a version that satisfies the requirement pytreex-master (from versions: none)</span><br><span class="line">ERROR: No matching distribution found for pytreex-master</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>京东/Tensorflow使用注意事项</title>
+    <url>/2021/11/23/%E4%BA%AC%E4%B8%9C/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <content><![CDATA[<h1 id="Tensorflow使用注意事项"><a href="#Tensorflow使用注意事项" class="headerlink" title="Tensorflow使用注意事项"></a>Tensorflow使用注意事项</h1><h2 id="服务器上使用Tensorboard，在本地查看"><a href="#服务器上使用Tensorboard，在本地查看" class="headerlink" title="服务器上使用Tensorboard，在本地查看"></a>服务器上使用Tensorboard，在本地查看</h2><ol>
+<li>记录<br>使用<code>Tensorboard</code>，一般要用<code>tf.summary</code>记录训练过程中的数值到某个地方，如下面的 <code>train_summary_dir</code> 和 <code>train_log_dir</code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if self.train_summary_dir:</span><br><span class="line">    self.loss_summary_reranker &#x3D; tf.summary.scalar(&quot;loss_reranker&quot;, self.cost)</span><br><span class="line">    self.train_summary_op &#x3D; tf.summary.merge([self.loss_summary_reranker])</span><br><span class="line">    self.train_summary_writer &#x3D; tf.summary.FileWriter(</span><br><span class="line">        os.path.join(self.train_summary_dir, &quot;reranker&quot;), self.session.graph)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">current_time &#x3D; datetime.datetime.now().strftime(&quot;%Y%m%d-%H%M%S&quot;)</span><br><span class="line">train_log_dir &#x3D; &#39;logs&#x2F;gradient_tape&#x2F;&#39; + current_time + &#39;&#x2F;train&#39;</span><br><span class="line">test_log_dir &#x3D; &#39;logs&#x2F;gradient_tape&#x2F;&#39; + current_time + &#39;&#x2F;test&#39;</span><br><span class="line">train_summary_writer &#x3D; tf.summary.create_file_writer(train_log_dir)</span><br><span class="line">test_summary_writer &#x3D; tf.summary.create_file_writer(test_log_dir)</span><br><span class="line">with train_summary_writer.as_default():</span><br><span class="line">    tf.summary.scalar(&#39;loss&#39;, train_loss.result(), step&#x3D;epoch)</span><br><span class="line">    tf.summary.scalar(&#39;accuracy&#39;, train_accuracy.result(), step&#x3D;epoch)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>打通本地和服务器端口：<code>ssh -L 16006:127.0.0.1:6006 username@remote_server_ip</code><br><code>16006</code> 是本地端口，<code>6006</code>是服务器上<code>Tensorboard</code>的端口<br><code>username</code>和<code>remote_server_ip</code>分别对应服务器用户名和ip地址</p>
+</li>
+<li><p>使用上面命令成功登陆服务器后，执行命令 <code>tensorboard --logdir=&#39;logs/train_logs&#39; --port=6006</code></p>
+</li>
+<li><p>本地打开 <code>http://127.0.0.1:16006/</code> 即可查看</p>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>京东/使用vscode远程连接服务器</title>
+    <url>/2021/11/19/%E4%BA%AC%E4%B8%9C/%E4%BD%BF%E7%94%A8vscode%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="使用vscode原创连接服务器"><a href="#使用vscode原创连接服务器" class="headerlink" title="使用vscode原创连接服务器"></a>使用vscode原创连接服务器</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>在左侧“扩展”里选择并安装扩展 Remote-SSH</li>
+<li>点击左侧新增的扩展按钮，并点击左上角“+”号，然后会出现config的配置，按如下配置<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root</li>
+<li>此时配置好后尝试登陆，会需要输入密码</li>
+<li>可以用配置成不需要密码<ol>
+<li>本地建个ssh ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa-remote-ssh，会生成id_rsa-remote-ssh和id_rsa-remote-ssh.pub两个文件</li>
+<li>将id_rsa-remote-ssh.pub配到服务器的authorized_keys（一般在～/.ssh/）文件里</li>
+<li>将id_rsa-remote-ssh配到本地的config中，即修改刚刚的config成如下<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root<br> IdentityFile ~/.ssh/id_rsa-remote-ssh</li>
+</ol>
+</li>
+<li>可以连接远程服务器了</li>
+</ol>
+<h2 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h2><p>使用vscode连接远程服务器，也希望能够进行断点调试。</p>
+<ol>
+<li>进入扩展，搜索python（一般是第一个）</li>
+<li>如果本地还没有安装，可以先点击安装</li>
+<li>如果本地安装了，配备remote-ssh后，会显示“在remote-ssh上安装”，点击按钮进行安装就可以了</li>
+<li>结果如下<br><img src="/Users/dengshijiao1/Documents/hexo/photos/vscode%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1python%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE.png" alt="vscode远程服务python断点调试配置"></li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>参考<br><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991" target="_blank" rel="noopener">使用Visual Studio Code连接远程Linux服务器</a><br><a href="https://qlzhu.github.io/blog/15892/" target="_blank" rel="noopener">Mac 配置 VSCode Remote-SSH</a><br><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/" target="_blank" rel="noopener">使用 VSCode 远程开发调试</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>京东/JAVA疑难杂症</title>
+    <url>/2021/11/17/%E4%BA%AC%E4%B8%9C/JAVA%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</url>
+    <content><![CDATA[<h1 id="JAVA疑难杂症"><a href="#JAVA疑难杂症" class="headerlink" title="JAVA疑难杂症"></a>JAVA疑难杂症</h1><h2 id="序列化-深拷贝"><a href="#序列化-深拷贝" class="headerlink" title="序列化/深拷贝"></a>序列化/深拷贝</h2><p>Java里不能直接进行浅拷贝/深拷贝</p>
+<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝</p>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>因为需要连同对象和对象的值一起拷贝到内存中一个新的地址，所以当对象为比较复杂的嵌套类时，性能就会成为一个问题，所以需要注意。<br>一般要实现深拷贝，都是对需要拷贝的类上贴上标签<code>implements Serializable</code>，并且给出一个序列化号<code>private static final long serialVersionUID = 3487495895819393L;</code><br>然后使用以下函数进行序列化和反序列化。<br>序列化和反序列化的本质是通过某种序列化的协议，将类整个转变成二进制信息，通过serialVersionUID比对再将二进制信息转换成类。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class SerializationDemo implements Serializable &#123;</span><br><span class="line">    private String stringField;</span><br><span class="line">    private int intField;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 序列化</span><br><span class="line"> *</span><br><span class="line"> * @T 某个类</span><br><span class="line"> *&#x2F;</span><br><span class="line">public static void Serializable(SerializationDemo) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        ByteArrayOutputStream bout &#x3D; new ByteArrayOutputStream();</span><br><span class="line">        ObjectOutputStream out &#x3D; new ObjectOutputStream(bout);</span><br><span class="line">        out.writeObject(T);</span><br><span class="line">    &#125; catch(IOException) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 反序列化</span><br><span class="line"> *</span><br><span class="line"> * @data 二进制</span><br><span class="line"> *&#x2F;</span><br><span class="line">public static void Deserializable(data) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        byte[] data; &#x2F;&#x2F; read from file or request</span><br><span class="line">        ByteArrayInputStream bin &#x3D; new ByteArrayInputStream(data);</span><br><span class="line">        ObjectInputStream in &#x3D; new ObjectInputStream(bin);</span><br><span class="line">        SerializationDemo demo &#x3D; (SerializationDemo) in.readObject();</span><br><span class="line">        &#125; catch(ClassNotFoundException) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="FastJson-VS-Gson"><a href="#FastJson-VS-Gson" class="headerlink" title="FastJson VS Gson"></a>FastJson VS Gson</h3><p>但当是嵌套类时，需要对类中的每一个类也都贴上序列化的标签，因此会变得很复杂。<br>此时可以引入FastJson类的第三方软件帮忙。（还有gson等）。但目前主流是Gson和FastJson<br>性能上FastJson更好，功能上Gson更全，而且Gson不需要额外的jar包，且使用更简便<br>具体区别见文章<a href="https://blog.csdn.net/John8169/article/details/80767771" target="_blank" rel="noopener">Gson与FastJson比较</a>，这篇文章分析的非常细致</p>
+<p>1 FastJson需要有默认无参构造，可以直接使用@NoArgsConstructor。（有时候还需要加上@AllArgsConstructor，具体还不了解为什么）<br>2 使用FastJson会有内存泄漏问题，具体实例见<a href="https://juejin.cn/post/6960695856127279111" target="_blank" rel="noopener">FastJson使用不当导致内存泄漏排查及解决过程 ｜ Java Debug 笔记</a>，另一片文章<a href="https://segmentfault.com/a/1190000039980284" target="_blank" rel="noopener">fastjson内存泄漏解决办法 - springboot实战电商项目mall4j</a></p>
+<h5 id="关于serialVersionUID"><a href="#关于serialVersionUID" class="headerlink" title="关于serialVersionUID"></a>关于serialVersionUID</h5><p>关于serialVersionUID：<br>1、serialVersionUID是序列化前后的唯一标识符<br>2、默认如果没有人为显式定义过serialVersionUID，那编译器会为它自动声明一个</p>
+<p>为什么要定义serialVersionUID：</p>
+<ol>
+<li>serialVersionUID序列化ID，可以看成是序列化和反序列化过程中的“暗号”，在反序列化时，JVM会把字节流中的序列号ID和被序列化类中的序列号ID做比对，只有两者一致，才能重新反序列化，否则就会报异常来终止反序列化的过程。</li>
+<li>如果在定义一个可序列化的类时，没有人为显式地给它定义一个serialVersionUID的话，则Java运行时环境会根据该类的各方面信息自动地为它生成一个默认的serialVersionUID，一旦像上面一样更改了类的结构或者信息，则类的serialVersionUID也会跟着变化</li>
+<li>为了serialVersionUID的确定性，建议凡是implements Serializable的类，都人为显式地为它声明一个serialVersionUID明确值</li>
+<li>如果不想手动赋值，IntelliJ IDEA中，使用alt + enter自动生成serialVersionUID字段</li>
+</ol>
+<h5 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h5><p>Serializable接口是一个里面什么都没有的接口<br>它的源代码是public interface Serializable{}，即什么都没有。<br>如果一个接口里面什么内容都没有，那么这个接口是一个标识接口，比如，一个学生遇到一个问题，排错排了几天也没解决，此时，她举手了（示意我去帮他解决），然后我过去，帮他解决了，那么这个举手其实就是一个标识，自己不能解决的问题标示我去帮他解决，在Java中的这个Serializable接口是给JVM看的，告诉JVM，我不做这个类的序列化了，你(JVM)给我序列化，序列化就是变成二进制流，比如云计算、Hadoop，特别是Hadoop完全就是分布式环境，那么就要涉及到对象要在网络中传输，里面的全是二进制流，当然你来做这个序列化操作也可以，但是这个类里面可能还有一个类，如果你把外面的类对象Person变成二进制，那么里面也要序列化（这要用到深度遍历，很麻烦），干脆告诉JVM，让他来帮你做。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>京东/linux常用命令</title>
+    <url>/2021/11/09/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<ol>
+<li>快速查看端口占用情况<br><code>lsof -i tcp:8080</code></li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>京东/IDEA配置和使用</title>
+    <url>/2021/11/08/%E4%BA%AC%E4%B8%9C/IDEA%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>idea 配置</p>
+<p>背景：</p>
+<ol>
+<li>已安装zsh和items2</li>
+<li>参考文章 <a href="https://www.jb51.net/article/190940.htm" target="_blank" rel="noopener">https://www.jb51.net/article/190940.htm</a></li>
+</ol>
+<p>具体步骤：</p>
+<ol>
+<li>安装java，直接成功，并且java -v查看版本</li>
+<li>安装maven，mac电脑官网下载Binary tar.gz archive下的apache-maven-3.8.3-bin.tar.gz。别的可能出错<ul>
+<li>解压maven包，放到～/下（这个随意，只要后面的配置按着这个路径来就可以）</li>
+<li>设置localRepository和镜像<ul>
+<li>local设置可以参考<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &lt;!-- localRepository</span><br><span class="line">    | The path to the local repository maven will use to store artifacts.</span><br><span class="line">    |</span><br><span class="line">    | Default: $&#123;user.home&#125;&#x2F;.m2&#x2F;repository</span><br><span class="line">    &lt;localRepository&gt;&#x2F;path&#x2F;to&#x2F;local&#x2F;repo&lt;&#x2F;localRepository&gt;</span><br><span class="line">  --&gt;</span><br><span class="line">&lt;localRepository&gt;&#x2F;Users&#x2F;dengshijiao1&#x2F;apache-maven-3.8.3&#x2F;repository&lt;&#x2F;localRepository&gt;</span><br></pre></td></tr></table></figure></li>
+<li>镜像可以使用默认镜像。网上很多文章说使用阿里云镜像，但是创建project的时候，有可能出现家在pom.xml文件出错的问题。</li>
+<li>配置maven路径<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export MAVEN_HOME&#x3D;&#x2F;Users&#x2F;dengshijiao1&#x2F;apache-maven-3.8.3</span><br><span class="line">export PATH&#x3D;$PATH:$MAVEN_HOME&#x2F;bin</span><br></pre></td></tr></table></figure></li>
+<li>测试maven是否安装成功<code>mvn -v</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>idea中配置java<ul>
+<li>打开file -&gt; project structure</li>
+<li>修改SDK配置为1.8<img src="/Users/dengshijiao1/Documents/hexo/photos/IDEA-java-conf.png" alt="java配置"></li>
+</ul>
+</li>
+<li>idea中配置maven<ul>
+<li>IntelliJ IDEA -&gt; preferences -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; Maven，设置<code>Maven home path</code>(刚刚放置maven解压文件的地方), <code>User setting file</code>和<code>Local repository</code>，并勾选☑️后两者的<code>override</code></li>
+<li>本人配置示例如下<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;Users&#x2F;dengshijiao1&#x2F;apache-maven-3.8.3</span><br><span class="line">&#x2F;Users&#x2F;dengshijiao1&#x2F;apache-maven-3.8.3&#x2F;conf&#x2F;settings.xml</span><br><span class="line">&#x2F;Users&#x2F;dengshijiao1&#x2F;apache-maven-3.8.3&#x2F;repository</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>reload 和 generate source，基本上就OK了</li>
+<li>add configuration<ul>
+<li>配置了configuration才能运行代码并debug</li>
+<li>点击右上角的add configuration</li>
+<li>点击加号➕，并选择maven<img src="/Users/dengshijiao1/Documents/hexo/photos/add-configuration.png" alt="add configuration"></li>
+<li>给这个项目的环境命名（可以使用默认的名字，自己能识别就好）</li>
+<li>然后点击运行</li>
+<li>如何报错，点击下方左侧红色感叹号那一行，看一下具体报错原因，一步步修改<img src="/Users/dengshijiao1/Documents/hexo/photos/check-run-error.png" alt="check run error"></li>
+</ul>
+</li>
+<li>pom.xml<ul>
+<li>如果pom.xml中的引入包爆红，进入<code>/Users/dengshijiao1/apache-maven-3.8.3/repository/</code>中，通过<code>groupId</code>找到爆红的文件，查看本地具体的包的版本，然后加入<version>x.x.x</version>`，一般可以解决<br><img src="/Users/dengshijiao1/Documents/hexo/photos/find-version-of-plugins.png" alt="find version of plugins"></li>
+</ul>
+</li>
+<li>getXXX/setXXX 爆红（包括@Slf4j中log的引用）<ul>
+<li>一般是因为lombok插件没有安装。<img src="/Users/dengshijiao1/Documents/hexo/photos/lombok-plugin.png" alt="lombok plugin"></li>
+</ul>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
     <title>ChitChat任务</title>
     <url>/2021/08/19/interview/ChitChat%E4%BB%BB%E5%8A%A1/</url>
     <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
@@ -1224,6 +1443,69 @@
         <tag>数学</tag>
         <tag>公式</tag>
         <tag>LR</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CRF 和 HMM 详述</title>
+    <url>/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/CRF%20%E5%92%8C%20HMM%20%E8%AF%A6%E8%BF%B0/</url>
+    <content><![CDATA[<h1 id="CRF-和-HMM-详述"><a href="#CRF-和-HMM-详述" class="headerlink" title="CRF 和 HMM 详述"></a>CRF 和 HMM 详述</h1>]]></content>
+      <categories>
+        <category>基础知识</category>
+      </categories>
+      <tags>
+        <tag>CRF</tag>
+        <tag>HMM</tag>
+        <tag>概率</tag>
+        <tag>判别式</tag>
+        <tag>生成式</tag>
+        <tag>贝叶斯</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SimBERT</title>
+    <url>/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/SimBERT/</url>
+    <content><![CDATA[<h1 id="SimBERT"><a href="#SimBERT" class="headerlink" title="SimBERT"></a>SimBERT</h1>]]></content>
+      <categories>
+        <category>基础知识</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>公式</tag>
+        <tag>svm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>白化和归一化</title>
+    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/%E7%99%BD%E5%8C%96%E5%92%8C%E5%BD%92%E4%B8%80%E5%8C%96/</url>
+    <content><![CDATA[<h3 id="白化"><a href="#白化" class="headerlink" title="白化"></a>白化</h3><p>白话的目的就是去除输入数据的冗余信息。经过白化处理后，生成新数据集满足两个条件：</p>
+<ul>
+<li>特征相关性较低</li>
+<li>特征具有相同的方差</li>
+</ul>
+<p>白化算法实现的过程：</p>
+<ul>
+<li>第一步是进行PCA操作，将数据降维</li>
+<li>第二步是对新的坐标进行归一化操作</li>
+</ul>
+<h3 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h3><p>数据归一化的目的就是为了把不同来源的数据统一到同一数量级(一个参考坐标系下)，这样使得比较起来更加有意义。归一化使得后面数据的处理更为方便，它有两大有点：</p>
+<ul>
+<li>归一化提高梯度下降求最优解的速度</li>
+<li>归一化有可能提高精度</li>
+</ul>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>看了下博客，都是抄来抄去，没有明确解释两者区别的，个人认为区别如下：</p>
+<ul>
+<li>白化里会用来归一化来统一降维后数据的量级，但是归一化不会用到白化</li>
+<li>白化的主要目的是特征提取，尽量获取相互独立的特征进行分析</li>
+<li>归一化的主要目的是统一特征数据的量级（取值范围）</li>
+</ul>
+]]></content>
+      <categories>
+        <category>基础知识</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>公式</tag>
+        <tag>svm</tag>
       </tags>
   </entry>
   <entry>

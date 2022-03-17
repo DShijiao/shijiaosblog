@@ -180,6 +180,783 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/19/interview/INTENT%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/19/interview/INTENT%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">INTENT任务</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-19 19:07:22 / 修改时间：19:50:10" itemprop="dateCreated datePublished" datetime="2021-08-19T19:07:22+08:00">2021-08-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何</li>
+</ol>
+<h4 id="SF"><a href="#SF" class="headerlink" title="SF"></a>SF</h4><p>共有15000条数据，10个类别（如「信息」，「询问到达时间」，「询问费用」，「询问到达时间——是否」，「询问费用——是否」，「肯定」，「否定」，「」等） + 1个「others」类<br>其中将近5000是数据增强的</p>
+<p>样本最多的类别others，样本数可达5000<br>样本最少的类别比如「否定」，样本数只有100多（最后两少的三个类别，取了三倍过采样，过多和过少都会降低F1值）</p>
+<ol start="2">
+<li><p>背景如何<br>比如其中一个多轮场景是「寄快递」</p>
+</li>
+<li><p>模型如何<br>baseline上的是rnn<br>后来改为cnn<br>也同bert比较了，bert出了收敛较cnn更快一些外，最终效果并不比cnn好</p>
+</li>
+<li><p>准确率如何<br>最后F1达到95%，达到业务要求</p>
+</li>
+<li><p>碰到哪些问题</p>
+<ol>
+<li>F1值不够95%<ol>
+<li>数据增强</li>
+<li>错误样本分析（尤其对准确率很低的类别，针对行进行分析）<ol>
+<li>我们通过错误样本分析，找到了几个准确率特别低的样本，进行过采样，提升了效果</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>样本不均衡的问题<ol>
+<li>低样本的三个类别进行了三倍过采样</li>
+<li>数据增强（尝试了使用bert的mask进行数据增强）</li>
+</ol>
+</li>
+<li>多轮之间通过意图跳转<ol>
+<li>尝试过使用熵来替代概率，效果不好</li>
+<li>最后通过调节weight，然后跟踪整体准确率和召回率的变化，提前中断训练，使得others类的准确率能达到99%（因为在调大others的weight后，训练会优先照顾这个类别，因为一开始，others的召回特别低，但是准确率特别高，然后在整体F1值慢慢上升后，others的准确率会开始下降，这时需要终止训练，这里牺牲了整体1个百分点的F1值）</li>
+</ol>
+</li>
+<li>曾经出现过一个句子分属多个类别的情况<ol>
+<li>进行数据梳理后，发现两个类别可以分开。对这两个类别的数据重新进行梳理，准确率大幅提升</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>还有哪些可以改进的</p>
+<ol>
+<li>对于分属多个类别的语句，是否也可以尝试进行多标签分类</li>
+<li>更可以改进的是DM的设置<ol>
+<li>每个多轮都有一个others，比较累赘，说明每个多轮都需要找过others的准确率，而影响整体的准确率</li>
+<li>是否可以通过记住当前多轮所在状态和所在的bot，然后将再此进入多轮的句子进行更精确的分类和进入判别，这样就不用每个多轮里面都加一个others类别了</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）</p>
+<ol>
+<li>对于分类，cnn和rnn有时候就很够用了，再不行上bert也差不多，然后就是数据的问题了，模型帮助不大</li>
+<li>对于对话机器人更好的想法，如上5.2.2</li>
+</ol>
+</li>
+</ol>
+<h4 id="VIPKid"><a href="#VIPKid" class="headerlink" title="VIPKid"></a>VIPKid</h4><ol>
+<li>数据如何</li>
+<li>背景如何</li>
+<li>模型如何</li>
+<li>准确率如何</li>
+<li>碰到哪些问题</li>
+<li>怎么解决（trick或者模型）</li>
+<li>为什么这么解决</li>
+<li>效果怎么样</li>
+<li>还有哪些可以改进的</li>
+<li>现有哪些更好的方法吗（新的论文）</li>
+</ol>
+<h2 id="重难点"><a href="#重难点" class="headerlink" title="重难点"></a>重难点</h2><h3 id="Bert数据增强"><a href="#Bert数据增强" class="headerlink" title="Bert数据增强"></a>Bert数据增强</h3><p>分类碰到的问题：</p>
+<ol>
+<li>使用某个模型前，也可以先做一个学习曲线，判断使用的样本是否足够</li>
+<li>进行错误样本分析</li>
+<li>调节weight，优化不同类别的presicion</li>
+<li>如果某一类别的F1值过低，可以看下是否是样本不足的原因</li>
+<li>做数据增强</li>
+<li>如果是两个类别经常混淆，可以先将其归为一类，之后在下一层，用规则或模型进行细分<ol>
+<li>对下一层分类起，是模型加针对性的数据增强</li>
+<li>这里数据增强有用，但是整体数据增强，不一定能增加准确率，比如“蓝屏”，在这里是“noshow”的意思，但是在别的地方有可能是指机器故障（看下数据，找个好点的例子）</li>
+</ol>
+</li>
+<li>叠加分类器</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/17/interview/NER%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/17/interview/NER%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">NER任务</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-17 14:46:29" itemprop="dateCreated datePublished" datetime="2021-08-17T14:46:29+08:00">2021-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-19 19:50:13" itemprop="dateModified" datetime="2021-08-19T19:50:13+08:00">2021-08-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何<br>共有15000条数据，12个类别（如「出发地」，「出发时间」，「类型」，「物品」，「体积」等）</li>
+</ol>
+<ol start="2">
+<li><p>背景如何<br>比如其中一个多轮场景是「寄快递」</p>
+</li>
+<li><p>模型如何<br>先是上的baseline，然后针对问题进行改进的（最开始尝试intent和ner一起做）<br>baseline使用的是lstm+crf，因为一般ner的问题，都是编码获取的信息不够，所以后来上了bilstm+crf，准确率提升了1.5个百分点，也尝试使用bert，发现bert效果并不比bilstm好。之后</p>
+</li>
+<li><p>准确率如何<br>最后F1值83%</p>
+</li>
+<li><p>碰到哪些问题</p>
+<ol>
+<li>整体F1值问题<ol>
+<li>F1值不是特别高，刚开始只能到达80%左右</li>
+<li>ner一般都是embedding不够丰富，所以我们尝试了bilstm和bert，两个效果差不多，但是bilstm更轻便，能够提升1.5%的F1值</li>
+<li>后来又跑了一下当时刚出的lattice lstm，效果确实还是不错的，相对bilstm能提升2个百分点，当然，后来在vipkid又尝试了FLAT，效果更好，相对lattice lstm，还能再提升2个百分点</li>
+<li>不同解码方式<ol>
+<li>CRF/指针网络/Biaffine</li>
+<li>不同解码方式差异有限</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>有的类别预测不准，有的特别准<ol>
+<li>样本不均衡<ol>
+<li>本身标注的样本，就会有些不均衡，所以自己按规律造了5000数据</li>
+<li>当然，测试集里是原始数据</li>
+<li>有一定的效果提升</li>
+</ol>
+</li>
+<li>同样量的样本，有的类别比较难预测（规律难找）<ol>
+<li>有的类别虽然样本也不算少，但是本身规律比较难找，比如「明天」，「明天下午两点」，实体变化很大，所以效果不如意</li>
+<li>这些特殊类别，我们主要是通过规则加上开源工具来兜底</li>
+<li>比如地址，我们本身有很全的字典，如果模型预测概率小于某个阈值，我们就尝试用字典进行匹配</li>
+<li>比如时间，我们用开源工具进行兜底</li>
+</ol>
+</li>
+<li>召回不高<ol>
+<li>丰富embedding</li>
+<li>检查是否有漏标的数据（标注数据的噪音去除）</li>
+</ol>
+</li>
+<li>嵌套实体/多种类别实体</li>
+<li>实体span过长（规则，引入指针网络）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>还有哪些可以改进的</p>
+<ol>
+<li>一个是可以从embedding方面进行改进</li>
+<li>另一个是嵌套实体/多类别实体的问题解决</li>
+</ol>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）</p>
+</li>
+</ol>
+<h2 id="重难点"><a href="#重难点" class="headerlink" title="重难点"></a>重难点</h2><h3 id="NER"><a href="#NER" class="headerlink" title="NER"></a>NER</h3><ul>
+<li>基于「词」的NER会受到分词的影响。比如需要预测的句子中，目标词汇被错误划分从而导致结果错误。所以目前NER主要还是基于「字」做NER，然后尽量加入「词」信息</li>
+<li>LSTM接CRF：在decoder时，对每一步的输出h，进行vitterbi编码</li>
+</ul>
+<h3 id="Viterbi"><a href="#Viterbi" class="headerlink" title="Viterbi"></a>Viterbi</h3><p>维特比是一个动态规划算法。<br>我们需要找到最大路径，通常需要求出每一层的每一种路径的概率。<br>但是在维特比算法中，我们每次取当前层，节点个数（即可能的状态个数）的路径（每个节点取，到当前层、当前节点，概率最大的路径），因此可以减少很多运算</p>
+<h3 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h3><ul>
+<li>CRF位条件概率（判别模型）</li>
+<li>HMM是联合概率（生成模型），且有独立假设</li>
+</ul>
+<h3 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice LSTM"></a>Lattice LSTM</h3><p>Lattice LSTM在编码时在相应的字信息处加入了词信息，词信息一样有input, cell state，但是没有hidden state(output)，将词信息的cell state和字信息的cell state进行加权求和，获取新的hidden state的计算数据，并未改变原来的decoder结构和维度，因此后面也可以直接接CRF。并且因为加入了词信息，因此准确率会有提升。<br>SF中，准确率提升2%，但是速度会下降一倍。</p>
+<h3 id="FLAT"><a href="#FLAT" class="headerlink" title="FLAT"></a>FLAT</h3><ul>
+<li>计算了相对位置的四种distance</li>
+<li>使用XLNet中attention score的计算方式，来计算相对距离的attention score</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/15/interview/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/15/interview/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">中文面试自我简介</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-15 18:01:36" itemprop="dateCreated datePublished" datetime="2021-08-15T18:01:36+08:00">2021-08-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-19 19:50:18" itemprop="dateModified" datetime="2021-08-19T19:50:18+08:00">2021-08-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h2><p>高中毕业后通过武汉大学和拉罗舍尔大学的交流项目去到法国，后来也在法国洛林大学完成了硕士学业，学生期间一直就读数学和统计专业。</p>
+<p>毕业后因为觉得直接回国会很可惜，所以尝试在法国本地就业，之后顺利拿到长居，进入了Sikim公司，也是在这家公司，通过给当地银行做个智能客服的项目，了解到并进入了NLP领域。</p>
+<p>18年回国加入到了顺丰科技，因为有过智能客服的项目经验，所以在顺丰中负责智能客服的NLU模块，这段智能客服经验加深了我对算法和深度模型的理解和落地经验，因为我一直对生成模型比较感兴趣，所以我主动申请了负责闲聊的项目，对生成模型的运行和落地有了了解</p>
+<p>20年加入到vipkid后，期间也继续过对话生成的项目，比如机器翻译，闲聊等等，但是主要负责智能客服的研发，虽然在不同公司都在做智能客服项目，但是幸运的是每次都会丰富和提升自己对对话机器人的了解。比如顺丰里主要负责的是算法的优化和准确率的提升，在vipkid，不仅需要解决算法的问题，也会专注于解决更业务层面的问题，比如DM的设计，模块之间的跳转，对话的设计（一句话多个意图，一段话分开说）等等</p>
+<p>期间当然还做过别的项目，比如主题提取，纠错，或者单纯工程开发的统计系统，但是总体，还是闲聊上对算法的实验相对较多，对对话机器人的项目了解更全面</p>
+<h4 id="自我介绍的目的"><a href="#自我介绍的目的" class="headerlink" title="自我介绍的目的"></a>自我介绍的目的</h4><ul>
+<li>我对当前职位的兴趣</li>
+<li>我的能力是否能够匹配当前职位</li>
+</ul>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：好奇心强，责任心强，抗压能力强，协作沟通能力不错<br>缺点：拖沓，钻研度不够，会因为想要尝试，有时不太分主次，导致浪费很多时间</p>
+<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何</li>
+<li>背景如何</li>
+<li>模型如何</li>
+<li>准确率如何</li>
+<li>碰到哪些问题</li>
+<li>怎么解决（trick或者模型）</li>
+<li>为什么这么解决</li>
+<li>效果怎么样</li>
+<li>还有哪些可以改进的</li>
+<li>现有哪些更好的方法吗（新的论文）</li>
+</ol>
+<h4 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h4><p>我的优势：</p>
+<ol>
+<li>学历背景</li>
+<li>数学背景</li>
+<li>4年工作经验</li>
+<li>8年海外生活经验（适应力，学习能力）</li>
+<li>对智能客服了解比较全面</li>
+<li>对生成模型也有了解</li>
+<li>抗压，沟通，协作能力</li>
+<li>好奇心强，勇于实践</li>
+</ol>
+<p>职业能力：</p>
+<ol>
+<li><p>对智能客服的深耕</p>
+</li>
+<li><p>对闲聊很感兴趣，觉得闲聊是以后的重点，所以在进入顺丰后，在坚固智能客服的同时，主动选择了并不是很热门的闲聊（闲聊一定要再读几篇论文，再深耕一下）</p>
+</li>
+<li><p>对智能客服的了解比较全面，先是提高准确率的技术，后来是业务方面处理的技术（如DM，如用户一次说多句话是如何处理的，如一句话有多个意图是如何处理的，等等）</p>
+<p> <a href="https://www.infoq.cn/article/pryrhwq1pj6xkb59gbx6" target="_blank" rel="noopener">为客服构建更加智能的对话机器人：多轮应答时机触发模型</a><br> <a href="https://cloud.tencent.com/developer/news/468354" target="_blank" rel="noopener">人机对话关键技术及挑战</a><br> 文章提到了好几个闲聊重的优化技术，比如learning to start for sequence to sequence,Retrieval-Enhanced Adversarial Training For Neural Response Generation, etc.<br> <a href="http://www.woshipm.com/pd/4133505.html" target="_blank" rel="noopener">任务驱动型人机对话系统设计</a></p>
+</li>
+<li><p>闲聊主要就聊技术</p>
+</li>
+<li><p>可以描述一下每次的变动是为什么，比如为什么毕业后想要留在国外，为什么会从顺丰离职，所以为什么现在会非常希望找到一个比较实践长久的工作等</p>
+</li>
+<li><p>如何在对话设计时，设计的是多次对话拼接到一起然后求他的意图，那么</p>
+<ol>
+<li>在训练时，如何解决训练的样本问题（人工可以标注，但是样本不是很多，SF为5000-10000条）</li>
+<li>训练时不会有不收敛的问题吗？因为同样一部分的语句在不同的类别中出现过（并且是肯定不能使用CNN这种对序列信息没有考虑的模型） </li>
+</ol>
+</li>
+<li><p>抗压能力：LP工作情况统计的项目</p>
+</li>
+</ol>
+<h2 id="明天"><a href="#明天" class="headerlink" title="明天"></a>明天</h2><ol start="5">
+<li>写下客服/对话机器人的面试文章</li>
+<li>或者整理下智能客服的面试文章<ol>
+<li>Sbert</li>
+<li>学习曲线</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/15/french/Preparation-pour-l-entretien-francais/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/15/french/Preparation-pour-l-entretien-francais/" class="post-title-link" itemprop="url">Préparation pour l'entretien français</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-15 17:22:35 / 修改时间：17:56:27" itemprop="dateCreated datePublished" datetime="2021-08-15T17:22:35+08:00">2021-08-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Francais/" itemprop="url" rel="index">
+                    <span itemprop="name">Français</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
+<p>La partie de Présentation a duré totalement 7min30 en oral.</p>
+</blockquote>
+<p>Phrase de préambule : Je m’excuse si mon français est un peu rouillé. </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/15/french/Preparation-pour-l-entretien-francais/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/04/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/04/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">二叉树</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-04T00:00:00+08:00">2020-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-15 17:57:29" itemprop="dateModified" datetime="2021-08-15T17:57:29+08:00">2021-08-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="二叉树-1"><a href="#二叉树-1" class="headerlink" title="二叉树"></a>二叉树</h4><p>在计算机科学中，二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”（left subtree）和“右子树”（right subtree）。二叉树常被用于实现二叉查找树和二叉堆。</p>
+<h4 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h4><p>二叉查找树（Binary Search Tree），（又：二叉搜索树，二叉排序树）它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上<strong>所有结点</strong>的值<strong>均小于</strong>它的根结点的值； 若它的右子树不空，则右子树上<strong>所有结点</strong>的值<strong>均大于</strong>它的根结点的值； 它的左、右子树也分别为二叉查找树。</p>
+<h4 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h4><h3 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h3><h4 id="遍历介绍"><a href="#遍历介绍" class="headerlink" title="遍历介绍"></a>遍历介绍</h4><p>二叉树的遍历分<strong>广度优先遍历</strong>和<strong>深度优先遍历</strong></p>
+<p><img src="/images/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A4%BA%E4%BE%8B%E5%9B%BE.jpg" alt="二叉树"></p>
+<ol>
+<li><p>广度优先遍历(层次遍历)</p>
+<p>结果为：abcdfeg</p>
+</li>
+<li><p>深度优先遍历<br>深度优先遍历有三种方法：前序遍历，中序遍历和后序遍历</p>
+<ul>
+<li><p>前序遍历：abdefgc</p>
+<p>根节点 -&gt; 左子树 -&gt; 右子树</p>
+</li>
+<li><p>中序遍历：debgfac</p>
+<p>左子树 -&gt; 根节点 -&gt; 右子树</p>
+</li>
+<li><p>后序遍历：edgfbca</p>
+<p>左子树 -&gt; 右子树 -&gt; 根节点</p>
+</li>
+</ul>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/04/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/MacBook/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/MacBook/" class="post-title-link" itemprop="url">MacBook</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-06 11:36:57" itemprop="dateModified" datetime="2020-05-06T11:36:57+08:00">2020-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index">
+                    <span itemprop="name">周边辅助</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h4><p>Xcode更新后，可能VScode不能用，显示<code>java</code>相关问题，这时可以选择</p>
+<ol>
+<li>打开<code>launch.json</code>文件</li>
+<li>然后<code>add configuration</code></li>
+<li>选择<code>python</code></li>
+<li>删除<code>json</code>文件中关于<code>java</code>的语言设置，只保留<code>python</code>的</li>
+</ol>
+<p>这样就OK了</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/Markdown%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗娇的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/Markdown%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Markdown语法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-02 12:07:43" itemprop="dateModified" datetime="2020-03-02T12:07:43+08:00">2020-03-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index">
+                    <span itemprop="name">周边辅助</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><ol>
+<li>安装插件<code>Markdown All in One</code>，包含了最常用的<code>Markdown</code>优化。</li>
+<li>安装插件<code>Markdown Preview Github Styling</code>，专门针对<code>github pages</code>的预览，功能有限，但是正是我需要的</li>
+<li>如果不是针对<code>github</code>的预览，则可以安装<code>Markdown Preview Enhanced</code>，这个插件应用更普遍</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/19/Markdown%E8%AF%AD%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/python%E7%82%B9%E6%BB%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -488,687 +1265,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">算法刷题总结</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-15 17:56:58" itemprop="dateModified" datetime="2021-08-15T17:56:58+08:00">2021-08-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">数学公式</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>如果有搜索类循环，可以用dict来储存，这样搜索时间为O(1)，如果不行，可以考虑二叉树搜索，二叉树搜索时间小于O(n)<ol>
-<li>如找重复的数值</li>
-<li>小于/大于某个值的数值等</li>
-</ol>
-</li>
-</ol>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="字符串反转"><a href="#字符串反转" class="headerlink" title="字符串反转"></a>字符串反转</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'abc' =&gt; 'cba'</span><br></pre></td></tr></table></figure>
-<p>方法一：</p>
-<p>用两个指针一起从两头往中间前进，每次都对调两个指针对应的数值，不需要区分数组单双数的情况。</p>
-<h3 id="最长不重复字串"><a href="#最长不重复字串" class="headerlink" title="最长不重复字串"></a>最长不重复字串</h3><p>LeetCode 3. Longest Substring Without Repeating Characters</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Given a string, find the length of the longest substring without repeating characters.</span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: &quot;abcabcbb&quot;</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: The answer is &quot;abc&quot;, with the length of 3. </span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: &quot;bbbbb&quot;</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: The answer is &quot;b&quot;, with the length of 1.</span><br><span class="line"></span><br><span class="line">Example 3:</span><br><span class="line"></span><br><span class="line">Input: &quot;pwwkew&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The answer is &quot;wke&quot;, with the length of 3. </span><br><span class="line">Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.</span><br></pre></td></tr></table></figure>
-
-<p>方法一：</p>
-<ol>
-<li>做一次for循环</li>
-<li>每一步更新指针start的位置<ol>
-<li>当start后面有重复的字符，start跳到重复的字符当前位置</li>
-<li>当start后面有重复其前面的字符，但是在start后面没有重复，dict会在后面更新，但是start指针不调整</li>
-</ol>
-</li>
-<li>核心代码如下<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j, string <span class="keyword">in</span> enumerate(s):</span><br><span class="line">  <span class="keyword">if</span> string <span class="keyword">in</span> dictOfsubstring:</span><br><span class="line">    start = max(start, dictOfsubstring[string]+<span class="number">1</span>)</span><br><span class="line">  maxlen = max(maxlen, j-start+<span class="number">1</span>)</span><br><span class="line">  dictOfsubstring.update(&#123;string:j&#125;)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>方法二：</p>
-<h3 id="最长对称字符串"><a href="#最长对称字符串" class="headerlink" title="最长对称字符串"></a>最长对称字符串</h3><p>LeetCode 5. Longest Palindromic Substring</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.</span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: &quot;babad&quot;</span><br><span class="line">Output: &quot;bab&quot;</span><br><span class="line">Note: &quot;aba&quot; is also a valid answer.</span><br><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: &quot;cbbd&quot;</span><br><span class="line">Output: &quot;bb&quot;</span><br></pre></td></tr></table></figure>
-
-<p>方法一：</p>
-<p>暴力解法，两次for循环，然后找出最大的对称字符串</p>
-<p>方法二：</p>
-<ol>
-<li><p>一个for循环</p>
-</li>
-<li><p>加上对称判断。对称只有两种可能性：</p>
-<ol>
-<li>有一个中心字符，如’aba’</li>
-<li>没有中心字符，如’abba’</li>
-</ol>
-<p>每当找到某种的中心点时，找出其可以向两边扩展的最远距离（例如情况ii时，代码如下），然后通过记录中心点和扩展的范围，得到对称字符串本身或者长度</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line"> ...</span><br><span class="line"> <span class="keyword">if</span> i+<span class="number">1</span>&lt;len(s) <span class="keyword">and</span> s[i] == s[i+<span class="number">1</span>]:</span><br><span class="line">     mid = <span class="number">1</span></span><br><span class="line">     count1 = <span class="number">2</span></span><br><span class="line">     <span class="keyword">while</span> i-mid&gt;=<span class="number">0</span> <span class="keyword">and</span> i+<span class="number">1</span>+mid&lt;len(s) <span class="keyword">and</span> s[i-mid] == s[i+<span class="number">1</span>+mid]:</span><br><span class="line">         count1 += <span class="number">2</span></span><br><span class="line">         mid += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>字符串相关问题，好像都会上指针。最重要的点，一是上一个还是两个指针，二是指针的更新方法。</p>
-<h2 id="字符列"><a href="#字符列" class="headerlink" title="字符列"></a>字符列</h2><h3 id="最长上升子序列"><a href="#最长上升子序列" class="headerlink" title="最长上升子序列"></a>最长上升子序列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Given an unsorted array of integers, find the length of longest increasing subsequence.</span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Input: [10,9,2,5,3,7,101,18]</span><br><span class="line">Output: 4 </span><br><span class="line">Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4. </span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">There may be more than one LIS combination, it is only necessary for you to return the length.</span><br><span class="line">Your algorithm should run in O(n2) complexity.</span><br><span class="line">Follow up: Could you improve it to O(n log n) time complexity?</span><br></pre></td></tr></table></figure>
-
-<p>方法一：</p>
-<ol>
-<li>用dp记录到当前数值位置，能有的最长上升子序列，初始化为1，即最长上升子序列为当前数值本身</li>
-<li>两次for循环（即两个指针），一次记录到当前位置最长上升子序列的，一次是在当前位置前，前面位置上有的最大上升子序列</li>
-<li>注意⚠️：如果第一个指针（当前位置）对应的数值num大于第二个指针（当前位置前面的指针）的数值value，那么当前位置的dp[i]更新为max(dp[i], dp[j]+1)，j为第二个指针的位置</li>
-<li>代码如下：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">IncreasingSubsets</span><span class="params">(nums)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  dp = [<span class="number">1</span>]*len(nums)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">          <span class="keyword">if</span> nums[j] &lt; nums[i]:</span><br><span class="line">              dp[i] = max(dp[j]+<span class="number">1</span>, dp[i])</span><br><span class="line">  <span class="keyword">return</span> max(dp)</span><br></pre></td></tr></table></figure>
-
-<p>方法二：</p>
-<ol>
-<li>用dp记录最长子序列的值</li>
-<li>for循环一遍nums，把每次的num二分查找插入到dp中</li>
-</ol>
-<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/AM-softmax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/AM-softmax/" class="post-title-link" itemprop="url">AM-softmax</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-13 18:38:46" itemprop="dateModified" datetime="2021-09-13T18:38:46+08:00">2021-09-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
-                    <span itemprop="name">基础知识</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>基于已有的L-softmax, A-softmax，作者提出了AM-softmax，一个适用于分类模型的loss计算方法。主要用于增加类间距离，减小类内距离</p>
-<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><h2 id="反向传播求导简单"><a href="#反向传播求导简单" class="headerlink" title="反向传播求导简单"></a>反向传播求导简单</h2><p>反向传播对x求导结果为1</p>
-<h2 id="公式更直观"><a href="#公式更直观" class="headerlink" title="公式更直观"></a>公式更直观</h2><p>相对于L-softmax，AM-softmax的参数简单直观</p>
-<h2 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h2><p>使用加法cos(/delta)-m，不同于L-softmax中使用乘法cos(m*/delta)，超参数直接作用于cos(/delta)更好，因为：cos(/delta)和delta虽然是一一对应，但是变化趋势不同，cos(/delta)在pai处更密集。因此在乘法中，得到wf后需要进行反余弦计算，因此会消耗更多的算力</p>
-<h2 id="两个超惨数"><a href="#两个超惨数" class="headerlink" title="两个超惨数"></a>两个超惨数</h2><p>e的右上角公式为s(cos(/delta)-m)</p>
-<ul>
-<li>其中m是用来增加类间距离，强行使两个类的边缘样本有一定的距离而更不容易混淆</li>
-<li>反向传播是，x的导数为1，前面增加一个s则反向求导后gradient会变为s，使用一个s是为了让好样本的梯度更大，来减小类内样本的方差，也就是更快的减小类内距离</li>
-</ul>
-<h2 id="Feature-Normalization"><a href="#Feature-Normalization" class="headerlink" title="Feature Normalization"></a>Feature Normalization</h2><p>对于质量较好的样本，不需要进行feature normalization。<br>但是对于质量较差的样本，使用feature normalization后，效果会有提升。<br>因为质量越差，特征归一化的值越小，因此反向传播中受到的关于越大（1/alpha），所以特征归一化更适合图像质量差的任务</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Bert/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Bert/" class="post-title-link" itemprop="url">Bert</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-13 18:50:23" itemprop="dateModified" datetime="2021-09-13T18:50:23+08:00">2021-09-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
-                    <span itemprop="name">基础知识</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h1><h3 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h3><p>Bert中使用的是Layer Normalization，源于对batch normalization的改进。<br>batch normalization的优点：</p>
-<ul>
-<li>加快神经网络训练时间</li>
-<li>对学习率有更好的容忍</li>
-<li>重新拉正数据分布，避免进入激活函数的饱和区域，缓解梯度消失<br>batch normalization的缺点：</li>
-<li>对batch size的大小比较敏感</li>
-<li>在RNN和LSTM等序列模型中效果不太好<br>针对以上两个BN的缺点，提出了LN，较好的解决了上面两个问题</li>
-</ul>
-<h3 id="position-embedding"><a href="#position-embedding" class="headerlink" title="position embedding"></a>position embedding</h3><p>同transformer里的position embedding不同，这里的position embedding需要训练获取。<br>transformer里的position embedding用的的正弦版本。两者各有优劣<br>正弦：</p>
-<ul>
-<li>一定位置间的embedding可以被彼此线性表示</li>
-<li>相比训练好的position embedding，正弦版本能允许更长的输入序列<br>训练的position embedding</li>
-<li>相比正弦的常量表示，学习来的embedding表示能力更强。加上bert后续需要做ner对位置上的字符进行状态预测，因此一个可以学习的参数来表达位置，更合理</li>
-</ul>
-<h3 id="gelu"><a href="#gelu" class="headerlink" title="gelu"></a>gelu</h3><p>Bert Transfromer结构中使用了这个激活函数—gelu（Gaussian error linear units，高斯误差线性单元），Gelu在论文中已经被验证，是一种高性能的神经网络激活函数，因为GELU的非线性变化是一种符合预期的随机正则变换方式（这句话，说实话，我翻译自原论文，具体怎么理解呢？我自己是如下理解的）。</p>
-<p>激活函数的作用：给网络模型加入非线性因子，这个非线性因子的实际操作就是在wx+b这样的线下变化后面加入一个非线性变化的函数fun。<br>Gelu的操作方式：Gelu怎么完成非线性变换的呢？引入这样的变化函数：<br>        公式中x是自己，P(X&lt;=x)决定x中有多少信息保留 ，并且由于P是服从高斯分布的，也就满足了非线性的特征，并且更加符合数据的分布预期。</p>
-<h3 id="warm-up"><a href="#warm-up" class="headerlink" title="warm-up"></a>warm-up</h3><h3 id="dropout"><a href="#dropout" class="headerlink" title="dropout"></a>dropout</h3><h2 id="获取向量"><a href="#获取向量" class="headerlink" title="获取向量"></a>获取向量</h2><p>bert中有很多种获取向量的方法，具体如下：</p>
-<p><strong>init</strong>()：重头戏，模型的构建在此完成，三步走完成。<br>主要分为三个模块：embeddings、encoder 和 pooler。<br>首先构建输入，包括 input_ids、input_mask 等。其次进入 embeddings 模块，进行一系列 embedding 操作，涉及 embedding_lookup() 和 embedding_postprocessor() 两个函数。<br>然后进入 encoder 模块，就是 transformer 模型和 attention 发挥作用的地方了，主要涉及 transformer_model() 函数，得到 encoder 各层输出。<br>最后进入 pooler 模块，只取 encoder 最后一层的输出的第一个 token 的信息，送入到一个大小为 hidden_size 的全连接层，得到 pooled_output，这就是最终输出了。</p>
-<ul>
-<li>get_pooled_output(self)：获取 pooler 的输出。</li>
-<li>get_sequence_output(self)：获取 encoder 最后的隐层输出，输出大小为 [batch_size, seq_length, hidden_size]。</li>
-<li>get_all_encoder_layers(self)：获取 encoder 中所有层。返回大小应该是 [num_hidden_layers, batch_size, seq_length, hidden_size]。</li>
-<li>get_embedding_output(self)：获取对 input_ids 的 embedding 结果，大小为 [batch_size, seq_length, hidden_size]，这是 word embedding、positional embedding、token type embedding（论文中的 segment embedding）和 layer normalization 一系列操作的结果，也是 transformer 的输入。</li>
-<li>get_embedding_table(self)：获取 embedding table，大小为 [vocab_size, embedding_size]，即词汇表中的词对应的 embedding。</li>
-</ul>
-<p>详情见<a href="https://zhuanlan.zhihu.com/p/140718739" target="_blank" rel="noopener">Bert是如何构建模型的</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/SBert/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/SBert/" class="post-title-link" itemprop="url">SBert</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-13 18:50:50" itemprop="dateModified" datetime="2021-09-13T18:50:50+08:00">2021-09-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
-                    <span itemprop="name">基础知识</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SBert针对句子匹配问题，提出了一种新的想法。没有很复杂的公式，可以理解为，是一些常见的计算进行各种融合的实战经验总结。<br>主要思想也是对bert进行fine tuning，来获取语义上有意义的空间向量<br>    语义上有意义：论文中有解释，是指句子意思相近的句子在空间向量上也相近</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h3 id="速度快"><a href="#速度快" class="headerlink" title="速度快"></a>速度快</h3><p>论文中提出了，相对于通常使用的NSP，即concat sent1和sent2来判断两个句子是否相似，我们将两个句子独立分开输入到同一bert模型（两个句子使用的参数相同）中，再将得到的两个向量进行计算，要快上很多倍，主要原因如下：</p>
-<ol>
-<li>假设有10000个样本<ol>
-<li>如果用NSP句子对计算，那么可以相互匹配出10000*10000个句子对，去除重复的也有一半，所以样本数上计算量很大</li>
-<li>如果将句子分开过bert模型，那么10000个样本只用过10000次bert模型，计算量会少很多</li>
-</ol>
-</li>
-<li>每个样本过bert模型的计算量也会不同<ol>
-<li>如果用NSP句子对，假设两个句子的长度分别为m和n，那么concate之后进行self attention，就是O（（m+n）^2）的时间复杂度</li>
-<li>如果两个句子独立进行self attention，两个句子的时间复杂度也是O（m^2） while m &gt;= n</li>
-</ol>
-</li>
-</ol>
-<h3 id="pooling"><a href="#pooling" class="headerlink" title="pooling"></a>pooling</h3><p>在bert的embedding输出层，接了一个pooling。<br>作者比较了三种pooling方法，一种直接使用CLS的结果，一种使用mean，一种使用max。使用mean的效果最好<br>作者并没有在论文中详细阐述这个mean的pooling是作用在哪个维度上的，我个人推测可能是对seq_length做的mean，这样才能和cls层出来的embedding维度相同<br>找到一个解释是：</p>
-<ul>
-<li>MEAN策略，计算各个token输出向量的平均值代表句子向量。各个token的向量维度一样，即把所有token的embeding相加，然后处以token数即得到平均，也就是这个句子的句向量</li>
-<li>MAX策略，取所有输出向量各个维度的最大值代表句子向量。各个token有很多个维度，每个维度上比较多个token当前维度的值，并取最大，然后获得句向量<br>所以以上都是对seq_length这一行进行了pooling，将其变为了1</li>
-</ul>
-<p>具体cnn里filter和pooling后的维度见<a href="https://mp.weixin.qq.com/s/vq4-4M46okms5_sxw9PBQA" target="_blank" rel="noopener">实战TextCNN 文本分类</a></p>
-<h3 id="针对不同的数据提出了三种loss"><a href="#针对不同的数据提出了三种loss" class="headerlink" title="针对不同的数据提出了三种loss"></a>针对不同的数据提出了三种loss</h3><h4 id="classification-objective-function"><a href="#classification-objective-function" class="headerlink" title="classification objective function"></a>classification objective function</h4><p>在将两个句子的embedding，u和v，concate时，作者实验了很多种不同的方法<br>比如：（u,v），（|u-v|），（u,v,|u-v|）等等，可以到时候放个结果图过来，论文中的table6。<br>作者最后发现（u,v,|u-v|）这种concate方式效果最好</p>
-<h4 id="regression-objective-function"><a href="#regression-objective-function" class="headerlink" title="regression objective function"></a>regression objective function</h4><p>计算两个句子的余弦相似性，然后使用均方差loss</p>
-<h4 id="triplet-objective-function"><a href="#triplet-objective-function" class="headerlink" title="triplet objective function"></a>triplet objective function</h4><p>如果是有正负样本的数据，可以使用triplet loss<br>max(dist(sa-sp)-dist(sa-sn)+margin, 0)<br>这里dist()计算的两者欧式距离，并且把margin设为1</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/SVM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/SVM/" class="post-title-link" itemprop="url">SVM</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-13 18:50:55" itemprop="dateModified" datetime="2021-09-13T18:50:55+08:00">2021-09-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
-                    <span itemprop="name">基础知识</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><p>核函数的本质</p>
-<p>上面说了这么一大堆，读者可能还是没明白核函数到底是个什么东西？我再简要概括下，即以下三点：</p>
-<ol>
-<li>实际中，我们会经常遇到线性不可分的样例，此时，我们的常用做法是把样例特征映射到高维空间中去(如上文2.2节最开始的那幅图所示，映射到高维空间后，相关特征便被分开了，也就达到了分类的目的)；</li>
-<li>但进一步，如果凡是遇到线性不可分的样例，一律映射到高维空间，那么这个维度大小是会高到可怕的(如上文中19维乃至无穷维的例子)。那咋办呢？</li>
-<li>此时，核函数就隆重登场了，核函数的价值在于它虽然也是讲特征进行从低维到高维的转换，但核函数绝就绝在它事先在低维上进行计算，而将实质上的分类效果表现在了高维上，也就如上文所说的避免了直接在高维空间中的复杂计算。</li>
-</ol>
-<p><a href="https://blog.csdn.net/u010199356/article/details/88836026" target="_blank" rel="noopener">核函数解释博客</a><br>很有意思，有空可以自己试试用matlab画图看看</p>
-<p><a href="https://zhuanlan.zhihu.com/p/77750026" target="_blank" rel="noopener">SVM推导过程</a><br>也可以看看李航的统计书里的推导</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Triplet%20Loss/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Triplet%20Loss/" class="post-title-link" itemprop="url">Triplet Loss</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-13 18:51:47" itemprop="dateModified" datetime="2021-09-13T18:51:47+08:00">2021-09-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
-                    <span itemprop="name">基础知识</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Triplet-Loss最先由图像里提出来。为了解决负样本与标准样本过于相似的问题，来增加类间距离，减小类内距离<br>Triplet-Loss通过最小化dist(a,p)-dist(a,n)+margin，来训练出可以更好表征样本的embedding<br>dist()一般使用欧式距离，当然也可以用余弦等其它距离</p>
-<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><h2 id="样本"><a href="#样本" class="headerlink" title="样本"></a>样本</h2><p>使用triplet-loss通常需要将样本组合成三元组，&lt;a, p, n&gt;<br>如何组合有很多中方法，最直接的一种，将所有正样本和所有可能的负样本与标准样本一一组成三元组，这样可组合的可能性过多，这种方法并不适用，所以作者提出了另外两种方法offline和online</p>
-<h2 id="offline"><a href="#offline" class="headerlink" title="offline"></a>offline</h2><p>每n steps后，使用当前模型，计算出离每个标准问最远的正样本和最近的负样本，然后重新接着训练</p>
-<h2 id="online"><a href="#online" class="headerlink" title="online"></a>online</h2><p>从batch-size里选取正样本和负样本（我看很多文章里也写不清楚到底是怎么取，以下是个人理解）<br>每个batch-size里每个类别要取40个样本，然后随机选取一些负样本加入进来。batch-size大小最好为1800<br>我的思考：</p>
-<ul>
-<li>每个batch-size不需要包含所有类别，可以每次包含k=5个类别，每个类别选取40个样本放入，共有200个样本，然后再选取1600个负样本放入</li>
-<li>接着对于batch-size中的每一个类别，我们选取40次正样本，然后从剩下的1800-40个负样本中随机选取负样本</li>
-<li>每个类别我们总共组成40个三元组，这个batch-size我们会组成200个三元组</li>
-<li>之所以要每个类别要选取40个正样本，是为了保证此类别中正样本可选取的数量不要太少，因为在组成三元组样本时，经常会碰到负样本过多的问题，这里强行规定的一定量的正样本是的两种样本比在batch-size中不至于太失衡</li>
-</ul>
-<h2 id="semi-hard"><a href="#semi-hard" class="headerlink" title="semi-hard"></a>semi-hard</h2><p>在论文中，作者解释如果每次都取hardest sample，即离标准样本最近的负样本，容易导致模型过早限于局部最小值（如果learning rate没足够大到能跳出局部最小区域，就会造成loss不下降的问题），因此我们尝试使用semi-hard sample</p>
-<ul>
-<li>hardest sample为距离标准样本最近的负样本（有可能距离小于正样本到标准样本的距离）</li>
-<li>semi sample为，比正样本距离标准样本的距离很近但稍远一点点的负样本。这类样本虽然不是最难的负样本，但也是很难分的样本，因为他们距离标准样本的距离与正样本相似，因此容易混淆</li>
-</ul>
-<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><ul>
-<li>为了让SGD更快下降，batch-size越小越好</li>
-<li>为了让triplet loss效果更好，batch-size越大越好</li>
-<li>作者选择了batch-size=1800</li>
-<li>作者这里margin设为0.2</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Logistic%20Regression/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Logistic%20Regression/" class="post-title-link" itemprop="url">Logistic Regression</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-13 18:51:49" itemprop="dateModified" datetime="2021-09-13T18:51:49+08:00">2021-09-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
-                    <span itemprop="name">基础知识</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1236,7 +1337,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1249,7 +1350,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1274,7 +1375,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
