@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Préparation pour l&#39;entretien français</title>
+    <url>/2021/08/15/Francais/Preparation-pour-l-entretien-francais/</url>
+    <content><![CDATA[<h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
+<p>La partie de Présentation a duré totalement 7min30 en oral.</p>
+</blockquote>
+<p>Phrase de préambule : Je m’excuse si mon français est un peu rouillé. </p>
+<span id="more"></span>
+
+<h4 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h4><p>En 2007, j’ai passé en Chine mon bac, appréciant la logique des mathématiques et étant performante sur ce domaine j’ai commencé des études scientifiques à l’université de Wuhan et j’y ai également appris des bases de Français. J’ai réalisé à Wuhan un Bac+2 et j’ai ensuite choisi de poursuivre mes études en France par une licence de mathématiques en 3 ans (la France a une bonne réputation dans ce domaine et j’avais envie de découvrir un nouveau pays et d’apprendre une nouvelle langue). </p>
+<p>Même si j’étais à l’aise en mathématiques, je trouvais le domaine trop théorique.  Je cherchais un domaine qui allie la logique des mathématiques et le coté très concret de l’informatique. J’ai appris qu’un master à Nancy combinait les deux et je suis donc partie là-bas. J’ai réalisé un stage chez Vize une start-up locale où j’ai découvert plus précisément les travaux liés à l’intelligence artificielle et de l’utilisation de la donnée (big data).</p>
+<h4 id="Carriere"><a href="#Carriere" class="headerlink" title="Carriere"></a>Carriere</h4><p>À la sortie de mon master en 2016, je suis venu travailler en tant que Data à Reims à SIKIM une autre PME spécialisée sur le domaine. J’y ai travaillé un peu plus de deux ans. L’ambiance était très bonne au sein de la petite équipe, j’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une Caisse régionale du Crédit Agricole. Techniquement néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité était rares tandis que je trouvais que je n’avais pas assez de travail ne serait ce que pour occuper pleinement mes journées. J’ai ensuite été contactée par une entreprise chinoise SF Express, c’était un grand groupe, le 4ème logisticien mondial, qui m’a proposé un poste à Shenzhen avec un meilleur salaire et davantage de responsabilité. Cela me permettait également de me rapprocher de ma famille. Au sein de l’entreprise j’ai pu développer davantage mes compétences techniques [Donner un ou deux exemples ?].<br>Avec projet Chabot de service client (qui serve à répondre des questions à nos clients), j’étais responsable de la module NLU (Compréhension du langage naturel), mise en l’œuvre des algorithmes de classification qui permettent au Chatbot de comprendre l’intention du client, des algorithmes de REN(reconnaissance d’entités nommés) qui permettent au Chatbot de reconnaissir les entités nommées, des algorithme, comme BERT, qui peut créer automatiquement plus de données pour que les algorithmes puissent avoir une meilleur performance.<br>Avec le Chit Chat Chatbot (une intelligence artificielle (IA) de type dialogueur pour apporter un certain soutien psychologique), j’ai pu mis en l’œuvre le modèle de NLG (Génération Automatique de Langage, il consiste à générer automatiquement du texte pour adresser des réponses personnalisées aux utilisateurs) en impliquant l’algorithme de génération de réponses, des algorithmes pour évaluer la sémantique du texte, des algorithme pour diversifier les réponses, etc.</p>
+<p>En raison de changements dans la structure organisationnelle de l’entreprise, j’ai quitté SF Express et rejoint à VIPKID en 2020. En tant qu’un Data Scientist, la formation de mathématiques ne m’a pas offert un grand avantage de coder, mais grâce à mes expériences dans VIPKID, j’ai pu approfondit ma capacité de coder surtout en réalisant un system de statistique à temps réel. Il recueillit des données de travail des employés sous de nombreux aspects, après le traitement statistique, on rend compte aux dirigent de tous les niveaux de l’entreprise avec une certaine fréquence chaque jour. Mes expériences dans VIPKID m’ont aussi entrainé ma capacité de management, et m’a permis d’avoir une vue complète de Chatbot. Avec trois autres collègues, on a réalisé une plateforme de Chatbot de A à Z, y inclus FAQ, NLU, Task Management et Dialogue Management, qui s’est appliqué aux services clients de toutes les fonctions (totalement 7) dans l’entreprise. Le taux de traitement par cette plateforme atteint à 79.6 (environ 10 milles de session par jour en total).<br>J’ai aussi pu approfondi ma capacité en NLG en réalisant un modèle de traduction automatique adapté aux besoins de l’entreprise. Il économise 10 milles euros par mois pour l’entreprise.</p>
+<h4 id="Situation-mnt"><a href="#Situation-mnt" class="headerlink" title="Situation mnt"></a>Situation mnt</h4><p>J’ai voulu revenir en France le moment que j’ai quitté SF Express, mais c’était pas la bonne occasion à cause du COVID 19. Et maintenant, en raison des politiques du pays vers des entreprise d’éducation et la diffusion de la vaccination (l’amélioration de COVID 19), je pense que c’est le bon moment de revenir en France où je planifie à résider une longue durée.</p>
+<p>A ce jour, j’ai accumulé 5 ans d’expériences dans le domaine de NLP, en particulier dans dialogue system et NLG. J’aimerai bien pouvoir avoir l’opportunité de connaître et d’appliquer des connaissances des autres domaine relative tels que CV (vision par l’ordinateur), l’apprentissage multimoda, basé sur mes compétences de NLP.</p>
+<p><font color="#989898" size=4> Les informations dans le monde réel se présentent généralement sous différentes modalités. Par exemple, les images sont généralement associées à des balises et à des explications textuelles ; les textes contiennent des images pour exprimer plus clairement l’idée principale de l’article. Différentes modalités sont caractérisées par des propriétés statistiques très différentes. Par exemple, les images sont généralement représentées sous forme d’intensités de pixels ou de sorties d’extracteurs de caractéristiques, tandis que les textes sont représentés sous forme de vecteurs de nombre de mots discrets. En raison des propriétés statistiques distinctes des différentes ressources d’information, il est très important de découvrir la relation entre les différentes modalités. L’apprentissage est un bon modèle pour représenter les représentations conjointes de différentes modalités. Le modèle d’apprentissage multimodal est également capable de combler la modalité manquante compte tenu de celles observées. Le modèle d’apprentissage multimodal combine deux machines de Boltzmann profondes correspondant chacune à une modalité. Une couche cachée supplémentaire est placé au-dessus des deux machines Boltzmann pour donner la représentation commune. </font></p>
+<h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><h3 id="Chatbot"><a href="#Chatbot" class="headerlink" title="Chatbot"></a>Chatbot</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
+<h3 id="Chit-Chat"><a href="#Chit-Chat" class="headerlink" title="Chit Chat"></a>Chit Chat</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
+<h3 id="Chercher-top-20-questions-a-l’entretien"><a href="#Chercher-top-20-questions-a-l’entretien" class="headerlink" title="Chercher top 20 questions à l’entretien"></a>Chercher top 20 questions à l’entretien</h3>]]></content>
+      <categories>
+        <category>Français</category>
+      </categories>
+      <tags>
+        <tag>préparation</tag>
+        <tag>entretien</tag>
+        <tag>français</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>二叉树</title>
     <url>/2020/03/04/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="二叉树-1"><a href="#二叉树-1" class="headerlink" title="二叉树"></a>二叉树</h4><p>在计算机科学中，二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”（left subtree）和“右子树”（right subtree）。二叉树常被用于实现二叉查找树和二叉堆。</p>
@@ -161,6 +189,379 @@
         <tag>最优法</tag>
         <tag>迭代算法</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>ES安装与使用</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/ES/</url>
+    <content><![CDATA[<h1 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><h5 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h5><p>   可能遇到需要密码的问题。此时有两种方法：</p>
+<ul>
+<li>一个是进入 <code>elasticsearch.yml</code> 文件设置 <code>xpack.security.enabled: false</code>。不过这样有安全隐患，只能用于测试。且7.x的版本没有相关参数</li>
+<li>二是设置一个密码<ul>
+<li>运行 <code>bin/elasticserch-setup-passwords interactive</code> </li>
+<li>数据密码 <code>xxxxx</code></li>
+<li><code>curl http://host:port -u username:password</code> 验证是否成功</li>
+</ul>
+</li>
+</ul>
+<h5 id="内网访问"><a href="#内网访问" class="headerlink" title="内网访问"></a>内网访问</h5><p>   如果访问ES是在同一网络内另一台机器上，则需要设置 <code>elasticsearch.yml</code> 中的 <code>network.host</code> 为 <code>0.0.0.0</code> 允许内网不同机器访问</p>
+<h2 id="ES-使用"><a href="#ES-使用" class="headerlink" title="ES 使用"></a>ES 使用</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>命令： </p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">PUT http:<span class="regexp">//</span>host:port/test123 </span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;settings&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;number_of_shards&quot;</span>:<span class="number">5</span>, <span class="regexp">//</span> 指定索引分片数量</span><br><span class="line">        <span class="string">&quot;number_of_replicas&quot;</span> : <span class="number">1</span> <span class="regexp">//</span> 指定索引副本分片数量</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;mappings&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;properties&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: &#123; <span class="regexp">//</span> 必须唯一</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;long&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;classe&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;sentence&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;vector&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;dense_vector&quot;</span>,</span><br><span class="line">                <span class="string">&quot;dims&quot;</span>: <span class="number">5</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="regexp">//</span> ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="导入文档"><a href="#导入文档" class="headerlink" title="导入文档"></a>导入文档</h3><h4 id="导入单个文档"><a href="#导入单个文档" class="headerlink" title="导入单个文档"></a>导入单个文档</h4><p><code>id</code> 为 <code>3</code> 时：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">PUT http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_doc/<span class="number">3</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">&quot;sentence&quot;</span>: <span class="string">&quot;我是第三句中文&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vector&quot;</span>: [-<span class="number">0.5</span>, <span class="number">0.5</span>, -<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">5</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="批量导入文档"><a href="#批量导入文档" class="headerlink" title="批量导入文档"></a>批量导入文档</h4><p>批量导入主要使用 <code>bulk</code>，<code>Python</code> 和 <code>http</code> 都有接口</p>
+<p>使用 <code>bulk</code> 一次性导入数据不能超过 <code>100MB</code></p>
+<p>无论是 <code>Python</code> 还是 <code>http</code> ，都需要将每个文档转换成 <code>json</code> 格式导入。某个 <code>json</code> 文档具体格式如下：</p>
+<figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_index&quot;</span>: <span class="string">&quot;test123&quot;</span>,</span><br><span class="line">    <span class="string">&quot;_id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;_source&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="string">&quot;classe&quot;</span>: <span class="string">&quot;FAQ&quot;</span>,</span><br><span class="line">        <span class="string">&quot;sentence&quot;</span>: <span class="string">&quot;我是第一个文档&quot;</span>,</span><br><span class="line">        <span class="string">&quot;vector&quot;</span>: [<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span> <span class="number">4.0</span>, <span class="number">5.0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若使用 <code>http</code> 批量导入，命令行： <code>curl -XPOST -H &quot;Content-Type:application/json&quot; &quot;http://127.0.0.1:9200/test123/_bulk?pretty&quot; --data-binary @example.json</code></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// example.json</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;_index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test123&quot;</span><span class="punctuation">,</span><span class="attr">&quot;_id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;classe&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FAQ&quot;</span><span class="punctuation">,</span><span class="attr">&quot;sentence&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我是第一个文档&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vector&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1.0</span><span class="punctuation">,</span> <span class="number">2.0</span><span class="punctuation">,</span> <span class="number">3.0</span> <span class="number">4.0</span><span class="punctuation">,</span> <span class="number">5.0</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;_index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test123&quot;</span><span class="punctuation">,</span><span class="attr">&quot;_id&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span><span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span><span class="attr">&quot;classe&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FAQ&quot;</span><span class="punctuation">,</span><span class="attr">&quot;sentence&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我是第二个文档&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vector&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1.0</span><span class="punctuation">,</span> <span class="number">2.0</span><span class="punctuation">,</span> <span class="number">3.0</span> <span class="number">4.0</span><span class="punctuation">,</span> <span class="number">5.0</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;_index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test123&quot;</span><span class="punctuation">,</span><span class="attr">&quot;_id&quot;</span><span class="punctuation">:</span> <span class="number">4</span><span class="punctuation">,</span><span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">4</span><span class="punctuation">,</span><span class="attr">&quot;classe&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FAQ&quot;</span><span class="punctuation">,</span><span class="attr">&quot;sentence&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我是第四个文档&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vector&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1.0</span><span class="punctuation">,</span> <span class="number">2.0</span><span class="punctuation">,</span> <span class="number">3.0</span> <span class="number">4.0</span><span class="punctuation">,</span> <span class="number">5.0</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>若使用 <code>Python</code> 批量导入，命令行 <code>helpers.bulk(es, json_text)</code> ，<code>json_text</code> 格式同上 <code>example.json</code></p>
+<h3 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h3><h4 id="通过id查询文档"><a href="#通过id查询文档" class="headerlink" title="通过id查询文档"></a>通过id查询文档</h4><p><code>id</code> 为 <code>3</code> 时：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">GET http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_doc/<span class="number">3</span>?pretty</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过计算余弦相似度检索文档"><a href="#通过计算余弦相似度检索文档" class="headerlink" title="通过计算余弦相似度检索文档"></a>通过计算余弦相似度检索文档</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;script_score&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;query&quot;</span> : &#123;<span class="string">&quot;match_all&quot;</span>: &#123;&#125;&#125;,</span><br><span class="line">      <span class="string">&quot;script&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;source&quot;</span>: <span class="string">&quot;cosineSimilarity(params.query_vector, &#x27;vector&#x27;) + 1.0&quot;</span>, </span><br><span class="line">        <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">          <span class="string">&quot;query_vector&quot;</span>: [<span class="number">4</span>, <span class="number">3.4</span>, -<span class="number">0.2</span>, <span class="number">0.1</span>, -<span class="number">3</span>]  </span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过简单的字符串匹配查询文档"><a href="#通过简单的字符串匹配查询文档" class="headerlink" title="通过简单的字符串匹配查询文档"></a>通过简单的字符串匹配查询文档</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;match&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;sentence&quot;</span>: <span class="string">&quot;我想要查询的文档&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过阈值筛选"><a href="#通过阈值筛选" class="headerlink" title="通过阈值筛选"></a>通过阈值筛选</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;min_score&quot;</span>: <span class="number">0.5</span></span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="regexp">//</span> ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="每页展示的结果数（response-“hits”-“hits”-的数目）"><a href="#每页展示的结果数（response-“hits”-“hits”-的数目）" class="headerlink" title="每页展示的结果数（response[“hits”][“hits”]的数目）"></a>每页展示的结果数（response[“hits”][“hits”]的数目）</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;size&quot;</span>: <span class="number">50</span> <span class="regexp">//</span> 默认<span class="number">10000</span></span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="regexp">//</span> ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过某个item筛选"><a href="#通过某个item筛选" class="headerlink" title="通过某个item筛选"></a>通过某个item筛选</h4><p><code>item</code> 为 <code>enabled_status</code>，且 <code>enabled_status</code> 是<code>boolean</code> 时</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;bool&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;filter&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;item&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;enabled_status&quot;</span>: true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>item</code> 为 <code>classe</code>，且 <code>classe</code> 包含关键词 <code>FAQ</code> 时:</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;item&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;classe&quot;</span>: <span class="string">&quot;FAQ&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>item</code> 为 <code>classe</code>，且 <code>classe</code> 包含多个关键词 <code>FAQ</code> <code>greeting</code> 时:</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;items&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;classe&quot;</span>: [<span class="string">&quot;FAQ&quot;</span>, <span class="string">&quot;greeting&quot;</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="余弦相似度-筛选条件-组合查询"><a href="#余弦相似度-筛选条件-组合查询" class="headerlink" title="余弦相似度+筛选条件 组合查询"></a>余弦相似度+筛选条件 组合查询</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;size&quot;</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="string">&quot;min_score&quot;</span>: <span class="number">1.5</span>,</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;script_score&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;bool&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;filter&quot;</span>: &#123;</span><br><span class="line">                        <span class="string">&quot;term&quot;</span>: &#123;</span><br><span class="line">                            <span class="string">&quot;enabled_status&quot;</span>: true</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;script&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;scource&quot;</span>: <span class="string">&quot;cosineSimilarity(params.query_vector, &#x27;vector&#x27;) + 1.0&quot;</span>,</span><br><span class="line">                <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;query_vector&quot;</span>: [<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>周边辅助</category>
+      </categories>
+      <tags>
+        <tag>ES</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA 配置</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/IDEA%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>idea 配置</p>
+<p>背景：</p>
+<ol>
+<li>已安装zsh和items2</li>
+<li>参考文章 <a href="https://www.jb51.net/article/190940.htm">https://www.jb51.net/article/190940.htm</a></li>
+</ol>
+<span id="more"></span>
+
+<p>具体步骤：</p>
+<ol>
+<li>安装java，直接成功，并且java -v查看版本</li>
+<li>安装maven，mac电脑官网下载Binary tar.gz archive下的apache-maven-3.8.3-bin.tar.gz。别的可能出错<ul>
+<li>解压maven包，放到～&#x2F;下（这个随意，只要后面的配置按着这个路径来就可以）</li>
+<li>设置localRepository和镜像<ul>
+<li>local设置可以参考  <figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="language-xml">  <span class="comment">&lt;!-- localRepository</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    | The path to the local repository maven will use to store artifacts.</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    |</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    | Default: $</span></span><span class="template-variable">&#123;user.home&#125;</span><span class="language-xml"><span class="comment">/.m2/repository</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">  --&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>/Users/dengshijiao1/apache-maven-3.8.3/repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+<li>镜像可以使用默认镜像。网上很多文章说使用阿里云镜像，但是创建project的时候，有可能出现家在pom.xml文件出错的问题。</li>
+<li>配置maven路径  <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> <span class="attribute">MAVEN_HOME</span>=/Users/dengshijiao1/apache-maven-3.8.3</span><br><span class="line"><span class="built_in">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$MAVEN_HOME/bin</span><br></pre></td></tr></table></figure></li>
+<li>测试maven是否安装成功<code>mvn -v</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>idea中配置java<ul>
+<li>打开file -&gt; project structure</li>
+<li>修改SDK配置为1.8<img src="/Users/dengshijiao1/Documents/hexo/photos/IDEA-java-conf.png" alt="java配置"></li>
+</ul>
+</li>
+<li>idea中配置maven<ul>
+<li>IntelliJ IDEA -&gt; preferences -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; Maven，设置<code>Maven home path</code>(刚刚放置maven解压文件的地方), <code>User setting file</code>和<code>Local repository</code>，并勾选☑️后两者的<code>override</code></li>
+<li>本人配置示例如下 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/Users/</span>dengshijiao1/apache-maven-<span class="number">3.8</span>.<span class="number">3</span></span><br><span class="line"><span class="regexp">/Users/</span>dengshijiao1<span class="regexp">/apache-maven-3.8.3/</span>conf/settings.xml</span><br><span class="line"><span class="regexp">/Users/</span>dengshijiao1<span class="regexp">/apache-maven-3.8.3/</span>repository</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>reload 和 generate source，基本上就OK了</li>
+<li>add configuration<ul>
+<li>配置了configuration才能运行代码并debug</li>
+<li>点击右上角的add configuration</li>
+<li>点击加号➕，并选择maven<img src="/Users/dengshijiao1/Documents/hexo/photos/add-configuration.png" alt="add configuration"></li>
+<li>给这个项目的环境命名（可以使用默认的名字，自己能识别就好）</li>
+<li>然后点击运行</li>
+<li>如何报错，点击下方左侧红色感叹号那一行，看一下具体报错原因，一步步修改<img src="/Users/dengshijiao1/Documents/hexo/photos/check-run-error.png" alt="check run error"></li>
+</ul>
+</li>
+<li>pom.xml<ul>
+<li>如果pom.xml中的引入包爆红，进入<code>/Users/dengshijiao1/apache-maven-3.8.3/repository/</code>中，通过<code>groupId</code>找到爆红的文件，查看本地具体的包的版本，然后加入<version>x.x.x</version>&#96;，一般可以解决<br> <img src="/Users/dengshijiao1/Documents/hexo/photos/find-version-of-plugins.png" alt="find version of plugins"></li>
+</ul>
+</li>
+<li>getXXX&#x2F;setXXX 爆红（包括@Slf4j中log的引用）<ul>
+<li>一般是因为lombok插件没有安装。<img src="/Users/dengshijiao1/Documents/hexo/photos/lombok-plugin.png" alt="lombok plugin"></li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>京东</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>JAVA疑难杂症</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/JAVA%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</url>
+    <content><![CDATA[<h1 id="JAVA疑难杂症"><a href="#JAVA疑难杂症" class="headerlink" title="JAVA疑难杂症"></a>JAVA疑难杂症</h1><h2 id="序列化-x2F-深拷贝"><a href="#序列化-x2F-深拷贝" class="headerlink" title="序列化&#x2F;深拷贝"></a>序列化&#x2F;深拷贝</h2><p>Java里不能直接进行浅拷贝&#x2F;深拷贝</p>
+<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝</p>
+<span id="more"></span>
+
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>因为需要连同对象和对象的值一起拷贝到内存中一个新的地址，所以当对象为比较复杂的嵌套类时，性能就会成为一个问题，所以需要注意。<br>一般要实现深拷贝，都是对需要拷贝的类上贴上标签<code>implements Serializable</code>，并且给出一个序列化号<code>private static final long serialVersionUID = 3487495895819393L;</code><br>然后使用以下函数进行序列化和反序列化。<br>序列化和反序列化的本质是通过某种序列化的协议，将类整个转变成二进制信息，通过serialVersionUID比对再将二进制信息转换成类。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SerializationDemo</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String stringField;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> intField;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@T</span> 某个类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Serializable</span><span class="params">(SerializationDemo)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">ByteArrayOutputStream</span> <span class="variable">bout</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">out</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(bout);</span><br><span class="line">        out.writeObject(T);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(IOException) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 反序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@data</span> 二进制</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Deserializable</span><span class="params">(data)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">byte</span>[] data; <span class="comment">// read from file or request</span></span><br><span class="line">        <span class="type">ByteArrayInputStream</span> <span class="variable">bin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(data);</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(bin);</span><br><span class="line">        <span class="type">SerializationDemo</span> <span class="variable">demo</span> <span class="operator">=</span> (SerializationDemo) in.readObject();</span><br><span class="line">        &#125; <span class="keyword">catch</span>(ClassNotFoundException) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="FastJson-VS-Gson"><a href="#FastJson-VS-Gson" class="headerlink" title="FastJson VS Gson"></a>FastJson VS Gson</h3><p>但当是嵌套类时，需要对类中的每一个类也都贴上序列化的标签，因此会变得很复杂。<br>此时可以引入FastJson类的第三方软件帮忙。（还有gson等）。但目前主流是Gson和FastJson<br>性能上FastJson更好，功能上Gson更全，而且Gson不需要额外的jar包，且使用更简便<br>具体区别见文章<a href="https://blog.csdn.net/John8169/article/details/80767771">Gson与FastJson比较</a>，这篇文章分析的非常细致</p>
+<p>1 FastJson需要有默认无参构造，可以直接使用@NoArgsConstructor。（有时候还需要加上@AllArgsConstructor，具体还不了解为什么）<br>2 使用FastJson会有内存泄漏问题，具体实例见<a href="https://juejin.cn/post/6960695856127279111">FastJson使用不当导致内存泄漏排查及解决过程 ｜ Java Debug 笔记</a>，另一片文章<a href="https://segmentfault.com/a/1190000039980284">fastjson内存泄漏解决办法 - springboot实战电商项目mall4j</a></p>
+<h5 id="关于serialVersionUID"><a href="#关于serialVersionUID" class="headerlink" title="关于serialVersionUID"></a>关于serialVersionUID</h5><p>关于serialVersionUID：<br>1、serialVersionUID是序列化前后的唯一标识符<br>2、默认如果没有人为显式定义过serialVersionUID，那编译器会为它自动声明一个</p>
+<p>为什么要定义serialVersionUID：</p>
+<ol>
+<li>serialVersionUID序列化ID，可以看成是序列化和反序列化过程中的“暗号”，在反序列化时，JVM会把字节流中的序列号ID和被序列化类中的序列号ID做比对，只有两者一致，才能重新反序列化，否则就会报异常来终止反序列化的过程。</li>
+<li>如果在定义一个可序列化的类时，没有人为显式地给它定义一个serialVersionUID的话，则Java运行时环境会根据该类的各方面信息自动地为它生成一个默认的serialVersionUID，一旦像上面一样更改了类的结构或者信息，则类的serialVersionUID也会跟着变化</li>
+<li>为了serialVersionUID的确定性，建议凡是implements Serializable的类，都人为显式地为它声明一个serialVersionUID明确值</li>
+<li>如果不想手动赋值，IntelliJ IDEA中，使用alt + enter自动生成serialVersionUID字段</li>
+</ol>
+<h5 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h5><p>Serializable接口是一个里面什么都没有的接口<br>它的源代码是public interface Serializable{}，即什么都没有。<br>如果一个接口里面什么内容都没有，那么这个接口是一个标识接口，比如，一个学生遇到一个问题，排错排了几天也没解决，此时，她举手了（示意我去帮他解决），然后我过去，帮他解决了，那么这个举手其实就是一个标识，自己不能解决的问题标示我去帮他解决，在Java中的这个Serializable接口是给JVM看的，告诉JVM，我不做这个类的序列化了，你(JVM)给我序列化，序列化就是变成二进制流，比如云计算、Hadoop，特别是Hadoop完全就是分布式环境，那么就要涉及到对象要在网络中传输，里面的全是二进制流，当然你来做这个序列化操作也可以，但是这个类里面可能还有一个类，如果你把外面的类对象Person变成二进制，那么里面也要序列化（这要用到深度遍历，很麻烦），干脆告诉JVM，让他来帮你做。</p>
+]]></content>
+      <categories>
+        <category>京东</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>JMETER压测</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/JMETER%E5%8E%8B%E6%B5%8B/</url>
+    <content><![CDATA[<h1 id="JMETER压测"><a href="#JMETER压测" class="headerlink" title="JMETER压测"></a>JMETER压测</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><img src="/Users/shijiaodeng/Documents/MyBlog/hexo/source/_posts/%E4%BA%AC%E4%B8%9C/photos/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png" alt="参数展示"></p>
+<ul>
+<li>Number of Thread：该线程组包括的线程数,可理解为虚拟用户数</li>
+<li>Ramp-up Period：即设置线程数在多少秒内启动完毕，即如果线程数设置为10，而此项设置也设置为5，那么会每隔10&#x2F;5&#x3D;2秒,启动一个线程.</li>
+<li>Loop Count：即设置的线程数循环的次数，如果勾选永远，则会一直循环（注意：如果勾选了永远且调度器配置中设置了持续时间，则会在持续时间到达之后结束循环）.</li>
+<li>Delay Thread creation until needed：此选项和Ramp-up 时间（秒）设置配合使用，举例说明：如过设置线程数为10，Ramp-up 时间（秒）时间为100，则如果不勾选此项则此次测试会每隔10s创建并启动一个线程，那么100s后会有1-10个线程在运行；但是如果勾选此项，那么线程组会每隔10s创建一个线程但并不启动，而是会等待10个线程都创建好之后同时启动.</li>
+<li>Scheduler：勾选此项则打开调度器配置</li>
+<li>duration：即本线程组测试的持续时间，到时间后则停止此次测试，注意这个时间设置不要设置的比Ramp-up 时间（秒）小，如果勾选了循环次数中的永远，那么测试一样会在此持续时间到达后结束；</li>
+<li>start up delay：此项设置为在我们启动测试后多久时间开始创建线程组，通常用于定时</li>
+<li>Listner：较常用的是View Results Tree和Aggregate Report</li>
+<li>terminer中可以使用GUI，生成HTML报告，更方便分析，目前还没有弄通…</li>
+</ul>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li>先需要找到最大TPS(Transactions Per Second)，即JMETER结果表格中的Thoughout</li>
+<li>每个事物如果只请求一次，则TPS&#x3D;QPS</li>
+<li>因为实际线上会是多个用户同时请求，而非一个用户多次请求，所以压测是，我们主要通过逐步增加线程数（Number of Threads），模拟实际线上用户数的增加，来找到最高TPS</li>
+<li>线程循环次数（loop count）无需过多改变和设置的太高，因为同一用户的调用次数往往是非常有限的</li>
+</ol>
+<h2 id="压测"><a href="#压测" class="headerlink" title="压测"></a>压测</h2><p>简单的压测可以按如下步骤进行：</p>
+<ol>
+<li>设置第一次压测的线程数（Number of Threads），如20</li>
+<li>设置Ramp-Up Period，可以根据线程数来设置，主要保证此参数要小于整体压测时间（Duration）</li>
+<li>每个用户调用次数Loop Count可以设置成持续调用（Forever），并勾选Scheduler</li>
+<li>Scheduler Configuration里主要要设置Duration，即压测持续时间。这个时间一定要大于线程启动时间（Ramp-Up Period），即【Duration】 - 【Ramp-Up Period】 &#x3D; 【所有线程启动后希望压测的时间】</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>TPS、线程数、响应时间等之间的分析见博客<a href="https://www.cnblogs.com/happyliuyi/p/10755837.html">happy刘艺<br>性能测试入门（五）实践得出系统最佳线程数设置(压测最佳线程数&lt;真实设置的线程数量&lt;内存极限线程数)</a>和博客<a href="https://cloud.tencent.com/developer/article/1771176">【修正版】QPS、TPS、RT、并发数、吞吐量理解和性能优化深入思考</a></p>
+<p>结果大概就一个表格，可以参见博客 <a href="https://blog.csdn.net/weixin_42579328/article/details/108243059">Jmeter使用教程（四）—测试结果分析</a> </p>
+]]></content>
+      <categories>
+        <category>周边辅助</category>
+      </categories>
+      <tags>
+        <tag>JMETER</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>T5</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/T5/</url>
+    <content><![CDATA[<h1 id="T5"><a href="#T5" class="headerlink" title="T5"></a>T5</h1><h2 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h2><p>1、中文分词(Chinese Word Segmentation) 指的是将一个汉字序列切分成一个一个单独的词。分词就是将连续的字序列按照一定的规范重新组合成词序列的过程 </p>
+<span id="more"></span>
+
+<p>2、现有的分词算法可分为三大类：基于字符串匹配的分词方法、基于理解的分词方法和基于统计的分词方法</p>
+<pre><code>1. 基于字符串匹配的分词方法：这种方法又叫做机械分词方法，它是按照一定的策略将待分析的汉字串与一个“充分大的”机器词典中的词条进行配，若在词典中找到某个字符串，则匹配成功（识别出一个词）
+    1）正向最大匹配法（由左到右的方向）
+    2）逆向最大匹配法（由右到左的方向）:
+    3）最少切分（使每一句中切出的词数最小）
+    4）双向最大匹配法（进行由左到右、由右到左两次扫描）
+2. 基于统计模型的分词方法
+    1) 基于 N-gram 语言模型的分词方法
+3. 基于序列标注的分词方法
+    1) 基于 HMM 的分词方法
+    2) 基于 CRF 的分词方法
+    3) 基于词感知机的分词方法
+    4) 基于深度学习的端到端的分词方法
+</code></pre>
+<h3 id="基于规则或词典"><a href="#基于规则或词典" class="headerlink" title="基于规则或词典"></a>基于规则或词典</h3><h5 id="1-正向最大匹配思想MM"><a href="#1-正向最大匹配思想MM" class="headerlink" title="1 正向最大匹配思想MM"></a>1 正向最大匹配思想MM</h5><p>从左向右取待切分汉语句的m个字符作为匹配字段，m为大机器词典中最长词条个数。<br>查找大机器词典并进行匹配：<br>若匹配成功，则将这个匹配字段作为一个词切分出来。<br>若匹配不成功，则将这个匹配字段的最后一个字去掉，剩下的字符串作为新的匹配字段，进行再次匹配，重复以上过程，直到切分出所有词为止。<br>举个栗子：<br>现在，我们要对“南京市长江大桥”这个句子进行分词，根据正向最大匹配的原则：</p>
+<p>先从句子中拿出前5个字符“南京市长江”，把这5个字符到词典中匹配，发现没有这个词，那就缩短取字个数，取前四个“南京市长”，发现词库有这个词，就把该词切下来；<br>对剩余三个字“江大桥”再次进行正向最大匹配，会切成“江”、“大桥”；<br>整个句子切分完成为：南京市长、江、大桥；</p>
+<h5 id="2-逆向最大匹配算法RMM"><a href="#2-逆向最大匹配算法RMM" class="headerlink" title="2 逆向最大匹配算法RMM"></a>2 逆向最大匹配算法RMM</h5><p>该算法是正向最大匹配的逆向思维，匹配不成功，将匹配字段的最前一个字去掉，实验表明，逆向最大匹配算法要优于正向最大匹配算法。</p>
+<p>还是那个栗子：</p>
+<p>取出“南京市长江大桥”的后四个字“长江大桥”，发现词典中有匹配，切割下来；<br>对剩余的“南京市”进行分词，整体结果为：南京市、长江大桥</p>
+<h5 id="3-双向最大匹配法-Bi-directction-Matching-method-BM"><a href="#3-双向最大匹配法-Bi-directction-Matching-method-BM" class="headerlink" title="3 双向最大匹配法(Bi-directction Matching method,BM)"></a>3 双向最大匹配法(Bi-directction Matching method,BM)</h5><p>双向最大匹配法是将正向最大匹配法得到的分词结果和逆向最大匹配法的到的结果进行比较，从而决定正确的分词方法。</p>
+<p>据SunM.S. 和 Benjamin K.T.（1995）的研究表明，中文中90.0％左右的句子，正向最大匹配法和逆向最大匹配法完全重合且正确，只有大概9.0％的句子两种切分方法得到的结果不一样，但其中必有一个是正确的（歧义检测成功），只有不到1.0％的句子，或者正向最大匹配法和逆向最大匹配法的切分虽重合却是错的，或者正向最大匹配法和逆向最大匹配法切分不同但两个都不对（歧义检测失败）。这正是双向最大匹配法在实用中文信息处理系统中得以广泛使用的原因所在。</p>
+<p>正向最大匹配法，最终分词结果为：“南京市长&#x2F;江&#x2F;大桥”，其中，总分词数3个，单个词为1。</p>
+<p>逆向最大匹配法，最终分词结果为：“南京市&#x2F;长江大桥”，其中，总分词数2个，单个词为0。</p>
+<p>选择标准：</p>
+<p>首先看两种方法结果的分词数，分词数越少越好；<br>分词数相同的情况下，看单个词的数量，越少越好；<br>因此最终输出为逆向结果。</p>
+<h5 id="4-最佳匹配（OM，分正向和逆向）"><a href="#4-最佳匹配（OM，分正向和逆向）" class="headerlink" title="4 最佳匹配（OM，分正向和逆向）"></a>4 最佳匹配（OM，分正向和逆向）</h5><p>对分词词典按词频大小顺序排列，并注明长度，降低时间复杂度。</p>
+<p>优点：易于实现<br>缺点：匹配速度慢。对于未登录词的补充较难实现。缺乏自学习。</p>
+<h5 id="5-逐词遍历法"><a href="#5-逐词遍历法" class="headerlink" title="5 逐词遍历法"></a>5 逐词遍历法</h5><p>这种方法是将词库中的词由长到短递减的顺序，逐个在待处理的材料中搜索，直到切分出所有的词为止。</p>
+<h5 id="等等"><a href="#等等" class="headerlink" title="等等"></a>等等</h5><h5 id="Trie树（前缀树）"><a href="#Trie树（前缀树）" class="headerlink" title="Trie树（前缀树）"></a>Trie树（前缀树）</h5><h3 id="基于统计的分词"><a href="#基于统计的分词" class="headerlink" title="基于统计的分词"></a>基于统计的分词</h3><h5 id="N-gram模型思想"><a href="#N-gram模型思想" class="headerlink" title="N-gram模型思想"></a>N-gram模型思想</h5><p>模型基于这样一种假设，第n个词的出现只与前面N-1个词相关，而与其它任何词都不相关，整句的概率就是各个词出现概率的乘积。</p>
+<p>我们给定一个词，然后猜测下一个词是什么。当我说“艳照门”这个词时，你想到下一个词是什么呢？我想大家很有可能会想到“陈冠希”，基本上不会有人会想到“陈志杰”吧，N-gram模型的主要思想就是这样的。</p>
+<p>对于一个句子T，我们怎么算它出现的概率呢？假设T是由词序列W1,W2,W3,…Wn组成的，那么P(T)&#x3D;P(W1W2W3…Wn)&#x3D;P(W1)P(W2|W1)P(W3|W1W2)…P(Wn|W1W2…Wn-1)<br>但是这种方法存在两个致命的缺陷：一个缺陷是参数空间过大，不可能实用化；另外一个缺陷是数据稀疏严重。为了解决这个问题，我们引入了马尔科夫假设：一个词的出现仅仅依赖于它前面出现的有限的一个或者几个词。如果一个词的出现仅依赖于它前面出现的一个词，那么我们就称之为bigram。即</p>
+<p>P(T) &#x3D;P(W1W2W3…Wn)&#x3D;P(W1)P(W2|W1)P(W3|W1W2)…P(Wn|W1W2…Wn-1)<br>≈P(W1)P(W2|W1)P(W3|W2)…P(Wn|Wn-1)</p>
+<p>如果一个词的出现仅依赖于它前面出现的两个词，那么我们就称之为trigram。</p>
+<p>在实践中用的最多的就是bigram和trigram了，而且效果很不错。高于四元的用的很少，因为训练它需要更庞大的语料，而且数据稀疏严重，时间复杂度高，精度却提高的不多。一般的小公司，用到二元的模型就够了，像Google这种巨头，也只是用到了大约四元的程度，它对计算能力和空间的需求都太大了。</p>
+<p>详细讲解和代码见<a href="https://codle.net/chinese-word-cutter-1/">n-gram</a></p>
+<h5 id="HMM、CRF-模型思想"><a href="#HMM、CRF-模型思想" class="headerlink" title="HMM、CRF 模型思想"></a>HMM、CRF 模型思想</h5><p>以往的分词方法，无论是基于规则的还是基于统计的，一般都依赖于一个事先编制的词表(词典)，自动分词过程就是通过词表和相关信息来做出词语切分的决策。与此相反，</p>
+<p>基于字标注（或者叫基于序列标注）的分词方法实际上是构词方法，即把分词过程视为字在字串中的标注问题。</p>
+<p>由于每个字在构造一个特定的词语时都占据着一个确定的构词位置(即词位)，假如规定每个字最多只有四个构词位置：即B(词首)，M (词中)，E(词尾)和S(单独成词)，那么下面句子(甲)的分词结果就可以直接表示成如(乙)所示的逐字标注形式：</p>
+<ol>
+<li>(甲)分词结果：／上海／计划／N／本／世纪／末／实现／人均／国内／生产／总值／五千美元／ </li>
+<li>(乙)字标注形式：上／B海／E计／B划／E N／S 本／s世／B 纪／E 末／S 实／B 现／E 人／B 均／E 国／B 内／E生／B产／E总／B值／E 五／B千／M 美／M 元／E 。／S</li>
+</ol>
+<p>首先需要说明，这里说到的“字”不只限于汉字。考虑到中文真实文本中不可避免地会包含一定数量的非汉字字符，本文所说的“字”，也包括外文字母、阿拉伯数字和标点符号等字符。所有这些字符都是构词的基本单元。当然，汉字依然是这个单元集合中数量最多的一类字符。</p>
+<p>把分词过程视为字的标注问题的一个重要优势在于，它能够平衡地看待词表词和未登录词的识别问题。</p>
+<p>在这种分词技术中，文本中的词表词和未登录词都是用统一的字标注过程来实现的。在学习架构上，既可以不必专门强调词表词信息，也不用专门设计特定的未登录词(如人名、地名、机构名)识别模块。这使得分词系统的设计大大简化。在字标注过程中，所有的字根据预定义的特征进行词位特性的学习，获得一个概率模型。然后，在待分字串上，根据字与字之间的结合紧密程度，得到一个词位的标注结果。最后，根据词位定义直接获得最终的分词结果。总而言之，在这样一个分词过程中，分词成为字重组的简单过程。在学习构架上，由于可以不必特意强调词表词的信息，也不必专门设计针对未登录词的特定模块，这样使分词系统的设计变得尤为简单。</p>
+<p>2001年Lafferty在最大熵模型（MEM）和隐马尔科夫模型（HMM）的基础上提出来了一种无向图模型–条件随机场（CRF）模型，它能在给定需要标记的观察序列的条件下，最大程度提高标记序列的联合概率。常用于切分和标注序列化数据的统计模型。</p>
+<h2 id="T5中的分词"><a href="#T5中的分词" class="headerlink" title="T5中的分词"></a>T5中的分词</h2><p>T5中的分词用的是google的sentencepiece分词。类似于BPE，找出频率最高的词组合作为词典进行分词。<br>bert4keras中为了效率，不是按照原mt5的字典来进行的分词，而且作者用自己的预料进行了后处理。<br>经测试，发现分词效果并不是非常客观。<br>因此可以尝试训练一套自己领域的并且适合T5中使用的model和词典来进行分词。具体如何实现，可以看完T5论文后再进行</p>
+<ol>
+<li>T5中使用词典，那么还需要模型的概率预测来进行分词吗？</li>
+</ol>
+<h2 id="Greedy-Decoding-VS-Beam-Search"><a href="#Greedy-Decoding-VS-Beam-Search" class="headerlink" title="Greedy Decoding VS Beam Search"></a>Greedy Decoding VS Beam Search</h2><h3 id="Greedy-search"><a href="#Greedy-search" class="headerlink" title="Greedy search"></a>Greedy search</h3><p>一个自然的想法是贪心搜索(greedy search)，即decoder的每一步都选择最可能的单词，最后得到句子的每一个单词都是每一步认为最合适的单词。但这样并不保证整个句子的概率是最大的，即不能保证整个句子最合适。实际上，贪心搜索的每一步搜索都处理成仅仅与前面刚生成的一个单词相关，类似于马尔科夫假设。这显然是不合理的，具体来说，贪心搜索到的句子𝑦概率是使得下式概率最大：</p>
+<p>𝑃(𝑦|𝑥)&#x3D;∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦𝑘−1)</p>
+<p>而实际上，根据全概率公式计算得到𝑃(𝑦|𝑥)为：</p>
+<p>𝑃(𝑦|𝑥)&#x3D;∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1)</p>
+<h3 id="Beam-search"><a href="#Beam-search" class="headerlink" title="Beam search"></a>Beam search</h3><p>译为束搜索。思想是，每步选取最可能的𝑘个结果，再从最后的𝑘个结果中选取最合适的句子。𝑘称为beam size。</p>
+<p>具体做法是：</p>
+<p>首先decoder第一步搜索出最可能的𝑘个单词，即找到𝑦11,𝑦12,…,𝑦1𝑘，他们的概率𝑝(𝑦11|𝑥),…,𝑝(𝑦1𝑘|𝑥)为最大的𝑘个。</p>
+<p>进行第二步搜索，分别进行𝑘个模型副本的搜索。每个副本𝑖，根据上一步选取的单词𝑦1𝑖，选取概率最大的𝑘个结果𝑦21,𝑦22,…,𝑦2𝑘。这样，就有了𝑘∗𝑘个可能的结果，从这些结果中选择𝑘个概率最大的结果，即𝑝(𝑦1𝑖|𝑥)∗𝑝(𝑦2𝑗|𝑥,𝑦1𝑖)最大的𝑘个结果。</p>
+<p>进行第三步搜索，从第二步中确定的𝑘个结果出发，再进行𝑘个模型副本的搜索，直到最后一步，从最后的𝑘个结果中选取概率最大者。</p>
+<p>显然，若𝑘&#x3D;1则为贪心搜索，𝑘越大则占用内存越大，计算代价越大，实际应用中取10即可。</p>
+<p>另外，可以发现概率的连乘使得概率越来越小，很可能溢出，为了保证模型的稳定性，常对概率连乘计算+log变为加法。</p>
+<p>𝑃(𝑦|𝑥)&#x3D;𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))</p>
+<h3 id="改进Beam-search"><a href="#改进Beam-search" class="headerlink" title="改进Beam search"></a>改进Beam search</h3><h4 id="length-penalty"><a href="#length-penalty" class="headerlink" title="length penalty"></a>length penalty</h4><p>从Beam search的搜索过程中可以发现，Beam search偏向于找到更短的句子，也就是说，如果搜索过程中有一支搜索提前发现了&lt;𝐸𝑂𝑆&gt;,而另外𝑘−1支继续搜索找到其余更长的结果，那么由于概率连乘(或log连加)，越长的结果概率肯定越小。因此有必要进行模型修正，即进行长度归一化，具体来说，即：</p>
+<p>选择概率𝑃(𝑦|𝑥)&#x3D;1𝑛𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))最大的句子，式中，𝑛为该结果序列长度。</p>
+<p>另外，实践中还做了如下修正：</p>
+<p>𝑃(𝑦|𝑥)&#x3D;1𝑛𝛼𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))</p>
+<p>式中，超参数𝛼取0.6或者0.7比较合适。</p>
+<h4 id="Grid-Beam-Search"><a href="#Grid-Beam-Search" class="headerlink" title="Grid Beam Search"></a>Grid Beam Search</h4><p>结合约束条件，选择模型生成的下一个结果或特定的词语或者短句</p>
+<h4 id="Best-First-Beam-Search"><a href="#Best-First-Beam-Search" class="headerlink" title="Best-First Beam Search"></a>Best-First Beam Search</h4><p>优化使用beam search解码的时间。实现比较复杂，细节较多</p>
+<h4 id="look-ahead"><a href="#look-ahead" class="headerlink" title="look ahead"></a>look ahead</h4><h4 id="on-the-fly"><a href="#on-the-fly" class="headerlink" title="on the fly"></a>on the fly</h4><h3 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h3><p>对于训练的seq2seq模型，对它输出的句子𝑦，以及实际的句子𝑦∗，若概率𝑦大于𝑦∗，（统计所有句子，平均来说是这个结果），则说明，seq2seq模型出错了。否则，说明，baem search并没有找到最合适的结果，可以考虑增大beam size大小。</p>
+]]></content>
+      <categories>
+        <category>京东</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Tensorflow使用注意事项</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <content><![CDATA[<h1 id="Tensorflow使用注意事项"><a href="#Tensorflow使用注意事项" class="headerlink" title="Tensorflow使用注意事项"></a>Tensorflow使用注意事项</h1><h2 id="服务器上使用Tensorboard，在本地查看"><a href="#服务器上使用Tensorboard，在本地查看" class="headerlink" title="服务器上使用Tensorboard，在本地查看"></a>服务器上使用Tensorboard，在本地查看</h2><ol>
+<li>记录<br>使用<code>Tensorboard</code>，一般要用<code>tf.summary</code>记录训练过程中的数值到某个地方，如下面的 <code>train_summary_dir</code> 和 <code>train_log_dir</code><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> self<span class="selector-class">.train_summary_dir</span>:</span><br><span class="line">    self<span class="selector-class">.loss_summary_reranker</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&quot;loss_reranker&quot;</span>, self.cost)</span><br><span class="line">    self<span class="selector-class">.train_summary_op</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.merge</span>(<span class="selector-attr">[self.loss_summary_reranker]</span>)</span><br><span class="line">    self<span class="selector-class">.train_summary_writer</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.FileWriter</span>(</span><br><span class="line">        os<span class="selector-class">.path</span><span class="selector-class">.join</span>(self<span class="selector-class">.train_summary_dir</span>, <span class="string">&quot;reranker&quot;</span>), self<span class="selector-class">.session</span>.graph)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+
+<p>或者</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">current_time = datetime<span class="selector-class">.datetime</span><span class="selector-class">.now</span>()<span class="selector-class">.strftime</span>(<span class="string">&quot;%Y%m%d-%H%M%S&quot;</span>)</span><br><span class="line">train_log_dir = <span class="string">&#x27;logs/gradient_tape/&#x27;</span> + current_time + <span class="string">&#x27;/train&#x27;</span></span><br><span class="line">test_log_dir = <span class="string">&#x27;logs/gradient_tape/&#x27;</span> + current_time + <span class="string">&#x27;/test&#x27;</span></span><br><span class="line">train_summary_writer = tf<span class="selector-class">.summary</span><span class="selector-class">.create_file_writer</span>(train_log_dir)</span><br><span class="line">test_summary_writer = tf<span class="selector-class">.summary</span><span class="selector-class">.create_file_writer</span>(test_log_dir)</span><br><span class="line">with train_summary_writer<span class="selector-class">.as_default</span>():</span><br><span class="line">    tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&#x27;loss&#x27;</span>, train_loss<span class="selector-class">.result</span>(), step=epoch)</span><br><span class="line">    tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&#x27;accuracy&#x27;</span>, train_accuracy<span class="selector-class">.result</span>(), step=epoch)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>打通本地和服务器端口：<code>ssh -L 16006:127.0.0.1:6006 username@remote_server_ip</code><br><code>16006</code> 是本地端口，<code>6006</code>是服务器上<code>Tensorboard</code>的端口<br><code>username</code>和<code>remote_server_ip</code>分别对应服务器用户名和ip地址</p>
+</li>
+<li><p>使用上面命令成功登陆服务器后，执行命令 <code>tensorboard --logdir=&#39;logs/train_logs&#39; --port=6006</code></p>
+</li>
+<li><p>本地打开 <code>http://127.0.0.1:16006/</code> 即可查看</p>
+</li>
+</ol>
+<h2 id="GPU问题"><a href="#GPU问题" class="headerlink" title="GPU问题"></a>GPU问题</h2><p>测试时如果内存不够，但是又想继续启新的线程（比如压测的时候），这时可能会报<code>RuntimeError: can&#39;t start new thread</code>。换一个内存使用率稍低的显卡就能改善问题</p>
+<p>报错<code>cuda 0 not supported xla</code>通常也是因为GPU显存问题，换一个空闲的显卡可以改善问题</p>
+]]></content>
+      <categories>
+        <category>京东</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>linux常用命令</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<ol>
+<li>快速查看端口占用情况<code>lsof -i tcp:8080</code>或者<code>netstat -nlp</code></li>
+<li>查看PID具体信息<code>ll /proc/PID</code></li>
+<li>同样，查看CPU和内存信息可以使用<code>cat /proc/cupinfo</code> 和 <code>cat /proc/meminfo</code>。更详细CPU信息查询可以使用<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c </code>和<code>cat /proc/cpuinfo | grep physical | uniq -c</code></li>
+<li>查看显卡信息可以使用命令<code>lspci | grep -i vga</code></li>
+<li>查看磁盘使用情况<code>df -k</code>或<code>df -m</code>，分别以kb或mb为单位，查看磁盘使用量</li>
+<li>GPU当前使用状况：<code>nvidia-smi</code></li>
+<li>每10秒，更新一次GPU情况：<code>watch -n 10 nvidia-smi</code></li>
+<li><code>free -h</code>看内存情况</li>
+</ol>
+<p>参考文章：<a href="https://cloud.tencent.com/developer/article/1721406">Linux系统查看CPU、机器型号、内存等信息</a></p>
+]]></content>
+      <categories>
+        <category>京东</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python疑难杂症</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/python%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</url>
+    <content><![CDATA[<h1 id="python疑难杂症"><a href="#python疑难杂症" class="headerlink" title="python疑难杂症"></a>python疑难杂症</h1><h2 id="args用add-argument内部-x2F-外部传参"><a href="#args用add-argument内部-x2F-外部传参" class="headerlink" title="args用add_argument内部&#x2F;外部传参"></a>args用add_argument内部&#x2F;外部传参</h2><p>args一般用来在外部运行convert.py时，外部传参，</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    argp = argparse.ArgumentParser()</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;in_file&#x27;</span>, <span class="attribute">default</span>=datapath_abs_test_machine, <span class="attribute">help</span>=<span class="string">&#x27;Input CSV file&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--out_name&#x27;</span>, <span class="attribute">default</span>=<span class="string">&#x27;baseline-e2e-data&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Output files name prefix&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-a&#x27;</span>, <span class="string">&#x27;--abstract&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Comma-separated list of slots to be abstracted&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-m&#x27;</span>, <span class="string">&#x27;--multi-ref&#x27;</span>,</span><br><span class="line">                      <span class="attribute">help</span>=<span class="string">&#x27;Multiple reference mode: group by the same DA&#x27;</span>, <span class="attribute">action</span>=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--no-refs&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Use a file without references, only produce DA files&#x27;</span>, <span class="attribute">action</span>=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-n&#x27;</span>, <span class="string">&#x27;--slot-names&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Include slot names in delexicalized texts&#x27;</span>, <span class="attribute">action</span>=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    args = argp.parse_args()</span><br><span class="line">    convert(args)</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>运行命令行如下：<br><code>python ./convert.py -a name,near -n /root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv train</code></p>
+<p>此时 <code>args.in_file=&#39;/root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv&#39;</code></p>
+<p>但是如果想要用软件，如vscode进行软件内debug，直接这样运行会报错。此时需要在前面加上“–”，这样运行args &#x3D; argp.parse_args()才不会报错，即：<br><code>argp.add_argument(&#39;--in_file&#39;, default=datapath_abs_test_machine, help=&#39;Input CSV file&#39;)</code></p>
+<h2 id="中argp-parse-args-报错"><a href="#中argp-parse-args-报错" class="headerlink" title="中argp.parse_args()报错"></a>中argp.parse_args()报错</h2><figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">发生异常: SystemExit</span></span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>同上，也是“–”的问题，在add_argument第一个参数前加上“–”</p>
+<h2 id="pip安装本地文件包"><a href="#pip安装本地文件包" class="headerlink" title="pip安装本地文件包"></a>pip安装本地文件包</h2><p>如果是类似github上面需要下载的安装包，如<a href="https://github.com/ufal/pytreex">pytreex</a>，在下载文件并解压到<code>pytreex</code>之后，直接使用<code>pip install pytreex</code>就可以<br>注意：解压后会生产文件包<code>pytreex-master</code>，此时如果直接<code>pip install pytreex-master</code>是不行的，需要将文件名更换成包名<code>pytreex</code>，然后再<code>pip install pytreex</code>才能成功，否则会报找不到的错误</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ERROR: </span>Could not find a version that satisfies the requirement pytreex-master (from versions: none)</span><br><span class="line"><span class="keyword">ERROR: </span>No matching distribution found for pytreex-master</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>京东</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>使用vscode原创连接服务器</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/%E4%BD%BF%E7%94%A8vscode%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="使用vscode原创连接服务器"><a href="#使用vscode原创连接服务器" class="headerlink" title="使用vscode原创连接服务器"></a>使用vscode原创连接服务器</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>在左侧“扩展”里选择并安装扩展 Remote-SSH</li>
+<li>点击左侧新增的扩展按钮，并点击左上角“+”号，然后会出现config的配置，按如下配置<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root</li>
+<li>此时配置好后尝试登陆，会需要输入密码</li>
+<li>可以用配置成不需要密码<ol>
+<li>本地建个ssh ssh-keygen -t rsa -b 4096 -f ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh，会生成id_rsa-remote-ssh和id_rsa-remote-ssh.pub两个文件</li>
+<li>将id_rsa-remote-ssh.pub配到服务器的authorized_keys（一般在～&#x2F;.ssh&#x2F;）文件里</li>
+<li>将id_rsa-remote-ssh配到本地的config中，即修改刚刚的config成如下<br> Host name-as-you-like<br> HostName 11.12.205.19<br> User root<br> IdentityFile ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh</li>
+</ol>
+</li>
+<li>可以连接远程服务器了</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h2><p>使用vscode连接远程服务器，也希望能够进行断点调试。</p>
+<ol>
+<li>进入扩展，搜索python（一般是第一个）</li>
+<li>如果本地还没有安装，可以先点击安装</li>
+<li>如果本地安装了，配备remote-ssh后，会显示“在remote-ssh上安装”，点击按钮进行安装就可以了</li>
+<li>结果如下<br><img src="/Users/dengshijiao1/Documents/hexo/photos/vscode%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1python%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE.png" alt="vscode远程服务python断点调试配置"></li>
+</ol>
+<h2 id="离线安装vscode和扩展组件"><a href="#离线安装vscode和扩展组件" class="headerlink" title="离线安装vscode和扩展组件"></a>离线安装vscode和扩展组件</h2><h3 id="离线安装vscode"><a href="#离线安装vscode" class="headerlink" title="离线安装vscode"></a>离线安装vscode</h3><p>远程一般安装的是<code>vscode-server</code></p>
+<ol>
+<li>下载<code>vscode-server-linux-x64.tar.gz</code>包，放到远程服务器</li>
+<li>不同服务器，下载版本不一致，确认<code>commitId</code></li>
+<li>将<code>vscode-server-linux-x64.tar.gz</code>解压到<code>~/.vscode-server/bin/$&#123;commitId&#125;</code></li>
+<li>在<code>$&#123;commitId&#125;</code>文件下创建文件<code>0</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">commit_id=f06011ac164ae4dc8e753a3fe7f9549844d15e35</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download url is: https://update.code.visualstudio.com/commit:$&#123;commit_id&#125;/server-linux-x64/stable</span></span><br><span class="line">curl -sSL <span class="string">&quot;https://update.code.visualstudio.com/commit:<span class="variable">$&#123;commit_id&#125;</span>/server-linux-x64/stable&quot;</span> -o vscode-server-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span></span><br><span class="line"><span class="comment"># assume that you upload vscode-server-linux-x64.tar.gz to /tmp dir</span></span><br><span class="line">tar zxvf /tmp/vscode-server-linux-x64.tar.gz -C ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span> --strip 1</span><br><span class="line"><span class="built_in">touch</span> ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span>/0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="离线安装扩展组件"><a href="#离线安装扩展组件" class="headerlink" title="离线安装扩展组件"></a>离线安装扩展组件</h3><ol>
+<li>下载组件，并传到远程服务器</li>
+<li><code>vscode</code>中，<code>ctrl+shift+p</code>打开命令行，输入<code>Extensions: install from VSIX</code></li>
+<li>选择上传的<code>vsix</code>扩展组件，开始安装</li>
+<li>重启<code>vscode</code></li>
+<li>如果安装失败，有可能是文件权限问题，可以先尝试<code>chmod -x -R ms-python-release.vsix</code>给扩展组件赋权，再进行安装</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>参考<br><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
+]]></content>
+      <categories>
+        <category>京东</category>
+      </categories>
   </entry>
   <entry>
     <title>ChitChat任务</title>
@@ -1521,34 +1922,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Préparation pour l&#39;entretien français</title>
-    <url>/2021/08/15/Francais/Preparation-pour-l-entretien-francais/</url>
-    <content><![CDATA[<h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
-<p>La partie de Présentation a duré totalement 7min30 en oral.</p>
-</blockquote>
-<p>Phrase de préambule : Je m’excuse si mon français est un peu rouillé. </p>
-<span id="more"></span>
-
-<h4 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h4><p>En 2007, j’ai passé en Chine mon bac, appréciant la logique des mathématiques et étant performante sur ce domaine j’ai commencé des études scientifiques à l’université de Wuhan et j’y ai également appris des bases de Français. J’ai réalisé à Wuhan un Bac+2 et j’ai ensuite choisi de poursuivre mes études en France par une licence de mathématiques en 3 ans (la France a une bonne réputation dans ce domaine et j’avais envie de découvrir un nouveau pays et d’apprendre une nouvelle langue). </p>
-<p>Même si j’étais à l’aise en mathématiques, je trouvais le domaine trop théorique.  Je cherchais un domaine qui allie la logique des mathématiques et le coté très concret de l’informatique. J’ai appris qu’un master à Nancy combinait les deux et je suis donc partie là-bas. J’ai réalisé un stage chez Vize une start-up locale où j’ai découvert plus précisément les travaux liés à l’intelligence artificielle et de l’utilisation de la donnée (big data).</p>
-<h4 id="Carriere"><a href="#Carriere" class="headerlink" title="Carriere"></a>Carriere</h4><p>À la sortie de mon master en 2016, je suis venu travailler en tant que Data à Reims à SIKIM une autre PME spécialisée sur le domaine. J’y ai travaillé un peu plus de deux ans. L’ambiance était très bonne au sein de la petite équipe, j’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une Caisse régionale du Crédit Agricole. Techniquement néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité était rares tandis que je trouvais que je n’avais pas assez de travail ne serait ce que pour occuper pleinement mes journées. J’ai ensuite été contactée par une entreprise chinoise SF Express, c’était un grand groupe, le 4ème logisticien mondial, qui m’a proposé un poste à Shenzhen avec un meilleur salaire et davantage de responsabilité. Cela me permettait également de me rapprocher de ma famille. Au sein de l’entreprise j’ai pu développer davantage mes compétences techniques [Donner un ou deux exemples ?].<br>Avec projet Chabot de service client (qui serve à répondre des questions à nos clients), j’étais responsable de la module NLU (Compréhension du langage naturel), mise en l’œuvre des algorithmes de classification qui permettent au Chatbot de comprendre l’intention du client, des algorithmes de REN(reconnaissance d’entités nommés) qui permettent au Chatbot de reconnaissir les entités nommées, des algorithme, comme BERT, qui peut créer automatiquement plus de données pour que les algorithmes puissent avoir une meilleur performance.<br>Avec le Chit Chat Chatbot (une intelligence artificielle (IA) de type dialogueur pour apporter un certain soutien psychologique), j’ai pu mis en l’œuvre le modèle de NLG (Génération Automatique de Langage, il consiste à générer automatiquement du texte pour adresser des réponses personnalisées aux utilisateurs) en impliquant l’algorithme de génération de réponses, des algorithmes pour évaluer la sémantique du texte, des algorithme pour diversifier les réponses, etc.</p>
-<p>En raison de changements dans la structure organisationnelle de l’entreprise, j’ai quitté SF Express et rejoint à VIPKID en 2020. En tant qu’un Data Scientist, la formation de mathématiques ne m’a pas offert un grand avantage de coder, mais grâce à mes expériences dans VIPKID, j’ai pu approfondit ma capacité de coder surtout en réalisant un system de statistique à temps réel. Il recueillit des données de travail des employés sous de nombreux aspects, après le traitement statistique, on rend compte aux dirigent de tous les niveaux de l’entreprise avec une certaine fréquence chaque jour. Mes expériences dans VIPKID m’ont aussi entrainé ma capacité de management, et m’a permis d’avoir une vue complète de Chatbot. Avec trois autres collègues, on a réalisé une plateforme de Chatbot de A à Z, y inclus FAQ, NLU, Task Management et Dialogue Management, qui s’est appliqué aux services clients de toutes les fonctions (totalement 7) dans l’entreprise. Le taux de traitement par cette plateforme atteint à 79.6 (environ 10 milles de session par jour en total).<br>J’ai aussi pu approfondi ma capacité en NLG en réalisant un modèle de traduction automatique adapté aux besoins de l’entreprise. Il économise 10 milles euros par mois pour l’entreprise.</p>
-<h4 id="Situation-mnt"><a href="#Situation-mnt" class="headerlink" title="Situation mnt"></a>Situation mnt</h4><p>J’ai voulu revenir en France le moment que j’ai quitté SF Express, mais c’était pas la bonne occasion à cause du COVID 19. Et maintenant, en raison des politiques du pays vers des entreprise d’éducation et la diffusion de la vaccination (l’amélioration de COVID 19), je pense que c’est le bon moment de revenir en France où je planifie à résider une longue durée.</p>
-<p>A ce jour, j’ai accumulé 5 ans d’expériences dans le domaine de NLP, en particulier dans dialogue system et NLG. J’aimerai bien pouvoir avoir l’opportunité de connaître et d’appliquer des connaissances des autres domaine relative tels que CV (vision par l’ordinateur), l’apprentissage multimoda, basé sur mes compétences de NLP.</p>
-<p><font color="#989898" size=4> Les informations dans le monde réel se présentent généralement sous différentes modalités. Par exemple, les images sont généralement associées à des balises et à des explications textuelles ; les textes contiennent des images pour exprimer plus clairement l’idée principale de l’article. Différentes modalités sont caractérisées par des propriétés statistiques très différentes. Par exemple, les images sont généralement représentées sous forme d’intensités de pixels ou de sorties d’extracteurs de caractéristiques, tandis que les textes sont représentés sous forme de vecteurs de nombre de mots discrets. En raison des propriétés statistiques distinctes des différentes ressources d’information, il est très important de découvrir la relation entre les différentes modalités. L’apprentissage est un bon modèle pour représenter les représentations conjointes de différentes modalités. Le modèle d’apprentissage multimodal est également capable de combler la modalité manquante compte tenu de celles observées. Le modèle d’apprentissage multimodal combine deux machines de Boltzmann profondes correspondant chacune à une modalité. Une couche cachée supplémentaire est placé au-dessus des deux machines Boltzmann pour donner la représentation commune. </font></p>
-<h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><h3 id="Chatbot"><a href="#Chatbot" class="headerlink" title="Chatbot"></a>Chatbot</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
-<h3 id="Chit-Chat"><a href="#Chit-Chat" class="headerlink" title="Chit Chat"></a>Chit Chat</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
-<h3 id="Chercher-top-20-questions-a-l’entretien"><a href="#Chercher-top-20-questions-a-l’entretien" class="headerlink" title="Chercher top 20 questions à l’entretien"></a>Chercher top 20 questions à l’entretien</h3>]]></content>
-      <categories>
-        <category>Français</category>
-      </categories>
-      <tags>
-        <tag>préparation</tag>
-        <tag>entretien</tag>
-        <tag>français</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MacBook</title>
     <url>/2020/02/19/%E6%9C%AA%E6%95%B4%E7%90%86/MacBook/</url>
     <content><![CDATA[<h4 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h4><p>Xcode更新后，可能VScode不能用，显示<code>java</code>相关问题，这时可以选择</p>
@@ -2089,284 +2462,6 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
-    <title>IDEA 配置</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/IDEA%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>idea 配置</p>
-<p>背景：</p>
-<ol>
-<li>已安装zsh和items2</li>
-<li>参考文章 <a href="https://www.jb51.net/article/190940.htm">https://www.jb51.net/article/190940.htm</a></li>
-</ol>
-<span id="more"></span>
-
-<p>具体步骤：</p>
-<ol>
-<li>安装java，直接成功，并且java -v查看版本</li>
-<li>安装maven，mac电脑官网下载Binary tar.gz archive下的apache-maven-3.8.3-bin.tar.gz。别的可能出错<ul>
-<li>解压maven包，放到～&#x2F;下（这个随意，只要后面的配置按着这个路径来就可以）</li>
-<li>设置localRepository和镜像<ul>
-<li>local设置可以参考  <figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="language-xml">  <span class="comment">&lt;!-- localRepository</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    | The path to the local repository maven will use to store artifacts.</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    |</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    | Default: $</span></span><span class="template-variable">&#123;user.home&#125;</span><span class="language-xml"><span class="comment">/.m2/repository</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">  --&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>/Users/dengshijiao1/apache-maven-3.8.3/repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
-<li>镜像可以使用默认镜像。网上很多文章说使用阿里云镜像，但是创建project的时候，有可能出现家在pom.xml文件出错的问题。</li>
-<li>配置maven路径  <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> <span class="attribute">MAVEN_HOME</span>=/Users/dengshijiao1/apache-maven-3.8.3</span><br><span class="line"><span class="built_in">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$MAVEN_HOME/bin</span><br></pre></td></tr></table></figure></li>
-<li>测试maven是否安装成功<code>mvn -v</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>idea中配置java<ul>
-<li>打开file -&gt; project structure</li>
-<li>修改SDK配置为1.8<img src="/Users/dengshijiao1/Documents/hexo/photos/IDEA-java-conf.png" alt="java配置"></li>
-</ul>
-</li>
-<li>idea中配置maven<ul>
-<li>IntelliJ IDEA -&gt; preferences -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; Maven，设置<code>Maven home path</code>(刚刚放置maven解压文件的地方), <code>User setting file</code>和<code>Local repository</code>，并勾选☑️后两者的<code>override</code></li>
-<li>本人配置示例如下 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/Users/</span>dengshijiao1/apache-maven-<span class="number">3.8</span>.<span class="number">3</span></span><br><span class="line"><span class="regexp">/Users/</span>dengshijiao1<span class="regexp">/apache-maven-3.8.3/</span>conf/settings.xml</span><br><span class="line"><span class="regexp">/Users/</span>dengshijiao1<span class="regexp">/apache-maven-3.8.3/</span>repository</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>reload 和 generate source，基本上就OK了</li>
-<li>add configuration<ul>
-<li>配置了configuration才能运行代码并debug</li>
-<li>点击右上角的add configuration</li>
-<li>点击加号➕，并选择maven<img src="/Users/dengshijiao1/Documents/hexo/photos/add-configuration.png" alt="add configuration"></li>
-<li>给这个项目的环境命名（可以使用默认的名字，自己能识别就好）</li>
-<li>然后点击运行</li>
-<li>如何报错，点击下方左侧红色感叹号那一行，看一下具体报错原因，一步步修改<img src="/Users/dengshijiao1/Documents/hexo/photos/check-run-error.png" alt="check run error"></li>
-</ul>
-</li>
-<li>pom.xml<ul>
-<li>如果pom.xml中的引入包爆红，进入<code>/Users/dengshijiao1/apache-maven-3.8.3/repository/</code>中，通过<code>groupId</code>找到爆红的文件，查看本地具体的包的版本，然后加入<version>x.x.x</version>&#96;，一般可以解决<br> <img src="/Users/dengshijiao1/Documents/hexo/photos/find-version-of-plugins.png" alt="find version of plugins"></li>
-</ul>
-</li>
-<li>getXXX&#x2F;setXXX 爆红（包括@Slf4j中log的引用）<ul>
-<li>一般是因为lombok插件没有安装。<img src="/Users/dengshijiao1/Documents/hexo/photos/lombok-plugin.png" alt="lombok plugin"></li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>京东</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>JAVA疑难杂症</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/JAVA%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</url>
-    <content><![CDATA[<h1 id="JAVA疑难杂症"><a href="#JAVA疑难杂症" class="headerlink" title="JAVA疑难杂症"></a>JAVA疑难杂症</h1><h2 id="序列化-x2F-深拷贝"><a href="#序列化-x2F-深拷贝" class="headerlink" title="序列化&#x2F;深拷贝"></a>序列化&#x2F;深拷贝</h2><p>Java里不能直接进行浅拷贝&#x2F;深拷贝</p>
-<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝</p>
-<span id="more"></span>
-
-<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>因为需要连同对象和对象的值一起拷贝到内存中一个新的地址，所以当对象为比较复杂的嵌套类时，性能就会成为一个问题，所以需要注意。<br>一般要实现深拷贝，都是对需要拷贝的类上贴上标签<code>implements Serializable</code>，并且给出一个序列化号<code>private static final long serialVersionUID = 3487495895819393L;</code><br>然后使用以下函数进行序列化和反序列化。<br>序列化和反序列化的本质是通过某种序列化的协议，将类整个转变成二进制信息，通过serialVersionUID比对再将二进制信息转换成类。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SerializationDemo</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String stringField;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> intField;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@T</span> 某个类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Serializable</span><span class="params">(SerializationDemo)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">ByteArrayOutputStream</span> <span class="variable">bout</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">out</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(bout);</span><br><span class="line">        out.writeObject(T);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(IOException) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 反序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@data</span> 二进制</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Deserializable</span><span class="params">(data)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">byte</span>[] data; <span class="comment">// read from file or request</span></span><br><span class="line">        <span class="type">ByteArrayInputStream</span> <span class="variable">bin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(data);</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(bin);</span><br><span class="line">        <span class="type">SerializationDemo</span> <span class="variable">demo</span> <span class="operator">=</span> (SerializationDemo) in.readObject();</span><br><span class="line">        &#125; <span class="keyword">catch</span>(ClassNotFoundException) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="FastJson-VS-Gson"><a href="#FastJson-VS-Gson" class="headerlink" title="FastJson VS Gson"></a>FastJson VS Gson</h3><p>但当是嵌套类时，需要对类中的每一个类也都贴上序列化的标签，因此会变得很复杂。<br>此时可以引入FastJson类的第三方软件帮忙。（还有gson等）。但目前主流是Gson和FastJson<br>性能上FastJson更好，功能上Gson更全，而且Gson不需要额外的jar包，且使用更简便<br>具体区别见文章<a href="https://blog.csdn.net/John8169/article/details/80767771">Gson与FastJson比较</a>，这篇文章分析的非常细致</p>
-<p>1 FastJson需要有默认无参构造，可以直接使用@NoArgsConstructor。（有时候还需要加上@AllArgsConstructor，具体还不了解为什么）<br>2 使用FastJson会有内存泄漏问题，具体实例见<a href="https://juejin.cn/post/6960695856127279111">FastJson使用不当导致内存泄漏排查及解决过程 ｜ Java Debug 笔记</a>，另一片文章<a href="https://segmentfault.com/a/1190000039980284">fastjson内存泄漏解决办法 - springboot实战电商项目mall4j</a></p>
-<h5 id="关于serialVersionUID"><a href="#关于serialVersionUID" class="headerlink" title="关于serialVersionUID"></a>关于serialVersionUID</h5><p>关于serialVersionUID：<br>1、serialVersionUID是序列化前后的唯一标识符<br>2、默认如果没有人为显式定义过serialVersionUID，那编译器会为它自动声明一个</p>
-<p>为什么要定义serialVersionUID：</p>
-<ol>
-<li>serialVersionUID序列化ID，可以看成是序列化和反序列化过程中的“暗号”，在反序列化时，JVM会把字节流中的序列号ID和被序列化类中的序列号ID做比对，只有两者一致，才能重新反序列化，否则就会报异常来终止反序列化的过程。</li>
-<li>如果在定义一个可序列化的类时，没有人为显式地给它定义一个serialVersionUID的话，则Java运行时环境会根据该类的各方面信息自动地为它生成一个默认的serialVersionUID，一旦像上面一样更改了类的结构或者信息，则类的serialVersionUID也会跟着变化</li>
-<li>为了serialVersionUID的确定性，建议凡是implements Serializable的类，都人为显式地为它声明一个serialVersionUID明确值</li>
-<li>如果不想手动赋值，IntelliJ IDEA中，使用alt + enter自动生成serialVersionUID字段</li>
-</ol>
-<h5 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h5><p>Serializable接口是一个里面什么都没有的接口<br>它的源代码是public interface Serializable{}，即什么都没有。<br>如果一个接口里面什么内容都没有，那么这个接口是一个标识接口，比如，一个学生遇到一个问题，排错排了几天也没解决，此时，她举手了（示意我去帮他解决），然后我过去，帮他解决了，那么这个举手其实就是一个标识，自己不能解决的问题标示我去帮他解决，在Java中的这个Serializable接口是给JVM看的，告诉JVM，我不做这个类的序列化了，你(JVM)给我序列化，序列化就是变成二进制流，比如云计算、Hadoop，特别是Hadoop完全就是分布式环境，那么就要涉及到对象要在网络中传输，里面的全是二进制流，当然你来做这个序列化操作也可以，但是这个类里面可能还有一个类，如果你把外面的类对象Person变成二进制，那么里面也要序列化（这要用到深度遍历，很麻烦），干脆告诉JVM，让他来帮你做。</p>
-]]></content>
-      <categories>
-        <category>京东</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>T5</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/T5/</url>
-    <content><![CDATA[<h1 id="T5"><a href="#T5" class="headerlink" title="T5"></a>T5</h1><h2 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h2><p>1、中文分词(Chinese Word Segmentation) 指的是将一个汉字序列切分成一个一个单独的词。分词就是将连续的字序列按照一定的规范重新组合成词序列的过程 </p>
-<span id="more"></span>
-
-<p>2、现有的分词算法可分为三大类：基于字符串匹配的分词方法、基于理解的分词方法和基于统计的分词方法</p>
-<pre><code>1. 基于字符串匹配的分词方法：这种方法又叫做机械分词方法，它是按照一定的策略将待分析的汉字串与一个“充分大的”机器词典中的词条进行配，若在词典中找到某个字符串，则匹配成功（识别出一个词）
-    1）正向最大匹配法（由左到右的方向）
-    2）逆向最大匹配法（由右到左的方向）:
-    3）最少切分（使每一句中切出的词数最小）
-    4）双向最大匹配法（进行由左到右、由右到左两次扫描）
-2. 基于统计模型的分词方法
-    1) 基于 N-gram 语言模型的分词方法
-3. 基于序列标注的分词方法
-    1) 基于 HMM 的分词方法
-    2) 基于 CRF 的分词方法
-    3) 基于词感知机的分词方法
-    4) 基于深度学习的端到端的分词方法
-</code></pre>
-<h3 id="基于规则或词典"><a href="#基于规则或词典" class="headerlink" title="基于规则或词典"></a>基于规则或词典</h3><h5 id="1-正向最大匹配思想MM"><a href="#1-正向最大匹配思想MM" class="headerlink" title="1 正向最大匹配思想MM"></a>1 正向最大匹配思想MM</h5><p>从左向右取待切分汉语句的m个字符作为匹配字段，m为大机器词典中最长词条个数。<br>查找大机器词典并进行匹配：<br>若匹配成功，则将这个匹配字段作为一个词切分出来。<br>若匹配不成功，则将这个匹配字段的最后一个字去掉，剩下的字符串作为新的匹配字段，进行再次匹配，重复以上过程，直到切分出所有词为止。<br>举个栗子：<br>现在，我们要对“南京市长江大桥”这个句子进行分词，根据正向最大匹配的原则：</p>
-<p>先从句子中拿出前5个字符“南京市长江”，把这5个字符到词典中匹配，发现没有这个词，那就缩短取字个数，取前四个“南京市长”，发现词库有这个词，就把该词切下来；<br>对剩余三个字“江大桥”再次进行正向最大匹配，会切成“江”、“大桥”；<br>整个句子切分完成为：南京市长、江、大桥；</p>
-<h5 id="2-逆向最大匹配算法RMM"><a href="#2-逆向最大匹配算法RMM" class="headerlink" title="2 逆向最大匹配算法RMM"></a>2 逆向最大匹配算法RMM</h5><p>该算法是正向最大匹配的逆向思维，匹配不成功，将匹配字段的最前一个字去掉，实验表明，逆向最大匹配算法要优于正向最大匹配算法。</p>
-<p>还是那个栗子：</p>
-<p>取出“南京市长江大桥”的后四个字“长江大桥”，发现词典中有匹配，切割下来；<br>对剩余的“南京市”进行分词，整体结果为：南京市、长江大桥</p>
-<h5 id="3-双向最大匹配法-Bi-directction-Matching-method-BM"><a href="#3-双向最大匹配法-Bi-directction-Matching-method-BM" class="headerlink" title="3 双向最大匹配法(Bi-directction Matching method,BM)"></a>3 双向最大匹配法(Bi-directction Matching method,BM)</h5><p>双向最大匹配法是将正向最大匹配法得到的分词结果和逆向最大匹配法的到的结果进行比较，从而决定正确的分词方法。</p>
-<p>据SunM.S. 和 Benjamin K.T.（1995）的研究表明，中文中90.0％左右的句子，正向最大匹配法和逆向最大匹配法完全重合且正确，只有大概9.0％的句子两种切分方法得到的结果不一样，但其中必有一个是正确的（歧义检测成功），只有不到1.0％的句子，或者正向最大匹配法和逆向最大匹配法的切分虽重合却是错的，或者正向最大匹配法和逆向最大匹配法切分不同但两个都不对（歧义检测失败）。这正是双向最大匹配法在实用中文信息处理系统中得以广泛使用的原因所在。</p>
-<p>正向最大匹配法，最终分词结果为：“南京市长&#x2F;江&#x2F;大桥”，其中，总分词数3个，单个词为1。</p>
-<p>逆向最大匹配法，最终分词结果为：“南京市&#x2F;长江大桥”，其中，总分词数2个，单个词为0。</p>
-<p>选择标准：</p>
-<p>首先看两种方法结果的分词数，分词数越少越好；<br>分词数相同的情况下，看单个词的数量，越少越好；<br>因此最终输出为逆向结果。</p>
-<h5 id="4-最佳匹配（OM，分正向和逆向）"><a href="#4-最佳匹配（OM，分正向和逆向）" class="headerlink" title="4 最佳匹配（OM，分正向和逆向）"></a>4 最佳匹配（OM，分正向和逆向）</h5><p>对分词词典按词频大小顺序排列，并注明长度，降低时间复杂度。</p>
-<p>优点：易于实现<br>缺点：匹配速度慢。对于未登录词的补充较难实现。缺乏自学习。</p>
-<h5 id="5-逐词遍历法"><a href="#5-逐词遍历法" class="headerlink" title="5 逐词遍历法"></a>5 逐词遍历法</h5><p>这种方法是将词库中的词由长到短递减的顺序，逐个在待处理的材料中搜索，直到切分出所有的词为止。</p>
-<h5 id="等等"><a href="#等等" class="headerlink" title="等等"></a>等等</h5><h5 id="Trie树（前缀树）"><a href="#Trie树（前缀树）" class="headerlink" title="Trie树（前缀树）"></a>Trie树（前缀树）</h5><h3 id="基于统计的分词"><a href="#基于统计的分词" class="headerlink" title="基于统计的分词"></a>基于统计的分词</h3><h5 id="N-gram模型思想"><a href="#N-gram模型思想" class="headerlink" title="N-gram模型思想"></a>N-gram模型思想</h5><p>模型基于这样一种假设，第n个词的出现只与前面N-1个词相关，而与其它任何词都不相关，整句的概率就是各个词出现概率的乘积。</p>
-<p>我们给定一个词，然后猜测下一个词是什么。当我说“艳照门”这个词时，你想到下一个词是什么呢？我想大家很有可能会想到“陈冠希”，基本上不会有人会想到“陈志杰”吧，N-gram模型的主要思想就是这样的。</p>
-<p>对于一个句子T，我们怎么算它出现的概率呢？假设T是由词序列W1,W2,W3,…Wn组成的，那么P(T)&#x3D;P(W1W2W3…Wn)&#x3D;P(W1)P(W2|W1)P(W3|W1W2)…P(Wn|W1W2…Wn-1)<br>但是这种方法存在两个致命的缺陷：一个缺陷是参数空间过大，不可能实用化；另外一个缺陷是数据稀疏严重。为了解决这个问题，我们引入了马尔科夫假设：一个词的出现仅仅依赖于它前面出现的有限的一个或者几个词。如果一个词的出现仅依赖于它前面出现的一个词，那么我们就称之为bigram。即</p>
-<p>P(T) &#x3D;P(W1W2W3…Wn)&#x3D;P(W1)P(W2|W1)P(W3|W1W2)…P(Wn|W1W2…Wn-1)<br>≈P(W1)P(W2|W1)P(W3|W2)…P(Wn|Wn-1)</p>
-<p>如果一个词的出现仅依赖于它前面出现的两个词，那么我们就称之为trigram。</p>
-<p>在实践中用的最多的就是bigram和trigram了，而且效果很不错。高于四元的用的很少，因为训练它需要更庞大的语料，而且数据稀疏严重，时间复杂度高，精度却提高的不多。一般的小公司，用到二元的模型就够了，像Google这种巨头，也只是用到了大约四元的程度，它对计算能力和空间的需求都太大了。</p>
-<p>详细讲解和代码见<a href="https://codle.net/chinese-word-cutter-1/">n-gram</a></p>
-<h5 id="HMM、CRF-模型思想"><a href="#HMM、CRF-模型思想" class="headerlink" title="HMM、CRF 模型思想"></a>HMM、CRF 模型思想</h5><p>以往的分词方法，无论是基于规则的还是基于统计的，一般都依赖于一个事先编制的词表(词典)，自动分词过程就是通过词表和相关信息来做出词语切分的决策。与此相反，</p>
-<p>基于字标注（或者叫基于序列标注）的分词方法实际上是构词方法，即把分词过程视为字在字串中的标注问题。</p>
-<p>由于每个字在构造一个特定的词语时都占据着一个确定的构词位置(即词位)，假如规定每个字最多只有四个构词位置：即B(词首)，M (词中)，E(词尾)和S(单独成词)，那么下面句子(甲)的分词结果就可以直接表示成如(乙)所示的逐字标注形式：</p>
-<ol>
-<li>(甲)分词结果：／上海／计划／N／本／世纪／末／实现／人均／国内／生产／总值／五千美元／ </li>
-<li>(乙)字标注形式：上／B海／E计／B划／E N／S 本／s世／B 纪／E 末／S 实／B 现／E 人／B 均／E 国／B 内／E生／B产／E总／B值／E 五／B千／M 美／M 元／E 。／S</li>
-</ol>
-<p>首先需要说明，这里说到的“字”不只限于汉字。考虑到中文真实文本中不可避免地会包含一定数量的非汉字字符，本文所说的“字”，也包括外文字母、阿拉伯数字和标点符号等字符。所有这些字符都是构词的基本单元。当然，汉字依然是这个单元集合中数量最多的一类字符。</p>
-<p>把分词过程视为字的标注问题的一个重要优势在于，它能够平衡地看待词表词和未登录词的识别问题。</p>
-<p>在这种分词技术中，文本中的词表词和未登录词都是用统一的字标注过程来实现的。在学习架构上，既可以不必专门强调词表词信息，也不用专门设计特定的未登录词(如人名、地名、机构名)识别模块。这使得分词系统的设计大大简化。在字标注过程中，所有的字根据预定义的特征进行词位特性的学习，获得一个概率模型。然后，在待分字串上，根据字与字之间的结合紧密程度，得到一个词位的标注结果。最后，根据词位定义直接获得最终的分词结果。总而言之，在这样一个分词过程中，分词成为字重组的简单过程。在学习构架上，由于可以不必特意强调词表词的信息，也不必专门设计针对未登录词的特定模块，这样使分词系统的设计变得尤为简单。</p>
-<p>2001年Lafferty在最大熵模型（MEM）和隐马尔科夫模型（HMM）的基础上提出来了一种无向图模型–条件随机场（CRF）模型，它能在给定需要标记的观察序列的条件下，最大程度提高标记序列的联合概率。常用于切分和标注序列化数据的统计模型。</p>
-<h2 id="T5中的分词"><a href="#T5中的分词" class="headerlink" title="T5中的分词"></a>T5中的分词</h2><p>T5中的分词用的是google的sentencepiece分词。类似于BPE，找出频率最高的词组合作为词典进行分词。<br>bert4keras中为了效率，不是按照原mt5的字典来进行的分词，而且作者用自己的预料进行了后处理。<br>经测试，发现分词效果并不是非常客观。<br>因此可以尝试训练一套自己领域的并且适合T5中使用的model和词典来进行分词。具体如何实现，可以看完T5论文后再进行</p>
-<ol>
-<li>T5中使用词典，那么还需要模型的概率预测来进行分词吗？</li>
-</ol>
-<h2 id="Greedy-Decoding-VS-Beam-Search"><a href="#Greedy-Decoding-VS-Beam-Search" class="headerlink" title="Greedy Decoding VS Beam Search"></a>Greedy Decoding VS Beam Search</h2><h3 id="Greedy-search"><a href="#Greedy-search" class="headerlink" title="Greedy search"></a>Greedy search</h3><p>一个自然的想法是贪心搜索(greedy search)，即decoder的每一步都选择最可能的单词，最后得到句子的每一个单词都是每一步认为最合适的单词。但这样并不保证整个句子的概率是最大的，即不能保证整个句子最合适。实际上，贪心搜索的每一步搜索都处理成仅仅与前面刚生成的一个单词相关，类似于马尔科夫假设。这显然是不合理的，具体来说，贪心搜索到的句子𝑦概率是使得下式概率最大：</p>
-<p>𝑃(𝑦|𝑥)&#x3D;∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦𝑘−1)</p>
-<p>而实际上，根据全概率公式计算得到𝑃(𝑦|𝑥)为：</p>
-<p>𝑃(𝑦|𝑥)&#x3D;∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1)</p>
-<h3 id="Beam-search"><a href="#Beam-search" class="headerlink" title="Beam search"></a>Beam search</h3><p>译为束搜索。思想是，每步选取最可能的𝑘个结果，再从最后的𝑘个结果中选取最合适的句子。𝑘称为beam size。</p>
-<p>具体做法是：</p>
-<p>首先decoder第一步搜索出最可能的𝑘个单词，即找到𝑦11,𝑦12,…,𝑦1𝑘，他们的概率𝑝(𝑦11|𝑥),…,𝑝(𝑦1𝑘|𝑥)为最大的𝑘个。</p>
-<p>进行第二步搜索，分别进行𝑘个模型副本的搜索。每个副本𝑖，根据上一步选取的单词𝑦1𝑖，选取概率最大的𝑘个结果𝑦21,𝑦22,…,𝑦2𝑘。这样，就有了𝑘∗𝑘个可能的结果，从这些结果中选择𝑘个概率最大的结果，即𝑝(𝑦1𝑖|𝑥)∗𝑝(𝑦2𝑗|𝑥,𝑦1𝑖)最大的𝑘个结果。</p>
-<p>进行第三步搜索，从第二步中确定的𝑘个结果出发，再进行𝑘个模型副本的搜索，直到最后一步，从最后的𝑘个结果中选取概率最大者。</p>
-<p>显然，若𝑘&#x3D;1则为贪心搜索，𝑘越大则占用内存越大，计算代价越大，实际应用中取10即可。</p>
-<p>另外，可以发现概率的连乘使得概率越来越小，很可能溢出，为了保证模型的稳定性，常对概率连乘计算+log变为加法。</p>
-<p>𝑃(𝑦|𝑥)&#x3D;𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))</p>
-<h3 id="改进Beam-search"><a href="#改进Beam-search" class="headerlink" title="改进Beam search"></a>改进Beam search</h3><h4 id="length-penalty"><a href="#length-penalty" class="headerlink" title="length penalty"></a>length penalty</h4><p>从Beam search的搜索过程中可以发现，Beam search偏向于找到更短的句子，也就是说，如果搜索过程中有一支搜索提前发现了&lt;𝐸𝑂𝑆&gt;,而另外𝑘−1支继续搜索找到其余更长的结果，那么由于概率连乘(或log连加)，越长的结果概率肯定越小。因此有必要进行模型修正，即进行长度归一化，具体来说，即：</p>
-<p>选择概率𝑃(𝑦|𝑥)&#x3D;1𝑛𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))最大的句子，式中，𝑛为该结果序列长度。</p>
-<p>另外，实践中还做了如下修正：</p>
-<p>𝑃(𝑦|𝑥)&#x3D;1𝑛𝛼𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))</p>
-<p>式中，超参数𝛼取0.6或者0.7比较合适。</p>
-<h4 id="Grid-Beam-Search"><a href="#Grid-Beam-Search" class="headerlink" title="Grid Beam Search"></a>Grid Beam Search</h4><p>结合约束条件，选择模型生成的下一个结果或特定的词语或者短句</p>
-<h4 id="Best-First-Beam-Search"><a href="#Best-First-Beam-Search" class="headerlink" title="Best-First Beam Search"></a>Best-First Beam Search</h4><p>优化使用beam search解码的时间。实现比较复杂，细节较多</p>
-<h4 id="look-ahead"><a href="#look-ahead" class="headerlink" title="look ahead"></a>look ahead</h4><h4 id="on-the-fly"><a href="#on-the-fly" class="headerlink" title="on the fly"></a>on the fly</h4><h3 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h3><p>对于训练的seq2seq模型，对它输出的句子𝑦，以及实际的句子𝑦∗，若概率𝑦大于𝑦∗，（统计所有句子，平均来说是这个结果），则说明，seq2seq模型出错了。否则，说明，baem search并没有找到最合适的结果，可以考虑增大beam size大小。</p>
-]]></content>
-      <categories>
-        <category>京东</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Tensorflow使用注意事项</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
-    <content><![CDATA[<h1 id="Tensorflow使用注意事项"><a href="#Tensorflow使用注意事项" class="headerlink" title="Tensorflow使用注意事项"></a>Tensorflow使用注意事项</h1><h2 id="服务器上使用Tensorboard，在本地查看"><a href="#服务器上使用Tensorboard，在本地查看" class="headerlink" title="服务器上使用Tensorboard，在本地查看"></a>服务器上使用Tensorboard，在本地查看</h2><ol>
-<li>记录<br>使用<code>Tensorboard</code>，一般要用<code>tf.summary</code>记录训练过程中的数值到某个地方，如下面的 <code>train_summary_dir</code> 和 <code>train_log_dir</code><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> self<span class="selector-class">.train_summary_dir</span>:</span><br><span class="line">    self<span class="selector-class">.loss_summary_reranker</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&quot;loss_reranker&quot;</span>, self.cost)</span><br><span class="line">    self<span class="selector-class">.train_summary_op</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.merge</span>(<span class="selector-attr">[self.loss_summary_reranker]</span>)</span><br><span class="line">    self<span class="selector-class">.train_summary_writer</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.FileWriter</span>(</span><br><span class="line">        os<span class="selector-class">.path</span><span class="selector-class">.join</span>(self<span class="selector-class">.train_summary_dir</span>, <span class="string">&quot;reranker&quot;</span>), self<span class="selector-class">.session</span>.graph)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<span id="more"></span>
-
-<p>或者</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">current_time = datetime<span class="selector-class">.datetime</span><span class="selector-class">.now</span>()<span class="selector-class">.strftime</span>(<span class="string">&quot;%Y%m%d-%H%M%S&quot;</span>)</span><br><span class="line">train_log_dir = <span class="string">&#x27;logs/gradient_tape/&#x27;</span> + current_time + <span class="string">&#x27;/train&#x27;</span></span><br><span class="line">test_log_dir = <span class="string">&#x27;logs/gradient_tape/&#x27;</span> + current_time + <span class="string">&#x27;/test&#x27;</span></span><br><span class="line">train_summary_writer = tf<span class="selector-class">.summary</span><span class="selector-class">.create_file_writer</span>(train_log_dir)</span><br><span class="line">test_summary_writer = tf<span class="selector-class">.summary</span><span class="selector-class">.create_file_writer</span>(test_log_dir)</span><br><span class="line">with train_summary_writer<span class="selector-class">.as_default</span>():</span><br><span class="line">    tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&#x27;loss&#x27;</span>, train_loss<span class="selector-class">.result</span>(), step=epoch)</span><br><span class="line">    tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&#x27;accuracy&#x27;</span>, train_accuracy<span class="selector-class">.result</span>(), step=epoch)</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>打通本地和服务器端口：<code>ssh -L 16006:127.0.0.1:6006 username@remote_server_ip</code><br><code>16006</code> 是本地端口，<code>6006</code>是服务器上<code>Tensorboard</code>的端口<br><code>username</code>和<code>remote_server_ip</code>分别对应服务器用户名和ip地址</p>
-</li>
-<li><p>使用上面命令成功登陆服务器后，执行命令 <code>tensorboard --logdir=&#39;logs/train_logs&#39; --port=6006</code></p>
-</li>
-<li><p>本地打开 <code>http://127.0.0.1:16006/</code> 即可查看</p>
-</li>
-</ol>
-<h2 id="GPU问题"><a href="#GPU问题" class="headerlink" title="GPU问题"></a>GPU问题</h2><p>测试时如果内存不够，但是又想继续启新的线程（比如压测的时候），这时可能会报<code>RuntimeError: can&#39;t start new thread</code>。换一个内存使用率稍低的显卡就能改善问题</p>
-<p>报错<code>cuda 0 not supported xla</code>通常也是因为GPU显存问题，换一个空闲的显卡可以改善问题</p>
-]]></content>
-      <categories>
-        <category>京东</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>linux常用命令</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<ol>
-<li>快速查看端口占用情况<code>lsof -i tcp:8080</code>或者<code>netstat -nlp</code></li>
-<li>查看PID具体信息<code>ll /proc/PID</code></li>
-<li>同样，查看CPU和内存信息可以使用<code>cat /proc/cupinfo</code> 和 <code>cat /proc/meminfo</code>。更详细CPU信息查询可以使用<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c </code>和<code>cat /proc/cpuinfo | grep physical | uniq -c</code></li>
-<li>查看显卡信息可以使用命令<code>lspci | grep -i vga</code></li>
-<li>查看磁盘使用情况<code>df -k</code>或<code>df -m</code>，分别以kb或mb为单位，查看磁盘使用量</li>
-<li>GPU当前使用状况：<code>nvidia-smi</code></li>
-<li>每10秒，更新一次GPU情况：<code>watch -n 10 nvidia-smi</code></li>
-<li><code>free -h</code>看内存情况</li>
-</ol>
-<p>参考文章：<a href="https://cloud.tencent.com/developer/article/1721406">Linux系统查看CPU、机器型号、内存等信息</a></p>
-]]></content>
-      <categories>
-        <category>京东</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>python疑难杂症</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/python%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</url>
-    <content><![CDATA[<h1 id="python疑难杂症"><a href="#python疑难杂症" class="headerlink" title="python疑难杂症"></a>python疑难杂症</h1><h2 id="args用add-argument内部-x2F-外部传参"><a href="#args用add-argument内部-x2F-外部传参" class="headerlink" title="args用add_argument内部&#x2F;外部传参"></a>args用add_argument内部&#x2F;外部传参</h2><p>args一般用来在外部运行convert.py时，外部传参，</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    argp = argparse.ArgumentParser()</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;in_file&#x27;</span>, <span class="attribute">default</span>=datapath_abs_test_machine, <span class="attribute">help</span>=<span class="string">&#x27;Input CSV file&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--out_name&#x27;</span>, <span class="attribute">default</span>=<span class="string">&#x27;baseline-e2e-data&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Output files name prefix&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-a&#x27;</span>, <span class="string">&#x27;--abstract&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Comma-separated list of slots to be abstracted&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-m&#x27;</span>, <span class="string">&#x27;--multi-ref&#x27;</span>,</span><br><span class="line">                      <span class="attribute">help</span>=<span class="string">&#x27;Multiple reference mode: group by the same DA&#x27;</span>, <span class="attribute">action</span>=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--no-refs&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Use a file without references, only produce DA files&#x27;</span>, <span class="attribute">action</span>=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-n&#x27;</span>, <span class="string">&#x27;--slot-names&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Include slot names in delexicalized texts&#x27;</span>, <span class="attribute">action</span>=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    args = argp.parse_args()</span><br><span class="line">    convert(args)</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<p>运行命令行如下：<br><code>python ./convert.py -a name,near -n /root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv train</code></p>
-<p>此时 <code>args.in_file=&#39;/root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv&#39;</code></p>
-<p>但是如果想要用软件，如vscode进行软件内debug，直接这样运行会报错。此时需要在前面加上“–”，这样运行args &#x3D; argp.parse_args()才不会报错，即：<br><code>argp.add_argument(&#39;--in_file&#39;, default=datapath_abs_test_machine, help=&#39;Input CSV file&#39;)</code></p>
-<h2 id="中argp-parse-args-报错"><a href="#中argp-parse-args-报错" class="headerlink" title="中argp.parse_args()报错"></a>中argp.parse_args()报错</h2><figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">发生异常: SystemExit</span></span><br><span class="line">2</span><br></pre></td></tr></table></figure>
-
-<p>同上，也是“–”的问题，在add_argument第一个参数前加上“–”</p>
-<h2 id="pip安装本地文件包"><a href="#pip安装本地文件包" class="headerlink" title="pip安装本地文件包"></a>pip安装本地文件包</h2><p>如果是类似github上面需要下载的安装包，如<a href="https://github.com/ufal/pytreex">pytreex</a>，在下载文件并解压到<code>pytreex</code>之后，直接使用<code>pip install pytreex</code>就可以<br>注意：解压后会生产文件包<code>pytreex-master</code>，此时如果直接<code>pip install pytreex-master</code>是不行的，需要将文件名更换成包名<code>pytreex</code>，然后再<code>pip install pytreex</code>才能成功，否则会报找不到的错误</p>
-<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ERROR: </span>Could not find a version that satisfies the requirement pytreex-master (from versions: none)</span><br><span class="line"><span class="keyword">ERROR: </span>No matching distribution found for pytreex-master</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>京东</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>使用vscode原创连接服务器</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/%E4%BD%BF%E7%94%A8vscode%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<h1 id="使用vscode原创连接服务器"><a href="#使用vscode原创连接服务器" class="headerlink" title="使用vscode原创连接服务器"></a>使用vscode原创连接服务器</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
-<li>在左侧“扩展”里选择并安装扩展 Remote-SSH</li>
-<li>点击左侧新增的扩展按钮，并点击左上角“+”号，然后会出现config的配置，按如下配置<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root</li>
-<li>此时配置好后尝试登陆，会需要输入密码</li>
-<li>可以用配置成不需要密码<ol>
-<li>本地建个ssh ssh-keygen -t rsa -b 4096 -f ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh，会生成id_rsa-remote-ssh和id_rsa-remote-ssh.pub两个文件</li>
-<li>将id_rsa-remote-ssh.pub配到服务器的authorized_keys（一般在～&#x2F;.ssh&#x2F;）文件里</li>
-<li>将id_rsa-remote-ssh配到本地的config中，即修改刚刚的config成如下<br> Host name-as-you-like<br> HostName 11.12.205.19<br> User root<br> IdentityFile ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh</li>
-</ol>
-</li>
-<li>可以连接远程服务器了</li>
-</ol>
-<span id="more"></span>
-
-<h2 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h2><p>使用vscode连接远程服务器，也希望能够进行断点调试。</p>
-<ol>
-<li>进入扩展，搜索python（一般是第一个）</li>
-<li>如果本地还没有安装，可以先点击安装</li>
-<li>如果本地安装了，配备remote-ssh后，会显示“在remote-ssh上安装”，点击按钮进行安装就可以了</li>
-<li>结果如下<br><img src="/Users/dengshijiao1/Documents/hexo/photos/vscode%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1python%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE.png" alt="vscode远程服务python断点调试配置"></li>
-</ol>
-<h2 id="离线安装vscode和扩展组件"><a href="#离线安装vscode和扩展组件" class="headerlink" title="离线安装vscode和扩展组件"></a>离线安装vscode和扩展组件</h2><h3 id="离线安装vscode"><a href="#离线安装vscode" class="headerlink" title="离线安装vscode"></a>离线安装vscode</h3><p>远程一般安装的是<code>vscode-server</code></p>
-<ol>
-<li>下载<code>vscode-server-linux-x64.tar.gz</code>包，放到远程服务器</li>
-<li>不同服务器，下载版本不一致，确认<code>commitId</code></li>
-<li>将<code>vscode-server-linux-x64.tar.gz</code>解压到<code>~/.vscode-server/bin/$&#123;commitId&#125;</code></li>
-<li>在<code>$&#123;commitId&#125;</code>文件下创建文件<code>0</code></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">commit_id=f06011ac164ae4dc8e753a3fe7f9549844d15e35</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download url is: https://update.code.visualstudio.com/commit:$&#123;commit_id&#125;/server-linux-x64/stable</span></span><br><span class="line">curl -sSL <span class="string">&quot;https://update.code.visualstudio.com/commit:<span class="variable">$&#123;commit_id&#125;</span>/server-linux-x64/stable&quot;</span> -o vscode-server-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span></span><br><span class="line"><span class="comment"># assume that you upload vscode-server-linux-x64.tar.gz to /tmp dir</span></span><br><span class="line">tar zxvf /tmp/vscode-server-linux-x64.tar.gz -C ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span> --strip 1</span><br><span class="line"><span class="built_in">touch</span> ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span>/0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="离线安装扩展组件"><a href="#离线安装扩展组件" class="headerlink" title="离线安装扩展组件"></a>离线安装扩展组件</h3><ol>
-<li>下载组件，并传到远程服务器</li>
-<li><code>vscode</code>中，<code>ctrl+shift+p</code>打开命令行，输入<code>Extensions: install from VSIX</code></li>
-<li>选择上传的<code>vsix</code>扩展组件，开始安装</li>
-<li>重启<code>vscode</code></li>
-<li>如果安装失败，有可能是文件权限问题，可以先尝试<code>chmod -x -R ms-python-release.vsix</code>给扩展组件赋权，再进行安装</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>参考<br><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
-]]></content>
-      <categories>
-        <category>京东</category>
-      </categories>
-  </entry>
-  <entry>
     <title>智能客服项目</title>
     <url>/2019/12/08/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<h2 id="智能客服项目"><a href="#智能客服项目" class="headerlink" title="智能客服项目"></a>智能客服项目</h2><p>智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。</p>
@@ -2765,101 +2860,6 @@ e, f, g, &lt;eos&gt;
         <tag>stacking</tag>
         <tag>LR</tag>
         <tag>SVM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ES安装与使用</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/ES/</url>
-    <content><![CDATA[<h1 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><h5 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h5><p>   可能遇到需要密码的问题。此时有两种方法：</p>
-<ul>
-<li>一个是进入 <code>elasticsearch.yml</code> 文件设置 <code>xpack.security.enabled: false</code>。不过这样有安全隐患，只能用于测试。且7.x的版本没有相关参数</li>
-<li>二是设置一个密码<ul>
-<li>运行 <code>bin/elasticserch-setup-passwords interactive</code> </li>
-<li>数据密码 <code>xxxxx</code></li>
-<li><code>curl http://host:port -u username:password</code> 验证是否成功</li>
-</ul>
-</li>
-</ul>
-<h5 id="内网访问"><a href="#内网访问" class="headerlink" title="内网访问"></a>内网访问</h5><p>   如果访问ES是在同一网络内另一台机器上，则需要设置 <code>elasticsearch.yml</code> 中的 <code>network.host</code> 为 <code>0.0.0.0</code> 允许内网不同机器访问</p>
-<h2 id="ES-使用"><a href="#ES-使用" class="headerlink" title="ES 使用"></a>ES 使用</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>命令： </p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">PUT http:<span class="regexp">//</span>host:port/test123 </span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;settings&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;number_of_shards&quot;</span>:<span class="number">5</span>, <span class="regexp">//</span> 指定索引分片数量</span><br><span class="line">        <span class="string">&quot;number_of_replicas&quot;</span> : <span class="number">1</span> <span class="regexp">//</span> 指定索引副本分片数量</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;mappings&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;properties&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: &#123; <span class="regexp">//</span> 必须唯一</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;long&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;classe&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;sentence&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;vector&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;dense_vector&quot;</span>,</span><br><span class="line">                <span class="string">&quot;dims&quot;</span>: <span class="number">5</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="regexp">//</span> ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="导入文档"><a href="#导入文档" class="headerlink" title="导入文档"></a>导入文档</h3><h4 id="导入单个文档"><a href="#导入单个文档" class="headerlink" title="导入单个文档"></a>导入单个文档</h4><p><code>id</code> 为 <code>3</code> 时：</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">PUT http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_doc/<span class="number">3</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">&quot;sentence&quot;</span>: <span class="string">&quot;我是第三句中文&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vector&quot;</span>: [-<span class="number">0.5</span>, <span class="number">0.5</span>, -<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">5</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="批量导入文档"><a href="#批量导入文档" class="headerlink" title="批量导入文档"></a>批量导入文档</h4><p>批量导入主要使用 <code>bulk</code>，<code>Python</code> 和 <code>http</code> 都有接口</p>
-<p>使用 <code>bulk</code> 一次性导入数据不能超过 <code>100MB</code></p>
-<p>无论是 <code>Python</code> 还是 <code>http</code> ，都需要将每个文档转换成 <code>json</code> 格式导入。某个 <code>json</code> 文档具体格式如下：</p>
-<figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_index&quot;</span>: <span class="string">&quot;test123&quot;</span>,</span><br><span class="line">    <span class="string">&quot;_id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;_source&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="string">&quot;classe&quot;</span>: <span class="string">&quot;FAQ&quot;</span>,</span><br><span class="line">        <span class="string">&quot;sentence&quot;</span>: <span class="string">&quot;我是第一个文档&quot;</span>,</span><br><span class="line">        <span class="string">&quot;vector&quot;</span>: [<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span> <span class="number">4.0</span>, <span class="number">5.0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>若使用 <code>http</code> 批量导入，命令行： <code>curl -XPOST -H &quot;Content-Type:application/json&quot; &quot;http://127.0.0.1:9200/test123/_bulk?pretty&quot; --data-binary @example.json</code></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// example.json</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;_index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test123&quot;</span><span class="punctuation">,</span><span class="attr">&quot;_id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;classe&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FAQ&quot;</span><span class="punctuation">,</span><span class="attr">&quot;sentence&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我是第一个文档&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vector&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1.0</span><span class="punctuation">,</span> <span class="number">2.0</span><span class="punctuation">,</span> <span class="number">3.0</span> <span class="number">4.0</span><span class="punctuation">,</span> <span class="number">5.0</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;_index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test123&quot;</span><span class="punctuation">,</span><span class="attr">&quot;_id&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span><span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span><span class="attr">&quot;classe&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FAQ&quot;</span><span class="punctuation">,</span><span class="attr">&quot;sentence&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我是第二个文档&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vector&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1.0</span><span class="punctuation">,</span> <span class="number">2.0</span><span class="punctuation">,</span> <span class="number">3.0</span> <span class="number">4.0</span><span class="punctuation">,</span> <span class="number">5.0</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;_index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test123&quot;</span><span class="punctuation">,</span><span class="attr">&quot;_id&quot;</span><span class="punctuation">:</span> <span class="number">4</span><span class="punctuation">,</span><span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">4</span><span class="punctuation">,</span><span class="attr">&quot;classe&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FAQ&quot;</span><span class="punctuation">,</span><span class="attr">&quot;sentence&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我是第四个文档&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vector&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1.0</span><span class="punctuation">,</span> <span class="number">2.0</span><span class="punctuation">,</span> <span class="number">3.0</span> <span class="number">4.0</span><span class="punctuation">,</span> <span class="number">5.0</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
-
-<p>若使用 <code>Python</code> 批量导入，命令行 <code>helpers.bulk(es, json_text)</code> ，<code>json_text</code> 格式同上 <code>example.json</code></p>
-<h3 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h3><h4 id="通过id查询文档"><a href="#通过id查询文档" class="headerlink" title="通过id查询文档"></a>通过id查询文档</h4><p><code>id</code> 为 <code>3</code> 时：</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">GET http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_doc/<span class="number">3</span>?pretty</span><br></pre></td></tr></table></figure>
-
-<h4 id="通过计算余弦相似度检索文档"><a href="#通过计算余弦相似度检索文档" class="headerlink" title="通过计算余弦相似度检索文档"></a>通过计算余弦相似度检索文档</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;script_score&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;query&quot;</span> : &#123;<span class="string">&quot;match_all&quot;</span>: &#123;&#125;&#125;,</span><br><span class="line">      <span class="string">&quot;script&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;source&quot;</span>: <span class="string">&quot;cosineSimilarity(params.query_vector, &#x27;vector&#x27;) + 1.0&quot;</span>, </span><br><span class="line">        <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">          <span class="string">&quot;query_vector&quot;</span>: [<span class="number">4</span>, <span class="number">3.4</span>, -<span class="number">0.2</span>, <span class="number">0.1</span>, -<span class="number">3</span>]  </span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="通过简单的字符串匹配查询文档"><a href="#通过简单的字符串匹配查询文档" class="headerlink" title="通过简单的字符串匹配查询文档"></a>通过简单的字符串匹配查询文档</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;match&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;sentence&quot;</span>: <span class="string">&quot;我想要查询的文档&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="通过阈值筛选"><a href="#通过阈值筛选" class="headerlink" title="通过阈值筛选"></a>通过阈值筛选</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;min_score&quot;</span>: <span class="number">0.5</span></span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="regexp">//</span> ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="每页展示的结果数（response-“hits”-“hits”-的数目）"><a href="#每页展示的结果数（response-“hits”-“hits”-的数目）" class="headerlink" title="每页展示的结果数（response[“hits”][“hits”]的数目）"></a>每页展示的结果数（response[“hits”][“hits”]的数目）</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;size&quot;</span>: <span class="number">50</span> <span class="regexp">//</span> 默认<span class="number">10000</span></span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="regexp">//</span> ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="通过某个item筛选"><a href="#通过某个item筛选" class="headerlink" title="通过某个item筛选"></a>通过某个item筛选</h4><p><code>item</code> 为 <code>enabled_status</code>，且 <code>enabled_status</code> 是<code>boolean</code> 时</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;bool&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;filter&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;item&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;enabled_status&quot;</span>: true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>item</code> 为 <code>classe</code>，且 <code>classe</code> 包含关键词 <code>FAQ</code> 时:</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;item&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;classe&quot;</span>: <span class="string">&quot;FAQ&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>item</code> 为 <code>classe</code>，且 <code>classe</code> 包含多个关键词 <code>FAQ</code> <code>greeting</code> 时:</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;items&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;classe&quot;</span>: [<span class="string">&quot;FAQ&quot;</span>, <span class="string">&quot;greeting&quot;</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="余弦相似度-筛选条件-组合查询"><a href="#余弦相似度-筛选条件-组合查询" class="headerlink" title="余弦相似度+筛选条件 组合查询"></a>余弦相似度+筛选条件 组合查询</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;size&quot;</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="string">&quot;min_score&quot;</span>: <span class="number">1.5</span>,</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;script_score&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;bool&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;filter&quot;</span>: &#123;</span><br><span class="line">                        <span class="string">&quot;term&quot;</span>: &#123;</span><br><span class="line">                            <span class="string">&quot;enabled_status&quot;</span>: true</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;script&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;scource&quot;</span>: <span class="string">&quot;cosineSimilarity(params.query_vector, &#x27;vector&#x27;) + 1.0&quot;</span>,</span><br><span class="line">                <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;query_vector&quot;</span>: [<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>周边辅助</category>
-      </categories>
-      <tags>
-        <tag>ES</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JMETER压测</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/JMETER%E5%8E%8B%E6%B5%8B/</url>
-    <content><![CDATA[<h1 id="JMETER压测"><a href="#JMETER压测" class="headerlink" title="JMETER压测"></a>JMETER压测</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><img src="/Users/shijiaodeng/Documents/MyBlog/hexo/source/_posts/%E4%BA%AC%E4%B8%9C/photos/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png" alt="参数展示"></p>
-<ul>
-<li>Number of Thread：该线程组包括的线程数,可理解为虚拟用户数</li>
-<li>Ramp-up Period：即设置线程数在多少秒内启动完毕，即如果线程数设置为10，而此项设置也设置为5，那么会每隔10&#x2F;5&#x3D;2秒,启动一个线程.</li>
-<li>Loop Count：即设置的线程数循环的次数，如果勾选永远，则会一直循环（注意：如果勾选了永远且调度器配置中设置了持续时间，则会在持续时间到达之后结束循环）.</li>
-<li>Delay Thread creation until needed：此选项和Ramp-up 时间（秒）设置配合使用，举例说明：如过设置线程数为10，Ramp-up 时间（秒）时间为100，则如果不勾选此项则此次测试会每隔10s创建并启动一个线程，那么100s后会有1-10个线程在运行；但是如果勾选此项，那么线程组会每隔10s创建一个线程但并不启动，而是会等待10个线程都创建好之后同时启动.</li>
-<li>Scheduler：勾选此项则打开调度器配置</li>
-<li>duration：即本线程组测试的持续时间，到时间后则停止此次测试，注意这个时间设置不要设置的比Ramp-up 时间（秒）小，如果勾选了循环次数中的永远，那么测试一样会在此持续时间到达后结束；</li>
-<li>start up delay：此项设置为在我们启动测试后多久时间开始创建线程组，通常用于定时</li>
-<li>Listner：较常用的是View Results Tree和Aggregate Report</li>
-<li>terminer中可以使用GUI，生成HTML报告，更方便分析，目前还没有弄通…</li>
-</ul>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
-<li>先需要找到最大TPS(Transactions Per Second)，即JMETER结果表格中的Thoughout</li>
-<li>每个事物如果只请求一次，则TPS&#x3D;QPS</li>
-<li>因为实际线上会是多个用户同时请求，而非一个用户多次请求，所以压测是，我们主要通过逐步增加线程数（Number of Threads），模拟实际线上用户数的增加，来找到最高TPS</li>
-<li>线程循环次数（loop count）无需过多改变和设置的太高，因为同一用户的调用次数往往是非常有限的</li>
-</ol>
-<h2 id="压测"><a href="#压测" class="headerlink" title="压测"></a>压测</h2><p>简单的压测可以按如下步骤进行：</p>
-<ol>
-<li>设置第一次压测的线程数（Number of Threads），如20</li>
-<li>设置Ramp-Up Period，可以根据线程数来设置，主要保证此参数要小于整体压测时间（Duration）</li>
-<li>每个用户调用次数Loop Count可以设置成持续调用（Forever），并勾选Scheduler</li>
-<li>Scheduler Configuration里主要要设置Duration，即压测持续时间。这个时间一定要大于线程启动时间（Ramp-Up Period），即【Duration】 - 【Ramp-Up Period】 &#x3D; 【所有线程启动后希望压测的时间】</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>TPS、线程数、响应时间等之间的分析见博客<a href="https://www.cnblogs.com/happyliuyi/p/10755837.html">happy刘艺<br>性能测试入门（五）实践得出系统最佳线程数设置(压测最佳线程数&lt;真实设置的线程数量&lt;内存极限线程数)</a>和博客<a href="https://cloud.tencent.com/developer/article/1771176">【修正版】QPS、TPS、RT、并发数、吞吐量理解和性能优化深入思考</a></p>
-<p>结果大概就一个表格，可以参见博客 <a href="https://blog.csdn.net/weixin_42579328/article/details/108243059">Jmeter使用教程（四）—测试结果分析</a> </p>
-]]></content>
-      <categories>
-        <category>周边辅助</category>
-      </categories>
-      <tags>
-        <tag>JMETER</tag>
       </tags>
   </entry>
 </search>
