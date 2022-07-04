@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN,en,fr,default">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 6.1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
@@ -12,18 +12,21 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Microsoft:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":18,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":true,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="诗娇的博客">
+  <meta name="description" content="记录工作，记录生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="panna cotta">
 <meta property="og:url" content="http://yoursite.com/page/2/index.html">
-<meta property="og:site_name" content="诗娇的博客">
+<meta property="og:site_name" content="panna cotta">
+<meta property="og:description" content="记录工作，记录生活">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Shijiao DENG">
 <meta name="twitter:card" content="summary">
 
@@ -34,12 +37,13 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
   };
 </script>
 
-  <title>诗娇的博客</title>
+  <title>panna cotta</title>
   
 
 
@@ -73,7 +77,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <div class="container">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -88,75 +92,71 @@
 
   <div class="site-meta">
 
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">诗娇的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">panna cotta</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">诗娇的博客</p>
   </div>
 
-  <div class="site-nav-right"></div>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
+        <li class="menu-item menu-item-news">
+
+    <a href="/news/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>news</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-docs">
+
+    <a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>docs</a>
+
+  </li>
+
+
+      
   </ul>
-
 </nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
 
-</div>
-<div class="search-pop-overlay"></div>
 
-  </div>
+
+
 </div>
     </header>
 
@@ -172,320 +172,33 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content index posts-expand">
             
-
-  <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/19/interview/INTENT%E4%BB%BB%E5%8A%A1/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/15/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="记录工作，记录生活">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
+      <meta itemprop="name" content="panna cotta">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/19/interview/INTENT%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">INTENT任务</a>
-        </h1>
+            <a href="/2021/08/15/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">中文面试自我简介</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-08-19 19:07:22 / 修改时间：19:50:10" itemprop="dateCreated datePublished" datetime="2021-08-19T19:07:22+08:00">2021-08-19</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
-<li>数据如何</li>
-</ol>
-<h4 id="SF"><a href="#SF" class="headerlink" title="SF"></a>SF</h4><p>共有15000条数据，10个类别（如「信息」，「询问到达时间」，「询问费用」，「询问到达时间——是否」，「询问费用——是否」，「肯定」，「否定」，「」等） + 1个「others」类<br>其中将近5000是数据增强的</p>
-<p>样本最多的类别others，样本数可达5000<br>样本最少的类别比如「否定」，样本数只有100多（最后两少的三个类别，取了三倍过采样，过多和过少都会降低F1值）</p>
-<ol start="2">
-<li><p>背景如何<br>比如其中一个多轮场景是「寄快递」</p>
-</li>
-<li><p>模型如何<br>baseline上的是rnn<br>后来改为cnn<br>也同bert比较了，bert出了收敛较cnn更快一些外，最终效果并不比cnn好</p>
-</li>
-<li><p>准确率如何<br>最后F1达到95%，达到业务要求</p>
-</li>
-<li><p>碰到哪些问题</p>
-<ol>
-<li>F1值不够95%<ol>
-<li>数据增强</li>
-<li>错误样本分析（尤其对准确率很低的类别，针对行进行分析）<ol>
-<li>我们通过错误样本分析，找到了几个准确率特别低的样本，进行过采样，提升了效果</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>样本不均衡的问题<ol>
-<li>低样本的三个类别进行了三倍过采样</li>
-<li>数据增强（尝试了使用bert的mask进行数据增强）</li>
-</ol>
-</li>
-<li>多轮之间通过意图跳转<ol>
-<li>尝试过使用熵来替代概率，效果不好</li>
-<li>最后通过调节weight，然后跟踪整体准确率和召回率的变化，提前中断训练，使得others类的准确率能达到99%（因为在调大others的weight后，训练会优先照顾这个类别，因为一开始，others的召回特别低，但是准确率特别高，然后在整体F1值慢慢上升后，others的准确率会开始下降，这时需要终止训练，这里牺牲了整体1个百分点的F1值）</li>
-</ol>
-</li>
-<li>曾经出现过一个句子分属多个类别的情况<ol>
-<li>进行数据梳理后，发现两个类别可以分开。对这两个类别的数据重新进行梳理，准确率大幅提升</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>还有哪些可以改进的</p>
-<ol>
-<li>对于分属多个类别的语句，是否也可以尝试进行多标签分类</li>
-<li>更可以改进的是DM的设置<ol>
-<li>每个多轮都有一个others，比较累赘，说明每个多轮都需要找过others的准确率，而影响整体的准确率</li>
-<li>是否可以通过记住当前多轮所在状态和所在的bot，然后将再此进入多轮的句子进行更精确的分类和进入判别，这样就不用每个多轮里面都加一个others类别了</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>现有哪些更好的方法吗（新的论文）</p>
-<ol>
-<li>对于分类，cnn和rnn有时候就很够用了，再不行上bert也差不多，然后就是数据的问题了，模型帮助不大</li>
-<li>对于对话机器人更好的想法，如上5.2.2</li>
-</ol>
-</li>
-</ol>
-<h4 id="VIPKid"><a href="#VIPKid" class="headerlink" title="VIPKid"></a>VIPKid</h4><ol>
-<li>数据如何</li>
-<li>背景如何</li>
-<li>模型如何</li>
-<li>准确率如何</li>
-<li>碰到哪些问题</li>
-<li>怎么解决（trick或者模型）</li>
-<li>为什么这么解决</li>
-<li>效果怎么样</li>
-<li>还有哪些可以改进的</li>
-<li>现有哪些更好的方法吗（新的论文）</li>
-</ol>
-<h2 id="重难点"><a href="#重难点" class="headerlink" title="重难点"></a>重难点</h2><h3 id="Bert数据增强"><a href="#Bert数据增强" class="headerlink" title="Bert数据增强"></a>Bert数据增强</h3><p>分类碰到的问题：</p>
-<ol>
-<li>使用某个模型前，也可以先做一个学习曲线，判断使用的样本是否足够</li>
-<li>进行错误样本分析</li>
-<li>调节weight，优化不同类别的presicion</li>
-<li>如果某一类别的F1值过低，可以看下是否是样本不足的原因</li>
-<li>做数据增强</li>
-<li>如果是两个类别经常混淆，可以先将其归为一类，之后在下一层，用规则或模型进行细分<ol>
-<li>对下一层分类起，是模型加针对性的数据增强</li>
-<li>这里数据增强有用，但是整体数据增强，不一定能增加准确率，比如“蓝屏”，在这里是“noshow”的意思，但是在别的地方有可能是指机器故障（看下数据，找个好点的例子）</li>
-</ol>
-</li>
-<li>叠加分类器</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/17/interview/NER%E4%BB%BB%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/17/interview/NER%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">NER任务</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-17 14:46:29" itemprop="dateCreated datePublished" datetime="2021-08-17T14:46:29+08:00">2021-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-19 19:50:13" itemprop="dateModified" datetime="2021-08-19T19:50:13+08:00">2021-08-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index">
-                    <span itemprop="name">工作总结</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
-<li>数据如何<br>共有15000条数据，12个类别（如「出发地」，「出发时间」，「类型」，「物品」，「体积」等）</li>
-</ol>
-<ol start="2">
-<li><p>背景如何<br>比如其中一个多轮场景是「寄快递」</p>
-</li>
-<li><p>模型如何<br>先是上的baseline，然后针对问题进行改进的（最开始尝试intent和ner一起做）<br>baseline使用的是lstm+crf，因为一般ner的问题，都是编码获取的信息不够，所以后来上了bilstm+crf，准确率提升了1.5个百分点，也尝试使用bert，发现bert效果并不比bilstm好。之后</p>
-</li>
-<li><p>准确率如何<br>最后F1值83%</p>
-</li>
-<li><p>碰到哪些问题</p>
-<ol>
-<li>整体F1值问题<ol>
-<li>F1值不是特别高，刚开始只能到达80%左右</li>
-<li>ner一般都是embedding不够丰富，所以我们尝试了bilstm和bert，两个效果差不多，但是bilstm更轻便，能够提升1.5%的F1值</li>
-<li>后来又跑了一下当时刚出的lattice lstm，效果确实还是不错的，相对bilstm能提升2个百分点，当然，后来在vipkid又尝试了FLAT，效果更好，相对lattice lstm，还能再提升2个百分点</li>
-<li>不同解码方式<ol>
-<li>CRF/指针网络/Biaffine</li>
-<li>不同解码方式差异有限</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>有的类别预测不准，有的特别准<ol>
-<li>样本不均衡<ol>
-<li>本身标注的样本，就会有些不均衡，所以自己按规律造了5000数据</li>
-<li>当然，测试集里是原始数据</li>
-<li>有一定的效果提升</li>
-</ol>
-</li>
-<li>同样量的样本，有的类别比较难预测（规律难找）<ol>
-<li>有的类别虽然样本也不算少，但是本身规律比较难找，比如「明天」，「明天下午两点」，实体变化很大，所以效果不如意</li>
-<li>这些特殊类别，我们主要是通过规则加上开源工具来兜底</li>
-<li>比如地址，我们本身有很全的字典，如果模型预测概率小于某个阈值，我们就尝试用字典进行匹配</li>
-<li>比如时间，我们用开源工具进行兜底</li>
-</ol>
-</li>
-<li>召回不高<ol>
-<li>丰富embedding</li>
-<li>检查是否有漏标的数据（标注数据的噪音去除）</li>
-</ol>
-</li>
-<li>嵌套实体/多种类别实体</li>
-<li>实体span过长（规则，引入指针网络）</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>还有哪些可以改进的</p>
-<ol>
-<li>一个是可以从embedding方面进行改进</li>
-<li>另一个是嵌套实体/多类别实体的问题解决</li>
-</ol>
-</li>
-<li><p>现有哪些更好的方法吗（新的论文）</p>
-</li>
-</ol>
-<h2 id="重难点"><a href="#重难点" class="headerlink" title="重难点"></a>重难点</h2><h3 id="NER"><a href="#NER" class="headerlink" title="NER"></a>NER</h3><ul>
-<li>基于「词」的NER会受到分词的影响。比如需要预测的句子中，目标词汇被错误划分从而导致结果错误。所以目前NER主要还是基于「字」做NER，然后尽量加入「词」信息</li>
-<li>LSTM接CRF：在decoder时，对每一步的输出h，进行vitterbi编码</li>
-</ul>
-<h3 id="Viterbi"><a href="#Viterbi" class="headerlink" title="Viterbi"></a>Viterbi</h3><p>维特比是一个动态规划算法。<br>我们需要找到最大路径，通常需要求出每一层的每一种路径的概率。<br>但是在维特比算法中，我们每次取当前层，节点个数（即可能的状态个数）的路径（每个节点取，到当前层、当前节点，概率最大的路径），因此可以减少很多运算</p>
-<h3 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h3><ul>
-<li>CRF位条件概率（判别模型）</li>
-<li>HMM是联合概率（生成模型），且有独立假设</li>
-</ul>
-<h3 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice LSTM"></a>Lattice LSTM</h3><p>Lattice LSTM在编码时在相应的字信息处加入了词信息，词信息一样有input, cell state，但是没有hidden state(output)，将词信息的cell state和字信息的cell state进行加权求和，获取新的hidden state的计算数据，并未改变原来的decoder结构和维度，因此后面也可以直接接CRF。并且因为加入了词信息，因此准确率会有提升。<br>SF中，准确率提升2%，但是速度会下降一倍。</p>
-<h3 id="FLAT"><a href="#FLAT" class="headerlink" title="FLAT"></a>FLAT</h3><ul>
-<li>计算了相对位置的四种distance</li>
-<li>使用XLNet中attention score的计算方式，来计算相对距离的attention score</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/15/interview/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/15/interview/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">中文面试自我简介</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -493,20 +206,18 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-19 19:50:18" itemprop="dateModified" datetime="2021-08-19T19:50:18+08:00">2021-08-19</time>
+                <time title="修改时间：2022-03-21 15:51:28" itemprop="dateModified" datetime="2022-03-21T15:51:28+08:00">2022-03-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">面试</span>
-                  </a>
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">工作总结</span></a>
                 </span>
             </span>
 
@@ -523,68 +234,14 @@
       
           <h2 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h2><p>高中毕业后通过武汉大学和拉罗舍尔大学的交流项目去到法国，后来也在法国洛林大学完成了硕士学业，学生期间一直就读数学和统计专业。</p>
 <p>毕业后因为觉得直接回国会很可惜，所以尝试在法国本地就业，之后顺利拿到长居，进入了Sikim公司，也是在这家公司，通过给当地银行做个智能客服的项目，了解到并进入了NLP领域。</p>
-<p>18年回国加入到了顺丰科技，因为有过智能客服的项目经验，所以在顺丰中负责智能客服的NLU模块，这段智能客服经验加深了我对算法和深度模型的理解和落地经验，因为我一直对生成模型比较感兴趣，所以我主动申请了负责闲聊的项目，对生成模型的运行和落地有了了解</p>
-<p>20年加入到vipkid后，期间也继续过对话生成的项目，比如机器翻译，闲聊等等，但是主要负责智能客服的研发，虽然在不同公司都在做智能客服项目，但是幸运的是每次都会丰富和提升自己对对话机器人的了解。比如顺丰里主要负责的是算法的优化和准确率的提升，在vipkid，不仅需要解决算法的问题，也会专注于解决更业务层面的问题，比如DM的设计，模块之间的跳转，对话的设计（一句话多个意图，一段话分开说）等等</p>
-<p>期间当然还做过别的项目，比如主题提取，纠错，或者单纯工程开发的统计系统，但是总体，还是闲聊上对算法的实验相对较多，对对话机器人的项目了解更全面</p>
-<h4 id="自我介绍的目的"><a href="#自我介绍的目的" class="headerlink" title="自我介绍的目的"></a>自我介绍的目的</h4><ul>
-<li>我对当前职位的兴趣</li>
-<li>我的能力是否能够匹配当前职位</li>
-</ul>
-<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：好奇心强，责任心强，抗压能力强，协作沟通能力不错<br>缺点：拖沓，钻研度不够，会因为想要尝试，有时不太分主次，导致浪费很多时间</p>
-<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
-<li>数据如何</li>
-<li>背景如何</li>
-<li>模型如何</li>
-<li>准确率如何</li>
-<li>碰到哪些问题</li>
-<li>怎么解决（trick或者模型）</li>
-<li>为什么这么解决</li>
-<li>效果怎么样</li>
-<li>还有哪些可以改进的</li>
-<li>现有哪些更好的方法吗（新的论文）</li>
-</ol>
-<h4 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h4><p>我的优势：</p>
-<ol>
-<li>学历背景</li>
-<li>数学背景</li>
-<li>4年工作经验</li>
-<li>8年海外生活经验（适应力，学习能力）</li>
-<li>对智能客服了解比较全面</li>
-<li>对生成模型也有了解</li>
-<li>抗压，沟通，协作能力</li>
-<li>好奇心强，勇于实践</li>
-</ol>
-<p>职业能力：</p>
-<ol>
-<li><p>对智能客服的深耕</p>
-</li>
-<li><p>对闲聊很感兴趣，觉得闲聊是以后的重点，所以在进入顺丰后，在坚固智能客服的同时，主动选择了并不是很热门的闲聊（闲聊一定要再读几篇论文，再深耕一下）</p>
-</li>
-<li><p>对智能客服的了解比较全面，先是提高准确率的技术，后来是业务方面处理的技术（如DM，如用户一次说多句话是如何处理的，如一句话有多个意图是如何处理的，等等）</p>
-<p> <a href="https://www.infoq.cn/article/pryrhwq1pj6xkb59gbx6" target="_blank" rel="noopener">为客服构建更加智能的对话机器人：多轮应答时机触发模型</a><br> <a href="https://cloud.tencent.com/developer/news/468354" target="_blank" rel="noopener">人机对话关键技术及挑战</a><br> 文章提到了好几个闲聊重的优化技术，比如learning to start for sequence to sequence,Retrieval-Enhanced Adversarial Training For Neural Response Generation, etc.<br> <a href="http://www.woshipm.com/pd/4133505.html" target="_blank" rel="noopener">任务驱动型人机对话系统设计</a></p>
-</li>
-<li><p>闲聊主要就聊技术</p>
-</li>
-<li><p>可以描述一下每次的变动是为什么，比如为什么毕业后想要留在国外，为什么会从顺丰离职，所以为什么现在会非常希望找到一个比较实践长久的工作等</p>
-</li>
-<li><p>如何在对话设计时，设计的是多次对话拼接到一起然后求他的意图，那么</p>
-<ol>
-<li>在训练时，如何解决训练的样本问题（人工可以标注，但是样本不是很多，SF为5000-10000条）</li>
-<li>训练时不会有不收敛的问题吗？因为同样一部分的语句在不同的类别中出现过（并且是肯定不能使用CNN这种对序列信息没有考虑的模型） </li>
-</ol>
-</li>
-<li><p>抗压能力：LP工作情况统计的项目</p>
-</li>
-</ol>
-<h2 id="明天"><a href="#明天" class="headerlink" title="明天"></a>明天</h2><ol start="5">
-<li>写下客服/对话机器人的面试文章</li>
-<li>或者整理下智能客服的面试文章<ol>
-<li>Sbert</li>
-<li>学习曲线</li>
-</ol>
-</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/15/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -599,46 +256,50 @@
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/15/french/Preparation-pour-l-entretien-francais/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="fr">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/15/Francais/Preparation-pour-l-entretien-francais/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="记录工作，记录生活">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
+      <meta itemprop="name" content="panna cotta">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/15/french/Preparation-pour-l-entretien-francais/" class="post-title-link" itemprop="url">Préparation pour l'entretien français</a>
-        </h1>
+            <a href="/2021/08/15/Francais/Preparation-pour-l-entretien-francais/" class="post-title-link" itemprop="url">Préparation pour l'entretien français</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-08-15 17:22:35 / 修改时间：17:56:27" itemprop="dateCreated datePublished" datetime="2021-08-15T17:22:35+08:00">2021-08-15</time>
+              <time title="创建时间：2021-08-15 17:22:35" itemprop="dateCreated datePublished" datetime="2021-08-15T17:22:35+08:00">2021-08-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-19 22:28:15" itemprop="dateModified" datetime="2022-03-19T22:28:15+08:00">2022-03-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Francais/" itemprop="url" rel="index">
-                    <span itemprop="name">Français</span>
-                  </a>
+                  <a href="/categories/Francais/" itemprop="url" rel="index"><span itemprop="name">Français</span></a>
                 </span>
             </span>
 
@@ -659,7 +320,7 @@
 <p>Phrase de préambule : Je m’excuse si mon français est un peu rouillé. </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/08/15/french/Preparation-pour-l-entretien-francais/#more" rel="contents">
+              <a class="btn" href="/2021/08/15/Francais/Preparation-pour-l-entretien-francais/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -679,31 +340,31 @@
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/04/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="记录工作，记录生活">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
+      <meta itemprop="name" content="panna cotta">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           
             <a href="/2020/03/04/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">二叉树</a>
-        </h1>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -711,20 +372,18 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-15 17:57:29" itemprop="dateModified" datetime="2021-08-15T17:57:29+08:00">2021-08-15</time>
+                <time title="修改时间：2022-03-19 12:51:04" itemprop="dateModified" datetime="2022-03-19T12:51:04+08:00">2022-03-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
                 </span>
             </span>
 
@@ -740,27 +399,6 @@
 
       
           <h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="二叉树-1"><a href="#二叉树-1" class="headerlink" title="二叉树"></a>二叉树</h4><p>在计算机科学中，二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”（left subtree）和“右子树”（right subtree）。二叉树常被用于实现二叉查找树和二叉堆。</p>
-<h4 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h4><p>二叉查找树（Binary Search Tree），（又：二叉搜索树，二叉排序树）它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上<strong>所有结点</strong>的值<strong>均小于</strong>它的根结点的值； 若它的右子树不空，则右子树上<strong>所有结点</strong>的值<strong>均大于</strong>它的根结点的值； 它的左、右子树也分别为二叉查找树。</p>
-<h4 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h4><h3 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h3><h4 id="遍历介绍"><a href="#遍历介绍" class="headerlink" title="遍历介绍"></a>遍历介绍</h4><p>二叉树的遍历分<strong>广度优先遍历</strong>和<strong>深度优先遍历</strong></p>
-<p><img src="/images/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A4%BA%E4%BE%8B%E5%9B%BE.jpg" alt="二叉树"></p>
-<ol>
-<li><p>广度优先遍历(层次遍历)</p>
-<p>结果为：abcdfeg</p>
-</li>
-<li><p>深度优先遍历<br>深度优先遍历有三种方法：前序遍历，中序遍历和后序遍历</p>
-<ul>
-<li><p>前序遍历：abdefgc</p>
-<p>根节点 -&gt; 左子树 -&gt; 右子树</p>
-</li>
-<li><p>中序遍历：debgfac</p>
-<p>左子树 -&gt; 根节点 -&gt; 右子树</p>
-</li>
-<li><p>后序遍历：edgfbca</p>
-<p>左子树 -&gt; 右子树 -&gt; 根节点</p>
-</li>
-</ul>
-</li>
-</ol>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/03/04/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/#more" rel="contents">
@@ -783,31 +421,31 @@
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/MacBook/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="记录工作，记录生活">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
+      <meta itemprop="name" content="panna cotta">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/19/MacBook/" class="post-title-link" itemprop="url">MacBook</a>
-        </h1>
+            <a href="/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">算法刷题总结</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -815,20 +453,18 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-06 11:36:57" itemprop="dateModified" datetime="2020-05-06T11:36:57+08:00">2020-05-06</time>
+                <time title="修改时间：2022-03-21 15:52:17" itemprop="dateModified" datetime="2022-03-21T15:52:17+08:00">2022-03-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index">
-                    <span itemprop="name">周边辅助</span>
-                  </a>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
                 </span>
             </span>
 
@@ -843,97 +479,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h4><p>Xcode更新后，可能VScode不能用，显示<code>java</code>相关问题，这时可以选择</p>
-<ol>
-<li>打开<code>launch.json</code>文件</li>
-<li>然后<code>add configuration</code></li>
-<li>选择<code>python</code></li>
-<li>删除<code>json</code>文件中关于<code>java</code>的语言设置，只保留<code>python</code>的</li>
+          <ol>
+<li>如果有搜索类循环，可以用dict来储存，这样搜索时间为O(1)，如果不行，可以考虑二叉树搜索，二叉树搜索时间小于O(n)<ol>
+<li>如找重复的数值</li>
+<li>小于&#x2F;大于某个值的数值等</li>
 </ol>
-<p>这样就OK了</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/Markdown%E8%AF%AD%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/Markdown%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Markdown语法</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-02 12:07:43" itemprop="dateModified" datetime="2020-03-02T12:07:43+08:00">2020-03-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index">
-                    <span itemprop="name">周边辅助</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><ol>
-<li>安装插件<code>Markdown All in One</code>，包含了最常用的<code>Markdown</code>优化。</li>
-<li>安装插件<code>Markdown Preview Github Styling</code>，专门针对<code>github pages</code>的预览，功能有限，但是正是我需要的</li>
-<li>如果不是针对<code>github</code>的预览，则可以安装<code>Markdown Preview Enhanced</code>，这个插件应用更普遍</li>
+</li>
 </ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/19/Markdown%E8%AF%AD%E6%B3%95/#more" rel="contents">
+              <a class="btn" href="/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -953,31 +508,31 @@
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/python%E7%82%B9%E6%BB%B4/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%95%B0%E5%AD%A6/AM-softmax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="记录工作，记录生活">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
+      <meta itemprop="name" content="panna cotta">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/19/python%E7%82%B9%E6%BB%B4/" class="post-title-link" itemprop="url">python的点滴</a>
-        </h1>
+            <a href="/2020/02/19/%E6%95%B0%E5%AD%A6/AM-softmax/" class="post-title-link" itemprop="url">AM-softmax</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -985,20 +540,18 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-15 17:45:38" itemprop="dateModified" datetime="2021-08-15T17:45:38+08:00">2021-08-15</time>
+                <time title="修改时间：2022-03-21 15:54:28" itemprop="dateModified" datetime="2022-03-21T15:54:28+08:00">2022-03-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index">
-                    <span itemprop="name">周边辅助</span>
-                  </a>
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
                 </span>
             </span>
 
@@ -1013,13 +566,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="一些函数的使用"><a href="#一些函数的使用" class="headerlink" title="一些函数的使用"></a>一些函数的使用</h2><h3 id="找到当前index在数组位置中对称的位置"><a href="#找到当前index在数组位置中对称的位置" class="headerlink" title="找到当前index在数组位置中对称的位置"></a>找到当前index在数组位置中对称的位置</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">index = len(nums)//<span class="number">2</span></span><br><span class="line">print(index) <span class="comment"># 3</span></span><br><span class="line">print(~index) <span class="comment"># -4</span></span><br><span class="line">median = (nums[index] + nums[~index])/<span class="number">2</span></span><br><span class="line">print(median) <span class="comment"># 3.5</span></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="基本数据类型的时间复制度"><a href="#基本数据类型的时间复制度" class="headerlink" title="基本数据类型的时间复制度"></a>基本数据类型的时间复制度</h3><p><img src="/images/python%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A61.png" alt="图片一"></p>
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>基于已有的L-softmax, A-softmax，作者提出了AM-softmax，一个适用于分类模型的loss计算方法。主要用于增加类间距离，减小类内距离</p>
+<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><h2 id="反向传播求导简单"><a href="#反向传播求导简单" class="headerlink" title="反向传播求导简单"></a>反向传播求导简单</h2><p>反向传播对x求导结果为1</p>
+<h2 id="公式更直观"><a href="#公式更直观" class="headerlink" title="公式更直观"></a>公式更直观</h2><p>相对于L-softmax，AM-softmax的参数简单直观</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/19/python%E7%82%B9%E6%BB%B4/#more" rel="contents">
+              <a class="btn" href="/2020/02/19/%E6%95%B0%E5%AD%A6/AM-softmax/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1039,237 +591,10 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">使用hexo搭建博客</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-15 17:19:16" itemprop="dateModified" datetime="2021-08-15T17:19:16+08:00">2021-08-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index">
-                    <span itemprop="name">周边辅助</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Hexo-github"><a href="#Hexo-github" class="headerlink" title="Hexo + github"></a>Hexo + github</h2><h3 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h3><ol>
-<li><p><code>github</code>上创建仓库，仓库名必须严格是<code>username.github.io</code></p>
-</li>
-<li><p>创建本地写博客的hexo文件夹MyHexo，然后进入文件夹，执行命令行<code>hexo init</code>，如果报错，会提示输入<code>npm install hexo --save</code></p>
-</li>
-<li><p>进入根目录下的<code>_config.yml</code>，增加</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:username&#x2F;username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行命令<code>hexo g</code>，如果报错，一般是因为没有安装<code>git</code>，执行<code>npm install hexo-deployer-git --save</code>安装<code>hexo</code>下的<code>git</code>，然后重新<code>hexo g</code></p>
-</li>
-<li><p>执行<code>hexo d</code>，如果没有关联<code>git</code>和<code>hexo</code>，会自动提醒输入</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Username for &#39;https:&#x2F;&#x2F;github.com&#39;:</span><br><span class="line">Password for &#39;https:&#x2F;&#x2F;github.com&#39;:</span><br></pre></td></tr></table></figure>
-<p> 这里我用了<code>ssh</code>钥匙。</p>
-<ul>
-<li>执行命令<code>ssh-keygen -t rsa -C github_de_email@gmail.com</code></li>
-<li>进入<code>~/.ssh</code>复制文件<code>id_rsa.pub</code>里的公匙，进入到<code>github</code>里的<code>setting</code>，进入<code>SSH and GPG keys</code>，新建SSH钥匙<code>new SSH key</code>，粘贴公匙，<code>title</code>可以随意取或者不取，然后确定</li>
-<li>运行<code>ssh -T git@github.com</code>，如果看到<code>Hi username! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code>证明SSH连接成功。</li>
-</ul>
-</li>
-<li><p>自己博客的域名为 <a href="https://shijiaod.github.io/" target="_blank" rel="noopener">https://shijiaod.github.io/</a><br>有时<code>hexo d</code>后页面没有变化，可以尝试重启电脑…</p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/19/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗娇的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">数学公式</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-12 10:09:36" itemprop="dateModified" datetime="2020-05-12T10:09:36+08:00">2020-05-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">数学公式</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="最优法"><a href="#最优法" class="headerlink" title="最优法"></a>最优法</h1><h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><p>牛顿法迭代法解非线性方程，是把非线性方程$f(x)=0$线性化的一种近似方法。把$f(x)$在点$x_0$的某领域内展开成泰勒级数$f(x)=f(x_0)+f^{‘}(x_0)(x-x_0)+ \frac{f^{‘’}(x_0)(x-x_0)^2}{2!}+…+ \frac{f^{n}(x_0)(x-x_0)^n}{n!}+R_n(x)$，取其线性部分，即展开式的前两项$f(x_0)+f^{‘}(x_0)(x-x_0)$，令其等于0，以此作为非线性方程$f(x)=0$的近似方程，若$f^{‘}(x_0) \neq 0$，则解为$x_1=x_0- \frac {f(x_0)} {f^{‘}(x_0)}$，这样我们得到牛顿迭代法的一个迭代关系式</p>
-<p>Python代码实例展示求解方程$(x-3)^3=0$的根</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (x<span class="number">-3</span>)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fd</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*(x<span class="number">-3</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">newtonMethod</span><span class="params">(n, assum)</span>:</span></span><br><span class="line">    time = n</span><br><span class="line">    x = assum</span><br><span class="line">    Next = <span class="number">0</span></span><br><span class="line">    A = f(x)</span><br><span class="line">    B = fd(x)</span><br><span class="line">    print(<span class="string">'A = '</span> + str(A) + <span class="string">',B = '</span> + str(B) + <span class="string">',time = '</span> + str(time))</span><br><span class="line">    <span class="keyword">if</span> f(x) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> time, x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        Next = x - A/B</span><br><span class="line">        print(<span class="string">'Next x = '</span> + str(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 1.</span></span><br><span class="line">    <span class="comment">## 这里设置的迭代条件不是当前值和最优值之间的距离，而是相比于上一个值的变化要小于某个值</span></span><br><span class="line">    <span class="comment">## 但我们要求的就是最优值，所以我们并不知道最优值的具体值，不能的到他们的距离</span></span><br><span class="line">    <span class="comment">## 所以要通过每次A的变化，来估计最优值</span></span><br><span class="line">    <span class="keyword">if</span> A - f(Next) &lt; <span class="number">1e-6</span>: </span><br><span class="line">        print(<span class="string">"Meet f(x) = 0, x = "</span> + str(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 2.</span></span><br><span class="line">    <span class="comment"># ## 所以这里其实是不是也可以通过x的变化，来估计最优值？</span></span><br><span class="line">    <span class="comment"># if A/B &lt; 1e-4:</span></span><br><span class="line">    <span class="comment">#     print("Meet f(x) = 0, x = " + str(Next))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## 3.</span></span><br><span class="line">    <span class="comment"># ## 这里当然也能用 if time &gt; m 来设置跳出循环的条件，但是相对 A - f(Next) 得到的值会更不精确一些</span></span><br><span class="line">    <span class="comment"># if time &gt; 10:</span></span><br><span class="line">    <span class="comment">#     print("Meet f(x) = 0, x = " + str(Next))</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> newtonMethod(n+<span class="number">1</span>, Next)</span><br><span class="line"></span><br><span class="line">newtonMethod(<span class="number">0</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="其它迭代算法"><a href="#其它迭代算法" class="headerlink" title="其它迭代算法"></a>其它迭代算法</h2><h3 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h3><p>最大公约数：Greatest Common Divisor(GCD)</p>
-<h4 id="算法简介"><a href="#算法简介" class="headerlink" title="算法简介"></a>算法简介</h4><p>欧几里德算法是用来求两个正整数最大公约数的算法。是由古希腊数学家欧几里德在其著作《The Elements》中最早描述了这种算法,所以被命名为欧几里德算法。<br>扩展欧几里德算法可用于RSA加密等领域。</p>
-<p>假如需要求 1997 和 615 两个正整数的最大公约数,用欧几里德算法，是这样进行的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1997 &#x2F; 615 &#x3D; 3 (余 152)</span><br><span class="line">615 &#x2F; 152 &#x3D; 4(余7)</span><br><span class="line">152 &#x2F; 7 &#x3D; 21(余5)</span><br><span class="line">7 &#x2F; 5 &#x3D; 1 (余2)</span><br><span class="line">5 &#x2F; 2 &#x3D; 2 (余1)</span><br><span class="line">2 &#x2F; 1 &#x3D; 2 (余0)</span><br></pre></td></tr></table></figure>
-<p>至此，最大公约数为1<br>以除数和余数反复做除法运算，当余数为 0 时，取当前算式除数为最大公约数，所以就得出了 1997 和 615 的最大公约数 1。</p>
-<h4 id="计算证明"><a href="#计算证明" class="headerlink" title="计算证明"></a>计算证明</h4><p>其计算原理依赖于下面的定理：</p>
-<p>定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数。最大公约数（Greatest Common Divisor）缩写为GCD。<br>$gcd(a,b) = gcd(b,a \mod b)$ (不妨设$a&gt;b$ 且$r=a \mod b$ ,$r$不为$0$)</p>
-<h5 id="证法一"><a href="#证法一" class="headerlink" title="证法一"></a>证法一</h5><ul>
-<li><p>正</p>
-<ul>
-<li>$a$可以表示成$a = kb + r$（$a$，$b$，$k$，$r$皆为正整数，且$r&lt;b$），则$r = a \mod b$</li>
-<li>假设$d$是$a$,$b$的一个公约数，记作$d|a$,$d|b$，即$a$和$b$都可以被$d$整除。</li>
-<li>而$r = a - kb$，两边同时除以$d$，$r/d=a/d-kb/d=m$，由等式右边可知$m$为整数，因此$d|r$</li>
-<li>因此$d$也是$b$,$a \mod b$的公约数</li>
-</ul>
-</li>
-<li><p>反</p>
-<ul>
-<li>假设$d$是$b$,$a \mod b$的公约数, 则$d|b$,$d|(a-k*b)$,$k$是一个整数。</li>
-<li>进而$d|a$，因此$d$也是$a$,$b$的公约数</li>
-<li>因此$(a,b)$和$(b,a \mod b)$的公约数是一样的，其最大公约数也必然相等</li>
-</ul>
-</li>
-<li><p>得证</p>
-</li>
-</ul>
-<h5 id="证法二"><a href="#证法二" class="headerlink" title="证法二"></a>证法二</h5><p>假设c = gcd(a,b),则存在m,n，使a = mc, b = nc;<br>令r = a mod b，即存在k，使r = a-kb = mc - knc = (m-kn)c;<br>故gcd(b,a mod b) = gcd(b,r) = gcd(nc,(m-kn)c) = gcd(n,m-kn)*c;<br>假设d = gcd(n,m-kn), 则存在x,y, 使n = xd, m-kn = yd; 故m = yd+kn = yd+kxd = (y+kx)d;<br>故有a = mc = (y+kx)dc, b = nc = xdc; 可得 gcd(a,b) = gcd((y+kx)dc,xdc) = dc;<br>由于gcd(a,b) = c, 故d = 1;<br>即gcd(n,m-kn) = 1, 故可得gcd(b,a mod b) = c;<br>故得证gcd(a,b) = gcd(b,a mod b).<br>注意:两种方法是有区别的。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>自己写的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    c = a%b</span><br><span class="line">    <span class="keyword">return</span> print(b) <span class="keyword">if</span> c==<span class="number">0</span> <span class="keyword">else</span> gcd(b, c)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
-
-<p>百度百科上的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> a != <span class="number">0</span>:</span><br><span class="line">        a, b = b % a, a</span><br><span class="line">    <span class="keyword">return</span> print(b)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
-
-<h4 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h4><p>扩展欧几里得算法（英语：Extended Euclidean algorithm）是欧几里得算法（又叫辗转相除法）的扩展。已知整数$a$、$b$，扩展欧几里得算法可以在求得$a$、$b$的最大公约数的同时，能找到整数$x$、$y$（其中一个很可能是负数），使它们满足贝祖等式</p>
-<p>$ax+by=gcd(a,b)$</p>
-<p>如果a是负数，可以把问题转化成$|a|(-x)+by=gcd(|a|,b)$，然后令$x^{‘}=(-x)$。</p>
-<p>扩展欧几里得算法可以用来计算模反元素(也叫模逆元)，而模反元素在RSA加密算法中有举足轻重的地位。</p>
-<h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ext_euclid</span><span class="params">(a, b)</span>:</span>     </span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:         </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>, <span class="number">0</span>, a     </span><br><span class="line">    <span class="keyword">else</span>:         </span><br><span class="line">        x, y, q = ext_euclid(b, a % b) </span><br><span class="line">        <span class="comment"># q = gcd(a, b) = gcd(b, a%b)   </span></span><br><span class="line"></span><br><span class="line">        <span class="comment">## 这一行怎么求的，有时间可以论证一下      </span></span><br><span class="line">        x, y = y, (x - (a // b) * y)     </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x, y, q</span><br></pre></td></tr></table></figure>
-
-<h3 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……在数学上，斐波那契数列以如下被以递推的方法定义：F(1)=1，F(2)=1, F(n)=F(n - 1)+F(n - 2)（n ≥ 3，n ∈ N*）在现代物理、准晶体结构、化学等领域，斐波纳契数列都有直接的应用，为此，美国数学会从 1963 年起出版了以《斐波纳契数列季刊》为名的一份数学杂志，用于专门刊载这方面的研究成果。</p>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#################### 输出第n个斐波那契数 ####################</span></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci1</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment">## 这种方法，每次都要嵌套循环，不能记录上一次的结果之间用，所以时间复杂度非常高！！</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(n)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>)</span><br><span class="line">    <span class="keyword">return</span> fib(n)</span><br><span class="line"></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci2</span><span class="params">(n)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= n:</span><br><span class="line">        l.append(l[i<span class="number">-1</span>]+l[i<span class="number">-2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l[i<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(fibonacci1(<span class="number">20</span>))</span><br><span class="line">print(fibonacci2(<span class="number">20</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#################### 输出前n个斐波那契数 ####################</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">(n)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; n:</span><br><span class="line">        l.append(l[i<span class="number">-1</span>]+l[i<span class="number">-2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line">print(fibonacci(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
-
-<p>可以尝试用代码画出斐波那契函数的曲线 斐波那契弧线<br><img src="/public/images/image/fibonacci.jpg" alt="fibonacci"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-  </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1279,7 +604,7 @@
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
@@ -1330,31 +655,46 @@
     <img class="site-author-image" itemprop="image" alt="Shijiao DENG"
       src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">Shijiao DENG</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">记录工作，记录生活</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dengshijiao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dengshijiao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:d.shijiao@gmail.com" title="E-Mail → mailto:d.shijiao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -1371,18 +711,62 @@
     <footer class="footer">
       <div class="footer-inner">
         
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>简体中文</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="">
+      
+        <option value="zh-CN" data-href="/page/2/index.html" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/page/2/index.html" selected="">
+          English
+        </option>
+      
+        <option value="fr" data-href="/fr/page/2/index.html" selected="">
+          Français
+        </option>
+      
+    </select>
+  </div>
+
+        
 
 <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-coffee"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Shijiao DENG</span>
 </div>
 
         
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -1397,12 +781,10 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
 
 <script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
 
 
 <script src="/js/schemes/pisces.js"></script>
@@ -1410,6 +792,65 @@
 
 <script src="/js/next-boot.js"></script>
 
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
@@ -1418,8 +859,6 @@
 
 
 
-  
-<script src="/js/local-search.js"></script>
 
 
 
@@ -1431,8 +870,7 @@
 
 
 
-
-
+    <div id="pjax">
   
 
   
@@ -1441,8 +879,16 @@
 <script>
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
         tags: 'ams'
       },
       options: {
@@ -1486,5 +932,6 @@
 
   
 
+    </div>
 </body>
 </html>
