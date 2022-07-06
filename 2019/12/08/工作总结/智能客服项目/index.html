@@ -545,11 +545,29 @@
 <li>更多的数据和更长的训练时间</li>
 </ul>
 <h6 id="为什么用Transformer？Transformer相比于RNN和CNN有什么异同？"><a href="#为什么用Transformer？Transformer相比于RNN和CNN有什么异同？" class="headerlink" title="为什么用Transformer？Transformer相比于RNN和CNN有什么异同？"></a>为什么用Transformer？Transformer相比于RNN和CNN有什么异同？</h6><ul>
-<li>Transformer和CNN都不存在序列依赖问题，可以并行计算（计算能力不是问题？？），但是Transformer相对于CNN保留了序列关系，他有RNN的优点，却没有RNN计算能力相对差的缺点</li>
-<li>CNN中卷基层无法捕捉远距离特征（依赖于卷积层的设定），但是Transformer中，self-attention可以获取前后文所有词与当前词的相关性</li>
-<li>RNN和Transformer都可以解决句子中的依赖问题（有点同上面提到的序列问题相似），而是Transformer做的更好，他可以得到句子中每个单词间的相关性，并且一步到位</li>
-<li>Transformer的缺点是，当输入文本特别长的时候，他的计算量会飞速增长。</li>
-<li>Transformer中的self-attention不存在梯度消失的问题，所以可以更好的看到更远距离的信息</li>
+<li><pre><code>Transformer和CNN都不存在序列依赖问题，可以并行计算（计算能力不是问题？？），但是Transformer相对于CNN保留了序列关系，他有RNN的优点，却没有RNN计算能力相对差的缺点
+</code></pre>
+<ul>
+<li><pre><code>CNN中卷基层无法捕捉远距离特征（依赖于卷积层的设定），但是Transformer中，self-attention可以获取前后文所有词与当前词的相关性
+</code></pre>
+<ul>
+<li><pre><code>RNN和Transformer都可以解决句子中的依赖问题（有点同上面提到的序列问题相似），而是Transformer做的更好，他可以得到句子中每个单词间的相关性，并且一步到位
+</code></pre>
+<ul>
+<li><pre><code>Transformer的缺点是，当输入文本特别长的时候，他的计算量会飞速增长。
+</code></pre>
+<ul>
+<li><pre><code>Transformer中的self-attention不存在梯度消失的问题，所以可以更好的看到更远距离的信息
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h6 id="Viterbi算法"><a href="#Viterbi算法" class="headerlink" title="Viterbi算法"></a>Viterbi算法</h6><h5 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice+LSTM"></a>Lattice+LSTM</h5><p>NER中一般采用BIEO标注的方法，这种方法一般需要把字一个个的分开标注，所以用的是字向量。<br>字向量：</p>
 <ul>
@@ -765,7 +783,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

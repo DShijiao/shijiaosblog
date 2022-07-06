@@ -1,44 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>我是测试图片的</title>
-    <url>/2022/07/06/%E6%88%91%E6%98%AF%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E7%9A%84/</url>
-    <content><![CDATA[<h1 id="我是测试图片的"><a href="#我是测试图片的" class="headerlink" title="我是测试图片的"></a>我是测试图片的</h1><p>我是专门测试图片的</p>
-<p><img src="/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png" alt="我是图片"></p>
-<img src="/2022/07/06/%E6%88%91%E6%98%AF%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E7%9A%84/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png" class="" title="我是图片">
-
-<p>上面图片显示了吗</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Préparation pour l&#39;entretien français</title>
-    <url>/2021/08/15/Francais/Preparation-pour-l-entretien-francais/</url>
-    <content><![CDATA[<h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
-<p>La partie de Présentation a duré totalement 7min30 en oral.</p>
-</blockquote>
-<p>Phrase de préambule : Je m’excuse si mon français est un peu rouillé. </p>
-<span id="more"></span>
-
-<h4 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h4><p>En 2007, j’ai passé en Chine mon bac, appréciant la logique des mathématiques et étant performante sur ce domaine j’ai commencé des études scientifiques à l’université de Wuhan et j’y ai également appris des bases de Français. J’ai réalisé à Wuhan un Bac+2 et j’ai ensuite choisi de poursuivre mes études en France par une licence de mathématiques en 3 ans (la France a une bonne réputation dans ce domaine et j’avais envie de découvrir un nouveau pays et d’apprendre une nouvelle langue). </p>
-<p>Même si j’étais à l’aise en mathématiques, je trouvais le domaine trop théorique.  Je cherchais un domaine qui allie la logique des mathématiques et le coté très concret de l’informatique. J’ai appris qu’un master à Nancy combinait les deux et je suis donc partie là-bas. J’ai réalisé un stage chez Vize une start-up locale où j’ai découvert plus précisément les travaux liés à l’intelligence artificielle et de l’utilisation de la donnée (big data).</p>
-<h4 id="Carriere"><a href="#Carriere" class="headerlink" title="Carriere"></a>Carriere</h4><p>À la sortie de mon master en 2016, je suis venu travailler en tant que Data à Reims à SIKIM une autre PME spécialisée sur le domaine. J’y ai travaillé un peu plus de deux ans. L’ambiance était très bonne au sein de la petite équipe, j’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une Caisse régionale du Crédit Agricole. Techniquement néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité était rares tandis que je trouvais que je n’avais pas assez de travail ne serait ce que pour occuper pleinement mes journées. J’ai ensuite été contactée par une entreprise chinoise SF Express, c’était un grand groupe, le 4ème logisticien mondial, qui m’a proposé un poste à Shenzhen avec un meilleur salaire et davantage de responsabilité. Cela me permettait également de me rapprocher de ma famille. Au sein de l’entreprise j’ai pu développer davantage mes compétences techniques [Donner un ou deux exemples ?].<br>Avec projet Chabot de service client (qui serve à répondre des questions à nos clients), j’étais responsable de la module NLU (Compréhension du langage naturel), mise en l’œuvre des algorithmes de classification qui permettent au Chatbot de comprendre l’intention du client, des algorithmes de REN(reconnaissance d’entités nommés) qui permettent au Chatbot de reconnaissir les entités nommées, des algorithme, comme BERT, qui peut créer automatiquement plus de données pour que les algorithmes puissent avoir une meilleur performance.<br>Avec le Chit Chat Chatbot (une intelligence artificielle (IA) de type dialogueur pour apporter un certain soutien psychologique), j’ai pu mis en l’œuvre le modèle de NLG (Génération Automatique de Langage, il consiste à générer automatiquement du texte pour adresser des réponses personnalisées aux utilisateurs) en impliquant l’algorithme de génération de réponses, des algorithmes pour évaluer la sémantique du texte, des algorithme pour diversifier les réponses, etc.</p>
-<p>En raison de changements dans la structure organisationnelle de l’entreprise, j’ai quitté SF Express et rejoint à VIPKID en 2020. En tant qu’un Data Scientist, la formation de mathématiques ne m’a pas offert un grand avantage de coder, mais grâce à mes expériences dans VIPKID, j’ai pu approfondit ma capacité de coder surtout en réalisant un system de statistique à temps réel. Il recueillit des données de travail des employés sous de nombreux aspects, après le traitement statistique, on rend compte aux dirigent de tous les niveaux de l’entreprise avec une certaine fréquence chaque jour. Mes expériences dans VIPKID m’ont aussi entrainé ma capacité de management, et m’a permis d’avoir une vue complète de Chatbot. Avec trois autres collègues, on a réalisé une plateforme de Chatbot de A à Z, y inclus FAQ, NLU, Task Management et Dialogue Management, qui s’est appliqué aux services clients de toutes les fonctions (totalement 7) dans l’entreprise. Le taux de traitement par cette plateforme atteint à 79.6 (environ 10 milles de session par jour en total).<br>J’ai aussi pu approfondi ma capacité en NLG en réalisant un modèle de traduction automatique adapté aux besoins de l’entreprise. Il économise 10 milles euros par mois pour l’entreprise.</p>
-<h4 id="Situation-mnt"><a href="#Situation-mnt" class="headerlink" title="Situation mnt"></a>Situation mnt</h4><p>J’ai voulu revenir en France le moment que j’ai quitté SF Express, mais c’était pas la bonne occasion à cause du COVID 19. Et maintenant, en raison des politiques du pays vers des entreprise d’éducation et la diffusion de la vaccination (l’amélioration de COVID 19), je pense que c’est le bon moment de revenir en France où je planifie à résider une longue durée.</p>
-<p>A ce jour, j’ai accumulé 5 ans d’expériences dans le domaine de NLP, en particulier dans dialogue system et NLG. J’aimerai bien pouvoir avoir l’opportunité de connaître et d’appliquer des connaissances des autres domaine relative tels que CV (vision par l’ordinateur), l’apprentissage multimoda, basé sur mes compétences de NLP.</p>
-<p><font color="#989898" size=4> Les informations dans le monde réel se présentent généralement sous différentes modalités. Par exemple, les images sont généralement associées à des balises et à des explications textuelles ; les textes contiennent des images pour exprimer plus clairement l’idée principale de l’article. Différentes modalités sont caractérisées par des propriétés statistiques très différentes. Par exemple, les images sont généralement représentées sous forme d’intensités de pixels ou de sorties d’extracteurs de caractéristiques, tandis que les textes sont représentés sous forme de vecteurs de nombre de mots discrets. En raison des propriétés statistiques distinctes des différentes ressources d’information, il est très important de découvrir la relation entre les différentes modalités. L’apprentissage est un bon modèle pour représenter les représentations conjointes de différentes modalités. Le modèle d’apprentissage multimodal est également capable de combler la modalité manquante compte tenu de celles observées. Le modèle d’apprentissage multimodal combine deux machines de Boltzmann profondes correspondant chacune à une modalité. Une couche cachée supplémentaire est placé au-dessus des deux machines Boltzmann pour donner la représentation commune. </font></p>
-<h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><h3 id="Chatbot"><a href="#Chatbot" class="headerlink" title="Chatbot"></a>Chatbot</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
-<h3 id="Chit-Chat"><a href="#Chit-Chat" class="headerlink" title="Chit Chat"></a>Chit Chat</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
-<h3 id="Chercher-top-20-questions-a-l’entretien"><a href="#Chercher-top-20-questions-a-l’entretien" class="headerlink" title="Chercher top 20 questions à l’entretien"></a>Chercher top 20 questions à l’entretien</h3>]]></content>
-      <categories>
-        <category>Français</category>
-      </categories>
-      <tags>
-        <tag>préparation</tag>
-        <tag>entretien</tag>
-        <tag>français</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>二叉树</title>
     <url>/2020/03/04/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="二叉树-1"><a href="#二叉树-1" class="headerlink" title="二叉树"></a>二叉树</h4><p>在计算机科学中，二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”（left subtree）和“右子树”（right subtree）。二叉树常被用于实现二叉查找树和二叉堆。</p>
@@ -126,6 +88,34 @@
       </tags>
   </entry>
   <entry>
+    <title>Préparation pour l&#39;entretien français</title>
+    <url>/2021/08/15/Francais/Preparation-pour-l-entretien-francais/</url>
+    <content><![CDATA[<h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
+<p>La partie de Présentation a duré totalement 7min30 en oral.</p>
+</blockquote>
+<p>Phrase de préambule : Je m’excuse si mon français est un peu rouillé. </p>
+<span id="more"></span>
+
+<h4 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h4><p>En 2007, j’ai passé en Chine mon bac, appréciant la logique des mathématiques et étant performante sur ce domaine j’ai commencé des études scientifiques à l’université de Wuhan et j’y ai également appris des bases de Français. J’ai réalisé à Wuhan un Bac+2 et j’ai ensuite choisi de poursuivre mes études en France par une licence de mathématiques en 3 ans (la France a une bonne réputation dans ce domaine et j’avais envie de découvrir un nouveau pays et d’apprendre une nouvelle langue). </p>
+<p>Même si j’étais à l’aise en mathématiques, je trouvais le domaine trop théorique.  Je cherchais un domaine qui allie la logique des mathématiques et le coté très concret de l’informatique. J’ai appris qu’un master à Nancy combinait les deux et je suis donc partie là-bas. J’ai réalisé un stage chez Vize une start-up locale où j’ai découvert plus précisément les travaux liés à l’intelligence artificielle et de l’utilisation de la donnée (big data).</p>
+<h4 id="Carriere"><a href="#Carriere" class="headerlink" title="Carriere"></a>Carriere</h4><p>À la sortie de mon master en 2016, je suis venu travailler en tant que Data à Reims à SIKIM une autre PME spécialisée sur le domaine. J’y ai travaillé un peu plus de deux ans. L’ambiance était très bonne au sein de la petite équipe, j’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une Caisse régionale du Crédit Agricole. Techniquement néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité était rares tandis que je trouvais que je n’avais pas assez de travail ne serait ce que pour occuper pleinement mes journées. J’ai ensuite été contactée par une entreprise chinoise SF Express, c’était un grand groupe, le 4ème logisticien mondial, qui m’a proposé un poste à Shenzhen avec un meilleur salaire et davantage de responsabilité. Cela me permettait également de me rapprocher de ma famille. Au sein de l’entreprise j’ai pu développer davantage mes compétences techniques [Donner un ou deux exemples ?].<br>Avec projet Chabot de service client (qui serve à répondre des questions à nos clients), j’étais responsable de la module NLU (Compréhension du langage naturel), mise en l’œuvre des algorithmes de classification qui permettent au Chatbot de comprendre l’intention du client, des algorithmes de REN(reconnaissance d’entités nommés) qui permettent au Chatbot de reconnaissir les entités nommées, des algorithme, comme BERT, qui peut créer automatiquement plus de données pour que les algorithmes puissent avoir une meilleur performance.<br>Avec le Chit Chat Chatbot (une intelligence artificielle (IA) de type dialogueur pour apporter un certain soutien psychologique), j’ai pu mis en l’œuvre le modèle de NLG (Génération Automatique de Langage, il consiste à générer automatiquement du texte pour adresser des réponses personnalisées aux utilisateurs) en impliquant l’algorithme de génération de réponses, des algorithmes pour évaluer la sémantique du texte, des algorithme pour diversifier les réponses, etc.</p>
+<p>En raison de changements dans la structure organisationnelle de l’entreprise, j’ai quitté SF Express et rejoint à VIPKID en 2020. En tant qu’un Data Scientist, la formation de mathématiques ne m’a pas offert un grand avantage de coder, mais grâce à mes expériences dans VIPKID, j’ai pu approfondit ma capacité de coder surtout en réalisant un system de statistique à temps réel. Il recueillit des données de travail des employés sous de nombreux aspects, après le traitement statistique, on rend compte aux dirigent de tous les niveaux de l’entreprise avec une certaine fréquence chaque jour. Mes expériences dans VIPKID m’ont aussi entrainé ma capacité de management, et m’a permis d’avoir une vue complète de Chatbot. Avec trois autres collègues, on a réalisé une plateforme de Chatbot de A à Z, y inclus FAQ, NLU, Task Management et Dialogue Management, qui s’est appliqué aux services clients de toutes les fonctions (totalement 7) dans l’entreprise. Le taux de traitement par cette plateforme atteint à 79.6 (environ 10 milles de session par jour en total).<br>J’ai aussi pu approfondi ma capacité en NLG en réalisant un modèle de traduction automatique adapté aux besoins de l’entreprise. Il économise 10 milles euros par mois pour l’entreprise.</p>
+<h4 id="Situation-mnt"><a href="#Situation-mnt" class="headerlink" title="Situation mnt"></a>Situation mnt</h4><p>J’ai voulu revenir en France le moment que j’ai quitté SF Express, mais c’était pas la bonne occasion à cause du COVID 19. Et maintenant, en raison des politiques du pays vers des entreprise d’éducation et la diffusion de la vaccination (l’amélioration de COVID 19), je pense que c’est le bon moment de revenir en France où je planifie à résider une longue durée.</p>
+<p>A ce jour, j’ai accumulé 5 ans d’expériences dans le domaine de NLP, en particulier dans dialogue system et NLG. J’aimerai bien pouvoir avoir l’opportunité de connaître et d’appliquer des connaissances des autres domaine relative tels que CV (vision par l’ordinateur), l’apprentissage multimoda, basé sur mes compétences de NLP.</p>
+<p><font color="#989898" size=4> Les informations dans le monde réel se présentent généralement sous différentes modalités. Par exemple, les images sont généralement associées à des balises et à des explications textuelles ; les textes contiennent des images pour exprimer plus clairement l’idée principale de l’article. Différentes modalités sont caractérisées par des propriétés statistiques très différentes. Par exemple, les images sont généralement représentées sous forme d’intensités de pixels ou de sorties d’extracteurs de caractéristiques, tandis que les textes sont représentés sous forme de vecteurs de nombre de mots discrets. En raison des propriétés statistiques distinctes des différentes ressources d’information, il est très important de découvrir la relation entre les différentes modalités. L’apprentissage est un bon modèle pour représenter les représentations conjointes de différentes modalités. Le modèle d’apprentissage multimodal est également capable de combler la modalité manquante compte tenu de celles observées. Le modèle d’apprentissage multimodal combine deux machines de Boltzmann profondes correspondant chacune à une modalité. Une couche cachée supplémentaire est placé au-dessus des deux machines Boltzmann pour donner la représentation commune. </font></p>
+<h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><h3 id="Chatbot"><a href="#Chatbot" class="headerlink" title="Chatbot"></a>Chatbot</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
+<h3 id="Chit-Chat"><a href="#Chit-Chat" class="headerlink" title="Chit Chat"></a>Chit Chat</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
+<h3 id="Chercher-top-20-questions-a-l’entretien"><a href="#Chercher-top-20-questions-a-l’entretien" class="headerlink" title="Chercher top 20 questions à l’entretien"></a>Chercher top 20 questions à l’entretien</h3>]]></content>
+      <categories>
+        <category>Français</category>
+      </categories>
+      <tags>
+        <tag>préparation</tag>
+        <tag>entretien</tag>
+        <tag>français</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法刷题总结</title>
     <url>/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<ol>
@@ -203,8 +193,7 @@
   <entry>
     <title>ES安装与使用</title>
     <url>/2022/07/06/%E4%BA%AC%E4%B8%9C/ES/</url>
-    <content><![CDATA[<h1 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><p><img src="/images/avatar.jpg" alt="我是一个测试图"></p>
-<h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
+    <content><![CDATA[<h1 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
 <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><h5 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h5><p>   可能遇到需要密码的问题。此时有两种方法：</p>
 <ul>
 <li>一个是进入 <code>elasticsearch.yml</code> 文件设置 <code>xpack.security.enabled: false</code>。不过这样有安全隐患，只能用于测试。且7.x的版本没有相关参数</li>
@@ -252,6 +241,7 @@
 <h4 id="余弦相似度-筛选条件-组合查询"><a href="#余弦相似度-筛选条件-组合查询" class="headerlink" title="余弦相似度+筛选条件 组合查询"></a>余弦相似度+筛选条件 组合查询</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;size&quot;</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="string">&quot;min_score&quot;</span>: <span class="number">1.5</span>,</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;script_score&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;bool&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;filter&quot;</span>: &#123;</span><br><span class="line">                        <span class="string">&quot;term&quot;</span>: &#123;</span><br><span class="line">                            <span class="string">&quot;enabled_status&quot;</span>: true</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;script&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;scource&quot;</span>: <span class="string">&quot;cosineSimilarity(params.query_vector, &#x27;vector&#x27;) + 1.0&quot;</span>,</span><br><span class="line">                <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;query_vector&quot;</span>: [<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
+        <category>常用软件</category>
         <category>周边辅助</category>
       </categories>
       <tags>
@@ -506,27 +496,8 @@
       </categories>
   </entry>
   <entry>
-    <title>linux常用命令</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<ol>
-<li>快速查看端口占用情况<code>lsof -i tcp:8080</code>或者<code>netstat -nlp</code></li>
-<li>查看PID具体信息<code>ll /proc/PID</code></li>
-<li>同样，查看CPU和内存信息可以使用<code>cat /proc/cupinfo</code> 和 <code>cat /proc/meminfo</code>。更详细CPU信息查询可以使用<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c </code>和<code>cat /proc/cpuinfo | grep physical | uniq -c</code></li>
-<li>查看显卡信息可以使用命令<code>lspci | grep -i vga</code></li>
-<li>查看磁盘使用情况<code>df -k</code>或<code>df -m</code>，分别以kb或mb为单位，查看磁盘使用量</li>
-<li>GPU当前使用状况：<code>nvidia-smi</code></li>
-<li>每10秒，更新一次GPU情况：<code>watch -n 10 nvidia-smi</code></li>
-<li><code>free -h</code>看内存情况</li>
-</ol>
-<p>参考文章：<a href="https://cloud.tencent.com/developer/article/1721406">Linux系统查看CPU、机器型号、内存等信息</a></p>
-]]></content>
-      <categories>
-        <category>京东</category>
-      </categories>
-  </entry>
-  <entry>
     <title>VSCode 常见需求</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/VSCode/</url>
+    <url>/2022/07/06/%E4%BA%AC%E4%B8%9C/VSCode/</url>
     <content><![CDATA[<h1 id="VSCode-常见需求"><a href="#VSCode-常见需求" class="headerlink" title="VSCode 常见需求"></a>VSCode 常见需求</h1><p>增加代码长度分割线：</p>
 <ol>
 <li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
@@ -574,6 +545,25 @@
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>参考<br><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
 ]]></content>
       <categories>
+        <category>常用软件</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>linux常用命令</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<ol>
+<li>快速查看端口占用情况<code>lsof -i tcp:8080</code>或者<code>netstat -nlp</code></li>
+<li>查看PID具体信息<code>ll /proc/PID</code></li>
+<li>同样，查看CPU和内存信息可以使用<code>cat /proc/cupinfo</code> 和 <code>cat /proc/meminfo</code>。更详细CPU信息查询可以使用<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c </code>和<code>cat /proc/cpuinfo | grep physical | uniq -c</code></li>
+<li>查看显卡信息可以使用命令<code>lspci | grep -i vga</code></li>
+<li>查看磁盘使用情况<code>df -k</code>或<code>df -m</code>，分别以kb或mb为单位，查看磁盘使用量</li>
+<li>GPU当前使用状况：<code>nvidia-smi</code></li>
+<li>每10秒，更新一次GPU情况：<code>watch -n 10 nvidia-smi</code></li>
+<li><code>free -h</code>看内存情况</li>
+</ol>
+<p>参考文章：<a href="https://cloud.tencent.com/developer/article/1721406">Linux系统查看CPU、机器型号、内存等信息</a></p>
+]]></content>
+      <categories>
         <category>京东</category>
       </categories>
   </entry>
@@ -595,6 +585,47 @@
 <figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ERROR: </span>Could not find a version that satisfies the requirement pytreex-master (from versions: none)</span><br><span class="line"><span class="keyword">ERROR: </span>No matching distribution found for pytreex-master</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>京东</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>我是测试图片的</title>
+    <url>/2022/07/06/%E4%BA%AC%E4%B8%9C/%E6%88%91%E6%98%AF%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E7%9A%84/</url>
+    <content><![CDATA[<h1 id="我是测试图片的"><a href="#我是测试图片的" class="headerlink" title="我是测试图片的"></a>我是测试图片的</h1><p>我是专门测试图片的</p>
+<p><img src="/2022/07/06/%E4%BA%AC%E4%B8%9C/%E6%88%91%E6%98%AF%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E7%9A%84/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png" alt="我是图片"></p>
+<img src="/2022/07/06/%E4%BA%AC%E4%B8%9C/%E6%88%91%E6%98%AF%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E7%9A%84/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png" class="" title="我是图片">
+
+<p>上面图片显示了吗</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>DM任务</title>
+    <url>/2021/08/19/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/DM%E4%BB%BB%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何</li>
+<li>背景如何</li>
+<li>模型如何</li>
+<li>准确率如何</li>
+<li>碰到哪些问题</li>
+<li>怎么解决（trick或者模型）</li>
+<li>为什么这么解决</li>
+<li>效果怎么样</li>
+<li>还有哪些可以改进的</li>
+<li>现有哪些更好的方法吗（新的论文）</li>
+</ol>
+<span id="more"></span>
+
+<p>对话机器人中碰到的问题：</p>
+<ol>
+<li>解决语言的多样性和歧义性问题</li>
+<li>槽位模块中如何提高抽取模型的复用性</li>
+<li>解决实体消歧问题</li>
+<li>上下文理解</li>
+<li>场景可移植性</li>
+<li>多轮（ner可以加到多轮里，比如学生教学场景，可以聊ner和dm结合rasa的设计）</li>
+</ol>
+]]></content>
+      <categories>
+        <category>工作总结</category>
       </categories>
   </entry>
   <entry>
@@ -687,168 +718,6 @@
 <li><a href="https://cloud.tencent.com/developer/news/468354">人机对话关键技术及挑战</a><br>文章提到了好几个闲聊重的优化技术，比如learning to start for sequence to sequence,Retrieval-Enhanced Adversarial Training For Neural Response Generation, etc.</li>
 </ol>
 <p>好好研究一下<a href="https://www.infoq.cn/profile/90B7FCCBE83037/publish">滴滴技术</a></p>
-]]></content>
-      <categories>
-        <category>工作总结</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DM任务</title>
-    <url>/2021/08/19/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/DM%E4%BB%BB%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
-<li>数据如何</li>
-<li>背景如何</li>
-<li>模型如何</li>
-<li>准确率如何</li>
-<li>碰到哪些问题</li>
-<li>怎么解决（trick或者模型）</li>
-<li>为什么这么解决</li>
-<li>效果怎么样</li>
-<li>还有哪些可以改进的</li>
-<li>现有哪些更好的方法吗（新的论文）</li>
-</ol>
-<span id="more"></span>
-
-<p>对话机器人中碰到的问题：</p>
-<ol>
-<li>解决语言的多样性和歧义性问题</li>
-<li>槽位模块中如何提高抽取模型的复用性</li>
-<li>解决实体消歧问题</li>
-<li>上下文理解</li>
-<li>场景可移植性</li>
-<li>多轮（ner可以加到多轮里，比如学生教学场景，可以聊ner和dm结合rasa的设计）</li>
-</ol>
-]]></content>
-      <categories>
-        <category>工作总结</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>FAQ任务</title>
-    <url>/2021/08/19/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/FAQ%E4%BB%BB%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><h3 id="SF"><a href="#SF" class="headerlink" title="SF"></a>SF</h3><ol>
-<li>数据如何<br>10W数据，1600个标准问（5.6w数据是自己造的），每个标准问对应n个相似问<br>最多的能有两千左右的相似样例，较少的只有上百个</li>
-</ol>
-<p>数据不是标注，是本来业务就已经有的归类数据</p>
-<span id="more"></span>
-
-<ol start="2">
-<li><p>背景如何</p>
-<ul>
-<li>一句话进入到系统后，先用faq进行判别，如果是比如「我要寄快递」这个标准问，那么就转入到多轮，如果是其他的faq中对应问题，有两种可能，一种是特别肯定，就直接回复，一种是不太肯定，就推荐top3进行。</li>
-<li>faq做的就是对所有问题的初步判断</li>
-<li>（这里和vipkid里就不一样了，因为vipkid里用的是bert模型，很难判断第一个回复是不是和第二个回复差距很大，最开始设置的差别是0.0001，后来改用意图分类来进行筛选，如果意图不能判断，再给到faq，提高直答的准确率）</li>
-</ul>
-</li>
-<li><p>模型如何<br>期间尝试过很多模型，用stacking，使用svm，使用双塔模型，使用lstm，最后发现lstm效果最好（在回复比率相当的情况下，直答率最高，较svm高12个百分点，直答准确率要低1个百分点）</p>
-<ol>
-<li>双塔模型+triplet loss</li>
-</ol>
-<ul>
-<li>其实双塔模型效果也还不错，尤其是优化了triplet loss之后，我们使用正负样本三元组，对于每一个样本，我们取最远的k个正样本，和最近的k个负样本，然后使用triplet loss进行计算</li>
-<li>loss中的距离，尝试了常用的余弦距离和欧式距离，发现欧式距离效果更好。</li>
-<li>每5个epoch更新一次距离最近的正样本和负样本，直答率确实提升了3%，但是训练时的整体性能下降很严重，对线上影响不大，线上还是过一个模型计算出embedding，然后找出最相似的句子即可（召回+精排，性能允许，直接精排，但是其实可以加一个召回）</li>
-</ul>
-<ol start="2">
-<li>使用am softmax</li>
-</ol>
-<ul>
-<li>为了更好的区分类间距离，我们使用了am softmax，softmax指数右上角本来应该是x^cos(delta)，改为s(cos(delta)-m)，m就是为了增加目标类别间的距离，s是为了控制让好的样本有一个更高的梯度，来进一步缩小类内间的距离</li>
-<li>相比triplet loss而言，am softmax再能达到相同效果的情况下，更节省算力</li>
-</ul>
-<ol start="3">
-<li>两者相对简单的使用lsmt效果都有2%左右的提升，但是资源耗费不同</li>
-</ol>
-<ul>
-<li>triplet loss是通过计算相似度训练出得embedding，因此应该更适用于相似度的计算</li>
-<li>这里最后还是需要进行分类的，加上am softmax更节省算力，在效果几乎相同的情况下，我们选择am softmax</li>
-</ul>
-</li>
-<li><p>准确率如何<br>最后结果，直答准确率，85.9%，直答率91.3%，默认回复比率2.3%</p>
-</li>
-<li><p>碰到哪些问题</p>
-<ol>
-<li>也会有数据问题<ol>
-<li>最大的类别有700多个样本，最小的类别只有几十个样本</li>
-<li>我们做了数据增广，过采样加上数据增强</li>
-</ol>
-</li>
-<li>召回率和精排效果的提升<ol>
-<li>主要是对模型的尝试，希望从模型方面更好的提升直答率和直答准确率</li>
-<li>最初用了baseline是svm模型（svm模型对数据样本的分布并不敏感，只取最贴近边界的样本计算loss）</li>
-<li>改用lstm后直答率提升了12%到89%，但是准确率下降了1%</li>
-<li>改用am softmax整体效果又提升了，增加了阈值之后，直答准确率85.9%，直答率91.3%</li>
-</ol>
-</li>
-<li>某些样本很难区分<ol>
-<li>所以尝试了triplet loss和am softmax，针对性解决问题</li>
-<li>都有一定的效果提升</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>还有哪些可以改进的</p>
-<ol>
-<li></li>
-</ol>
-</li>
-<li><p>现有哪些更好的方法吗（新的论文）</p>
-</li>
-<li><p>碰到哪些问题</p>
-</li>
-<li><p>样本不平衡 —— 数据增强</p>
-</li>
-<li><p>提升直答率和精排的准确率 —— 模型的改进</p>
-</li>
-<li><p>还有哪些可以改进的</p>
-</li>
-<li><p>现有哪些更好的方法吗（新的论文）<br>SBert</p>
-</li>
-</ol>
-<h3 id="VIPKid"><a href="#VIPKid" class="headerlink" title="VIPKid"></a>VIPKid</h3><ol>
-<li><p>数据如何</p>
-<ol>
-<li>总共2w数据，200个类别</li>
-<li>因为用的三元组重新构造的数据，某个样本有多个正样本和负样本。我们在当前类中，匹配当前问题坐在类别中的其他问题为正样本，随机选择其他类的问题为负样本，最后获得80w的三元组数据组对</li>
-<li></li>
-</ol>
-</li>
-<li><p>背景如何</p>
-<ol>
-<li>在intent不能够区分当前语句的意图时，faq进行处理并进行兜底</li>
-</ol>
-</li>
-<li><p>模型如何</p>
-<ol>
-<li>最开始用的bert模型<ol>
-<li>在对数据进行三元组处理以后，就讲数据放入bert中的nsp，进行而分类匹配，这个为基础模型，但是也不是特别差，F1值能到89.6%</li>
-</ol>
-</li>
-<li>因为NSP初衷不是用来分类的，所以我们尝试使用sbert模型，只能bert来做一个embedding的提取<ol>
-<li>先是只取的cls的embedding，尝试了triplet loss等通过相似度计算loss的方法，最后发现triplet loss效果最好</li>
-<li>之后又我们比较了cls的embedding，第一层输出的embedding，最后一层token的embedding，然后计算相似度进行训练，发现最后一层token的embedding进行concat后计算相似度效果最好，能够再提升1.5个百分点的效果</li>
-<li>最后效果是93%</li>
-</ol>
-</li>
-<li></li>
-</ol>
-</li>
-<li><p>准确率如何</p>
-</li>
-<li><p>碰到哪些问题</p>
-</li>
-<li><p>怎么解决（trick或者模型）</p>
-</li>
-<li><p>为什么这么解决</p>
-</li>
-<li><p>效果怎么样</p>
-</li>
-<li><p>还有哪些可以改进的</p>
-</li>
-<li><p>现有哪些更好的方法吗（新的论文）<br>3w数据，200个类，最开始是直接上的bert模型，然后使用nsp来预测两个句子是否是同一类，即对每个类别做个二分类。<br>效果不是特别好，89%<br>分析是bert的NSP并不适合分类，因为我们只是微调，没有重新训练bert，之前都是判别两个句子是否是前后文，与我们的情况不同<br>所以我们尝试使用sbert模型。其实这个模型的主题思想是使用bert来产生embedding，然后在对每个句子的embedding进行softmax，triplet loss等各种尝试处理，最后发现普通的triplet loss效果就不错，能够让f1值达到93%，等于是优化了解码的embedding</p>
-</li>
-</ol>
-<p>Sbert<br>学习曲线<br>bert结果两集分化，如何平衡<br>triplet loss<br>am softmax</p>
 ]]></content>
       <categories>
         <category>工作总结</category>
@@ -1165,6 +1034,137 @@
       </categories>
   </entry>
   <entry>
+    <title>FAQ任务</title>
+    <url>/2021/08/19/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/FAQ%E4%BB%BB%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><h3 id="SF"><a href="#SF" class="headerlink" title="SF"></a>SF</h3><ol>
+<li>数据如何<br>10W数据，1600个标准问（5.6w数据是自己造的），每个标准问对应n个相似问<br>最多的能有两千左右的相似样例，较少的只有上百个</li>
+</ol>
+<p>数据不是标注，是本来业务就已经有的归类数据</p>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>背景如何</p>
+<ul>
+<li>一句话进入到系统后，先用faq进行判别，如果是比如「我要寄快递」这个标准问，那么就转入到多轮，如果是其他的faq中对应问题，有两种可能，一种是特别肯定，就直接回复，一种是不太肯定，就推荐top3进行。</li>
+<li>faq做的就是对所有问题的初步判断</li>
+<li>（这里和vipkid里就不一样了，因为vipkid里用的是bert模型，很难判断第一个回复是不是和第二个回复差距很大，最开始设置的差别是0.0001，后来改用意图分类来进行筛选，如果意图不能判断，再给到faq，提高直答的准确率）</li>
+</ul>
+</li>
+<li><p>模型如何<br>期间尝试过很多模型，用stacking，使用svm，使用双塔模型，使用lstm，最后发现lstm效果最好（在回复比率相当的情况下，直答率最高，较svm高12个百分点，直答准确率要低1个百分点）</p>
+<ol>
+<li>双塔模型+triplet loss</li>
+</ol>
+<ul>
+<li>其实双塔模型效果也还不错，尤其是优化了triplet loss之后，我们使用正负样本三元组，对于每一个样本，我们取最远的k个正样本，和最近的k个负样本，然后使用triplet loss进行计算</li>
+<li>loss中的距离，尝试了常用的余弦距离和欧式距离，发现欧式距离效果更好。</li>
+<li>每5个epoch更新一次距离最近的正样本和负样本，直答率确实提升了3%，但是训练时的整体性能下降很严重，对线上影响不大，线上还是过一个模型计算出embedding，然后找出最相似的句子即可（召回+精排，性能允许，直接精排，但是其实可以加一个召回）</li>
+</ul>
+<ol start="2">
+<li>使用am softmax</li>
+</ol>
+<ul>
+<li>为了更好的区分类间距离，我们使用了am softmax，softmax指数右上角本来应该是x^cos(delta)，改为s(cos(delta)-m)，m就是为了增加目标类别间的距离，s是为了控制让好的样本有一个更高的梯度，来进一步缩小类内间的距离</li>
+<li>相比triplet loss而言，am softmax再能达到相同效果的情况下，更节省算力</li>
+</ul>
+<ol start="3">
+<li>两者相对简单的使用lsmt效果都有2%左右的提升，但是资源耗费不同</li>
+</ol>
+<ul>
+<li>triplet loss是通过计算相似度训练出得embedding，因此应该更适用于相似度的计算</li>
+<li>这里最后还是需要进行分类的，加上am softmax更节省算力，在效果几乎相同的情况下，我们选择am softmax</li>
+</ul>
+</li>
+<li><p>准确率如何<br>最后结果，直答准确率，85.9%，直答率91.3%，默认回复比率2.3%</p>
+</li>
+<li><p>碰到哪些问题</p>
+<ol>
+<li>也会有数据问题<ol>
+<li>最大的类别有700多个样本，最小的类别只有几十个样本</li>
+<li>我们做了数据增广，过采样加上数据增强</li>
+</ol>
+</li>
+<li>召回率和精排效果的提升<ol>
+<li>主要是对模型的尝试，希望从模型方面更好的提升直答率和直答准确率</li>
+<li>最初用了baseline是svm模型（svm模型对数据样本的分布并不敏感，只取最贴近边界的样本计算loss）</li>
+<li>改用lstm后直答率提升了12%到89%，但是准确率下降了1%</li>
+<li>改用am softmax整体效果又提升了，增加了阈值之后，直答准确率85.9%，直答率91.3%</li>
+</ol>
+</li>
+<li>某些样本很难区分<ol>
+<li>所以尝试了triplet loss和am softmax，针对性解决问题</li>
+<li>都有一定的效果提升</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>还有哪些可以改进的</p>
+<ol>
+<li></li>
+</ol>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）</p>
+</li>
+<li><p>碰到哪些问题</p>
+</li>
+<li><p>样本不平衡 —— 数据增强</p>
+</li>
+<li><p>提升直答率和精排的准确率 —— 模型的改进</p>
+</li>
+<li><p>还有哪些可以改进的</p>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）<br>SBert</p>
+</li>
+</ol>
+<h3 id="VIPKid"><a href="#VIPKid" class="headerlink" title="VIPKid"></a>VIPKid</h3><ol>
+<li><p>数据如何</p>
+<ol>
+<li>总共2w数据，200个类别</li>
+<li>因为用的三元组重新构造的数据，某个样本有多个正样本和负样本。我们在当前类中，匹配当前问题坐在类别中的其他问题为正样本，随机选择其他类的问题为负样本，最后获得80w的三元组数据组对</li>
+<li></li>
+</ol>
+</li>
+<li><p>背景如何</p>
+<ol>
+<li>在intent不能够区分当前语句的意图时，faq进行处理并进行兜底</li>
+</ol>
+</li>
+<li><p>模型如何</p>
+<ol>
+<li>最开始用的bert模型<ol>
+<li>在对数据进行三元组处理以后，就讲数据放入bert中的nsp，进行而分类匹配，这个为基础模型，但是也不是特别差，F1值能到89.6%</li>
+</ol>
+</li>
+<li>因为NSP初衷不是用来分类的，所以我们尝试使用sbert模型，只能bert来做一个embedding的提取<ol>
+<li>先是只取的cls的embedding，尝试了triplet loss等通过相似度计算loss的方法，最后发现triplet loss效果最好</li>
+<li>之后又我们比较了cls的embedding，第一层输出的embedding，最后一层token的embedding，然后计算相似度进行训练，发现最后一层token的embedding进行concat后计算相似度效果最好，能够再提升1.5个百分点的效果</li>
+<li>最后效果是93%</li>
+</ol>
+</li>
+<li></li>
+</ol>
+</li>
+<li><p>准确率如何</p>
+</li>
+<li><p>碰到哪些问题</p>
+</li>
+<li><p>怎么解决（trick或者模型）</p>
+</li>
+<li><p>为什么这么解决</p>
+</li>
+<li><p>效果怎么样</p>
+</li>
+<li><p>还有哪些可以改进的</p>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）<br>3w数据，200个类，最开始是直接上的bert模型，然后使用nsp来预测两个句子是否是同一类，即对每个类别做个二分类。<br>效果不是特别好，89%<br>分析是bert的NSP并不适合分类，因为我们只是微调，没有重新训练bert，之前都是判别两个句子是否是前后文，与我们的情况不同<br>所以我们尝试使用sbert模型。其实这个模型的主题思想是使用bert来产生embedding，然后在对每个句子的embedding进行softmax，triplet loss等各种尝试处理，最后发现普通的triplet loss效果就不错，能够让f1值达到93%，等于是优化了解码的embedding</p>
+</li>
+</ol>
+<p>Sbert<br>学习曲线<br>bert结果两集分化，如何平衡<br>triplet loss<br>am softmax</p>
+]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
+  </entry>
+  <entry>
     <title>NER任务</title>
     <url>/2021/08/17/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/NER%E4%BB%BB%E5%8A%A1/</url>
     <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
@@ -1442,6 +1442,22 @@
       </tags>
   </entry>
   <entry>
+    <title>面试</title>
+    <url>/2019/12/08/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E9%9D%A2%E8%AF%95/</url>
+    <content><![CDATA[<p>n个无序数组，求top K</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def TopK(listArray, K):</span><br><span class="line">    k = 0</span><br><span class="line">    for i in range(len(listArray)):</span><br><span class="line">        if k + len(listArray[i]) &gt; K:</span><br><span class="line">            listK += listArray[i][:K-k]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
+      <tags>
+        <tag>智能客服</tag>
+        <tag>CNN</tag>
+        <tag>stacking</tag>
+        <tag>LR</tag>
+        <tag>SVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>梯度消失和梯度爆炸</title>
     <url>/2019/12/07/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8/</url>
     <content><![CDATA[<h2 id="什么是梯度消失-x2F-梯度爆炸"><a href="#什么是梯度消失-x2F-梯度爆炸" class="headerlink" title="什么是梯度消失&#x2F;梯度爆炸"></a>什么是梯度消失&#x2F;梯度爆炸</h2><p>梯度消失或梯度爆炸是指在神经网络权重更新的反向传播中，$\frac{\partial Loss}{\partial W}$过小或过大的现象</p>
@@ -1567,47 +1583,6 @@
       </tags>
   </entry>
   <entry>
-    <title>面试</title>
-    <url>/2019/12/08/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E9%9D%A2%E8%AF%95/</url>
-    <content><![CDATA[<p>n个无序数组，求top K</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def TopK(listArray, K):</span><br><span class="line">    k = 0</span><br><span class="line">    for i in range(len(listArray)):</span><br><span class="line">        if k + len(listArray[i]) &gt; K:</span><br><span class="line">            listK += listArray[i][:K-k]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>工作总结</category>
-      </categories>
-      <tags>
-        <tag>智能客服</tag>
-        <tag>CNN</tag>
-        <tag>stacking</tag>
-        <tag>LR</tag>
-        <tag>SVM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AM-softmax</title>
-    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/AM-softmax/</url>
-    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>基于已有的L-softmax, A-softmax，作者提出了AM-softmax，一个适用于分类模型的loss计算方法。主要用于增加类间距离，减小类内距离</p>
-<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><h2 id="反向传播求导简单"><a href="#反向传播求导简单" class="headerlink" title="反向传播求导简单"></a>反向传播求导简单</h2><p>反向传播对x求导结果为1</p>
-<h2 id="公式更直观"><a href="#公式更直观" class="headerlink" title="公式更直观"></a>公式更直观</h2><p>相对于L-softmax，AM-softmax的参数简单直观</p>
-<span id="more"></span>
-
-<h2 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h2><p>使用加法cos(&#x2F;delta)-m，不同于L-softmax中使用乘法cos(m*&#x2F;delta)，超参数直接作用于cos(&#x2F;delta)更好，因为：cos(&#x2F;delta)和delta虽然是一一对应，但是变化趋势不同，cos(&#x2F;delta)在pai处更密集。因此在乘法中，得到wf后需要进行反余弦计算，因此会消耗更多的算力</p>
-<h2 id="两个超惨数"><a href="#两个超惨数" class="headerlink" title="两个超惨数"></a>两个超惨数</h2><p>e的右上角公式为s(cos(&#x2F;delta)-m)</p>
-<ul>
-<li>其中m是用来增加类间距离，强行使两个类的边缘样本有一定的距离而更不容易混淆</li>
-<li>反向传播是，x的导数为1，前面增加一个s则反向求导后gradient会变为s，使用一个s是为了让好样本的梯度更大，来减小类内样本的方差，也就是更快的减小类内距离</li>
-</ul>
-<h2 id="Feature-Normalization"><a href="#Feature-Normalization" class="headerlink" title="Feature Normalization"></a>Feature Normalization</h2><p>对于质量较好的样本，不需要进行feature normalization。<br>但是对于质量较差的样本，使用feature normalization后，效果会有提升。<br>因为质量越差，特征归一化的值越小，因此反向传播中受到的关于越大（1&#x2F;alpha），所以特征归一化更适合图像质量差的任务</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>数学</tag>
-        <tag>公式</tag>
-        <tag>svm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>面试感触</title>
     <url>/2019/12/08/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/</url>
     <content><![CDATA[<h2 id="恒昌第三轮面试"><a href="#恒昌第三轮面试" class="headerlink" title="恒昌第三轮面试"></a>恒昌第三轮面试</h2><p>今年下午两点和恒昌第三轮面试完。</p>
@@ -1618,22 +1593,6 @@
       <categories>
         <category>工作总结</category>
       </categories>
-  </entry>
-  <entry>
-    <title>CRF 和 HMM 详述</title>
-    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/CRF%20%E5%92%8C%20HMM%20%E8%AF%A6%E8%BF%B0/</url>
-    <content><![CDATA[<h1 id="CRF-和-HMM-详述"><a href="#CRF-和-HMM-详述" class="headerlink" title="CRF 和 HMM 详述"></a>CRF 和 HMM 详述</h1>]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>CRF</tag>
-        <tag>HMM</tag>
-        <tag>概率</tag>
-        <tag>判别式</tag>
-        <tag>生成式</tag>
-        <tag>贝叶斯</tag>
-      </tags>
   </entry>
   <entry>
     <title>Bert</title>
@@ -1674,6 +1633,47 @@
         <tag>数学</tag>
         <tag>公式</tag>
         <tag>svm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AM-softmax</title>
+    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/AM-softmax/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>基于已有的L-softmax, A-softmax，作者提出了AM-softmax，一个适用于分类模型的loss计算方法。主要用于增加类间距离，减小类内距离</p>
+<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><h2 id="反向传播求导简单"><a href="#反向传播求导简单" class="headerlink" title="反向传播求导简单"></a>反向传播求导简单</h2><p>反向传播对x求导结果为1</p>
+<h2 id="公式更直观"><a href="#公式更直观" class="headerlink" title="公式更直观"></a>公式更直观</h2><p>相对于L-softmax，AM-softmax的参数简单直观</p>
+<span id="more"></span>
+
+<h2 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h2><p>使用加法cos(&#x2F;delta)-m，不同于L-softmax中使用乘法cos(m*&#x2F;delta)，超参数直接作用于cos(&#x2F;delta)更好，因为：cos(&#x2F;delta)和delta虽然是一一对应，但是变化趋势不同，cos(&#x2F;delta)在pai处更密集。因此在乘法中，得到wf后需要进行反余弦计算，因此会消耗更多的算力</p>
+<h2 id="两个超惨数"><a href="#两个超惨数" class="headerlink" title="两个超惨数"></a>两个超惨数</h2><p>e的右上角公式为s(cos(&#x2F;delta)-m)</p>
+<ul>
+<li>其中m是用来增加类间距离，强行使两个类的边缘样本有一定的距离而更不容易混淆</li>
+<li>反向传播是，x的导数为1，前面增加一个s则反向求导后gradient会变为s，使用一个s是为了让好样本的梯度更大，来减小类内样本的方差，也就是更快的减小类内距离</li>
+</ul>
+<h2 id="Feature-Normalization"><a href="#Feature-Normalization" class="headerlink" title="Feature Normalization"></a>Feature Normalization</h2><p>对于质量较好的样本，不需要进行feature normalization。<br>但是对于质量较差的样本，使用feature normalization后，效果会有提升。<br>因为质量越差，特征归一化的值越小，因此反向传播中受到的关于越大（1&#x2F;alpha），所以特征归一化更适合图像质量差的任务</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>公式</tag>
+        <tag>svm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CRF 和 HMM 详述</title>
+    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/CRF%20%E5%92%8C%20HMM%20%E8%AF%A6%E8%BF%B0/</url>
+    <content><![CDATA[<h1 id="CRF-和-HMM-详述"><a href="#CRF-和-HMM-详述" class="headerlink" title="CRF 和 HMM 详述"></a>CRF 和 HMM 详述</h1>]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>CRF</tag>
+        <tag>HMM</tag>
+        <tag>概率</tag>
+        <tag>判别式</tag>
+        <tag>生成式</tag>
+        <tag>贝叶斯</tag>
       </tags>
   </entry>
   <entry>
@@ -1776,30 +1776,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SimBERT</title>
-    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/SimBERT/</url>
-    <content><![CDATA[<h1 id="SimBERT"><a href="#SimBERT" class="headerlink" title="SimBERT"></a>SimBERT</h1><h1 id="实践中的问题"><a href="#实践中的问题" class="headerlink" title="实践中的问题"></a>实践中的问题</h1><p>如果使用flask部署，一般http会多线程请求，这样可能会报错xxx is not a element of this graph<br>网上查了很多中方法</p>
-<ol>
-<li>配置flask运行环境为单线程调用，然后运行flask run。但是因为工作机器上不方便配置环境，所以没有尝试这种方法<br>参考文章：<a href="https://blog.csdn.net/donaldsy/article/details/95097024">Flask网站中使用Keras时报错“Tensor Tensor(*) is not an element of this graph”</a></li>
-<li>设置app.run(threaded&#x3D;False)，threaded默认为True，即多线程，改为False则为单线程。尝试后没有效果<br>参考文章：<a href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></li>
-<li>加载模型时将thread_safe改为True，因为我用的是bert4keras里的加载方法，和解答不一样，所以没有详细找thread_safe的设置，因此不知道有没有效果<br>参考文章：<a href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></li>
-<li>设置  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">global graph</span><br><span class="line">graph = tf.as_default()</span><br><span class="line">model = keras.models.load_model()</span><br><span class="line"></span><br><span class="line">with graph.as_default():</span><br><span class="line">  model.predict()</span><br></pre></td></tr></table></figure>
-  因为代码中，模型加载和模型预测的代码是分开写的，即预测的代码在app.route下的函数内，但是加载的代码外部。估计是这个原因，导致graph里的变量名称忍让不同意，所以还是没效果<br>  参考文章：<a href="https://stackoverflow.com/questions/51127344/tensor-is-not-an-element-of-this-graph-deploying-keras-model">Tensor is not an element of this graph; deploying Keras model</a></li>
-<li>固定一个session，将两部分都重新设置session  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">session = tf.Session(graph=tf.Graph())</span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  model = k.models.load_model(filepath)</span><br><span class="line"></span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  k.backend.set_session(session)</span><br><span class="line">  model.predict(x, **kwargs)</span><br></pre></td></tr></table></figure>
-  这种方式最终成功了！<br>  参考文章：<a href="https://github.com/keras-team/keras/issues/5640">Keras models do not seem to be thread safe</a></li>
-</ol>
-<p>tf的session和graph还是一个大问题要弄透彻呀</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>数学</tag>
-        <tag>公式</tag>
-        <tag>svm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SVM</title>
     <url>/2020/02/19/%E6%95%B0%E5%AD%A6/SVM/</url>
     <content><![CDATA[<h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><p>核函数的本质</p>
@@ -1813,6 +1789,30 @@
 </ol>
 <p><a href="https://blog.csdn.net/u010199356/article/details/88836026">核函数解释博客</a><br>很有意思，有空可以自己试试用matlab画图看看</p>
 <p><a href="https://zhuanlan.zhihu.com/p/77750026">SVM推导过程</a><br>也可以看看李航的统计书里的推导</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>公式</tag>
+        <tag>svm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SimBERT</title>
+    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/SimBERT/</url>
+    <content><![CDATA[<h1 id="SimBERT"><a href="#SimBERT" class="headerlink" title="SimBERT"></a>SimBERT</h1><h1 id="实践中的问题"><a href="#实践中的问题" class="headerlink" title="实践中的问题"></a>实践中的问题</h1><p>如果使用flask部署，一般http会多线程请求，这样可能会报错xxx is not a element of this graph<br>网上查了很多中方法</p>
+<ol>
+<li>配置flask运行环境为单线程调用，然后运行flask run。但是因为工作机器上不方便配置环境，所以没有尝试这种方法<br>参考文章：<a href="https://blog.csdn.net/donaldsy/article/details/95097024">Flask网站中使用Keras时报错“Tensor Tensor(*) is not an element of this graph”</a></li>
+<li>设置app.run(threaded&#x3D;False)，threaded默认为True，即多线程，改为False则为单线程。尝试后没有效果<br>参考文章：<a href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></li>
+<li>加载模型时将thread_safe改为True，因为我用的是bert4keras里的加载方法，和解答不一样，所以没有详细找thread_safe的设置，因此不知道有没有效果<br>参考文章：<a href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></li>
+<li>设置  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">global graph</span><br><span class="line">graph = tf.as_default()</span><br><span class="line">model = keras.models.load_model()</span><br><span class="line"></span><br><span class="line">with graph.as_default():</span><br><span class="line">  model.predict()</span><br></pre></td></tr></table></figure>
+  因为代码中，模型加载和模型预测的代码是分开写的，即预测的代码在app.route下的函数内，但是加载的代码外部。估计是这个原因，导致graph里的变量名称忍让不同意，所以还是没效果<br>  参考文章：<a href="https://stackoverflow.com/questions/51127344/tensor-is-not-an-element-of-this-graph-deploying-keras-model">Tensor is not an element of this graph; deploying Keras model</a></li>
+<li>固定一个session，将两部分都重新设置session  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">session = tf.Session(graph=tf.Graph())</span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  model = k.models.load_model(filepath)</span><br><span class="line"></span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  k.backend.set_session(session)</span><br><span class="line">  model.predict(x, **kwargs)</span><br></pre></td></tr></table></figure>
+  这种方式最终成功了！<br>  参考文章：<a href="https://github.com/keras-team/keras/issues/5640">Keras models do not seem to be thread safe</a></li>
+</ol>
+<p>tf的session和graph还是一个大问题要弄透彻呀</p>
 ]]></content>
       <categories>
         <category>数学</category>
@@ -1956,6 +1956,25 @@
       </tags>
   </entry>
   <entry>
+    <title>MacBook</title>
+    <url>/2020/02/19/%E6%9C%AA%E6%95%B4%E7%90%86/MacBook/</url>
+    <content><![CDATA[<h4 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h4><p>Xcode更新后，可能VScode不能用，显示<code>java</code>相关问题，这时可以选择</p>
+<ol>
+<li>打开<code>launch.json</code>文件</li>
+<li>然后<code>add configuration</code></li>
+<li>选择<code>python</code></li>
+<li>删除<code>json</code>文件中关于<code>java</code>的语言设置，只保留<code>python</code>的</li>
+</ol>
+<p>这样就OK了</p>
+]]></content>
+      <categories>
+        <category>周边辅助</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown语法</title>
     <url>/2020/02/19/%E6%9C%AA%E6%95%B4%E7%90%86/Markdown%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><ol>
@@ -2044,74 +2063,6 @@
       </categories>
       <tags>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MacBook</title>
-    <url>/2020/02/19/%E6%9C%AA%E6%95%B4%E7%90%86/MacBook/</url>
-    <content><![CDATA[<h4 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h4><p>Xcode更新后，可能VScode不能用，显示<code>java</code>相关问题，这时可以选择</p>
-<ol>
-<li>打开<code>launch.json</code>文件</li>
-<li>然后<code>add configuration</code></li>
-<li>选择<code>python</code></li>
-<li>删除<code>json</code>文件中关于<code>java</code>的语言设置，只保留<code>python</code>的</li>
-</ol>
-<p>这样就OK了</p>
-]]></content>
-      <categories>
-        <category>周边辅助</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>protobuf</title>
-    <url>/2019/01/16/%E6%9C%AA%E6%95%B4%E7%90%86/protobuf/</url>
-    <content><![CDATA[<h4 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h4><ul>
-<li><code>protobuf</code>：把消息序列化的工具</li>
-<li><code>rpc</code>： 远程方法调用</li>
-<li><code>redis</code>：缓存</li>
-<li><code>mysql</code>：持久储存</li>
-</ul>
-<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p><a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5">ML Client&#x2F;Server Using gRPC in Python – Good Audience</a></p>
-<h4 id="安装Protocol-Buffers："><a href="#安装Protocol-Buffers：" class="headerlink" title="安装Protocol Buffers："></a>安装Protocol Buffers：</h4><ol>
-<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
-<li>brew install protobuf</li>
-<li>安装gRPC：pip install grpcio</li>
-<li>安装gRPC：pip install grpcio-tools</li>
-</ol>
-<span id="more"></span>
-
-<h4 id="编译proto"><a href="#编译proto" class="headerlink" title="编译proto"></a>编译proto</h4><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">python -m grpc_tools.protoc -I <span class="string">./protos</span> <span class="params">--python_out=</span>. <span class="params">--grpc_python_out=</span>. <span class="string">./protos/intent.proto</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>-I</code><br>指定生成的<code>pb2.py</code>和<code>pb2_grpc.py</code>文件的储存路径</li>
-<li><code>./protos/intent.proto</code><br>需要编译的<code>.proto</code>文件的位置</li>
-</ul>
-<p>如果文件原来的位置如下：</p>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br></pre></td></tr></table></figure>
-<p>在根目录上运行</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I .<span class="regexp">/protos/</span> --python_out=. --grpc_python_out=. .<span class="regexp">/protos/</span>price.proto</span><br></pre></td></tr></table></figure>
-<p>后会变成：</p>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br><span class="line"><span class="bullet">- </span>intent<span class="emphasis">_pb2.py</span></span><br><span class="line"><span class="emphasis">- intent_pb2_</span>grpc.py</span><br></pre></td></tr></table></figure>
-
-<p>在根目录上运行</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I . <span class="attribute">--python_out</span>=. <span class="attribute">--grpc_python_out</span>=. ./protos/price.proto</span><br></pre></td></tr></table></figure>
-<p>后会变成：</p>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>intent<span class="emphasis">_pb2.py</span></span><br><span class="line"><span class="emphasis">- intent_pb2_</span>grpc.py</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br></pre></td></tr></table></figure>
-<p>没弄明白为什么，不过为了方便函数之间的调用，一般使用第一种方法。</p>
-<h4 id="http-VS-grpc"><a href="#http-VS-grpc" class="headerlink" title="http VS grpc"></a>http VS grpc</h4><ol>
-<li><code>http</code>和<code>grpc</code>都是通过<code>tcp</code>运行。</li>
-<li>不同的是<code>grpc</code>会将信息转换成二进制格式，因此传输更快，所需内存更小，效率更高。<br>但是因为<code>grpc</code>中，双方都需要编写相同的<code>.proto</code>，彼此传输的格式要固定，因此要求相对更严格一些。而http则没有这种要求，双方并没有格式的约定，所以<code>http</code>也更大一些，速度相对更慢一些。</li>
-<li><code>http</code>通过<code>&quot;\\r\\n&quot;</code>来分隔信息。<code>grpc</code>则要通过<code>.proto</code>文件里的<code>message</code>严格规范信息的数目、类型等。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>周边辅助</category>
-      </categories>
-      <tags>
-        <tag>protobuf</tag>
       </tags>
   </entry>
   <entry>
@@ -2224,6 +2175,55 @@
       </categories>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>protobuf</title>
+    <url>/2019/01/16/%E6%9C%AA%E6%95%B4%E7%90%86/protobuf/</url>
+    <content><![CDATA[<h4 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h4><ul>
+<li><code>protobuf</code>：把消息序列化的工具</li>
+<li><code>rpc</code>： 远程方法调用</li>
+<li><code>redis</code>：缓存</li>
+<li><code>mysql</code>：持久储存</li>
+</ul>
+<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p><a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5">ML Client&#x2F;Server Using gRPC in Python – Good Audience</a></p>
+<h4 id="安装Protocol-Buffers："><a href="#安装Protocol-Buffers：" class="headerlink" title="安装Protocol Buffers："></a>安装Protocol Buffers：</h4><ol>
+<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
+<li>brew install protobuf</li>
+<li>安装gRPC：pip install grpcio</li>
+<li>安装gRPC：pip install grpcio-tools</li>
+</ol>
+<span id="more"></span>
+
+<h4 id="编译proto"><a href="#编译proto" class="headerlink" title="编译proto"></a>编译proto</h4><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">python -m grpc_tools.protoc -I <span class="string">./protos</span> <span class="params">--python_out=</span>. <span class="params">--grpc_python_out=</span>. <span class="string">./protos/intent.proto</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-I</code><br>指定生成的<code>pb2.py</code>和<code>pb2_grpc.py</code>文件的储存路径</li>
+<li><code>./protos/intent.proto</code><br>需要编译的<code>.proto</code>文件的位置</li>
+</ul>
+<p>如果文件原来的位置如下：</p>
+<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br></pre></td></tr></table></figure>
+<p>在根目录上运行</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I .<span class="regexp">/protos/</span> --python_out=. --grpc_python_out=. .<span class="regexp">/protos/</span>price.proto</span><br></pre></td></tr></table></figure>
+<p>后会变成：</p>
+<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br><span class="line"><span class="bullet">- </span>intent<span class="emphasis">_pb2.py</span></span><br><span class="line"><span class="emphasis">- intent_pb2_</span>grpc.py</span><br></pre></td></tr></table></figure>
+
+<p>在根目录上运行</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I . <span class="attribute">--python_out</span>=. <span class="attribute">--grpc_python_out</span>=. ./protos/price.proto</span><br></pre></td></tr></table></figure>
+<p>后会变成：</p>
+<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>intent<span class="emphasis">_pb2.py</span></span><br><span class="line"><span class="emphasis">- intent_pb2_</span>grpc.py</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br></pre></td></tr></table></figure>
+<p>没弄明白为什么，不过为了方便函数之间的调用，一般使用第一种方法。</p>
+<h4 id="http-VS-grpc"><a href="#http-VS-grpc" class="headerlink" title="http VS grpc"></a>http VS grpc</h4><ol>
+<li><code>http</code>和<code>grpc</code>都是通过<code>tcp</code>运行。</li>
+<li>不同的是<code>grpc</code>会将信息转换成二进制格式，因此传输更快，所需内存更小，效率更高。<br>但是因为<code>grpc</code>中，双方都需要编写相同的<code>.proto</code>，彼此传输的格式要固定，因此要求相对更严格一些。而http则没有这种要求，双方并没有格式的约定，所以<code>http</code>也更大一些，速度相对更慢一些。</li>
+<li><code>http</code>通过<code>&quot;\\r\\n&quot;</code>来分隔信息。<code>grpc</code>则要通过<code>.proto</code>文件里的<code>message</code>严格规范信息的数目、类型等。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>周边辅助</category>
+      </categories>
+      <tags>
+        <tag>protobuf</tag>
       </tags>
   </entry>
   <entry>
@@ -2798,11 +2798,29 @@ e, f, g, &lt;eos&gt;
 <li>更多的数据和更长的训练时间</li>
 </ul>
 <h6 id="为什么用Transformer？Transformer相比于RNN和CNN有什么异同？"><a href="#为什么用Transformer？Transformer相比于RNN和CNN有什么异同？" class="headerlink" title="为什么用Transformer？Transformer相比于RNN和CNN有什么异同？"></a>为什么用Transformer？Transformer相比于RNN和CNN有什么异同？</h6><ul>
-<li>Transformer和CNN都不存在序列依赖问题，可以并行计算（计算能力不是问题？？），但是Transformer相对于CNN保留了序列关系，他有RNN的优点，却没有RNN计算能力相对差的缺点</li>
-<li>CNN中卷基层无法捕捉远距离特征（依赖于卷积层的设定），但是Transformer中，self-attention可以获取前后文所有词与当前词的相关性</li>
-<li>RNN和Transformer都可以解决句子中的依赖问题（有点同上面提到的序列问题相似），而是Transformer做的更好，他可以得到句子中每个单词间的相关性，并且一步到位</li>
-<li>Transformer的缺点是，当输入文本特别长的时候，他的计算量会飞速增长。</li>
-<li>Transformer中的self-attention不存在梯度消失的问题，所以可以更好的看到更远距离的信息</li>
+<li><pre><code>Transformer和CNN都不存在序列依赖问题，可以并行计算（计算能力不是问题？？），但是Transformer相对于CNN保留了序列关系，他有RNN的优点，却没有RNN计算能力相对差的缺点
+</code></pre>
+<ul>
+<li><pre><code>CNN中卷基层无法捕捉远距离特征（依赖于卷积层的设定），但是Transformer中，self-attention可以获取前后文所有词与当前词的相关性
+</code></pre>
+<ul>
+<li><pre><code>RNN和Transformer都可以解决句子中的依赖问题（有点同上面提到的序列问题相似），而是Transformer做的更好，他可以得到句子中每个单词间的相关性，并且一步到位
+</code></pre>
+<ul>
+<li><pre><code>Transformer的缺点是，当输入文本特别长的时候，他的计算量会飞速增长。
+</code></pre>
+<ul>
+<li><pre><code>Transformer中的self-attention不存在梯度消失的问题，所以可以更好的看到更远距离的信息
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h6 id="Viterbi算法"><a href="#Viterbi算法" class="headerlink" title="Viterbi算法"></a>Viterbi算法</h6><h5 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice+LSTM"></a>Lattice+LSTM</h5><p>NER中一般采用BIEO标注的方法，这种方法一般需要把字一个个的分开标注，所以用的是字向量。<br>字向量：</p>
 <ul>
