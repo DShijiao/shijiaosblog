@@ -178,89 +178,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BA%AC%E4%B8%9C/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E4%BA%AC%E4%B8%9C/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="post-title-link" itemprop="url">Tensorflow使用注意事项</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-01 17:29:18" itemprop="dateModified" datetime="2022-04-01T17:29:18+08:00">2022-04-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%AC%E4%B8%9C/" itemprop="url" rel="index"><span itemprop="name">京东</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Tensorflow使用注意事项"><a href="#Tensorflow使用注意事项" class="headerlink" title="Tensorflow使用注意事项"></a>Tensorflow使用注意事项</h1><h2 id="服务器上使用Tensorboard，在本地查看"><a href="#服务器上使用Tensorboard，在本地查看" class="headerlink" title="服务器上使用Tensorboard，在本地查看"></a>服务器上使用Tensorboard，在本地查看</h2><ol>
-<li>记录<br>使用<code>Tensorboard</code>，一般要用<code>tf.summary</code>记录训练过程中的数值到某个地方，如下面的 <code>train_summary_dir</code> 和 <code>train_log_dir</code><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> self<span class="selector-class">.train_summary_dir</span>:</span><br><span class="line">    self<span class="selector-class">.loss_summary_reranker</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&quot;loss_reranker&quot;</span>, self.cost)</span><br><span class="line">    self<span class="selector-class">.train_summary_op</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.merge</span>(<span class="selector-attr">[self.loss_summary_reranker]</span>)</span><br><span class="line">    self<span class="selector-class">.train_summary_writer</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.FileWriter</span>(</span><br><span class="line">        os<span class="selector-class">.path</span><span class="selector-class">.join</span>(self<span class="selector-class">.train_summary_dir</span>, <span class="string">&quot;reranker&quot;</span>), self<span class="selector-class">.session</span>.graph)</span><br></pre></td></tr></table></figure></li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/19/%E4%BA%AC%E4%B8%9C/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BA%AC%E4%B8%9C/VSCode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -503,6 +420,93 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/02/19/%E4%BA%AC%E4%B8%9C/python%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">算法刷题总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-21 15:52:17" itemprop="dateModified" datetime="2022-03-21T15:52:17+08:00">2022-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>如果有搜索类循环，可以用dict来储存，这样搜索时间为O(1)，如果不行，可以考虑二叉树搜索，二叉树搜索时间小于O(n)<ol>
+<li>如找重复的数值</li>
+<li>小于&#x2F;大于某个值的数值等</li>
+</ol>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

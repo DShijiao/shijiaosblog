@@ -29,168 +29,6 @@
       </tags>
   </entry>
   <entry>
-    <title>二叉树</title>
-    <url>/2020/03/04/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="二叉树-1"><a href="#二叉树-1" class="headerlink" title="二叉树"></a>二叉树</h4><p>在计算机科学中，二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”（left subtree）和“右子树”（right subtree）。二叉树常被用于实现二叉查找树和二叉堆。</p>
-<span id="more"></span>
-
-<h4 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h4><p>二叉查找树（Binary Search Tree），（又：二叉搜索树，二叉排序树）它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上<strong>所有结点</strong>的值<strong>均小于</strong>它的根结点的值； 若它的右子树不空，则右子树上<strong>所有结点</strong>的值<strong>均大于</strong>它的根结点的值； 它的左、右子树也分别为二叉查找树。</p>
-<h4 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h4><h3 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h3><h4 id="遍历介绍"><a href="#遍历介绍" class="headerlink" title="遍历介绍"></a>遍历介绍</h4><p>二叉树的遍历分<strong>广度优先遍历</strong>和<strong>深度优先遍历</strong></p>
-<p><img src="/images/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A4%BA%E4%BE%8B%E5%9B%BE.jpg" alt="二叉树"></p>
-<ol>
-<li><p>广度优先遍历(层次遍历)</p>
-<p>结果为：abcdfeg</p>
-</li>
-<li><p>深度优先遍历<br>深度优先遍历有三种方法：前序遍历，中序遍历和后序遍历</p>
-<ul>
-<li><p>前序遍历：abdefgc</p>
-<p>根节点 -&gt; 左子树 -&gt; 右子树</p>
-</li>
-<li><p>中序遍历：debgfac</p>
-<p>左子树 -&gt; 根节点 -&gt; 右子树</p>
-</li>
-<li><p>后序遍历：edgfbca</p>
-<p>左子树 -&gt; 右子树 -&gt; 根节点</p>
-</li>
-</ul>
-</li>
-</ol>
-<!--more-->
-
-<h4 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h4><h5 id="广度优先遍历"><a href="#广度优先遍历" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h5><h5 id="深度优先遍历"><a href="#深度优先遍历" class="headerlink" title="深度优先遍历"></a>深度优先遍历</h5><p>二叉树深度优先遍历的三种方法大同小异，唯一需要改变的只是函数helper中子树和根的代码的运行顺序</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">preoderTraversal</span>(<span class="params">self, root</span>):</span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.result</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.result.append(root.val)</span><br><span class="line">            self.helper(root.left)</span><br><span class="line">            self.helper(root.right)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root</span>):</span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.result</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.helper(root.left)</span><br><span class="line">            self.result.append(root.val)</span><br><span class="line">            self.helper(root.right)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">postorderTraversal</span>(<span class="params">self, root</span>):</span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.result</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.helper(root.left)</span><br><span class="line">            self.helper(root.right)</span><br><span class="line">            self.result.append(root.val)</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="二叉查找树查找"><a href="#二叉查找树查找" class="headerlink" title="二叉查找树查找"></a>二叉查找树查找</h3><ul>
-<li>DP(Dynamic programming)：动态规划</li>
-<li>DFS(Depth-First-Search)：深度优先搜索</li>
-</ul>
-<h4 id="给出一个n，求1…n能够得到的所有二叉树个数"><a href="#给出一个n，求1…n能够得到的所有二叉树个数" class="headerlink" title="给出一个n，求1…n能够得到的所有二叉树个数"></a>给出一个n，求1…n能够得到的所有二叉树个数</h4><p>(en: given n, how many structurally unique BST’s that store values 1…n?)</p>
-<ul>
-<li>n &#x3D; 0，{}为空集，所以只有一种二叉树，即空树</li>
-<li>n &#x3D; 1，{1}也只有一种，就是1</li>
-<li>n &#x3D; 2，{1, 2}有两种，1 - 2， 2 - 1</li>
-<li>n &#x3D; 3，{1, 2, 3}<br><img src="/../../public/images/%E4%BA%8C%E5%8F%89%E6%A0%911-3.png" alt="二叉树1-3"><br>综上我们可以发现：</li>
-<li>n &#x3D; 1时，如果根为1，有{}个二叉树</li>
-<li>n &#x3D; 2时，如果根为1，有{2}个二叉树，即n&#x3D;1的二叉树个数；如果根为2，只有{1}个二叉树，即n&#x3D;1的二叉树个数</li>
-<li>n &#x3D; 3时，如果根为1，有{2, 3}个二叉树，即n&#x3D;2的二叉树个数；如果根为2，有{1}*{3}个二叉树个数；如果根为3，同根为1的情况</li>
-</ul>
-<p>当我们知道N时，它的二叉树个数即为每个{1,…,N}中数字为根时的二叉树个数的总和。</p>
-<p>当其中某个元素i为根时，它的二叉树个数即 <strong>{1,…,i-1}二叉树个数</strong> x <strong>{i+1,…,N}二叉树个数</strong>，而 <strong>{1,…,i-1}二叉树个数</strong> 就是 <strong>n&#x3D;i-1的二叉树个数</strong> ，**{i+1,…,N}二叉树个数** 就是 <strong>n&#x3D;N-i的二叉树个数</strong></p>
-<p>所以若先定义n为0，1，2时的二叉树个数<code>dp = [1, 1, 2]</code>，则:</p>
-<ul>
-<li>n &#x3D; 3：<code>dp[3] = dp[0]*dp[2]+dp[1]*dp[1]+dp[2]*dp[0]</code></li>
-<li>n &#x3D; 4：<code>dp[4] = dp[0]*dp[3]+dp[1]*dp[2]+dp[2]*dp[1]+dp[3]*dp[0]</code></li>
-<li>…</li>
-</ul>
-<p>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numTrees</span>(<span class="params">self, n</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        dp = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp += [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">2</span>)]  <span class="comment"># 后面创建多个</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, n + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, i+<span class="number">1</span>):</span><br><span class="line">                    dp[i] += dp[j-<span class="number">1</span>] * dp[i-j]</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
-
-<h4 id="给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树"><a href="#给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树" class="headerlink" title="给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树"></a>给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树</h4><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">分别以1.<span class="string">..n</span>中每个元素，如i，为根：</span><br><span class="line">    根i的左子树</span><br><span class="line">        求根i的左子树：求1.<span class="string">..i-1</span>的所有二叉查找树（同原始问题求1.<span class="string">..n</span>），所以以1.<span class="string">..i-1</span>中的每个元素，如j，为根：</span><br><span class="line">            根j的左子树</span><br><span class="line">                <span class="string">...</span></span><br><span class="line">            根j的右子树</span><br><span class="line">                <span class="string">...</span></span><br><span class="line">    根的右子树</span><br><span class="line">        求根i的右子树：求i+1.<span class="string">..n</span>的所有二叉查找树（同原始问题求1.<span class="string">..n</span>），所以以i+1.<span class="string">..n</span>中的每个元素，如k，为根：</span><br><span class="line">            根k的左子树</span><br><span class="line">                <span class="string">...</span></span><br><span class="line">            根k的右子树</span><br><span class="line">                <span class="string">...</span></span><br></pre></td></tr></table></figure>
-<p>具体代码如下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TreeNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.left = <span class="literal">None</span></span><br><span class="line">        self.right = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generateTrees</span>(<span class="params">self, n</span>):</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">return</span> self.helper(<span class="number">1</span>, n)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">self, start, end</span>):</span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> start &gt; end:</span><br><span class="line">            <span class="keyword">return</span> [<span class="literal">None</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(start, end+<span class="number">1</span>):</span><br><span class="line">            leftTree = self.helper(start, i-<span class="number">1</span>)</span><br><span class="line">            rightTree = self.helper(i+<span class="number">1</span>, end)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> l <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(leftTree)):</span><br><span class="line">                <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(rightTree)):</span><br><span class="line">                    root = TreeNode(i)</span><br><span class="line">                    root.left = leftTree[l]</span><br><span class="line">                    root.right = rightTree[r]</span><br><span class="line">                    result.append(root)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-
-<h3 id="二叉树最大深度和最小深度"><a href="#二叉树最大深度和最小深度" class="headerlink" title="二叉树最大深度和最小深度"></a>二叉树最大深度和最小深度</h3><h4 id="二叉树最大深度"><a href="#二叉树最大深度" class="headerlink" title="二叉树最大深度"></a>二叉树最大深度</h4><p>二叉树最大深度可以用一下代码来求：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxDepth</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>: <span class="comment"># 60%</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        type: root:Tree</span></span><br><span class="line"><span class="string">        rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.maxDepth = <span class="number">0</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">root, depth</span>):</span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                self.maxDepth = <span class="built_in">max</span>(depth, self.maxDepth)</span><br><span class="line">            <span class="keyword">if</span> root:</span><br><span class="line">                helper(root.left, depth+<span class="number">1</span>)</span><br><span class="line">                helper(root.right, depth+<span class="number">1</span>)</span><br><span class="line">        helper(root, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> self.maxDepth</span><br></pre></td></tr></table></figure>
-<p>leetcode上没有问题，但是代码本身是有一个问题要注意的（也不完全算漏洞）</p>
-<p>比如在下图中</p>
-<p><img src="/images/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A4%BA%E4%BE%8B%E5%9B%BE.jpg" alt="二叉树"></p>
-<p>当遍历到<code>d</code>的时候，<code>d</code>没有左子树，<code>d.left==None</code>，所以会进入到代码<code>root==None</code>，那么此时的<code>depth=3</code>，这个<code>depth</code>其实只是到<code>d</code>的二叉树深度。</p>
-<p>因为需要求的是<strong>最大深度</strong>，如果此节点<code>d</code>没有右子树，那么这条路径的深度就是<code>depth=3</code>；如果此节点有右子树，右子树的深度肯定比<code>depth=3</code>大，那么<code>maxDepth</code>就会被右子树的深度所取代，也就不会有 <strong>到节点<code>d</code>的路径深度<code>depth=3</code></strong> 出现了，这个问题得以被解决，但是在二叉树<strong>最小深度</strong>中，这个问题就暴露出来，不能直接套用上述代码了。</p>
-<h4 id="二叉树最小深度"><a href="#二叉树最小深度" class="headerlink" title="二叉树最小深度"></a>二叉树最小深度</h4><p>因为上面描述的原因，所以要对代码进行改进：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minDepth</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        type: root:Tree</span></span><br><span class="line"><span class="string">        rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        self.minDepth = []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">root, depth</span>):</span><br><span class="line">            <span class="keyword">if</span> root.left == <span class="literal">None</span> <span class="keyword">and</span> root.right == <span class="literal">None</span>:</span><br><span class="line">                self.minDepth.append(depth)</span><br><span class="line">            <span class="keyword">if</span> root.left:</span><br><span class="line">                helper(root.left, depth+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> root.right:</span><br><span class="line">                helper(root.right, depth+<span class="number">1</span>)</span><br><span class="line">        helper(root, <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(self.minDepth)</span><br></pre></td></tr></table></figure>
-<p>代码不算简洁，但是在leetcode上跑到了94。69%，效果很不错，开心开心。</p>
-<h3 id="验证一个二叉树是否是二叉查找树"><a href="#验证一个二叉树是否是二叉查找树" class="headerlink" title="验证一个二叉树是否是二叉查找树"></a>验证一个二叉树是否是二叉查找树</h3><p>虽然二叉查找树具体到定义上比较复杂，但是可以发现，如果把二叉查找树<strong>中序遍历</strong>，则能得到一个<strong>有序数组</strong>，否则得到的数组并非完全有序的。</p>
-<p>以后如果有子树、根之间的比较等等，不妨看看是否可以通过遍历方式入手来简化。</p>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>二叉树</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>算法刷题总结</title>
-    <url>/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<ol>
-<li>如果有搜索类循环，可以用dict来储存，这样搜索时间为O(1)，如果不行，可以考虑二叉树搜索，二叉树搜索时间小于O(n)<ol>
-<li>如找重复的数值</li>
-<li>小于&#x2F;大于某个值的数值等</li>
-</ol>
-</li>
-</ol>
-<span id="more"></span>
-
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="字符串反转"><a href="#字符串反转" class="headerlink" title="字符串反转"></a>字符串反转</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;abc&#x27;</span> =&gt; <span class="string">&#x27;cba&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>方法一：</p>
-<p>用两个指针一起从两头往中间前进，每次都对调两个指针对应的数值，不需要区分数组单双数的情况。</p>
-<h3 id="最长不重复字串"><a href="#最长不重复字串" class="headerlink" title="最长不重复字串"></a>最长不重复字串</h3><p>LeetCode 3. Longest Substring Without Repeating Characters</p>
-<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">Given <span class="keyword">a</span> <span class="keyword">string</span>, find <span class="keyword">the</span> <span class="built_in">length</span> <span class="keyword">of</span> <span class="keyword">the</span> longest substring <span class="keyword">without</span> repeating <span class="keyword">characters</span>.</span><br><span class="line"></span><br><span class="line">Example <span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">Input: <span class="string">&quot;abcabcbb&quot;</span></span><br><span class="line">Output: <span class="number">3</span> </span><br><span class="line">Explanation: The answer is <span class="string">&quot;abc&quot;</span>, <span class="keyword">with</span> <span class="keyword">the</span> <span class="built_in">length</span> <span class="keyword">of</span> <span class="number">3.</span> </span><br><span class="line"></span><br><span class="line">Example <span class="number">2</span>:</span><br><span class="line"></span><br><span class="line">Input: <span class="string">&quot;bbbbb&quot;</span></span><br><span class="line">Output: <span class="number">1</span></span><br><span class="line">Explanation: The answer is <span class="string">&quot;b&quot;</span>, <span class="keyword">with</span> <span class="keyword">the</span> <span class="built_in">length</span> <span class="keyword">of</span> <span class="number">1.</span></span><br><span class="line"></span><br><span class="line">Example <span class="number">3</span>:</span><br><span class="line"></span><br><span class="line">Input: <span class="string">&quot;pwwkew&quot;</span></span><br><span class="line">Output: <span class="number">3</span></span><br><span class="line">Explanation: The answer is <span class="string">&quot;wke&quot;</span>, <span class="keyword">with</span> <span class="keyword">the</span> <span class="built_in">length</span> <span class="keyword">of</span> <span class="number">3.</span> </span><br><span class="line">Note that <span class="keyword">the</span> answer must be <span class="keyword">a</span> substring, <span class="string">&quot;pwke&quot;</span> is <span class="keyword">a</span> subsequence <span class="keyword">and</span> <span class="keyword">not</span> <span class="keyword">a</span> substring.</span><br></pre></td></tr></table></figure>
-
-<p>方法一：</p>
-<ol>
-<li>做一次for循环</li>
-<li>每一步更新指针start的位置<ol>
-<li>当start后面有重复的字符，start跳到重复的字符当前位置</li>
-<li>当start后面有重复其前面的字符，但是在start后面没有重复，dict会在后面更新，但是start指针不调整</li>
-</ol>
-</li>
-<li>核心代码如下  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> j, string <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">  <span class="keyword">if</span> string <span class="keyword">in</span> dictOfsubstring:</span><br><span class="line">    start = <span class="built_in">max</span>(start, dictOfsubstring[string]+<span class="number">1</span>)</span><br><span class="line">  maxlen = <span class="built_in">max</span>(maxlen, j-start+<span class="number">1</span>)</span><br><span class="line">  dictOfsubstring.update(&#123;string:j&#125;)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>方法二：</p>
-<h3 id="最长对称字符串"><a href="#最长对称字符串" class="headerlink" title="最长对称字符串"></a>最长对称字符串</h3><p>LeetCode 5. Longest Palindromic Substring</p>
-<figure class="highlight vbnet"><table><tr><td class="code"><pre><span class="line">Given a <span class="type">string</span> s, find the longest palindromic substring <span class="keyword">in</span> s. You may assume that the maximum length <span class="keyword">of</span> s <span class="built_in">is</span> <span class="number">1000</span>.</span><br><span class="line"></span><br><span class="line">Example <span class="number">1</span>:</span><br><span class="line"></span><br><span class="line"><span class="symbol">Input:</span> <span class="string">&quot;babad&quot;</span></span><br><span class="line"><span class="symbol">Output:</span> <span class="string">&quot;bab&quot;</span></span><br><span class="line"><span class="symbol">Note:</span> <span class="string">&quot;aba&quot;</span> <span class="built_in">is</span> also a valid answer.</span><br><span class="line"></span><br><span class="line">Example <span class="number">2</span>:</span><br><span class="line"></span><br><span class="line"><span class="symbol">Input:</span> <span class="string">&quot;cbbd&quot;</span></span><br><span class="line"><span class="symbol">Output:</span> <span class="string">&quot;bb&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>方法一：</p>
-<p>暴力解法，两次for循环，然后找出最大的对称字符串</p>
-<p>方法二：</p>
-<ol>
-<li>一个for循环</li>
-<li>加上对称判断。对称只有两种可能性：<ol>
-<li>有一个中心字符，如’aba’</li>
-<li>没有中心字符，如’abba’</li>
-</ol>
-</li>
-</ol>
-<p>  每当找到某种的中心点时，找出其可以向两边扩展的最远距离（例如情况ii时，代码如下），然后通过记录中心点和扩展的范围，得到对称字符串本身或者长度</p>
-   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line"> ...</span><br><span class="line"> <span class="keyword">if</span> i+<span class="number">1</span>&lt;<span class="built_in">len</span>(s) <span class="keyword">and</span> s[i] == s[i+<span class="number">1</span>]:</span><br><span class="line">     mid = <span class="number">1</span></span><br><span class="line">     count1 = <span class="number">2</span></span><br><span class="line">     <span class="keyword">while</span> i-mid&gt;=<span class="number">0</span> <span class="keyword">and</span> i+<span class="number">1</span>+mid&lt;<span class="built_in">len</span>(s) <span class="keyword">and</span> s[i-mid] == s[i+<span class="number">1</span>+mid]:</span><br><span class="line">         count1 += <span class="number">2</span></span><br><span class="line">         mid += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>字符串相关问题，好像都会上指针。最重要的点，一是上一个还是两个指针，二是指针的更新方法。</p>
-<h2 id="字符列"><a href="#字符列" class="headerlink" title="字符列"></a>字符列</h2><h3 id="最长上升子序列"><a href="#最长上升子序列" class="headerlink" title="最长上升子序列"></a>最长上升子序列</h3><figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">Given <span class="keyword">an</span> unsorted array <span class="keyword">of</span> integers, find <span class="keyword">the</span> <span class="built_in">length</span> <span class="keyword">of</span> longest increasing subsequence.</span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Input: [<span class="number">10</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">101</span>,<span class="number">18</span>]</span><br><span class="line">Output: <span class="number">4</span> </span><br><span class="line">Explanation: The longest increasing subsequence is [<span class="number">2</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">101</span>], therefore <span class="keyword">the</span> <span class="built_in">length</span> is <span class="number">4.</span> </span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">There may be more than <span class="literal">one</span> LIS combination, <span class="keyword">it</span> is only necessary <span class="keyword">for</span> you <span class="built_in">to</span> <span class="literal">return</span> <span class="keyword">the</span> <span class="built_in">length</span>.</span><br><span class="line">Your algorithm should run <span class="keyword">in</span> O(n2) complexity.</span><br><span class="line">Follow up: Could you improve <span class="keyword">it</span> <span class="built_in">to</span> O(n <span class="built_in">log</span> n) <span class="built_in">time</span> complexity?</span><br></pre></td></tr></table></figure>
-
-<p>方法一：</p>
-<ol>
-<li>用dp记录到当前数值位置，能有的最长上升子序列，初始化为1，即最长上升子序列为当前数值本身</li>
-<li>两次for循环（即两个指针），一次记录到当前位置最长上升子序列的，一次是在当前位置前，前面位置上有的最大上升子序列</li>
-<li>注意⚠️：如果第一个指针（当前位置）对应的数值num大于第二个指针（当前位置前面的指针）的数值value，那么当前位置的dp[i]更新为max(dp[i], dp[j]+1)，j为第二个指针的位置</li>
-<li>代码如下：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">IncreasingSubsets</span>(<span class="params">nums</span>):</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  dp = [<span class="number">1</span>]*<span class="built_in">len</span>(nums)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i):</span><br><span class="line">          <span class="keyword">if</span> nums[j] &lt; nums[i]:</span><br><span class="line">              dp[i] = <span class="built_in">max</span>(dp[j]+<span class="number">1</span>, dp[i])</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">max</span>(dp)</span><br></pre></td></tr></table></figure>
-
-<p>方法二：</p>
-<ol>
-<li>用dp记录最长子序列的值</li>
-<li>for循环一遍nums，把每次的num二分查找插入到dp中</li>
-</ol>
-<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2>]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>数学</tag>
-        <tag>公式</tag>
-        <tag>牛顿法</tag>
-        <tag>最优法</tag>
-        <tag>迭代算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ES安装与使用</title>
     <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/ES/</url>
     <content><![CDATA[<h1 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
@@ -585,6 +423,168 @@
       <categories>
         <category>京东</category>
       </categories>
+  </entry>
+  <entry>
+    <title>二叉树</title>
+    <url>/2020/03/04/leetcode/%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <content><![CDATA[<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="二叉树-1"><a href="#二叉树-1" class="headerlink" title="二叉树"></a>二叉树</h4><p>在计算机科学中，二叉树是每个结点最多有两个子树的树结构。通常子树被称作“左子树”（left subtree）和“右子树”（right subtree）。二叉树常被用于实现二叉查找树和二叉堆。</p>
+<span id="more"></span>
+
+<h4 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h4><p>二叉查找树（Binary Search Tree），（又：二叉搜索树，二叉排序树）它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上<strong>所有结点</strong>的值<strong>均小于</strong>它的根结点的值； 若它的右子树不空，则右子树上<strong>所有结点</strong>的值<strong>均大于</strong>它的根结点的值； 它的左、右子树也分别为二叉查找树。</p>
+<h4 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h4><h3 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h3><h4 id="遍历介绍"><a href="#遍历介绍" class="headerlink" title="遍历介绍"></a>遍历介绍</h4><p>二叉树的遍历分<strong>广度优先遍历</strong>和<strong>深度优先遍历</strong></p>
+<p><img src="/images/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A4%BA%E4%BE%8B%E5%9B%BE.jpg" alt="二叉树"></p>
+<ol>
+<li><p>广度优先遍历(层次遍历)</p>
+<p>结果为：abcdfeg</p>
+</li>
+<li><p>深度优先遍历<br>深度优先遍历有三种方法：前序遍历，中序遍历和后序遍历</p>
+<ul>
+<li><p>前序遍历：abdefgc</p>
+<p>根节点 -&gt; 左子树 -&gt; 右子树</p>
+</li>
+<li><p>中序遍历：debgfac</p>
+<p>左子树 -&gt; 根节点 -&gt; 右子树</p>
+</li>
+<li><p>后序遍历：edgfbca</p>
+<p>左子树 -&gt; 右子树 -&gt; 根节点</p>
+</li>
+</ul>
+</li>
+</ol>
+<!--more-->
+
+<h4 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h4><h5 id="广度优先遍历"><a href="#广度优先遍历" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h5><h5 id="深度优先遍历"><a href="#深度优先遍历" class="headerlink" title="深度优先遍历"></a>深度优先遍历</h5><p>二叉树深度优先遍历的三种方法大同小异，唯一需要改变的只是函数helper中子树和根的代码的运行顺序</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">preoderTraversal</span>(<span class="params">self, root</span>):</span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.result</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.result.append(root.val)</span><br><span class="line">            self.helper(root.left)</span><br><span class="line">            self.helper(root.right)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root</span>):</span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.result</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.helper(root.left)</span><br><span class="line">            self.result.append(root.val)</span><br><span class="line">            self.helper(root.right)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">postorderTraversal</span>(<span class="params">self, root</span>):</span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.result</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.helper(root.left)</span><br><span class="line">            self.helper(root.right)</span><br><span class="line">            self.result.append(root.val)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="二叉查找树查找"><a href="#二叉查找树查找" class="headerlink" title="二叉查找树查找"></a>二叉查找树查找</h3><ul>
+<li>DP(Dynamic programming)：动态规划</li>
+<li>DFS(Depth-First-Search)：深度优先搜索</li>
+</ul>
+<h4 id="给出一个n，求1…n能够得到的所有二叉树个数"><a href="#给出一个n，求1…n能够得到的所有二叉树个数" class="headerlink" title="给出一个n，求1…n能够得到的所有二叉树个数"></a>给出一个n，求1…n能够得到的所有二叉树个数</h4><p>(en: given n, how many structurally unique BST’s that store values 1…n?)</p>
+<ul>
+<li>n &#x3D; 0，{}为空集，所以只有一种二叉树，即空树</li>
+<li>n &#x3D; 1，{1}也只有一种，就是1</li>
+<li>n &#x3D; 2，{1, 2}有两种，1 - 2， 2 - 1</li>
+<li>n &#x3D; 3，{1, 2, 3}<br><img src="/../../public/images/%E4%BA%8C%E5%8F%89%E6%A0%911-3.png" alt="二叉树1-3"><br>综上我们可以发现：</li>
+<li>n &#x3D; 1时，如果根为1，有{}个二叉树</li>
+<li>n &#x3D; 2时，如果根为1，有{2}个二叉树，即n&#x3D;1的二叉树个数；如果根为2，只有{1}个二叉树，即n&#x3D;1的二叉树个数</li>
+<li>n &#x3D; 3时，如果根为1，有{2, 3}个二叉树，即n&#x3D;2的二叉树个数；如果根为2，有{1}*{3}个二叉树个数；如果根为3，同根为1的情况</li>
+</ul>
+<p>当我们知道N时，它的二叉树个数即为每个{1,…,N}中数字为根时的二叉树个数的总和。</p>
+<p>当其中某个元素i为根时，它的二叉树个数即 <strong>{1,…,i-1}二叉树个数</strong> x <strong>{i+1,…,N}二叉树个数</strong>，而 <strong>{1,…,i-1}二叉树个数</strong> 就是 <strong>n&#x3D;i-1的二叉树个数</strong> ，**{i+1,…,N}二叉树个数** 就是 <strong>n&#x3D;N-i的二叉树个数</strong></p>
+<p>所以若先定义n为0，1，2时的二叉树个数<code>dp = [1, 1, 2]</code>，则:</p>
+<ul>
+<li>n &#x3D; 3：<code>dp[3] = dp[0]*dp[2]+dp[1]*dp[1]+dp[2]*dp[0]</code></li>
+<li>n &#x3D; 4：<code>dp[4] = dp[0]*dp[3]+dp[1]*dp[2]+dp[2]*dp[1]+dp[3]*dp[0]</code></li>
+<li>…</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numTrees</span>(<span class="params">self, n</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        dp = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp += [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">2</span>)]  <span class="comment"># 后面创建多个</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, n + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, i+<span class="number">1</span>):</span><br><span class="line">                    dp[i] += dp[j-<span class="number">1</span>] * dp[i-j]</span><br><span class="line">            <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
+
+<h4 id="给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树"><a href="#给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树" class="headerlink" title="给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树"></a>给出一个n，求1…n能够得到的所有BST二叉查找树，并输出所有树</h4><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">分别以1.<span class="string">..n</span>中每个元素，如i，为根：</span><br><span class="line">    根i的左子树</span><br><span class="line">        求根i的左子树：求1.<span class="string">..i-1</span>的所有二叉查找树（同原始问题求1.<span class="string">..n</span>），所以以1.<span class="string">..i-1</span>中的每个元素，如j，为根：</span><br><span class="line">            根j的左子树</span><br><span class="line">                <span class="string">...</span></span><br><span class="line">            根j的右子树</span><br><span class="line">                <span class="string">...</span></span><br><span class="line">    根的右子树</span><br><span class="line">        求根i的右子树：求i+1.<span class="string">..n</span>的所有二叉查找树（同原始问题求1.<span class="string">..n</span>），所以以i+1.<span class="string">..n</span>中的每个元素，如k，为根：</span><br><span class="line">            根k的左子树</span><br><span class="line">                <span class="string">...</span></span><br><span class="line">            根k的右子树</span><br><span class="line">                <span class="string">...</span></span><br></pre></td></tr></table></figure>
+<p>具体代码如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TreeNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.left = <span class="literal">None</span></span><br><span class="line">        self.right = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generateTrees</span>(<span class="params">self, n</span>):</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">return</span> self.helper(<span class="number">1</span>, n)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">self, start, end</span>):</span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> start &gt; end:</span><br><span class="line">            <span class="keyword">return</span> [<span class="literal">None</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(start, end+<span class="number">1</span>):</span><br><span class="line">            leftTree = self.helper(start, i-<span class="number">1</span>)</span><br><span class="line">            rightTree = self.helper(i+<span class="number">1</span>, end)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> l <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(leftTree)):</span><br><span class="line">                <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(rightTree)):</span><br><span class="line">                    root = TreeNode(i)</span><br><span class="line">                    root.left = leftTree[l]</span><br><span class="line">                    root.right = rightTree[r]</span><br><span class="line">                    result.append(root)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<h3 id="二叉树最大深度和最小深度"><a href="#二叉树最大深度和最小深度" class="headerlink" title="二叉树最大深度和最小深度"></a>二叉树最大深度和最小深度</h3><h4 id="二叉树最大深度"><a href="#二叉树最大深度" class="headerlink" title="二叉树最大深度"></a>二叉树最大深度</h4><p>二叉树最大深度可以用一下代码来求：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxDepth</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>: <span class="comment"># 60%</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        type: root:Tree</span></span><br><span class="line"><span class="string">        rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.maxDepth = <span class="number">0</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">root, depth</span>):</span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                self.maxDepth = <span class="built_in">max</span>(depth, self.maxDepth)</span><br><span class="line">            <span class="keyword">if</span> root:</span><br><span class="line">                helper(root.left, depth+<span class="number">1</span>)</span><br><span class="line">                helper(root.right, depth+<span class="number">1</span>)</span><br><span class="line">        helper(root, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> self.maxDepth</span><br></pre></td></tr></table></figure>
+<p>leetcode上没有问题，但是代码本身是有一个问题要注意的（也不完全算漏洞）</p>
+<p>比如在下图中</p>
+<p><img src="/images/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A4%BA%E4%BE%8B%E5%9B%BE.jpg" alt="二叉树"></p>
+<p>当遍历到<code>d</code>的时候，<code>d</code>没有左子树，<code>d.left==None</code>，所以会进入到代码<code>root==None</code>，那么此时的<code>depth=3</code>，这个<code>depth</code>其实只是到<code>d</code>的二叉树深度。</p>
+<p>因为需要求的是<strong>最大深度</strong>，如果此节点<code>d</code>没有右子树，那么这条路径的深度就是<code>depth=3</code>；如果此节点有右子树，右子树的深度肯定比<code>depth=3</code>大，那么<code>maxDepth</code>就会被右子树的深度所取代，也就不会有 <strong>到节点<code>d</code>的路径深度<code>depth=3</code></strong> 出现了，这个问题得以被解决，但是在二叉树<strong>最小深度</strong>中，这个问题就暴露出来，不能直接套用上述代码了。</p>
+<h4 id="二叉树最小深度"><a href="#二叉树最小深度" class="headerlink" title="二叉树最小深度"></a>二叉树最小深度</h4><p>因为上面描述的原因，所以要对代码进行改进：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minDepth</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        type: root:Tree</span></span><br><span class="line"><span class="string">        rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        self.minDepth = []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">root, depth</span>):</span><br><span class="line">            <span class="keyword">if</span> root.left == <span class="literal">None</span> <span class="keyword">and</span> root.right == <span class="literal">None</span>:</span><br><span class="line">                self.minDepth.append(depth)</span><br><span class="line">            <span class="keyword">if</span> root.left:</span><br><span class="line">                helper(root.left, depth+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> root.right:</span><br><span class="line">                helper(root.right, depth+<span class="number">1</span>)</span><br><span class="line">        helper(root, <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(self.minDepth)</span><br></pre></td></tr></table></figure>
+<p>代码不算简洁，但是在leetcode上跑到了94。69%，效果很不错，开心开心。</p>
+<h3 id="验证一个二叉树是否是二叉查找树"><a href="#验证一个二叉树是否是二叉查找树" class="headerlink" title="验证一个二叉树是否是二叉查找树"></a>验证一个二叉树是否是二叉查找树</h3><p>虽然二叉查找树具体到定义上比较复杂，但是可以发现，如果把二叉查找树<strong>中序遍历</strong>，则能得到一个<strong>有序数组</strong>，否则得到的数组并非完全有序的。</p>
+<p>以后如果有子树、根之间的比较等等，不妨看看是否可以通过遍历方式入手来简化。</p>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>二叉树</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法刷题总结</title>
+    <url>/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<ol>
+<li>如果有搜索类循环，可以用dict来储存，这样搜索时间为O(1)，如果不行，可以考虑二叉树搜索，二叉树搜索时间小于O(n)<ol>
+<li>如找重复的数值</li>
+<li>小于&#x2F;大于某个值的数值等</li>
+</ol>
+</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="字符串反转"><a href="#字符串反转" class="headerlink" title="字符串反转"></a>字符串反转</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;abc&#x27;</span> =&gt; <span class="string">&#x27;cba&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>方法一：</p>
+<p>用两个指针一起从两头往中间前进，每次都对调两个指针对应的数值，不需要区分数组单双数的情况。</p>
+<h3 id="最长不重复字串"><a href="#最长不重复字串" class="headerlink" title="最长不重复字串"></a>最长不重复字串</h3><p>LeetCode 3. Longest Substring Without Repeating Characters</p>
+<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">Given <span class="keyword">a</span> <span class="keyword">string</span>, find <span class="keyword">the</span> <span class="built_in">length</span> <span class="keyword">of</span> <span class="keyword">the</span> longest substring <span class="keyword">without</span> repeating <span class="keyword">characters</span>.</span><br><span class="line"></span><br><span class="line">Example <span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">Input: <span class="string">&quot;abcabcbb&quot;</span></span><br><span class="line">Output: <span class="number">3</span> </span><br><span class="line">Explanation: The answer is <span class="string">&quot;abc&quot;</span>, <span class="keyword">with</span> <span class="keyword">the</span> <span class="built_in">length</span> <span class="keyword">of</span> <span class="number">3.</span> </span><br><span class="line"></span><br><span class="line">Example <span class="number">2</span>:</span><br><span class="line"></span><br><span class="line">Input: <span class="string">&quot;bbbbb&quot;</span></span><br><span class="line">Output: <span class="number">1</span></span><br><span class="line">Explanation: The answer is <span class="string">&quot;b&quot;</span>, <span class="keyword">with</span> <span class="keyword">the</span> <span class="built_in">length</span> <span class="keyword">of</span> <span class="number">1.</span></span><br><span class="line"></span><br><span class="line">Example <span class="number">3</span>:</span><br><span class="line"></span><br><span class="line">Input: <span class="string">&quot;pwwkew&quot;</span></span><br><span class="line">Output: <span class="number">3</span></span><br><span class="line">Explanation: The answer is <span class="string">&quot;wke&quot;</span>, <span class="keyword">with</span> <span class="keyword">the</span> <span class="built_in">length</span> <span class="keyword">of</span> <span class="number">3.</span> </span><br><span class="line">Note that <span class="keyword">the</span> answer must be <span class="keyword">a</span> substring, <span class="string">&quot;pwke&quot;</span> is <span class="keyword">a</span> subsequence <span class="keyword">and</span> <span class="keyword">not</span> <span class="keyword">a</span> substring.</span><br></pre></td></tr></table></figure>
+
+<p>方法一：</p>
+<ol>
+<li>做一次for循环</li>
+<li>每一步更新指针start的位置<ol>
+<li>当start后面有重复的字符，start跳到重复的字符当前位置</li>
+<li>当start后面有重复其前面的字符，但是在start后面没有重复，dict会在后面更新，但是start指针不调整</li>
+</ol>
+</li>
+<li>核心代码如下  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> j, string <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">  <span class="keyword">if</span> string <span class="keyword">in</span> dictOfsubstring:</span><br><span class="line">    start = <span class="built_in">max</span>(start, dictOfsubstring[string]+<span class="number">1</span>)</span><br><span class="line">  maxlen = <span class="built_in">max</span>(maxlen, j-start+<span class="number">1</span>)</span><br><span class="line">  dictOfsubstring.update(&#123;string:j&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>方法二：</p>
+<h3 id="最长对称字符串"><a href="#最长对称字符串" class="headerlink" title="最长对称字符串"></a>最长对称字符串</h3><p>LeetCode 5. Longest Palindromic Substring</p>
+<figure class="highlight vbnet"><table><tr><td class="code"><pre><span class="line">Given a <span class="type">string</span> s, find the longest palindromic substring <span class="keyword">in</span> s. You may assume that the maximum length <span class="keyword">of</span> s <span class="built_in">is</span> <span class="number">1000</span>.</span><br><span class="line"></span><br><span class="line">Example <span class="number">1</span>:</span><br><span class="line"></span><br><span class="line"><span class="symbol">Input:</span> <span class="string">&quot;babad&quot;</span></span><br><span class="line"><span class="symbol">Output:</span> <span class="string">&quot;bab&quot;</span></span><br><span class="line"><span class="symbol">Note:</span> <span class="string">&quot;aba&quot;</span> <span class="built_in">is</span> also a valid answer.</span><br><span class="line"></span><br><span class="line">Example <span class="number">2</span>:</span><br><span class="line"></span><br><span class="line"><span class="symbol">Input:</span> <span class="string">&quot;cbbd&quot;</span></span><br><span class="line"><span class="symbol">Output:</span> <span class="string">&quot;bb&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>方法一：</p>
+<p>暴力解法，两次for循环，然后找出最大的对称字符串</p>
+<p>方法二：</p>
+<ol>
+<li>一个for循环</li>
+<li>加上对称判断。对称只有两种可能性：<ol>
+<li>有一个中心字符，如’aba’</li>
+<li>没有中心字符，如’abba’</li>
+</ol>
+</li>
+</ol>
+<p>  每当找到某种的中心点时，找出其可以向两边扩展的最远距离（例如情况ii时，代码如下），然后通过记录中心点和扩展的范围，得到对称字符串本身或者长度</p>
+   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line"> ...</span><br><span class="line"> <span class="keyword">if</span> i+<span class="number">1</span>&lt;<span class="built_in">len</span>(s) <span class="keyword">and</span> s[i] == s[i+<span class="number">1</span>]:</span><br><span class="line">     mid = <span class="number">1</span></span><br><span class="line">     count1 = <span class="number">2</span></span><br><span class="line">     <span class="keyword">while</span> i-mid&gt;=<span class="number">0</span> <span class="keyword">and</span> i+<span class="number">1</span>+mid&lt;<span class="built_in">len</span>(s) <span class="keyword">and</span> s[i-mid] == s[i+<span class="number">1</span>+mid]:</span><br><span class="line">         count1 += <span class="number">2</span></span><br><span class="line">         mid += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>字符串相关问题，好像都会上指针。最重要的点，一是上一个还是两个指针，二是指针的更新方法。</p>
+<h2 id="字符列"><a href="#字符列" class="headerlink" title="字符列"></a>字符列</h2><h3 id="最长上升子序列"><a href="#最长上升子序列" class="headerlink" title="最长上升子序列"></a>最长上升子序列</h3><figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">Given <span class="keyword">an</span> unsorted array <span class="keyword">of</span> integers, find <span class="keyword">the</span> <span class="built_in">length</span> <span class="keyword">of</span> longest increasing subsequence.</span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Input: [<span class="number">10</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">101</span>,<span class="number">18</span>]</span><br><span class="line">Output: <span class="number">4</span> </span><br><span class="line">Explanation: The longest increasing subsequence is [<span class="number">2</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">101</span>], therefore <span class="keyword">the</span> <span class="built_in">length</span> is <span class="number">4.</span> </span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">There may be more than <span class="literal">one</span> LIS combination, <span class="keyword">it</span> is only necessary <span class="keyword">for</span> you <span class="built_in">to</span> <span class="literal">return</span> <span class="keyword">the</span> <span class="built_in">length</span>.</span><br><span class="line">Your algorithm should run <span class="keyword">in</span> O(n2) complexity.</span><br><span class="line">Follow up: Could you improve <span class="keyword">it</span> <span class="built_in">to</span> O(n <span class="built_in">log</span> n) <span class="built_in">time</span> complexity?</span><br></pre></td></tr></table></figure>
+
+<p>方法一：</p>
+<ol>
+<li>用dp记录到当前数值位置，能有的最长上升子序列，初始化为1，即最长上升子序列为当前数值本身</li>
+<li>两次for循环（即两个指针），一次记录到当前位置最长上升子序列的，一次是在当前位置前，前面位置上有的最大上升子序列</li>
+<li>注意⚠️：如果第一个指针（当前位置）对应的数值num大于第二个指针（当前位置前面的指针）的数值value，那么当前位置的dp[i]更新为max(dp[i], dp[j]+1)，j为第二个指针的位置</li>
+<li>代码如下：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">IncreasingSubsets</span>(<span class="params">nums</span>):</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  dp = [<span class="number">1</span>]*<span class="built_in">len</span>(nums)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i):</span><br><span class="line">          <span class="keyword">if</span> nums[j] &lt; nums[i]:</span><br><span class="line">              dp[i] = <span class="built_in">max</span>(dp[j]+<span class="number">1</span>, dp[i])</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">max</span>(dp)</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<ol>
+<li>用dp记录最长子序列的值</li>
+<li>for循环一遍nums，把每次的num二分查找插入到dp中</li>
+</ol>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2>]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>公式</tag>
+        <tag>牛顿法</tag>
+        <tag>最优法</tag>
+        <tag>迭代算法</tag>
+      </tags>
   </entry>
   <entry>
     <title>ChitChat任务</title>
@@ -1650,6 +1650,22 @@
       </tags>
   </entry>
   <entry>
+    <title>CRF 和 HMM 详述</title>
+    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/CRF%20%E5%92%8C%20HMM%20%E8%AF%A6%E8%BF%B0/</url>
+    <content><![CDATA[<h1 id="CRF-和-HMM-详述"><a href="#CRF-和-HMM-详述" class="headerlink" title="CRF 和 HMM 详述"></a>CRF 和 HMM 详述</h1>]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>CRF</tag>
+        <tag>HMM</tag>
+        <tag>概率</tag>
+        <tag>判别式</tag>
+        <tag>生成式</tag>
+        <tag>贝叶斯</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LSTM</title>
     <url>/2019/12/06/%E6%95%B0%E5%AD%A6/LSTM/</url>
     <content><![CDATA[<h2 id="LSTM来源"><a href="#LSTM来源" class="headerlink" title="LSTM来源"></a>LSTM来源</h2><p>LSTM由RNN变化而来，所以在介绍LSTM前，我们先了解一下RNN。</p>
@@ -1695,22 +1711,6 @@
         <tag>RNN</tag>
         <tag>LSTM</tag>
         <tag>长期依赖性</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CRF 和 HMM 详述</title>
-    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/CRF%20%E5%92%8C%20HMM%20%E8%AF%A6%E8%BF%B0/</url>
-    <content><![CDATA[<h1 id="CRF-和-HMM-详述"><a href="#CRF-和-HMM-详述" class="headerlink" title="CRF 和 HMM 详述"></a>CRF 和 HMM 详述</h1>]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>CRF</tag>
-        <tag>HMM</tag>
-        <tag>概率</tag>
-        <tag>判别式</tag>
-        <tag>生成式</tag>
-        <tag>贝叶斯</tag>
       </tags>
   </entry>
   <entry>
