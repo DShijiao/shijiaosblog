@@ -193,7 +193,8 @@
   <entry>
     <title>ES安装与使用</title>
     <url>/2022/07/06/%E4%BA%AC%E4%B8%9C/ES/</url>
-    <content><![CDATA[<h1 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><p><img src="/photos/vscode-edit-ruler.png" alt="我是一个测试图片"></p>
+    <content><![CDATA[<h1 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2>
+
 <h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
 <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><h5 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h5><p>   可能遇到需要密码的问题。此时有两种方法：</p>
 <ul>
@@ -683,6 +684,37 @@
       </categories>
   </entry>
   <entry>
+    <title>DM任务</title>
+    <url>/2021/08/19/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/DM%E4%BB%BB%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何</li>
+<li>背景如何</li>
+<li>模型如何</li>
+<li>准确率如何</li>
+<li>碰到哪些问题</li>
+<li>怎么解决（trick或者模型）</li>
+<li>为什么这么解决</li>
+<li>效果怎么样</li>
+<li>还有哪些可以改进的</li>
+<li>现有哪些更好的方法吗（新的论文）</li>
+</ol>
+<span id="more"></span>
+
+<p>对话机器人中碰到的问题：</p>
+<ol>
+<li>解决语言的多样性和歧义性问题</li>
+<li>槽位模块中如何提高抽取模型的复用性</li>
+<li>解决实体消歧问题</li>
+<li>上下文理解</li>
+<li>场景可移植性</li>
+<li>多轮（ner可以加到多轮里，比如学生教学场景，可以聊ner和dm结合rasa的设计）</li>
+</ol>
+]]></content>
+      <categories>
+        <category>工作总结</category>
+      </categories>
+  </entry>
+  <entry>
     <title>FAQ</title>
     <url>/2019/12/08/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/FAQ/</url>
     <content><![CDATA[<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为了降本增效，我们规划了八大任务型场景，并以FAQ为辅，构建智能在线客服。总场景覆盖率是87.6%，其中FAQ覆盖率为16.7%</p>
@@ -900,37 +932,6 @@
         <tag>LR</tag>
         <tag>SVM</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>DM任务</title>
-    <url>/2021/08/19/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/DM%E4%BB%BB%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
-<li>数据如何</li>
-<li>背景如何</li>
-<li>模型如何</li>
-<li>准确率如何</li>
-<li>碰到哪些问题</li>
-<li>怎么解决（trick或者模型）</li>
-<li>为什么这么解决</li>
-<li>效果怎么样</li>
-<li>还有哪些可以改进的</li>
-<li>现有哪些更好的方法吗（新的论文）</li>
-</ol>
-<span id="more"></span>
-
-<p>对话机器人中碰到的问题：</p>
-<ol>
-<li>解决语言的多样性和歧义性问题</li>
-<li>槽位模块中如何提高抽取模型的复用性</li>
-<li>解决实体消歧问题</li>
-<li>上下文理解</li>
-<li>场景可移植性</li>
-<li>多轮（ner可以加到多轮里，比如学生教学场景，可以聊ner和dm结合rasa的设计）</li>
-</ol>
-]]></content>
-      <categories>
-        <category>工作总结</category>
-      </categories>
   </entry>
   <entry>
     <title>FAQ任务</title>
