@@ -354,12 +354,19 @@
 <li>因为实际线上会是多个用户同时请求，而非一个用户多次请求，所以压测是，我们主要通过逐步增加线程数（Number of Threads），模拟实际线上用户数的增加，来找到最高TPS</li>
 <li>线程循环次数（loop count）无需过多改变和设置的太高，因为同一用户的调用次数往往是非常有限的</li>
 </ol>
-<h2 id="压测"><a href="#压测" class="headerlink" title="压测"></a>压测</h2><p>简单的压测可以按如下步骤进行：</p>
+<h2 id="压测"><a href="#压测" class="headerlink" title="压测"></a>压测</h2><h3 id="Windows界面压测"><a href="#Windows界面压测" class="headerlink" title="Windows界面压测"></a>Windows界面压测</h3><p>简单的压测可以按如下步骤进行：</p>
 <ol>
 <li>设置第一次压测的线程数（Number of Threads），如20</li>
 <li>设置Ramp-Up Period，可以根据线程数来设置，主要保证此参数要小于整体压测时间（Duration）</li>
 <li>每个用户调用次数Loop Count可以设置成持续调用（Forever），并勾选Scheduler</li>
 <li>Scheduler Configuration里主要要设置Duration，即压测持续时间。这个时间一定要大于线程启动时间（Ramp-Up Period），即【Duration】 - 【Ramp-Up Period】 &#x3D; 【所有线程启动后希望压测的时间】</li>
+</ol>
+<h3 id="Linux压测"><a href="#Linux压测" class="headerlink" title="Linux压测"></a>Linux压测</h3><ol>
+<li>在有界面可视化的 <code>JMETER</code> 上（如 <code>Windows</code> 系统上），配置好需要压测的参数</li>
+<li>储存成 <code>test.jmx</code> 文件</li>
+<li>将 <code>test.jmx</code> 文件传输到 <code>Linux</code> 上</li>
+<li>进入 <code>Linux</code> 上 <code>JMETER</code> 的 <code>bin</code> 文件夹下，运行 <code>jmeter -n -t /path/to/your/test.jmx -l /path/to/results/file.jtl</code></li>
+<li>将 <code>file.jtl</code> 传到 <code>Windows</code> 上，导入 <code>JMETER</code> 中即可</li>
 </ol>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>TPS、线程数、响应时间等之间的分析见博客<a href="https://www.cnblogs.com/happyliuyi/p/10755837.html">happy刘艺<br>性能测试入门（五）实践得出系统最佳线程数设置(压测最佳线程数&lt;真实设置的线程数量&lt;内存极限线程数)</a>和博客<a href="https://cloud.tencent.com/developer/article/1771176">【修正版】QPS、TPS、RT、并发数、吞吐量理解和性能优化深入思考</a></p>
 <p>结果大概就一个表格，可以参见博客 <a href="https://blog.csdn.net/weixin_42579328/article/details/108243059">Jmeter使用教程（四）—测试结果分析</a> </p>
@@ -500,8 +507,8 @@
   <entry>
     <title>python疑难杂症</title>
     <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/python%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</url>
-    <content><![CDATA[<h1 id="python疑难杂症"><a href="#python疑难杂症" class="headerlink" title="python疑难杂症"></a>python疑难杂症</h1><h2 id="args用add-argument内部-x2F-外部传参"><a href="#args用add-argument内部-x2F-外部传参" class="headerlink" title="args用add_argument内部&#x2F;外部传参"></a>args用add_argument内部&#x2F;外部传参</h2><p>args一般用来在外部运行convert.py时，外部传参，</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    argp = argparse.ArgumentParser()</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;in_file&#x27;</span>, <span class="attribute">default</span>=datapath_abs_test_machine, <span class="attribute">help</span>=<span class="string">&#x27;Input CSV file&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--out_name&#x27;</span>, <span class="attribute">default</span>=<span class="string">&#x27;baseline-e2e-data&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Output files name prefix&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-a&#x27;</span>, <span class="string">&#x27;--abstract&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Comma-separated list of slots to be abstracted&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-m&#x27;</span>, <span class="string">&#x27;--multi-ref&#x27;</span>,</span><br><span class="line">                      <span class="attribute">help</span>=<span class="string">&#x27;Multiple reference mode: group by the same DA&#x27;</span>, <span class="attribute">action</span>=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--no-refs&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Use a file without references, only produce DA files&#x27;</span>, <span class="attribute">action</span>=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-n&#x27;</span>, <span class="string">&#x27;--slot-names&#x27;</span>, <span class="attribute">help</span>=<span class="string">&#x27;Include slot names in delexicalized texts&#x27;</span>, <span class="attribute">action</span>=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    args = argp.parse_args()</span><br><span class="line">    convert(args)</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h1 id="python疑难杂症"><a href="#python疑难杂症" class="headerlink" title="python疑难杂症"></a>python疑难杂症</h1><h2 id="args用add-argument内部-x2F-外部传参"><a href="#args用add-argument内部-x2F-外部传参" class="headerlink" title="args用add_argument内部&#x2F;外部传参"></a>args用add_argument内部&#x2F;外部传参</h2><p>args一般用来在外部运行 <code>convert.py</code> 时，外部传参，</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    argp = argparse.ArgumentParser()</span><br><span class="line">    argp.add_argument(&#x27;in_file&#x27;, default=datapath_abs_test_machine, help=&#x27;Input CSV file&#x27;)</span><br><span class="line">    argp.add_argument(&#x27;--out_name&#x27;, default=&#x27;baseline-e2e-data&#x27;, help=&#x27;Output files name prefix&#x27;)</span><br><span class="line">    argp.add_argument(&#x27;-a&#x27;, &#x27;--abstract&#x27;, help=&#x27;Comma-separated list of slots to be abstracted&#x27;)</span><br><span class="line">    argp.add_argument(&#x27;-m&#x27;, &#x27;--multi-ref&#x27;,</span><br><span class="line">                      help=&#x27;Multiple reference mode: group by the same DA&#x27;, action=&#x27;store_true&#x27;)</span><br><span class="line">    argp.add_argument(&#x27;--no-refs&#x27;, help=&#x27;Use a file without references, only produce DA files&#x27;, action=&#x27;store_true&#x27;)</span><br><span class="line">    argp.add_argument(&#x27;-n&#x27;, &#x27;--slot-names&#x27;, help=&#x27;Include slot names in delexicalized texts&#x27;, action=&#x27;store_true&#x27;)</span><br><span class="line">    args = argp.parse_args()</span><br><span class="line">    convert(args)</span><br></pre></td></tr></table></figure>
 
 <span id="more"></span>
 
@@ -513,52 +520,6 @@
 <p>同上，也是“–”的问题，在add_argument第一个参数前加上“–”</p>
 <h2 id="pip安装本地文件包"><a href="#pip安装本地文件包" class="headerlink" title="pip安装本地文件包"></a>pip安装本地文件包</h2><p>如果是类似github上面需要下载的安装包，如<a href="https://github.com/ufal/pytreex">pytreex</a>，在下载文件并解压到<code>pytreex</code>之后，直接使用<code>pip install pytreex</code>就可以<br>注意：解压后会生产文件包<code>pytreex-master</code>，此时如果直接<code>pip install pytreex-master</code>是不行的，需要将文件名更换成包名<code>pytreex</code>，然后再<code>pip install pytreex</code>才能成功，否则会报找不到的错误</p>
 <figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ERROR: </span>Could not find a version that satisfies the requirement pytreex-master (from versions: none)</span><br><span class="line"><span class="keyword">ERROR: </span>No matching distribution found for pytreex-master</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>京东</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>使用vscode原创连接服务器</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/%E4%BD%BF%E7%94%A8vscode%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<h1 id="使用vscode原创连接服务器"><a href="#使用vscode原创连接服务器" class="headerlink" title="使用vscode原创连接服务器"></a>使用vscode原创连接服务器</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
-<li>在左侧“扩展”里选择并安装扩展 Remote-SSH</li>
-<li>点击左侧新增的扩展按钮，并点击左上角“+”号，然后会出现config的配置，按如下配置<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root</li>
-<li>此时配置好后尝试登陆，会需要输入密码</li>
-<li>可以用配置成不需要密码<ol>
-<li>本地建个ssh ssh-keygen -t rsa -b 4096 -f ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh，会生成id_rsa-remote-ssh和id_rsa-remote-ssh.pub两个文件</li>
-<li>将id_rsa-remote-ssh.pub配到服务器的authorized_keys（一般在～&#x2F;.ssh&#x2F;）文件里</li>
-<li>将id_rsa-remote-ssh配到本地的config中，即修改刚刚的config成如下<br> Host name-as-you-like<br> HostName 11.12.205.19<br> User root<br> IdentityFile ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh</li>
-</ol>
-</li>
-<li>可以连接远程服务器了</li>
-</ol>
-<span id="more"></span>
-
-<h2 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h2><p>使用vscode连接远程服务器，也希望能够进行断点调试。</p>
-<ol>
-<li>进入扩展，搜索python（一般是第一个）</li>
-<li>如果本地还没有安装，可以先点击安装</li>
-<li>如果本地安装了，配备remote-ssh后，会显示“在remote-ssh上安装”，点击按钮进行安装就可以了</li>
-<li>结果如下<br><img src="/Users/dengshijiao1/Documents/hexo/photos/vscode%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1python%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE.png" alt="vscode远程服务python断点调试配置"></li>
-</ol>
-<h2 id="离线安装vscode和扩展组件"><a href="#离线安装vscode和扩展组件" class="headerlink" title="离线安装vscode和扩展组件"></a>离线安装vscode和扩展组件</h2><h3 id="离线安装vscode"><a href="#离线安装vscode" class="headerlink" title="离线安装vscode"></a>离线安装vscode</h3><p>远程一般安装的是<code>vscode-server</code></p>
-<ol>
-<li>下载<code>vscode-server-linux-x64.tar.gz</code>包，放到远程服务器</li>
-<li>不同服务器，下载版本不一致，确认<code>commitId</code></li>
-<li>将<code>vscode-server-linux-x64.tar.gz</code>解压到<code>~/.vscode-server/bin/$&#123;commitId&#125;</code></li>
-<li>在<code>$&#123;commitId&#125;</code>文件下创建文件<code>0</code></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">commit_id=f06011ac164ae4dc8e753a3fe7f9549844d15e35</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download url is: https://update.code.visualstudio.com/commit:$&#123;commit_id&#125;/server-linux-x64/stable</span></span><br><span class="line">curl -sSL <span class="string">&quot;https://update.code.visualstudio.com/commit:<span class="variable">$&#123;commit_id&#125;</span>/server-linux-x64/stable&quot;</span> -o vscode-server-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span></span><br><span class="line"><span class="comment"># assume that you upload vscode-server-linux-x64.tar.gz to /tmp dir</span></span><br><span class="line">tar zxvf /tmp/vscode-server-linux-x64.tar.gz -C ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span> --strip 1</span><br><span class="line"><span class="built_in">touch</span> ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span>/0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="离线安装扩展组件"><a href="#离线安装扩展组件" class="headerlink" title="离线安装扩展组件"></a>离线安装扩展组件</h3><ol>
-<li>下载组件，并传到远程服务器</li>
-<li><code>vscode</code>中，<code>ctrl+shift+p</code>打开命令行，输入<code>Extensions: install from VSIX</code></li>
-<li>选择上传的<code>vsix</code>扩展组件，开始安装</li>
-<li>重启<code>vscode</code></li>
-<li>如果安装失败，有可能是文件权限问题，可以先尝试<code>chmod -x -R ms-python-release.vsix</code>给扩展组件赋权，再进行安装</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>参考<br><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
-]]></content>
       <categories>
         <category>京东</category>
       </categories>
@@ -2861,5 +2822,67 @@ e, f, g, &lt;eos&gt;
         <tag>LR</tag>
         <tag>SVM</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Git 常用命令</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/Git/</url>
+    <content><![CDATA[<h1 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h1><p>git diff 颜色：<br>git diff 时增删代码颜色相同想要更改颜色：git config –global color.ui true</p>
+]]></content>
+      <categories>
+        <category>京东</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>VSCode 常见需求</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/VSCode/</url>
+    <content><![CDATA[<h1 id="VSCode-常见需求"><a href="#VSCode-常见需求" class="headerlink" title="VSCode 常见需求"></a>VSCode 常见需求</h1><p>增加代码长度分割线：</p>
+<ol>
+<li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
+<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/Users/dengshijiao1/Documents/hexo/photos/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
+<li>进入 <code>settings.json</code></li>
+<li>添加代码 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;[python]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;editor.rulers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">         <span class="number">80</span></span><br><span class="line">     <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ms-python.python&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="使用vscode远程连接服务器"><a href="#使用vscode远程连接服务器" class="headerlink" title="使用vscode远程连接服务器"></a>使用vscode远程连接服务器</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
+<li>在左侧“扩展”里选择并安装扩展 Remote-SSH</li>
+<li>点击左侧新增的扩展按钮，并点击左上角“+”号，然后会出现config的配置，按如下配置<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root</li>
+<li>此时配置好后尝试登陆，会需要输入密码</li>
+<li>可以用配置成不需要密码<ol>
+<li>本地建个ssh ssh-keygen -t rsa -b 4096 -f ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh，会生成id_rsa-remote-ssh和id_rsa-remote-ssh.pub两个文件</li>
+<li>将id_rsa-remote-ssh.pub配到服务器的authorized_keys（一般在～&#x2F;.ssh&#x2F;）文件里</li>
+<li>将id_rsa-remote-ssh配到本地的config中，即修改刚刚的config成如下<br> Host name-as-you-like<br> HostName 11.12.205.19<br> User root<br> IdentityFile ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh</li>
+</ol>
+</li>
+<li>可以连接远程服务器了</li>
+</ol>
+<span id="more"></span>
+
+<h4 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h4><p>使用vscode连接远程服务器，也希望能够进行断点调试。</p>
+<ol>
+<li>进入扩展，搜索python（一般是第一个）</li>
+<li>如果本地还没有安装，可以先点击安装</li>
+<li>如果本地安装了，配备remote-ssh后，会显示“在remote-ssh上安装”，点击按钮进行安装就可以了</li>
+<li>结果如下<br><img src="/Users/dengshijiao1/Documents/hexo/photos/vscode%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1python%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE.png" alt="vscode远程服务python断点调试配置"></li>
+</ol>
+<h4 id="离线安装vscode和扩展组件"><a href="#离线安装vscode和扩展组件" class="headerlink" title="离线安装vscode和扩展组件"></a>离线安装vscode和扩展组件</h4><h5 id="离线安装vscode"><a href="#离线安装vscode" class="headerlink" title="离线安装vscode"></a>离线安装vscode</h5><p>远程一般安装的是<code>vscode-server</code></p>
+<ol>
+<li>下载<code>vscode-server-linux-x64.tar.gz</code>包，放到远程服务器</li>
+<li>不同服务器，下载版本不一致，确认<code>commitId</code></li>
+<li>将<code>vscode-server-linux-x64.tar.gz</code>解压到<code>~/.vscode-server/bin/$&#123;commitId&#125;</code></li>
+<li>在<code>$&#123;commitId&#125;</code>文件下创建文件<code>0</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">commit_id=f06011ac164ae4dc8e753a3fe7f9549844d15e35</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download url is: https://update.code.visualstudio.com/commit:$&#123;commit_id&#125;/server-linux-x64/stable</span></span><br><span class="line">curl -sSL <span class="string">&quot;https://update.code.visualstudio.com/commit:<span class="variable">$&#123;commit_id&#125;</span>/server-linux-x64/stable&quot;</span> -o vscode-server-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span></span><br><span class="line"><span class="comment"># assume that you upload vscode-server-linux-x64.tar.gz to /tmp dir</span></span><br><span class="line">tar zxvf /tmp/vscode-server-linux-x64.tar.gz -C ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span> --strip 1</span><br><span class="line"><span class="built_in">touch</span> ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span>/0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="离线安装扩展组件"><a href="#离线安装扩展组件" class="headerlink" title="离线安装扩展组件"></a>离线安装扩展组件</h5><ol>
+<li>下载组件，并传到远程服务器</li>
+<li><code>vscode</code>中，<code>ctrl+shift+p</code>打开命令行，输入<code>Extensions: install from VSIX</code></li>
+<li>选择上传的<code>vsix</code>扩展组件，开始安装</li>
+<li>重启<code>vscode</code></li>
+<li>如果安装失败，有可能是文件权限问题，可以先尝试<code>chmod -x -R ms-python-release.vsix</code>给扩展组件赋权，再进行安装</li>
+</ol>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>参考<br><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
+]]></content>
+      <categories>
+        <category>京东</category>
+      </categories>
   </entry>
 </search>

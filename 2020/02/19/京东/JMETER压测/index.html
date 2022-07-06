@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/Users/shijiaodeng/Documents/MyBlog/hexo/source/_posts/%E4%BA%AC%E4%B8%9C/photos/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png">
 <meta property="article:published_time" content="2020-02-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-04T09:13:08.821Z">
+<meta property="article:modified_time" content="2022-07-05T01:03:27.147Z">
 <meta property="article:author" content="Shijiao DENG">
 <meta property="article:tag" content="JMETER">
 <meta name="twitter:card" content="summary">
@@ -214,7 +214,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-04 17:13:08" itemprop="dateModified" datetime="2022-07-04T17:13:08+08:00">2022-07-04</time>
+                <time title="修改时间：2022-07-05 09:03:27" itemprop="dateModified" datetime="2022-07-05T09:03:27+08:00">2022-07-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,12 +262,19 @@
 <li>因为实际线上会是多个用户同时请求，而非一个用户多次请求，所以压测是，我们主要通过逐步增加线程数（Number of Threads），模拟实际线上用户数的增加，来找到最高TPS</li>
 <li>线程循环次数（loop count）无需过多改变和设置的太高，因为同一用户的调用次数往往是非常有限的</li>
 </ol>
-<h2 id="压测"><a href="#压测" class="headerlink" title="压测"></a>压测</h2><p>简单的压测可以按如下步骤进行：</p>
+<h2 id="压测"><a href="#压测" class="headerlink" title="压测"></a>压测</h2><h3 id="Windows界面压测"><a href="#Windows界面压测" class="headerlink" title="Windows界面压测"></a>Windows界面压测</h3><p>简单的压测可以按如下步骤进行：</p>
 <ol>
 <li>设置第一次压测的线程数（Number of Threads），如20</li>
 <li>设置Ramp-Up Period，可以根据线程数来设置，主要保证此参数要小于整体压测时间（Duration）</li>
 <li>每个用户调用次数Loop Count可以设置成持续调用（Forever），并勾选Scheduler</li>
 <li>Scheduler Configuration里主要要设置Duration，即压测持续时间。这个时间一定要大于线程启动时间（Ramp-Up Period），即【Duration】 - 【Ramp-Up Period】 &#x3D; 【所有线程启动后希望压测的时间】</li>
+</ol>
+<h3 id="Linux压测"><a href="#Linux压测" class="headerlink" title="Linux压测"></a>Linux压测</h3><ol>
+<li>在有界面可视化的 <code>JMETER</code> 上（如 <code>Windows</code> 系统上），配置好需要压测的参数</li>
+<li>储存成 <code>test.jmx</code> 文件</li>
+<li>将 <code>test.jmx</code> 文件传输到 <code>Linux</code> 上</li>
+<li>进入 <code>Linux</code> 上 <code>JMETER</code> 的 <code>bin</code> 文件夹下，运行 <code>jmeter -n -t /path/to/your/test.jmx -l /path/to/results/file.jtl</code></li>
+<li>将 <code>file.jtl</code> 传到 <code>Windows</code> 上，导入 <code>JMETER</code> 中即可</li>
 </ol>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>TPS、线程数、响应时间等之间的分析见博客<a target="_blank" rel="noopener" href="https://www.cnblogs.com/happyliuyi/p/10755837.html">happy刘艺<br>性能测试入门（五）实践得出系统最佳线程数设置(压测最佳线程数&lt;真实设置的线程数量&lt;内存极限线程数)</a>和博客<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1771176">【修正版】QPS、TPS、RT、并发数、吞吐量理解和性能优化深入思考</a></p>
 <p>结果大概就一个表格，可以参见博客 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42579328/article/details/108243059">Jmeter使用教程（四）—测试结果分析</a> </p>
@@ -371,7 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JMETER%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.</span> <span class="nav-text">JMETER压测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A"><span class="nav-number">1.1.1.</span> <span class="nav-text">解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.2.</span> <span class="nav-text">压测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.3.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JMETER%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.</span> <span class="nav-text">JMETER压测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A"><span class="nav-number">1.1.1.</span> <span class="nav-text">解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.2.</span> <span class="nav-text">压测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows%E7%95%8C%E9%9D%A2%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">Windows界面压测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">Linux压测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.3.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -387,7 +394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
