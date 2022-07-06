@@ -248,6 +248,15 @@
       </tags>
   </entry>
   <entry>
+    <title>Git 常用命令</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/Git/</url>
+    <content><![CDATA[<h1 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h1><p>git diff 颜色：<br>git diff 时增删代码颜色相同想要更改颜色：git config –global color.ui true</p>
+]]></content>
+      <categories>
+        <category>京东</category>
+      </categories>
+  </entry>
+  <entry>
     <title>IDEA 配置</title>
     <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/IDEA%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>idea 配置</p>
@@ -480,6 +489,59 @@
 </ol>
 <h2 id="GPU问题"><a href="#GPU问题" class="headerlink" title="GPU问题"></a>GPU问题</h2><p>测试时如果内存不够，但是又想继续启新的线程（比如压测的时候），这时可能会报<code>RuntimeError: can&#39;t start new thread</code>。换一个内存使用率稍低的显卡就能改善问题</p>
 <p>报错<code>cuda 0 not supported xla</code>通常也是因为GPU显存问题，换一个空闲的显卡可以改善问题</p>
+]]></content>
+      <categories>
+        <category>京东</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>VSCode 常见需求</title>
+    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/VSCode/</url>
+    <content><![CDATA[<h1 id="VSCode-常见需求"><a href="#VSCode-常见需求" class="headerlink" title="VSCode 常见需求"></a>VSCode 常见需求</h1><p>增加代码长度分割线：</p>
+<ol>
+<li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
+<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/Users/dengshijiao1/Documents/hexo/photos/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
+<li>进入 <code>settings.json</code></li>
+<li>添加代码 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;[python]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;editor.rulers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">         <span class="number">80</span></span><br><span class="line">     <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ms-python.python&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="使用vscode远程连接服务器"><a href="#使用vscode远程连接服务器" class="headerlink" title="使用vscode远程连接服务器"></a>使用vscode远程连接服务器</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
+<li>在左侧“扩展”里选择并安装扩展 Remote-SSH</li>
+<li>点击左侧新增的扩展按钮，并点击左上角“+”号，然后会出现config的配置，按如下配置<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root</li>
+<li>此时配置好后尝试登陆，会需要输入密码</li>
+<li>可以用配置成不需要密码<ol>
+<li>本地建个ssh ssh-keygen -t rsa -b 4096 -f ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh，会生成id_rsa-remote-ssh和id_rsa-remote-ssh.pub两个文件</li>
+<li>将id_rsa-remote-ssh.pub配到服务器的authorized_keys（一般在～&#x2F;.ssh&#x2F;）文件里</li>
+<li>将id_rsa-remote-ssh配到本地的config中，即修改刚刚的config成如下<br> Host name-as-you-like<br> HostName 11.12.205.19<br> User root<br> IdentityFile ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh</li>
+</ol>
+</li>
+<li>可以连接远程服务器了</li>
+</ol>
+<span id="more"></span>
+
+<h4 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h4><p>使用vscode连接远程服务器，也希望能够进行断点调试。</p>
+<ol>
+<li>进入扩展，搜索python（一般是第一个）</li>
+<li>如果本地还没有安装，可以先点击安装</li>
+<li>如果本地安装了，配备remote-ssh后，会显示“在remote-ssh上安装”，点击按钮进行安装就可以了</li>
+<li>结果如下<br><img src="/Users/dengshijiao1/Documents/hexo/photos/vscode%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1python%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE.png" alt="vscode远程服务python断点调试配置"></li>
+</ol>
+<h4 id="离线安装vscode和扩展组件"><a href="#离线安装vscode和扩展组件" class="headerlink" title="离线安装vscode和扩展组件"></a>离线安装vscode和扩展组件</h4><h5 id="离线安装vscode"><a href="#离线安装vscode" class="headerlink" title="离线安装vscode"></a>离线安装vscode</h5><p>远程一般安装的是<code>vscode-server</code></p>
+<ol>
+<li>下载<code>vscode-server-linux-x64.tar.gz</code>包，放到远程服务器</li>
+<li>不同服务器，下载版本不一致，确认<code>commitId</code></li>
+<li>将<code>vscode-server-linux-x64.tar.gz</code>解压到<code>~/.vscode-server/bin/$&#123;commitId&#125;</code></li>
+<li>在<code>$&#123;commitId&#125;</code>文件下创建文件<code>0</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">commit_id=f06011ac164ae4dc8e753a3fe7f9549844d15e35</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download url is: https://update.code.visualstudio.com/commit:$&#123;commit_id&#125;/server-linux-x64/stable</span></span><br><span class="line">curl -sSL <span class="string">&quot;https://update.code.visualstudio.com/commit:<span class="variable">$&#123;commit_id&#125;</span>/server-linux-x64/stable&quot;</span> -o vscode-server-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span></span><br><span class="line"><span class="comment"># assume that you upload vscode-server-linux-x64.tar.gz to /tmp dir</span></span><br><span class="line">tar zxvf /tmp/vscode-server-linux-x64.tar.gz -C ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span> --strip 1</span><br><span class="line"><span class="built_in">touch</span> ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span>/0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="离线安装扩展组件"><a href="#离线安装扩展组件" class="headerlink" title="离线安装扩展组件"></a>离线安装扩展组件</h5><ol>
+<li>下载组件，并传到远程服务器</li>
+<li><code>vscode</code>中，<code>ctrl+shift+p</code>打开命令行，输入<code>Extensions: install from VSIX</code></li>
+<li>选择上传的<code>vsix</code>扩展组件，开始安装</li>
+<li>重启<code>vscode</code></li>
+<li>如果安装失败，有可能是文件权限问题，可以先尝试<code>chmod -x -R ms-python-release.vsix</code>给扩展组件赋权，再进行安装</li>
+</ol>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>参考<br><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
 ]]></content>
       <categories>
         <category>京东</category>
@@ -1588,22 +1650,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CRF 和 HMM 详述</title>
-    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/CRF%20%E5%92%8C%20HMM%20%E8%AF%A6%E8%BF%B0/</url>
-    <content><![CDATA[<h1 id="CRF-和-HMM-详述"><a href="#CRF-和-HMM-详述" class="headerlink" title="CRF 和 HMM 详述"></a>CRF 和 HMM 详述</h1>]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>CRF</tag>
-        <tag>HMM</tag>
-        <tag>概率</tag>
-        <tag>判别式</tag>
-        <tag>生成式</tag>
-        <tag>贝叶斯</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LSTM</title>
     <url>/2019/12/06/%E6%95%B0%E5%AD%A6/LSTM/</url>
     <content><![CDATA[<h2 id="LSTM来源"><a href="#LSTM来源" class="headerlink" title="LSTM来源"></a>LSTM来源</h2><p>LSTM由RNN变化而来，所以在介绍LSTM前，我们先了解一下RNN。</p>
@@ -1649,6 +1695,22 @@
         <tag>RNN</tag>
         <tag>LSTM</tag>
         <tag>长期依赖性</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CRF 和 HMM 详述</title>
+    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/CRF%20%E5%92%8C%20HMM%20%E8%AF%A6%E8%BF%B0/</url>
+    <content><![CDATA[<h1 id="CRF-和-HMM-详述"><a href="#CRF-和-HMM-详述" class="headerlink" title="CRF 和 HMM 详述"></a>CRF 和 HMM 详述</h1>]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>CRF</tag>
+        <tag>HMM</tag>
+        <tag>概率</tag>
+        <tag>判别式</tag>
+        <tag>生成式</tag>
+        <tag>贝叶斯</tag>
       </tags>
   </entry>
   <entry>
@@ -2822,67 +2884,5 @@ e, f, g, &lt;eos&gt;
         <tag>LR</tag>
         <tag>SVM</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Git 常用命令</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/Git/</url>
-    <content><![CDATA[<h1 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h1><p>git diff 颜色：<br>git diff 时增删代码颜色相同想要更改颜色：git config –global color.ui true</p>
-]]></content>
-      <categories>
-        <category>京东</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>VSCode 常见需求</title>
-    <url>/2020/02/19/%E4%BA%AC%E4%B8%9C/VSCode/</url>
-    <content><![CDATA[<h1 id="VSCode-常见需求"><a href="#VSCode-常见需求" class="headerlink" title="VSCode 常见需求"></a>VSCode 常见需求</h1><p>增加代码长度分割线：</p>
-<ol>
-<li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
-<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/Users/dengshijiao1/Documents/hexo/photos/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
-<li>进入 <code>settings.json</code></li>
-<li>添加代码 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;[python]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;editor.rulers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">         <span class="number">80</span></span><br><span class="line">     <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ms-python.python&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="使用vscode远程连接服务器"><a href="#使用vscode远程连接服务器" class="headerlink" title="使用vscode远程连接服务器"></a>使用vscode远程连接服务器</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
-<li>在左侧“扩展”里选择并安装扩展 Remote-SSH</li>
-<li>点击左侧新增的扩展按钮，并点击左上角“+”号，然后会出现config的配置，按如下配置<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root</li>
-<li>此时配置好后尝试登陆，会需要输入密码</li>
-<li>可以用配置成不需要密码<ol>
-<li>本地建个ssh ssh-keygen -t rsa -b 4096 -f ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh，会生成id_rsa-remote-ssh和id_rsa-remote-ssh.pub两个文件</li>
-<li>将id_rsa-remote-ssh.pub配到服务器的authorized_keys（一般在～&#x2F;.ssh&#x2F;）文件里</li>
-<li>将id_rsa-remote-ssh配到本地的config中，即修改刚刚的config成如下<br> Host name-as-you-like<br> HostName 11.12.205.19<br> User root<br> IdentityFile ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh</li>
-</ol>
-</li>
-<li>可以连接远程服务器了</li>
-</ol>
-<span id="more"></span>
-
-<h4 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h4><p>使用vscode连接远程服务器，也希望能够进行断点调试。</p>
-<ol>
-<li>进入扩展，搜索python（一般是第一个）</li>
-<li>如果本地还没有安装，可以先点击安装</li>
-<li>如果本地安装了，配备remote-ssh后，会显示“在remote-ssh上安装”，点击按钮进行安装就可以了</li>
-<li>结果如下<br><img src="/Users/dengshijiao1/Documents/hexo/photos/vscode%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1python%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE.png" alt="vscode远程服务python断点调试配置"></li>
-</ol>
-<h4 id="离线安装vscode和扩展组件"><a href="#离线安装vscode和扩展组件" class="headerlink" title="离线安装vscode和扩展组件"></a>离线安装vscode和扩展组件</h4><h5 id="离线安装vscode"><a href="#离线安装vscode" class="headerlink" title="离线安装vscode"></a>离线安装vscode</h5><p>远程一般安装的是<code>vscode-server</code></p>
-<ol>
-<li>下载<code>vscode-server-linux-x64.tar.gz</code>包，放到远程服务器</li>
-<li>不同服务器，下载版本不一致，确认<code>commitId</code></li>
-<li>将<code>vscode-server-linux-x64.tar.gz</code>解压到<code>~/.vscode-server/bin/$&#123;commitId&#125;</code></li>
-<li>在<code>$&#123;commitId&#125;</code>文件下创建文件<code>0</code></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">commit_id=f06011ac164ae4dc8e753a3fe7f9549844d15e35</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download url is: https://update.code.visualstudio.com/commit:$&#123;commit_id&#125;/server-linux-x64/stable</span></span><br><span class="line">curl -sSL <span class="string">&quot;https://update.code.visualstudio.com/commit:<span class="variable">$&#123;commit_id&#125;</span>/server-linux-x64/stable&quot;</span> -o vscode-server-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span></span><br><span class="line"><span class="comment"># assume that you upload vscode-server-linux-x64.tar.gz to /tmp dir</span></span><br><span class="line">tar zxvf /tmp/vscode-server-linux-x64.tar.gz -C ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span> --strip 1</span><br><span class="line"><span class="built_in">touch</span> ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span>/0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h5 id="离线安装扩展组件"><a href="#离线安装扩展组件" class="headerlink" title="离线安装扩展组件"></a>离线安装扩展组件</h5><ol>
-<li>下载组件，并传到远程服务器</li>
-<li><code>vscode</code>中，<code>ctrl+shift+p</code>打开命令行，输入<code>Extensions: install from VSIX</code></li>
-<li>选择上传的<code>vsix</code>扩展组件，开始安装</li>
-<li>重启<code>vscode</code></li>
-<li>如果安装失败，有可能是文件权限问题，可以先尝试<code>chmod -x -R ms-python-release.vsix</code>给扩展组件赋权，再进行安装</li>
-</ol>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>参考<br><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
-]]></content>
-      <categories>
-        <category>京东</category>
-      </categories>
   </entry>
 </search>
