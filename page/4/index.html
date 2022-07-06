@@ -342,6 +342,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">linux常用命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-01 17:42:11" itemprop="dateModified" datetime="2022-04-01T17:42:11+08:00">2022-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%AC%E4%B8%9C/" itemprop="url" rel="index"><span itemprop="name">京东</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>快速查看端口占用情况<code>lsof -i tcp:8080</code>或者<code>netstat -nlp</code></li>
+<li>查看PID具体信息<code>ll /proc/PID</code></li>
+<li>同样，查看CPU和内存信息可以使用<code>cat /proc/cupinfo</code> 和 <code>cat /proc/meminfo</code>。更详细CPU信息查询可以使用<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c </code>和<code>cat /proc/cpuinfo | grep physical | uniq -c</code></li>
+<li>查看显卡信息可以使用命令<code>lspci | grep -i vga</code></li>
+<li>查看磁盘使用情况<code>df -k</code>或<code>df -m</code>，分别以kb或mb为单位，查看磁盘使用量</li>
+<li>GPU当前使用状况：<code>nvidia-smi</code></li>
+<li>每10秒，更新一次GPU情况：<code>watch -n 10 nvidia-smi</code></li>
+<li><code>free -h</code>看内存情况</li>
+</ol>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1721406">Linux系统查看CPU、机器型号、内存等信息</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BA%AC%E4%B8%9C/VSCode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -423,90 +507,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">linux常用命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-01 17:42:11" itemprop="dateModified" datetime="2022-04-01T17:42:11+08:00">2022-04-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%AC%E4%B8%9C/" itemprop="url" rel="index"><span itemprop="name">京东</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>快速查看端口占用情况<code>lsof -i tcp:8080</code>或者<code>netstat -nlp</code></li>
-<li>查看PID具体信息<code>ll /proc/PID</code></li>
-<li>同样，查看CPU和内存信息可以使用<code>cat /proc/cupinfo</code> 和 <code>cat /proc/meminfo</code>。更详细CPU信息查询可以使用<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c </code>和<code>cat /proc/cpuinfo | grep physical | uniq -c</code></li>
-<li>查看显卡信息可以使用命令<code>lspci | grep -i vga</code></li>
-<li>查看磁盘使用情况<code>df -k</code>或<code>df -m</code>，分别以kb或mb为单位，查看磁盘使用量</li>
-<li>GPU当前使用状况：<code>nvidia-smi</code></li>
-<li>每10秒，更新一次GPU情况：<code>watch -n 10 nvidia-smi</code></li>
-<li><code>free -h</code>看内存情况</li>
-</ol>
-<p>参考文章：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1721406">Linux系统查看CPU、机器型号、内存等信息</a></p>
-
       
     </div>
 
