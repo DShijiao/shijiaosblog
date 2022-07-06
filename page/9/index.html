@@ -178,91 +178,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/%E6%9C%AA%E6%95%B4%E7%90%86/docker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/16/%E6%9C%AA%E6%95%B4%E7%90%86/docker/" class="post-title-link" itemprop="url">docker</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-16T00:00:00+08:00">2019-01-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 15:58:57" itemprop="dateModified" datetime="2022-03-21T15:58:57+08:00">2022-03-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index"><span itemprop="name">周边辅助</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="docker-挂载"><a href="#docker-挂载" class="headerlink" title="docker 挂载"></a>docker 挂载</h2><p>前面是本地文件，后面是镜像文件：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -it --cpus=<span class="number">3</span> -v <span class="regexp">/Users/</span>shijiao<span class="regexp">/Documents/</span>Bert<span class="regexp">/:/</span>shijiao/mkl conda-origin bash</span><br></pre></td></tr></table></figure>
-
-<p><code>--cpus=8</code>设置的是cpu利用百分比，而不是个数，因为报错中，<code>Range of CPUs</code>是小数，而不是整数。</p>
-<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -it --cpus=8 -v /Users/shijiao/Documents/Bert/:/shijiao/mkl conda-origin bash</span><br><span class="line"><span class="keyword">Error </span>response from daemon: Range of CPUs is from 0.01 to 6.00, as there are only 6 CPUs available.</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/01/16/%E6%9C%AA%E6%95%B4%E7%90%86/docker/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/%E6%9C%AA%E6%95%B4%E7%90%86/protobuf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -411,6 +326,94 @@
 
       
           <h2 id="tensorflow-重新加载并继续训练模型"><a href="#tensorflow-重新加载并继续训练模型" class="headerlink" title="tensorflow 重新加载并继续训练模型"></a>tensorflow 重新加载并继续训练模型</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ckpt_file = tf<span class="selector-class">.train</span><span class="selector-class">.latest_checkpoint</span>(path_save_model)</span><br><span class="line"><span class="keyword">if</span> ckpt_file:</span><br><span class="line">    saver<span class="selector-class">.restore</span>(sess, ckpt_file)</span><br></pre></td></tr></table></figure>
+
+<p>这里<code>ckpt_file</code>是文件<code>checkpoint</code>里<code>model_checkpoint_path</code>的值。<br>只要<code>model_checkpoint_path</code>指定的<code>checkpoint</code>在路径下存在，就会直接加载这个<code>checkpoint</code>继续训练。否则就会重新从<code>0</code>开始。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/01/16/%E6%9C%AA%E6%95%B4%E7%90%86/tensorflow/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/chitchat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/16/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/chitchat/" class="post-title-link" itemprop="url">Chitchat</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-16T00:00:00+08:00">2019-01-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-21 17:33:44" itemprop="dateModified" datetime="2022-03-21T17:33:44+08:00">2022-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">工作总结</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Chitchat"><a href="#Chitchat" class="headerlink" title="Chitchat"></a>Chitchat</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>chitchat持续的时间很长了。每次进步不大，但是至少都在前进。因为持续时间长，每次想法和改动的地方比较多，也是学到了不少东西，想要把这些都记录下来，所以开了这个文档。</p>
+<p>chitchat 目前已经自己改进到v1.5了。虽然每一次改动的内容并不大，但是每一次都是一个尝试。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/01/16/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/chitchat/#more" rel="contents">
+                阅读�ss="selector-class">.restore</span>(sess, ckpt_file)</span><br></pre></td></tr></table></figure>
 
 <p>这里<code>ckpt_file</code>是文件<code>checkpoint</code>里<code>model_checkpoint_path</code>的值。<br>只要<code>model_checkpoint_path</code>指定的<code>checkpoint</code>在路径下存在，就会直接加载这个<code>checkpoint</code>继续训练。否则就会重新从<code>0</code>开始。</p>
           <!--noindex-->
