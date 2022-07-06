@@ -178,6 +178,119 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/06/%E4%BA%AC%E4%B8%9C/ES/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/06/%E4%BA%AC%E4%B8%9C/ES/" class="post-title-link" itemprop="url">ES安装与使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-06 00:00:00 / 修改时间：17:02:02" itemprop="dateCreated datePublished" datetime="2022-07-06T00:00:00+08:00">2022-07-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index"><span itemprop="name">周边辅助</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><h5 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h5><p>   可能遇到需要密码的问题。此时有两种方法：</p>
+<ul>
+<li>一个是进入 <code>elasticsearch.yml</code> 文件设置 <code>xpack.security.enabled: false</code>。不过这样有安全隐患，只能用于测试。且7.x的版本没有相关参数</li>
+<li>二是设置一个密码<ul>
+<li>运行 <code>bin/elasticserch-setup-passwords interactive</code> </li>
+<li>数据密码 <code>xxxxx</code></li>
+<li><code>curl http://host:port -u username:password</code> 验证是否成功</li>
+</ul>
+</li>
+</ul>
+<h5 id="内网访问"><a href="#内网访问" class="headerlink" title="内网访问"></a>内网访问</h5><p>   如果访问ES是在同一网络内另一台机器上，则需要设置 <code>elasticsearch.yml</code> 中的 <code>network.host</code> 为 <code>0.0.0.0</code> 允许内网不同机器访问</p>
+<h2 id="ES-使用"><a href="#ES-使用" class="headerlink" title="ES 使用"></a>ES 使用</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>命令： </p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">PUT http:<span class="regexp">//</span>host:port/test123 </span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;settings&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;number_of_shards&quot;</span>:<span class="number">5</span>, <span class="regexp">//</span> 指定索引分片数量</span><br><span class="line">        <span class="string">&quot;number_of_replicas&quot;</span> : <span class="number">1</span> <span class="regexp">//</span> 指定索引副本分片数量</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;mappings&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;properties&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: &#123; <span class="regexp">//</span> 必须唯一</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;long&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;classe&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;sentence&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;vector&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;dense_vector&quot;</span>,</span><br><span class="line">                <span class="string">&quot;dims&quot;</span>: <span class="number">5</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="regexp">//</span> ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="导入文档"><a href="#导入文档" class="headerlink" title="导入文档"></a>导入文档</h3><h4 id="导入单个文档"><a href="#导入单个文档" class="headerlink" title="导入单个文档"></a>导入单个文档</h4><p><code>id</code> 为 <code>3</code> 时：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PUT http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_doc/<span class="number">3</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">&quot;sentence&quot;</span>: <span class="string">&quot;我是第三句中文&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vector&quot;</span>: [-<span class="number">0.5</span>, <span class="number">0.5</span>, -<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">5</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="批量导入文档"><a href="#批量导入文档" class="headerlink" title="批量导入文档"></a>批量导入文档</h4><p>批量导入主要使用 <code>bulk</code>，<code>Python</code> 和 <code>http</code> 都有接口</p>
+<p>使用 <code>bulk</code> 一次性导入数据不能超过 <code>100MB</code></p>
+<p>无论是 <code>Python</code> 还是 <code>http</code> ，都需要将每个文档转换成 <code>json</code> 格式导入。某个 <code>json</code> 文档具体格式如下：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_index&quot;</span>: <span class="string">&quot;test123&quot;</span>,</span><br><span class="line">    <span class="string">&quot;_id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;_source&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="string">&quot;classe&quot;</span>: <span class="string">&quot;FAQ&quot;</span>,</span><br><span class="line">        <span class="string">&quot;sentence&quot;</span>: <span class="string">&quot;我是第一个文档&quot;</span>,</span><br><span class="line">        <span class="string">&quot;vector&quot;</span>: [<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span> <span class="number">4.0</span>, <span class="number">5.0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若使用 <code>http</code> 批量导入，命令行： <code>curl -XPOST -H &quot;Content-Type:application/json&quot; &quot;http://127.0.0.1:9200/test123/_bulk?pretty&quot; --data-binary @example.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// example.json</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;_index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test123&quot;</span><span class="punctuation">,</span><span class="attr">&quot;_id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;classe&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FAQ&quot;</span><span class="punctuation">,</span><span class="attr">&quot;sentence&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我是第一个文档&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vector&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1.0</span><span class="punctuation">,</span> <span class="number">2.0</span><span class="punctuation">,</span> <span class="number">3.0</span> <span class="number">4.0</span><span class="punctuation">,</span> <span class="number">5.0</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;_index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test123&quot;</span><span class="punctuation">,</span><span class="attr">&quot;_id&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span><span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span><span class="attr">&quot;classe&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FAQ&quot;</span><span class="punctuation">,</span><span class="attr">&quot;sentence&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我是第二个文档&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vector&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1.0</span><span class="punctuation">,</span> <span class="number">2.0</span><span class="punctuation">,</span> <span class="number">3.0</span> <span class="number">4.0</span><span class="punctuation">,</span> <span class="number">5.0</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;_index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test123&quot;</span><span class="punctuation">,</span><span class="attr">&quot;_id&quot;</span><span class="punctuation">:</span> <span class="number">4</span><span class="punctuation">,</span><span class="attr">&quot;_source&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">4</span><span class="punctuation">,</span><span class="attr">&quot;classe&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FAQ&quot;</span><span class="punctuation">,</span><span class="attr">&quot;sentence&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我是第四个文档&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vector&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1.0</span><span class="punctuation">,</span> <span class="number">2.0</span><span class="punctuation">,</span> <span class="number">3.0</span> <span class="number">4.0</span><span class="punctuation">,</span> <span class="number">5.0</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>若使用 <code>Python</code> 批量导入，命令行 <code>helpers.bulk(es, json_text)</code> ，<code>json_text</code> 格式同上 <code>example.json</code></p>
+<h3 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h3><h4 id="通过id查询文档"><a href="#通过id查询文档" class="headerlink" title="通过id查询文档"></a>通过id查询文档</h4><p><code>id</code> 为 <code>3</code> 时：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_doc/<span class="number">3</span>?pretty</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过计算余弦相似度检索文档"><a href="#通过计算余弦相似度检索文档" class="headerlink" title="通过计算余弦相似度检索文档"></a>通过计算余弦相似度检索文档</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;script_score&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;query&quot;</span> : &#123;<span class="string">&quot;match_all&quot;</span>: &#123;&#125;&#125;,</span><br><span class="line">      <span class="string">&quot;script&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;source&quot;</span>: <span class="string">&quot;cosineSimilarity(params.query_vector, &#x27;vector&#x27;) + 1.0&quot;</span>, </span><br><span class="line">        <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">          <span class="string">&quot;query_vector&quot;</span>: [<span class="number">4</span>, <span class="number">3.4</span>, -<span class="number">0.2</span>, <span class="number">0.1</span>, -<span class="number">3</span>]  </span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过简单的字符串匹配查询文档"><a href="#通过简单的字符串匹配查询文档" class="headerlink" title="通过简单的字符串匹配查询文档"></a>通过简单的字符串匹配查询文档</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;match&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;sentence&quot;</span>: <span class="string">&quot;我想要查询的文档&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过阈值筛选"><a href="#通过阈值筛选" class="headerlink" title="通过阈值筛选"></a>通过阈值筛选</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;min_score&quot;</span>: <span class="number">0.5</span></span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="regexp">//</span> ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="每页展示的结果数（response-“hits”-“hits”-的数目）"><a href="#每页展示的结果数（response-“hits”-“hits”-的数目）" class="headerlink" title="每页展示的结果数（response[“hits”][“hits”]的数目）"></a>每页展示的结果数（response[“hits”][“hits”]的数目）</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;size&quot;</span>: <span class="number">50</span> <span class="regexp">//</span> 默认<span class="number">10000</span></span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="regexp">//</span> ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过某个item筛选"><a href="#通过某个item筛选" class="headerlink" title="通过某个item筛选"></a>通过某个item筛选</h4><p><code>item</code> 为 <code>enabled_status</code>，且 <code>enabled_status</code> 是<code>boolean</code> 时</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;bool&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;filter&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;item&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;enabled_status&quot;</span>: true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>item</code> 为 <code>classe</code>，且 <code>classe</code> 包含关键词 <code>FAQ</code> 时:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;item&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;classe&quot;</span>: <span class="string">&quot;FAQ&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>item</code> 为 <code>classe</code>，且 <code>classe</code> 包含多个关键词 <code>FAQ</code> <code>greeting</code> 时:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;items&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;classe&quot;</span>: [<span class="string">&quot;FAQ&quot;</span>, <span class="string">&quot;greeting&quot;</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="余弦相似度-筛选条件-组合查询"><a href="#余弦相似度-筛选条件-组合查询" class="headerlink" title="余弦相似度+筛选条件 组合查询"></a>余弦相似度+筛选条件 组合查询</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;size&quot;</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="string">&quot;min_score&quot;</span>: <span class="number">1.5</span>,</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;script_score&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;bool&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;filter&quot;</span>: &#123;</span><br><span class="line">                        <span class="string">&quot;term&quot;</span>: &#123;</span><br><span class="line">                            <span class="string">&quot;enabled_status&quot;</span>: true</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;script&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;scource&quot;</span>: <span class="string">&quot;cosineSimilarity(params.query_vector, &#x27;vector&#x27;) + 1.0&quot;</span>,</span><br><span class="line">                <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;query_vector&quot;</span>: [<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/19/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/ChitChat%E4%BB%BB%E5%8A%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -512,92 +625,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/08/19/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/INTENT%E4%BB%BB%E5%8A%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/17/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/NER%E4%BB%BB%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/17/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/NER%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">NER任务</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-17 14:46:29" itemprop="dateCreated datePublished" datetime="2021-08-17T14:46:29+08:00">2021-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-19 12:50:41" itemprop="dateModified" datetime="2022-03-19T12:50:41+08:00">2022-03-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">工作总结</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
-<li><p>数据如何<br>共有15000条数据，12个类别（如「出发地」，「出发时间」，「类型」，「物品」，「体积」等）</p>
-</li>
-<li><p>背景如何<br>比如其中一个多轮场景是「寄快递」</p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/17/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/NER%E4%BB%BB%E5%8A%A1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
