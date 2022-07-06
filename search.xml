@@ -193,7 +193,8 @@
   <entry>
     <title>ES安装与使用</title>
     <url>/2022/07/06/%E4%BA%AC%E4%B8%9C/ES/</url>
-    <content><![CDATA[<h1 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
+    <content><![CDATA[<h1 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><p><img src="/photos/vscode-edit-ruler.png" alt="我是一个测试图片"></p>
+<h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
 <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><h5 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h5><p>   可能遇到需要密码的问题。此时有两种方法：</p>
 <ul>
 <li>一个是进入 <code>elasticsearch.yml</code> 文件设置 <code>xpack.security.enabled: false</code>。不过这样有安全隐患，只能用于测试。且7.x的版本没有相关参数</li>
@@ -500,7 +501,7 @@
     <content><![CDATA[<h1 id="VSCode-常见需求"><a href="#VSCode-常见需求" class="headerlink" title="VSCode 常见需求"></a>VSCode 常见需求</h1><p>增加代码长度分割线：</p>
 <ol>
 <li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
-<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/Users/dengshijiao1/Documents/hexo/photos/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
+<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/photos/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
 <li>进入 <code>settings.json</code></li>
 <li>添加代码 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;[python]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;editor.rulers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">         <span class="number">80</span></span><br><span class="line">     <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ms-python.python&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
@@ -2418,6 +2419,13 @@ e, f, g, &lt;eos&gt;
 <li><p>在升级npm，安装hexo下的git，重新安装hexo时，都会报错</p>
  <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">No receipt <span class="keyword">for</span> <span class="string">&#x27;com.apple.pkg.CLTools_Executables&#x27;</span> found at <span class="string">&#x27;/&#x27;</span>.</span><br><span class="line"></span><br><span class="line">No receipt <span class="keyword">for</span> <span class="string">&#x27;com.apple.pkg.DeveloperToolsCLILeo&#x27;</span> found at <span class="string">&#x27;/&#x27;</span>.</span><br><span class="line"></span><br><span class="line">No receipt <span class="keyword">for</span> <span class="string">&#x27;com.apple.pkg.DeveloperToolsCLI&#x27;</span> found at <span class="string">&#x27;/&#x27;</span>.</span><br><span class="line"></span><br><span class="line">gyp: No Xcode or CLT version detected!</span><br><span class="line">gyp ERR! configure error</span><br><span class="line">gyp ERR! stack Error: `gyp` failed with <span class="keyword">exit</span> code: <span class="number">1</span></span><br><span class="line">gyp ERR! stack     at ChildProcess.onCpExit (<span class="regexp">/usr/</span>local<span class="regexp">/lib/</span>node_modules<span class="regexp">/npm/</span>node_modules<span class="regexp">/node-gyp/</span>lib/configure.js:<span class="number">351</span>:<span class="number">16</span>)</span><br><span class="line">gyp ERR! stack     at ChildProcess.emit (events.js:<span class="number">210</span>:<span class="number">5</span>)</span><br><span class="line">gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:<span class="number">272</span>:<span class="number">12</span>)</span><br><span class="line">gyp ERR! System Darwin <span class="number">19.3</span>.<span class="number">0</span></span><br><span class="line">gyp ERR! command <span class="string">&quot;/usr/local/bin/node&quot;</span> <span class="string">&quot;/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js&quot;</span> <span class="string">&quot;rebuild&quot;</span></span><br><span class="line">gyp ERR! cwd <span class="regexp">/Users/</span>shijiaodeng<span class="regexp">/Documents/</span>MyBlog<span class="regexp">/shijiaod/</span>node_modules<span class="regexp">/nunjucks/</span>node_modules/fsevents</span><br><span class="line">gyp ERR! node -v v12.<span class="number">13.1</span></span><br><span class="line">gyp ERR! node-gyp -v v5.<span class="number">0.5</span></span><br><span class="line">gyp ERR! not ok</span><br></pre></td></tr></table></figure>
 <p> 是升级了mac的原因（到版本10.15.3），所以下载并安装Xcode并同意它的相关协议，问题就解决了。具体详见<a href="https://segmentfault.com/a/1190000021394623?utm_source=tag-newest">这片文章</a></p>
+</li>
+<li><p>报错404<br>一般404会是在初建博客是，因为仓库名设置的问题（见 1.）导致。<br>后期还碰到404，在检查仓库名没有问题+本地localhost:4000展示完全正常后，找到了可能是 <code>Source</code> 选择的问题。</p>
+<ul>
+<li>进入 <code>Settings</code>， 点击左边列表中的 <code>Pages</code> 进入 <code>GitHub Pages</code></li>
+<li>看下方的 <code>Source</code> 是否为空 <img src="/Users/shijiaodeng/Documents/MyBlog/hexo/source/_posts/%E4%BA%AC%E4%B8%9C/photos/Soure%E8%AE%BE%E7%BD%AE%E5%9B%BE1.png" alt="Soure设置图1"></li>
+<li>完成设置并点击 <code>Save</code> ，过一会刷新页面即可 <img src="/Users/shijiaodeng/Documents/MyBlog/hexo/source/_posts/%E4%BA%AC%E4%B8%9C/photos/Soure%E8%AE%BE%E7%BD%AE%E5%9B%BE2.png" alt="Soure设置图2"></li>
+</ul>
 </li>
 </ol>
 <h3 id="内容更丰富的博客"><a href="#内容更丰富的博客" class="headerlink" title="内容更丰富的博客"></a>内容更丰富的博客</h3><h4 id="博客主题"><a href="#博客主题" class="headerlink" title="博客主题"></a>博客主题</h4><ol>
