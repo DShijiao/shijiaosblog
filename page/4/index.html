@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN,en,fr,default">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -177,8 +177,8 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BA%AC%E4%B8%9C/VSCode/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%95%B0%E5%AD%A6/SimBERT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -192,7 +192,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/19/%E4%BA%AC%E4%B8%9C/VSCode/" class="post-title-link" itemprop="url">VSCode 常见需求</a>
+            <a href="/2020/02/19/%E6%95%B0%E5%AD%A6/SimBERT/" class="post-title-link" itemprop="url">SimBERT</a>
         </h2>
 
         <div class="post-meta">
@@ -209,359 +209,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-05 10:50:17" itemprop="dateModified" datetime="2022-07-05T10:50:17+08:00">2022-07-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%AC%E4%B8%9C/" itemprop="url" rel="index"><span itemprop="name">京东</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="VSCode-常见需求"><a href="#VSCode-常见需求" class="headerlink" title="VSCode 常见需求"></a>VSCode 常见需求</h1><p>增加代码长度分割线：</p>
-<ol>
-<li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
-<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/Users/dengshijiao1/Documents/hexo/photos/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
-<li>进入 <code>settings.json</code></li>
-<li>添加代码 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;[python]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;editor.rulers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">         <span class="number">80</span></span><br><span class="line">     <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ms-python.python&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="使用vscode远程连接服务器"><a href="#使用vscode远程连接服务器" class="headerlink" title="使用vscode远程连接服务器"></a>使用vscode远程连接服务器</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
-<li>在左侧“扩展”里选择并安装扩展 Remote-SSH</li>
-<li>点击左侧新增的扩展按钮，并点击左上角“+”号，然后会出现config的配置，按如下配置<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root</li>
-<li>此时配置好后尝试登陆，会需要输入密码</li>
-<li>可以用配置成不需要密码<ol>
-<li>本地建个ssh ssh-keygen -t rsa -b 4096 -f ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh，会生成id_rsa-remote-ssh和id_rsa-remote-ssh.pub两个文件</li>
-<li>将id_rsa-remote-ssh.pub配到服务器的authorized_keys（一般在～&#x2F;.ssh&#x2F;）文件里</li>
-<li>将id_rsa-remote-ssh配到本地的config中，即修改刚刚的config成如下<br> Host name-as-you-like<br> HostName 11.12.205.19<br> User root<br> IdentityFile ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh</li>
-</ol>
-</li>
-<li>可以连接远程服务器了</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/19/%E4%BA%AC%E4%B8%9C/VSCode/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E4%BA%AC%E4%B8%9C/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">linux常用命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-01 17:42:11" itemprop="dateModified" datetime="2022-04-01T17:42:11+08:00">2022-04-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%AC%E4%B8%9C/" itemprop="url" rel="index"><span itemprop="name">京东</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>快速查看端口占用情况<code>lsof -i tcp:8080</code>或者<code>netstat -nlp</code></li>
-<li>查看PID具体信息<code>ll /proc/PID</code></li>
-<li>同样，查看CPU和内存信息可以使用<code>cat /proc/cupinfo</code> 和 <code>cat /proc/meminfo</code>。更详细CPU信息查询可以使用<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c </code>和<code>cat /proc/cpuinfo | grep physical | uniq -c</code></li>
-<li>查看显卡信息可以使用命令<code>lspci | grep -i vga</code></li>
-<li>查看磁盘使用情况<code>df -k</code>或<code>df -m</code>，分别以kb或mb为单位，查看磁盘使用量</li>
-<li>GPU当前使用状况：<code>nvidia-smi</code></li>
-<li>每10秒，更新一次GPU情况：<code>watch -n 10 nvidia-smi</code></li>
-<li><code>free -h</code>看内存情况</li>
-</ol>
-<p>参考文章：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1721406">Linux系统查看CPU、机器型号、内存等信息</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E4%BA%AC%E4%B8%9C/python%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E4%BA%AC%E4%B8%9C/python%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" class="post-title-link" itemprop="url">python疑难杂症</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-06 15:58:36" itemprop="dateModified" datetime="2022-07-06T15:58:36+08:00">2022-07-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%AC%E4%B8%9C/" itemprop="url" rel="index"><span itemprop="name">京东</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="python疑难杂症"><a href="#python疑难杂症" class="headerlink" title="python疑难杂症"></a>python疑难杂症</h1><h2 id="args用add-argument内部-x2F-外部传参"><a href="#args用add-argument内部-x2F-外部传参" class="headerlink" title="args用add_argument内部&#x2F;外部传参"></a>args用add_argument内部&#x2F;外部传参</h2><p>args一般用来在外部运行 <code>convert.py</code> 时，外部传参，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    argp = argparse.ArgumentParser()</span><br><span class="line">    argp.add_argument(&#x27;in_file&#x27;, default=datapath_abs_test_machine, help=&#x27;Input CSV file&#x27;)</span><br><span class="line">    argp.add_argument(&#x27;--out_name&#x27;, default=&#x27;baseline-e2e-data&#x27;, help=&#x27;Output files name prefix&#x27;)</span><br><span class="line">    argp.add_argument(&#x27;-a&#x27;, &#x27;--abstract&#x27;, help=&#x27;Comma-separated list of slots to be abstracted&#x27;)</span><br><span class="line">    argp.add_argument(&#x27;-m&#x27;, &#x27;--multi-ref&#x27;,</span><br><span class="line">                      help=&#x27;Multiple reference mode: group by the same DA&#x27;, action=&#x27;store_true&#x27;)</span><br><span class="line">    argp.add_argument(&#x27;--no-refs&#x27;, help=&#x27;Use a file without references, only produce DA files&#x27;, action=&#x27;store_true&#x27;)</span><br><span class="line">    argp.add_argument(&#x27;-n&#x27;, &#x27;--slot-names&#x27;, help=&#x27;Include slot names in delexicalized texts&#x27;, action=&#x27;store_true&#x27;)</span><br><span class="line">    args = argp.parse_args()</span><br><span class="line">    convert(args)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/19/%E4%BA%AC%E4%B8%9C/python%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">算法刷题总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 15:52:17" itemprop="dateModified" datetime="2022-03-21T15:52:17+08:00">2022-03-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>如果有搜索类循环，可以用dict来储存，这样搜索时间为O(1)，如果不行，可以考虑二叉树搜索，二叉树搜索时间小于O(n)<ol>
-<li>如找重复的数值</li>
-<li>小于&#x2F;大于某个值的数值等</li>
-</ol>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/19/leetcode/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,fr,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%95%B0%E5%AD%A6/AM-softmax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E6%95%B0%E5%AD%A6/AM-softmax/" class="post-title-link" itemprop="url">AM-softmax</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 15:54:28" itemprop="dateModified" datetime="2022-03-21T15:54:28+08:00">2022-03-21</time>
+                <time title="修改时间：2022-03-30 17:20:28" itemprop="dateModified" datetime="2022-03-30T17:20:28+08:00">2022-03-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -584,12 +232,393 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>基于已有的L-softmax, A-softmax，作者提出了AM-softmax，一个适用于分类模型的loss计算方法。主要用于增加类间距离，减小类内距离</p>
-<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><h2 id="反向传播求导简单"><a href="#反向传播求导简单" class="headerlink" title="反向传播求导简单"></a>反向传播求导简单</h2><p>反向传播对x求导结果为1</p>
-<h2 id="公式更直观"><a href="#公式更直观" class="headerlink" title="公式更直观"></a>公式更直观</h2><p>相对于L-softmax，AM-softmax的参数简单直观</p>
+          <h1 id="SimBERT"><a href="#SimBERT" class="headerlink" title="SimBERT"></a>SimBERT</h1><h1 id="实践中的问题"><a href="#实践中的问题" class="headerlink" title="实践中的问题"></a>实践中的问题</h1><p>如果使用flask部署，一般http会多线程请求，这样可能会报错xxx is not a element of this graph<br>网上查了很多中方法</p>
+<ol>
+<li>配置flask运行环境为单线程调用，然后运行flask run。但是因为工作机器上不方便配置环境，所以没有尝试这种方法<br>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/donaldsy/article/details/95097024">Flask网站中使用Keras时报错“Tensor Tensor(*) is not an element of this graph”</a></li>
+<li>设置app.run(threaded&#x3D;False)，threaded默认为True，即多线程，改为False则为单线程。尝试后没有效果<br>参考文章：<a target="_blank" rel="noopener" href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></li>
+<li>加载模型时将thread_safe改为True，因为我用的是bert4keras里的加载方法，和解答不一样，所以没有详细找thread_safe的设置，因此不知道有没有效果<br>参考文章：<a target="_blank" rel="noopener" href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></li>
+<li>设置  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">global graph</span><br><span class="line">graph = tf.as_default()</span><br><span class="line">model = keras.models.load_model()</span><br><span class="line"></span><br><span class="line">with graph.as_default():</span><br><span class="line">  model.predict()</span><br></pre></td></tr></table></figure>
+  因为代码中，模型加载和模型预测的代码是分开写的，即预测的代码在app.route下的函数内，但是加载的代码外部。估计是这个原因，导致graph里的变量名称忍让不同意，所以还是没效果<br>  参考文章：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/51127344/tensor-is-not-an-element-of-this-graph-deploying-keras-model">Tensor is not an element of this graph; deploying Keras model</a></li>
+<li>固定一个session，将两部分都重新设置session  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">session = tf.Session(graph=tf.Graph())</span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  model = k.models.load_model(filepath)</span><br><span class="line"></span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  k.backend.set_session(session)</span><br><span class="line">  model.predict(x, **kwargs)</span><br></pre></td></tr></table></figure>
+  这种方式最终成功了！<br>  参考文章：<a target="_blank" rel="noopener" href="https://github.com/keras-team/keras/issues/5640">Keras models do not seem to be thread safe</a></li>
+</ol>
+<p>tf的session和graph还是一个大问题要弄透彻呀</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%95%B0%E5%AD%A6/Triplet%20Loss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/%E6%95%B0%E5%AD%A6/Triplet%20Loss/" class="post-title-link" itemprop="url">Triplet Loss</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-21 15:53:58" itemprop="dateModified" datetime="2022-03-21T15:53:58+08:00">2022-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Triplet-Loss最先由图像里提出来。为了解决负样本与标准样本过于相似的问题，来增加类间距离，减小类内距离<br>Triplet-Loss通过最小化dist(a,p)-dist(a,n)+margin，来训练出可以更好表征样本的embedding<br>dist()一般使用欧式距离，当然也可以用余弦等其它距离</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/19/%E6%95%B0%E5%AD%A6/AM-softmax/#more" rel="contents">
+              <a class="btn" href="/2020/02/19/%E6%95%B0%E5%AD%A6/Triplet%20Loss/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">数学公式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-21 15:59:15" itemprop="dateModified" datetime="2022-03-21T15:59:15+08:00">2022-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="最优法"><a href="#最优法" class="headerlink" title="最优法"></a>最优法</h1><h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><p>牛顿法迭代法解非线性方程，是把非线性方程$f(x)&#x3D;0$线性化的一种近似方法。把$f(x)$在点$x_0$的某领域内展开成泰勒级数$f(x)&#x3D;f(x_0)+f^{‘}(x_0)(x-x_0)+ \frac{f^{‘’}(x_0)(x-x_0)^2}{2!}+…+ \frac{f^{n}(x_0)(x-x_0)^n}{n!}+R_n(x)$，取其线性部分，即展开式的前两项$f(x_0)+f^{‘}(x_0)(x-x_0)$，令其等于0，以此作为非线性方程$f(x)&#x3D;0$的近似方程，若$f^{‘}(x_0) \neq 0$，则解为$x_1&#x3D;x_0- \frac {f(x_0)} {f^{‘}(x_0)}$，这样我们得到牛顿迭代法的一个迭代关系式</p>
+<p>Python代码实例展示求解方程$(x-3)^3&#x3D;0$的根</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> (x-<span class="number">3</span>)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fd</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*(x-<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">newtonMethod</span>(<span class="params">n, assum</span>):</span><br><span class="line">    time = n</span><br><span class="line">    x = assum</span><br><span class="line">    Next = <span class="number">0</span></span><br><span class="line">    A = f(x)</span><br><span class="line">    B = fd(x)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;A = &#x27;</span> + <span class="built_in">str</span>(A) + <span class="string">&#x27;,B = &#x27;</span> + <span class="built_in">str</span>(B) + <span class="string">&#x27;,time = &#x27;</span> + <span class="built_in">str</span>(time))</span><br><span class="line">    <span class="keyword">if</span> f(x) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> time, x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        Next = x - A/B</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Next x = &#x27;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 1.</span></span><br><span class="line">    <span class="comment">## 这里设置的迭代条件不是当前值和最优值之间的距离，而是相比于上一个值的变化要小于某个值</span></span><br><span class="line">    <span class="comment">## 但我们要求的就是最优值，所以我们并不知道最优值的具体值，不能的到他们的距离</span></span><br><span class="line">    <span class="comment">## 所以要通过每次A的变化，来估计最优值</span></span><br><span class="line">    <span class="keyword">if</span> A - f(Next) &lt; <span class="number">1e-6</span>: </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Meet f(x) = 0, x = &quot;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 2.</span></span><br><span class="line">    <span class="comment"># ## 所以这里其实是不是也可以通过x的变化，来估计最优值？</span></span><br><span class="line">    <span class="comment"># if A/B &lt; 1e-4:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## 3.</span></span><br><span class="line">    <span class="comment"># ## 这里当然也能用 if time &gt; m 来设置跳出循环的条件，但是相对 A - f(Next) 得到的值会更不精确一些</span></span><br><span class="line">    <span class="comment"># if time &gt; 10:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> newtonMethod(n+<span class="number">1</span>, Next)</span><br><span class="line"></span><br><span class="line">newtonMethod(<span class="number">0</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="其它迭代算法"><a href="#其它迭代算法" class="headerlink" title="其它迭代算法"></a>其它迭代算法</h2><h3 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h3><p>最大公约数：Greatest Common Divisor(GCD)</p>
+<h4 id="算法简介"><a href="#算法简介" class="headerlink" title="算法简介"></a>算法简介</h4><p>欧几里德算法是用来求两个正整数最大公约数的算法。是由古希腊数学家欧几里德在其著作《The Elements》中最早描述了这种算法,所以被命名为欧几里德算法。<br>扩展欧几里德算法可用于RSA加密等领域。</p>
+<p>假如需要求 1997 和 615 两个正整数的最大公约数,用欧几里德算法，是这样进行的：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1997 </span>/ <span class="number">615</span> = <span class="number">3</span> (余 <span class="number">152</span>)</span><br><span class="line"><span class="symbol">615 </span>/ <span class="number">152</span> = <span class="number">4</span>(余<span class="number">7</span>)</span><br><span class="line"><span class="symbol">152 </span>/ <span class="number">7</span> = <span class="number">21</span>(余<span class="number">5</span>)</span><br><span class="line"><span class="symbol">7 </span>/ <span class="number">5</span> = <span class="number">1</span> (余<span class="number">2</span>)</span><br><span class="line"><span class="symbol">5 </span>/ <span class="number">2</span> = <span class="number">2</span> (余<span class="number">1</span>)</span><br><span class="line"><span class="symbol">2 </span>/ <span class="number">1</span> = <span class="number">2</span> (余<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>至此，最大公约数为1<br>以除数和余数反复做除法运算，当余数为 0 时，取当前算式除数为最大公约数，所以就得出了 1997 和 615 的最大公约数 1。</p>
+<h4 id="计算证明"><a href="#计算证明" class="headerlink" title="计算证明"></a>计算证明</h4><p>其计算原理依赖于下面的定理：</p>
+<p>定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数。最大公约数（Greatest Common Divisor）缩写为GCD。<br>$gcd(a,b) &#x3D; gcd(b,a \mod b)$ (不妨设$a&gt;b$ 且$r&#x3D;a \mod b$ ,$r$不为$0$)</p>
+<h5 id="证法一"><a href="#证法一" class="headerlink" title="证法一"></a>证法一</h5><ul>
+<li><p>正</p>
+<ul>
+<li>$a$可以表示成$a &#x3D; kb + r$（$a$，$b$，$k$，$r$皆为正整数，且$r&lt;b$），则$r &#x3D; a \mod b$</li>
+<li>假设$d$是$a$,$b$的一个公约数，记作$d|a$,$d|b$，即$a$和$b$都可以被$d$整除。</li>
+<li>而$r &#x3D; a - kb$，两边同时除以$d$，$r&#x2F;d&#x3D;a&#x2F;d-kb&#x2F;d&#x3D;m$，由等式右边可知$m$为整数，因此$d|r$</li>
+<li>因此$d$也是$b$,$a \mod b$的公约数</li>
+</ul>
+</li>
+<li><p>反</p>
+<ul>
+<li>假设$d$是$b$,$a \mod b$的公约数, 则$d|b$,$d|(a-k*b)$,$k$是一个整数。</li>
+<li>进而$d|a$，因此$d$也是$a$,$b$的公约数</li>
+<li>因此$(a,b)$和$(b,a \mod b)$的公约数是一样的，其最大公约数也必然相等</li>
+</ul>
+</li>
+<li><p>得证</p>
+</li>
+</ul>
+<h5 id="证法二"><a href="#证法二" class="headerlink" title="证法二"></a>证法二</h5><p>假设c &#x3D; gcd(a,b),则存在m,n，使a &#x3D; mc, b &#x3D; nc;<br>令r &#x3D; a mod b，即存在k，使r &#x3D; a-kb &#x3D; mc - knc &#x3D; (m-kn)c;<br>故gcd(b,a mod b) &#x3D; gcd(b,r) &#x3D; gcd(nc,(m-kn)c) &#x3D; gcd(n,m-kn)*c;<br>假设d &#x3D; gcd(n,m-kn), 则存在x,y, 使n &#x3D; xd, m-kn &#x3D; yd; 故m &#x3D; yd+kn &#x3D; yd+kxd &#x3D; (y+kx)d;<br>故有a &#x3D; mc &#x3D; (y+kx)dc, b &#x3D; nc &#x3D; xdc; 可得 gcd(a,b) &#x3D; gcd((y+kx)dc,xdc) &#x3D; dc;<br>由于gcd(a,b) &#x3D; c, 故d &#x3D; 1;<br>即gcd(n,m-kn) &#x3D; 1, 故可得gcd(b,a mod b) &#x3D; c;<br>故得证gcd(a,b) &#x3D; gcd(b,a mod b).<br>注意:两种方法是有区别的。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>自己写的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    c = a%b</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b) <span class="keyword">if</span> c==<span class="number">0</span> <span class="keyword">else</span> gcd(b, c)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
+
+<p>百度百科上的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">while</span> a != <span class="number">0</span>:</span><br><span class="line">        a, b = b % a, a</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h4><p>扩展欧几里得算法（英语：Extended Euclidean algorithm）是欧几里得算法（又叫辗转相除法）的扩展。已知整数$a$、$b$，扩展欧几里得算法可以在求得$a$、$b$的最大公约数的同时，能找到整数$x$、$y$（其中一个很可能是负数），使它们满足贝祖等式</p>
+<p>$ax+by&#x3D;gcd(a,b)$</p>
+<p>如果a是负数，可以把问题转化成$|a|(-x)+by&#x3D;gcd(|a|,b)$，然后令$x^{‘}&#x3D;(-x)$。</p>
+<p>扩展欧几里得算法可以用来计算模反元素(也叫模逆元)，而模反元素在RSA加密算法中有举足轻重的地位。</p>
+<h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">ext_euclid</span>(<span class="params">a, b</span>):     </span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:         </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>, <span class="number">0</span>, a     </span><br><span class="line">    <span class="keyword">else</span>:         </span><br><span class="line">        x, y, q = ext_euclid(b, a % b) </span><br><span class="line">        <span class="comment"># q = gcd(a, b) = gcd(b, a%b)   </span></span><br><span class="line"></span><br><span class="line">        <span class="comment">## 这一行怎么求的，有时间可以论证一下      </span></span><br><span class="line">        x, y = y, (x - (a // b) * y)     </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x, y, q</span><br></pre></td></tr></table></figure>
+
+<h3 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……在数学上，斐波那契数列以如下被以递推的方法定义：F(1)&#x3D;1，F(2)&#x3D;1, F(n)&#x3D;F(n - 1)+F(n - 2)（n ≥ 3，n ∈ N*）在现代物理、准晶体结构、化学等领域，斐波纳契数列都有直接的应用，为此，美国数学会从 1963 年起出版了以《斐波纳契数列季刊》为名的一份数学杂志，用于专门刊载这方面的研究成果。</p>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#################### 输出第n个斐波那契数 ####################</span></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci1</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="comment">## 这种方法，每次都要嵌套循环，不能记录上一次的结果之间用，所以时间复杂度非常高！！</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">n</span>):</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> fib(n-<span class="number">1</span>) + fib(n-<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> fib(n)</span><br><span class="line"></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci2</span>(<span class="params">n</span>):</span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= n:</span><br><span class="line">        l.append(l[i-<span class="number">1</span>]+l[i-<span class="number">2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l[i-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fibonacci1(<span class="number">20</span>))</span><br><span class="line"><span class="built_in">print</span>(fibonacci2(<span class="number">20</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#################### 输出前n个斐波那契数 ####################</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci</span>(<span class="params">n</span>):</span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; n:</span><br><span class="line">        l.append(l[i-<span class="number">1</span>]+l[i-<span class="number">2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fibonacci(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+
+<p>可以尝试用代码画出斐波那契函数的曲线 斐波那契弧线<br><img src="/public/images/image/fibonacci.jpg" alt="fibonacci"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%95%B0%E5%AD%A6/%E7%99%BD%E5%8C%96%E5%92%8C%E5%BD%92%E4%B8%80%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/%E6%95%B0%E5%AD%A6/%E7%99%BD%E5%8C%96%E5%92%8C%E5%BD%92%E4%B8%80%E5%8C%96/" class="post-title-link" itemprop="url">白化和归一化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-21 15:54:39" itemprop="dateModified" datetime="2022-03-21T15:54:39+08:00">2022-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="白化"><a href="#白化" class="headerlink" title="白化"></a>白化</h3><p>白话的目的就是去除输入数据的冗余信息。经过白化处理后，生成新数据集满足两个条件：</p>
+<ul>
+<li>特征相关性较低</li>
+<li>特征具有相同的方差</li>
+</ul>
+<p>白化算法实现的过程：</p>
+<ul>
+<li>第一步是进行PCA操作，将数据降维</li>
+<li>第二步是对新的坐标进行归一化操作</li>
+</ul>
+<h3 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h3><p>数据归一化的目的就是为了把不同来源的数据统一到同一数量级(一个参考坐标系下)，这样使得比较起来更加有意义。归一化使得后面数据的处理更为方便，它有两大有点：</p>
+<ul>
+<li>归一化提高梯度下降求最优解的速度</li>
+<li>归一化有可能提高精度</li>
+</ul>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>看了下博客，都是抄来抄去，没有明确解释两者区别的，个人认为区别如下：</p>
+<ul>
+<li>白化里会用来归一化来统一降维后数据的量级，但是归一化不会用到白化</li>
+<li>白化的主要目的是特征提取，尽量获取相互独立的特征进行分析</li>
+<li>归一化的主要目的是统一特征数据的量级（取值范围）</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%9C%AA%E6%95%B4%E7%90%86/Markdown%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/%E6%9C%AA%E6%95%B4%E7%90%86/Markdown%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Markdown语法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-02 12:07:43" itemprop="dateModified" datetime="2020-03-02T12:07:43+08:00">2020-03-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%91%A8%E8%BE%B9%E8%BE%85%E5%8A%A9/" itemprop="url" rel="index"><span itemprop="name">周边辅助</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><ol>
+<li>安装插件<code>Markdown All in One</code>，包含了最常用的<code>Markdown</code>优化。</li>
+<li>安装插件<code>Markdown Preview Github Styling</code>，专门针对<code>github pages</code>的预览，功能有限，但是正是我需要的</li>
+<li>如果不是针对<code>github</code>的预览，则可以安装<code>Markdown Preview Enhanced</code>，这个插件应用更普遍</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/19/%E6%9C%AA%E6%95%B4%E7%90%86/Markdown%E8%AF%AD%E6%B3%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -729,28 +758,6 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="languages">
-    <label class="lang-select-label">
-      <i class="fa fa-language"></i>
-      <span>简体中文</span>
-      <i class="fa fa-angle-up" aria-hidden="true"></i>
-    </label>
-    <select class="lang-select" data-canonical="">
-      
-        <option value="zh-CN" data-href="/page/4/index.html" selected="">
-          简体中文
-        </option>
-      
-        <option value="en" data-href="/en/page/4/index.html" selected="">
-          English
-        </option>
-      
-        <option value="fr" data-href="/fr/page/4/index.html" selected="">
-          Français
-        </option>
-      
-    </select>
-  </div>
 
         
 
