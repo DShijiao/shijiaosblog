@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+  <link rel="mask-icon" href="/images/avatar.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JMETER压测参数解释  Number of Thread：该线程组包括的线程数,可理解为虚拟用户数 Ramp-up Period：即设置线程数在多少秒内启动完毕，即如果线程数设置为10，而此项设置也设置为5，那么会每隔10&#x2F;5&#x3D;2秒,启动一个线程. Loop Count：即设置的线程数循环的次数，如果勾选永远，则会一直循环（注意：如果勾选了永远且调度器配置中设置了持续时间，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JMETER 压测">
+<meta property="og:url" content="http://yoursite.com/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8E%8B%E6%B5%8B/index.html">
+<meta property="og:site_name" content="panna cotta">
+<meta property="og:description" content="JMETER压测参数解释  Number of Thread：该线程组包括的线程数,可理解为虚拟用户数 Ramp-up Period：即设置线程数在多少秒内启动完毕，即如果线程数设置为10，而此项设置也设置为5，那么会每隔10&#x2F;5&#x3D;2秒,启动一个线程. Loop Count：即设置的线程数循环的次数，如果勾选永远，则会一直循环（注意：如果勾选了永远且调度器配置中设置了持续时间，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8E%8B%E6%B5%8B/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png">
+<meta property="article:published_time" content="2022-07-06T12:26:55.000Z">
+<meta property="article:modified_time" content="2022-07-06T12:29:12.851Z">
+<meta property="article:author" content="Shijiao DENG">
+<meta property="article:tag" content="JMETER">
+<meta property="article:tag" content="压测">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8E%8B%E6%B5%8B/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png">
+
+<link rel="canonical" href="http://yoursite.com/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8E%8B%E6%B5%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JMETER 压测 | panna cotta</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">panna cotta</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">诗娇的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-news">
+
+    <a href="/news/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>news</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-docs">
+
+    <a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>docs</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8E%8B%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JMETER 压测
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-06 20:26:55 / 修改时间：20:29:12" itemprop="dateCreated datePublished" datetime="2022-07-06T20:26:55+08:00">2022-07-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="JMETER压测"><a href="#JMETER压测" class="headerlink" title="JMETER压测"></a>JMETER压测</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><img src="/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8E%8B%E6%B5%8B/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png" alt="参数展示"></p>
+<ul>
+<li>Number of Thread：该线程组包括的线程数,可理解为虚拟用户数</li>
+<li>Ramp-up Period：即设置线程数在多少秒内启动完毕，即如果线程数设置为10，而此项设置也设置为5，那么会每隔10&#x2F;5&#x3D;2秒,启动一个线程.</li>
+<li>Loop Count：即设置的线程数循环的次数，如果勾选永远，则会一直循环（注意：如果勾选了永远且调度器配置中设置了持续时间，则会在持续时间到达之后结束循环）.</li>
+<li>Delay Thread creation until needed：此选项和Ramp-up 时间（秒）设置配合使用，举例说明：如过设置线程数为10，Ramp-up 时间（秒）时间为100，则如果不勾选此项则此次测试会每隔10s创建并启动一个线程，那么100s后会有1-10个线程在运行；但是如果勾选此项，那么线程组会每隔10s创建一个线程但并不启动，而是会等待10个线程都创建好之后同时启动.</li>
+<li>Scheduler：勾选此项则打开调度器配置</li>
+<li>duration：即本线程组测试的持续时间，到时间后则停止此次测试，注意这个时间设置不要设置的比Ramp-up 时间（秒）小，如果勾选了循环次数中的永远，那么测试一样会在此持续时间到达后结束；</li>
+<li>start up delay：此项设置为在我们启动测试后多久时间开始创建线程组，通常用于定时</li>
+<li>Listner：较常用的是View Results Tree和Aggregate Report</li>
+<li>terminer中可以使用GUI，生成HTML报告，更方便分析，目前还没有弄通…</li>
+</ul>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li>先需要找到最大TPS(Transactions Per Second)，即JMETER结果表格中的Thoughout</li>
+<li>每个事物如果只请求一次，则TPS&#x3D;QPS</li>
+<li>因为实际线上会是多个用户同时请求，而非一个用户多次请求，所以压测是，我们主要通过逐步增加线程数（Number of Threads），模拟实际线上用户数的增加，来找到最高TPS</li>
+<li>线程循环次数（loop count）无需过多改变和设置的太高，因为同一用户的调用次数往往是非常有限的</li>
+</ol>
+<h2 id="压测"><a href="#压测" class="headerlink" title="压测"></a>压测</h2><h3 id="Windows界面压测"><a href="#Windows界面压测" class="headerlink" title="Windows界面压测"></a>Windows界面压测</h3><p>简单的压测可以按如下步骤进行：</p>
+<ol>
+<li>设置第一次压测的线程数（Number of Threads），如20</li>
+<li>设置Ramp-Up Period，可以根据线程数来设置，主要保证此参数要小于整体压测时间（Duration）</li>
+<li>每个用户调用次数Loop Count可以设置成持续调用（Forever），并勾选Scheduler</li>
+<li>Scheduler Configuration里主要要设置Duration，即压测持续时间。这个时间一定要大于线程启动时间（Ramp-Up Period），即【Duration】 - 【Ramp-Up Period】 &#x3D; 【所有线程启动后希望压测的时间】</li>
+</ol>
+<h3 id="Linux压测"><a href="#Linux压测" class="headerlink" title="Linux压测"></a>Linux压测</h3><ol>
+<li>在有界面可视化的 <code>JMETER</code> 上（如 <code>Windows</code> 系统上），配置好需要压测的参数</li>
+<li>储存成 <code>test.jmx</code> 文件</li>
+<li>将 <code>test.jmx</code> 文件传输到 <code>Linux</code> 上</li>
+<li>进入 <code>Linux</code> 上 <code>JMETER</code> 的 <code>bin</code> 文件夹下，运行 <code>jmeter -n -t /path/to/your/test.jmx -l /path/to/results/file.jtl</code></li>
+<li>将 <code>file.jtl</code> 传到 <code>Windows</code> 上，导入 <code>JMETER</code> 中即可</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>TPS、线程数、响应时间等之间的分析见博客<a target="_blank" rel="noopener" href="https://www.cnblogs.com/happyliuyi/p/10755837.html">happy刘艺<br>性能测试入门（五）实践得出系统最佳线程数设置(压测最佳线程数&lt;真实设置的线程数量&lt;内存极限线程数)</a>和博客<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1771176">【修正版】QPS、TPS、RT、并发数、吞吐量理解和性能优化深入思考</a></p>
+<p>结果大概就一个表格，可以参见博客 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42579328/article/details/108243059">Jmeter使用教程（四）—测试结果分析</a> </p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Shijiao DENG
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8E%8B%E6%B5%8B/" title="JMETER 压测">http://yoursite.com/2022/07/06/常用软件和系统/JMETER-压测/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JMETER/" rel="tag"># JMETER</a>
+              <a href="/tags/%E5%8E%8B%E6%B5%8B/" rel="tag"># 压测</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="Git 的使用">
+      <i class="fa fa-chevron-left"></i> Git 的使用
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JMETER%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.</span> <span class="nav-text">JMETER压测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A"><span class="nav-number">1.1.1.</span> <span class="nav-text">解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.2.</span> <span class="nav-text">压测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows%E7%95%8C%E9%9D%A2%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">Windows界面压测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">Linux压测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.3.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shijiao DENG"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shijiao DENG</p>
+  <div class="site-description" itemprop="description">记录工作，记录生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dengshijiao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dengshijiao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:d.shijiao@gmail.com" title="E-Mail → mailto:d.shijiao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-coffee"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shijiao DENG</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+    </div>
+</body>
+</html>
