@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+  <link rel="mask-icon" href="/images/avatar.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JAVA 序列化和浅&#x2F;深拷贝序列化&#x2F;深拷贝Java里不能直接进行浅拷贝&#x2F;深拷贝 浅拷贝看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA 序列化和浅&#x2F;深拷贝">
+<meta property="og:url" content="http://yoursite.com/2022/03/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-%E6%B7%B1%E6%8B%B7%E8%B4%9D/index.html">
+<meta property="og:site_name" content="panna cotta">
+<meta property="og:description" content="JAVA 序列化和浅&#x2F;深拷贝序列化&#x2F;深拷贝Java里不能直接进行浅拷贝&#x2F;深拷贝 浅拷贝看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-05T11:08:52.000Z">
+<meta property="article:modified_time" content="2022-07-07T11:25:25.634Z">
+<meta property="article:author" content="Shijiao DENG">
+<meta property="article:tag" content="深拷贝">
+<meta property="article:tag" content="序列化">
+<meta property="article:tag" content="JAVA">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2022/03/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-%E6%B7%B1%E6%8B%B7%E8%B4%9D/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JAVA 序列化和浅/深拷贝 | panna cotta</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">panna cotta</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">诗娇的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-news">
+
+    <a href="/news/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>news</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-docs">
+
+    <a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>docs</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-%E6%B7%B1%E6%8B%B7%E8%B4%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JAVA 序列化和浅/深拷贝
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-05 19:08:52" itemprop="dateCreated datePublished" datetime="2022-03-05T19:08:52+08:00">2022-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-07 19:25:25" itemprop="dateModified" datetime="2022-07-07T19:25:25+08:00">2022-07-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="JAVA-序列化和浅-x2F-深拷贝"><a href="#JAVA-序列化和浅-x2F-深拷贝" class="headerlink" title="JAVA 序列化和浅&#x2F;深拷贝"></a>JAVA 序列化和浅&#x2F;深拷贝</h1><h2 id="序列化-x2F-深拷贝"><a href="#序列化-x2F-深拷贝" class="headerlink" title="序列化&#x2F;深拷贝"></a>序列化&#x2F;深拷贝</h2><p>Java里不能直接进行浅拷贝&#x2F;深拷贝</p>
+<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝</p>
+<span id="more"></span>
+
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>因为需要连同对象和对象的值一起拷贝到内存中一个新的地址，所以当对象为比较复杂的嵌套类时，性能就会成为一个问题，所以需要注意。<br>一般要实现深拷贝，都是对需要拷贝的类上贴上标签<code>implements Serializable</code>，并且给出一个序列化号<code>private static final long serialVersionUID = 3487495895819393L;</code><br>然后使用以下函数进行序列化和反序列化。<br>序列化和反序列化的本质是通过某种序列化的协议，将类整个转变成二进制信息，通过serialVersionUID比对再将二进制信息转换成类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SerializationDemo</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String stringField;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> intField;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@T</span> 某个类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Serializable</span><span class="params">(SerializationDemo)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">ByteArrayOutputStream</span> <span class="variable">bout</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">out</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(bout);</span><br><span class="line">        out.writeObject(T);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(IOException) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 反序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@data</span> 二进制</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Deserializable</span><span class="params">(data)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">byte</span>[] data; <span class="comment">// read from file or request</span></span><br><span class="line">        <span class="type">ByteArrayInputStream</span> <span class="variable">bin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(data);</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(bin);</span><br><span class="line">        <span class="type">SerializationDemo</span> <span class="variable">demo</span> <span class="operator">=</span> (SerializationDemo) in.readObject();</span><br><span class="line">        &#125; <span class="keyword">catch</span>(ClassNotFoundException) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="FastJson-VS-Gson"><a href="#FastJson-VS-Gson" class="headerlink" title="FastJson VS Gson"></a>FastJson VS Gson</h3><p>但当是嵌套类时，需要对类中的每一个类也都贴上序列化的标签，因此会变得很复杂。<br>此时可以引入<code>FastJson</code>类的第三方软件帮忙。（还有<code>gson</code>等）。但目前主流是<code>Gson</code>和<code>FastJson</code><br>性能上<code>FastJson</code>更好，功能上<code>Gson</code>更全，而且<code>Gson</code>不需要额外的<code>jar</code>包，且使用更简便<br>具体区别见文章<a target="_blank" rel="noopener" href="https://blog.csdn.net/John8169/article/details/80767771">Gson与FastJson比较</a>，这篇文章分析的非常细致</p>
+<ol>
+<li><code>FastJson</code>需要有默认无参构造，可以直接使用<code>@NoArgsConstructor</code>。（有时候还需要加上<code>@AllArgsConstructor</code>，具体还不了解为什么）</li>
+<li>使用<code>FastJson</code>会有内存泄漏问题，具体实例见<a target="_blank" rel="noopener" href="https://juejin.cn/post/6960695856127279111">FastJson使用不当导致内存泄漏排查及解决过程 ｜ Java Debug 笔记</a>，另一片文章<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039980284">fastjson内存泄漏解决办法 - springboot实战电商项目mall4j</a></li>
+</ol>
+<h5 id="关于serialVersionUID"><a href="#关于serialVersionUID" class="headerlink" title="关于serialVersionUID"></a>关于serialVersionUID</h5><p>关于serialVersionUID：<br>1、serialVersionUID是序列化前后的唯一标识符<br>2、默认如果没有人为显式定义过serialVersionUID，那编译器会为它自动声明一个</p>
+<p>为什么要定义serialVersionUID：</p>
+<ol>
+<li>serialVersionUID序列化ID，可以看成是序列化和反序列化过程中的“暗号”，在反序列化时，JVM会把字节流中的序列号ID和被序列化类中的序列号ID做比对，只有两者一致，才能重新反序列化，否则就会报异常来终止反序列化的过程。</li>
+<li>如果在定义一个可序列化的类时，没有人为显式地给它定义一个serialVersionUID的话，则Java运行时环境会根据该类的各方面信息自动地为它生成一个默认的serialVersionUID，一旦像上面一样更改了类的结构或者信息，则类的serialVersionUID也会跟着变化</li>
+<li>为了serialVersionUID的确定性，建议凡是implements Serializable的类，都人为显式地为它声明一个serialVersionUID明确值</li>
+<li>如果不想手动赋值，IntelliJ IDEA中，使用alt + enter自动生成serialVersionUID字段</li>
+</ol>
+<h5 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h5><p>Serializable接口是一个里面什么都没有的接口<br>它的源代码是public interface Serializable{}，即什么都没有。<br>如果一个接口里面什么内容都没有，那么这个接口是一个标识接口，比如，一个学生遇到一个问题，排错排了几天也没解决，此时，她举手了（示意我去帮他解决），然后我过去，帮他解决了，那么这个举手其实就是一个标识，自己不能解决的问题标示我去帮他解决，在Java中的这个Serializable接口是给JVM看的，告诉JVM，我不做这个类的序列化了，你(JVM)给我序列化，序列化就是变成二进制流，比如云计算、Hadoop，特别是Hadoop完全就是分布式环境，那么就要涉及到对象要在网络中传输，里面的全是二进制流，当然你来做这个序列化操作也可以，但是这个类里面可能还有一个类，如果你把外面的类对象Person变成二进制，那么里面也要序列化（这要用到深度遍历，很麻烦），干脆告诉JVM，让他来帮你做。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Shijiao DENG
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2022/03/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-%E6%B7%B1%E6%8B%B7%E8%B4%9D/" title="JAVA 序列化和浅&#x2F;深拷贝">http://yoursite.com/2022/03/05/编程语言/JAVA/JAVA-序列化和浅-深拷贝/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D/" rel="tag"># 深拷贝</a>
+              <a href="/tags/%E5%BA%8F%E5%88%97%E5%8C%96/" rel="tag"># 序列化</a>
+              <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="Git 的使用">
+      <i class="fa fa-chevron-left"></i> Git 的使用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85VSCode%E5%8F%8A%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6/" rel="next" title="离线安装VSCode及扩展组件">
+      离线安装VSCode及扩展组件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-x2F-%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="nav-number">1.</span> <span class="nav-text">JAVA 序列化和浅&#x2F;深拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96-x2F-%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="nav-number">1.1.</span> <span class="nav-text">序列化&#x2F;深拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="nav-number">1.1.1.</span> <span class="nav-text">浅拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="nav-number">1.1.2.</span> <span class="nav-text">深拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FastJson-VS-Gson"><span class="nav-number">1.1.3.</span> <span class="nav-text">FastJson VS Gson</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EserialVersionUID"><span class="nav-number">1.1.3.0.1.</span> <span class="nav-text">关于serialVersionUID</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">1.1.3.0.2.</span> <span class="nav-text">序列化</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shijiao DENG"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shijiao DENG</p>
+  <div class="site-description" itemprop="description">记录工作，记录生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dengshijiao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dengshijiao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:d.shijiao@gmail.com" title="E-Mail → mailto:d.shijiao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-coffee"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shijiao DENG</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+    </div>
+</body>
+</html>

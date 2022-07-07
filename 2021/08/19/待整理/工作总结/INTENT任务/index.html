@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+  <link rel="mask-icon" href="/images/avatar.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="项目叙述 数据如何  SF共有15000条数据，10个类别（如「信息」，「询问到达时间」，「询问费用」，「询问到达时间——是否」，「询问费用——是否」，「肯定」，「否定」，「」等） + 1个「others」类其中将近5000是数据增强的 样本最多的类别others，样本数可达5000样本最少的类别比如「否定」，样本数只有100多（最后两少的三个类别，取了三倍过采样，过多和过少都会降低F1值）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="INTENT任务">
+<meta property="og:url" content="http://yoursite.com/2021/08/19/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/INTENT%E4%BB%BB%E5%8A%A1/index.html">
+<meta property="og:site_name" content="panna cotta">
+<meta property="og:description" content="项目叙述 数据如何  SF共有15000条数据，10个类别（如「信息」，「询问到达时间」，「询问费用」，「询问到达时间——是否」，「询问费用——是否」，「肯定」，「否定」，「」等） + 1个「others」类其中将近5000是数据增强的 样本最多的类别others，样本数可达5000样本最少的类别比如「否定」，样本数只有100多（最后两少的三个类别，取了三倍过采样，过多和过少都会降低F1值）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-19T11:07:22.000Z">
+<meta property="article:modified_time" content="2022-03-21T07:51:12.883Z">
+<meta property="article:author" content="Shijiao DENG">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2021/08/19/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/INTENT%E4%BB%BB%E5%8A%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>INTENT任务 | panna cotta</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">panna cotta</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">诗娇的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-news">
+
+    <a href="/news/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>news</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-docs">
+
+    <a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>docs</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/19/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/INTENT%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          INTENT任务
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-19 19:07:22" itemprop="dateCreated datePublished" datetime="2021-08-19T19:07:22+08:00">2021-08-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-21 15:51:12" itemprop="dateModified" datetime="2022-03-21T15:51:12+08:00">2022-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">工作总结</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何</li>
+</ol>
+<h4 id="SF"><a href="#SF" class="headerlink" title="SF"></a>SF</h4><p>共有15000条数据，10个类别（如「信息」，「询问到达时间」，「询问费用」，「询问到达时间——是否」，「询问费用——是否」，「肯定」，「否定」，「」等） + 1个「others」类<br>其中将近5000是数据增强的</p>
+<p>样本最多的类别others，样本数可达5000<br>样本最少的类别比如「否定」，样本数只有100多（最后两少的三个类别，取了三倍过采样，过多和过少都会降低F1值）</p>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>背景如何<br>比如其中一个多轮场景是「寄快递」</p>
+</li>
+<li><p>模型如何<br>baseline上的是rnn<br>后来改为cnn<br>也同bert比较了，bert出了收敛较cnn更快一些外，最终效果并不比cnn好</p>
+</li>
+<li><p>准确率如何<br>最后F1达到95%，达到业务要求</p>
+</li>
+<li><p>碰到哪些问题</p>
+<ol>
+<li>F1值不够95%<ol>
+<li>数据增强</li>
+<li>错误样本分析（尤其对准确率很低的类别，针对行进行分析）<ol>
+<li>我们通过错误样本分析，找到了几个准确率特别低的样本，进行过采样，提升了效果</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>样本不均衡的问题<ol>
+<li>低样本的三个类别进行了三倍过采样</li>
+<li>数据增强（尝试了使用bert的mask进行数据增强）</li>
+</ol>
+</li>
+<li>多轮之间通过意图跳转<ol>
+<li>尝试过使用熵来替代概率，效果不好</li>
+<li>最后通过调节weight，然后跟踪整体准确率和召回率的变化，提前中断训练，使得others类的准确率能达到99%（因为在调大others的weight后，训练会优先照顾这个类别，因为一开始，others的召回特别低，但是准确率特别高，然后在整体F1值慢慢上升后，others的准确率会开始下降，这时需要终止训练，这里牺牲了整体1个百分点的F1值）</li>
+</ol>
+</li>
+<li>曾经出现过一个句子分属多个类别的情况<ol>
+<li>进行数据梳理后，发现两个类别可以分开。对这两个类别的数据重新进行梳理，准确率大幅提升</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>还有哪些可以改进的</p>
+<ol>
+<li>对于分属多个类别的语句，是否也可以尝试进行多标签分类</li>
+<li>更可以改进的是DM的设置<ol>
+<li>每个多轮都有一个others，比较累赘，说明每个多轮都需要找过others的准确率，而影响整体的准确率</li>
+<li>是否可以通过记住当前多轮所在状态和所在的bot，然后将再此进入多轮的句子进行更精确的分类和进入判别，这样就不用每个多轮里面都加一个others类别了</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）</p>
+<ol>
+<li>对于分类，cnn和rnn有时候就很够用了，再不行上bert也差不多，然后就是数据的问题了，模型帮助不大</li>
+<li>对于对话机器人更好的想法，如上5.2.2</li>
+</ol>
+</li>
+</ol>
+<h4 id="VIPKid"><a href="#VIPKid" class="headerlink" title="VIPKid"></a>VIPKid</h4><ol>
+<li>数据如何</li>
+<li>背景如何</li>
+<li>模型如何</li>
+<li>准确率如何</li>
+<li>碰到哪些问题</li>
+<li>怎么解决（trick或者模型）</li>
+<li>为什么这么解决</li>
+<li>效果怎么样</li>
+<li>还有哪些可以改进的</li>
+<li>现有哪些更好的方法吗（新的论文）</li>
+</ol>
+<h2 id="重难点"><a href="#重难点" class="headerlink" title="重难点"></a>重难点</h2><h3 id="Bert数据增强"><a href="#Bert数据增强" class="headerlink" title="Bert数据增强"></a>Bert数据增强</h3><p>分类碰到的问题：</p>
+<ol>
+<li>使用某个模型前，也可以先做一个学习曲线，判断使用的样本是否足够</li>
+<li>进行错误样本分析</li>
+<li>调节weight，优化不同类别的presicion</li>
+<li>如果某一类别的F1值过低，可以看下是否是样本不足的原因</li>
+<li>做数据增强</li>
+<li>如果是两个类别经常混淆，可以先将其归为一类，之后在下一层，用规则或模型进行细分<ol>
+<li>对下一层分类起，是模型加针对性的数据增强</li>
+<li>这里数据增强有用，但是整体数据增强，不一定能增加准确率，比如“蓝屏”，在这里是“noshow”的意思，但是在别的地方有可能是指机器故障（看下数据，找个好点的例子）</li>
+</ol>
+</li>
+<li>叠加分类器</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Shijiao DENG
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2021/08/19/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/INTENT%E4%BB%BB%E5%8A%A1/" title="INTENT任务">http://yoursite.com/2021/08/19/待整理/工作总结/INTENT任务/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/17/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/NER%E4%BB%BB%E5%8A%A1/" rel="prev" title="NER任务">
+      <i class="fa fa-chevron-left"></i> NER任务
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/19/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/FAQ%E4%BB%BB%E5%8A%A1/" rel="next" title="FAQ任务">
+      FAQ任务 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%8F%99%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">项目叙述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SF"><span class="nav-number">1.0.1.</span> <span class="nav-text">SF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VIPKid"><span class="nav-number">1.0.2.</span> <span class="nav-text">VIPKid</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E9%9A%BE%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">重难点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bert%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA"><span class="nav-number">2.1.</span> <span class="nav-text">Bert数据增强</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shijiao DENG"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shijiao DENG</p>
+  <div class="site-description" itemprop="description">记录工作，记录生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dengshijiao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dengshijiao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:d.shijiao@gmail.com" title="E-Mail → mailto:d.shijiao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-coffee"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shijiao DENG</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+    </div>
+</body>
+</html>

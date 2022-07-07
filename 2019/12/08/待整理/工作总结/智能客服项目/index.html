@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpg">
+  <link rel="mask-icon" href="/images/avatar.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="智能客服项目智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。 FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。 任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。判断任务型对话是否">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能客服项目">
+<meta property="og:url" content="http://yoursite.com/2019/12/08/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="panna cotta">
+<meta property="og:description" content="智能客服项目智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。 FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。 任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。判断任务型对话是否">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/public/images/image/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-R2.png">
+<meta property="og:image" content="http://yoursite.com/public/images/image/SVM%E5%B8%B8%E7%94%A8%E6%A0%B8%E5%87%BD%E6%95%B0.svg">
+<meta property="og:image" content="http://yoursite.com/public/images/image/BiLSTM+CRF&#32;loss.png">
+<meta property="og:image" content="http://yoursite.com/public/images/image/self-attention.png">
+<meta property="og:image" content="http://yoursite.com/public/images/image/self-attention-2.png">
+<meta property="article:published_time" content="2019-12-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-21T07:51:32.293Z">
+<meta property="article:author" content="Shijiao DENG">
+<meta property="article:tag" content="智能客服">
+<meta property="article:tag" content="CNN">
+<meta property="article:tag" content="stacking">
+<meta property="article:tag" content="LR">
+<meta property="article:tag" content="SVM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/public/images/image/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-R2.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/08/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>智能客服项目 | panna cotta</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">panna cotta</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">诗娇的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-news">
+
+    <a href="/news/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>news</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-docs">
+
+    <a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>docs</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          智能客服项目
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-08T00:00:00+08:00">2019-12-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-21 15:51:32" itemprop="dateModified" datetime="2022-03-21T15:51:32+08:00">2022-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">工作总结</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="智能客服项目"><a href="#智能客服项目" class="headerlink" title="智能客服项目"></a>智能客服项目</h2><p>智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。</p>
+<p>FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。</p>
+<p>任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。<br>判断任务型对话是否结束有两种方式：</p>
+<ul>
+<li>一是这个任务已经完成</li>
+<li>二是虽然任务还未完成，但是模型判断需要跳出任务，此时直接结束任务返回通过顶层分类器进行模块判别的进程。</li>
+</ul>
+<p>在所有的任务中，我们都需要先为这个任务建立一个baseline，通常为相关任务常用的相对简单的模型。</p>
+<span id="more"></span>
+
+
+<hr>
+<h3 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h3><h4 id="词嵌入"><a href="#词嵌入" class="headerlink" title="词嵌入"></a>词嵌入</h4><p>在NLP中，词嵌入是一个非常重要和基本的点。不同于图片领域，可以直接将图片色彩值、像素值等直接拿来进行学习，在NLP领域中，字、词是需要转换成数值，然后才能用一些算法来进行学习，而这个将词&#x2F;字转换成数值的方法，就叫做词嵌入 word embedding。</p>
+<p>最简单的词嵌入就是ont-hot方法了，但是在都拥有大数据集的情况下，one-hot不仅使得词维度过大，而且并不能够表示文档、字词之间的表意关系。</p>
+<p>词嵌入如此重要，我们在词嵌入方向也做了很多研究，并且现在已有很多种效果很好的词嵌入的方法。</p>
+<ol>
+<li><p>最开始自己在为法国农业银行做智能客服时使用的tf-idf就是一个比较经典的词嵌入方法，但是它仍然有维度过大和不能表示词表意之间的关系</p>
+</li>
+<li><p>我们这里主要要讲的就是我们经常用到的word2vec词向量方法。word2vec词向量主要有两种计算方法，一种是skip-gram，另一种就是CBOW</p>
+<ol>
+<li>skip-gram</li>
+</ol>
+<p>   skip-gram是通过在已知当前词的情况下，预测前n个词和后n个词</p>
+<p>   当前词作为中心词时，因此要预测前n个词和后n个词，所以是从2*n个词的地方来进行参数优化，即进行学习，所以得到的词向量更准确一些，因此对于一些低频词较多的情况下，可以酌情使用这种方法，但是计算量会更大一些</p>
+<ol start="2">
+<li>CBOW</li>
+</ol>
+<p>   CBOW是在已知前面n个词和后面n个词的情况下，对当前词进行预测</p>
+<p>   通过前n个词和后n个词来预测当前词，学习效率快，但是相对而言，优化的次数要少，因此得到的词向量会相对没有那么精确，但是因为计算量相对较小，而且这种方法得到的词向量已经满足常规使用需求了，所以这种方法的词向量被使用的更频发</p>
+<ol start="3">
+<li><p>两者都是通过对目标函数的优化，来优化隐藏层的参数W，而这个W就是我们的词向量</p>
+</li>
+<li><p>这两种计算方法其实计算量都特别大，所以有两种优化方法，一种是负采样，一种是softmax方法，我并没有细看</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>其实并没有规避one-hot维度大、没有词表意之间练习的问题，我们只是把这个问题提前解决了之后，再拿来使用，所以这应该也算是迁移学习吧</p>
+<hr>
+<h3 id="顶层分类器"><a href="#顶层分类器" class="headerlink" title="顶层分类器"></a>顶层分类器</h3><hr>
+<h3 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h3><p>FAQ经历的漫长的演变。</p>
+<ol>
+<li><p>第一版</p>
+<ul>
+<li>最开始做的FAQ就是tf-idf加上余弦相似度</li>
+<li>缺点：<ul>
+<li>词包模型，没有句子中词汇出现的顺序信息</li>
+<li>有的词汇出现频繁，但并不是很重要的词汇；相反有的词汇出现频率相对较小，但是确实非常重要的判别词汇，所以tf-idf给予字词的权重有待优化</li>
+</ul>
+</li>
+<li>导致：<ul>
+<li>有些句子可能在距离上更接近A句子，其实是相似于B句子，比如句式相似，只有一两个重点字不同</li>
+</ul>
+</li>
+<li>为了优化这个方法对词汇权重计算的偏差问题（重要词汇的权重不够大），又找出了所有的重要词汇，并且计算每个句子中重要词汇的杰卡德系数</li>
+<li>最后结合余弦相似度和杰卡德系数来判断两个句子的相似性</li>
+<li>此时因为数据量小，句子相对简单，top1值并不高60%，但是top3值可以达到95%，剩下的95%是因为数据库中不存在相关语句</li>
+</ul>
+</li>
+<li><p>第二版</p>
+<ul>
+<li>后来用的是深度学习加上余弦相似</li>
+<li>深度学习主要是用word2vec和LSTM得到句子的embedding</li>
+<li>有目标句子Anchor，同类（答案相同的）问题中抽取一个正例Positive，非同类问题中抽取一个负例Negative</li>
+<li>d(a,p) &lt;&#x3D; d(a,n)，所以d(a,p)-d(a,n) &lt;&#x3D; 0，所以d(a,p)-d(a,n)+margin &lt;&#x3D; 0</li>
+<li>对于新输入的句子，训练好的模型唯一的用途就是embedding，用模型embedding出来的数值计算余弦相似度进行排序</li>
+<li>缺点：<ul>
+<li>因为负采样的原因不稳定，每一对&lt;a,p,n&gt;中，正采样可以用的样本过少，负采样样本较多，且大概率负样本很容易满足d(a,p)&lt;&#x3D;d(a,n)的限制，因为一般情况下，负样本都比正样本离目标样本远的多</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第三版</p>
+<ul>
+<li><p>loss中使用am-softmax。以前的<strong>loss</strong>是简单的取交叉熵，现在是</p>
+<ul>
+<li>对两个vector都做了归一化，即求内积变为求余弦相似度</li>
+<li>增加类间距离，缩小类内距离：每个样本所属类的距离，必须<strong>远</strong>小于它跟其它类的距离。这个<strong>远</strong>可以是<strong>到其它类距离的1&#x2F;2</strong>，可以是<strong>到其它类的距离减去某个值: dist()-m</strong>，等。这里用的是第二种，即余弦相似度减去某个值m</li>
+<li>为了让概率P更均匀的分布在0-1之间，对余弦相似度进行了s倍的缩放</li>
+</ul>
+</li>
+<li><p>用了triplet loss中online采样的变体：</p>
+<ul>
+<li>假设包含B个图片的banch有P个不同的人组成，每人有K个图片，即B&#x3D;PK。两种在线采样策略分别是：<ul>
+<li>batch all: 取目标样本下所有的正样本和所有的负样本（PK*(K-1)*(P-1)K个triplet，PK为所有样本数，K-1为正样本树，(P-1)K为负样本树）</li>
+<li>batch hard: 取目标样本下距离最小的负样本和距离最大的正样本（PK个triplet）</li>
+</ul>
+</li>
+<li>这两个采样策略，一个太复杂，计算量太大，一个太极端，不稳定。所以我们取了中和的方法，即<strong>取目标样本下每个类别中距离最小的m个负样本和距离最大的m个正样本，然后一一对应来计算（PK * m * (P-1)m个triplet with m &lt;&lt; K）</strong></li>
+<li>offline采样：这个方法不够高效，因为最初要把所有的训练数据喂给神经网络，而且每过1个或几个epoch，可能还要重新对negative examples进行分类</li>
+</ul>
+</li>
+<li><p>triplet loss中的分类是以问答相似&#x2F;相同为标准的小类大约3500个，还有一个大类，即我们把FAQ问题整体分了个类，约840个类，FAQ整体数据大概10W。我们在得到一个新的输入句子时，会从840个类中分别抽取3个query，来计算相似度，我们取平均值最高的5个类，然后在只取这5个类中所有的问题来和新输入的句子进行相似度匹配，来得到需要输出的答案。</p>
+<ul>
+<li>第一次类的寻找，是为了节约时间，不让输入的query和10W个句子暴力匹配</li>
+<li>第二次在5个类中找到需要的结果，是对具体回答的答案的寻找</li>
+<li>是否直接输出找到的最匹配的答案，还有一个阈值来决定</li>
+<li>如果我们对第一选项不确定，即没有超过相关阈值，那么我们可以推荐前三个相似度最高的问题，让用户选择</li>
+<li>用户的选择，能够为我们带来新的数据，帮助优化模型</li>
+<li>如果所有问题都没有超过推荐阈值，那么需要用户重新输入</li>
+</ul>
+</li>
+<li><p>第三版使用了triplet loss改进后，top1值提高到了87%，top3值提高到了94%</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="相似度计算方法"><a href="#相似度计算方法" class="headerlink" title="相似度计算方法"></a>相似度计算方法</h4><p>最长公共子序列、最长公共子串和编辑距离，都用的是动态规划，代码中需要注意：</p>
+<ol>
+<li>矩阵的建立</li>
+<li>循环时，A，B指针和矩阵下标的对应</li>
+</ol>
+<h5 id="levenshtein"><a href="#levenshtein" class="headerlink" title="levenshtein"></a>levenshtein</h5><p>当i&#x3D;0 or j&#x3D;0,res[i][j]&#x3D;0<br>res[i][j]&#x3D;min{res[i-1][j]+1,res[i][j-1]+1,res[i-1][j-1]+flag}, flag&#x3D;0 if A[i]&#x3D;B[j], flag&#x3D;1 if A[i]!&#x3D;B[j]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">levenshtein</span>(<span class="params">seq1, seq2</span>):</span><br><span class="line">    size_x = <span class="built_in">len</span>(seq1) + <span class="number">1</span></span><br><span class="line">    size_y = <span class="built_in">len</span>(seq2) + <span class="number">1</span></span><br><span class="line">    matrix = np.zeros ((size_x, size_y))</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xrange(size_x):</span><br><span class="line">        matrix [x, <span class="number">0</span>] = x</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> xrange(size_y):</span><br><span class="line">        matrix [<span class="number">0</span>, y] = y</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">1</span>, size_x):</span><br><span class="line">        <span class="keyword">for</span> y <span class="keyword">in</span> xrange(<span class="number">1</span>, size_y):</span><br><span class="line">            <span class="keyword">if</span> seq1[x-<span class="number">1</span>] == seq2[y-<span class="number">1</span>]:</span><br><span class="line">                matrix [x,y] = <span class="built_in">min</span>(</span><br><span class="line">                    matrix[x-<span class="number">1</span>, y] + <span class="number">1</span>,</span><br><span class="line">                    matrix[x-<span class="number">1</span>, y-<span class="number">1</span>],</span><br><span class="line">                    matrix[x, y-<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                matrix [x,y] = <span class="built_in">min</span>(</span><br><span class="line">                    matrix[x-<span class="number">1</span>,y] + <span class="number">1</span>,</span><br><span class="line">                    matrix[x-<span class="number">1</span>,y-<span class="number">1</span>] + <span class="number">1</span>,</span><br><span class="line">                    matrix[x,y-<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                )</span><br><span class="line">    <span class="built_in">print</span> (matrix)</span><br><span class="line">    <span class="keyword">return</span> (matrix[size_x - <span class="number">1</span>, size_y - <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<h5 id="最长公共子串"><a href="#最长公共子串" class="headerlink" title="最长公共子串"></a>最长公共子串</h5><p>当i&#x3D;0 or j&#x3D;0,res[i][j]&#x3D;0<br>当A[i]&#x3D;B[j],res[i][j]&#x3D;res[i-1][j-1]+1<br>当A[i]!&#x3D;B[j],res[i][j]&#x3D;0</p>
+<h5 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h5><p>当i&#x3D;0 or j&#x3D;0,res[i][j]&#x3D;0<br>当A[i]&#x3D;B[j],res[i][j]&#x3D;res[i-1][j-1]+1<br>当A[i]!&#x3D;B[j],res[i][j]&#x3D;max{res[i-1][j],res[i][j-1]}</p>
+<hr>
+<h3 id="任务型对话"><a href="#任务型对话" class="headerlink" title="任务型对话"></a>任务型对话</h3><p>任务型对话主要有时效运费、查单、转寄退回等几个场景，这里主要用时效运费的场景来说明项目过程。</p>
+<p>在时效运费场景中，NLU主要有两个模块，意图识别和NER。</p>
+<h4 id="意图识别"><a href="#意图识别" class="headerlink" title="意图识别"></a>意图识别</h4><p>意图识别总共有8类，总数据量是1万5，留了1500个数据做测试集，3000个数据做验证集。</p>
+<p>最开始使用的是stacking，后来随着数据量的增加，改用深度学习。<br>深度学习测试了cnn+rnn和cnn，发现cnn的效果比cnn+rnn好，应该是：</p>
+<ul>
+<li><p>数据本身都是比较短的句子，且序列性不强，所以rnn的优势没有体现出来</p>
+</li>
+<li><p>只有cnn更好的保存了提取的特征，优化了分类效果</p>
+</li>
+</ul>
+<h5 id="如何优化分类问题"><a href="#如何优化分类问题" class="headerlink" title="如何优化分类问题"></a>如何优化分类问题</h5><h6 id="类别F1值分析"><a href="#类别F1值分析" class="headerlink" title="类别F1值分析"></a>类别F1值分析</h6><p>分析整体F1值，看主要影响效果的是哪一个&#x2F;哪几个类，然后针对性分析，提高优化效果。<br>针对F1值过低的类别，仔细分析错误分类的数据，找出原因</p>
+<h6 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h6><p>根据学习曲线，可以找出当前模型训练出最佳结果所需要的最少的数据数，可以避免资源的浪费，也可以排除结果不佳可能是数据集不够的困惑。</p>
+<h5 id="说一下stacking以及它在这个项目中的应用"><a href="#说一下stacking以及它在这个项目中的应用" class="headerlink" title="说一下stacking以及它在这个项目中的应用"></a>说一下stacking以及它在这个项目中的应用</h5><p>stacking中我们用了两层分类器，第一层有三个基分类器RF，NB，LR，第二层分类器是线性核函数的SVM，folder&#x3D;3，</p>
+<ol>
+<li><p>先用tf-idf提取特征</p>
+</li>
+<li><p>第二层的输入为第一层的输出，不包括原始数据</p>
+</li>
+<li><p>第二层分类器如果是更简单的分类器，效果更好，比如我们用的是线性核函数SVM。</p>
+<ul>
+<li><p>可能因为上一层的几个基分类器多维度提取特征已经比较复杂，所以第二层的分类器过于复杂会造成过拟合。</p>
+</li>
+<li><p>输出是概率，更符合分类的要求</p>
+</li>
+</ul>
+</li>
+<li><p>较小数据集上stacking的表现并不如意，有时甚至比单独的分类器的效果要差</p>
+</li>
+<li><p>基分类器中如果有效果特别差的，可以将其移除，可能优化最后的结果</p>
+</li>
+<li><p>stacking的预测需要时间相对较长</p>
+</li>
+</ol>
+<h6 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h6><p>逻辑回归是一个判别模型<br>通过对激活函数sigmoid的引入，使得线性回归中的$W^T · x$映射到(0,1)之间，使逻辑回归成为一个概率预测问题，参数就是$W^T$<br>为了使逻辑回归公式$P(y|x) &#x3D; p_1^y·p_0^{1-y}$最大，我们引入最大似然估计</p>
+<p>逻辑回归假设数据符合伯努利分布，所以是一个参数模型。<br>通过引入sigmoid函数，将输出映射到[0,1]之间，</p>
+<p>逻辑回归本来是二元分类，但是也可以用作多元分类。<br>如果逻辑回归中引入正则化，我们需要对特征进行标准化，在这标准化也可以加快训练。</p>
+<p>最大似然(max最大化问题) 可以导出 loss funcition(min Cross Entropy最小化问题)</p>
+<p>方法：</p>
+<ul>
+<li><p>one VS all，选择计算结果最高的那个类。</p>
+</li>
+<li><p>引入softmax</p>
+</li>
+</ul>
+<p>缺点：样本不均衡，因为1 VS all</p>
+<ol>
+<li>损失函数</li>
+</ol>
+<p>欠拟合：增加特性，增加数据<br>过拟合：正则化，dropout，提前停止训练，减少模型复杂度</p>
+<p><strong>在统计学中对变量进行线行回归分析，采用最小二乘法进行参数估计时，R平方为回归平方和与总离差平方和的比值，表示总离差平方和中可以由回归平方和解释的比例，这一比例越大知越好，模型越精确，回归效果越显著。R平方介于0~1之间，越接近1，回归拟合效果越好，一道般认为超过0.8的模型拟合优度比较高。</strong><br><img src="/public/images/image/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-R2.png" alt="逻辑回归-R2"></p>
+<h6 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h6><p>今天终于感觉自己终于懂了SVM的一点皮毛。</p>
+<ol>
+<li><p><strong>SVM：Support Vector Machine支持向量机</strong></p>
+<p> SVM一般用于二元分类，但是因为one-vs-all的存在，我们也可以用它来进行多元分类。</p>
+<p> SVM的效果一般特别好，特点是计算量比较大，但是他对数据的分布没有要求，它通过最大化到超平面最近点的距离，来进行分类。</p>
+</li>
+<li><p><strong>Python &gt;&gt; sklearn中的SVM：</strong></p>
+<p> SVC: Support Vector Classification 支持向量用于分类<br> SVR: Support Vector Regression 支持向量用于回归<br> LinearSVC: Linear SVC 核函数为<strong>线性核函数</strong>的支持向量</p>
+</li>
+<li><p><strong>SVM几种常用核函数：</strong></p>
+<p><img src="/../../public/images/image/SVM%E5%B8%B8%E7%94%A8%E6%A0%B8%E5%87%BD%E6%95%B0.svg" alt="核函数"></p>
+</li>
+<li><p><strong>核函数的选择</strong>（吴恩达教授说）：</p>
+<ul>
+<li>如果Feature的数量很大，跟样本数量差不多，这时候选用LR或者是Linear Kernel的SVM</li>
+<li>如果Feature的数量比较小，样本数量一般，不算大也不算小，选用SVM+Gaussian Kernel (“rbf”)</li>
+<li>如果Feature的数量比较小，而样本数量很多，需要手工添加一些feature变成第一种情况</li>
+</ul>
+</li>
+<li><p>参考视频：<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av75892058/">SVM核函数–表示这个视频真的很好</a></p>
+</li>
+<li><p>自己对核函数的总结：</p>
+<ul>
+<li>核函数最重要的作用就是映射，不同的核函数提供不同的映射方法</li>
+<li>核函数和normalization有点相似，都是对点的映射，只是目标和方式不同，normalization是为了让数据分布更均匀，而SVM中的核函数是为了让数据分布更开散、更易分割</li>
+<li>核函数的加入，是的SVM的计算量增大，尤其是使用高斯核函数和多项核函数的时候</li>
+<li>在文本分类项目中的stacking方法中，我们使用的是LinearSVC</li>
+<li>一般情况下，对非线性数据使用默认的高斯核函数会有比较好的效果</li>
+<li>自己只是了解皮毛，对于核函数公式的推导，如何知道一个核函数是否是有效核函数等，都还不是太清楚</li>
+</ul>
+</li>
+</ol>
+<h5 id="介绍一下CNN以及在这个项目中的应用"><a href="#介绍一下CNN以及在这个项目中的应用" class="headerlink" title="介绍一下CNN以及在这个项目中的应用"></a>介绍一下CNN以及在这个项目中的应用</h5><p>在CNN中，<strong>卷积</strong>的作用是<strong>特征提取</strong>（比如图像中的边缘检测），<strong>池化</strong>的作用是压缩特征数，对<strong>特征进行降维</strong>。</p>
+<p>在CNN分类模型中，我们简单的使用了三个卷积核(大小为filter_size*embedding_size)，加入了L2正则化。</p>
+<p><strong>如何让CNN也能解决序列问题</strong></p>
+<ul>
+<li>CNN在卷基层后，还是保留了句子的顺序关系的，但是在经过max pooling对特征降维后，就打乱了这种顺序，所以我们其实可以去掉max pooling，只让CNN做卷积</li>
+<li>或者也可以在CNN中加入位置信息</li>
+</ul>
+<h5 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h5><ol>
+<li><p>样本不均衡</p>
+<ul>
+<li>过采样：不易太过，否则容易过拟合，但是预测效果很差</li>
+<li>欠采样：当数据样本足够多时才能使用</li>
+</ul>
+<p> 除了样本不均衡本身带来的训练问题，在测试集中，因为样本严重不均衡，且需要尽量保证测试集和训练集的分布一样，所以可能存在测试集中某些类只有几个数据，导致结果随机性较大不可靠，这时应该尽量把真实数据留在测试集中</p>
+</li>
+<li><p>阈值难以确定<br>每一次的预测，有所有类别的概率[0.1, 0.2, 0.3, 0.4, 0.5]，然后取概率最大的那个类别当作预测结果。<br>但是因为这个结果在每个类别中的边界线并不稳定，所以我们尝试对预测概率[0.1, 0.2, 0.3, 0.4, 0.5]的熵的分析来进一步判别。</p>
+</li>
+<li><p>任务结束前如何判断用户是否更改意图，跳出当前场景</p>
+<p> 我们增加了一个类others，包含所有肯定不属于当前场景的对话数据，比如：“我要投诉”，“今天天气适合登山”等等。</p>
+<p> 对于需要跳出当前场景的对话，如果我们没有跳出，比不需要跳出场景对话但是却跳出了的结果要更严重，所以我们主要要考虑others类的准确率，其次是F1值和召回率。</p>
+<p> 这里为了使得others相对于召回率有更大的准确率，我们增加了这个类的权重（求完各个类的交叉熵后，乘以权重系数，即增加这个类对loss的敏感度）。如果训练时间足够长，是否增加权重最后的结果都是相同的，但是增加权重后，模型会优先保证others这一类的准确率，所以我们可以让训练停在others有较大准确率、且总体结果比较符合我们要求的时候。即牺牲别的类的准确率来优先保证others的准确率。</p>
+</li>
+<li><p>过拟合</p>
+<p> 表现为训练集的F1值不断上升但是验证集的变化不大。原因是数据量很多，但是类别很少，且句子都很简短。</p>
+<p> 解决方法：</p>
+<ul>
+<li>加入L2正则化：加入L2正则化初期效果很好，后面慢慢还是会过拟合</li>
+<li>停止训练：在发现训练集不断上升但是验证集结果变化不大时，及时停止训练。</li>
+</ul>
+</li>
+<li><p>在计算损失函数时，不要允许概率直接等于0，而是加上一个极小的正数，这样会减少信息的丢失，整体的概率和与1有一点偏差并不影响</p>
+</li>
+</ol>
+<h4 id="NER"><a href="#NER" class="headerlink" title="NER"></a>NER</h4><p>一共有15000个数据，12个类别（连上不属于这12个类别的数据，如“的”、“你们”等，共13个类别），如”出发地”，”出发时间”，”类型”，”物品”，”体积”,”重量”等。</p>
+<p>训练集：14000，验证集：，测试集：1000。</p>
+<p>baseline用的是LSTM+CRF，后来改为BiLSTM+CRF后，效果有一定提升。optimizer选用的是Adam。</p>
+<p>准确率达97.4%，但F1值只有87.4%<br>主要是对时间的获取准确率太低，DUR和TIM分别只有43%和50%</p>
+<h4 id="BiLSTM-CRF"><a href="#BiLSTM-CRF" class="headerlink" title="BiLSTM+CRF"></a>BiLSTM+CRF</h4><h5 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h5><ol>
+<li>条件：判别式模型；随机场：无向图模型</li>
+<li>判别模型P(Y|X)</li>
+<li>打破了观测独立假设（朴素贝叶斯假设就是观测独立假设）</li>
+<li>全局归一化（MEMM最大熵马尔可夫模型是局部归一化）</li>
+<li>一般的深度学习模型只是学习了文本&#x2F;特征上下文的关系(BiLSTM)，但是CRF的加入可以让它还学到label上下之间的关系，加入了一个相邻序列间转换的概率</li>
+<li><img src="/public/images/image/BiLSTM+CRF&#32;loss.png" alt="BiLSTM+CRF的loss求解"></li>
+</ol>
+<h6 id="CRF和HMM、MEMM相比的优势"><a href="#CRF和HMM、MEMM相比的优势" class="headerlink" title="CRF和HMM、MEMM相比的优势"></a>CRF和HMM、MEMM相比的优势</h6><ul>
+<li>CRF没有HMM严格的独立假设条件，所以可以容纳更多的上下文信息（HMM独立假设：输出仅如当前状态相关）</li>
+<li>CRF相比MEMM，统计了全局的概率，考虑的数据在全局的分布，并归一化，克服了MEMM模型标记偏置（局部归一化的原因）的缺点</li>
+<li>CRF是在给定需要标记的观察序列的条件下，计算整个标记序列的联合概率分布，而不是在给定当前状态条件下，计算下一个状态的概率分布</li>
+</ul>
+<p><strong>RF和HMM都利用了图的知识，但是CRF利用的是马尔科夫随机场（无向图），而HMM的基础是贝叶斯网络（有向图）。而且CRF也有：概率计算问题、学习问题和预测问题。大致计算方法和HMM类似，只不过不需要EM算法进行学习问题。</strong></p>
+<p><strong>HMM和CRF对比： 其根本还是在于基本的理念不同，一个是生成模型，一个是判别模型，这也就导致了求解方式的不同。</strong></p>
+<h6 id="自编码-VS-自回归"><a href="#自编码-VS-自回归" class="headerlink" title="自编码 VS 自回归"></a>自编码 VS 自回归</h6><p>自回归模型：ELMo，GPT，GPT2，XLNet<br>自编码模型：Bert</p>
+<h6 id="ELMo"><a href="#ELMo" class="headerlink" title="ELMo"></a>ELMo</h6><p>双向自回归语言模型，使用的是从左到右、从右到左的两个LSTM的拼接，特征提取能力不如Transformer。只提供拼接后的词向量</p>
+<h6 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h6><p>单向自回归语言模型，使用的是transformer，但是是left-to-right的单向transformer：transformer decoder，用到的self-attention是masked-multi-self-attention。可以fine-turning</p>
+<h6 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h6><p>双向自编码语言模型，其中的mask有加噪音的效果，且有增强上下文信息获取的效果。可以fine-turning<br>优点：</p>
+<ul>
+<li>双向transformer，所以可以获取上下文信息</li>
+<li>用到transformer，可以并行运算</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>mask在预测中没有，影响模型的泛化能力</li>
+<li>缺乏生成能力</li>
+<li>没有考虑预测的mask间的相关性</li>
+</ul>
+<h6 id="XLNet"><a href="#XLNet" class="headerlink" title="XLNet"></a>XLNet</h6><p>优点：</p>
+<ul>
+<li>用随机采样句子分解的顺序，来解决自回归模型不能联系上下文的问题</li>
+<li>解决了预测词间没有依赖的问题</li>
+<li>attention mask是的模型可以看到自己那个词attent到它前面分解的词，但是不attent到它看不到的后面分解的词</li>
+<li>原自回归模型中永远都是预测下一个词，但是这里因为打乱了句子的分解顺序，所以不知道下一个预测的词是哪个位置的词，或者说预测哪里都一样，所以就变成了bow词包性质的预测，那么建模就没有那么强的序列性。所以我们决定，不用知道下一个词在哪里，我们就预测当前位置的词，那么我们会天然把当前输入encoder到信息中。但是这回带来另一个问题，就是可能要预测的当前词就是输入，那就没有任何意义。但是当我们到另外一个位置时，当前位置的信息需要encoder到里面，所以发生了一个矛盾点，即当前位置信息，某些情况需要encoder到信息中，某些情况又不能encoder到信息中。所以我们就提出了two stream attention，把feature拆成两组，一组encoder当前输入，一组不用，context stream encoder当前输入，用作fine-turning，query stream 不 encoder当前输入，用作预测，并且两个stream参数共享</li>
+</ul>
+<h6 id="ALBert"><a href="#ALBert" class="headerlink" title="ALBert"></a>ALBert</h6><p>改进：</p>
+<ul>
+<li>词向量降维</li>
+<li>权重共享</li>
+<li>更轻，效果更好</li>
+<li>NSP 改为了 SOP，即负样本为反转句子</li>
+<li>增加了数据量和训练时间</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>减少了内存占用，但是并没有减少计算量</li>
+</ul>
+<h6 id="RoBerta"><a href="#RoBerta" class="headerlink" title="RoBerta"></a>RoBerta</h6><p>改进：</p>
+<ul>
+<li>静态mask变为动态mask:而RoBERTa一开始把预训练的数据复制10份，每一份都随机选择15%的Tokens进行Masking，也就是说，同样的一句话有10种不同的mask方式</li>
+<li>with NSP vs without NSP:roberta用的是full-sentence</li>
+<li>更大的mini-batch：256 -&gt; 2K</li>
+<li>更多的数据和更长的训练时间</li>
+</ul>
+<h6 id="为什么用Transformer？Transformer相比于RNN和CNN有什么异同？"><a href="#为什么用Transformer？Transformer相比于RNN和CNN有什么异同？" class="headerlink" title="为什么用Transformer？Transformer相比于RNN和CNN有什么异同？"></a>为什么用Transformer？Transformer相比于RNN和CNN有什么异同？</h6><ul>
+<li><pre><code>Transformer和CNN都不存在序列依赖问题，可以并行计算（计算能力不是问题？？），但是Transformer相对于CNN保留了序列关系，他有RNN的优点，却没有RNN计算能力相对差的缺点
+</code></pre>
+<ul>
+<li><pre><code>CNN中卷基层无法捕捉远距离特征（依赖于卷积层的设定），但是Transformer中，self-attention可以获取前后文所有词与当前词的相关性
+</code></pre>
+<ul>
+<li><pre><code>RNN和Transformer都可以解决句子中的依赖问题（有点同上面提到的序列问题相似），而是Transformer做的更好，他可以得到句子中每个单词间的相关性，并且一步到位
+</code></pre>
+<ul>
+<li><pre><code>Transformer的缺点是，当输入文本特别长的时候，他的计算量会飞速增长。
+</code></pre>
+<ul>
+<li><pre><code>Transformer中的self-attention不存在梯度消失的问题，所以可以更好的看到更远距离的信息
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="Viterbi算法"><a href="#Viterbi算法" class="headerlink" title="Viterbi算法"></a>Viterbi算法</h6><h5 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice+LSTM"></a>Lattice+LSTM</h5><p>NER中一般采用BIEO标注的方法，这种方法一般需要把字一个个的分开标注，所以用的是字向量。<br>字向量：</p>
+<ul>
+<li>优点<ul>
+<li>嵌入字向量，不会有OOV</li>
+<li>语料多少，不会影响向量整体大小所占内存</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>缺少字词之间的语义关系</li>
+</ul>
+</li>
+</ul>
+<p>词向量</p>
+<ul>
+<li>优点<ul>
+<li>完整的嵌入词语信息</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>性能依赖分词精度</li>
+<li>开放领域，跨领域分词是一个难题</li>
+<li>会有OOV影响模型性能</li>
+<li>语料大时，词典容量大，占用内存资源大</li>
+</ul>
+</li>
+</ul>
+<p>可见NER中用字向量有很大优势，可以在用词向量的基础上，也加入词向量来嵌入词语的信息吗？</p>
+<p>如果使用分词，对词向量进行标注<br>Lattice是除了使用词向量外，还把字向量作为特征也加入进去了，所以整个计算复杂度升高了很多。</p>
+<h5 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h5><p>在测试完Lattice LSTM后，发现整体F1值虽然增加了2%，但是速度却下降了特别多（将近5倍），所以最后还是选用的BiLSTM+CRF</p>
+<hr>
+<h3 id="Bert-1"><a href="#Bert-1" class="headerlink" title="Bert"></a>Bert</h3><h4 id="Bert的两大亮点"><a href="#Bert的两大亮点" class="headerlink" title="Bert的两大亮点"></a>Bert的两大亮点</h4><ul>
+<li>MASK机制：随机mask一些token来预测</li>
+<li>next sentence predict：判断句子B是否是句子A的下一句话</li>
+</ul>
+<p>有三个输入：字向量，位置向量，句子向量<br>15%的词mask，这15%中有80%是真的用MASK来代替，10%是原有单词，10%是随机选择的单词<br>优点：</p>
+<ul>
+<li>只有80%的字为MASK是因为微调时，输入数据中不会有MASK</li>
+<li>10%错误是因为这样模型不能100%确定当前字一定是正确的，所以迫使模型更多的依赖上下文</li>
+</ul>
+<h4 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h4><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av56239558/?spm_id_from=333.788.videocard.0">超厉害的transformer讲解视频，看完就明朗！</a></p>
+<ol>
+<li><p>transformer最重要的组成部分就是self-attention</p>
+</li>
+<li><p>attention的计算中，$alpha_{1,i} &#x3D; q^1 · k^i &#x2F; \sqrt{d}$，这里除以$\sqrt{d}$是因为作者认为在前面求内积时，如果$q^1$和$k^i$的dimension越大，自然$q^1 · k^i$内积也会<strong>相对</strong>越大，所以要除以$q^1$和$k^i$的dimension $d$来平衡。</p>
+</li>
+<li><p>self-attention输出的seq中，输出$y_i$是同CNN中一样，可以并行计算的</p>
+</li>
+<li><p><img src="/public/images/image/self-attention.png" alt="self-attention"></p>
+</li>
+<li><p>表示位置position的向量$e^i$不是学出来的，而是开始的时候就设置了的，通过$e^i$的数值，可以直接判断出当前输入在句子中是在什么位置</p>
+</li>
+<li><p>为什么直接把位置信息$e^i$加到$a^i$上，而不是concat呢？这样会不会造成信息混乱呢？</p>
+<p>那么我们试着不把$e^i$直接加入到$a^i$，而是在输入处，让位置信息$e$和输入信息$x$直接concat，得到比如$X$，他们乘以把$W_e$和$W_x$ concat在一起的矩阵$W$，我们会发现$W·X &#x3D; W_e · e + W_x · x &#x3D; W_e · e + a$，所以最后得到的结果还是相加的，具体情况如下图<br><img src="/public/images/image/self-attention-2.png" alt="positioninfo"></p>
+</li>
+<li><p>layer norm VS batch norm</p>
+</li>
+<li><p>为什么layer norm一般会搭配RNN使用？</p>
+</li>
+<li><p>在transformer的decoder中，中间的multi-head attention的前两个输入来自于encoder的输出，最后一个的输入来自于decoder，前两个是$Q$和$K$，他们是用来计算attention的，后面一个是$V$，计算出来的attention矩阵和$V$进行运算来看attention和$V$的关联度。</p>
+</li>
+<li><p>multi-head attention里之所以用几个attention是因为不同的attention专注点不同，如果句子里有很多需要关联的关系来学习的化，multi-head attention就会大大提升效果</p>
+</li>
+</ol>
+<h4 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h4><p>常见的两种attentio机制</p>
+<h4 id="数据增广"><a href="#数据增广" class="headerlink" title="数据增广"></a>数据增广</h4><ul>
+<li>数据增广中，我们不需要用到segment embedding，因为我们都是同一个句子，但是意图分类中我们可以加入intent embedding</li>
+<li>随机mask 15%的token，其中10%的单词会被替代成其他单词，10%的单词不替换，剩下80%才被替换为[MASK]</li>
+<li>当作一个seq2seq模型来使用，让模型直接输出句子，即mask会被替换成别的单词&#x2F;词语</li>
+<li><ol>
+<li>用词向量比字向量好，用字向量会出现错误的词组</li>
+<li>词向量需要自己重新训练，中文的Bert是字向量，所以失去了迁移模型的优势</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="纠错"><a href="#纠错" class="headerlink" title="纠错"></a>纠错</h3><h4 id="N-gram"><a href="#N-gram" class="headerlink" title="N-gram"></a>N-gram</h4><h4 id="levenshtein-1"><a href="#levenshtein-1" class="headerlink" title="levenshtein"></a>levenshtein</h4><h4 id="最长公共子串-1"><a href="#最长公共子串-1" class="headerlink" title="最长公共子串"></a>最长公共子串</h4><hr>
+<h3 id="概述历程"><a href="#概述历程" class="headerlink" title="概述历程"></a>概述历程</h3><h4 id="法国"><a href="#法国" class="headerlink" title="法国"></a>法国</h4><h4 id="顺丰"><a href="#顺丰" class="headerlink" title="顺丰"></a>顺丰</h4><h3 id="几大模块"><a href="#几大模块" class="headerlink" title="几大模块"></a>几大模块</h3><h2 id="待写文章"><a href="#待写文章" class="headerlink" title="待写文章"></a>待写文章</h2><ol>
+<li><p>过拟合欠拟合</p>
+</li>
+<li><p>样本不均衡</p>
+</li>
+<li><p>batch norm详述及优缺点</p>
+</li>
+<li><p>batch norm和layer norm的不同</p>
+</li>
+</ol>
+<h3 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h3><p>自己的优势是对整个产品流程的理解，和对产品如何更好面向客户的技术上的着重点的理解</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Shijiao DENG
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/12/08/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/" title="智能客服项目">http://yoursite.com/2019/12/08/待整理/工作总结/智能客服项目/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D/" rel="tag"># 智能客服</a>
+              <a href="/tags/CNN/" rel="tag"># CNN</a>
+              <a href="/tags/stacking/" rel="tag"># stacking</a>
+              <a href="/tags/LR/" rel="tag"># LR</a>
+              <a href="/tags/SVM/" rel="tag"># SVM</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/07/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8/" rel="prev" title="梯度消失和梯度爆炸">
+      <i class="fa fa-chevron-left"></i> 梯度消失和梯度爆炸
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/08/%E5%BE%85%E6%95%B4%E7%90%86/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/" rel="next" title="面试感触">
+      面试感触 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">智能客服项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NLP"><span class="nav-number">1.1.</span> <span class="nav-text">NLP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E5%B5%8C%E5%85%A5"><span class="nav-number">1.1.1.</span> <span class="nav-text">词嵌入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B6%E5%B1%82%E5%88%86%E7%B1%BB%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">顶层分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FAQ"><span class="nav-number">1.3.</span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E4%BC%BC%E5%BA%A6%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">相似度计算方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#levenshtein"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">levenshtein</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E4%B8%B2"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">最长公共子串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">最长公共子序列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E5%9E%8B%E5%AF%B9%E8%AF%9D"><span class="nav-number">1.4.</span> <span class="nav-text">任务型对话</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%84%8F%E5%9B%BE%E8%AF%86%E5%88%AB"><span class="nav-number">1.4.1.</span> <span class="nav-text">意图识别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">如何优化分类问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%B1%BB%E5%88%ABF1%E5%80%BC%E5%88%86%E6%9E%90"><span class="nav-number">1.4.1.1.1.</span> <span class="nav-text">类别F1值分析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF"><span class="nav-number">1.4.1.1.2.</span> <span class="nav-text">学习曲线</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8Bstacking%E4%BB%A5%E5%8F%8A%E5%AE%83%E5%9C%A8%E8%BF%99%E4%B8%AA%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">说一下stacking以及它在这个项目中的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="nav-number">1.4.1.2.1.</span> <span class="nav-text">逻辑回归</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SVM"><span class="nav-number">1.4.1.2.2.</span> <span class="nav-text">SVM</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BCNN%E4%BB%A5%E5%8F%8A%E5%9C%A8%E8%BF%99%E4%B8%AA%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">介绍一下CNN以及在这个项目中的应用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">碰到的问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NER"><span class="nav-number">1.4.2.</span> <span class="nav-text">NER</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BiLSTM-CRF"><span class="nav-number">1.4.3.</span> <span class="nav-text">BiLSTM+CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CRF"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#CRF%E5%92%8CHMM%E3%80%81MEMM%E7%9B%B8%E6%AF%94%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">1.4.3.1.1.</span> <span class="nav-text">CRF和HMM、MEMM相比的优势</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%87%AA%E7%BC%96%E7%A0%81-VS-%E8%87%AA%E5%9B%9E%E5%BD%92"><span class="nav-number">1.4.3.1.2.</span> <span class="nav-text">自编码 VS 自回归</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ELMo"><span class="nav-number">1.4.3.1.3.</span> <span class="nav-text">ELMo</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#GPT"><span class="nav-number">1.4.3.1.4.</span> <span class="nav-text">GPT</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Bert"><span class="nav-number">1.4.3.1.5.</span> <span class="nav-text">Bert</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#XLNet"><span class="nav-number">1.4.3.1.6.</span> <span class="nav-text">XLNet</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ALBert"><span class="nav-number">1.4.3.1.7.</span> <span class="nav-text">ALBert</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#RoBerta"><span class="nav-number">1.4.3.1.8.</span> <span class="nav-text">RoBerta</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8Transformer%EF%BC%9FTransformer%E7%9B%B8%E6%AF%94%E4%BA%8ERNN%E5%92%8CCNN%E6%9C%89%E4%BB%80%E4%B9%88%E5%BC%82%E5%90%8C%EF%BC%9F"><span class="nav-number">1.4.3.1.9.</span> <span class="nav-text">为什么用Transformer？Transformer相比于RNN和CNN有什么异同？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Viterbi%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.3.1.10.</span> <span class="nav-text">Viterbi算法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Lattice-LSTM"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">Lattice+LSTM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">对比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bert-1"><span class="nav-number">1.5.</span> <span class="nav-text">Bert</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bert%E7%9A%84%E4%B8%A4%E5%A4%A7%E4%BA%AE%E7%82%B9"><span class="nav-number">1.5.1.</span> <span class="nav-text">Bert的两大亮点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transformer"><span class="nav-number">1.5.2.</span> <span class="nav-text">transformer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attention"><span class="nav-number">1.5.3.</span> <span class="nav-text">attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%B9%BF"><span class="nav-number">1.5.4.</span> <span class="nav-text">数据增广</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A0%E9%94%99"><span class="nav-number">1.6.</span> <span class="nav-text">纠错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#N-gram"><span class="nav-number">1.6.1.</span> <span class="nav-text">N-gram</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#levenshtein-1"><span class="nav-number">1.6.2.</span> <span class="nav-text">levenshtein</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E4%B8%B2-1"><span class="nav-number">1.6.3.</span> <span class="nav-text">最长公共子串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0%E5%8E%86%E7%A8%8B"><span class="nav-number">1.7.</span> <span class="nav-text">概述历程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%95%E5%9B%BD"><span class="nav-number">1.7.1.</span> <span class="nav-text">法国</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E4%B8%B0"><span class="nav-number">1.7.2.</span> <span class="nav-text">顺丰</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%A0%E5%A4%A7%E6%A8%A1%E5%9D%97"><span class="nav-number">1.8.</span> <span class="nav-text">几大模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%85%E5%86%99%E6%96%87%E7%AB%A0"><span class="nav-number">2.</span> <span class="nav-text">待写文章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%93%E4%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">体会</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shijiao DENG"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shijiao DENG</p>
+  <div class="site-description" itemprop="description">记录工作，记录生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dengshijiao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dengshijiao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:d.shijiao@gmail.com" title="E-Mail → mailto:d.shijiao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-coffee"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shijiao DENG</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+    </div>
+</body>
+</html>
