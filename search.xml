@@ -13,54 +13,8 @@
       </tags>
   </entry>
   <entry>
-    <title>JMETER 压测</title>
-    <url>/2022/07/01/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8E%8B%E6%B5%8B/</url>
-    <content><![CDATA[<h1 id="JMETER压测"><a href="#JMETER压测" class="headerlink" title="JMETER压测"></a>JMETER压测</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><img src="/2022/07/01/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8E%8B%E6%B5%8B/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png" alt="参数展示"></p>
-<ul>
-<li>Number of Thread：该线程组包括的线程数,可理解为虚拟用户数</li>
-<li>Ramp-up Period：即设置线程数在多少秒内启动完毕，即如果线程数设置为10，而此项设置也设置为5，那么会每隔10&#x2F;5&#x3D;2秒,启动一个线程.</li>
-<li>Loop Count：即设置的线程数循环的次数，如果勾选永远，则会一直循环（注意：如果勾选了永远且调度器配置中设置了持续时间，则会在持续时间到达之后结束循环）.</li>
-<li>Delay Thread creation until needed：此选项和Ramp-up 时间（秒）设置配合使用，举例说明：如过设置线程数为10，Ramp-up 时间（秒）时间为100，则如果不勾选此项则此次测试会每隔10s创建并启动一个线程，那么100s后会有1-10个线程在运行；但是如果勾选此项，那么线程组会每隔10s创建一个线程但并不启动，而是会等待10个线程都创建好之后同时启动.</li>
-<li>Scheduler：勾选此项则打开调度器配置</li>
-<li>duration：即本线程组测试的持续时间，到时间后则停止此次测试，注意这个时间设置不要设置的比Ramp-up 时间（秒）小，如果勾选了循环次数中的永远，那么测试一样会在此持续时间到达后结束；</li>
-<li>start up delay：此项设置为在我们启动测试后多久时间开始创建线程组，通常用于定时</li>
-<li>Listner：较常用的是View Results Tree和Aggregate Report</li>
-<li>terminer中可以使用GUI，生成HTML报告，更方便分析，目前还没有弄通…</li>
-</ul>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
-<li>先需要找到最大TPS(Transactions Per Second)，即JMETER结果表格中的Thoughout</li>
-<li>每个事物如果只请求一次，则TPS&#x3D;QPS</li>
-<li>因为实际线上会是多个用户同时请求，而非一个用户多次请求，所以压测是，我们主要通过逐步增加线程数（Number of Threads），模拟实际线上用户数的增加，来找到最高TPS</li>
-<li>线程循环次数（loop count）无需过多改变和设置的太高，因为同一用户的调用次数往往是非常有限的</li>
-</ol>
-<h2 id="压测"><a href="#压测" class="headerlink" title="压测"></a>压测</h2><h3 id="Windows界面压测"><a href="#Windows界面压测" class="headerlink" title="Windows界面压测"></a>Windows界面压测</h3><p>简单的压测可以按如下步骤进行：</p>
-<ol>
-<li>设置第一次压测的线程数（Number of Threads），如20</li>
-<li>设置Ramp-Up Period，可以根据线程数来设置，主要保证此参数要小于整体压测时间（Duration）</li>
-<li>每个用户调用次数Loop Count可以设置成持续调用（Forever），并勾选Scheduler</li>
-<li>Scheduler Configuration里主要要设置Duration，即压测持续时间。这个时间一定要大于线程启动时间（Ramp-Up Period），即【Duration】 - 【Ramp-Up Period】 &#x3D; 【所有线程启动后希望压测的时间】</li>
-</ol>
-<h3 id="Linux压测"><a href="#Linux压测" class="headerlink" title="Linux压测"></a>Linux压测</h3><ol>
-<li>在有界面可视化的 <code>JMETER</code> 上（如 <code>Windows</code> 系统上），配置好需要压测的参数</li>
-<li>储存成 <code>test.jmx</code> 文件</li>
-<li>将 <code>test.jmx</code> 文件传输到 <code>Linux</code> 上</li>
-<li>进入 <code>Linux</code> 上 <code>JMETER</code> 的 <code>bin</code> 文件夹下，运行 <code>jmeter -n -t /path/to/your/test.jmx -l /path/to/results/file.jtl</code></li>
-<li>将 <code>file.jtl</code> 传到 <code>Windows</code> 上，导入 <code>JMETER</code> 中即可</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>TPS、线程数、响应时间等之间的分析见博客<a href="https://www.cnblogs.com/happyliuyi/p/10755837.html">happy刘艺<br>性能测试入门（五）实践得出系统最佳线程数设置(压测最佳线程数&lt;真实设置的线程数量&lt;内存极限线程数)</a>和博客<a href="https://cloud.tencent.com/developer/article/1771176">【修正版】QPS、TPS、RT、并发数、吞吐量理解和性能优化深入思考</a></p>
-<p>结果大概就一个表格，可以参见博客 <a href="https://blog.csdn.net/weixin_42579328/article/details/108243059">Jmeter使用教程（四）—测试结果分析</a> </p>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-      </categories>
-      <tags>
-        <tag>JMETER</tag>
-        <tag>压测</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Elasticsearch 的使用</title>
-    <url>/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Elasticsearch-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <title>Elasticsearch 的安装与使用</title>
+    <url>/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Elasticsearch-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Elasticsearch-的使用"><a href="#Elasticsearch-的使用" class="headerlink" title="Elasticsearch 的使用"></a>Elasticsearch 的使用</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
 <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><h5 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h5><p>   可能遇到需要密码的问题。此时有两种方法：</p>
 <ul>
@@ -113,6 +67,137 @@
       </categories>
       <tags>
         <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JMETER 参数解析与压测步骤</title>
+    <url>/2022/07/01/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%8E%8B%E6%B5%8B%E6%AD%A5%E9%AA%A4/</url>
+    <content><![CDATA[<h1 id="JMETER压测"><a href="#JMETER压测" class="headerlink" title="JMETER压测"></a>JMETER压测</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><img src="/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png" alt="参数展示"></p>
+<ul>
+<li>Number of Thread：该线程组包括的线程数,可理解为虚拟用户数</li>
+<li>Ramp-up Period：即设置线程数在多少秒内启动完毕，即如果线程数设置为10，而此项设置也设置为5，那么会每隔10&#x2F;5&#x3D;2秒,启动一个线程.</li>
+<li>Loop Count：即设置的线程数循环的次数，如果勾选永远，则会一直循环（注意：如果勾选了永远且调度器配置中设置了持续时间，则会在持续时间到达之后结束循环）.</li>
+<li>Delay Thread creation until needed：此选项和Ramp-up 时间（秒）设置配合使用，举例说明：如过设置线程数为10，Ramp-up 时间（秒）时间为100，则如果不勾选此项则此次测试会每隔10s创建并启动一个线程，那么100s后会有1-10个线程在运行；但是如果勾选此项，那么线程组会每隔10s创建一个线程但并不启动，而是会等待10个线程都创建好之后同时启动.</li>
+<li>Scheduler：勾选此项则打开调度器配置</li>
+<li>duration：即本线程组测试的持续时间，到时间后则停止此次测试，注意这个时间设置不要设置的比Ramp-up 时间（秒）小，如果勾选了循环次数中的永远，那么测试一样会在此持续时间到达后结束；</li>
+<li>start up delay：此项设置为在我们启动测试后多久时间开始创建线程组，通常用于定时</li>
+<li>Listner：较常用的是View Results Tree和Aggregate Report</li>
+<li>terminer中可以使用GUI，生成HTML报告，更方便分析，目前还没有弄通…</li>
+</ul>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li>先需要找到最大TPS(Transactions Per Second)，即JMETER结果表格中的Thoughout</li>
+<li>每个事物如果只请求一次，则TPS&#x3D;QPS</li>
+<li>因为实际线上会是多个用户同时请求，而非一个用户多次请求，所以压测是，我们主要通过逐步增加线程数（Number of Threads），模拟实际线上用户数的增加，来找到最高TPS</li>
+<li>线程循环次数（loop count）无需过多改变和设置的太高，因为同一用户的调用次数往往是非常有限的</li>
+</ol>
+<h2 id="压测"><a href="#压测" class="headerlink" title="压测"></a>压测</h2><h3 id="Windows界面压测"><a href="#Windows界面压测" class="headerlink" title="Windows界面压测"></a>Windows界面压测</h3><p>简单的压测可以按如下步骤进行：</p>
+<ol>
+<li>设置第一次压测的线程数（Number of Threads），如20</li>
+<li>设置Ramp-Up Period，可以根据线程数来设置，主要保证此参数要小于整体压测时间（Duration）</li>
+<li>每个用户调用次数Loop Count可以设置成持续调用（Forever），并勾选Scheduler</li>
+<li>Scheduler Configuration里主要要设置Duration，即压测持续时间。这个时间一定要大于线程启动时间（Ramp-Up Period），即【Duration】 - 【Ramp-Up Period】 &#x3D; 【所有线程启动后希望压测的时间】</li>
+</ol>
+<h3 id="Linux压测"><a href="#Linux压测" class="headerlink" title="Linux压测"></a>Linux压测</h3><ol>
+<li>在有界面可视化的 <code>JMETER</code> 上（如 <code>Windows</code> 系统上），配置好需要压测的参数</li>
+<li>储存成 <code>test.jmx</code> 文件</li>
+<li>将 <code>test.jmx</code> 文件传输到 <code>Linux</code> 上</li>
+<li>进入 <code>Linux</code> 上 <code>JMETER</code> 的 <code>bin</code> 文件夹下，运行 <code>jmeter -n -t /path/to/your/test.jmx -l /path/to/results/file.jtl</code></li>
+<li>将 <code>file.jtl</code> 传到 <code>Windows</code> 上，导入 <code>JMETER</code> 中即可</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>TPS、线程数、响应时间等之间的分析见博客<a href="https://www.cnblogs.com/happyliuyi/p/10755837.html">happy刘艺<br>性能测试入门（五）实践得出系统最佳线程数设置(压测最佳线程数&lt;真实设置的线程数量&lt;内存极限线程数)</a>和博客<a href="https://cloud.tencent.com/developer/article/1771176">【修正版】QPS、TPS、RT、并发数、吞吐量理解和性能优化深入思考</a></p>
+<p>结果大概就一个表格，可以参见博客 <a href="https://blog.csdn.net/weixin_42579328/article/details/108243059">Jmeter使用教程（四）—测试结果分析</a> </p>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+      </categories>
+      <tags>
+        <tag>JMETER</tag>
+        <tag>压测</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>斐波那契数列</title>
+    <url>/2022/07/07/%E6%95%B0%E5%AD%A6/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/</url>
+    <content><![CDATA[<h1 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h1><p>斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：$1、1、2、3、5、8、13、21、34、……$在数学上，斐波那契数列以如下被以递推的方法定义：$F(1)&#x3D;1$，$F(2)&#x3D;1$, $F(n)&#x3D;F(n - 1)+F(n - 2)（n ≥ 3，n ∈ N*）$在现代物理、准晶体结构、化学等领域，斐波纳契数列都有直接的应用，为此，美国数学会从 1963 年起出版了以《斐波纳契数列季刊》为名的一份数学杂志，用于专门刊载这方面的研究成果。</p>
+<p><b>斐波那契弧线<b></p>
+<p><img src="/2022/07/07/%E6%95%B0%E5%AD%A6/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91.jpeg" alt="fibonacci"></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#################### 输出第n个斐波那契数 ####################</span></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci1</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="comment">## 这种方法，每次都要嵌套循环，不能记录上一次的结果之间用，所以时间复杂度非常高！！</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">n</span>):</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> fib(n-<span class="number">1</span>) + fib(n-<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> fib(n)</span><br><span class="line"></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci2</span>(<span class="params">n</span>):</span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= n:</span><br><span class="line">        l.append(l[i-<span class="number">1</span>]+l[i-<span class="number">2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l[i-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fibonacci1(<span class="number">20</span>))</span><br><span class="line"><span class="built_in">print</span>(fibonacci2(<span class="number">20</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#################### 输出前n个斐波那契数 ####################</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci</span>(<span class="params">n</span>):</span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; n:</span><br><span class="line">        l.append(l[i-<span class="number">1</span>]+l[i-<span class="number">2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fibonacci(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>斐波那契数列</tag>
+        <tag>黄金分割</tag>
+        <tag>兔子数列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>欧几里得算法--求最大公约数</title>
+    <url>/2022/07/07/%E6%95%B0%E5%AD%A6/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h1><p>欧几里德算法是用来求两个正整数最大公约数的算法。是由古希腊数学家欧几里德在其著作《The Elements》中最早描述了这种算法,所以被命名为欧几里德算法。扩展欧几里德算法可用于RSA加密等领域。</p>
+<p>假如需要求 1997 和 615 两个正整数的最大公约数,用欧几里德算法，是这样进行的：</p>
+<figure class="highlight basic"><table><tr><td class="code"><pre><span class="line"><span class="symbol">1997 </span>/ <span class="number">615</span> = <span class="number">3</span> (余 <span class="number">152</span>)</span><br><span class="line"><span class="symbol">615 </span>/ <span class="number">152</span> = <span class="number">4</span>(余<span class="number">7</span>)</span><br><span class="line"><span class="symbol">152 </span>/ <span class="number">7</span> = <span class="number">21</span>(余<span class="number">5</span>)</span><br><span class="line"><span class="symbol">7 </span>/ <span class="number">5</span> = <span class="number">1</span> (余<span class="number">2</span>)</span><br><span class="line"><span class="symbol">5 </span>/ <span class="number">2</span> = <span class="number">2</span> (余<span class="number">1</span>)</span><br><span class="line"><span class="symbol">2 </span>/ <span class="number">1</span> = <span class="number">2</span> (余<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>至此，最大公约数为1</p>
+<p>以除数和余数反复做除法运算，当余数为 0 时，取当前算式除数为最大公约数，所以就得出了 1997 和 615 的最大公约数 1。</p>
+<h3 id="计算证明"><a href="#计算证明" class="headerlink" title="计算证明"></a>计算证明</h3><p>其计算原理依赖于下面的定理：</p>
+<p>定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数。最大公约数（Greatest Common Divisor）缩写为GCD。<br>$gcd(a,b) &#x3D; gcd(b,a \mod b)$ (不妨设$a&gt;b$ 且$r&#x3D;a \mod b$ ,$r$不为$0$)</p>
+<h4 id="证法一"><a href="#证法一" class="headerlink" title="证法一"></a>证法一</h4><ul>
+<li><p>正</p>
+<ul>
+<li>$a$可以表示成$a &#x3D; kb + r$（$a$，$b$，$k$，$r$皆为正整数，且$r&lt;b$），则$r &#x3D; a \mod b$</li>
+<li>假设$d$是$a$,$b$的一个公约数，记作$d|a$,$d|b$，即$a$和$b$都可以被$d$整除。</li>
+<li>而$r &#x3D; a - kb$，两边同时除以$d$，$r&#x2F;d&#x3D;a&#x2F;d-kb&#x2F;d&#x3D;m$，由等式右边可知$m$为整数，因此$d|r$</li>
+<li>因此$d$也是$b$,$a \mod b$的公约数</li>
+</ul>
+</li>
+<li><p>反</p>
+<ul>
+<li>假设$d$是$b$,$a \mod b$的公约数, 则$d|b$,$d|(a-k*b)$,$k$是一个整数。</li>
+<li>进而$d|a$，因此$d$也是$a$,$b$的公约数</li>
+<li>因此$(a,b)$和$(b,a \mod b)$的公约数是一样的，其最大公约数也必然相等</li>
+</ul>
+</li>
+<li><p>得证</p>
+</li>
+</ul>
+<h4 id="证法二"><a href="#证法二" class="headerlink" title="证法二"></a>证法二</h4><p>假设c &#x3D; gcd(a,b),则存在m,n，使a &#x3D; mc, b &#x3D; nc;<br>令r &#x3D; a mod b，即存在k，使r &#x3D; a-kb &#x3D; mc - knc &#x3D; (m-kn)c;<br>故gcd(b,a mod b) &#x3D; gcd(b,r) &#x3D; gcd(nc,(m-kn)c) &#x3D; gcd(n,m-kn)*c;<br>假设d &#x3D; gcd(n,m-kn), 则存在x,y, 使n &#x3D; xd, m-kn &#x3D; yd; 故m &#x3D; yd+kn &#x3D; yd+kxd &#x3D; (y+kx)d;<br>故有a &#x3D; mc &#x3D; (y+kx)dc, b &#x3D; nc &#x3D; xdc; 可得 gcd(a,b) &#x3D; gcd((y+kx)dc,xdc) &#x3D; dc;<br>由于gcd(a,b) &#x3D; c, 故d &#x3D; 1;<br>即gcd(n,m-kn) &#x3D; 1, 故可得gcd(b,a mod b) &#x3D; c;<br>故得证gcd(a,b) &#x3D; gcd(b,a mod b).<br>注意:两种方法是有区别的。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>自己写的</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    c = a%b</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b) <span class="keyword">if</span> c==<span class="number">0</span> <span class="keyword">else</span> gcd(b, c)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
+
+<p>百度百科上的</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">while</span> a != <span class="number">0</span>:</span><br><span class="line">        a, b = b % a, a</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h2><p>扩展欧几里得算法（英语：Extended Euclidean algorithm）是欧几里得算法（又叫辗转相除法）的扩展。已知整数$a$、$b$，扩展欧几里得算法可以在求得$a$、$b$的最大公约数的同时，能找到整数$x$、$y$（其中一个很可能是负数），使它们满足贝祖等式</p>
+<p>$ax+by&#x3D;gcd(a,b)$</p>
+<p>如果a是负数，可以把问题转化成$|a|(-x)+by&#x3D;gcd(|a|,b)$，然后令$x^{‘}&#x3D;(-x)$。</p>
+<p>扩展欧几里得算法可以用来计算模反元素(也叫模逆元)，而模反元素在RSA加密算法中有举足轻重的地位。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">ext_euclid</span>(<span class="params">a, b</span>):     </span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:         </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>, <span class="number">0</span>, a     </span><br><span class="line">    <span class="keyword">else</span>:         </span><br><span class="line">        x, y, q = ext_euclid(b, a % b) </span><br><span class="line">        <span class="comment"># q = gcd(a, b) = gcd(b, a%b)   </span></span><br><span class="line"></span><br><span class="line">        <span class="comment">## 这一行怎么求的，有时间可以论证一下      </span></span><br><span class="line">        x, y = y, (x - (a // b) * y)     </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x, y, q</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>欧几里得</tag>
+        <tag>最大公约数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>牛顿法--优化算法</title>
+    <url>/2022/07/07/%E6%95%B0%E5%AD%A6/%E7%89%9B%E9%A1%BF%E6%B3%95--%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h1><p>牛顿迭代法（Newton’s method）又称为牛顿-拉夫逊（拉弗森）方法（Newton-Raphson method），它是牛顿在17世纪提出的一种在实数域和复数域上近似求解方程的方法。</p>
+<p>牛顿法迭代法解非线性方程，是把非线性方程 $f(x)&#x3D;0$ 线性化的一种近似方法。把 $f(x)$ 在点 $x_0$ 的某领域内展开成泰勒级数 $f(x)&#x3D;f(x_0)+f^{‘}(x_0)(x-x_0)+ \frac{f^{‘’}(x_0)(x-x_0)^2}{2!}+…+ \frac{f^{n}(x_0)(x-x_0)^n}{n!}+R_n(x)$ ，取其线性部分，即展开式的前两项 $f(x_0)+f^{‘}(x_0)(x-x_0)$ ，令其等于0，以此作为非线性方程 $f(x)&#x3D;0$ 的近似方程，若 $f^{‘}(x_0) \neq 0$ ，则解为 $x_1&#x3D;x_0- \frac {f(x_0)} {f^{‘}(x_0)}$ ，这样我们得到牛顿迭代法的一个迭代关系式</p>
+<p>Python代码实例展示求解方程 $(x-3)^3&#x3D;0$ 的根</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> (x-<span class="number">3</span>)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fd</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*(x-<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">newtonMethod</span>(<span class="params">n, assum</span>):</span><br><span class="line">    time = n</span><br><span class="line">    x = assum</span><br><span class="line">    Next = <span class="number">0</span></span><br><span class="line">    A = f(x)</span><br><span class="line">    B = fd(x)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;A = &#x27;</span> + <span class="built_in">str</span>(A) + <span class="string">&#x27;,B = &#x27;</span> + <span class="built_in">str</span>(B) + <span class="string">&#x27;,time = &#x27;</span> + <span class="built_in">str</span>(time))</span><br><span class="line">    <span class="keyword">if</span> f(x) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> time, x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        Next = x - A/B</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Next x = &#x27;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 1.</span></span><br><span class="line">    <span class="comment">## 这里设置的迭代条件不是当前值和最优值之间的距离，而是相比于上一个值的变化要小于某个值</span></span><br><span class="line">    <span class="comment">## 但我们要求的就是最优值，所以我们并不知道最优值的具体值，不能的到他们的距离</span></span><br><span class="line">    <span class="comment">## 所以要通过每次A的变化，来估计最优值</span></span><br><span class="line">    <span class="keyword">if</span> A - f(Next) &lt; <span class="number">1e-6</span>: </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Meet f(x) = 0, x = &quot;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 2.</span></span><br><span class="line">    <span class="comment"># ## 所以这里其实是不是也可以通过x的变化，来估计最优值？</span></span><br><span class="line">    <span class="comment"># if A/B &lt; 1e-4:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## 3.</span></span><br><span class="line">    <span class="comment"># ## 这里当然也能用 if time &gt; m 来设置跳出循环的条件，但是相对 A - f(Next) 得到的值会更不精确一些</span></span><br><span class="line">    <span class="comment"># if time &gt; 10:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> newtonMethod(n+<span class="number">1</span>, Next)</span><br><span class="line"></span><br><span class="line">newtonMethod(<span class="number">0</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>牛顿法</tag>
+        <tag>优化算法</tag>
       </tags>
   </entry>
 </search>
