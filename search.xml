@@ -111,6 +111,18 @@
       </tags>
   </entry>
   <entry>
+    <title>Git 的使用</title>
+    <url>/2022/01/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="Git-的使用"><a href="#Git-的使用" class="headerlink" title="Git 的使用"></a>Git 的使用</h1><h3 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h3><p>git diff 颜色：<br>git diff 时增删代码颜色相同想要更改颜色：git config –global color.ui true</p>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Elasticsearch 的安装与使用</title>
     <url>/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Elasticsearch-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Elasticsearch-的使用"><a href="#Elasticsearch-的使用" class="headerlink" title="Elasticsearch 的使用"></a>Elasticsearch 的使用</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
@@ -165,18 +177,6 @@
       </categories>
       <tags>
         <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 的使用</title>
-    <url>/2022/01/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="Git-的使用"><a href="#Git-的使用" class="headerlink" title="Git 的使用"></a>Git 的使用</h1><h3 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h3><p>git diff 颜色：<br>git diff 时增删代码颜色相同想要更改颜色：git config –global color.ui true</p>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -542,6 +542,65 @@
       </tags>
   </entry>
   <entry>
+    <title>加载tf模型并使用Flask框架报错xxx is not a element of this graph</title>
+    <url>/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%8A%A0%E8%BD%BDtf%E6%A8%A1%E5%9E%8B%E5%B9%B6%E4%BD%BF%E7%94%A8Flask%E6%A1%86%E6%9E%B6%E6%8A%A5%E9%94%99xxx%20is%20not%20a%20element%20of%20this%20graph/</url>
+    <content><![CDATA[<h1 id="加载tf模型并使用Flask框架报错xxx-is-not-a-element-of-this-graph"><a href="#加载tf模型并使用Flask框架报错xxx-is-not-a-element-of-this-graph" class="headerlink" title="加载tf模型并使用Flask框架报错xxx is not a element of this graph"></a>加载tf模型并使用Flask框架报错xxx is not a element of this graph</h1><p>如果使用flask部署，一般http会多线程请求，这样可能会报错<code>xxx is not a element of this graph</code></p>
+<p>网上查了很多种方法</p>
+<ol>
+<li><p>配置flask运行环境为单线程调用，然后运行flask run。但是因为工作机器上不方便配置环境，所以没有尝试这种方法<br>参考文章：<a href="https://blog.csdn.net/donaldsy/article/details/95097024">Flask网站中使用Keras时报错“Tensor Tensor(*) is not an element of this graph”</a></p>
+</li>
+<li><p>设置app.run(threaded&#x3D;False)，threaded默认为True，即多线程，改为False则为单线程。尝试后没有效果<br>参考文章：<a href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></p>
+</li>
+<li><p>加载模型时将thread_safe改为True，因为我用的是bert4keras里的加载方法，和解答不一样，所以没有详细找thread_safe的设置，因此不知道有没有效果<br>参考文章：<a href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></p>
+</li>
+<li><p>设置</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">global graph</span><br><span class="line">graph = tf.as_default()</span><br><span class="line">model = keras.models.load_model()</span><br><span class="line"></span><br><span class="line">with graph.as_default():</span><br><span class="line">  model.predict()</span><br></pre></td></tr></table></figure>
+<p>  因为代码中，模型加载和模型预测的代码是分开写的，即预测的代码在app.route下的函数内，但是加载的代码外部。估计是这个原因，导致graph里的变量名称忍让不同意，所以还是没效果<br>  参考文章：<a href="https://stackoverflow.com/questions/51127344/tensor-is-not-an-element-of-this-graph-deploying-keras-model">Tensor is not an element of this graph; deploying Keras model</a></p>
+</li>
+<li><p>固定一个session，将两部分都重新设置session</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">session = tf.Session(graph=tf.Graph())</span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  model = k.models.load_model(filepath)</span><br><span class="line"></span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  k.backend.set_session(session)</span><br><span class="line">  model.predict(x, **kwargs)</span><br></pre></td></tr></table></figure>
+<p>  这种方式最终成功了！<br>  参考文章：<a href="https://github.com/keras-team/keras/issues/5640">Keras models do not seem to be thread safe</a></p>
+</li>
+</ol>
+<p>tf的session和graph还是一个大问题要弄透彻呀</p>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+      </categories>
+      <tags>
+        <tag>flask</tag>
+        <tag>session</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>离线安装VSCode及扩展组件</title>
+    <url>/2022/05/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85VSCode%E5%8F%8A%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="离线安装vscode和扩展组件"><a href="#离线安装vscode和扩展组件" class="headerlink" title="离线安装vscode和扩展组件"></a>离线安装vscode和扩展组件</h1><h2 id="离线安装vscode"><a href="#离线安装vscode" class="headerlink" title="离线安装vscode"></a>离线安装vscode</h2><p>远程一般安装的是<code>vscode-server</code></p>
+<ol>
+<li>下载<code>vscode-server-linux-x64.tar.gz</code>包，放到远程服务器</li>
+<li>不同服务器，下载版本不一致，确认<code>commitId</code></li>
+<li>将<code>vscode-server-linux-x64.tar.gz</code>解压到<code>~/.vscode-server/bin/$&#123;commitId&#125;</code></li>
+<li>在<code>$&#123;commitId&#125;</code>文件下创建文件<code>0</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">commit_id=f06011ac164ae4dc8e753a3fe7f9549844d15e35</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download url is: https://update.code.visualstudio.com/commit:$&#123;commit_id&#125;/server-linux-x64/stable</span></span><br><span class="line">curl -sSL <span class="string">&quot;https://update.code.visualstudio.com/commit:<span class="variable">$&#123;commit_id&#125;</span>/server-linux-x64/stable&quot;</span> -o vscode-server-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span></span><br><span class="line"><span class="comment"># assume that you upload vscode-server-linux-x64.tar.gz to /tmp dir</span></span><br><span class="line">tar zxvf /tmp/vscode-server-linux-x64.tar.gz -C ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span> --strip 1</span><br><span class="line"><span class="built_in">touch</span> ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span>/0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="离线安装扩展组件"><a href="#离线安装扩展组件" class="headerlink" title="离线安装扩展组件"></a>离线安装扩展组件</h2><ol>
+<li>下载组件，并传到远程服务器</li>
+<li><code>vscode</code>中，<code>ctrl+shift+p</code>打开命令行，输入<code>Extensions: install from VSIX</code></li>
+<li>选择上传的<code>vsix</code>扩展组件，开始安装</li>
+<li>重启<code>vscode</code></li>
+<li>如果安装失败，有可能是文件权限问题，可以先尝试<code>chmod -x -R ms-python-release.vsix</code>给扩展组件赋权，再进行安装</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>参考<br><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用HEXO和GitHub搭建博客</title>
     <url>/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8HEXO%E5%92%8CGitHub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="使用HEXO和GitHub搭建博客"><a href="#使用HEXO和GitHub搭建博客" class="headerlink" title="使用HEXO和GitHub搭建博客"></a>使用HEXO和GitHub搭建博客</h1><h3 id="基本需求"><a href="#基本需求" class="headerlink" title="基本需求"></a>基本需求</h3><ol>
@@ -654,62 +713,510 @@
       </tags>
   </entry>
   <entry>
-    <title>加载tf模型并使用Flask框架报错xxx is not a element of this graph</title>
-    <url>/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%8A%A0%E8%BD%BDtf%E6%A8%A1%E5%9E%8B%E5%B9%B6%E4%BD%BF%E7%94%A8Flask%E6%A1%86%E6%9E%B6%E6%8A%A5%E9%94%99xxx%20is%20not%20a%20element%20of%20this%20graph/</url>
-    <content><![CDATA[<h1 id="加载tf模型并使用Flask框架报错xxx-is-not-a-element-of-this-graph"><a href="#加载tf模型并使用Flask框架报错xxx-is-not-a-element-of-this-graph" class="headerlink" title="加载tf模型并使用Flask框架报错xxx is not a element of this graph"></a>加载tf模型并使用Flask框架报错xxx is not a element of this graph</h1><p>如果使用flask部署，一般http会多线程请求，这样可能会报错<code>xxx is not a element of this graph</code></p>
-<p>网上查了很多种方法</p>
-<ol>
-<li><p>配置flask运行环境为单线程调用，然后运行flask run。但是因为工作机器上不方便配置环境，所以没有尝试这种方法<br>参考文章：<a href="https://blog.csdn.net/donaldsy/article/details/95097024">Flask网站中使用Keras时报错“Tensor Tensor(*) is not an element of this graph”</a></p>
-</li>
-<li><p>设置app.run(threaded&#x3D;False)，threaded默认为True，即多线程，改为False则为单线程。尝试后没有效果<br>参考文章：<a href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></p>
-</li>
-<li><p>加载模型时将thread_safe改为True，因为我用的是bert4keras里的加载方法，和解答不一样，所以没有详细找thread_safe的设置，因此不知道有没有效果<br>参考文章：<a href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></p>
-</li>
-<li><p>设置</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">global graph</span><br><span class="line">graph = tf.as_default()</span><br><span class="line">model = keras.models.load_model()</span><br><span class="line"></span><br><span class="line">with graph.as_default():</span><br><span class="line">  model.predict()</span><br></pre></td></tr></table></figure>
-<p>  因为代码中，模型加载和模型预测的代码是分开写的，即预测的代码在app.route下的函数内，但是加载的代码外部。估计是这个原因，导致graph里的变量名称忍让不同意，所以还是没效果<br>  参考文章：<a href="https://stackoverflow.com/questions/51127344/tensor-is-not-an-element-of-this-graph-deploying-keras-model">Tensor is not an element of this graph; deploying Keras model</a></p>
-</li>
-<li><p>固定一个session，将两部分都重新设置session</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">session = tf.Session(graph=tf.Graph())</span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  model = k.models.load_model(filepath)</span><br><span class="line"></span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  k.backend.set_session(session)</span><br><span class="line">  model.predict(x, **kwargs)</span><br></pre></td></tr></table></figure>
-<p>  这种方式最终成功了！<br>  参考文章：<a href="https://github.com/keras-team/keras/issues/5640">Keras models do not seem to be thread safe</a></p>
-</li>
-</ol>
-<p>tf的session和graph还是一个大问题要弄透彻呀</p>
+    <title>AM-softmax</title>
+    <url>/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/AM-softmax/</url>
+    <content><![CDATA[<h1 id="AM-softmax"><a href="#AM-softmax" class="headerlink" title="AM-softmax"></a>AM-softmax</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>基于已有的L-softmax, A-softmax，作者提出了AM-softmax，一个适用于分类模型的loss计算方法。主要用于增加类间距离，减小类内距离</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h3 id="反向传播求导简单"><a href="#反向传播求导简单" class="headerlink" title="反向传播求导简单"></a>反向传播求导简单</h3><p>反向传播对x求导结果为1</p>
+<h3 id="公式更直观"><a href="#公式更直观" class="headerlink" title="公式更直观"></a>公式更直观</h3><p>相对于L-softmax，AM-softmax的参数简单直观</p>
+<h3 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h3><p>使用加法$cos(&#x2F;delta)-m$，不同于L-softmax中使用乘法cos(m*&#x2F;delta)，超参数直接作用于cos(&#x2F;delta)更好，因为：cos(&#x2F;delta)和delta虽然是一一对应，但是变化趋势不同，cos(&#x2F;delta)在pai处更密集。因此在乘法中，得到wf后需要进行反余弦计算，因此会消耗更多的算力</p>
+<h3 id="两个超参数"><a href="#两个超参数" class="headerlink" title="两个超参数"></a>两个超参数</h3><p>e的右上角公式为s(cos(&#x2F;delta)-m)</p>
+<ul>
+<li>其中m是用来增加类间距离，强行使两个类的边缘样本有一定的距离而更不容易混淆</li>
+<li>反向传播是，x的导数为1，前面增加一个s则反向求导后gradient会变为s，使用一个s是为了让好样本的梯度更大，来减小类内样本的方差，也就是更快的减小类内距离</li>
+</ul>
+<h3 id="Feature-Normalization"><a href="#Feature-Normalization" class="headerlink" title="Feature Normalization"></a>Feature Normalization</h3><p>对于质量较好的样本，不需要进行feature normalization。<br>但是对于质量较差的样本，使用feature normalization后，效果会有提升。<br>因为质量越差，特征归一化的值越小，因此反向传播中受到的关于越大（1&#x2F;alpha），所以特征归一化更适合图像质量差的任务</p>
 ]]></content>
       <categories>
-        <category>常用软件和系统</category>
+        <category>深度学习</category>
       </categories>
       <tags>
-        <tag>flask</tag>
-        <tag>session</tag>
+        <tag>am-softmax</tag>
       </tags>
   </entry>
   <entry>
-    <title>离线安装VSCode及扩展组件</title>
-    <url>/2022/05/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85VSCode%E5%8F%8A%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6/</url>
-    <content><![CDATA[<h1 id="离线安装vscode和扩展组件"><a href="#离线安装vscode和扩展组件" class="headerlink" title="离线安装vscode和扩展组件"></a>离线安装vscode和扩展组件</h1><h2 id="离线安装vscode"><a href="#离线安装vscode" class="headerlink" title="离线安装vscode"></a>离线安装vscode</h2><p>远程一般安装的是<code>vscode-server</code></p>
-<ol>
-<li>下载<code>vscode-server-linux-x64.tar.gz</code>包，放到远程服务器</li>
-<li>不同服务器，下载版本不一致，确认<code>commitId</code></li>
-<li>将<code>vscode-server-linux-x64.tar.gz</code>解压到<code>~/.vscode-server/bin/$&#123;commitId&#125;</code></li>
-<li>在<code>$&#123;commitId&#125;</code>文件下创建文件<code>0</code></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">commit_id=f06011ac164ae4dc8e753a3fe7f9549844d15e35</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download url is: https://update.code.visualstudio.com/commit:$&#123;commit_id&#125;/server-linux-x64/stable</span></span><br><span class="line">curl -sSL <span class="string">&quot;https://update.code.visualstudio.com/commit:<span class="variable">$&#123;commit_id&#125;</span>/server-linux-x64/stable&quot;</span> -o vscode-server-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span></span><br><span class="line"><span class="comment"># assume that you upload vscode-server-linux-x64.tar.gz to /tmp dir</span></span><br><span class="line">tar zxvf /tmp/vscode-server-linux-x64.tar.gz -C ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span> --strip 1</span><br><span class="line"><span class="built_in">touch</span> ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span>/0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>Bert中的一些重点</title>
+    <url>/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Bert/</url>
+    <content><![CDATA[<h1 id="Bert中的一些重点"><a href="#Bert中的一些重点" class="headerlink" title="Bert中的一些重点"></a>Bert中的一些重点</h1><h3 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h3><p>Bert中使用的是Layer Normalization，源于对batch normalization的改进。<br>batch normalization的优点：</p>
+<ul>
+<li>加快神经网络训练时间</li>
+<li>对学习率有更好的容忍</li>
+<li>重新拉正数据分布，避免进入激活函数的饱和区域，缓解梯度消失<br>batch normalization的缺点：</li>
+<li>对batch size的大小比较敏感</li>
+<li>在RNN和LSTM等序列模型中效果不太好<br>针对以上两个BN的缺点，提出了LN，较好的解决了上面两个问题</li>
+</ul>
+<span id="more"></span>
 
-<h2 id="离线安装扩展组件"><a href="#离线安装扩展组件" class="headerlink" title="离线安装扩展组件"></a>离线安装扩展组件</h2><ol>
-<li>下载组件，并传到远程服务器</li>
-<li><code>vscode</code>中，<code>ctrl+shift+p</code>打开命令行，输入<code>Extensions: install from VSIX</code></li>
-<li>选择上传的<code>vsix</code>扩展组件，开始安装</li>
-<li>重启<code>vscode</code></li>
-<li>如果安装失败，有可能是文件权限问题，可以先尝试<code>chmod -x -R ms-python-release.vsix</code>给扩展组件赋权，再进行安装</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>参考<br><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
+<h3 id="position-embedding"><a href="#position-embedding" class="headerlink" title="position embedding"></a>position embedding</h3><p>同transformer里的position embedding不同，这里的position embedding需要训练获取。<br>transformer里的position embedding用的的正弦版本。两者各有优劣<br>正弦：</p>
+<ul>
+<li>一定位置间的embedding可以被彼此线性表示</li>
+<li>相比训练好的position embedding，正弦版本能允许更长的输入序列<br>训练的position embedding</li>
+<li>相比正弦的常量表示，学习来的embedding表示能力更强。加上bert后续需要做ner对位置上的字符进行状态预测，因此一个可以学习的参数来表达位置，更合理</li>
+</ul>
+<h3 id="gelu"><a href="#gelu" class="headerlink" title="gelu"></a>gelu</h3><p>Bert Transfromer结构中使用了这个激活函数—gelu（Gaussian error linear units，高斯误差线性单元），Gelu在论文中已经被验证，是一种高性能的神经网络激活函数，因为GELU的非线性变化是一种符合预期的随机正则变换方式（这句话，说实话，我翻译自原论文，具体怎么理解呢？我自己是如下理解的）。</p>
+<p>激活函数的作用：给网络模型加入非线性因子，这个非线性因子的实际操作就是在wx+b这样的线下变化后面加入一个非线性变化的函数fun。<br>Gelu的操作方式：Gelu怎么完成非线性变换的呢？引入这样的变化函数：<br>        公式中x是自己，P(X&lt;&#x3D;x)决定x中有多少信息保留 ，并且由于P是服从高斯分布的，也就满足了非线性的特征，并且更加符合数据的分布预期。</p>
+<h3 id="warm-up"><a href="#warm-up" class="headerlink" title="warm-up"></a>warm-up</h3><h3 id="dropout"><a href="#dropout" class="headerlink" title="dropout"></a>dropout</h3><h2 id="获取向量"><a href="#获取向量" class="headerlink" title="获取向量"></a>获取向量</h2><p>bert中有很多种获取向量的方法，具体如下：</p>
+<p><strong>init</strong>()：重头戏，模型的构建在此完成，三步走完成。<br>主要分为三个模块：embeddings、encoder 和 pooler。<br>首先构建输入，包括 input_ids、input_mask 等。其次进入 embeddings 模块，进行一系列 embedding 操作，涉及 embedding_lookup() 和 embedding_postprocessor() 两个函数。<br>然后进入 encoder 模块，就是 transformer 模型和 attention 发挥作用的地方了，主要涉及 transformer_model() 函数，得到 encoder 各层输出。<br>最后进入 pooler 模块，只取 encoder 最后一层的输出的第一个 token 的信息，送入到一个大小为 hidden_size 的全连接层，得到 pooled_output，这就是最终输出了。</p>
+<ul>
+<li>get_pooled_output(self)：获取 pooler 的输出。</li>
+<li>get_sequence_output(self)：获取 encoder 最后的隐层输出，输出大小为 [batch_size, seq_length, hidden_size]。</li>
+<li>get_all_encoder_layers(self)：获取 encoder 中所有层。返回大小应该是 [num_hidden_layers, batch_size, seq_length, hidden_size]。</li>
+<li>get_embedding_output(self)：获取对 input_ids 的 embedding 结果，大小为 [batch_size, seq_length, hidden_size]，这是 word embedding、positional embedding、token type embedding（论文中的 segment embedding）和 layer normalization 一系列操作的结果，也是 transformer 的输入。</li>
+<li>get_embedding_table(self)：获取 embedding table，大小为 [vocab_size, embedding_size]，即词汇表中的词对应的 embedding。</li>
+</ul>
+<p>详情见<a href="https://zhuanlan.zhihu.com/p/140718739">Bert是如何构建模型的</a></p>
 ]]></content>
       <categories>
-        <category>常用软件和系统</category>
+        <category>深度学习</category>
       </categories>
       <tags>
-        <tag>vscode</tag>
+        <tag>bert</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LSTM</title>
+    <url>/2019/12/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/LSTM/</url>
+    <content><![CDATA[<h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><h2 id="LSTM来源"><a href="#LSTM来源" class="headerlink" title="LSTM来源"></a>LSTM来源</h2><p>LSTM由RNN变化而来，所以在介绍LSTM前，我们先了解一下RNN。</p>
+<p>RNN是一类用来处理序列数据的神经网络，当前状态不仅受到当前输入$x_t$的影响，也受前面状态$h_{t-1}$的影响</p>
+<p>$h_t&#x3D;\delta (W^{h_{t-1}} \cdot h_{t-1} + W^{x_t} \cdot x_t)$<br>$y&#x3D;\delta (W^y \cdot h_t)$</p>
+<pre><code>ignore bais here
+</code></pre>
+<p>且神经元是共享权重W的，即:<br>$W^{h_{t-1}}&#x3D;W^{h_{t}}$<br>$W^{x_{t-1}}&#x3D;W^{x_t}$<br>$W^{y-1}&#x3D;W^y$</p>
+<span id="more"></span>
+
+<h2 id="RNN问题"><a href="#RNN问题" class="headerlink" title="RNN问题"></a>RNN问题</h2><h3 id="长期依赖"><a href="#长期依赖" class="headerlink" title="长期依赖"></a>长期依赖</h3><p>RNN在实际应用中又一个很大的问题，就是长期依赖性问题，即一个输出$y_t$主要受到其前面几个输入和状态的影响，对较长时间前的输入和状态则非常不敏感，这是由于反向传播中梯度消失引起的。<br>为了解决这一问题，我们引入了LSTM（门机制）。</p>
+<h3 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h3><p>我们在计算RNN反向传播的梯度时会发现，因为RNN是一个共享权重的神经网络，所以当权重W可以特征分解为$W&#x3D;Q \cdot \Lambda \cdot Q^T$且Q为正交矩阵时，则梯度包含特征值矩阵的幂次方，因此当特征值&gt;1时，则会梯度爆炸，反之则会梯度消失。<br>梯度爆炸比较容易察觉，一般表现为loss变为Nan<br>梯度消失则相对比较难以察觉，一般表现为loss几乎不变，但是loss几乎不变不代表就是产生了梯度消失</p>
+<h2 id="LSTM基本描述"><a href="#LSTM基本描述" class="headerlink" title="LSTM基本描述"></a>LSTM基本描述</h2><p>LSTM一定程度上解决了RNN梯度消失和梯度爆炸的问题，得益于三个门的引入</p>
+<h3 id="LSTM的三个门"><a href="#LSTM的三个门" class="headerlink" title="LSTM的三个门"></a>LSTM的三个门</h3><p>在LSTM中引入了三个门：输入门，输出门和遗忘门</p>
+<p>遗忘门：控制了上一个cell的状态$C_{t-1}$中有多少信息进入到当前状态$C_t$中<br>输入门：控制了有多少信息会被保存到cell状态$C_t$中<br>输出门：控制了当前cell的状态$C_t$(cell state)有多少信息会输出到下一个神经元（即隐藏单元输出hidden state）</p>
+<p><img src="/images/image/LSTM3-chain.png" alt="LSTM"></p>
+<h3 id="LSTM特点"><a href="#LSTM特点" class="headerlink" title="LSTM特点"></a>LSTM特点</h3><p>LSTM一定程度上将RNN中反向传播中梯度中的叠成关系转换成叠加关系，所以缓解了梯度消失和梯度爆炸的问题。</p>
+<h3 id="LSTM和GRU的比较"><a href="#LSTM和GRU的比较" class="headerlink" title="LSTM和GRU的比较"></a>LSTM和GRU的比较</h3><p>LSTM有三个门，GRU只有两个（更新门update和相关门revelance），所以LSTM的运算更为复杂。<br>GRU是在LSTM后出来的，为了缓解LSTM的计算问题，但是在一些实际应用中，GRU的效果并不比LSTM差，所以应用越来越广泛。</p>
+<p><img src="/images/image/GRU.png" alt="GRU"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li><p>关于RNN的长期依赖性问题，看了很多文章，一直不能确到底是因</p>
+<ul>
+<li>$h_t&#x3D;Q^T \cdot \Lambda^t \cdot Q \cdot h_{(0)}$导致的在<strong>前向传播</strong>中$h_{(0)}$对$h_t$的影响因为幂次方的关系而非常小</li>
+<li>还是因为梯度消失导致的长期依赖关系.</li>
+</ul>
+<p> 直到看到Andrew Ng在<a href="https://www.coursera.org/learn/nlp-sequence-models/lecture/PKMRR/vanishing-gradients-with-rnns">视频</a>中明确指出：RNN的长期依赖性问题来源于<strong>梯度消失</strong>，并且在<a href="http://pelhans.com/2019/04/24/deepdive_tensorflow-note9/#%E9%95%BF%E6%9C%9F%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98">文章</a>中看到公式$\Delta_{h^{(0)}}$的求解，才理解：RNN的长期依赖性问题来源于反向传播中因共享权重W产生的$\Delta$的幂次方，造成了梯度消失，而使得当前状态对前面序列的依赖过小。</p>
+</li>
+<li><p>在LSTM中有几种激活函数：</p>
+<ul>
+<li>sigmoid主要用在门的计算中，因为sigmoid很容易趋近于0或者1，所以使得门可以控制保存（等于1时）或不保存（等于0时）信息</li>
+<li>softmax一般用于输出y之前</li>
+<li>tanh用于求$\tilde{C}^t$和$h_{t}$的时候</li>
+</ul>
+</li>
+<li><p>hexo中并不支持LaTex格式写公式的问题见<a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/">此文章</a></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>LSTM</tag>
+        <tag>长期依赖性</tag>
+        <tag>RNN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SBert</title>
+    <url>/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/SBert/</url>
+    <content><![CDATA[<h1 id="SBert"><a href="#SBert" class="headerlink" title="SBert"></a>SBert</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>SBert针对句子匹配问题，提出了一种新的想法。没有很复杂的公式，可以理解为，是一些常见的计算进行各种融合的实战经验总结。<br>主要思想也是对bert进行fine tuning，来获取语义上有意义的空间向量<br>    语义上有意义：论文中有解释，是指句子意思相近的句子在空间向量上也相近</p>
+<span id="more"></span>
+
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h3 id="速度快"><a href="#速度快" class="headerlink" title="速度快"></a>速度快</h3><p>论文中提出了，相对于通常使用的NSP，即concat sent1和sent2来判断两个句子是否相似，我们将两个句子独立分开输入到同一bert模型（两个句子使用的参数相同）中，再将得到的两个向量进行计算，要快上很多倍，主要原因如下：</p>
+<ol>
+<li>假设有10000个样本<ol>
+<li>如果用NSP句子对计算，那么可以相互匹配出10000*10000个句子对，去除重复的也有一半，所以样本数上计算量很大</li>
+<li>如果将句子分开过bert模型，那么10000个样本只用过10000次bert模型，计算量会少很多</li>
+</ol>
+</li>
+<li>每个样本过bert模型的计算量也会不同<ol>
+<li>如果用NSP句子对，假设两个句子的长度分别为m和n，那么concate之后进行self attention，就是O（（m+n）^2）的时间复杂度</li>
+<li>如果两个句子独立进行self attention，两个句子的时间复杂度也是O（m^2） while m &gt;&#x3D; n</li>
+</ol>
+</li>
+</ol>
+<h3 id="pooling"><a href="#pooling" class="headerlink" title="pooling"></a>pooling</h3><p>在bert的embedding输出层，接了一个pooling。<br>作者比较了三种pooling方法，一种直接使用CLS的结果，一种使用mean，一种使用max。使用mean的效果最好<br>作者并没有在论文中详细阐述这个mean的pooling是作用在哪个维度上的，我个人推测可能是对seq_length做的mean，这样才能和cls层出来的embedding维度相同<br>找到一个解释是：</p>
+<ul>
+<li>MEAN策略，计算各个token输出向量的平均值代表句子向量。各个token的向量维度一样，即把所有token的embeding相加，然后处以token数即得到平均，也就是这个句子的句向量</li>
+<li>MAX策略，取所有输出向量各个维度的最大值代表句子向量。各个token有很多个维度，每个维度上比较多个token当前维度的值，并取最大，然后获得句向量<br>所以以上都是对seq_length这一行进行了pooling，将其变为了1</li>
+</ul>
+<p>具体cnn里filter和pooling后的维度见<a href="https://mp.weixin.qq.com/s/vq4-4M46okms5_sxw9PBQA">实战TextCNN 文本分类</a></p>
+<h3 id="针对不同的数据提出了三种loss"><a href="#针对不同的数据提出了三种loss" class="headerlink" title="针对不同的数据提出了三种loss"></a>针对不同的数据提出了三种loss</h3><h4 id="classification-objective-function"><a href="#classification-objective-function" class="headerlink" title="classification objective function"></a>classification objective function</h4><p>在将两个句子的embedding，u和v，concate时，作者实验了很多种不同的方法<br>比如：（u,v），（|u-v|），（u,v,|u-v|）等等，可以到时候放个结果图过来，论文中的table6。<br>作者最后发现（u,v,|u-v|）这种concate方式效果最好</p>
+<h4 id="regression-objective-function"><a href="#regression-objective-function" class="headerlink" title="regression objective function"></a>regression objective function</h4><p>计算两个句子的余弦相似性，然后使用均方差loss</p>
+<h4 id="triplet-objective-function"><a href="#triplet-objective-function" class="headerlink" title="triplet objective function"></a>triplet objective function</h4><p>如果是有正负样本的数据，可以使用triplet loss<br>max(dist(sa-sp)-dist(sa-sn)+margin, 0)<br>这里dist()计算的两者欧式距离，并且把margin设为1</p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>SBert</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Triplet Loss</title>
+    <url>/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Triplet%20Loss/</url>
+    <content><![CDATA[<h1 id="Triplet-Loss"><a href="#Triplet-Loss" class="headerlink" title="Triplet Loss"></a>Triplet Loss</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Triplet-Loss最先由图像里提出来。为了解决负样本与标准样本过于相似的问题，来增加类间距离，减小类内距离<br>Triplet-Loss通过最小化dist(a,p)-dist(a,n)+margin，来训练出可以更好表征样本的embedding<br>dist()一般使用欧式距离，当然也可以用余弦等其它距离</p>
+<span id="more"></span>
+
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h3 id="样本"><a href="#样本" class="headerlink" title="样本"></a>样本</h3><p>使用triplet-loss通常需要将样本组合成三元组，&lt;a, p, n&gt;<br>如何组合有很多中方法，最直接的一种，将所有正样本和所有可能的负样本与标准样本一一组成三元组，这样可组合的可能性过多，这种方法并不适用，所以作者提出了另外两种方法offline和online</p>
+<h3 id="offline"><a href="#offline" class="headerlink" title="offline"></a>offline</h3><p>每n steps后，使用当前模型，计算出离每个标准问最远的正样本和最近的负样本，然后重新接着训练</p>
+<h3 id="online"><a href="#online" class="headerlink" title="online"></a>online</h3><p>从batch-size里选取正样本和负样本（我看很多文章里也写不清楚到底是怎么取，以下是个人理解）<br>每个batch-size里每个类别要取40个样本，然后随机选取一些负样本加入进来。batch-size大小最好为1800<br>我的思考：</p>
+<ul>
+<li>每个batch-size不需要包含所有类别，可以每次包含k&#x3D;5个类别，每个类别选取40个样本放入，共有200个样本，然后再选取1600个负样本放入</li>
+<li>接着对于batch-size中的每一个类别，我们选取40次正样本，然后从剩下的1800-40个负样本中随机选取负样本</li>
+<li>每个类别我们总共组成40个三元组，这个batch-size我们会组成200个三元组</li>
+<li>之所以要每个类别要选取40个正样本，是为了保证此类别中正样本可选取的数量不要太少，因为在组成三元组样本时，经常会碰到负样本过多的问题，这里强行规定的一定量的正样本是的两种样本比在batch-size中不至于太失衡</li>
+</ul>
+<h3 id="semi-hard"><a href="#semi-hard" class="headerlink" title="semi-hard"></a>semi-hard</h3><p>在论文中，作者解释如果每次都取hardest sample，即离标准样本最近的负样本，容易导致模型过早限于局部最小值（如果learning rate没足够大到能跳出局部最小区域，就会造成loss不下降的问题），因此我们尝试使用semi-hard sample</p>
+<ul>
+<li>hardest sample为距离标准样本最近的负样本（有可能距离小于正样本到标准样本的距离）</li>
+<li>semi sample为，比正样本距离标准样本的距离很近但稍远一点点的负样本。这类样本虽然不是最难的负样本，但也是很难分的样本，因为他们距离标准样本的距离与正样本相似，因此容易混淆</li>
+</ul>
+<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><ul>
+<li>为了让SGD更快下降，batch-size越小越好</li>
+<li>为了让triplet loss效果更好，batch-size越大越好</li>
+<li>作者选择了batch-size&#x3D;1800</li>
+<li>作者这里margin设为0.2</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>triplet loss</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>T5</title>
+    <url>/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/T5/</url>
+    <content><![CDATA[<h1 id="T5"><a href="#T5" class="headerlink" title="T5"></a>T5</h1><h2 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h2><p>1、中文分词(Chinese Word Segmentation) 指的是将一个汉字序列切分成一个一个单独的词。分词就是将连续的字序列按照一定的规范重新组合成词序列的过程 </p>
+<span id="more"></span>
+
+<p>2、现有的分词算法可分为三大类：基于字符串匹配的分词方法、基于理解的分词方法和基于统计的分词方法</p>
+<pre><code>1. 基于字符串匹配的分词方法：这种方法又叫做机械分词方法，它是按照一定的策略将待分析的汉字串与一个“充分大的”机器词典中的词条进行配，若在词典中找到某个字符串，则匹配成功（识别出一个词）
+    1）正向最大匹配法（由左到右的方向）
+    2）逆向最大匹配法（由右到左的方向）:
+    3）最少切分（使每一句中切出的词数最小）
+    4）双向最大匹配法（进行由左到右、由右到左两次扫描）
+2. 基于统计模型的分词方法
+    1) 基于 N-gram 语言模型的分词方法
+3. 基于序列标注的分词方法
+    1) 基于 HMM 的分词方法
+    2) 基于 CRF 的分词方法
+    3) 基于词感知机的分词方法
+    4) 基于深度学习的端到端的分词方法
+</code></pre>
+<h3 id="基于规则或词典"><a href="#基于规则或词典" class="headerlink" title="基于规则或词典"></a>基于规则或词典</h3><h5 id="1-正向最大匹配思想MM"><a href="#1-正向最大匹配思想MM" class="headerlink" title="1 正向最大匹配思想MM"></a>1 正向最大匹配思想MM</h5><p>从左向右取待切分汉语句的m个字符作为匹配字段，m为大机器词典中最长词条个数。<br>查找大机器词典并进行匹配：<br>若匹配成功，则将这个匹配字段作为一个词切分出来。<br>若匹配不成功，则将这个匹配字段的最后一个字去掉，剩下的字符串作为新的匹配字段，进行再次匹配，重复以上过程，直到切分出所有词为止。<br>举个栗子：<br>现在，我们要对“南京市长江大桥”这个句子进行分词，根据正向最大匹配的原则：</p>
+<p>先从句子中拿出前5个字符“南京市长江”，把这5个字符到词典中匹配，发现没有这个词，那就缩短取字个数，取前四个“南京市长”，发现词库有这个词，就把该词切下来；<br>对剩余三个字“江大桥”再次进行正向最大匹配，会切成“江”、“大桥”；<br>整个句子切分完成为：南京市长、江、大桥；</p>
+<h5 id="2-逆向最大匹配算法RMM"><a href="#2-逆向最大匹配算法RMM" class="headerlink" title="2 逆向最大匹配算法RMM"></a>2 逆向最大匹配算法RMM</h5><p>该算法是正向最大匹配的逆向思维，匹配不成功，将匹配字段的最前一个字去掉，实验表明，逆向最大匹配算法要优于正向最大匹配算法。</p>
+<p>还是那个栗子：</p>
+<p>取出“南京市长江大桥”的后四个字“长江大桥”，发现词典中有匹配，切割下来；<br>对剩余的“南京市”进行分词，整体结果为：南京市、长江大桥</p>
+<h5 id="3-双向最大匹配法-Bi-directction-Matching-method-BM"><a href="#3-双向最大匹配法-Bi-directction-Matching-method-BM" class="headerlink" title="3 双向最大匹配法(Bi-directction Matching method,BM)"></a>3 双向最大匹配法(Bi-directction Matching method,BM)</h5><p>双向最大匹配法是将正向最大匹配法得到的分词结果和逆向最大匹配法的到的结果进行比较，从而决定正确的分词方法。</p>
+<p>据SunM.S. 和 Benjamin K.T.（1995）的研究表明，中文中90.0％左右的句子，正向最大匹配法和逆向最大匹配法完全重合且正确，只有大概9.0％的句子两种切分方法得到的结果不一样，但其中必有一个是正确的（歧义检测成功），只有不到1.0％的句子，或者正向最大匹配法和逆向最大匹配法的切分虽重合却是错的，或者正向最大匹配法和逆向最大匹配法切分不同但两个都不对（歧义检测失败）。这正是双向最大匹配法在实用中文信息处理系统中得以广泛使用的原因所在。</p>
+<p>正向最大匹配法，最终分词结果为：“南京市长&#x2F;江&#x2F;大桥”，其中，总分词数3个，单个词为1。</p>
+<p>逆向最大匹配法，最终分词结果为：“南京市&#x2F;长江大桥”，其中，总分词数2个，单个词为0。</p>
+<p>选择标准：</p>
+<p>首先看两种方法结果的分词数，分词数越少越好；<br>分词数相同的情况下，看单个词的数量，越少越好；<br>因此最终输出为逆向结果。</p>
+<h5 id="4-最佳匹配（OM，分正向和逆向）"><a href="#4-最佳匹配（OM，分正向和逆向）" class="headerlink" title="4 最佳匹配（OM，分正向和逆向）"></a>4 最佳匹配（OM，分正向和逆向）</h5><p>对分词词典按词频大小顺序排列，并注明长度，降低时间复杂度。</p>
+<p>优点：易于实现<br>缺点：匹配速度慢。对于未登录词的补充较难实现。缺乏自学习。</p>
+<h5 id="5-逐词遍历法"><a href="#5-逐词遍历法" class="headerlink" title="5 逐词遍历法"></a>5 逐词遍历法</h5><p>这种方法是将词库中的词由长到短递减的顺序，逐个在待处理的材料中搜索，直到切分出所有的词为止。</p>
+<h5 id="等等"><a href="#等等" class="headerlink" title="等等"></a>等等</h5><h5 id="Trie树（前缀树）"><a href="#Trie树（前缀树）" class="headerlink" title="Trie树（前缀树）"></a>Trie树（前缀树）</h5><h3 id="基于统计的分词"><a href="#基于统计的分词" class="headerlink" title="基于统计的分词"></a>基于统计的分词</h3><h5 id="N-gram模型思想"><a href="#N-gram模型思想" class="headerlink" title="N-gram模型思想"></a>N-gram模型思想</h5><p>模型基于这样一种假设，第n个词的出现只与前面N-1个词相关，而与其它任何词都不相关，整句的概率就是各个词出现概率的乘积。</p>
+<p>我们给定一个词，然后猜测下一个词是什么。当我说“艳照门”这个词时，你想到下一个词是什么呢？我想大家很有可能会想到“陈冠希”，基本上不会有人会想到“陈志杰”吧，N-gram模型的主要思想就是这样的。</p>
+<p>对于一个句子T，我们怎么算它出现的概率呢？假设T是由词序列W1,W2,W3,…Wn组成的，那么P(T)&#x3D;P(W1W2W3…Wn)&#x3D;P(W1)P(W2|W1)P(W3|W1W2)…P(Wn|W1W2…Wn-1)<br>但是这种方法存在两个致命的缺陷：一个缺陷是参数空间过大，不可能实用化；另外一个缺陷是数据稀疏严重。为了解决这个问题，我们引入了马尔科夫假设：一个词的出现仅仅依赖于它前面出现的有限的一个或者几个词。如果一个词的出现仅依赖于它前面出现的一个词，那么我们就称之为bigram。即</p>
+<p>P(T) &#x3D;P(W1W2W3…Wn)&#x3D;P(W1)P(W2|W1)P(W3|W1W2)…P(Wn|W1W2…Wn-1)<br>≈P(W1)P(W2|W1)P(W3|W2)…P(Wn|Wn-1)</p>
+<p>如果一个词的出现仅依赖于它前面出现的两个词，那么我们就称之为trigram。</p>
+<p>在实践中用的最多的就是bigram和trigram了，而且效果很不错。高于四元的用的很少，因为训练它需要更庞大的语料，而且数据稀疏严重，时间复杂度高，精度却提高的不多。一般的小公司，用到二元的模型就够了，像Google这种巨头，也只是用到了大约四元的程度，它对计算能力和空间的需求都太大了。</p>
+<p>详细讲解和代码见<a href="https://codle.net/chinese-word-cutter-1/">n-gram</a></p>
+<h5 id="HMM、CRF-模型思想"><a href="#HMM、CRF-模型思想" class="headerlink" title="HMM、CRF 模型思想"></a>HMM、CRF 模型思想</h5><p>以往的分词方法，无论是基于规则的还是基于统计的，一般都依赖于一个事先编制的词表(词典)，自动分词过程就是通过词表和相关信息来做出词语切分的决策。与此相反，</p>
+<p>基于字标注（或者叫基于序列标注）的分词方法实际上是构词方法，即把分词过程视为字在字串中的标注问题。</p>
+<p>由于每个字在构造一个特定的词语时都占据着一个确定的构词位置(即词位)，假如规定每个字最多只有四个构词位置：即B(词首)，M (词中)，E(词尾)和S(单独成词)，那么下面句子(甲)的分词结果就可以直接表示成如(乙)所示的逐字标注形式：</p>
+<ol>
+<li>(甲)分词结果：／上海／计划／N／本／世纪／末／实现／人均／国内／生产／总值／五千美元／ </li>
+<li>(乙)字标注形式：上／B海／E计／B划／E N／S 本／s世／B 纪／E 末／S 实／B 现／E 人／B 均／E 国／B 内／E生／B产／E总／B值／E 五／B千／M 美／M 元／E 。／S</li>
+</ol>
+<p>首先需要说明，这里说到的“字”不只限于汉字。考虑到中文真实文本中不可避免地会包含一定数量的非汉字字符，本文所说的“字”，也包括外文字母、阿拉伯数字和标点符号等字符。所有这些字符都是构词的基本单元。当然，汉字依然是这个单元集合中数量最多的一类字符。</p>
+<p>把分词过程视为字的标注问题的一个重要优势在于，它能够平衡地看待词表词和未登录词的识别问题。</p>
+<p>在这种分词技术中，文本中的词表词和未登录词都是用统一的字标注过程来实现的。在学习架构上，既可以不必专门强调词表词信息，也不用专门设计特定的未登录词(如人名、地名、机构名)识别模块。这使得分词系统的设计大大简化。在字标注过程中，所有的字根据预定义的特征进行词位特性的学习，获得一个概率模型。然后，在待分字串上，根据字与字之间的结合紧密程度，得到一个词位的标注结果。最后，根据词位定义直接获得最终的分词结果。总而言之，在这样一个分词过程中，分词成为字重组的简单过程。在学习构架上，由于可以不必特意强调词表词的信息，也不必专门设计针对未登录词的特定模块，这样使分词系统的设计变得尤为简单。</p>
+<p>2001年Lafferty在最大熵模型（MEM）和隐马尔科夫模型（HMM）的基础上提出来了一种无向图模型–条件随机场（CRF）模型，它能在给定需要标记的观察序列的条件下，最大程度提高标记序列的联合概率。常用于切分和标注序列化数据的统计模型。</p>
+<h2 id="T5中的分词"><a href="#T5中的分词" class="headerlink" title="T5中的分词"></a>T5中的分词</h2><p>T5中的分词用的是google的sentencepiece分词。类似于BPE，找出频率最高的词组合作为词典进行分词。<br>bert4keras中为了效率，不是按照原mt5的字典来进行的分词，而且作者用自己的预料进行了后处理。<br>经测试，发现分词效果并不是非常客观。<br>因此可以尝试训练一套自己领域的并且适合T5中使用的model和词典来进行分词。具体如何实现，可以看完T5论文后再进行</p>
+<ol>
+<li>T5中使用词典，那么还需要模型的概率预测来进行分词吗？</li>
+</ol>
+<h2 id="Greedy-Decoding-VS-Beam-Search"><a href="#Greedy-Decoding-VS-Beam-Search" class="headerlink" title="Greedy Decoding VS Beam Search"></a>Greedy Decoding VS Beam Search</h2><h3 id="Greedy-search"><a href="#Greedy-search" class="headerlink" title="Greedy search"></a>Greedy search</h3><p>一个自然的想法是贪心搜索(greedy search)，即decoder的每一步都选择最可能的单词，最后得到句子的每一个单词都是每一步认为最合适的单词。但这样并不保证整个句子的概率是最大的，即不能保证整个句子最合适。实际上，贪心搜索的每一步搜索都处理成仅仅与前面刚生成的一个单词相关，类似于马尔科夫假设。这显然是不合理的，具体来说，贪心搜索到的句子𝑦概率是使得下式概率最大：</p>
+<p>𝑃(𝑦|𝑥)&#x3D;∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦𝑘−1)</p>
+<p>而实际上，根据全概率公式计算得到𝑃(𝑦|𝑥)为：</p>
+<p>𝑃(𝑦|𝑥)&#x3D;∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1)</p>
+<h3 id="Beam-search"><a href="#Beam-search" class="headerlink" title="Beam search"></a>Beam search</h3><p>译为束搜索。思想是，每步选取最可能的𝑘个结果，再从最后的𝑘个结果中选取最合适的句子。𝑘称为beam size。</p>
+<p>具体做法是：</p>
+<p>首先decoder第一步搜索出最可能的𝑘个单词，即找到𝑦11,𝑦12,…,𝑦1𝑘，他们的概率𝑝(𝑦11|𝑥),…,𝑝(𝑦1𝑘|𝑥)为最大的𝑘个。</p>
+<p>进行第二步搜索，分别进行𝑘个模型副本的搜索。每个副本𝑖，根据上一步选取的单词𝑦1𝑖，选取概率最大的𝑘个结果𝑦21,𝑦22,…,𝑦2𝑘。这样，就有了𝑘∗𝑘个可能的结果，从这些结果中选择𝑘个概率最大的结果，即𝑝(𝑦1𝑖|𝑥)∗𝑝(𝑦2𝑗|𝑥,𝑦1𝑖)最大的𝑘个结果。</p>
+<p>进行第三步搜索，从第二步中确定的𝑘个结果出发，再进行𝑘个模型副本的搜索，直到最后一步，从最后的𝑘个结果中选取概率最大者。</p>
+<p>显然，若𝑘&#x3D;1则为贪心搜索，𝑘越大则占用内存越大，计算代价越大，实际应用中取10即可。</p>
+<p>另外，可以发现概率的连乘使得概率越来越小，很可能溢出，为了保证模型的稳定性，常对概率连乘计算+log变为加法。</p>
+<p>𝑃(𝑦|𝑥)&#x3D;𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))</p>
+<h3 id="改进Beam-search"><a href="#改进Beam-search" class="headerlink" title="改进Beam search"></a>改进Beam search</h3><h4 id="length-penalty"><a href="#length-penalty" class="headerlink" title="length penalty"></a>length penalty</h4><p>从Beam search的搜索过程中可以发现，Beam search偏向于找到更短的句子，也就是说，如果搜索过程中有一支搜索提前发现了&lt;𝐸𝑂𝑆&gt;,而另外𝑘−1支继续搜索找到其余更长的结果，那么由于概率连乘(或log连加)，越长的结果概率肯定越小。因此有必要进行模型修正，即进行长度归一化，具体来说，即：</p>
+<p>选择概率𝑃(𝑦|𝑥)&#x3D;1𝑛𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))最大的句子，式中，𝑛为该结果序列长度。</p>
+<p>另外，实践中还做了如下修正：</p>
+<p>𝑃(𝑦|𝑥)&#x3D;1𝑛𝛼𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))</p>
+<p>式中，超参数𝛼取0.6或者0.7比较合适。</p>
+<h4 id="Grid-Beam-Search"><a href="#Grid-Beam-Search" class="headerlink" title="Grid Beam Search"></a>Grid Beam Search</h4><p>结合约束条件，选择模型生成的下一个结果或特定的词语或者短句</p>
+<h4 id="Best-First-Beam-Search"><a href="#Best-First-Beam-Search" class="headerlink" title="Best-First Beam Search"></a>Best-First Beam Search</h4><p>优化使用beam search解码的时间。实现比较复杂，细节较多</p>
+<h4 id="look-ahead"><a href="#look-ahead" class="headerlink" title="look ahead"></a>look ahead</h4><h4 id="on-the-fly"><a href="#on-the-fly" class="headerlink" title="on the fly"></a>on the fly</h4><h3 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h3><p>对于训练的seq2seq模型，对它输出的句子𝑦，以及实际的句子𝑦∗，若概率𝑦大于𝑦∗，（统计所有句子，平均来说是这个结果），则说明，seq2seq模型出错了。否则，说明，baem search并没有找到最合适的结果，可以考虑增大beam size大小。</p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>T5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>梯度消失和梯度爆炸</title>
+    <url>/2019/12/07/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8/</url>
+    <content><![CDATA[<h1 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h1><h2 id="什么是梯度消失-x2F-梯度爆炸"><a href="#什么是梯度消失-x2F-梯度爆炸" class="headerlink" title="什么是梯度消失&#x2F;梯度爆炸"></a>什么是梯度消失&#x2F;梯度爆炸</h2><p>梯度消失或梯度爆炸是指在神经网络权重更新的反向传播中，$\frac{\partial Loss}{\partial W}$过小或过大的现象</p>
+<h2 id="梯度消失-x2F-梯度爆炸会产生什么问题"><a href="#梯度消失-x2F-梯度爆炸会产生什么问题" class="headerlink" title="梯度消失&#x2F;梯度爆炸会产生什么问题"></a>梯度消失&#x2F;梯度爆炸会产生什么问题</h2><p>梯度爆炸会导致权重的更新过大（表现为LOSS出现Nan）<br>梯度消失会导致权重的更新过慢或者几乎不更新</p>
+<span id="more"></span>
+
+<h2 id="为什么会有梯度消失和梯度爆炸"><a href="#为什么会有梯度消失和梯度爆炸" class="headerlink" title="为什么会有梯度消失和梯度爆炸"></a>为什么会有梯度消失和梯度爆炸</h2><p>一种是任务梯度消失&#x2F;梯度爆炸的原因是反向传播过程中的叠成导致的<br>另一种认为反向传播不该背这个锅，反向传播求导只是一种求最优解的方式，最根本的原因还是网络结构的问题（线性和非线性公式连成组合）</p>
+<blockquote>
+<p>看到<a href="https://www.zhihu.com/question/34878706">有个文章</a>说我们不应该纠结于梯度消失和梯度爆炸，应该从不同的角度看LSTM，比如选择性、信息不变性等等，觉得这是个很好的想法。当然，他对于RNN和DNN中梯度消失和梯度爆炸的看法也相对详细正确，下面会细说。</p>
+</blockquote>
+<p>无论是因为网络结构还是反向传播，不可否认的是梯度消失和梯度传播确实来源于对权重求导后很多小于1的数值的连乘，下面我门主要看一下为什么会产生这些小于1的数值。</p>
+<h3 id="几个激活函数"><a href="#几个激活函数" class="headerlink" title="几个激活函数"></a>几个激活函数</h3><p>在进入反向传播求导前，先认识一下神经网络中我们经常用到的激活函数</p>
+<h4 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h4><p>sigmoid 常见于CNN中，在RNN和LSTM中一般不会用到sigmoid<br>sigmoid的公式为$S(x)&#x3D;\frac{1}{1+e^{-x}}$<br>其函数和导数图如下</p>
+<p><img src="/./images/image/sigmoid.png" alt="sigmoid"></p>
+<h4 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h4><p>LSTM和RNN中会用到tanh，详情可以看上一篇文章<br>tanh的公式为$tanh(x)&#x3D;\frac{e^{x}-e^{-x}}{e^{x}+e^{x}}$<br>其函数和导数图如下</p>
+<p><img src="/images/image/tanh.png" alt="tanh"></p>
+<h4 id="Relu"><a href="#Relu" class="headerlink" title="Relu"></a>Relu</h4><p>Relu主要是为了解决梯度消失和梯度爆炸的问题<br>其公式为：<br>$<br>relu(x)&#x3D;\begin{cases}<br>0, x&lt;0 \\<br>x, x&gt;0<br>\end{cases}<br>$</p>
+<p>其函数和导数图如下</p>
+<p><img src="/images/image/relu.jpg" alt="relu"></p>
+<p>relu的优点：</p>
+<ul>
+<li>解决了梯度消失&#x2F;梯度爆炸的问题</li>
+<li>计算速度快</li>
+<li>加速了网络训练（这点我有点怀疑，是指计算速度快呢还是指效果更好，更容易收敛找到最优解呢？如果是第二点，如何证明的？）<br>relu缺点：</li>
+<li>负数部分恒为0，导致一些神经元无法激活（但是有很多relu的改进版已经解决了这个问题，比如leakrelu）</li>
+<li>输出不是以0为中心</li>
+</ul>
+<blockquote>
+<p><strong>问题：如果大于0的函数都返回其本身，不是失去了使用非线性函数的意义吗？</strong></p>
+</blockquote>
+<h3 id="为什么会产生梯度消失和梯度爆炸"><a href="#为什么会产生梯度消失和梯度爆炸" class="headerlink" title="为什么会产生梯度消失和梯度爆炸"></a>为什么会产生梯度消失和梯度爆炸</h3><p>DNN和RNN中的梯度消失和梯度爆炸是不同的</p>
+<h4 id="DNN"><a href="#DNN" class="headerlink" title="DNN"></a>DNN</h4><p>写比较麻烦，下次有时间再看看专门推一遍公式写一遍吧，这里直接贴吧：</p>
+<p><img src="/images/image/nn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADw%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="nn反向传播w导数解释"></p>
+<p><img src="/images/image/nn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADb%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="nn反向传播b导数解释"></p>
+<p>没有手动推导，所以曲折的理解过程如下：</p>
+<ol>
+<li><p>我当时看到两个博客里的公式不一样很困惑，后来发现是自己粗心，因为第一个是对W求导，第二个是对b求导。但是看到很多博客里其实都写的是第二种情况。<br>其实更应该考虑的是第一种情况，因为在神经网络中，bias是为了防止wx等于零起的辅助作用，真正有意义的是讨论W。</p>
+</li>
+<li><p>虽然真正有意义的是讨论W，但是图二中对b求导的公式其实和真正对w求导的公式差不多，因为他们前面的所有结果都是相同的，唯一不同的是最后一步对b求导结果是1，而对w求导结果是$\delta’(z)$，也就是图一中的$f_1$。所以图二中的公式可以看作是图一公式的详细版。所以在反向传播中，决定导数数值的不仅是激活函数的函数，也有W本身。</p>
+</li>
+</ol>
+<p>如上所示，我们可以看到$loss$对$W_1$求导，其实是$\delta’(z) \cdot w_i$的连乘，在上面我们已经了解到，sigmoid和tanh的导数，都小于零，w一般都会初始化为均值为0，方差为1的数值，我们可以有$\vert \delta’(z) \cdot w_i \vert&lt;1$($\vert \delta’(z) \cdot w_i \vert&lt;\frac{1}{4}$当激活函数为sigmoid时)。因此会有梯度消失。</p>
+<p>当然，当w特别大是，我们会有$\vert \delta’(z) \cdot w_i \vert&gt;1$，就会导致梯度爆炸。</p>
+<p>从上我们可以看到DNN中的梯度爆炸或者梯度消失，本质是大于1或者小于1的数的<strong>连乘</strong>（注意这里不是幂次方，RNN中才是幂次方，下面会细说）导致的。</p>
+<h4 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h4><p>RNN中很重要的一点是权重共享。一样贴图</p>
+<p><img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADw%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="rnn反向传播w导数解释"></p>
+<p>这里有几个点需要解释：</p>
+<ul>
+<li><p>为什么DNN中就连乘，但是RNN的导数中有加法呢？<br>DNN中写出的公式是<strong>每一层</strong>$w_i$前的求导公式<br>RNN这里写出的是<strong>所有层数</strong>的$w_x$前的求导公式的和，因为RNN是权重共享，所以对$W_x$的更新就是每一层需要对$W_x$更新的和。<br>因此第三层$W_x$前的导数是<img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%B8%89%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第三层导数">，第二层$W_x$前的导数是<img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%BA%8C%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第二层导数">，第一层$W_x$前的导数是<img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%B8%80%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第一层导数"></p>
+</li>
+<li><p>公式中$\frac{\partial S_i}{\partial S_i-1}$和DNN中的$\frac{\partial f_i}{\partial f_i-1}$是一样的性质，唯一不同的是这里$\frac{\partial S_i}{\partial S_i-1}&#x3D;\frac{\partial S_i-1}{\partial S_i-2}&#x3D;tanh’\cdot W_s$，所以这里其实是一个小于1的数的<strong>幂次方</strong></p>
+</li>
+</ul>
+<h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4><p>关于DNN和RNN的梯度消失和梯度爆炸，<a href="https://www.zhihu.com/question/34878706">这里</a>解释的非常详细。</p>
+<p>我也自己来总结以下加深印象</p>
+<ul>
+<li><p>DNN中每层都有不同的参数，所以每一层都各是各的梯度。RNN中因为权重共享，所以梯度为所有层数梯度的总和（上面提到过）</p>
+</li>
+<li><p><strong>每一层中</strong>：DNN是小于1的梯度的<strong>连乘</strong>，而RNN中因为$\frac{\partial S_i}{\partial S_i-1}&#x3D;\frac{\partial S_i-1}{\partial S_i-2}$的关系，所以是<strong>幂次方</strong></p>
+</li>
+<li><p>RNN中的梯度不会真正的消失，它是每一层梯度的和，RNN中的梯度消失主要是指：离的越远，梯度的传递越弱，所以梯度被邻近的梯度主导，导致模型难以学到远距离信息的长期依赖性问题</p>
+</li>
+</ul>
+<h4 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h4><p>附加一点LSTM的</p>
+<ul>
+<li><p>在LSTM中，有很多条路径，cell state这条路径扮演的角色有点像ResNet残差连接，使前面的数据可以不受中间数据的影响传输到后面。</p>
+</li>
+<li><p>如果去除cell state这条路径，LSTM中该消失还是消失，该爆炸也爆炸，但是有了cell state，<em>梯度&#x3D;消失梯度+cell state的梯度</em>，我们看到如果cell state的梯度不消失，就可以一定程度上缓解梯度消失，在第一版没有遗忘门的LSTM中，这里的cell state的梯度&#x3D;1，后来加入了一个遗忘门，但是因为tanh的取值在-1和1之间，并且多数情况趋于1或者-1，所以加入遗忘门后，LSTM也可以一定程度上缓解梯度消失问题。</p>
+</li>
+</ul>
+<h5 id="为什么说是缓解呢"><a href="#为什么说是缓解呢" class="headerlink" title="为什么说是缓解呢"></a>为什么说是缓解呢</h5><ul>
+<li><p>我们不能保证每一层都有前面传过来的残差连接，即我们不能保证哪几层cell state的门就一定是0（怎么解释有待再详细思考）</p>
+</li>
+<li><p>cell state趋于1或者-1，且有不趋于1和-1的时候，这个时候梯度也是小于1的数</p>
+</li>
+<li><p><strong>那如果每一层的门的数值不一样，是不是也会导致$\frac{\partial S_i}{\partial S_i-1} \neq \frac{\partial S_i-1}{\partial S_i-2}$？所以这里其实也不是幂次方的关系？</strong></p>
+</li>
+</ul>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="梯度爆炸"><a href="#梯度爆炸" class="headerlink" title="梯度爆炸"></a>梯度爆炸</h3><ol>
+<li><p>梯度爆炸一般的解决方法是使用gradient clipping(梯度裁剪)，即通过设置梯度的值域范围来限制梯度过大。</p>
+</li>
+<li><p>L2正则化：$Loss&#x3D;(y-W^tx)^2+\alpha \cdot \Vert W \Vert^2$，如果权重过大，可以通过Loss的减小来一定程度控制W过大。</p>
+</li>
+</ol>
+<h3 id="梯度消失"><a href="#梯度消失" class="headerlink" title="梯度消失"></a>梯度消失</h3><p>在神经网络中，梯度消失出现的更多一些，也更难解决。</p>
+<ol>
+<li><p>用tanh取代sigmoid激活函数。因为tanh导数的范围是-1到1，相对sigmoid的导数0到$\frac{1}{4}$，tanh可以相对sigmoid在一定程度缓解梯度消失</p>
+</li>
+<li><p>使用relu激活函数，当x&gt;0时，relu导数是1。但是觉得他会引起一些其他问题，并且在x&gt;0时为线性函数，所以有点失去了使用激活函数的意义，上面已经提到过了</p>
+</li>
+<li><p>batchnorm(简称BN)非常复杂，以后专门弄一篇研究一下。在反向传播中$\delta’(z) \cdot w_i$有W的存在，我们通过强行拉回偏离的W的分布到均值为0方差为1的正太分布上，消除了W带来的放大和缩小的问题，来一定程度缓解梯度消失（梯度爆炸）的问题</p>
+<p> 有文章说这里是通过BN改变激活函数的输入，使其落在激活函数比较敏感的区域，让输入的微小变化造成Loss较大的变化来缓解梯度消失，这一点还要详细思考一下。</p>
+<p> a. 我们用BN对数据进行缩放，强行改变数据输入，是否会对模型有影响？</p>
+<p> b. BN中，如果batch size过小，会导致数据不准确，过大会对内存有要求</p>
+<p> c. 这里norm的是输入x还是权重w？：两个都不是，而是激活函数的输入$Wx+b$</p>
+</li>
+<li><p>残差结构：LSTM中cell state的应用，就类似于残差结构，可以一定程度上让在序列前面的信息不受影响的（较完整的）传输到后面的序列中</p>
+</li>
+<li><p>谨慎选择随机初始化权重，如xavier初始化</p>
+</li>
+</ol>
+<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><p>非常感谢<a href="https://zhuanlan.zhihu.com/p/76772734">这篇文章</a>，很全面的解释了很多我的疑惑。</p>
+<h3 id="hexo-markdown"><a href="#hexo-markdown" class="headerlink" title="hexo-markdown"></a>hexo-markdown</h3><ol>
+<li><p>又一个新发现，在markdown中，如果使用<code>$</code>，公式会和字在同一层展示，如果使用<code>$$</code>，公式会自己单独用一行展示。如下：</p>
+<ul>
+<li><code>$</code>：$y&#x3D;f(x)$</li>
+<li><code>$$</code>：$$y&#x3D;f(x)$$</li>
+</ul>
+</li>
+<li><p>尝试了很多插入图片的方法。只有复制github上图片连接最好用，这样在markdown，首页和文章中都可以正确显示图片。如果只是在<code>_config.yml</code>中修改<code>post_asset_folder:true</code>，再使用相对路径来显示图片，那么图片只能在文章首页正确显示，但是不能在文章中正确显示，并且在markdown中的相对路径和在网页上的，不一定是一样的。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>LSTM</tag>
+        <tag>RNN</tag>
+        <tag>梯度消失</tag>
+        <tag>梯度爆炸</tag>
+        <tag>DNN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SVM核函数本质</title>
+    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/SVM%E6%A0%B8%E5%87%BD%E6%95%B0%E6%9C%AC%E8%B4%A8/</url>
+    <content><![CDATA[<h1 id="SVM核函数本质"><a href="#SVM核函数本质" class="headerlink" title="SVM核函数本质"></a>SVM核函数本质</h1><p>核函数的本质</p>
+<ol>
+<li>实际中，我们会经常遇到线性不可分的样例，此时，我们的常用做法是把样例特征映射到高维空间中去(如上文2.2节最开始的那幅图所示，映射到高维空间后，相关特征便被分开了，也就达到了分类的目的)；</li>
+<li>但进一步，如果凡是遇到线性不可分的样例，一律映射到高维空间，那么这个维度大小是会高到可怕的(如上文中19维乃至无穷维的例子)。那咋办呢？</li>
+<li>此时，核函数就隆重登场了，核函数的价值在于它虽然也是讲特征进行从低维到高维的转换，但核函数绝就绝在它事先在低维上进行计算，而将实质上的分类效果表现在了高维上，也就如上文所说的避免了直接在高维空间中的复杂计算。</li>
+</ol>
+<p><a href="https://blog.csdn.net/u010199356/article/details/88836026">核函数解释博客</a><br>很有意思，有空可以自己试试用matlab画图看看</p>
+<p><a href="https://zhuanlan.zhihu.com/p/77750026">SVM推导过程</a><br>也可以看看李航的统计书里的推导</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>核函数</tag>
+        <tag>svm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>欧几里得算法--求最大公约数</title>
+    <url>/2020/07/07/%E6%95%B0%E5%AD%A6/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h1><p>欧几里德算法是用来求两个正整数最大公约数的算法。是由古希腊数学家欧几里德在其著作《The Elements》中最早描述了这种算法,所以被命名为欧几里德算法。扩展欧几里德算法可用于RSA加密等领域。</p>
+<p>假如需要求 1997 和 615 两个正整数的最大公约数,用欧几里德算法，是这样进行的：</p>
+<figure class="highlight basic"><table><tr><td class="code"><pre><span class="line"><span class="symbol">1997 </span>/ <span class="number">615</span> = <span class="number">3</span> (余 <span class="number">152</span>)</span><br><span class="line"><span class="symbol">615 </span>/ <span class="number">152</span> = <span class="number">4</span>(余<span class="number">7</span>)</span><br><span class="line"><span class="symbol">152 </span>/ <span class="number">7</span> = <span class="number">21</span>(余<span class="number">5</span>)</span><br><span class="line"><span class="symbol">7 </span>/ <span class="number">5</span> = <span class="number">1</span> (余<span class="number">2</span>)</span><br><span class="line"><span class="symbol">5 </span>/ <span class="number">2</span> = <span class="number">2</span> (余<span class="number">1</span>)</span><br><span class="line"><span class="symbol">2 </span>/ <span class="number">1</span> = <span class="number">2</span> (余<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>至此，最大公约数为1</p>
+<p>以除数和余数反复做除法运算，当余数为 0 时，取当前算式除数为最大公约数，所以就得出了 1997 和 615 的最大公约数 1。</p>
+<h3 id="计算证明"><a href="#计算证明" class="headerlink" title="计算证明"></a>计算证明</h3><p>其计算原理依赖于下面的定理：</p>
+<p>定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数。最大公约数（Greatest Common Divisor）缩写为GCD。<br>$gcd(a,b) &#x3D; gcd(b,a \mod b)$ (不妨设$a&gt;b$ 且$r&#x3D;a \mod b$ ,$r$不为$0$)</p>
+<h4 id="证法一"><a href="#证法一" class="headerlink" title="证法一"></a>证法一</h4><ul>
+<li><p>正</p>
+<ul>
+<li>$a$可以表示成$a &#x3D; kb + r$（$a$，$b$，$k$，$r$皆为正整数，且$r&lt;b$），则$r &#x3D; a \mod b$</li>
+<li>假设$d$是$a$,$b$的一个公约数，记作$d|a$,$d|b$，即$a$和$b$都可以被$d$整除。</li>
+<li>而$r &#x3D; a - kb$，两边同时除以$d$，$r&#x2F;d&#x3D;a&#x2F;d-kb&#x2F;d&#x3D;m$，由等式右边可知$m$为整数，因此$d|r$</li>
+<li>因此$d$也是$b$,$a \mod b$的公约数</li>
+</ul>
+</li>
+<li><p>反</p>
+<ul>
+<li>假设$d$是$b$,$a \mod b$的公约数, 则$d|b$,$d|(a-k*b)$,$k$是一个整数。</li>
+<li>进而$d|a$，因此$d$也是$a$,$b$的公约数</li>
+<li>因此$(a,b)$和$(b,a \mod b)$的公约数是一样的，其最大公约数也必然相等</li>
+</ul>
+</li>
+<li><p>得证</p>
+</li>
+</ul>
+<h4 id="证法二"><a href="#证法二" class="headerlink" title="证法二"></a>证法二</h4><p>假设c &#x3D; gcd(a,b),则存在m,n，使a &#x3D; mc, b &#x3D; nc;<br>令r &#x3D; a mod b，即存在k，使r &#x3D; a-kb &#x3D; mc - knc &#x3D; (m-kn)c;<br>故gcd(b,a mod b) &#x3D; gcd(b,r) &#x3D; gcd(nc,(m-kn)c) &#x3D; gcd(n,m-kn)*c;<br>假设d &#x3D; gcd(n,m-kn), 则存在x,y, 使n &#x3D; xd, m-kn &#x3D; yd; 故m &#x3D; yd+kn &#x3D; yd+kxd &#x3D; (y+kx)d;<br>故有a &#x3D; mc &#x3D; (y+kx)dc, b &#x3D; nc &#x3D; xdc; 可得 gcd(a,b) &#x3D; gcd((y+kx)dc,xdc) &#x3D; dc;<br>由于gcd(a,b) &#x3D; c, 故d &#x3D; 1;<br>即gcd(n,m-kn) &#x3D; 1, 故可得gcd(b,a mod b) &#x3D; c;<br>故得证gcd(a,b) &#x3D; gcd(b,a mod b).<br>注意:两种方法是有区别的。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>自己写的</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    c = a%b</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b) <span class="keyword">if</span> c==<span class="number">0</span> <span class="keyword">else</span> gcd(b, c)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
+
+<p>百度百科上的</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">while</span> a != <span class="number">0</span>:</span><br><span class="line">        a, b = b % a, a</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h2><p>扩展欧几里得算法（英语：Extended Euclidean algorithm）是欧几里得算法（又叫辗转相除法）的扩展。已知整数$a$、$b$，扩展欧几里得算法可以在求得$a$、$b$的最大公约数的同时，能找到整数$x$、$y$（其中一个很可能是负数），使它们满足贝祖等式</p>
+<p>$ax+by&#x3D;gcd(a,b)$</p>
+<p>如果a是负数，可以把问题转化成$|a|(-x)+by&#x3D;gcd(|a|,b)$，然后令$x^{‘}&#x3D;(-x)$。</p>
+<p>扩展欧几里得算法可以用来计算模反元素(也叫模逆元)，而模反元素在RSA加密算法中有举足轻重的地位。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">ext_euclid</span>(<span class="params">a, b</span>):     </span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:         </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>, <span class="number">0</span>, a     </span><br><span class="line">    <span class="keyword">else</span>:         </span><br><span class="line">        x, y, q = ext_euclid(b, a % b) </span><br><span class="line">        <span class="comment"># q = gcd(a, b) = gcd(b, a%b)   </span></span><br><span class="line"></span><br><span class="line">        <span class="comment">## 这一行怎么求的，有时间可以论证一下      </span></span><br><span class="line">        x, y = y, (x - (a // b) * y)     </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x, y, q</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>欧几里得</tag>
+        <tag>最大公约数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>牛顿法--优化算法</title>
+    <url>/2020/07/07/%E6%95%B0%E5%AD%A6/%E7%89%9B%E9%A1%BF%E6%B3%95--%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h1><p>牛顿迭代法（Newton’s method）又称为牛顿-拉夫逊（拉弗森）方法（Newton-Raphson method），它是牛顿在17世纪提出的一种在实数域和复数域上近似求解方程的方法。</p>
+<p>牛顿法迭代法解非线性方程，是把非线性方程 $f(x)&#x3D;0$ 线性化的一种近似方法。把 $f(x)$ 在点 $x_0$ 的某领域内展开成泰勒级数 $f(x)&#x3D;f(x_0)+f^{‘}(x_0)(x-x_0)+ \frac{f^{‘’}(x_0)(x-x_0)^2}{2!}+…+ \frac{f^{n}(x_0)(x-x_0)^n}{n!}+R_n(x)$ ，取其线性部分，即展开式的前两项 $f(x_0)+f^{‘}(x_0)(x-x_0)$ ，令其等于0，以此作为非线性方程 $f(x)&#x3D;0$ 的近似方程，若 $f^{‘}(x_0) \neq 0$ ，则解为 $x_1&#x3D;x_0- \frac {f(x_0)} {f^{‘}(x_0)}$ ，这样我们得到牛顿迭代法的一个迭代关系式</p>
+<p>Python代码实例展示求解方程 $(x-3)^3&#x3D;0$ 的根</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> (x-<span class="number">3</span>)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fd</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*(x-<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">newtonMethod</span>(<span class="params">n, assum</span>):</span><br><span class="line">    time = n</span><br><span class="line">    x = assum</span><br><span class="line">    Next = <span class="number">0</span></span><br><span class="line">    A = f(x)</span><br><span class="line">    B = fd(x)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;A = &#x27;</span> + <span class="built_in">str</span>(A) + <span class="string">&#x27;,B = &#x27;</span> + <span class="built_in">str</span>(B) + <span class="string">&#x27;,time = &#x27;</span> + <span class="built_in">str</span>(time))</span><br><span class="line">    <span class="keyword">if</span> f(x) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> time, x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        Next = x - A/B</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Next x = &#x27;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 1.</span></span><br><span class="line">    <span class="comment">## 这里设置的迭代条件不是当前值和最优值之间的距离，而是相比于上一个值的变化要小于某个值</span></span><br><span class="line">    <span class="comment">## 但我们要求的就是最优值，所以我们并不知道最优值的具体值，不能的到他们的距离</span></span><br><span class="line">    <span class="comment">## 所以要通过每次A的变化，来估计最优值</span></span><br><span class="line">    <span class="keyword">if</span> A - f(Next) &lt; <span class="number">1e-6</span>: </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Meet f(x) = 0, x = &quot;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 2.</span></span><br><span class="line">    <span class="comment"># ## 所以这里其实是不是也可以通过x的变化，来估计最优值？</span></span><br><span class="line">    <span class="comment"># if A/B &lt; 1e-4:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## 3.</span></span><br><span class="line">    <span class="comment"># ## 这里当然也能用 if time &gt; m 来设置跳出循环的条件，但是相对 A - f(Next) 得到的值会更不精确一些</span></span><br><span class="line">    <span class="comment"># if time &gt; 10:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> newtonMethod(n+<span class="number">1</span>, Next)</span><br><span class="line"></span><br><span class="line">newtonMethod(<span class="number">0</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>牛顿法</tag>
+        <tag>优化算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>白化和归一化</title>
+    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/%E7%99%BD%E5%8C%96%E5%92%8C%E5%BD%92%E4%B8%80%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="白化和归一化"><a href="#白化和归一化" class="headerlink" title="白化和归一化"></a>白化和归一化</h1><h3 id="白化"><a href="#白化" class="headerlink" title="白化"></a>白化</h3><p>白话的目的就是去除输入数据的冗余信息。经过白化处理后，生成新数据集满足两个条件：</p>
+<ul>
+<li>特征相关性较低</li>
+<li>特征具有相同的方差</li>
+</ul>
+<p>白化算法实现的过程：</p>
+<ul>
+<li>第一步是进行PCA操作，将数据降维</li>
+<li>第二步是对新的坐标进行归一化操作</li>
+</ul>
+<h3 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h3><p>数据归一化的目的就是为了把不同来源的数据统一到同一数量级(一个参考坐标系下)，这样使得比较起来更加有意义。归一化使得后面数据的处理更为方便，它有两大有点：</p>
+<ul>
+<li>归一化提高梯度下降求最优解的速度</li>
+<li>归一化有可能提高精度</li>
+</ul>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>看了下博客，都是抄来抄去，没有明确解释两者区别的，个人认为区别如下：</p>
+<ul>
+<li>白化里会用来归一化来统一降维后数据的量级，但是归一化不会用到白化</li>
+<li>白化的主要目的是特征提取，尽量获取相互独立的特征进行分析</li>
+<li>归一化的主要目的是统一特征数据的量级（取值范围）</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>白化</tag>
+        <tag>归一化</tag>
       </tags>
   </entry>
   <entry>
@@ -1480,413 +1987,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AM-softmax</title>
-    <url>/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/AM-softmax/</url>
-    <content><![CDATA[<h1 id="AM-softmax"><a href="#AM-softmax" class="headerlink" title="AM-softmax"></a>AM-softmax</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>基于已有的L-softmax, A-softmax，作者提出了AM-softmax，一个适用于分类模型的loss计算方法。主要用于增加类间距离，减小类内距离</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h3 id="反向传播求导简单"><a href="#反向传播求导简单" class="headerlink" title="反向传播求导简单"></a>反向传播求导简单</h3><p>反向传播对x求导结果为1</p>
-<h3 id="公式更直观"><a href="#公式更直观" class="headerlink" title="公式更直观"></a>公式更直观</h3><p>相对于L-softmax，AM-softmax的参数简单直观</p>
-<h3 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h3><p>使用加法$cos(&#x2F;delta)-m$，不同于L-softmax中使用乘法cos(m*&#x2F;delta)，超参数直接作用于cos(&#x2F;delta)更好，因为：cos(&#x2F;delta)和delta虽然是一一对应，但是变化趋势不同，cos(&#x2F;delta)在pai处更密集。因此在乘法中，得到wf后需要进行反余弦计算，因此会消耗更多的算力</p>
-<h3 id="两个超参数"><a href="#两个超参数" class="headerlink" title="两个超参数"></a>两个超参数</h3><p>e的右上角公式为s(cos(&#x2F;delta)-m)</p>
-<ul>
-<li>其中m是用来增加类间距离，强行使两个类的边缘样本有一定的距离而更不容易混淆</li>
-<li>反向传播是，x的导数为1，前面增加一个s则反向求导后gradient会变为s，使用一个s是为了让好样本的梯度更大，来减小类内样本的方差，也就是更快的减小类内距离</li>
-</ul>
-<h3 id="Feature-Normalization"><a href="#Feature-Normalization" class="headerlink" title="Feature Normalization"></a>Feature Normalization</h3><p>对于质量较好的样本，不需要进行feature normalization。<br>但是对于质量较差的样本，使用feature normalization后，效果会有提升。<br>因为质量越差，特征归一化的值越小，因此反向传播中受到的关于越大（1&#x2F;alpha），所以特征归一化更适合图像质量差的任务</p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>am-softmax</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bert中的一些重点</title>
-    <url>/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Bert/</url>
-    <content><![CDATA[<h1 id="Bert中的一些重点"><a href="#Bert中的一些重点" class="headerlink" title="Bert中的一些重点"></a>Bert中的一些重点</h1><h3 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h3><p>Bert中使用的是Layer Normalization，源于对batch normalization的改进。<br>batch normalization的优点：</p>
-<ul>
-<li>加快神经网络训练时间</li>
-<li>对学习率有更好的容忍</li>
-<li>重新拉正数据分布，避免进入激活函数的饱和区域，缓解梯度消失<br>batch normalization的缺点：</li>
-<li>对batch size的大小比较敏感</li>
-<li>在RNN和LSTM等序列模型中效果不太好<br>针对以上两个BN的缺点，提出了LN，较好的解决了上面两个问题</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="position-embedding"><a href="#position-embedding" class="headerlink" title="position embedding"></a>position embedding</h3><p>同transformer里的position embedding不同，这里的position embedding需要训练获取。<br>transformer里的position embedding用的的正弦版本。两者各有优劣<br>正弦：</p>
-<ul>
-<li>一定位置间的embedding可以被彼此线性表示</li>
-<li>相比训练好的position embedding，正弦版本能允许更长的输入序列<br>训练的position embedding</li>
-<li>相比正弦的常量表示，学习来的embedding表示能力更强。加上bert后续需要做ner对位置上的字符进行状态预测，因此一个可以学习的参数来表达位置，更合理</li>
-</ul>
-<h3 id="gelu"><a href="#gelu" class="headerlink" title="gelu"></a>gelu</h3><p>Bert Transfromer结构中使用了这个激活函数—gelu（Gaussian error linear units，高斯误差线性单元），Gelu在论文中已经被验证，是一种高性能的神经网络激活函数，因为GELU的非线性变化是一种符合预期的随机正则变换方式（这句话，说实话，我翻译自原论文，具体怎么理解呢？我自己是如下理解的）。</p>
-<p>激活函数的作用：给网络模型加入非线性因子，这个非线性因子的实际操作就是在wx+b这样的线下变化后面加入一个非线性变化的函数fun。<br>Gelu的操作方式：Gelu怎么完成非线性变换的呢？引入这样的变化函数：<br>        公式中x是自己，P(X&lt;&#x3D;x)决定x中有多少信息保留 ，并且由于P是服从高斯分布的，也就满足了非线性的特征，并且更加符合数据的分布预期。</p>
-<h3 id="warm-up"><a href="#warm-up" class="headerlink" title="warm-up"></a>warm-up</h3><h3 id="dropout"><a href="#dropout" class="headerlink" title="dropout"></a>dropout</h3><h2 id="获取向量"><a href="#获取向量" class="headerlink" title="获取向量"></a>获取向量</h2><p>bert中有很多种获取向量的方法，具体如下：</p>
-<p><strong>init</strong>()：重头戏，模型的构建在此完成，三步走完成。<br>主要分为三个模块：embeddings、encoder 和 pooler。<br>首先构建输入，包括 input_ids、input_mask 等。其次进入 embeddings 模块，进行一系列 embedding 操作，涉及 embedding_lookup() 和 embedding_postprocessor() 两个函数。<br>然后进入 encoder 模块，就是 transformer 模型和 attention 发挥作用的地方了，主要涉及 transformer_model() 函数，得到 encoder 各层输出。<br>最后进入 pooler 模块，只取 encoder 最后一层的输出的第一个 token 的信息，送入到一个大小为 hidden_size 的全连接层，得到 pooled_output，这就是最终输出了。</p>
-<ul>
-<li>get_pooled_output(self)：获取 pooler 的输出。</li>
-<li>get_sequence_output(self)：获取 encoder 最后的隐层输出，输出大小为 [batch_size, seq_length, hidden_size]。</li>
-<li>get_all_encoder_layers(self)：获取 encoder 中所有层。返回大小应该是 [num_hidden_layers, batch_size, seq_length, hidden_size]。</li>
-<li>get_embedding_output(self)：获取对 input_ids 的 embedding 结果，大小为 [batch_size, seq_length, hidden_size]，这是 word embedding、positional embedding、token type embedding（论文中的 segment embedding）和 layer normalization 一系列操作的结果，也是 transformer 的输入。</li>
-<li>get_embedding_table(self)：获取 embedding table，大小为 [vocab_size, embedding_size]，即词汇表中的词对应的 embedding。</li>
-</ul>
-<p>详情见<a href="https://zhuanlan.zhihu.com/p/140718739">Bert是如何构建模型的</a></p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>bert</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LSTM</title>
-    <url>/2019/12/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/LSTM/</url>
-    <content><![CDATA[<h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><h2 id="LSTM来源"><a href="#LSTM来源" class="headerlink" title="LSTM来源"></a>LSTM来源</h2><p>LSTM由RNN变化而来，所以在介绍LSTM前，我们先了解一下RNN。</p>
-<p>RNN是一类用来处理序列数据的神经网络，当前状态不仅受到当前输入$x_t$的影响，也受前面状态$h_{t-1}$的影响</p>
-<p>$h_t&#x3D;\delta (W^{h_{t-1}} \cdot h_{t-1} + W^{x_t} \cdot x_t)$<br>$y&#x3D;\delta (W^y \cdot h_t)$</p>
-<pre><code>ignore bais here
-</code></pre>
-<p>且神经元是共享权重W的，即:<br>$W^{h_{t-1}}&#x3D;W^{h_{t}}$<br>$W^{x_{t-1}}&#x3D;W^{x_t}$<br>$W^{y-1}&#x3D;W^y$</p>
-<span id="more"></span>
-
-<h2 id="RNN问题"><a href="#RNN问题" class="headerlink" title="RNN问题"></a>RNN问题</h2><h3 id="长期依赖"><a href="#长期依赖" class="headerlink" title="长期依赖"></a>长期依赖</h3><p>RNN在实际应用中又一个很大的问题，就是长期依赖性问题，即一个输出$y_t$主要受到其前面几个输入和状态的影响，对较长时间前的输入和状态则非常不敏感，这是由于反向传播中梯度消失引起的。<br>为了解决这一问题，我们引入了LSTM（门机制）。</p>
-<h3 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h3><p>我们在计算RNN反向传播的梯度时会发现，因为RNN是一个共享权重的神经网络，所以当权重W可以特征分解为$W&#x3D;Q \cdot \Lambda \cdot Q^T$且Q为正交矩阵时，则梯度包含特征值矩阵的幂次方，因此当特征值&gt;1时，则会梯度爆炸，反之则会梯度消失。<br>梯度爆炸比较容易察觉，一般表现为loss变为Nan<br>梯度消失则相对比较难以察觉，一般表现为loss几乎不变，但是loss几乎不变不代表就是产生了梯度消失</p>
-<h2 id="LSTM基本描述"><a href="#LSTM基本描述" class="headerlink" title="LSTM基本描述"></a>LSTM基本描述</h2><p>LSTM一定程度上解决了RNN梯度消失和梯度爆炸的问题，得益于三个门的引入</p>
-<h3 id="LSTM的三个门"><a href="#LSTM的三个门" class="headerlink" title="LSTM的三个门"></a>LSTM的三个门</h3><p>在LSTM中引入了三个门：输入门，输出门和遗忘门</p>
-<p>遗忘门：控制了上一个cell的状态$C_{t-1}$中有多少信息进入到当前状态$C_t$中<br>输入门：控制了有多少信息会被保存到cell状态$C_t$中<br>输出门：控制了当前cell的状态$C_t$(cell state)有多少信息会输出到下一个神经元（即隐藏单元输出hidden state）</p>
-<p><img src="/images/image/LSTM3-chain.png" alt="LSTM"></p>
-<h3 id="LSTM特点"><a href="#LSTM特点" class="headerlink" title="LSTM特点"></a>LSTM特点</h3><p>LSTM一定程度上将RNN中反向传播中梯度中的叠成关系转换成叠加关系，所以缓解了梯度消失和梯度爆炸的问题。</p>
-<h3 id="LSTM和GRU的比较"><a href="#LSTM和GRU的比较" class="headerlink" title="LSTM和GRU的比较"></a>LSTM和GRU的比较</h3><p>LSTM有三个门，GRU只有两个（更新门update和相关门revelance），所以LSTM的运算更为复杂。<br>GRU是在LSTM后出来的，为了缓解LSTM的计算问题，但是在一些实际应用中，GRU的效果并不比LSTM差，所以应用越来越广泛。</p>
-<p><img src="/images/image/GRU.png" alt="GRU"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li><p>关于RNN的长期依赖性问题，看了很多文章，一直不能确到底是因</p>
-<ul>
-<li>$h_t&#x3D;Q^T \cdot \Lambda^t \cdot Q \cdot h_{(0)}$导致的在<strong>前向传播</strong>中$h_{(0)}$对$h_t$的影响因为幂次方的关系而非常小</li>
-<li>还是因为梯度消失导致的长期依赖关系.</li>
-</ul>
-<p> 直到看到Andrew Ng在<a href="https://www.coursera.org/learn/nlp-sequence-models/lecture/PKMRR/vanishing-gradients-with-rnns">视频</a>中明确指出：RNN的长期依赖性问题来源于<strong>梯度消失</strong>，并且在<a href="http://pelhans.com/2019/04/24/deepdive_tensorflow-note9/#%E9%95%BF%E6%9C%9F%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98">文章</a>中看到公式$\Delta_{h^{(0)}}$的求解，才理解：RNN的长期依赖性问题来源于反向传播中因共享权重W产生的$\Delta$的幂次方，造成了梯度消失，而使得当前状态对前面序列的依赖过小。</p>
-</li>
-<li><p>在LSTM中有几种激活函数：</p>
-<ul>
-<li>sigmoid主要用在门的计算中，因为sigmoid很容易趋近于0或者1，所以使得门可以控制保存（等于1时）或不保存（等于0时）信息</li>
-<li>softmax一般用于输出y之前</li>
-<li>tanh用于求$\tilde{C}^t$和$h_{t}$的时候</li>
-</ul>
-</li>
-<li><p>hexo中并不支持LaTex格式写公式的问题见<a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/">此文章</a></p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>LSTM</tag>
-        <tag>长期依赖性</tag>
-        <tag>RNN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SBert</title>
-    <url>/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/SBert/</url>
-    <content><![CDATA[<h1 id="SBert"><a href="#SBert" class="headerlink" title="SBert"></a>SBert</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>SBert针对句子匹配问题，提出了一种新的想法。没有很复杂的公式，可以理解为，是一些常见的计算进行各种融合的实战经验总结。<br>主要思想也是对bert进行fine tuning，来获取语义上有意义的空间向量<br>    语义上有意义：论文中有解释，是指句子意思相近的句子在空间向量上也相近</p>
-<span id="more"></span>
-
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h3 id="速度快"><a href="#速度快" class="headerlink" title="速度快"></a>速度快</h3><p>论文中提出了，相对于通常使用的NSP，即concat sent1和sent2来判断两个句子是否相似，我们将两个句子独立分开输入到同一bert模型（两个句子使用的参数相同）中，再将得到的两个向量进行计算，要快上很多倍，主要原因如下：</p>
-<ol>
-<li>假设有10000个样本<ol>
-<li>如果用NSP句子对计算，那么可以相互匹配出10000*10000个句子对，去除重复的也有一半，所以样本数上计算量很大</li>
-<li>如果将句子分开过bert模型，那么10000个样本只用过10000次bert模型，计算量会少很多</li>
-</ol>
-</li>
-<li>每个样本过bert模型的计算量也会不同<ol>
-<li>如果用NSP句子对，假设两个句子的长度分别为m和n，那么concate之后进行self attention，就是O（（m+n）^2）的时间复杂度</li>
-<li>如果两个句子独立进行self attention，两个句子的时间复杂度也是O（m^2） while m &gt;&#x3D; n</li>
-</ol>
-</li>
-</ol>
-<h3 id="pooling"><a href="#pooling" class="headerlink" title="pooling"></a>pooling</h3><p>在bert的embedding输出层，接了一个pooling。<br>作者比较了三种pooling方法，一种直接使用CLS的结果，一种使用mean，一种使用max。使用mean的效果最好<br>作者并没有在论文中详细阐述这个mean的pooling是作用在哪个维度上的，我个人推测可能是对seq_length做的mean，这样才能和cls层出来的embedding维度相同<br>找到一个解释是：</p>
-<ul>
-<li>MEAN策略，计算各个token输出向量的平均值代表句子向量。各个token的向量维度一样，即把所有token的embeding相加，然后处以token数即得到平均，也就是这个句子的句向量</li>
-<li>MAX策略，取所有输出向量各个维度的最大值代表句子向量。各个token有很多个维度，每个维度上比较多个token当前维度的值，并取最大，然后获得句向量<br>所以以上都是对seq_length这一行进行了pooling，将其变为了1</li>
-</ul>
-<p>具体cnn里filter和pooling后的维度见<a href="https://mp.weixin.qq.com/s/vq4-4M46okms5_sxw9PBQA">实战TextCNN 文本分类</a></p>
-<h3 id="针对不同的数据提出了三种loss"><a href="#针对不同的数据提出了三种loss" class="headerlink" title="针对不同的数据提出了三种loss"></a>针对不同的数据提出了三种loss</h3><h4 id="classification-objective-function"><a href="#classification-objective-function" class="headerlink" title="classification objective function"></a>classification objective function</h4><p>在将两个句子的embedding，u和v，concate时，作者实验了很多种不同的方法<br>比如：（u,v），（|u-v|），（u,v,|u-v|）等等，可以到时候放个结果图过来，论文中的table6。<br>作者最后发现（u,v,|u-v|）这种concate方式效果最好</p>
-<h4 id="regression-objective-function"><a href="#regression-objective-function" class="headerlink" title="regression objective function"></a>regression objective function</h4><p>计算两个句子的余弦相似性，然后使用均方差loss</p>
-<h4 id="triplet-objective-function"><a href="#triplet-objective-function" class="headerlink" title="triplet objective function"></a>triplet objective function</h4><p>如果是有正负样本的数据，可以使用triplet loss<br>max(dist(sa-sp)-dist(sa-sn)+margin, 0)<br>这里dist()计算的两者欧式距离，并且把margin设为1</p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>SBert</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>T5</title>
-    <url>/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/T5/</url>
-    <content><![CDATA[<h1 id="T5"><a href="#T5" class="headerlink" title="T5"></a>T5</h1><h2 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h2><p>1、中文分词(Chinese Word Segmentation) 指的是将一个汉字序列切分成一个一个单独的词。分词就是将连续的字序列按照一定的规范重新组合成词序列的过程 </p>
-<span id="more"></span>
-
-<p>2、现有的分词算法可分为三大类：基于字符串匹配的分词方法、基于理解的分词方法和基于统计的分词方法</p>
-<pre><code>1. 基于字符串匹配的分词方法：这种方法又叫做机械分词方法，它是按照一定的策略将待分析的汉字串与一个“充分大的”机器词典中的词条进行配，若在词典中找到某个字符串，则匹配成功（识别出一个词）
-    1）正向最大匹配法（由左到右的方向）
-    2）逆向最大匹配法（由右到左的方向）:
-    3）最少切分（使每一句中切出的词数最小）
-    4）双向最大匹配法（进行由左到右、由右到左两次扫描）
-2. 基于统计模型的分词方法
-    1) 基于 N-gram 语言模型的分词方法
-3. 基于序列标注的分词方法
-    1) 基于 HMM 的分词方法
-    2) 基于 CRF 的分词方法
-    3) 基于词感知机的分词方法
-    4) 基于深度学习的端到端的分词方法
-</code></pre>
-<h3 id="基于规则或词典"><a href="#基于规则或词典" class="headerlink" title="基于规则或词典"></a>基于规则或词典</h3><h5 id="1-正向最大匹配思想MM"><a href="#1-正向最大匹配思想MM" class="headerlink" title="1 正向最大匹配思想MM"></a>1 正向最大匹配思想MM</h5><p>从左向右取待切分汉语句的m个字符作为匹配字段，m为大机器词典中最长词条个数。<br>查找大机器词典并进行匹配：<br>若匹配成功，则将这个匹配字段作为一个词切分出来。<br>若匹配不成功，则将这个匹配字段的最后一个字去掉，剩下的字符串作为新的匹配字段，进行再次匹配，重复以上过程，直到切分出所有词为止。<br>举个栗子：<br>现在，我们要对“南京市长江大桥”这个句子进行分词，根据正向最大匹配的原则：</p>
-<p>先从句子中拿出前5个字符“南京市长江”，把这5个字符到词典中匹配，发现没有这个词，那就缩短取字个数，取前四个“南京市长”，发现词库有这个词，就把该词切下来；<br>对剩余三个字“江大桥”再次进行正向最大匹配，会切成“江”、“大桥”；<br>整个句子切分完成为：南京市长、江、大桥；</p>
-<h5 id="2-逆向最大匹配算法RMM"><a href="#2-逆向最大匹配算法RMM" class="headerlink" title="2 逆向最大匹配算法RMM"></a>2 逆向最大匹配算法RMM</h5><p>该算法是正向最大匹配的逆向思维，匹配不成功，将匹配字段的最前一个字去掉，实验表明，逆向最大匹配算法要优于正向最大匹配算法。</p>
-<p>还是那个栗子：</p>
-<p>取出“南京市长江大桥”的后四个字“长江大桥”，发现词典中有匹配，切割下来；<br>对剩余的“南京市”进行分词，整体结果为：南京市、长江大桥</p>
-<h5 id="3-双向最大匹配法-Bi-directction-Matching-method-BM"><a href="#3-双向最大匹配法-Bi-directction-Matching-method-BM" class="headerlink" title="3 双向最大匹配法(Bi-directction Matching method,BM)"></a>3 双向最大匹配法(Bi-directction Matching method,BM)</h5><p>双向最大匹配法是将正向最大匹配法得到的分词结果和逆向最大匹配法的到的结果进行比较，从而决定正确的分词方法。</p>
-<p>据SunM.S. 和 Benjamin K.T.（1995）的研究表明，中文中90.0％左右的句子，正向最大匹配法和逆向最大匹配法完全重合且正确，只有大概9.0％的句子两种切分方法得到的结果不一样，但其中必有一个是正确的（歧义检测成功），只有不到1.0％的句子，或者正向最大匹配法和逆向最大匹配法的切分虽重合却是错的，或者正向最大匹配法和逆向最大匹配法切分不同但两个都不对（歧义检测失败）。这正是双向最大匹配法在实用中文信息处理系统中得以广泛使用的原因所在。</p>
-<p>正向最大匹配法，最终分词结果为：“南京市长&#x2F;江&#x2F;大桥”，其中，总分词数3个，单个词为1。</p>
-<p>逆向最大匹配法，最终分词结果为：“南京市&#x2F;长江大桥”，其中，总分词数2个，单个词为0。</p>
-<p>选择标准：</p>
-<p>首先看两种方法结果的分词数，分词数越少越好；<br>分词数相同的情况下，看单个词的数量，越少越好；<br>因此最终输出为逆向结果。</p>
-<h5 id="4-最佳匹配（OM，分正向和逆向）"><a href="#4-最佳匹配（OM，分正向和逆向）" class="headerlink" title="4 最佳匹配（OM，分正向和逆向）"></a>4 最佳匹配（OM，分正向和逆向）</h5><p>对分词词典按词频大小顺序排列，并注明长度，降低时间复杂度。</p>
-<p>优点：易于实现<br>缺点：匹配速度慢。对于未登录词的补充较难实现。缺乏自学习。</p>
-<h5 id="5-逐词遍历法"><a href="#5-逐词遍历法" class="headerlink" title="5 逐词遍历法"></a>5 逐词遍历法</h5><p>这种方法是将词库中的词由长到短递减的顺序，逐个在待处理的材料中搜索，直到切分出所有的词为止。</p>
-<h5 id="等等"><a href="#等等" class="headerlink" title="等等"></a>等等</h5><h5 id="Trie树（前缀树）"><a href="#Trie树（前缀树）" class="headerlink" title="Trie树（前缀树）"></a>Trie树（前缀树）</h5><h3 id="基于统计的分词"><a href="#基于统计的分词" class="headerlink" title="基于统计的分词"></a>基于统计的分词</h3><h5 id="N-gram模型思想"><a href="#N-gram模型思想" class="headerlink" title="N-gram模型思想"></a>N-gram模型思想</h5><p>模型基于这样一种假设，第n个词的出现只与前面N-1个词相关，而与其它任何词都不相关，整句的概率就是各个词出现概率的乘积。</p>
-<p>我们给定一个词，然后猜测下一个词是什么。当我说“艳照门”这个词时，你想到下一个词是什么呢？我想大家很有可能会想到“陈冠希”，基本上不会有人会想到“陈志杰”吧，N-gram模型的主要思想就是这样的。</p>
-<p>对于一个句子T，我们怎么算它出现的概率呢？假设T是由词序列W1,W2,W3,…Wn组成的，那么P(T)&#x3D;P(W1W2W3…Wn)&#x3D;P(W1)P(W2|W1)P(W3|W1W2)…P(Wn|W1W2…Wn-1)<br>但是这种方法存在两个致命的缺陷：一个缺陷是参数空间过大，不可能实用化；另外一个缺陷是数据稀疏严重。为了解决这个问题，我们引入了马尔科夫假设：一个词的出现仅仅依赖于它前面出现的有限的一个或者几个词。如果一个词的出现仅依赖于它前面出现的一个词，那么我们就称之为bigram。即</p>
-<p>P(T) &#x3D;P(W1W2W3…Wn)&#x3D;P(W1)P(W2|W1)P(W3|W1W2)…P(Wn|W1W2…Wn-1)<br>≈P(W1)P(W2|W1)P(W3|W2)…P(Wn|Wn-1)</p>
-<p>如果一个词的出现仅依赖于它前面出现的两个词，那么我们就称之为trigram。</p>
-<p>在实践中用的最多的就是bigram和trigram了，而且效果很不错。高于四元的用的很少，因为训练它需要更庞大的语料，而且数据稀疏严重，时间复杂度高，精度却提高的不多。一般的小公司，用到二元的模型就够了，像Google这种巨头，也只是用到了大约四元的程度，它对计算能力和空间的需求都太大了。</p>
-<p>详细讲解和代码见<a href="https://codle.net/chinese-word-cutter-1/">n-gram</a></p>
-<h5 id="HMM、CRF-模型思想"><a href="#HMM、CRF-模型思想" class="headerlink" title="HMM、CRF 模型思想"></a>HMM、CRF 模型思想</h5><p>以往的分词方法，无论是基于规则的还是基于统计的，一般都依赖于一个事先编制的词表(词典)，自动分词过程就是通过词表和相关信息来做出词语切分的决策。与此相反，</p>
-<p>基于字标注（或者叫基于序列标注）的分词方法实际上是构词方法，即把分词过程视为字在字串中的标注问题。</p>
-<p>由于每个字在构造一个特定的词语时都占据着一个确定的构词位置(即词位)，假如规定每个字最多只有四个构词位置：即B(词首)，M (词中)，E(词尾)和S(单独成词)，那么下面句子(甲)的分词结果就可以直接表示成如(乙)所示的逐字标注形式：</p>
-<ol>
-<li>(甲)分词结果：／上海／计划／N／本／世纪／末／实现／人均／国内／生产／总值／五千美元／ </li>
-<li>(乙)字标注形式：上／B海／E计／B划／E N／S 本／s世／B 纪／E 末／S 实／B 现／E 人／B 均／E 国／B 内／E生／B产／E总／B值／E 五／B千／M 美／M 元／E 。／S</li>
-</ol>
-<p>首先需要说明，这里说到的“字”不只限于汉字。考虑到中文真实文本中不可避免地会包含一定数量的非汉字字符，本文所说的“字”，也包括外文字母、阿拉伯数字和标点符号等字符。所有这些字符都是构词的基本单元。当然，汉字依然是这个单元集合中数量最多的一类字符。</p>
-<p>把分词过程视为字的标注问题的一个重要优势在于，它能够平衡地看待词表词和未登录词的识别问题。</p>
-<p>在这种分词技术中，文本中的词表词和未登录词都是用统一的字标注过程来实现的。在学习架构上，既可以不必专门强调词表词信息，也不用专门设计特定的未登录词(如人名、地名、机构名)识别模块。这使得分词系统的设计大大简化。在字标注过程中，所有的字根据预定义的特征进行词位特性的学习，获得一个概率模型。然后，在待分字串上，根据字与字之间的结合紧密程度，得到一个词位的标注结果。最后，根据词位定义直接获得最终的分词结果。总而言之，在这样一个分词过程中，分词成为字重组的简单过程。在学习构架上，由于可以不必特意强调词表词的信息，也不必专门设计针对未登录词的特定模块，这样使分词系统的设计变得尤为简单。</p>
-<p>2001年Lafferty在最大熵模型（MEM）和隐马尔科夫模型（HMM）的基础上提出来了一种无向图模型–条件随机场（CRF）模型，它能在给定需要标记的观察序列的条件下，最大程度提高标记序列的联合概率。常用于切分和标注序列化数据的统计模型。</p>
-<h2 id="T5中的分词"><a href="#T5中的分词" class="headerlink" title="T5中的分词"></a>T5中的分词</h2><p>T5中的分词用的是google的sentencepiece分词。类似于BPE，找出频率最高的词组合作为词典进行分词。<br>bert4keras中为了效率，不是按照原mt5的字典来进行的分词，而且作者用自己的预料进行了后处理。<br>经测试，发现分词效果并不是非常客观。<br>因此可以尝试训练一套自己领域的并且适合T5中使用的model和词典来进行分词。具体如何实现，可以看完T5论文后再进行</p>
-<ol>
-<li>T5中使用词典，那么还需要模型的概率预测来进行分词吗？</li>
-</ol>
-<h2 id="Greedy-Decoding-VS-Beam-Search"><a href="#Greedy-Decoding-VS-Beam-Search" class="headerlink" title="Greedy Decoding VS Beam Search"></a>Greedy Decoding VS Beam Search</h2><h3 id="Greedy-search"><a href="#Greedy-search" class="headerlink" title="Greedy search"></a>Greedy search</h3><p>一个自然的想法是贪心搜索(greedy search)，即decoder的每一步都选择最可能的单词，最后得到句子的每一个单词都是每一步认为最合适的单词。但这样并不保证整个句子的概率是最大的，即不能保证整个句子最合适。实际上，贪心搜索的每一步搜索都处理成仅仅与前面刚生成的一个单词相关，类似于马尔科夫假设。这显然是不合理的，具体来说，贪心搜索到的句子𝑦概率是使得下式概率最大：</p>
-<p>𝑃(𝑦|𝑥)&#x3D;∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦𝑘−1)</p>
-<p>而实际上，根据全概率公式计算得到𝑃(𝑦|𝑥)为：</p>
-<p>𝑃(𝑦|𝑥)&#x3D;∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1)</p>
-<h3 id="Beam-search"><a href="#Beam-search" class="headerlink" title="Beam search"></a>Beam search</h3><p>译为束搜索。思想是，每步选取最可能的𝑘个结果，再从最后的𝑘个结果中选取最合适的句子。𝑘称为beam size。</p>
-<p>具体做法是：</p>
-<p>首先decoder第一步搜索出最可能的𝑘个单词，即找到𝑦11,𝑦12,…,𝑦1𝑘，他们的概率𝑝(𝑦11|𝑥),…,𝑝(𝑦1𝑘|𝑥)为最大的𝑘个。</p>
-<p>进行第二步搜索，分别进行𝑘个模型副本的搜索。每个副本𝑖，根据上一步选取的单词𝑦1𝑖，选取概率最大的𝑘个结果𝑦21,𝑦22,…,𝑦2𝑘。这样，就有了𝑘∗𝑘个可能的结果，从这些结果中选择𝑘个概率最大的结果，即𝑝(𝑦1𝑖|𝑥)∗𝑝(𝑦2𝑗|𝑥,𝑦1𝑖)最大的𝑘个结果。</p>
-<p>进行第三步搜索，从第二步中确定的𝑘个结果出发，再进行𝑘个模型副本的搜索，直到最后一步，从最后的𝑘个结果中选取概率最大者。</p>
-<p>显然，若𝑘&#x3D;1则为贪心搜索，𝑘越大则占用内存越大，计算代价越大，实际应用中取10即可。</p>
-<p>另外，可以发现概率的连乘使得概率越来越小，很可能溢出，为了保证模型的稳定性，常对概率连乘计算+log变为加法。</p>
-<p>𝑃(𝑦|𝑥)&#x3D;𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))</p>
-<h3 id="改进Beam-search"><a href="#改进Beam-search" class="headerlink" title="改进Beam search"></a>改进Beam search</h3><h4 id="length-penalty"><a href="#length-penalty" class="headerlink" title="length penalty"></a>length penalty</h4><p>从Beam search的搜索过程中可以发现，Beam search偏向于找到更短的句子，也就是说，如果搜索过程中有一支搜索提前发现了&lt;𝐸𝑂𝑆&gt;,而另外𝑘−1支继续搜索找到其余更长的结果，那么由于概率连乘(或log连加)，越长的结果概率肯定越小。因此有必要进行模型修正，即进行长度归一化，具体来说，即：</p>
-<p>选择概率𝑃(𝑦|𝑥)&#x3D;1𝑛𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))最大的句子，式中，𝑛为该结果序列长度。</p>
-<p>另外，实践中还做了如下修正：</p>
-<p>𝑃(𝑦|𝑥)&#x3D;1𝑛𝛼𝑙𝑜𝑔(∏𝑛𝑘&#x3D;1𝑝(𝑦𝑘|𝑥,𝑦1,𝑦2,…,𝑦𝑘−1))</p>
-<p>式中，超参数𝛼取0.6或者0.7比较合适。</p>
-<h4 id="Grid-Beam-Search"><a href="#Grid-Beam-Search" class="headerlink" title="Grid Beam Search"></a>Grid Beam Search</h4><p>结合约束条件，选择模型生成的下一个结果或特定的词语或者短句</p>
-<h4 id="Best-First-Beam-Search"><a href="#Best-First-Beam-Search" class="headerlink" title="Best-First Beam Search"></a>Best-First Beam Search</h4><p>优化使用beam search解码的时间。实现比较复杂，细节较多</p>
-<h4 id="look-ahead"><a href="#look-ahead" class="headerlink" title="look ahead"></a>look ahead</h4><h4 id="on-the-fly"><a href="#on-the-fly" class="headerlink" title="on the fly"></a>on the fly</h4><h3 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h3><p>对于训练的seq2seq模型，对它输出的句子𝑦，以及实际的句子𝑦∗，若概率𝑦大于𝑦∗，（统计所有句子，平均来说是这个结果），则说明，seq2seq模型出错了。否则，说明，baem search并没有找到最合适的结果，可以考虑增大beam size大小。</p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>T5</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Triplet Loss</title>
-    <url>/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Triplet%20Loss/</url>
-    <content><![CDATA[<h1 id="Triplet-Loss"><a href="#Triplet-Loss" class="headerlink" title="Triplet Loss"></a>Triplet Loss</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Triplet-Loss最先由图像里提出来。为了解决负样本与标准样本过于相似的问题，来增加类间距离，减小类内距离<br>Triplet-Loss通过最小化dist(a,p)-dist(a,n)+margin，来训练出可以更好表征样本的embedding<br>dist()一般使用欧式距离，当然也可以用余弦等其它距离</p>
-<span id="more"></span>
-
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h3 id="样本"><a href="#样本" class="headerlink" title="样本"></a>样本</h3><p>使用triplet-loss通常需要将样本组合成三元组，&lt;a, p, n&gt;<br>如何组合有很多中方法，最直接的一种，将所有正样本和所有可能的负样本与标准样本一一组成三元组，这样可组合的可能性过多，这种方法并不适用，所以作者提出了另外两种方法offline和online</p>
-<h3 id="offline"><a href="#offline" class="headerlink" title="offline"></a>offline</h3><p>每n steps后，使用当前模型，计算出离每个标准问最远的正样本和最近的负样本，然后重新接着训练</p>
-<h3 id="online"><a href="#online" class="headerlink" title="online"></a>online</h3><p>从batch-size里选取正样本和负样本（我看很多文章里也写不清楚到底是怎么取，以下是个人理解）<br>每个batch-size里每个类别要取40个样本，然后随机选取一些负样本加入进来。batch-size大小最好为1800<br>我的思考：</p>
-<ul>
-<li>每个batch-size不需要包含所有类别，可以每次包含k&#x3D;5个类别，每个类别选取40个样本放入，共有200个样本，然后再选取1600个负样本放入</li>
-<li>接着对于batch-size中的每一个类别，我们选取40次正样本，然后从剩下的1800-40个负样本中随机选取负样本</li>
-<li>每个类别我们总共组成40个三元组，这个batch-size我们会组成200个三元组</li>
-<li>之所以要每个类别要选取40个正样本，是为了保证此类别中正样本可选取的数量不要太少，因为在组成三元组样本时，经常会碰到负样本过多的问题，这里强行规定的一定量的正样本是的两种样本比在batch-size中不至于太失衡</li>
-</ul>
-<h3 id="semi-hard"><a href="#semi-hard" class="headerlink" title="semi-hard"></a>semi-hard</h3><p>在论文中，作者解释如果每次都取hardest sample，即离标准样本最近的负样本，容易导致模型过早限于局部最小值（如果learning rate没足够大到能跳出局部最小区域，就会造成loss不下降的问题），因此我们尝试使用semi-hard sample</p>
-<ul>
-<li>hardest sample为距离标准样本最近的负样本（有可能距离小于正样本到标准样本的距离）</li>
-<li>semi sample为，比正样本距离标准样本的距离很近但稍远一点点的负样本。这类样本虽然不是最难的负样本，但也是很难分的样本，因为他们距离标准样本的距离与正样本相似，因此容易混淆</li>
-</ul>
-<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><ul>
-<li>为了让SGD更快下降，batch-size越小越好</li>
-<li>为了让triplet loss效果更好，batch-size越大越好</li>
-<li>作者选择了batch-size&#x3D;1800</li>
-<li>作者这里margin设为0.2</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>triplet loss</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>梯度消失和梯度爆炸</title>
-    <url>/2019/12/07/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8/</url>
-    <content><![CDATA[<h1 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h1><h2 id="什么是梯度消失-x2F-梯度爆炸"><a href="#什么是梯度消失-x2F-梯度爆炸" class="headerlink" title="什么是梯度消失&#x2F;梯度爆炸"></a>什么是梯度消失&#x2F;梯度爆炸</h2><p>梯度消失或梯度爆炸是指在神经网络权重更新的反向传播中，$\frac{\partial Loss}{\partial W}$过小或过大的现象</p>
-<h2 id="梯度消失-x2F-梯度爆炸会产生什么问题"><a href="#梯度消失-x2F-梯度爆炸会产生什么问题" class="headerlink" title="梯度消失&#x2F;梯度爆炸会产生什么问题"></a>梯度消失&#x2F;梯度爆炸会产生什么问题</h2><p>梯度爆炸会导致权重的更新过大（表现为LOSS出现Nan）<br>梯度消失会导致权重的更新过慢或者几乎不更新</p>
-<span id="more"></span>
-
-<h2 id="为什么会有梯度消失和梯度爆炸"><a href="#为什么会有梯度消失和梯度爆炸" class="headerlink" title="为什么会有梯度消失和梯度爆炸"></a>为什么会有梯度消失和梯度爆炸</h2><p>一种是任务梯度消失&#x2F;梯度爆炸的原因是反向传播过程中的叠成导致的<br>另一种认为反向传播不该背这个锅，反向传播求导只是一种求最优解的方式，最根本的原因还是网络结构的问题（线性和非线性公式连成组合）</p>
-<blockquote>
-<p>看到<a href="https://www.zhihu.com/question/34878706">有个文章</a>说我们不应该纠结于梯度消失和梯度爆炸，应该从不同的角度看LSTM，比如选择性、信息不变性等等，觉得这是个很好的想法。当然，他对于RNN和DNN中梯度消失和梯度爆炸的看法也相对详细正确，下面会细说。</p>
-</blockquote>
-<p>无论是因为网络结构还是反向传播，不可否认的是梯度消失和梯度传播确实来源于对权重求导后很多小于1的数值的连乘，下面我门主要看一下为什么会产生这些小于1的数值。</p>
-<h3 id="几个激活函数"><a href="#几个激活函数" class="headerlink" title="几个激活函数"></a>几个激活函数</h3><p>在进入反向传播求导前，先认识一下神经网络中我们经常用到的激活函数</p>
-<h4 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h4><p>sigmoid 常见于CNN中，在RNN和LSTM中一般不会用到sigmoid<br>sigmoid的公式为$S(x)&#x3D;\frac{1}{1+e^{-x}}$<br>其函数和导数图如下</p>
-<p><img src="/./images/image/sigmoid.png" alt="sigmoid"></p>
-<h4 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h4><p>LSTM和RNN中会用到tanh，详情可以看上一篇文章<br>tanh的公式为$tanh(x)&#x3D;\frac{e^{x}-e^{-x}}{e^{x}+e^{x}}$<br>其函数和导数图如下</p>
-<p><img src="/images/image/tanh.png" alt="tanh"></p>
-<h4 id="Relu"><a href="#Relu" class="headerlink" title="Relu"></a>Relu</h4><p>Relu主要是为了解决梯度消失和梯度爆炸的问题<br>其公式为：<br>$<br>relu(x)&#x3D;\begin{cases}<br>0, x&lt;0 \\<br>x, x&gt;0<br>\end{cases}<br>$</p>
-<p>其函数和导数图如下</p>
-<p><img src="/images/image/relu.jpg" alt="relu"></p>
-<p>relu的优点：</p>
-<ul>
-<li>解决了梯度消失&#x2F;梯度爆炸的问题</li>
-<li>计算速度快</li>
-<li>加速了网络训练（这点我有点怀疑，是指计算速度快呢还是指效果更好，更容易收敛找到最优解呢？如果是第二点，如何证明的？）<br>relu缺点：</li>
-<li>负数部分恒为0，导致一些神经元无法激活（但是有很多relu的改进版已经解决了这个问题，比如leakrelu）</li>
-<li>输出不是以0为中心</li>
-</ul>
-<blockquote>
-<p><strong>问题：如果大于0的函数都返回其本身，不是失去了使用非线性函数的意义吗？</strong></p>
-</blockquote>
-<h3 id="为什么会产生梯度消失和梯度爆炸"><a href="#为什么会产生梯度消失和梯度爆炸" class="headerlink" title="为什么会产生梯度消失和梯度爆炸"></a>为什么会产生梯度消失和梯度爆炸</h3><p>DNN和RNN中的梯度消失和梯度爆炸是不同的</p>
-<h4 id="DNN"><a href="#DNN" class="headerlink" title="DNN"></a>DNN</h4><p>写比较麻烦，下次有时间再看看专门推一遍公式写一遍吧，这里直接贴吧：</p>
-<p><img src="/images/image/nn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADw%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="nn反向传播w导数解释"></p>
-<p><img src="/images/image/nn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADb%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="nn反向传播b导数解释"></p>
-<p>没有手动推导，所以曲折的理解过程如下：</p>
-<ol>
-<li><p>我当时看到两个博客里的公式不一样很困惑，后来发现是自己粗心，因为第一个是对W求导，第二个是对b求导。但是看到很多博客里其实都写的是第二种情况。<br>其实更应该考虑的是第一种情况，因为在神经网络中，bias是为了防止wx等于零起的辅助作用，真正有意义的是讨论W。</p>
-</li>
-<li><p>虽然真正有意义的是讨论W，但是图二中对b求导的公式其实和真正对w求导的公式差不多，因为他们前面的所有结果都是相同的，唯一不同的是最后一步对b求导结果是1，而对w求导结果是$\delta’(z)$，也就是图一中的$f_1$。所以图二中的公式可以看作是图一公式的详细版。所以在反向传播中，决定导数数值的不仅是激活函数的函数，也有W本身。</p>
-</li>
-</ol>
-<p>如上所示，我们可以看到$loss$对$W_1$求导，其实是$\delta’(z) \cdot w_i$的连乘，在上面我们已经了解到，sigmoid和tanh的导数，都小于零，w一般都会初始化为均值为0，方差为1的数值，我们可以有$\vert \delta’(z) \cdot w_i \vert&lt;1$($\vert \delta’(z) \cdot w_i \vert&lt;\frac{1}{4}$当激活函数为sigmoid时)。因此会有梯度消失。</p>
-<p>当然，当w特别大是，我们会有$\vert \delta’(z) \cdot w_i \vert&gt;1$，就会导致梯度爆炸。</p>
-<p>从上我们可以看到DNN中的梯度爆炸或者梯度消失，本质是大于1或者小于1的数的<strong>连乘</strong>（注意这里不是幂次方，RNN中才是幂次方，下面会细说）导致的。</p>
-<h4 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h4><p>RNN中很重要的一点是权重共享。一样贴图</p>
-<p><img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADw%E5%AF%BC%E6%95%B0%E8%A7%A3%E9%87%8A.png" alt="rnn反向传播w导数解释"></p>
-<p>这里有几个点需要解释：</p>
-<ul>
-<li><p>为什么DNN中就连乘，但是RNN的导数中有加法呢？<br>DNN中写出的公式是<strong>每一层</strong>$w_i$前的求导公式<br>RNN这里写出的是<strong>所有层数</strong>的$w_x$前的求导公式的和，因为RNN是权重共享，所以对$W_x$的更新就是每一层需要对$W_x$更新的和。<br>因此第三层$W_x$前的导数是<img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%B8%89%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第三层导数">，第二层$W_x$前的导数是<img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%BA%8C%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第二层导数">，第一层$W_x$前的导数是<img src="/images/image/rnn%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AC%AC%E4%B8%80%E5%B1%82%E5%AF%BC%E6%95%B0.png" alt="rnn反向传播第一层导数"></p>
-</li>
-<li><p>公式中$\frac{\partial S_i}{\partial S_i-1}$和DNN中的$\frac{\partial f_i}{\partial f_i-1}$是一样的性质，唯一不同的是这里$\frac{\partial S_i}{\partial S_i-1}&#x3D;\frac{\partial S_i-1}{\partial S_i-2}&#x3D;tanh’\cdot W_s$，所以这里其实是一个小于1的数的<strong>幂次方</strong></p>
-</li>
-</ul>
-<h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4><p>关于DNN和RNN的梯度消失和梯度爆炸，<a href="https://www.zhihu.com/question/34878706">这里</a>解释的非常详细。</p>
-<p>我也自己来总结以下加深印象</p>
-<ul>
-<li><p>DNN中每层都有不同的参数，所以每一层都各是各的梯度。RNN中因为权重共享，所以梯度为所有层数梯度的总和（上面提到过）</p>
-</li>
-<li><p><strong>每一层中</strong>：DNN是小于1的梯度的<strong>连乘</strong>，而RNN中因为$\frac{\partial S_i}{\partial S_i-1}&#x3D;\frac{\partial S_i-1}{\partial S_i-2}$的关系，所以是<strong>幂次方</strong></p>
-</li>
-<li><p>RNN中的梯度不会真正的消失，它是每一层梯度的和，RNN中的梯度消失主要是指：离的越远，梯度的传递越弱，所以梯度被邻近的梯度主导，导致模型难以学到远距离信息的长期依赖性问题</p>
-</li>
-</ul>
-<h4 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h4><p>附加一点LSTM的</p>
-<ul>
-<li><p>在LSTM中，有很多条路径，cell state这条路径扮演的角色有点像ResNet残差连接，使前面的数据可以不受中间数据的影响传输到后面。</p>
-</li>
-<li><p>如果去除cell state这条路径，LSTM中该消失还是消失，该爆炸也爆炸，但是有了cell state，<em>梯度&#x3D;消失梯度+cell state的梯度</em>，我们看到如果cell state的梯度不消失，就可以一定程度上缓解梯度消失，在第一版没有遗忘门的LSTM中，这里的cell state的梯度&#x3D;1，后来加入了一个遗忘门，但是因为tanh的取值在-1和1之间，并且多数情况趋于1或者-1，所以加入遗忘门后，LSTM也可以一定程度上缓解梯度消失问题。</p>
-</li>
-</ul>
-<h5 id="为什么说是缓解呢"><a href="#为什么说是缓解呢" class="headerlink" title="为什么说是缓解呢"></a>为什么说是缓解呢</h5><ul>
-<li><p>我们不能保证每一层都有前面传过来的残差连接，即我们不能保证哪几层cell state的门就一定是0（怎么解释有待再详细思考）</p>
-</li>
-<li><p>cell state趋于1或者-1，且有不趋于1和-1的时候，这个时候梯度也是小于1的数</p>
-</li>
-<li><p><strong>那如果每一层的门的数值不一样，是不是也会导致$\frac{\partial S_i}{\partial S_i-1} \neq \frac{\partial S_i-1}{\partial S_i-2}$？所以这里其实也不是幂次方的关系？</strong></p>
-</li>
-</ul>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="梯度爆炸"><a href="#梯度爆炸" class="headerlink" title="梯度爆炸"></a>梯度爆炸</h3><ol>
-<li><p>梯度爆炸一般的解决方法是使用gradient clipping(梯度裁剪)，即通过设置梯度的值域范围来限制梯度过大。</p>
-</li>
-<li><p>L2正则化：$Loss&#x3D;(y-W^tx)^2+\alpha \cdot \Vert W \Vert^2$，如果权重过大，可以通过Loss的减小来一定程度控制W过大。</p>
-</li>
-</ol>
-<h3 id="梯度消失"><a href="#梯度消失" class="headerlink" title="梯度消失"></a>梯度消失</h3><p>在神经网络中，梯度消失出现的更多一些，也更难解决。</p>
-<ol>
-<li><p>用tanh取代sigmoid激活函数。因为tanh导数的范围是-1到1，相对sigmoid的导数0到$\frac{1}{4}$，tanh可以相对sigmoid在一定程度缓解梯度消失</p>
-</li>
-<li><p>使用relu激活函数，当x&gt;0时，relu导数是1。但是觉得他会引起一些其他问题，并且在x&gt;0时为线性函数，所以有点失去了使用激活函数的意义，上面已经提到过了</p>
-</li>
-<li><p>batchnorm(简称BN)非常复杂，以后专门弄一篇研究一下。在反向传播中$\delta’(z) \cdot w_i$有W的存在，我们通过强行拉回偏离的W的分布到均值为0方差为1的正太分布上，消除了W带来的放大和缩小的问题，来一定程度缓解梯度消失（梯度爆炸）的问题</p>
-<p> 有文章说这里是通过BN改变激活函数的输入，使其落在激活函数比较敏感的区域，让输入的微小变化造成Loss较大的变化来缓解梯度消失，这一点还要详细思考一下。</p>
-<p> a. 我们用BN对数据进行缩放，强行改变数据输入，是否会对模型有影响？</p>
-<p> b. BN中，如果batch size过小，会导致数据不准确，过大会对内存有要求</p>
-<p> c. 这里norm的是输入x还是权重w？：两个都不是，而是激活函数的输入$Wx+b$</p>
-</li>
-<li><p>残差结构：LSTM中cell state的应用，就类似于残差结构，可以一定程度上让在序列前面的信息不受影响的（较完整的）传输到后面的序列中</p>
-</li>
-<li><p>谨慎选择随机初始化权重，如xavier初始化</p>
-</li>
-</ol>
-<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><p>非常感谢<a href="https://zhuanlan.zhihu.com/p/76772734">这篇文章</a>，很全面的解释了很多我的疑惑。</p>
-<h3 id="hexo-markdown"><a href="#hexo-markdown" class="headerlink" title="hexo-markdown"></a>hexo-markdown</h3><ol>
-<li><p>又一个新发现，在markdown中，如果使用<code>$</code>，公式会和字在同一层展示，如果使用<code>$$</code>，公式会自己单独用一行展示。如下：</p>
-<ul>
-<li><code>$</code>：$y&#x3D;f(x)$</li>
-<li><code>$$</code>：$$y&#x3D;f(x)$$</li>
-</ul>
-</li>
-<li><p>尝试了很多插入图片的方法。只有复制github上图片连接最好用，这样在markdown，首页和文章中都可以正确显示图片。如果只是在<code>_config.yml</code>中修改<code>post_asset_folder:true</code>，再使用相对路径来显示图片，那么图片只能在文章首页正确显示，但是不能在文章中正确显示，并且在markdown中的相对路径和在网页上的，不一定是一样的。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>LSTM</tag>
-        <tag>RNN</tag>
-        <tag>梯度消失</tag>
-        <tag>梯度爆炸</tag>
-        <tag>DNN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SVM核函数本质</title>
-    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/SVM%E6%A0%B8%E5%87%BD%E6%95%B0%E6%9C%AC%E8%B4%A8/</url>
-    <content><![CDATA[<h1 id="SVM核函数本质"><a href="#SVM核函数本质" class="headerlink" title="SVM核函数本质"></a>SVM核函数本质</h1><p>核函数的本质</p>
-<ol>
-<li>实际中，我们会经常遇到线性不可分的样例，此时，我们的常用做法是把样例特征映射到高维空间中去(如上文2.2节最开始的那幅图所示，映射到高维空间后，相关特征便被分开了，也就达到了分类的目的)；</li>
-<li>但进一步，如果凡是遇到线性不可分的样例，一律映射到高维空间，那么这个维度大小是会高到可怕的(如上文中19维乃至无穷维的例子)。那咋办呢？</li>
-<li>此时，核函数就隆重登场了，核函数的价值在于它虽然也是讲特征进行从低维到高维的转换，但核函数绝就绝在它事先在低维上进行计算，而将实质上的分类效果表现在了高维上，也就如上文所说的避免了直接在高维空间中的复杂计算。</li>
-</ol>
-<p><a href="https://blog.csdn.net/u010199356/article/details/88836026">核函数解释博客</a><br>很有意思，有空可以自己试试用matlab画图看看</p>
-<p><a href="https://zhuanlan.zhihu.com/p/77750026">SVM推导过程</a><br>也可以看看李航的统计书里的推导</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>核函数</tag>
-        <tag>svm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>斐波那契数列</title>
     <url>/2020/07/07/%E6%95%B0%E5%AD%A6/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/</url>
     <content><![CDATA[<h1 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h1><p>斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：$1、1、2、3、5、8、13、21、34、……$在数学上，斐波那契数列以如下被以递推的方法定义：$F(1)&#x3D;1$，$F(2)&#x3D;1$, $F(n)&#x3D;F(n - 1)+F(n - 2)（n ≥ 3，n ∈ N*）$在现代物理、准晶体结构、化学等领域，斐波纳契数列都有直接的应用，为此，美国数学会从 1963 年起出版了以《斐波纳契数列季刊》为名的一份数学杂志，用于专门刊载这方面的研究成果。</p>
@@ -1902,106 +2002,6 @@
         <tag>斐波那契数列</tag>
         <tag>黄金分割</tag>
         <tag>兔子数列</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>欧几里得算法--求最大公约数</title>
-    <url>/2020/07/07/%E6%95%B0%E5%AD%A6/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h1><p>欧几里德算法是用来求两个正整数最大公约数的算法。是由古希腊数学家欧几里德在其著作《The Elements》中最早描述了这种算法,所以被命名为欧几里德算法。扩展欧几里德算法可用于RSA加密等领域。</p>
-<p>假如需要求 1997 和 615 两个正整数的最大公约数,用欧几里德算法，是这样进行的：</p>
-<figure class="highlight basic"><table><tr><td class="code"><pre><span class="line"><span class="symbol">1997 </span>/ <span class="number">615</span> = <span class="number">3</span> (余 <span class="number">152</span>)</span><br><span class="line"><span class="symbol">615 </span>/ <span class="number">152</span> = <span class="number">4</span>(余<span class="number">7</span>)</span><br><span class="line"><span class="symbol">152 </span>/ <span class="number">7</span> = <span class="number">21</span>(余<span class="number">5</span>)</span><br><span class="line"><span class="symbol">7 </span>/ <span class="number">5</span> = <span class="number">1</span> (余<span class="number">2</span>)</span><br><span class="line"><span class="symbol">5 </span>/ <span class="number">2</span> = <span class="number">2</span> (余<span class="number">1</span>)</span><br><span class="line"><span class="symbol">2 </span>/ <span class="number">1</span> = <span class="number">2</span> (余<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-<p>至此，最大公约数为1</p>
-<p>以除数和余数反复做除法运算，当余数为 0 时，取当前算式除数为最大公约数，所以就得出了 1997 和 615 的最大公约数 1。</p>
-<h3 id="计算证明"><a href="#计算证明" class="headerlink" title="计算证明"></a>计算证明</h3><p>其计算原理依赖于下面的定理：</p>
-<p>定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数。最大公约数（Greatest Common Divisor）缩写为GCD。<br>$gcd(a,b) &#x3D; gcd(b,a \mod b)$ (不妨设$a&gt;b$ 且$r&#x3D;a \mod b$ ,$r$不为$0$)</p>
-<h4 id="证法一"><a href="#证法一" class="headerlink" title="证法一"></a>证法一</h4><ul>
-<li><p>正</p>
-<ul>
-<li>$a$可以表示成$a &#x3D; kb + r$（$a$，$b$，$k$，$r$皆为正整数，且$r&lt;b$），则$r &#x3D; a \mod b$</li>
-<li>假设$d$是$a$,$b$的一个公约数，记作$d|a$,$d|b$，即$a$和$b$都可以被$d$整除。</li>
-<li>而$r &#x3D; a - kb$，两边同时除以$d$，$r&#x2F;d&#x3D;a&#x2F;d-kb&#x2F;d&#x3D;m$，由等式右边可知$m$为整数，因此$d|r$</li>
-<li>因此$d$也是$b$,$a \mod b$的公约数</li>
-</ul>
-</li>
-<li><p>反</p>
-<ul>
-<li>假设$d$是$b$,$a \mod b$的公约数, 则$d|b$,$d|(a-k*b)$,$k$是一个整数。</li>
-<li>进而$d|a$，因此$d$也是$a$,$b$的公约数</li>
-<li>因此$(a,b)$和$(b,a \mod b)$的公约数是一样的，其最大公约数也必然相等</li>
-</ul>
-</li>
-<li><p>得证</p>
-</li>
-</ul>
-<h4 id="证法二"><a href="#证法二" class="headerlink" title="证法二"></a>证法二</h4><p>假设c &#x3D; gcd(a,b),则存在m,n，使a &#x3D; mc, b &#x3D; nc;<br>令r &#x3D; a mod b，即存在k，使r &#x3D; a-kb &#x3D; mc - knc &#x3D; (m-kn)c;<br>故gcd(b,a mod b) &#x3D; gcd(b,r) &#x3D; gcd(nc,(m-kn)c) &#x3D; gcd(n,m-kn)*c;<br>假设d &#x3D; gcd(n,m-kn), 则存在x,y, 使n &#x3D; xd, m-kn &#x3D; yd; 故m &#x3D; yd+kn &#x3D; yd+kxd &#x3D; (y+kx)d;<br>故有a &#x3D; mc &#x3D; (y+kx)dc, b &#x3D; nc &#x3D; xdc; 可得 gcd(a,b) &#x3D; gcd((y+kx)dc,xdc) &#x3D; dc;<br>由于gcd(a,b) &#x3D; c, 故d &#x3D; 1;<br>即gcd(n,m-kn) &#x3D; 1, 故可得gcd(b,a mod b) &#x3D; c;<br>故得证gcd(a,b) &#x3D; gcd(b,a mod b).<br>注意:两种方法是有区别的。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>自己写的</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    c = a%b</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b) <span class="keyword">if</span> c==<span class="number">0</span> <span class="keyword">else</span> gcd(b, c)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
-
-<p>百度百科上的</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">while</span> a != <span class="number">0</span>:</span><br><span class="line">        a, b = b % a, a</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h2><p>扩展欧几里得算法（英语：Extended Euclidean algorithm）是欧几里得算法（又叫辗转相除法）的扩展。已知整数$a$、$b$，扩展欧几里得算法可以在求得$a$、$b$的最大公约数的同时，能找到整数$x$、$y$（其中一个很可能是负数），使它们满足贝祖等式</p>
-<p>$ax+by&#x3D;gcd(a,b)$</p>
-<p>如果a是负数，可以把问题转化成$|a|(-x)+by&#x3D;gcd(|a|,b)$，然后令$x^{‘}&#x3D;(-x)$。</p>
-<p>扩展欧几里得算法可以用来计算模反元素(也叫模逆元)，而模反元素在RSA加密算法中有举足轻重的地位。</p>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">ext_euclid</span>(<span class="params">a, b</span>):     </span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:         </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>, <span class="number">0</span>, a     </span><br><span class="line">    <span class="keyword">else</span>:         </span><br><span class="line">        x, y, q = ext_euclid(b, a % b) </span><br><span class="line">        <span class="comment"># q = gcd(a, b) = gcd(b, a%b)   </span></span><br><span class="line"></span><br><span class="line">        <span class="comment">## 这一行怎么求的，有时间可以论证一下      </span></span><br><span class="line">        x, y = y, (x - (a // b) * y)     </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x, y, q</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>欧几里得</tag>
-        <tag>最大公约数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>牛顿法--优化算法</title>
-    <url>/2020/07/07/%E6%95%B0%E5%AD%A6/%E7%89%9B%E9%A1%BF%E6%B3%95--%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h1><p>牛顿迭代法（Newton’s method）又称为牛顿-拉夫逊（拉弗森）方法（Newton-Raphson method），它是牛顿在17世纪提出的一种在实数域和复数域上近似求解方程的方法。</p>
-<p>牛顿法迭代法解非线性方程，是把非线性方程 $f(x)&#x3D;0$ 线性化的一种近似方法。把 $f(x)$ 在点 $x_0$ 的某领域内展开成泰勒级数 $f(x)&#x3D;f(x_0)+f^{‘}(x_0)(x-x_0)+ \frac{f^{‘’}(x_0)(x-x_0)^2}{2!}+…+ \frac{f^{n}(x_0)(x-x_0)^n}{n!}+R_n(x)$ ，取其线性部分，即展开式的前两项 $f(x_0)+f^{‘}(x_0)(x-x_0)$ ，令其等于0，以此作为非线性方程 $f(x)&#x3D;0$ 的近似方程，若 $f^{‘}(x_0) \neq 0$ ，则解为 $x_1&#x3D;x_0- \frac {f(x_0)} {f^{‘}(x_0)}$ ，这样我们得到牛顿迭代法的一个迭代关系式</p>
-<p>Python代码实例展示求解方程 $(x-3)^3&#x3D;0$ 的根</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> (x-<span class="number">3</span>)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fd</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*(x-<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">newtonMethod</span>(<span class="params">n, assum</span>):</span><br><span class="line">    time = n</span><br><span class="line">    x = assum</span><br><span class="line">    Next = <span class="number">0</span></span><br><span class="line">    A = f(x)</span><br><span class="line">    B = fd(x)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;A = &#x27;</span> + <span class="built_in">str</span>(A) + <span class="string">&#x27;,B = &#x27;</span> + <span class="built_in">str</span>(B) + <span class="string">&#x27;,time = &#x27;</span> + <span class="built_in">str</span>(time))</span><br><span class="line">    <span class="keyword">if</span> f(x) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> time, x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        Next = x - A/B</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Next x = &#x27;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 1.</span></span><br><span class="line">    <span class="comment">## 这里设置的迭代条件不是当前值和最优值之间的距离，而是相比于上一个值的变化要小于某个值</span></span><br><span class="line">    <span class="comment">## 但我们要求的就是最优值，所以我们并不知道最优值的具体值，不能的到他们的距离</span></span><br><span class="line">    <span class="comment">## 所以要通过每次A的变化，来估计最优值</span></span><br><span class="line">    <span class="keyword">if</span> A - f(Next) &lt; <span class="number">1e-6</span>: </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Meet f(x) = 0, x = &quot;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 2.</span></span><br><span class="line">    <span class="comment"># ## 所以这里其实是不是也可以通过x的变化，来估计最优值？</span></span><br><span class="line">    <span class="comment"># if A/B &lt; 1e-4:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## 3.</span></span><br><span class="line">    <span class="comment"># ## 这里当然也能用 if time &gt; m 来设置跳出循环的条件，但是相对 A - f(Next) 得到的值会更不精确一些</span></span><br><span class="line">    <span class="comment"># if time &gt; 10:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> newtonMethod(n+<span class="number">1</span>, Next)</span><br><span class="line"></span><br><span class="line">newtonMethod(<span class="number">0</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>牛顿法</tag>
-        <tag>优化算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>白化和归一化</title>
-    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/%E7%99%BD%E5%8C%96%E5%92%8C%E5%BD%92%E4%B8%80%E5%8C%96/</url>
-    <content><![CDATA[<h1 id="白化和归一化"><a href="#白化和归一化" class="headerlink" title="白化和归一化"></a>白化和归一化</h1><h3 id="白化"><a href="#白化" class="headerlink" title="白化"></a>白化</h3><p>白话的目的就是去除输入数据的冗余信息。经过白化处理后，生成新数据集满足两个条件：</p>
-<ul>
-<li>特征相关性较低</li>
-<li>特征具有相同的方差</li>
-</ul>
-<p>白化算法实现的过程：</p>
-<ul>
-<li>第一步是进行PCA操作，将数据降维</li>
-<li>第二步是对新的坐标进行归一化操作</li>
-</ul>
-<h3 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h3><p>数据归一化的目的就是为了把不同来源的数据统一到同一数量级(一个参考坐标系下)，这样使得比较起来更加有意义。归一化使得后面数据的处理更为方便，它有两大有点：</p>
-<ul>
-<li>归一化提高梯度下降求最优解的速度</li>
-<li>归一化有可能提高精度</li>
-</ul>
-<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>看了下博客，都是抄来抄去，没有明确解释两者区别的，个人认为区别如下：</p>
-<ul>
-<li>白化里会用来归一化来统一降维后数据的量级，但是归一化不会用到白化</li>
-<li>白化的主要目的是特征提取，尽量获取相互独立的特征进行分析</li>
-<li>归一化的主要目的是统一特征数据的量级（取值范围）</li>
-</ul>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>白化</tag>
-        <tag>归一化</tag>
       </tags>
   </entry>
   <entry>
@@ -2136,39 +2136,20 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
-    <title>JAVA 序列化和浅/深拷贝</title>
-    <url>/2022/03/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-%E6%B7%B1%E6%8B%B7%E8%B4%9D/</url>
-    <content><![CDATA[<h1 id="JAVA-序列化和浅-x2F-深拷贝"><a href="#JAVA-序列化和浅-x2F-深拷贝" class="headerlink" title="JAVA 序列化和浅&#x2F;深拷贝"></a>JAVA 序列化和浅&#x2F;深拷贝</h1><h2 id="序列化-x2F-深拷贝"><a href="#序列化-x2F-深拷贝" class="headerlink" title="序列化&#x2F;深拷贝"></a>序列化&#x2F;深拷贝</h2><p>Java里不能直接进行浅拷贝&#x2F;深拷贝</p>
-<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝</p>
-<span id="more"></span>
-
-<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>因为需要连同对象和对象的值一起拷贝到内存中一个新的地址，所以当对象为比较复杂的嵌套类时，性能就会成为一个问题，所以需要注意。<br>一般要实现深拷贝，都是对需要拷贝的类上贴上标签<code>implements Serializable</code>，并且给出一个序列化号<code>private static final long serialVersionUID = 3487495895819393L;</code><br>然后使用以下函数进行序列化和反序列化。<br>序列化和反序列化的本质是通过某种序列化的协议，将类整个转变成二进制信息，通过serialVersionUID比对再将二进制信息转换成类。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SerializationDemo</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String stringField;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> intField;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@T</span> 某个类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Serializable</span><span class="params">(SerializationDemo)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">ByteArrayOutputStream</span> <span class="variable">bout</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">out</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(bout);</span><br><span class="line">        out.writeObject(T);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(IOException) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 反序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@data</span> 二进制</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Deserializable</span><span class="params">(data)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">byte</span>[] data; <span class="comment">// read from file or request</span></span><br><span class="line">        <span class="type">ByteArrayInputStream</span> <span class="variable">bin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(data);</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(bin);</span><br><span class="line">        <span class="type">SerializationDemo</span> <span class="variable">demo</span> <span class="operator">=</span> (SerializationDemo) in.readObject();</span><br><span class="line">        &#125; <span class="keyword">catch</span>(ClassNotFoundException) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="FastJson-VS-Gson"><a href="#FastJson-VS-Gson" class="headerlink" title="FastJson VS Gson"></a>FastJson VS Gson</h3><p>但当是嵌套类时，需要对类中的每一个类也都贴上序列化的标签，因此会变得很复杂。<br>此时可以引入<code>FastJson</code>类的第三方软件帮忙。（还有<code>gson</code>等）。但目前主流是<code>Gson</code>和<code>FastJson</code><br>性能上<code>FastJson</code>更好，功能上<code>Gson</code>更全，而且<code>Gson</code>不需要额外的<code>jar</code>包，且使用更简便<br>具体区别见文章<a href="https://blog.csdn.net/John8169/article/details/80767771">Gson与FastJson比较</a>，这篇文章分析的非常细致</p>
-<ol>
-<li><code>FastJson</code>需要有默认无参构造，可以直接使用<code>@NoArgsConstructor</code>。（有时候还需要加上<code>@AllArgsConstructor</code>，具体还不了解为什么）</li>
-<li>使用<code>FastJson</code>会有内存泄漏问题，具体实例见<a href="https://juejin.cn/post/6960695856127279111">FastJson使用不当导致内存泄漏排查及解决过程 ｜ Java Debug 笔记</a>，另一片文章<a href="https://segmentfault.com/a/1190000039980284">fastjson内存泄漏解决办法 - springboot实战电商项目mall4j</a></li>
-</ol>
-<h5 id="关于serialVersionUID"><a href="#关于serialVersionUID" class="headerlink" title="关于serialVersionUID"></a>关于serialVersionUID</h5><p>关于serialVersionUID：<br>1、serialVersionUID是序列化前后的唯一标识符<br>2、默认如果没有人为显式定义过serialVersionUID，那编译器会为它自动声明一个</p>
-<p>为什么要定义serialVersionUID：</p>
-<ol>
-<li>serialVersionUID序列化ID，可以看成是序列化和反序列化过程中的“暗号”，在反序列化时，JVM会把字节流中的序列号ID和被序列化类中的序列号ID做比对，只有两者一致，才能重新反序列化，否则就会报异常来终止反序列化的过程。</li>
-<li>如果在定义一个可序列化的类时，没有人为显式地给它定义一个serialVersionUID的话，则Java运行时环境会根据该类的各方面信息自动地为它生成一个默认的serialVersionUID，一旦像上面一样更改了类的结构或者信息，则类的serialVersionUID也会跟着变化</li>
-<li>为了serialVersionUID的确定性，建议凡是implements Serializable的类，都人为显式地为它声明一个serialVersionUID明确值</li>
-<li>如果不想手动赋值，IntelliJ IDEA中，使用alt + enter自动生成serialVersionUID字段</li>
-</ol>
-<h5 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h5><p>Serializable接口是一个里面什么都没有的接口<br>它的源代码是public interface Serializable{}，即什么都没有。<br>如果一个接口里面什么内容都没有，那么这个接口是一个标识接口，比如，一个学生遇到一个问题，排错排了几天也没解决，此时，她举手了（示意我去帮他解决），然后我过去，帮他解决了，那么这个举手其实就是一个标识，自己不能解决的问题标示我去帮他解决，在Java中的这个Serializable接口是给JVM看的，告诉JVM，我不做这个类的序列化了，你(JVM)给我序列化，序列化就是变成二进制流，比如云计算、Hadoop，特别是Hadoop完全就是分布式环境，那么就要涉及到对象要在网络中传输，里面的全是二进制流，当然你来做这个序列化操作也可以，但是这个类里面可能还有一个类，如果你把外面的类对象Person变成二进制，那么里面也要序列化（这要用到深度遍历，很麻烦），干脆告诉JVM，让他来帮你做。</p>
+    <title>defaultdict</title>
+    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/defaultdict/</url>
+    <content><![CDATA[<h1 id="defaultdict-function-factory"><a href="#defaultdict-function-factory" class="headerlink" title="defaultdict(function_factory)"></a>defaultdict(function_factory)</h1><p><strong>defaultdict</strong></p>
+<p>dict subclass that calls a factory function to supply missing values</p>
+<p><code>defaultdict</code>构建的是一个类似<code>dictionary</code>的对象，其中<code>keys</code>值自行确定赋值，但是<code>values</code>的类型是<code>fucntion_factory</code>的类实例，而且<strong>具有默认值</strong>。比如<code>defaultdict(list)</code>创建一个<code>dict</code>,对于任何一个还不存在的<code>dict[newkey]</code>都已经有一个默认<code>list</code>使得<code>dict[newkey].append</code>可以直接运行而不需要先运行<code>dict[newkey]=[]</code>。</p>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = [(<span class="string">&#x27;yellow&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;yellow&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;red&#x27;</span>, <span class="number">1</span>)]</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">d = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> s:</span><br><span class="line">    d[k].append(v)</span><br><span class="line"><span class="built_in">list</span>(d.items())</span><br><span class="line">[(<span class="string">&#x27;blue&#x27;</span>, [<span class="number">2</span>, <span class="number">4</span>]), (<span class="string">&#x27;red&#x27;</span>, [<span class="number">1</span>]), (<span class="string">&#x27;yellow&#x27;</span>, [<span class="number">1</span>, <span class="number">3</span>])]</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>编程语言</category>
-        <category>JAVA</category>
+        <category>Python</category>
       </categories>
       <tags>
-        <tag>深拷贝</tag>
-        <tag>序列化</tag>
-        <tag>JAVA</tag>
+        <tag>defaultdict</tag>
       </tags>
   </entry>
   <entry>
@@ -2176,8 +2157,6 @@ e, f, g, &lt;eos&gt;
     <url>/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E4%B8%AD%E4%BD%BF%E7%94%A8args%E5%92%8Cadd_argument%E4%BC%A0%E5%8F%82/</url>
     <content><![CDATA[<h1 id="Python中使用args和add-argument传参"><a href="#Python中使用args和add-argument传参" class="headerlink" title="Python中使用args和add_argument传参"></a>Python中使用args和add_argument传参</h1><p>在Python中，args一般用来在外部运行 <code>convert.py</code> 时，从外部传参。但可以配合使用add_argument进行<b>内部或外部<b>传参。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    argp = argparse.ArgumentParser()</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;in_file&#x27;</span>, default=datapath_abs_test_machine, <span class="built_in">help</span>=<span class="string">&#x27;Input CSV file&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--out_name&#x27;</span>, default=<span class="string">&#x27;baseline-e2e-data&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Output files name prefix&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-a&#x27;</span>, <span class="string">&#x27;--abstract&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Comma-separated list of slots to be abstracted&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-m&#x27;</span>, <span class="string">&#x27;--multi-ref&#x27;</span>,</span><br><span class="line">                      <span class="built_in">help</span>=<span class="string">&#x27;Multiple reference mode: group by the same DA&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--no-refs&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Use a file without references, only produce DA files&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-n&#x27;</span>, <span class="string">&#x27;--slot-names&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Include slot names in delexicalized texts&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    args = argp.parse_args()</span><br><span class="line">    convert(args)</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
 
 
 <p>运行命令行如下：<br><code>python ./convert.py -a name,near -n /root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv train</code></p>
@@ -2197,23 +2176,6 @@ e, f, g, &lt;eos&gt;
       <tags>
         <tag>args</tag>
         <tag>add_argument</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>defaultdict</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/defaultdict/</url>
-    <content><![CDATA[<h1 id="defaultdict-function-factory"><a href="#defaultdict-function-factory" class="headerlink" title="defaultdict(function_factory)"></a>defaultdict(function_factory)</h1><p><strong>defaultdict</strong></p>
-<p>dict subclass that calls a factory function to supply missing values</p>
-<p><code>defaultdict</code>构建的是一个类似<code>dictionary</code>的对象，其中<code>keys</code>值自行确定赋值，但是<code>values</code>的类型是<code>fucntion_factory</code>的类实例，而且<strong>具有默认值</strong>。比如<code>defaultdict(list)</code>创建一个<code>dict</code>,对于任何一个还不存在的<code>dict[newkey]</code>都已经有一个默认<code>list</code>使得<code>dict[newkey].append</code>可以直接运行而不需要先运行<code>dict[newkey]=[]</code>。</p>
-<p>例子：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = [(<span class="string">&#x27;yellow&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;yellow&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;red&#x27;</span>, <span class="number">1</span>)]</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">d = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> s:</span><br><span class="line">    d[k].append(v)</span><br><span class="line"><span class="built_in">list</span>(d.items())</span><br><span class="line">[(<span class="string">&#x27;blue&#x27;</span>, [<span class="number">2</span>, <span class="number">4</span>]), (<span class="string">&#x27;red&#x27;</span>, [<span class="number">1</span>]), (<span class="string">&#x27;yellow&#x27;</span>, [<span class="number">1</span>, <span class="number">3</span>])]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>defaultdict</tag>
       </tags>
   </entry>
   <entry>
@@ -2276,33 +2238,6 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
-    <title>pandas聚合和分组运算之groupby</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pandas%E8%81%9A%E5%90%88%E5%92%8C%E5%88%86%E7%BB%84%E8%BF%90%E7%AE%97%E4%B9%8Bgroupby/</url>
-    <content><![CDATA[<h1 id="pandas聚合和分组运算之groupby"><a href="#pandas聚合和分组运算之groupby" class="headerlink" title="pandas聚合和分组运算之groupby"></a>pandas聚合和分组运算之groupby</h1><p>根据<code>key1</code>的值<code>a</code>,<code>b</code>来分组求<code>data1</code>的平均值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">data1     data2 key1 key2</span><br><span class="line"><span class="number">0</span> -<span class="number">0.410673</span>  <span class="number">0.519378</span>    a  one</span><br><span class="line"><span class="number">1</span> -<span class="number">2.120793</span>  <span class="number">0.199074</span>    a  two</span><br><span class="line"><span class="number">2</span>  <span class="number">0.642216</span> -<span class="number">0.143671</span>    b  one</span><br><span class="line"><span class="number">3</span>  <span class="number">0.975133</span> -<span class="number">0.592994</span>    b  two</span><br><span class="line"><span class="number">4</span> -<span class="number">1.017495</span> -<span class="number">0.530459</span>    a  one</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped = df[<span class="string">&#x27;data1&#x27;</span>].groupby(df[<span class="string">&#x27;key1&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped</span><br><span class="line">&lt;pandas.core.groupby.SeriesGroupBy <span class="built_in">object</span> at <span class="number">0x04120D70</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped.mean()</span><br><span class="line">key1</span><br><span class="line">a      -<span class="number">1.182987</span></span><br><span class="line">b       <span class="number">0.808674</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
-
-<p>根据<code>cpucore-</code>的类别，求所有数值形式列的平均值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>data_mac.groupby(<span class="string">&#x27;cpucore&#x27;</span>).mean()</span><br><span class="line">cpucore-	time_transform_bert	time_sess_run_bert	time_to_dict_bert	time_all_bert			</span><br><span class="line"><span class="number">1</span>	<span class="number">0.003124</span>	<span class="number">1.550403</span>	<span class="number">0.000032</span>	<span class="number">1.553559</span></span><br><span class="line"><span class="number">2</span>	<span class="number">0.001235</span>	<span class="number">0.730950</span>	<span class="number">0.000034</span>	<span class="number">0.732218</span></span><br><span class="line"><span class="number">3</span>	<span class="number">0.001565</span>	<span class="number">0.487936</span>	<span class="number">0.000037</span>	<span class="number">0.489538</span></span><br><span class="line"><span class="number">4</span>	<span class="number">0.001103</span>	<span class="number">0.323777</span>	<span class="number">0.000029</span>	<span class="number">0.324909</span></span><br><span class="line"><span class="number">5</span>	<span class="number">0.001185</span>	<span class="number">0.289874</span>	<span class="number">0.000033</span>	<span class="number">0.291093</span></span><br><span class="line"><span class="number">6</span>	<span class="number">0.001226</span>	<span class="number">0.284265</span>	<span class="number">0.000033</span>	<span class="number">0.285524</span></span><br><span class="line"><span class="number">0</span>	<span class="number">0.001225</span>	<span class="number">0.284462</span>	<span class="number">0.000032</span>	<span class="number">0.285719</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>groupby</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>手动下载安装Python包</title>
-    <url>/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Python%E5%8C%85/</url>
-    <content><![CDATA[<h1 id="手动下载安装Python包"><a href="#手动下载安装Python包" class="headerlink" title="手动下载安装Python包"></a>手动下载安装Python包</h1><p>如果是类似github上面需要下载的安装包，如<a href="https://github.com/ufal/pytreex">pytreex</a>，在下载文件并解压到<code>pytreex</code>之后，直接使用<code>pip install pytreex</code>就可以<br>注意：解压后会生产文件包<code>pytreex-master</code>，此时如果直接<code>pip install pytreex-master</code>是不行的，需要将文件名更换成包名<code>pytreex</code>，然后再<code>pip install pytreex</code>才能成功，否则会报找不到的错误</p>
-<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ERROR: </span>Could not find a version that satisfies the requirement pytreex-master (from versions: none)</span><br><span class="line"><span class="keyword">ERROR: </span>No matching distribution found for pytreex-master</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-  </entry>
-  <entry>
     <title>判断某个key值是否在dict中</title>
     <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%88%A4%E6%96%AD%E6%9F%90%E4%B8%AAkey%E5%80%BC%E6%98%AF%E5%90%A6%E5%9C%A8dict%E4%B8%AD/</url>
     <content><![CDATA[<h1 id="判断某个key值是否在dict中"><a href="#判断某个key值是否在dict中" class="headerlink" title="判断某个key值是否在dict中"></a>判断某个key值是否在dict中</h1><p>有两种方法</p>
@@ -2339,6 +2274,16 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
+    <title>手动下载安装Python包</title>
+    <url>/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%89%8B%E5%8A%A8%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Python%E5%8C%85/</url>
+    <content><![CDATA[<h1 id="手动下载安装Python包"><a href="#手动下载安装Python包" class="headerlink" title="手动下载安装Python包"></a>手动下载安装Python包</h1><p>如果是类似github上面需要下载的安装包，如<a href="https://github.com/ufal/pytreex">pytreex</a>，在下载文件并解压到<code>pytreex</code>之后，直接使用<code>pip install pytreex</code>就可以<br>注意：解压后会生产文件包<code>pytreex-master</code>，此时如果直接<code>pip install pytreex-master</code>是不行的，需要将文件名更换成包名<code>pytreex</code>，然后再<code>pip install pytreex</code>才能成功，否则会报找不到的错误</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ERROR: </span>Could not find a version that satisfies the requirement pytreex-master (from versions: none)</span><br><span class="line"><span class="keyword">ERROR: </span>No matching distribution found for pytreex-master</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>Python</category>
+      </categories>
+  </entry>
+  <entry>
     <title>找到当前index在数组中对称的位置</title>
     <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%89%BE%E5%88%B0%E5%BD%93%E5%89%8Dindex%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BD%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="找到当前index在数组中对称的位置"><a href="#找到当前index在数组中对称的位置" class="headerlink" title="找到当前index在数组中对称的位置"></a>找到当前index在数组中对称的位置</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">index = <span class="built_in">len</span>(nums)//<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(index) <span class="comment"># 3</span></span><br><span class="line"><span class="built_in">print</span>(~index) <span class="comment"># -4</span></span><br><span class="line">median = (nums[index] + nums[~index])/<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(median) <span class="comment"># 3.5</span></span><br></pre></td></tr></table></figure>]]></content>
@@ -2369,50 +2314,20 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
-    <title>Petite présentation renouvelée</title>
-    <url>/2021/08/15/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/Francais/Petite%20pr%C3%A9sentation%20renouvel%C3%A9e/</url>
-    <content><![CDATA[<h1 id="Petite-presentation-renouvelee"><a href="#Petite-presentation-renouvelee" class="headerlink" title="Petite présentation renouvelée"></a>Petite présentation renouvelée</h1><h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
-<p>Une petite présentation de soi-même qui dure moins de 5 minutes.</p>
-</blockquote>
-<p>En appréciant la logique des mathématiques et étant performante sur ce domaine, après avoir passé mon bac en Chine, j’ai poursuivi mes études en France par une licence des mathématiques. Même si j’étais à l’aise, je trouve ce domaine est assez théorique et je cherchais le côté plus concret à l’appliquer, donc j’ai appris un master à Nancy combinait les maths et aussi l’informatique.<br>A la sortie de mon master en 2016, je suis venue travailler en tant que Data Scientist à Reims chez Sikim, une PME spécialisée sur l’analyse des données. J’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une caisse régionale de Crédit Agricole, et il me permet de découvrir la réalisation et l’implication entier d’un Chatbot et aussi découvrir les travaux liés à l’intélligences artificielles. L’ambiance était très bonne au sein de le petit groupe, néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité étaient rares (Tandis que je travais que je n’avais pas assez de travail pour occuper pleinement mes journées).<br>J’ai ensuite été contactée par une entreprise chinoise SF Express, qui m’a proposé un poste à ShenZhen avec un meilleur salaire et davantage de responsabilité. Cela me permet également de me rapprocher à ma famille.<br>Après un an de travail chez SF Express, j’ai choisi de participer à JD en 2019, le 3ieme société de vente en ligne mondiale, une des meilleures entreprises d’Internet en Chine.<br>Au sein de l’entreprise, j’ai pu développer davantage mes compétences techniques, par exemple la mise en œuvre d’un Chatbot plus sophistiqué avec des algorithmes de Deep Learning plus complexe, et avoir l’expérience des algorithmes de NLG. Et j’ai eu la possibilité de diriger 3 Data Scientist, cela me permet d’avoir des expériences de management.<br>Avec les autorisés politiques en France pour le Covide, et ayant apprécié (je trouve cette expression qu’elle ne fait pas très orale, qu’est-ce que t’en penses ?) la période à laquelle j’ai vécu en France, m’a conduit à envisager un changement d’entreprise pour retrouver la possibilité d’installer en France ou je planifie à résider une longue durée.</p>
+    <title>pandas聚合和分组运算之groupby</title>
+    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pandas%E8%81%9A%E5%90%88%E5%92%8C%E5%88%86%E7%BB%84%E8%BF%90%E7%AE%97%E4%B9%8Bgroupby/</url>
+    <content><![CDATA[<h1 id="pandas聚合和分组运算之groupby"><a href="#pandas聚合和分组运算之groupby" class="headerlink" title="pandas聚合和分组运算之groupby"></a>pandas聚合和分组运算之groupby</h1><p>根据<code>key1</code>的值<code>a</code>,<code>b</code>来分组求<code>data1</code>的平均值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">data1     data2 key1 key2</span><br><span class="line"><span class="number">0</span> -<span class="number">0.410673</span>  <span class="number">0.519378</span>    a  one</span><br><span class="line"><span class="number">1</span> -<span class="number">2.120793</span>  <span class="number">0.199074</span>    a  two</span><br><span class="line"><span class="number">2</span>  <span class="number">0.642216</span> -<span class="number">0.143671</span>    b  one</span><br><span class="line"><span class="number">3</span>  <span class="number">0.975133</span> -<span class="number">0.592994</span>    b  two</span><br><span class="line"><span class="number">4</span> -<span class="number">1.017495</span> -<span class="number">0.530459</span>    a  one</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped = df[<span class="string">&#x27;data1&#x27;</span>].groupby(df[<span class="string">&#x27;key1&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped</span><br><span class="line">&lt;pandas.core.groupby.SeriesGroupBy <span class="built_in">object</span> at <span class="number">0x04120D70</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped.mean()</span><br><span class="line">key1</span><br><span class="line">a      -<span class="number">1.182987</span></span><br><span class="line">b       <span class="number">0.808674</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+
+<p>根据<code>cpucore-</code>的类别，求所有数值形式列的平均值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>data_mac.groupby(<span class="string">&#x27;cpucore&#x27;</span>).mean()</span><br><span class="line">cpucore-	time_transform_bert	time_sess_run_bert	time_to_dict_bert	time_all_bert			</span><br><span class="line"><span class="number">1</span>	<span class="number">0.003124</span>	<span class="number">1.550403</span>	<span class="number">0.000032</span>	<span class="number">1.553559</span></span><br><span class="line"><span class="number">2</span>	<span class="number">0.001235</span>	<span class="number">0.730950</span>	<span class="number">0.000034</span>	<span class="number">0.732218</span></span><br><span class="line"><span class="number">3</span>	<span class="number">0.001565</span>	<span class="number">0.487936</span>	<span class="number">0.000037</span>	<span class="number">0.489538</span></span><br><span class="line"><span class="number">4</span>	<span class="number">0.001103</span>	<span class="number">0.323777</span>	<span class="number">0.000029</span>	<span class="number">0.324909</span></span><br><span class="line"><span class="number">5</span>	<span class="number">0.001185</span>	<span class="number">0.289874</span>	<span class="number">0.000033</span>	<span class="number">0.291093</span></span><br><span class="line"><span class="number">6</span>	<span class="number">0.001226</span>	<span class="number">0.284265</span>	<span class="number">0.000033</span>	<span class="number">0.285524</span></span><br><span class="line"><span class="number">0</span>	<span class="number">0.001225</span>	<span class="number">0.284462</span>	<span class="number">0.000032</span>	<span class="number">0.285719</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>面试记录与总结</category>
-        <category>Français</category>
+        <category>编程语言</category>
+        <category>Python</category>
       </categories>
       <tags>
-        <tag>présentation</tag>
-        <tag>entretien</tag>
-        <tag>français</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Présentation pour l&#39;entretien français</title>
-    <url>/2021/08/15/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/Francais/Pr%C3%A9sentation%20pour%20l&#39;entretien%20fran%C3%A7ais/</url>
-    <content><![CDATA[<h1 id="Presentation-pour-l’entretien-francais"><a href="#Presentation-pour-l’entretien-francais" class="headerlink" title="Présentation pour l’entretien français"></a>Présentation pour l’entretien français</h1><h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
-<p>La partie de Présentation a duré totalement 7min30 en oral.</p>
-</blockquote>
-<p>Phrase de préambule : Je m’excuse si mon français est un peu rouillé. </p>
-<span id="more"></span>
-
-<h4 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h4><p>En 2007, j’ai passé en Chine mon bac, appréciant la logique des mathématiques et étant performante sur ce domaine j’ai commencé des études scientifiques à l’université de Wuhan et j’y ai également appris des bases de Français. J’ai réalisé à Wuhan un Bac+2 et j’ai ensuite choisi de poursuivre mes études en France par une licence de mathématiques en 3 ans (la France a une bonne réputation dans ce domaine et j’avais envie de découvrir un nouveau pays et d’apprendre une nouvelle langue). </p>
-<p>Même si j’étais à l’aise en mathématiques, je trouvais le domaine trop théorique.  Je cherchais un domaine qui allie la logique des mathématiques et le coté très concret de l’informatique. J’ai appris qu’un master à Nancy combinait les deux et je suis donc partie là-bas. J’ai réalisé un stage chez Vize une start-up locale où j’ai découvert plus précisément les travaux liés à l’intelligence artificielle et de l’utilisation de la donnée (big data).</p>
-<h4 id="Carriere"><a href="#Carriere" class="headerlink" title="Carriere"></a>Carriere</h4><p>À la sortie de mon master en 2016, je suis venu travailler en tant que Data à Reims à SIKIM une autre PME spécialisée sur le domaine. J’y ai travaillé un peu plus de deux ans. L’ambiance était très bonne au sein de la petite équipe, j’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une Caisse régionale du Crédit Agricole. Techniquement néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité était rares tandis que je trouvais que je n’avais pas assez de travail ne serait ce que pour occuper pleinement mes journées. J’ai ensuite été contactée par une entreprise chinoise SF Express, c’était un grand groupe, le 4ème logisticien mondial, qui m’a proposé un poste à Shenzhen avec un meilleur salaire et davantage de responsabilité. Cela me permettait également de me rapprocher de ma famille. Au sein de l’entreprise j’ai pu développer davantage mes compétences techniques [Donner un ou deux exemples ?].<br>Avec projet Chabot de service client (qui serve à répondre des questions à nos clients), j’étais responsable de la module NLU (Compréhension du langage naturel), mise en l’œuvre des algorithmes de classification qui permettent au Chatbot de comprendre l’intention du client, des algorithmes de REN(reconnaissance d’entités nommés) qui permettent au Chatbot de reconnaissir les entités nommées, des algorithme, comme BERT, qui peut créer automatiquement plus de données pour que les algorithmes puissent avoir une meilleur performance.<br>Avec le Chit Chat Chatbot (une intelligence artificielle (IA) de type dialogueur pour apporter un certain soutien psychologique), j’ai pu mis en l’œuvre le modèle de NLG (Génération Automatique de Langage, il consiste à générer automatiquement du texte pour adresser des réponses personnalisées aux utilisateurs) en impliquant l’algorithme de génération de réponses, des algorithmes pour évaluer la sémantique du texte, des algorithme pour diversifier les réponses, etc.</p>
-<p>En raison de changements dans la structure organisationnelle de l’entreprise, j’ai quitté SF Express et rejoint à VIPKID en 2020. En tant qu’un Data Scientist, la formation de mathématiques ne m’a pas offert un grand avantage de coder, mais grâce à mes expériences dans VIPKID, j’ai pu approfondit ma capacité de coder surtout en réalisant un system de statistique à temps réel. Il recueillit des données de travail des employés sous de nombreux aspects, après le traitement statistique, on rend compte aux dirigent de tous les niveaux de l’entreprise avec une certaine fréquence chaque jour. Mes expériences dans VIPKID m’ont aussi entrainé ma capacité de management, et m’a permis d’avoir une vue complète de Chatbot. Avec trois autres collègues, on a réalisé une plateforme de Chatbot de A à Z, y inclus FAQ, NLU, Task Management et Dialogue Management, qui s’est appliqué aux services clients de toutes les fonctions (totalement 7) dans l’entreprise. Le taux de traitement par cette plateforme atteint à 79.6 (environ 10 milles de session par jour en total).<br>J’ai aussi pu approfondi ma capacité en NLG en réalisant un modèle de traduction automatique adapté aux besoins de l’entreprise. Il économise 10 milles euros par mois pour l’entreprise.</p>
-<h4 id="Situation-mnt"><a href="#Situation-mnt" class="headerlink" title="Situation mnt"></a>Situation mnt</h4><p>J’ai voulu revenir en France le moment que j’ai quitté SF Express, mais c’était pas la bonne occasion à cause du COVID 19. Et maintenant, en raison des politiques du pays vers des entreprise d’éducation et la diffusion de la vaccination (l’amélioration de COVID 19), je pense que c’est le bon moment de revenir en France où je planifie à résider une longue durée.</p>
-<p>A ce jour, j’ai accumulé 5 ans d’expériences dans le domaine de NLP, en particulier dans dialogue system et NLG. J’aimerai bien pouvoir avoir l’opportunité de connaître et d’appliquer des connaissances des autres domaine relative tels que CV (vision par l’ordinateur), l’apprentissage multimoda, basé sur mes compétences de NLP.</p>
-<p><font color="#989898" size=4> Les informations dans le monde réel se présentent généralement sous différentes modalités. Par exemple, les images sont généralement associées à des balises et à des explications textuelles ; les textes contiennent des images pour exprimer plus clairement l’idée principale de l’article. Différentes modalités sont caractérisées par des propriétés statistiques très différentes. Par exemple, les images sont généralement représentées sous forme d’intensités de pixels ou de sorties d’extracteurs de caractéristiques, tandis que les textes sont représentés sous forme de vecteurs de nombre de mots discrets. En raison des propriétés statistiques distinctes des différentes ressources d’information, il est très important de découvrir la relation entre les différentes modalités. L’apprentissage est un bon modèle pour représenter les représentations conjointes de différentes modalités. Le modèle d’apprentissage multimodal est également capable de combler la modalité manquante compte tenu de celles observées. Le modèle d’apprentissage multimodal combine deux machines de Boltzmann profondes correspondant chacune à une modalité. Une couche cachée supplémentaire est placé au-dessus des deux machines Boltzmann pour donner la représentation commune. </font></p>
-<h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><h3 id="Chatbot"><a href="#Chatbot" class="headerlink" title="Chatbot"></a>Chatbot</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
-<h3 id="Chit-Chat"><a href="#Chit-Chat" class="headerlink" title="Chit Chat"></a>Chit Chat</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
-<h3 id="Chercher-top-20-questions-a-l’entretien"><a href="#Chercher-top-20-questions-a-l’entretien" class="headerlink" title="Chercher top 20 questions à l’entretien"></a>Chercher top 20 questions à l’entretien</h3>]]></content>
-      <categories>
-        <category>面试记录与总结</category>
-        <category>Français</category>
-      </categories>
-      <tags>
-        <tag>présentation</tag>
-        <tag>entretien</tag>
-        <tag>français</tag>
+        <tag>groupby</tag>
       </tags>
   </entry>
   <entry>
@@ -2519,6 +2434,89 @@ e, f, g, &lt;eos&gt;
       </categories>
       <tags>
         <tag>记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JAVA 序列化和浅/深拷贝</title>
+    <url>/2022/03/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-%E6%B7%B1%E6%8B%B7%E8%B4%9D/</url>
+    <content><![CDATA[<h1 id="JAVA-序列化和浅-x2F-深拷贝"><a href="#JAVA-序列化和浅-x2F-深拷贝" class="headerlink" title="JAVA 序列化和浅&#x2F;深拷贝"></a>JAVA 序列化和浅&#x2F;深拷贝</h1><h2 id="序列化-x2F-深拷贝"><a href="#序列化-x2F-深拷贝" class="headerlink" title="序列化&#x2F;深拷贝"></a>序列化&#x2F;深拷贝</h2><p>Java里不能直接进行浅拷贝&#x2F;深拷贝</p>
+<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝</p>
+<span id="more"></span>
+
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>因为需要连同对象和对象的值一起拷贝到内存中一个新的地址，所以当对象为比较复杂的嵌套类时，性能就会成为一个问题，所以需要注意。<br>一般要实现深拷贝，都是对需要拷贝的类上贴上标签<code>implements Serializable</code>，并且给出一个序列化号<code>private static final long serialVersionUID = 3487495895819393L;</code><br>然后使用以下函数进行序列化和反序列化。<br>序列化和反序列化的本质是通过某种序列化的协议，将类整个转变成二进制信息，通过serialVersionUID比对再将二进制信息转换成类。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SerializationDemo</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String stringField;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> intField;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@T</span> 某个类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Serializable</span><span class="params">(SerializationDemo)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">ByteArrayOutputStream</span> <span class="variable">bout</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">out</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(bout);</span><br><span class="line">        out.writeObject(T);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(IOException) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 反序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@data</span> 二进制</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Deserializable</span><span class="params">(data)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">byte</span>[] data; <span class="comment">// read from file or request</span></span><br><span class="line">        <span class="type">ByteArrayInputStream</span> <span class="variable">bin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(data);</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(bin);</span><br><span class="line">        <span class="type">SerializationDemo</span> <span class="variable">demo</span> <span class="operator">=</span> (SerializationDemo) in.readObject();</span><br><span class="line">        &#125; <span class="keyword">catch</span>(ClassNotFoundException) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="FastJson-VS-Gson"><a href="#FastJson-VS-Gson" class="headerlink" title="FastJson VS Gson"></a>FastJson VS Gson</h3><p>但当是嵌套类时，需要对类中的每一个类也都贴上序列化的标签，因此会变得很复杂。<br>此时可以引入<code>FastJson</code>类的第三方软件帮忙。（还有<code>gson</code>等）。但目前主流是<code>Gson</code>和<code>FastJson</code><br>性能上<code>FastJson</code>更好，功能上<code>Gson</code>更全，而且<code>Gson</code>不需要额外的<code>jar</code>包，且使用更简便<br>具体区别见文章<a href="https://blog.csdn.net/John8169/article/details/80767771">Gson与FastJson比较</a>，这篇文章分析的非常细致</p>
+<ol>
+<li><code>FastJson</code>需要有默认无参构造，可以直接使用<code>@NoArgsConstructor</code>。（有时候还需要加上<code>@AllArgsConstructor</code>，具体还不了解为什么）</li>
+<li>使用<code>FastJson</code>会有内存泄漏问题，具体实例见<a href="https://juejin.cn/post/6960695856127279111">FastJson使用不当导致内存泄漏排查及解决过程 ｜ Java Debug 笔记</a>，另一片文章<a href="https://segmentfault.com/a/1190000039980284">fastjson内存泄漏解决办法 - springboot实战电商项目mall4j</a></li>
+</ol>
+<h5 id="关于serialVersionUID"><a href="#关于serialVersionUID" class="headerlink" title="关于serialVersionUID"></a>关于serialVersionUID</h5><p>关于serialVersionUID：<br>1、serialVersionUID是序列化前后的唯一标识符<br>2、默认如果没有人为显式定义过serialVersionUID，那编译器会为它自动声明一个</p>
+<p>为什么要定义serialVersionUID：</p>
+<ol>
+<li>serialVersionUID序列化ID，可以看成是序列化和反序列化过程中的“暗号”，在反序列化时，JVM会把字节流中的序列号ID和被序列化类中的序列号ID做比对，只有两者一致，才能重新反序列化，否则就会报异常来终止反序列化的过程。</li>
+<li>如果在定义一个可序列化的类时，没有人为显式地给它定义一个serialVersionUID的话，则Java运行时环境会根据该类的各方面信息自动地为它生成一个默认的serialVersionUID，一旦像上面一样更改了类的结构或者信息，则类的serialVersionUID也会跟着变化</li>
+<li>为了serialVersionUID的确定性，建议凡是implements Serializable的类，都人为显式地为它声明一个serialVersionUID明确值</li>
+<li>如果不想手动赋值，IntelliJ IDEA中，使用alt + enter自动生成serialVersionUID字段</li>
+</ol>
+<h5 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h5><p>Serializable接口是一个里面什么都没有的接口<br>它的源代码是public interface Serializable{}，即什么都没有。<br>如果一个接口里面什么内容都没有，那么这个接口是一个标识接口，比如，一个学生遇到一个问题，排错排了几天也没解决，此时，她举手了（示意我去帮他解决），然后我过去，帮他解决了，那么这个举手其实就是一个标识，自己不能解决的问题标示我去帮他解决，在Java中的这个Serializable接口是给JVM看的，告诉JVM，我不做这个类的序列化了，你(JVM)给我序列化，序列化就是变成二进制流，比如云计算、Hadoop，特别是Hadoop完全就是分布式环境，那么就要涉及到对象要在网络中传输，里面的全是二进制流，当然你来做这个序列化操作也可以，但是这个类里面可能还有一个类，如果你把外面的类对象Person变成二进制，那么里面也要序列化（这要用到深度遍历，很麻烦），干脆告诉JVM，让他来帮你做。</p>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>深拷贝</tag>
+        <tag>序列化</tag>
+        <tag>JAVA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Petite présentation renouvelée</title>
+    <url>/2021/08/15/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/Francais/Petite%20pr%C3%A9sentation%20renouvel%C3%A9e/</url>
+    <content><![CDATA[<h1 id="Petite-presentation-renouvelee"><a href="#Petite-presentation-renouvelee" class="headerlink" title="Petite présentation renouvelée"></a>Petite présentation renouvelée</h1><h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
+<p>Une petite présentation de soi-même qui dure moins de 5 minutes.</p>
+</blockquote>
+<p>En appréciant la logique des mathématiques et étant performante sur ce domaine, après avoir passé mon bac en Chine, j’ai poursuivi mes études en France par une licence des mathématiques. Même si j’étais à l’aise, je trouve ce domaine est assez théorique et je cherchais le côté plus concret à l’appliquer, donc j’ai appris un master à Nancy combinait les maths et aussi l’informatique.<br>A la sortie de mon master en 2016, je suis venue travailler en tant que Data Scientist à Reims chez Sikim, une PME spécialisée sur l’analyse des données. J’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une caisse régionale de Crédit Agricole, et il me permet de découvrir la réalisation et l’implication entier d’un Chatbot et aussi découvrir les travaux liés à l’intélligences artificielles. L’ambiance était très bonne au sein de le petit groupe, néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité étaient rares (Tandis que je travais que je n’avais pas assez de travail pour occuper pleinement mes journées).<br>J’ai ensuite été contactée par une entreprise chinoise SF Express, qui m’a proposé un poste à ShenZhen avec un meilleur salaire et davantage de responsabilité. Cela me permet également de me rapprocher à ma famille.<br>Après un an de travail chez SF Express, j’ai choisi de participer à JD en 2019, le 3ieme société de vente en ligne mondiale, une des meilleures entreprises d’Internet en Chine.<br>Au sein de l’entreprise, j’ai pu développer davantage mes compétences techniques, par exemple la mise en œuvre d’un Chatbot plus sophistiqué avec des algorithmes de Deep Learning plus complexe, et avoir l’expérience des algorithmes de NLG. Et j’ai eu la possibilité de diriger 3 Data Scientist, cela me permet d’avoir des expériences de management.<br>Avec les autorisés politiques en France pour le Covide, et ayant apprécié (je trouve cette expression qu’elle ne fait pas très orale, qu’est-ce que t’en penses ?) la période à laquelle j’ai vécu en France, m’a conduit à envisager un changement d’entreprise pour retrouver la possibilité d’installer en France ou je planifie à résider une longue durée.</p>
+]]></content>
+      <categories>
+        <category>面试记录与总结</category>
+        <category>Français</category>
+      </categories>
+      <tags>
+        <tag>présentation</tag>
+        <tag>entretien</tag>
+        <tag>français</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Présentation pour l&#39;entretien français</title>
+    <url>/2021/08/15/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/Francais/Pr%C3%A9sentation%20pour%20l&#39;entretien%20fran%C3%A7ais/</url>
+    <content><![CDATA[<h1 id="Presentation-pour-l’entretien-francais"><a href="#Presentation-pour-l’entretien-francais" class="headerlink" title="Présentation pour l’entretien français"></a>Présentation pour l’entretien français</h1><h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
+<p>La partie de Présentation a duré totalement 7min30 en oral.</p>
+</blockquote>
+<p>Phrase de préambule : Je m’excuse si mon français est un peu rouillé. </p>
+<span id="more"></span>
+
+<h4 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h4><p>En 2007, j’ai passé en Chine mon bac, appréciant la logique des mathématiques et étant performante sur ce domaine j’ai commencé des études scientifiques à l’université de Wuhan et j’y ai également appris des bases de Français. J’ai réalisé à Wuhan un Bac+2 et j’ai ensuite choisi de poursuivre mes études en France par une licence de mathématiques en 3 ans (la France a une bonne réputation dans ce domaine et j’avais envie de découvrir un nouveau pays et d’apprendre une nouvelle langue). </p>
+<p>Même si j’étais à l’aise en mathématiques, je trouvais le domaine trop théorique.  Je cherchais un domaine qui allie la logique des mathématiques et le coté très concret de l’informatique. J’ai appris qu’un master à Nancy combinait les deux et je suis donc partie là-bas. J’ai réalisé un stage chez Vize une start-up locale où j’ai découvert plus précisément les travaux liés à l’intelligence artificielle et de l’utilisation de la donnée (big data).</p>
+<h4 id="Carriere"><a href="#Carriere" class="headerlink" title="Carriere"></a>Carriere</h4><p>À la sortie de mon master en 2016, je suis venu travailler en tant que Data à Reims à SIKIM une autre PME spécialisée sur le domaine. J’y ai travaillé un peu plus de deux ans. L’ambiance était très bonne au sein de la petite équipe, j’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une Caisse régionale du Crédit Agricole. Techniquement néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité était rares tandis que je trouvais que je n’avais pas assez de travail ne serait ce que pour occuper pleinement mes journées. J’ai ensuite été contactée par une entreprise chinoise SF Express, c’était un grand groupe, le 4ème logisticien mondial, qui m’a proposé un poste à Shenzhen avec un meilleur salaire et davantage de responsabilité. Cela me permettait également de me rapprocher de ma famille. Au sein de l’entreprise j’ai pu développer davantage mes compétences techniques [Donner un ou deux exemples ?].<br>Avec projet Chabot de service client (qui serve à répondre des questions à nos clients), j’étais responsable de la module NLU (Compréhension du langage naturel), mise en l’œuvre des algorithmes de classification qui permettent au Chatbot de comprendre l’intention du client, des algorithmes de REN(reconnaissance d’entités nommés) qui permettent au Chatbot de reconnaissir les entités nommées, des algorithme, comme BERT, qui peut créer automatiquement plus de données pour que les algorithmes puissent avoir une meilleur performance.<br>Avec le Chit Chat Chatbot (une intelligence artificielle (IA) de type dialogueur pour apporter un certain soutien psychologique), j’ai pu mis en l’œuvre le modèle de NLG (Génération Automatique de Langage, il consiste à générer automatiquement du texte pour adresser des réponses personnalisées aux utilisateurs) en impliquant l’algorithme de génération de réponses, des algorithmes pour évaluer la sémantique du texte, des algorithme pour diversifier les réponses, etc.</p>
+<p>En raison de changements dans la structure organisationnelle de l’entreprise, j’ai quitté SF Express et rejoint à VIPKID en 2020. En tant qu’un Data Scientist, la formation de mathématiques ne m’a pas offert un grand avantage de coder, mais grâce à mes expériences dans VIPKID, j’ai pu approfondit ma capacité de coder surtout en réalisant un system de statistique à temps réel. Il recueillit des données de travail des employés sous de nombreux aspects, après le traitement statistique, on rend compte aux dirigent de tous les niveaux de l’entreprise avec une certaine fréquence chaque jour. Mes expériences dans VIPKID m’ont aussi entrainé ma capacité de management, et m’a permis d’avoir une vue complète de Chatbot. Avec trois autres collègues, on a réalisé une plateforme de Chatbot de A à Z, y inclus FAQ, NLU, Task Management et Dialogue Management, qui s’est appliqué aux services clients de toutes les fonctions (totalement 7) dans l’entreprise. Le taux de traitement par cette plateforme atteint à 79.6 (environ 10 milles de session par jour en total).<br>J’ai aussi pu approfondi ma capacité en NLG en réalisant un modèle de traduction automatique adapté aux besoins de l’entreprise. Il économise 10 milles euros par mois pour l’entreprise.</p>
+<h4 id="Situation-mnt"><a href="#Situation-mnt" class="headerlink" title="Situation mnt"></a>Situation mnt</h4><p>J’ai voulu revenir en France le moment que j’ai quitté SF Express, mais c’était pas la bonne occasion à cause du COVID 19. Et maintenant, en raison des politiques du pays vers des entreprise d’éducation et la diffusion de la vaccination (l’amélioration de COVID 19), je pense que c’est le bon moment de revenir en France où je planifie à résider une longue durée.</p>
+<p>A ce jour, j’ai accumulé 5 ans d’expériences dans le domaine de NLP, en particulier dans dialogue system et NLG. J’aimerai bien pouvoir avoir l’opportunité de connaître et d’appliquer des connaissances des autres domaine relative tels que CV (vision par l’ordinateur), l’apprentissage multimoda, basé sur mes compétences de NLP.</p>
+<p><font color="#989898" size=4> Les informations dans le monde réel se présentent généralement sous différentes modalités. Par exemple, les images sont généralement associées à des balises et à des explications textuelles ; les textes contiennent des images pour exprimer plus clairement l’idée principale de l’article. Différentes modalités sont caractérisées par des propriétés statistiques très différentes. Par exemple, les images sont généralement représentées sous forme d’intensités de pixels ou de sorties d’extracteurs de caractéristiques, tandis que les textes sont représentés sous forme de vecteurs de nombre de mots discrets. En raison des propriétés statistiques distinctes des différentes ressources d’information, il est très important de découvrir la relation entre les différentes modalités. L’apprentissage est un bon modèle pour représenter les représentations conjointes de différentes modalités. Le modèle d’apprentissage multimodal est également capable de combler la modalité manquante compte tenu de celles observées. Le modèle d’apprentissage multimodal combine deux machines de Boltzmann profondes correspondant chacune à une modalité. Une couche cachée supplémentaire est placé au-dessus des deux machines Boltzmann pour donner la représentation commune. </font></p>
+<h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><h3 id="Chatbot"><a href="#Chatbot" class="headerlink" title="Chatbot"></a>Chatbot</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
+<h3 id="Chit-Chat"><a href="#Chit-Chat" class="headerlink" title="Chit Chat"></a>Chit Chat</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
+<h3 id="Chercher-top-20-questions-a-l’entretien"><a href="#Chercher-top-20-questions-a-l’entretien" class="headerlink" title="Chercher top 20 questions à l’entretien"></a>Chercher top 20 questions à l’entretien</h3>]]></content>
+      <categories>
+        <category>面试记录与总结</category>
+        <category>Français</category>
+      </categories>
+      <tags>
+        <tag>présentation</tag>
+        <tag>entretien</tag>
+        <tag>français</tag>
       </tags>
   </entry>
   <entry>
