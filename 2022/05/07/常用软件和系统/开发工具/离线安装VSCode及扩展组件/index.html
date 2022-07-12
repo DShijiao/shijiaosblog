@@ -20,22 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="VSCode 常见需求增加代码长度分割线：  点击左下角的齿轮⚙️图标，选择 Settings 输入 ruler 找到 Editor: Rulers，如上图  进入 settings.json 添加代码 123456&quot;[python]&quot;: &amp;#123;     &quot;editor.rulers&quot;: [         80     ],     &quot;ed">
+  <meta name="description" content="离线安装vscode和扩展组件离线安装vscode远程一般安装的是vscode-server  下载vscode-server-linux-x64.tar.gz包，放到远程服务器 不同服务器，下载版本不一致，确认commitId 将vscode-server-linux-x64.tar.gz解压到~&#x2F;.vscode-server&#x2F;bin&#x2F;$&amp;#123;commitId&amp;#125; 在$&amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VSCode 设置代码长度分割线">
-<meta property="og:url" content="http://yoursite.com/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/index.html">
+<meta property="og:title" content="离线安装VSCode及扩展组件">
+<meta property="og:url" content="http://yoursite.com/2022/05/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85VSCode%E5%8F%8A%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6/index.html">
 <meta property="og:site_name" content="panna cotta">
-<meta property="og:description" content="VSCode 常见需求增加代码长度分割线：  点击左下角的齿轮⚙️图标，选择 Settings 输入 ruler 找到 Editor: Rulers，如上图  进入 settings.json 添加代码 123456&quot;[python]&quot;: &amp;#123;     &quot;editor.rulers&quot;: [         80     ],     &quot;ed">
+<meta property="og:description" content="离线安装vscode和扩展组件离线安装vscode远程一般安装的是vscode-server  下载vscode-server-linux-x64.tar.gz包，放到远程服务器 不同服务器，下载版本不一致，确认commitId 将vscode-server-linux-x64.tar.gz解压到~&#x2F;.vscode-server&#x2F;bin&#x2F;$&amp;#123;commitId&amp;#125; 在$&amp;#123;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/vscode-edit-ruler.png">
-<meta property="article:published_time" content="2022-07-07T11:43:08.000Z">
-<meta property="article:modified_time" content="2022-07-07T12:01:29.723Z">
+<meta property="article:published_time" content="2022-05-07T11:44:10.000Z">
+<meta property="article:modified_time" content="2022-07-11T06:44:01.798Z">
 <meta property="article:author" content="Shijiao DENG">
 <meta property="article:tag" content="vscode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/vscode-edit-ruler.png">
 
-<link rel="canonical" href="http://yoursite.com/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/">
+<link rel="canonical" href="http://yoursite.com/2022/05/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85VSCode%E5%8F%8A%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6/">
 
 
 <script id="page-configurations">
@@ -48,7 +46,7 @@
   };
 </script>
 
-  <title>VSCode 设置代码长度分割线 | panna cotta</title>
+  <title>离线安装VSCode及扩展组件 | panna cotta</title>
   
 
 
@@ -184,7 +182,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85VSCode%E5%8F%8A%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -197,7 +195,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          VSCode 设置代码长度分割线
+          离线安装VSCode及扩展组件
         </h1>
 
         <div class="post-meta">
@@ -206,10 +204,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-07 19:43:08 / 修改时间：20:01:29" itemprop="dateCreated datePublished" datetime="2022-07-07T19:43:08+08:00">2022-07-07</time>
+              <time title="创建时间：2022-05-07 19:44:10" itemprop="dateCreated datePublished" datetime="2022-05-07T19:44:10+08:00">2022-05-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-11 14:44:01" itemprop="dateModified" datetime="2022-07-11T14:44:01+08:00">2022-07-11</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -217,6 +221,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
                 </span>
             </span>
 
@@ -238,13 +246,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="VSCode-常见需求"><a href="#VSCode-常见需求" class="headerlink" title="VSCode 常见需求"></a>VSCode 常见需求</h1><p>增加代码长度分割线：</p>
+        <h1 id="离线安装vscode和扩展组件"><a href="#离线安装vscode和扩展组件" class="headerlink" title="离线安装vscode和扩展组件"></a>离线安装vscode和扩展组件</h1><h2 id="离线安装vscode"><a href="#离线安装vscode" class="headerlink" title="离线安装vscode"></a>离线安装vscode</h2><p>远程一般安装的是<code>vscode-server</code></p>
 <ol>
-<li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
-<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
-<li>进入 <code>settings.json</code></li>
-<li>添加代码 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;[python]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;editor.rulers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">         <span class="number">80</span></span><br><span class="line">     <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ms-python.python&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li>下载<code>vscode-server-linux-x64.tar.gz</code>包，放到远程服务器</li>
+<li>不同服务器，下载版本不一致，确认<code>commitId</code></li>
+<li>将<code>vscode-server-linux-x64.tar.gz</code>解压到<code>~/.vscode-server/bin/$&#123;commitId&#125;</code></li>
+<li>在<code>$&#123;commitId&#125;</code>文件下创建文件<code>0</code></li>
 </ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">commit_id=f06011ac164ae4dc8e753a3fe7f9549844d15e35</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download url is: https://update.code.visualstudio.com/commit:$&#123;commit_id&#125;/server-linux-x64/stable</span></span><br><span class="line">curl -sSL <span class="string">&quot;https://update.code.visualstudio.com/commit:<span class="variable">$&#123;commit_id&#125;</span>/server-linux-x64/stable&quot;</span> -o vscode-server-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span></span><br><span class="line"><span class="comment"># assume that you upload vscode-server-linux-x64.tar.gz to /tmp dir</span></span><br><span class="line">tar zxvf /tmp/vscode-server-linux-x64.tar.gz -C ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span> --strip 1</span><br><span class="line"><span class="built_in">touch</span> ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span>/0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="离线安装扩展组件"><a href="#离线安装扩展组件" class="headerlink" title="离线安装扩展组件"></a>离线安装扩展组件</h2><ol>
+<li>下载组件，并传到远程服务器</li>
+<li><code>vscode</code>中，<code>ctrl+shift+p</code>打开命令行，输入<code>Extensions: install from VSIX</code></li>
+<li>选择上传的<code>vsix</code>扩展组件，开始安装</li>
+<li>重启<code>vscode</code></li>
+<li>如果安装失败，有可能是文件权限问题，可以先尝试<code>chmod -x -R ms-python-release.vsix</code>给扩展组件赋权，再进行安装</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>参考<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a target="_blank" rel="noopener" href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a target="_blank" rel="noopener" href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
 
     </div>
 
@@ -260,7 +278,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/" title="VSCode 设置代码长度分割线">http://yoursite.com/2022/07/07/常用软件和系统/VSCode-设置代码长度分割线/</a>
+    <a href="http://yoursite.com/2022/05/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85VSCode%E5%8F%8A%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6/" title="离线安装VSCode及扩展组件">http://yoursite.com/2022/05/07/常用软件和系统/开发工具/离线安装VSCode及扩展组件/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -280,12 +298,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E4%B8%AD%E4%BD%BF%E7%94%A8args%E5%92%8Cadd_argument%E4%BC%A0%E5%8F%82/" rel="prev" title="Python中使用args和add_argument传参">
-      <i class="fa fa-chevron-left"></i> Python中使用args和add_argument传参
+    <a href="/2022/03/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-%E6%B7%B1%E6%8B%B7%E8%B4%9D/" rel="prev" title="JAVA 序列化和浅/深拷贝">
+      <i class="fa fa-chevron-left"></i> JAVA 序列化和浅/深拷贝
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/VSCode-%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="next" title="VSCode 使用SSH连接远程服务器">
-      VSCode 使用SSH连接远程服务器 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/07/01/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%8E%8B%E6%B5%8B%E6%AD%A5%E9%AA%A4/" rel="next" title="JMETER-参数解析与压测步骤">
+      JMETER-参数解析与压测步骤 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -345,7 +363,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VSCode-%E5%B8%B8%E8%A7%81%E9%9C%80%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">VSCode 常见需求</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85vscode%E5%92%8C%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">离线安装vscode和扩展组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85vscode"><span class="nav-number">1.1.</span> <span class="nav-text">离线安装vscode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">离线安装扩展组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.3.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -361,20 +379,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">78</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

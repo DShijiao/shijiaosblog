@@ -255,7 +255,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%B1%82list%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -269,7 +269,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%B1%82list%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC/" class="post-title-link" itemprop="url">求list的绝对值</a>
+            <a href="/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="post-title-link" itemprop="url">Tensorflow和GPU的某些问题</a>
         </h2>
 
         <div class="post-meta">
@@ -286,7 +286,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 10:54:53" itemprop="dateModified" datetime="2022-07-11T10:54:53+08:00">2022-07-11</time>
+                <time title="修改时间：2022-07-11 10:11:33" itemprop="dateModified" datetime="2022-07-11T10:11:33+08:00">2022-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,11 +294,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/" itemprop="url" rel="index"><span itemprop="name">Tensorflow</span></a>
                 </span>
             </span>
 
@@ -313,10 +313,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="求list的绝对值"><a href="#求list的绝对值" class="headerlink" title="求list的绝对值"></a>求list的绝对值</h1><p>求<code>list l = [-1,2,3,-4,-5,-6]</code>的绝对值的三种方法</p>
-<p>1.<br>   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_abs = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">abs</span>, l))</span><br></pre></td></tr></table></figure></p>
-<p>2.<br>   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_abs = [<span class="built_in">abs</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> l]</span><br></pre></td></tr></table></figure></p>
-<p>3.<br>   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">list_abs = <span class="built_in">list</span>(np.<span class="built_in">abs</span>(l))</span><br></pre></td></tr></table></figure></p>
+          <h1 id="Tensorflow和GPU的某些问题"><a href="#Tensorflow和GPU的某些问题" class="headerlink" title="Tensorflow和GPU的某些问题"></a>Tensorflow和GPU的某些问题</h1><h2 id="设置GPU的使用率"><a href="#设置GPU的使用率" class="headerlink" title="设置GPU的使用率"></a>设置GPU的使用率</h2><h3 id="常规情况"><a href="#常规情况" class="headerlink" title="常规情况"></a>常规情况</h3><p>在加载模型的代码中加入以下代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gpu_option = tf.GPUOptions(per+process_gpu_memory_fraction=<span class="number">0.3</span>)</span><br><span class="line">self.session= tf.Session(</span><br><span class="line">    config=tf.ConfigProto(gpu_options=gpu_option),</span><br><span class="line">    graph=tf.Graph()</span><br><span class="line">)</span><br><span class="line"><span class="keyword">with</span> self.session.graph.as_default():</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="用tfserving部署模型"><a href="#用tfserving部署模型" class="headerlink" title="用tfserving部署模型"></a>用tfserving部署模型</h3><p>在使用docker run 启动模型时，在后面加入 –per_process_gpu_memory_graction&#x3D;0.3</p>
+<p>具体启动命令示例如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name <span class="variable">$&#123;container-name&#125;</span> --runtime=nvidia -p <span class="variable">$&#123;port-local&#125;</span>:8501 --mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=<span class="variable">$&#123;model-source-dir&#125;</span>,target=/models/<span class="variable">$&#123;model-name&#125;</span> -e MODEL_NAME=<span class="variable">$&#123;model-name&#125;</span> -itd tensorflow/serving:1.14.0-gpu --enable_batching=<span class="literal">true</span> --per_process_gpu_memory_fraction=0.3</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="报错RuntimeError-can’t-start-new-thread"><a href="#报错RuntimeError-can’t-start-new-thread" class="headerlink" title="报错RuntimeError: can’t start new thread"></a>报错RuntimeError: can’t start new thread</h2><p>测试时如果内存不够，但是又想继续启新的线程（比如压测的时候），这时可能会报<code>RuntimeError: can&#39;t start new thread</code>。换一个内存使用率稍低的显卡就能改善问题</p>
+<h2 id="报错cuda-0-not-supported-xla"><a href="#报错cuda-0-not-supported-xla" class="headerlink" title="报错cuda 0 not supported xla"></a>报错cuda 0 not supported xla</h2><p>报错<code>cuda 0 not supported xla</code>通常也是因为GPU显存问题，换一个空闲的显卡可以改善问题</p>
 
       
     </div>
@@ -336,7 +342,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pandas%E8%81%9A%E5%90%88%E5%92%8C%E5%88%86%E7%BB%84%E8%BF%90%E7%AE%97%E4%B9%8Bgroupby/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8Tensorboard%EF%BC%8C%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%9F%A5%E7%9C%8B%E5%9B%BE%E5%83%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -350,7 +356,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pandas%E8%81%9A%E5%90%88%E5%92%8C%E5%88%86%E7%BB%84%E8%BF%90%E7%AE%97%E4%B9%8Bgroupby/" class="post-title-link" itemprop="url">pandas聚合和分组运算之groupby</a>
+            <a href="/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8Tensorboard%EF%BC%8C%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%9F%A5%E7%9C%8B%E5%9B%BE%E5%83%8F/" class="post-title-link" itemprop="url">服务器上使用Tensorboard，在本地查看图像</a>
         </h2>
 
         <div class="post-meta">
@@ -367,7 +373,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 10:31:54" itemprop="dateModified" datetime="2022-07-11T10:31:54+08:00">2022-07-11</time>
+                <time title="修改时间：2022-07-11 10:11:23" itemprop="dateModified" datetime="2022-07-11T10:11:23+08:00">2022-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -375,11 +381,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/" itemprop="url" rel="index"><span itemprop="name">Tensorflow</span></a>
                 </span>
             </span>
 
@@ -394,11 +400,101 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="pandas聚合和分组运算之groupby"><a href="#pandas聚合和分组运算之groupby" class="headerlink" title="pandas聚合和分组运算之groupby"></a>pandas聚合和分组运算之groupby</h1><p>根据<code>key1</code>的值<code>a</code>,<code>b</code>来分组求<code>data1</code>的平均值</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">data1     data2 key1 key2</span><br><span class="line"><span class="number">0</span> -<span class="number">0.410673</span>  <span class="number">0.519378</span>    a  one</span><br><span class="line"><span class="number">1</span> -<span class="number">2.120793</span>  <span class="number">0.199074</span>    a  two</span><br><span class="line"><span class="number">2</span>  <span class="number">0.642216</span> -<span class="number">0.143671</span>    b  one</span><br><span class="line"><span class="number">3</span>  <span class="number">0.975133</span> -<span class="number">0.592994</span>    b  two</span><br><span class="line"><span class="number">4</span> -<span class="number">1.017495</span> -<span class="number">0.530459</span>    a  one</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped = df[<span class="string">&#x27;data1&#x27;</span>].groupby(df[<span class="string">&#x27;key1&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped</span><br><span class="line">&lt;pandas.core.groupby.SeriesGroupBy <span class="built_in">object</span> at <span class="number">0x04120D70</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped.mean()</span><br><span class="line">key1</span><br><span class="line">a      -<span class="number">1.182987</span></span><br><span class="line">b       <span class="number">0.808674</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+          <h1 id="服务器上使用Tensorboard，在本地查看图像"><a href="#服务器上使用Tensorboard，在本地查看图像" class="headerlink" title="服务器上使用Tensorboard，在本地查看图像"></a>服务器上使用Tensorboard，在本地查看图像</h1><ol>
+<li>记录<br>使用<code>Tensorboard</code>，一般要用<code>tf.summary</code>记录训练过程中的数值到某个地方，如下面的 <code>train_summary_dir</code> 和 <code>train_log_dir</code><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> self<span class="selector-class">.train_summary_dir</span>:</span><br><span class="line">    self<span class="selector-class">.loss_summary_reranker</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&quot;loss_reranker&quot;</span>, self.cost)</span><br><span class="line">    self<span class="selector-class">.train_summary_op</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.merge</span>(<span class="selector-attr">[self.loss_summary_reranker]</span>)</span><br><span class="line">    self<span class="selector-class">.train_summary_writer</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.FileWriter</span>(</span><br><span class="line">        os<span class="selector-class">.path</span><span class="selector-class">.join</span>(self<span class="selector-class">.train_summary_dir</span>, <span class="string">&quot;reranker&quot;</span>), self<span class="selector-class">.session</span>.graph)</span><br></pre></td></tr></table></figure></li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8Tensorboard%EF%BC%8C%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%9F%A5%E7%9C%8B%E5%9B%BE%E5%83%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-<p>根据<code>cpucore-</code>的类别，求所有数值形式列的平均值</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>data_mac.groupby(<span class="string">&#x27;cpucore&#x27;</span>).mean()</span><br><span class="line">cpucore-	time_transform_bert	time_sess_run_bert	time_to_dict_bert	time_all_bert			</span><br><span class="line"><span class="number">1</span>	<span class="number">0.003124</span>	<span class="number">1.550403</span>	<span class="number">0.000032</span>	<span class="number">1.553559</span></span><br><span class="line"><span class="number">2</span>	<span class="number">0.001235</span>	<span class="number">0.730950</span>	<span class="number">0.000034</span>	<span class="number">0.732218</span></span><br><span class="line"><span class="number">3</span>	<span class="number">0.001565</span>	<span class="number">0.487936</span>	<span class="number">0.000037</span>	<span class="number">0.489538</span></span><br><span class="line"><span class="number">4</span>	<span class="number">0.001103</span>	<span class="number">0.323777</span>	<span class="number">0.000029</span>	<span class="number">0.324909</span></span><br><span class="line"><span class="number">5</span>	<span class="number">0.001185</span>	<span class="number">0.289874</span>	<span class="number">0.000033</span>	<span class="number">0.291093</span></span><br><span class="line"><span class="number">6</span>	<span class="number">0.001226</span>	<span class="number">0.284265</span>	<span class="number">0.000033</span>	<span class="number">0.285524</span></span><br><span class="line"><span class="number">0</span>	<span class="number">0.001225</span>	<span class="number">0.284462</span>	<span class="number">0.000032</span>	<span class="number">0.285719</span></span><br></pre></td></tr></table></figure>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/MacBook%E5%AE%89%E8%A3%85Xcode%E5%90%8EVSCode%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/MacBook%E5%AE%89%E8%A3%85Xcode%E5%90%8EVSCode%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">MacBook安装Xcode后VSCode运行报错</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-11 14:44:08" itemprop="dateModified" datetime="2022-07-11T14:44:08+08:00">2022-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="MacBook安装Xcode后VSCode运行报错"><a href="#MacBook安装Xcode后VSCode运行报错" class="headerlink" title="MacBook安装Xcode后VSCode运行报错"></a>MacBook安装Xcode后VSCode运行报错</h1><p>Xcode更新后，可能VScode不能用，显示<code>java</code>相关问题，这时可以选择</p>
+<ol>
+<li>打开<code>launch.json</code>文件</li>
+<li>然后<code>add configuration</code></li>
+<li>选择<code>python</code></li>
+<li>删除<code>json</code>文件中关于<code>java</code>的语言设置，只保留<code>python</code>的</li>
+</ol>
+<p>这样就OK了</p>
 
       
     </div>
@@ -496,91 +592,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/%E4%B8%AD%E6%96%87/%E6%9F%90%E6%AC%A1%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/08/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/%E4%B8%AD%E6%96%87/%E6%9F%90%E6%AC%A1%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/" class="post-title-link" itemprop="url">某次面试感触</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-08T00:00:00+08:00">2019-12-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 11:37:42" itemprop="dateModified" datetime="2022-07-11T11:37:42+08:00">2022-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">面试记录与总结</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/%E4%B8%AD%E6%96%87/" itemprop="url" rel="index"><span itemprop="name">中文</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="某次面试感触"><a href="#某次面试感触" class="headerlink" title="某次面试感触"></a>某次面试感触</h1><h2 id="恒昌第三轮面试"><a href="#恒昌第三轮面试" class="headerlink" title="恒昌第三轮面试"></a>恒昌第三轮面试</h2><p>今年下午两点和恒昌第三轮面试完。</p>
-<p>面试官整体给我的感觉是一种艺术家气息，举例用的是文艺复兴时期绘画的例子，他说那时候有钱人才能用蓝色，特殊人，比如天使才可以用蓝色还说那时候画家并不是创作画家，而是甲方要什么，画家就要一点不差的按照他们的要求来画，和我们现在的算法工程师一样，都是工人，并不是工程师。工程师是可以从现实中抽象建模的人。但这并不是一个人题，因为凡事都是需要经历这样一个过程的，从一点一点的模仿，到熟练，再到创新。我们工程目前还处于一个比较笨的状态，还是工人角色，远没到创新的时候，而且现在人工智能的浪潮也再一次落下，我们已经在尾声，如果以后我出去说自己是做深度学习的，可能就找不到工作了。</p>
-<p>听了它说的，我越来越觉得，真的不同的人有不同的看法，他会问我是否学过scala，但是爱奇艺的面试官会说他不会因为我会Hadoop或者不会Hadoop而决定是否录用我。</p>
-<p>虽然两者并不矛盾，但是凸显了他们对这个应聘者、甚至这个领域工作者的一个不同的要求和需求。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -648,20 +663,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">78</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="MacBook安装Xcode后VSCode运行报错Xcode更新后，可能VScode不能用，显示java相关问题，这时可以选择  打开launch.json文件 然后add configuration 选择python 删除json文件中关于java的语言设置，只保留python的  这样就OK了">
+  <meta name="description" content="加载tf模型并使用Flask框架报错xxx is not a element of this graph如果使用flask部署，一般http会多线程请求，这样可能会报错xxx is not a element of this graph 网上查了很多种方法  配置flask运行环境为单线程调用，然后运行flask run。但是因为工作机器上不方便配置环境，所以没有尝试这种方法参考文章：Flask网">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MacBook安装Xcode后VSCode运行报错">
-<meta property="og:url" content="http://yoursite.com/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/MacBook%E5%AE%89%E8%A3%85Xcode%E5%90%8EVSCode%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/index.html">
+<meta property="og:title" content="加载tf模型并使用Flask框架报错xxx is not a element of this graph">
+<meta property="og:url" content="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%8A%A0%E8%BD%BDtf%E6%A8%A1%E5%9E%8B%E5%B9%B6%E4%BD%BF%E7%94%A8Flask%E6%A1%86%E6%9E%B6%E6%8A%A5%E9%94%99xxx%20is%20not%20a%20element%20of%20this%20graph/index.html">
 <meta property="og:site_name" content="panna cotta">
-<meta property="og:description" content="MacBook安装Xcode后VSCode运行报错Xcode更新后，可能VScode不能用，显示java相关问题，这时可以选择  打开launch.json文件 然后add configuration 选择python 删除json文件中关于java的语言设置，只保留python的  这样就OK了">
+<meta property="og:description" content="加载tf模型并使用Flask框架报错xxx is not a element of this graph如果使用flask部署，一般http会多线程请求，这样可能会报错xxx is not a element of this graph 网上查了很多种方法  配置flask运行环境为单线程调用，然后运行flask run。但是因为工作机器上不方便配置环境，所以没有尝试这种方法参考文章：Flask网">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-07T12:05:26.211Z">
+<meta property="article:modified_time" content="2022-07-11T06:45:09.804Z">
 <meta property="article:author" content="Shijiao DENG">
-<meta property="article:tag" content="xcode">
-<meta property="article:tag" content="vscode">
+<meta property="article:tag" content="flask">
+<meta property="article:tag" content="session">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/MacBook%E5%AE%89%E8%A3%85Xcode%E5%90%8EVSCode%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/">
+<link rel="canonical" href="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%8A%A0%E8%BD%BDtf%E6%A8%A1%E5%9E%8B%E5%B9%B6%E4%BD%BF%E7%94%A8Flask%E6%A1%86%E6%9E%B6%E6%8A%A5%E9%94%99xxx%20is%20not%20a%20element%20of%20this%20graph/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>MacBook安装Xcode后VSCode运行报错 | panna cotta</title>
+  <title>加载tf模型并使用Flask框架报错xxx is not a element of this graph | panna cotta</title>
   
 
 
@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/MacBook%E5%AE%89%E8%A3%85Xcode%E5%90%8EVSCode%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%8A%A0%E8%BD%BDtf%E6%A8%A1%E5%9E%8B%E5%B9%B6%E4%BD%BF%E7%94%A8Flask%E6%A1%86%E6%9E%B6%E6%8A%A5%E9%94%99xxx%20is%20not%20a%20element%20of%20this%20graph/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -196,7 +196,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          MacBook安装Xcode后VSCode运行报错
+          加载tf模型并使用Flask框架报错xxx is not a element of this graph
         </h1>
 
         <div class="post-meta">
@@ -213,7 +213,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-07 20:05:26" itemprop="dateModified" datetime="2022-07-07T20:05:26+08:00">2022-07-07</time>
+                <time title="修改时间：2022-07-11 14:45:09" itemprop="dateModified" datetime="2022-07-11T14:45:09+08:00">2022-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,7 +221,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
                 </span>
             </span>
 
@@ -243,14 +243,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="MacBook安装Xcode后VSCode运行报错"><a href="#MacBook安装Xcode后VSCode运行报错" class="headerlink" title="MacBook安装Xcode后VSCode运行报错"></a>MacBook安装Xcode后VSCode运行报错</h1><p>Xcode更新后，可能VScode不能用，显示<code>java</code>相关问题，这时可以选择</p>
+        <h1 id="加载tf模型并使用Flask框架报错xxx-is-not-a-element-of-this-graph"><a href="#加载tf模型并使用Flask框架报错xxx-is-not-a-element-of-this-graph" class="headerlink" title="加载tf模型并使用Flask框架报错xxx is not a element of this graph"></a>加载tf模型并使用Flask框架报错xxx is not a element of this graph</h1><p>如果使用flask部署，一般http会多线程请求，这样可能会报错<code>xxx is not a element of this graph</code></p>
+<p>网上查了很多种方法</p>
 <ol>
-<li>打开<code>launch.json</code>文件</li>
-<li>然后<code>add configuration</code></li>
-<li>选择<code>python</code></li>
-<li>删除<code>json</code>文件中关于<code>java</code>的语言设置，只保留<code>python</code>的</li>
+<li><p>配置flask运行环境为单线程调用，然后运行flask run。但是因为工作机器上不方便配置环境，所以没有尝试这种方法<br>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/donaldsy/article/details/95097024">Flask网站中使用Keras时报错“Tensor Tensor(*) is not an element of this graph”</a></p>
+</li>
+<li><p>设置app.run(threaded&#x3D;False)，threaded默认为True，即多线程，改为False则为单线程。尝试后没有效果<br>参考文章：<a target="_blank" rel="noopener" href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></p>
+</li>
+<li><p>加载模型时将thread_safe改为True，因为我用的是bert4keras里的加载方法，和解答不一样，所以没有详细找thread_safe的设置，因此不知道有没有效果<br>参考文章：<a target="_blank" rel="noopener" href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></p>
+</li>
+<li><p>设置</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">global graph</span><br><span class="line">graph = tf.as_default()</span><br><span class="line">model = keras.models.load_model()</span><br><span class="line"></span><br><span class="line">with graph.as_default():</span><br><span class="line">  model.predict()</span><br></pre></td></tr></table></figure>
+<p>  因为代码中，模型加载和模型预测的代码是分开写的，即预测的代码在app.route下的函数内，但是加载的代码外部。估计是这个原因，导致graph里的变量名称忍让不同意，所以还是没效果<br>  参考文章：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/51127344/tensor-is-not-an-element-of-this-graph-deploying-keras-model">Tensor is not an element of this graph; deploying Keras model</a></p>
+</li>
+<li><p>固定一个session，将两部分都重新设置session</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">session = tf.Session(graph=tf.Graph())</span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  model = k.models.load_model(filepath)</span><br><span class="line"></span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  k.backend.set_session(session)</span><br><span class="line">  model.predict(x, **kwargs)</span><br></pre></td></tr></table></figure>
+<p>  这种方式最终成功了！<br>  参考文章：<a target="_blank" rel="noopener" href="https://github.com/keras-team/keras/issues/5640">Keras models do not seem to be thread safe</a></p>
+</li>
 </ol>
-<p>这样就OK了</p>
+<p>tf的session和graph还是一个大问题要弄透彻呀</p>
 
     </div>
 
@@ -266,7 +277,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/MacBook%E5%AE%89%E8%A3%85Xcode%E5%90%8EVSCode%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/" title="MacBook安装Xcode后VSCode运行报错">http://yoursite.com/2020/02/19/常用软件和系统/MacBook安装Xcode后VSCode运行报错/</a>
+    <a href="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%8A%A0%E8%BD%BDtf%E6%A8%A1%E5%9E%8B%E5%B9%B6%E4%BD%BF%E7%94%A8Flask%E6%A1%86%E6%9E%B6%E6%8A%A5%E9%94%99xxx%20is%20not%20a%20element%20of%20this%20graph/" title="加载tf模型并使用Flask框架报错xxx is not a element of this graph">http://yoursite.com/2020/02/19/编程语言/Python/加载tf模型并使用Flask框架报错xxx is not a element of this graph/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -277,8 +288,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/xcode/" rel="tag"># xcode</a>
-              <a href="/tags/vscode/" rel="tag"># vscode</a>
+              <a href="/tags/flask/" rel="tag"># flask</a>
+              <a href="/tags/session/" rel="tag"># session</a>
           </div>
 
         
@@ -287,12 +298,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" rel="prev" title="Markdown基础语法">
-      <i class="fa fa-chevron-left"></i> Markdown基础语法
+    <a href="/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%90%88%E5%B9%B6%E5%A4%A7list%E4%B8%AD%E7%9A%84%E5%B0%8Flist/" rel="prev" title="合并大list中的小list">
+      <i class="fa fa-chevron-left"></i> 合并大list中的小list
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/07/%E6%95%B0%E5%AD%A6/%E7%89%9B%E9%A1%BF%E6%B3%95--%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" rel="next" title="牛顿法--优化算法">
-      牛顿法--优化算法 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%88%A4%E6%96%AD%E6%9F%90%E4%B8%AAkey%E5%80%BC%E6%98%AF%E5%90%A6%E5%9C%A8dict%E4%B8%AD/" rel="next" title="判断某个key值是否在dict中">
+      判断某个key值是否在dict中 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -352,7 +363,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MacBook%E5%AE%89%E8%A3%85Xcode%E5%90%8EVSCode%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99"><span class="nav-number">1.</span> <span class="nav-text">MacBook安装Xcode后VSCode运行报错</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BDtf%E6%A8%A1%E5%9E%8B%E5%B9%B6%E4%BD%BF%E7%94%A8Flask%E6%A1%86%E6%9E%B6%E6%8A%A5%E9%94%99xxx-is-not-a-element-of-this-graph"><span class="nav-number">1.</span> <span class="nav-text">加载tf模型并使用Flask框架报错xxx is not a element of this graph</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -368,20 +379,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">78</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
