@@ -340,7 +340,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/defaultdict/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -354,7 +354,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/defaultdict/" class="post-title-link" itemprop="url">defaultdict</a>
+            <a href="/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="post-title-link" itemprop="url">Tensorflow和GPU的某些问题</a>
         </h2>
 
         <div class="post-meta">
@@ -371,7 +371,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 10:31:38" itemprop="dateModified" datetime="2022-07-11T10:31:38+08:00">2022-07-11</time>
+                <time title="修改时间：2022-07-11 10:11:33" itemprop="dateModified" datetime="2022-07-11T10:11:33+08:00">2022-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -379,11 +379,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/" itemprop="url" rel="index"><span itemprop="name">Tensorflow</span></a>
                 </span>
             </span>
 
@@ -398,11 +398,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="defaultdict-function-factory"><a href="#defaultdict-function-factory" class="headerlink" title="defaultdict(function_factory)"></a>defaultdict(function_factory)</h1><p><strong>defaultdict</strong></p>
-<p>dict subclass that calls a factory function to supply missing values</p>
-<p><code>defaultdict</code>构建的是一个类似<code>dictionary</code>的对象，其中<code>keys</code>值自行确定赋值，但是<code>values</code>的类型是<code>fucntion_factory</code>的类实例，而且<strong>具有默认值</strong>。比如<code>defaultdict(list)</code>创建一个<code>dict</code>,对于任何一个还不存在的<code>dict[newkey]</code>都已经有一个默认<code>list</code>使得<code>dict[newkey].append</code>可以直接运行而不需要先运行<code>dict[newkey]=[]</code>。</p>
-<p>例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s = [(<span class="string">&#x27;yellow&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;yellow&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;red&#x27;</span>, <span class="number">1</span>)]</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">d = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> s:</span><br><span class="line">    d[k].append(v)</span><br><span class="line"><span class="built_in">list</span>(d.items())</span><br><span class="line">[(<span class="string">&#x27;blue&#x27;</span>, [<span class="number">2</span>, <span class="number">4</span>]), (<span class="string">&#x27;red&#x27;</span>, [<span class="number">1</span>]), (<span class="string">&#x27;yellow&#x27;</span>, [<span class="number">1</span>, <span class="number">3</span>])]</span><br></pre></td></tr></table></figure>
+          <h1 id="Tensorflow和GPU的某些问题"><a href="#Tensorflow和GPU的某些问题" class="headerlink" title="Tensorflow和GPU的某些问题"></a>Tensorflow和GPU的某些问题</h1><h2 id="设置GPU的使用率"><a href="#设置GPU的使用率" class="headerlink" title="设置GPU的使用率"></a>设置GPU的使用率</h2><h3 id="常规情况"><a href="#常规情况" class="headerlink" title="常规情况"></a>常规情况</h3><p>在加载模型的代码中加入以下代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gpu_option = tf.GPUOptions(per+process_gpu_memory_fraction=<span class="number">0.3</span>)</span><br><span class="line">self.session= tf.Session(</span><br><span class="line">    config=tf.ConfigProto(gpu_options=gpu_option),</span><br><span class="line">    graph=tf.Graph()</span><br><span class="line">)</span><br><span class="line"><span class="keyword">with</span> self.session.graph.as_default():</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="用tfserving部署模型"><a href="#用tfserving部署模型" class="headerlink" title="用tfserving部署模型"></a>用tfserving部署模型</h3><p>在使用docker run 启动模型时，在后面加入 –per_process_gpu_memory_graction&#x3D;0.3</p>
+<p>具体启动命令示例如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name <span class="variable">$&#123;container-name&#125;</span> --runtime=nvidia -p <span class="variable">$&#123;port-local&#125;</span>:8501 --mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=<span class="variable">$&#123;model-source-dir&#125;</span>,target=/models/<span class="variable">$&#123;model-name&#125;</span> -e MODEL_NAME=<span class="variable">$&#123;model-name&#125;</span> -itd tensorflow/serving:1.14.0-gpu --enable_batching=<span class="literal">true</span> --per_process_gpu_memory_fraction=0.3</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="报错RuntimeError-can’t-start-new-thread"><a href="#报错RuntimeError-can’t-start-new-thread" class="headerlink" title="报错RuntimeError: can’t start new thread"></a>报错RuntimeError: can’t start new thread</h2><p>测试时如果内存不够，但是又想继续启新的线程（比如压测的时候），这时可能会报<code>RuntimeError: can&#39;t start new thread</code>。换一个内存使用率稍低的显卡就能改善问题</p>
+<h2 id="报错cuda-0-not-supported-xla"><a href="#报错cuda-0-not-supported-xla" class="headerlink" title="报错cuda 0 not supported xla"></a>报错cuda 0 not supported xla</h2><p>报错<code>cuda 0 not supported xla</code>通常也是因为GPU显存问题，换一个空闲的显卡可以改善问题</p>
 
       
     </div>
@@ -422,7 +427,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/is%E3%80%81==%E7%AD%89%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%BF%90%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8Tensorboard%EF%BC%8C%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%9F%A5%E7%9C%8B%E5%9B%BE%E5%83%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -436,7 +441,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/is%E3%80%81==%E7%AD%89%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%BF%90%E7%94%A8/" class="post-title-link" itemprop="url">Python中某些常用符号的运用</a>
+            <a href="/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8Tensorboard%EF%BC%8C%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%9F%A5%E7%9C%8B%E5%9B%BE%E5%83%8F/" class="post-title-link" itemprop="url">服务器上使用Tensorboard，在本地查看图像</a>
         </h2>
 
         <div class="post-meta">
@@ -453,7 +458,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 10:31:45" itemprop="dateModified" datetime="2022-07-11T10:31:45+08:00">2022-07-11</time>
+                <time title="修改时间：2022-07-11 10:11:23" itemprop="dateModified" datetime="2022-07-11T10:11:23+08:00">2022-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -461,11 +466,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/" itemprop="url" rel="index"><span itemprop="name">Tensorflow</span></a>
                 </span>
             </span>
 
@@ -480,37 +485,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Python中某些常用符号的运用"><a href="#Python中某些常用符号的运用" class="headerlink" title="Python中某些常用符号的运用"></a>Python中某些常用符号的运用</h1><h2 id="is和-x3D-x3D-的区别"><a href="#is和-x3D-x3D-的区别" class="headerlink" title="is和&#x3D;&#x3D;的区别"></a>is和&#x3D;&#x3D;的区别</h2><p>在Python中一切都是对象。</p>
-<p>Python中对象包含的三个基本要素，分别是：</p>
-<ul>
-<li>id(身份标识)</li>
-<li>type(数据类型)</li>
-<li>value(值)</li>
-</ul>
-<p>对象之间比较是否相等可以用<code>==</code>，也可以用<code>is</code>。</p>
-<p><code>is</code> 和 <code>==</code> 都是对对象进行比较判断作用的，但对对象比较判断的内容并不相同。下面来看看具体区别在哪</p>
-<ul>
-<li><p><strong><code>is</code> 比较的是两个对象的 <code>id</code> 值是否相等，也就是比较两个对象是否为同一个实例对象，是否指向同一个内存地址</strong></p>
-</li>
-<li><p><strong><code>==</code> 比较的是两个对象的内容是否相等，默认会调用对象的 <code>__eq__()</code> 方法</strong></p>
-</li>
-</ul>
-<p><strong>&#x3D;&#x3D;比较操作符和is同一性运算符区别</strong></p>
-<p>&#x3D;&#x3D;是python标准操作符中的比较操作符，用来比较判断两个对象的value(值)是否相等。</p>
-<p>示例代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python3.5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a </span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a[:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="是什么"><a href="#是什么" class="headerlink" title="^是什么"></a>^是什么</h2><p>这是Python中的异或运算符，表示对于操作符两侧数字的二进制数进行异或操作。</p>
-<p>异或操作的含义为：同一位置上的数字相等则得0，同一位置上的数字相异则得1。（二进制表达中只有0,1两个数字）</p>
-<p>例如：计算2^3首先要求得两数的二进制表达数，（十进制➡️二进制）：2➡️10，3➡️11</p>
-<p>按位异或得（二进制➡️十进制）01➡️1</p>
-<p>既2^3&#x3D;1</p>
-<h2 id="gt-gt-x3D-和-lt-lt-x3D-是什么"><a href="#gt-gt-x3D-和-lt-lt-x3D-是什么" class="headerlink" title="&gt;&gt;&#x3D; 和 &lt;&lt;&#x3D;是什么"></a>&gt;&gt;&#x3D; 和 &lt;&lt;&#x3D;是什么</h2><p>&gt;&gt; 和 &lt;&lt;都是位运算，对二进制数进bai行移位操作。</p>
-<p>&lt;&lt; 是左移，du末位补zhi0，类比十进制数在末尾添0相当于原数乘dao以10，x&lt;&lt;1是将x的二进制表示左移一位，相当于原数x乘2。比如整数4在二进制下是100，4&lt;&lt;1左移1位变成1000(二进制)，结果是8。</p>
-<p>&gt;&gt;是右移，右移1位相当于除以2。<br>而&gt;&gt;&#x3D;和&lt;&lt;&#x3D;，就是对变量进行位运算移位之后的结果再赋值给原来的变量，可以类比赋值运算符+&#x3D;和-&#x3D;可以理解。</p>
-<p>比如x&gt;&gt;&#x3D;2， 就是把变量x右移2位，再保留x操作后的值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a &gt;&gt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b &lt;&lt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
-
+          <h1 id="服务器上使用Tensorboard，在本地查看图像"><a href="#服务器上使用Tensorboard，在本地查看图像" class="headerlink" title="服务器上使用Tensorboard，在本地查看图像"></a>服务器上使用Tensorboard，在本地查看图像</h1><ol>
+<li>记录<br>使用<code>Tensorboard</code>，一般要用<code>tf.summary</code>记录训练过程中的数值到某个地方，如下面的 <code>train_summary_dir</code> 和 <code>train_log_dir</code><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> self<span class="selector-class">.train_summary_dir</span>:</span><br><span class="line">    self<span class="selector-class">.loss_summary_reranker</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&quot;loss_reranker&quot;</span>, self.cost)</span><br><span class="line">    self<span class="selector-class">.train_summary_op</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.merge</span>(<span class="selector-attr">[self.loss_summary_reranker]</span>)</span><br><span class="line">    self<span class="selector-class">.train_summary_writer</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.FileWriter</span>(</span><br><span class="line">        os<span class="selector-class">.path</span><span class="selector-class">.join</span>(self<span class="selector-class">.train_summary_dir</span>, <span class="string">&quot;reranker&quot;</span>), self<span class="selector-class">.session</span>.graph)</span><br></pre></td></tr></table></figure></li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8Tensorboard%EF%BC%8C%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%9F%A5%E7%9C%8B%E5%9B%BE%E5%83%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -529,7 +514,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/map+zip%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/MacBook%E5%AE%89%E8%A3%85Xcode%E5%90%8EVSCode%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -543,7 +528,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/map+zip%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE/" class="post-title-link" itemprop="url">map+zip实现矩阵转置</a>
+            <a href="/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/MacBook%E5%AE%89%E8%A3%85Xcode%E5%90%8EVSCode%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">MacBook安装Xcode后VSCode运行报错</a>
         </h2>
 
         <div class="post-meta">
@@ -560,7 +545,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 10:31:49" itemprop="dateModified" datetime="2022-07-11T10:31:49+08:00">2022-07-11</time>
+                <time title="修改时间：2022-07-11 14:44:08" itemprop="dateModified" datetime="2022-07-11T14:44:08+08:00">2022-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -568,11 +553,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
                 </span>
             </span>
 
@@ -587,10 +572,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="map-zip实现矩阵转置"><a href="#map-zip实现矩阵转置" class="headerlink" title="map+zip实现矩阵转置"></a>map+zip实现矩阵转置</h1><p>map和zip配合使用，实现矩阵转置</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rotate</span>(<span class="params">self, matrix</span>):  </span><br><span class="line">        matrix[:] = <span class="built_in">map</span>(<span class="built_in">list</span>,<span class="built_in">zip</span>(*matrix))</span><br><span class="line">        <span class="keyword">return</span> matrix</span><br><span class="line"><span class="built_in">print</span>(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>],</span><br><span class="line">    [<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-
-<p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a target="_blank" rel="noopener" href="https://blog.csdn.net/shawpan/article/details/69663710">一行代码搞定矩阵旋转——python</a>。</p>
+          <h1 id="MacBook安装Xcode后VSCode运行报错"><a href="#MacBook安装Xcode后VSCode运行报错" class="headerlink" title="MacBook安装Xcode后VSCode运行报错"></a>MacBook安装Xcode后VSCode运行报错</h1><p>Xcode更新后，可能VScode不能用，显示<code>java</code>相关问题，这时可以选择</p>
+<ol>
+<li>打开<code>launch.json</code>文件</li>
+<li>然后<code>add configuration</code></li>
+<li>选择<code>python</code></li>
+<li>删除<code>json</code>文件中关于<code>java</code>的语言设置，只保留<code>python</code>的</li>
+</ol>
+<p>这样就OK了</p>
 
       
     </div>
