@@ -265,6 +265,50 @@
       </tags>
   </entry>
   <entry>
+    <title>protobuf</title>
+    <url>/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/protobuf/</url>
+    <content><![CDATA[<h1 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h1><ul>
+<li><code>protobuf</code>：把消息序列化的工具</li>
+<li><code>rpc</code>： 远程方法调用</li>
+<li><code>redis</code>：缓存</li>
+<li><code>mysql</code>：持久储存</li>
+</ul>
+<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p><a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5">ML Client&#x2F;Server Using gRPC in Python – Good Audience</a></p>
+<h4 id="安装Protocol-Buffers："><a href="#安装Protocol-Buffers：" class="headerlink" title="安装Protocol Buffers："></a>安装Protocol Buffers：</h4><ol>
+<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
+<li>brew install protobuf</li>
+<li>安装gRPC：pip install grpcio</li>
+<li>安装gRPC：pip install grpcio-tools</li>
+</ol>
+<span id="more"></span>
+
+<h4 id="编译proto"><a href="#编译proto" class="headerlink" title="编译proto"></a>编译proto</h4><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">python -m grpc_tools.protoc -I <span class="string">./protos</span> <span class="params">--python_out=</span>. <span class="params">--grpc_python_out=</span>. <span class="string">./protos/intent.proto</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-I</code><br>指定生成的<code>pb2.py</code>和<code>pb2_grpc.py</code>文件的储存路径</li>
+<li><code>./protos/intent.proto</code><br>需要编译的<code>.proto</code>文件的位置</li>
+</ul>
+<p>如果文件原来的位置如下：</p>
+<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br></pre></td></tr></table></figure>
+<p>在根目录上运行</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I .<span class="regexp">/protos/</span> --python_out=. --grpc_python_out=. .<span class="regexp">/protos/</span>price.proto</span><br></pre></td></tr></table></figure>
+<p>后会变成：</p>
+<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br><span class="line"><span class="bullet">- </span>intent<span class="emphasis">_pb2.py</span></span><br><span class="line"><span class="emphasis">- intent_pb2_</span>grpc.py</span><br></pre></td></tr></table></figure>
+
+<p>在根目录上运行</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I . <span class="attribute">--python_out</span>=. <span class="attribute">--grpc_python_out</span>=. ./protos/price.proto</span><br></pre></td></tr></table></figure>
+<p>后会变成：</p>
+<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>intent<span class="emphasis">_pb2.py</span></span><br><span class="line"><span class="emphasis">- intent_pb2_</span>grpc.py</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br></pre></td></tr></table></figure>
+<p>没弄明白为什么，不过为了方便函数之间的调用，一般使用第一种方法。</p>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+      </categories>
+      <tags>
+        <tag>protobuf</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown基础语法</title>
     <url>/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h1 id="Markdown基础语法"><a href="#Markdown基础语法" class="headerlink" title="Markdown基础语法"></a>Markdown基础语法</h1><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><ol>
@@ -346,56 +390,13 @@
 <li><p><strong>数学公式</strong>：主题目录下<code>/hexo/theme/next/_config.yml</code>设置<code>mathjax</code>里的<code>enable: true</code><br>并且在需要使用数学公式的博客里打开公式开关：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">index.html</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2016-12-28 21:01:30</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="attr">mathjax:</span> <span class="literal">true</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure></li>
 </ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.w3cschool.cn/lme/q92a1srq.html">Markdown 语法简介</a></p>
 ]]></content>
       <categories>
         <category>常用软件和系统</category>
       </categories>
       <tags>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>protobuf</title>
-    <url>/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/protobuf/</url>
-    <content><![CDATA[<h1 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h1><ul>
-<li><code>protobuf</code>：把消息序列化的工具</li>
-<li><code>rpc</code>： 远程方法调用</li>
-<li><code>redis</code>：缓存</li>
-<li><code>mysql</code>：持久储存</li>
-</ul>
-<h4 id="搭建微服务实例"><a href="#搭建微服务实例" class="headerlink" title="搭建微服务实例"></a>搭建微服务实例</h4><p><a href="https://blog.goodaudience.com/ml-client-server-using-grpc-in-python-3cba7693d1f5">ML Client&#x2F;Server Using gRPC in Python – Good Audience</a></p>
-<h4 id="安装Protocol-Buffers："><a href="#安装Protocol-Buffers：" class="headerlink" title="安装Protocol Buffers："></a>安装Protocol Buffers：</h4><ol>
-<li>ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
-<li>brew install protobuf</li>
-<li>安装gRPC：pip install grpcio</li>
-<li>安装gRPC：pip install grpcio-tools</li>
-</ol>
-<span id="more"></span>
-
-<h4 id="编译proto"><a href="#编译proto" class="headerlink" title="编译proto"></a>编译proto</h4><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">python -m grpc_tools.protoc -I <span class="string">./protos</span> <span class="params">--python_out=</span>. <span class="params">--grpc_python_out=</span>. <span class="string">./protos/intent.proto</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>-I</code><br>指定生成的<code>pb2.py</code>和<code>pb2_grpc.py</code>文件的储存路径</li>
-<li><code>./protos/intent.proto</code><br>需要编译的<code>.proto</code>文件的位置</li>
-</ul>
-<p>如果文件原来的位置如下：</p>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br></pre></td></tr></table></figure>
-<p>在根目录上运行</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I .<span class="regexp">/protos/</span> --python_out=. --grpc_python_out=. .<span class="regexp">/protos/</span>price.proto</span><br></pre></td></tr></table></figure>
-<p>后会变成：</p>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br><span class="line"><span class="bullet">- </span>intent<span class="emphasis">_pb2.py</span></span><br><span class="line"><span class="emphasis">- intent_pb2_</span>grpc.py</span><br></pre></td></tr></table></figure>
-
-<p>在根目录上运行</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">python3 -m grpc_tools.protoc -I . <span class="attribute">--python_out</span>=. <span class="attribute">--grpc_python_out</span>=. ./protos/price.proto</span><br></pre></td></tr></table></figure>
-<p>后会变成：</p>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="bullet">- </span>protos</span><br><span class="line"><span class="bullet">- </span>intent.proto</span><br><span class="line"><span class="bullet">- </span>intent<span class="emphasis">_pb2.py</span></span><br><span class="line"><span class="emphasis">- intent_pb2_</span>grpc.py</span><br><span class="line"><span class="bullet">- </span>client.py</span><br><span class="line"><span class="bullet">- </span>server.py</span><br><span class="line"><span class="bullet">- </span>predict.py</span><br></pre></td></tr></table></figure>
-<p>没弄明白为什么，不过为了方便函数之间的调用，一般使用第一种方法。</p>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-      </categories>
-      <tags>
-        <tag>protobuf</tag>
       </tags>
   </entry>
   <entry>
@@ -690,6 +691,25 @@
 </ul>
 <h3 id="gelu"><a href="#gelu" class="headerlink" title="gelu"></a>gelu</h3><p>Bert Transfromer结构中使用了这个激活函数—gelu（Gaussian error linear units，高斯误差线性单元），Gelu在论文中已经被验证，是一种高性能的神经网络激活函数，因为GELU的非线性变化是一种符合预期的随机正则变换方式（这句话，说实话，我翻译自原论文，具体怎么理解呢？我自己是如下理解的）。</p>
 <p>激活函数的作用：给网络模型加入非线性因子，这个非线性因子的实际操作就是在wx+b这样的线下变化后面加入一个非线性变化的函数fun。<br>Gelu的操作方式：Gelu怎么完成非线性变换的呢？引入这样的变化函数：<br>        公式中x是自己，P(X&lt;&#x3D;x)决定x中有多少信息保留 ，并且由于P是服从高斯分布的，也就满足了非线性的特征，并且更加符合数据的分布预期。</p>
+<h3 id="special-tokens"><a href="#special-tokens" class="headerlink" title="special tokens"></a>special tokens</h3><p>在BERT的使用中，我们对<code>[SEP]</code>和<code>[CLS]</code>者两个特殊tokens并不陌生。但是在查看<code>vocab.txt</code>时会发现，在文件的开头有若干<code>[unused*]</code>特殊token，比如在<code>bert-uncased-base</code>模型中有994<code>[unused*]</code>个特殊token。</p>
+<p>这些token都是未经训练的，是BERT预留出来添加词汇的标记，我们可以用他们来指代任何字符，为下游fineturn任务引入先验知识预先提供占位符</p>
+<pre><code>![unused](unused.jpeg)
+</code></pre>
+<p>通常我们如果想要在使用预训练模型的基础上，在BERT里加入额外的字词信息是比较困难的，通俗的做法是</p>
+<ol>
+<li><p>将BERT输出的<code>embedding</code>和额外信息的<code>embedding</code>进行<code>concat</code>来整合</p>
+<p> <img src="/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Bert/combiner-model.jpeg" alt="combiner-model"></p>
+</li>
+<li><p>或者修改<code>vocab.txt</code>文档，将词表维度从N扩展到M (: 可以参考<code>Hugging Face</code>官方<code>resize token embeddings</code>函数来实现)</p>
+<ol>
+<li>在词表（vocab.txt）中添加若干个自定义的特殊 tokens，词表大小由 N 增大到 M</li>
+<li>新建一个 M 维的 embedding layer</li>
+<li>将 BERT 原来的 N 维 embedding layer 中的 pretrained weights，按照词表顺序，复制到新的 M 维 embedding layer 中</li>
+<li>替换掉 BERT 原来的 N 维 embedding layer。</li>
+</ol>
+</li>
+</ol>
+<p>但如果有了<code>[unused*]</code>预先占位，我们就可以将<code>vocab.txt</code>词表中的这些token替换成自定义的token，如<code>[Paragraph=N]</code>，这样诸如<code>[Paragraph=N]</code>的token会和<code>[CLS]</code>和<code>[SEP]</code>等meta-token一样，不会被WordPiece tokenizer分开，后续可以直接使用<code>[Paragraph=N]</code>等的embedding，而不需要引入更多维度的embedding向量了。</p>
 <h3 id="warm-up"><a href="#warm-up" class="headerlink" title="warm-up"></a>warm-up</h3><h3 id="dropout"><a href="#dropout" class="headerlink" title="dropout"></a>dropout</h3><h2 id="获取向量"><a href="#获取向量" class="headerlink" title="获取向量"></a>获取向量</h2><p>bert中有很多种获取向量的方法，具体如下：</p>
 <p><strong>init</strong>()：重头戏，模型的构建在此完成，三步走完成。<br>主要分为三个模块：embeddings、encoder 和 pooler。<br>首先构建输入，包括 input_ids、input_mask 等。其次进入 embeddings 模块，进行一系列 embedding 操作，涉及 embedding_lookup() 和 embedding_postprocessor() 两个函数。<br>然后进入 encoder 模块，就是 transformer 模型和 attention 发挥作用的地方了，主要涉及 transformer_model() 函数，得到 encoder 各层输出。<br>最后进入 pooler 模块，只取 encoder 最后一层的输出的第一个 token 的信息，送入到一个大小为 hidden_size 的全连接层，得到 pooled_output，这就是最终输出了。</p>
 <ul>
@@ -706,6 +726,25 @@
       </categories>
       <tags>
         <tag>bert</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>K-fold交叉验证</title>
+    <url>/2022/07/12/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/K-fold%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/</url>
+    <content><![CDATA[<h1 id="K-fold交叉验证"><a href="#K-fold交叉验证" class="headerlink" title="K-fold交叉验证"></a>K-fold交叉验证</h1><h2 id="交叉验证的定义"><a href="#交叉验证的定义" class="headerlink" title="交叉验证的定义"></a>交叉验证的定义</h2><p>交叉验证（Cross Validation），有的时候也称作循环估计（Rotation Estimation），是一种统计学上将数据样本切割成较小子集的实用方法，该理论是由Seymour Geisser提出的。<br>在给定的建模样本中，拿出大部分样本进行建模型，留小部分样本用刚建立的模型进行预报，并求这小部分样本的预报误差，记录它们的平方加和。这个过程一直进行，直到所有的样本都被预报了一次而且仅被预报一次。把每个样本的预报误差平方加和，称为PRESS(predicted Error Sum of Squares)。</p>
+<h3 id="K-fold-cross-validation"><a href="#K-fold-cross-validation" class="headerlink" title="K-fold cross-validation"></a>K-fold cross-validation</h3><p>K折交叉验证，初始采样分割成K个子样本，一个单独的子样本被保留作为验证模型的数据，其他K-1个样本用来训练。交叉验证重复K次，每个子样本验证一次，平均K次的结果或者使用其它结合方式，最终得到一个单一估测。这个方法的优势在于，同时重复运用随机产生的子样本进行训练和验证，每次的结果验证一次，10折交叉验证是最常用的</p>
+<h2 id="K-fold交叉验证的目的是什么"><a href="#K-fold交叉验证的目的是什么" class="headerlink" title="K-fold交叉验证的目的是什么"></a>K-fold交叉验证的目的是什么</h2><p>如果用一句话来总结：交叉验证是为了评估模型的稳定性，而不是为了从 <code>K</code> 个方程式(model)中选择一个。</p>
+<p>具体见下方百度里的解释：</p>
+<blockquote>
+<p>用交叉验证的目的是为了得到可靠稳定的模型。在建立PCR 或PLS 模型时，一个很重要的因素是取多少个主成分的问题。用cross validation 校验每个主成分下的PRESS值，选择PRESS值小的主成分数。或PRESS值不再变小时的主成分数。<br>常用的精度测试方法主要是交叉验证，例如10折交叉验证(10-fold cross validation)，将数据集分成十份，轮流将其中9份做训练1份做验证，10次的结果的均值作为对算法精度的估计，一般还需要进行多次10折交叉验证求均值，例如：10次10折交叉验证，以求更精确一点。<br>交叉验证有时也称为交叉比对，如：10折交叉比对</p>
+</blockquote>
+<p>也可以参考此文章，解释的非常透彻： <a href="https://stats.stackexchange.com/questions/52274/how-to-choose-a-predictive-model-after-k-fold-cross-validation">How to choose a predictive model after k-fold cross-validation?</a></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>kaggle</tag>
       </tags>
   </entry>
   <entry>
@@ -1606,8 +1645,8 @@
     <title>Kaggle使用和打比赛注意事项</title>
     <url>/2022/07/12/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/Kaggle%E4%BD%BF%E7%94%A8%E5%92%8C%E6%89%93%E6%AF%94%E8%B5%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
     <content><![CDATA[<h1 id="Kaggle使用和打比赛注意事项"><a href="#Kaggle使用和打比赛注意事项" class="headerlink" title="Kaggle使用和打比赛注意事项"></a>Kaggle使用和打比赛注意事项</h1><h2 id="使用Kaggle上的Notebook训练"><a href="#使用Kaggle上的Notebook训练" class="headerlink" title="使用Kaggle上的Notebook训练"></a>使用Kaggle上的Notebook训练</h2><p>Kaggle上可以免费使用GPU进行模型训练，但输出的数据有保存时效。</p>
-<p>可以点击右侧的 <code>Add data</code> &gt; <code>Dataset</code> 上传本地数据，或者 <code>Add data</code> &gt; <code>Competition Data</code> 中获取kaggle上已有的比赛数据。</p>
-<p>上传数据时，可以一次性upload所有所需数据，输入框 <code>Enter Dataset Title</code> 是为此次上传的所有文件建立的文件夹的名字。</p>
+<p>可以点击右侧的 <code>Add data</code> &gt; <code>Dataset</code> 上传本地数据，或者 <code>Add data</code> &gt; <code>Competition Data</code> 中获取kaggle上已有的比赛数据</p>
+<p>上传数据时，可以一次性upload所有所需数据，输入框 <code>Enter Dataset Title</code> 是为此次上传的所有文件建立的文件夹的名字</p>
 <p><img src="/2022/07/12/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/Kaggle%E4%BD%BF%E7%94%A8%E5%92%8C%E6%89%93%E6%AF%94%E8%B5%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/uploaddata.png" alt="upload data"></p>
 <p>需注意：</p>
 <ol>
@@ -1627,11 +1666,15 @@
 <li>一定保存一版代码： <code>Save Version</code> 并且选择 <code>Save &amp; Run All(Commit)</code></li>
 <li>保存和运行前，需要先把数据和模型加载到Data中去，具体操作步骤见上文</li>
 <li>运行前需要断开<code>Internet</code>，否则保存后的代码不能被选用上传</li>
-<li>要保证运行的代码有对测试集的预测并按格式输出文件</li>
+<li>要保证运行的代码，有对测试集的预测并按格式输出文件</li>
+<li>输出的文件，列名和行数都需要分别和 <code>submission.csv</code> 和 <code>test.csv</code> 保持一致</li>
 <li>等程序运行完成后，进入到当前比赛页面下并进入<code>Leaderboard</code></li>
 <li>点击<code>Submit Predictions</code>后，选择上面步骤中保存的版本 <code>version X</code> 和输出文件 <code>submission.csv</code></li>
 </ol>
 ]]></content>
+      <categories>
+        <category>项目总结</category>
+      </categories>
       <tags>
         <tag>kaggle</tag>
       </tags>
@@ -1729,1252 +1772,4 @@
 <span id="more"></span>
 
 <h4 id="到目前为止，每个version的改进简介"><a href="#到目前为止，每个version的改进简介" class="headerlink" title="到目前为止，每个version的改进简介"></a>到目前为止，每个version的改进简介</h4><ul>
-<li><p>v1.1 是所有以前的版本，但是因为隔的太久，当时又没有记录，所以都不太记得了。</p>
-</li>
-<li><p>v1.2 是自己重构代码，除此之外，和第一个版本的差别不大。</p>
-</li>
-<li><p>v1.3 是在<code>seq2seq</code>的基础上加入了<code>bert</code>的<code>get_pooled_output</code>。</p>
-</li>
-<li><p>v1.4</p>
-<ul>
-<li>v1.4 这个版本在v1.2版本上改变了loss。因为在同时训练了v1.3版本和v1.2版本后进行比较，发现相同时间内训练出来的结果（因为版本v1.3中加入了<code>bert</code>，所以相同时间内训练出来的<code>epoch</code>数相差很大），v1.2版本的更好。因为考虑到时间成本，所以v1.4版本是在v1.2版本的基础上进行改进的。具体内容可以看v1.4的<code>README.md</code>。</li>
-<li>v1.4里也加入了一些“问候”，“再见”等的规则。</li>
-</ul>
-</li>
-<li><p>v1.5 <code>seq2seq</code>中在<code>train</code>时，一般用上一步正确的输出作为下一步的输入，但是这里改成用上一步真实的输出作为下一步的输入。具体内容可见这个文件夹下的《变形seq2seq，即在training时，上一步的输出成为下一步的输入》</p>
-</li>
-<li><p>又把<code>learning_rate</code>调小了，在训练了100个epoch，但是结果还是很糟糕。</p>
-</li>
-<li><p>v1.6 尝试在v1.4的基础上把<code>layer</code>从3改成6</p>
-</li>
-</ul>
-<h3 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h3><p>闲聊原本数据是120万左右，后来经过数据清洗后，剩下80万左右的数据。<br>数据清洗：</p>
-<ol>
-<li>删除重复对话</li>
-<li>将多轮对话剪切成单轮对话</li>
-<li>删除回复过短的回答，或者不需要的回答&#x2F;问题（如 字符，笑脸符等）</li>
-<li>删除过长对话（30字以内）</li>
-<li>统一回复（如 哈哈哈哈哈哈 &#x3D;&gt; 哈哈哈哈哈，如 我不知道啊，哈哈哈 &#x3D;&gt; 我不知道啊）</li>
-</ol>
-<h4 id="流程设计"><a href="#流程设计" class="headerlink" title="流程设计"></a>流程设计</h4><ol>
-<li>“问候”和“再见”等，是用规则写的</li>
-<li>如果没有匹配到“问候”或者“再见”，就会进入到模型生成回复</li>
-<li>模型是seq2seq+attention</li>
-<li>attention是哪个attention，对结果影响并不大</li>
-<li>把数据分为几块，比如5-10个字的句子一起，10-20个字的句子一起，等等，然后让句子从短到长进行输入，一是让训练更稳定，二是能一定程度上加快速度</li>
-</ol>
-<h4 id="模型问题"><a href="#模型问题" class="headerlink" title="模型问题"></a>模型问题</h4><ol>
-<li>无意义回答过多 &#x3D;&gt; 加入anti-LM</li>
-<li>相似回答过多 &#x3D;&gt; 加入余弦相似到loss中，有一定的效果，但是很难统计，因为可能对某个测试集，效果明显，对某些测试集，效果就不是那么明显</li>
-<li>简单问题正确回答的百分比 &#x3D;&gt; “问候”等对话进行了规则处理</li>
-<li>过于简短回答的百分比 &#x3D;&gt; 数据集上进行了处理</li>
-</ol>
-<h5 id="anti-LM"><a href="#anti-LM" class="headerlink" title="anti-LM"></a>anti-LM</h5><p>通常情况下，我们的损失函数loss为${\hat T}&#x3D;\underset{T}{argmax} {logp(T|S)}$。从损失函数我们可以看出，在给定输入$S$的情况下，模型会选择输出概率最大的句子，这回倾向输出出现频率大的句子，通常这些句子为无意义句子。<br>所以我们引入互信息作为新的目标函数，以两个句子的相关性作为度量标准。互信息公式如下：<br>$log \frac{p(S|T)}{p(S)p(T)}$<br>所以表达式可以写成</p>
-<p>${\hat T}&#x3D;\underset{T}{argmax} {\log p(T|S)-\log p(T)-\log p(S)}$</p>
-<p>但因为$S$为输入，$\log p(S)$是固定的，所以表达式也为</p>
-<p>${\hat T}&#x3D;\underset{T}{argmax} {\log p(T|S)-\log p(T)}$</p>
-<p>对惩罚项$-\log (T)$前加入一个参数，即为</p>
-<p>${\hat T}&#x3D;\underset{T}{argmax} {logp(T|S)-\lambda logp(T)}$</p>
-<p>我们发现虽然目标函数改为互信息MMI，但是损失函数最大的改变就是加入了$-log(T)$，而$p(T)$表示一个句子出现的概率，所以这个损失函数其实是加了一个对出现概率大的句子的惩罚，$\lambda$就是那个惩罚系数。</p>
-<p>惩罚项$-logp(T)$中的</p>
-<p>$p(T)&#x3D;\prod_{k&#x3D;1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
-<p>在句子$T$的生成中，第一个字$t_1$的生成一定程度上决定了后面字$t_k$的生成，所以$t_1$相对于$t_k$而言，对句子$T$的影响更大。又因为如果我们直接让</p>
-<p>$p(T)&#x3D;\prod_{k&#x3D;1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1})$</p>
-<p>实际生成的句子可能会更容易有语法问题。所以我们取了一个折中的方法，让</p>
-<p>$U(T)&#x3D;\prod_{k&#x3D;1}^{N_{t}}p(t_k|t_1,t_2,…,t_{k-1}) \cdot g(k)$ </p>
-<p>with<br>$$ g(k)&#x3D;<br>  \begin{cases}<br>  1 &amp; {if k \leq \gamma} \<br>  0 &amp; {if k \geq \gamma}<br>  \end{cases}<br>  $$<br>取代$p(T)$，使得损失函数为</p>
-<p>${\hat T}&#x3D;\underset{T}{argmax} {\log p(T|S)-\lambda \log U(T)}$</p>
-<p>另外实际应用中，还加入了响应句子长度的因素$\gamma N_t$，作为模型相应的依据，因此将目标函数修正如下</p>
-<p>$Score(T) &#x3D; p(T|S)-\lambda U(T) + \gamma N_t$</p>
-<p>所以损失函数应该是</p>
-<p>$\underset{T}{argmin} {-\log p(T|S)+\lambda \log p(T)-\log (\gamma N_t)}$</p>
-<h5 id="anti-bidi"><a href="#anti-bidi" class="headerlink" title="anti-bidi"></a>anti-bidi</h5><p>由上面的推导，我们从MMI得到</p>
-<p>${\hat T}&#x3D;\underset{T}{argmax} {\log p(T|S)-\lambda \log p(T)}$</p>
-<p>我们又知道</p>
-<p>$\log p(T)&#x3D;\log p(T|S) + \log p(S) - \log p(S|T)$</p>
-<p>带入得到</p>
-<p>${\hat T}&#x3D;\underset{T}{argmax} {(1-\lambda)\log p(T|S)+\lambda \log p(S|T)}$</p>
-<p>因为$p(S|T)$需要通过生成的$T$来再次通过训练好的seq2seq模型再计算一遍，计算量特别大，所以我们通过beam search只取前$N$个$T$，比如200个，再计算$S$。</p>
-<p>但是在使用beam search的时候，我们知道，beam search有很多输出只是一两个字或者只是符号发生了变化，减少了取$N$个不同输出$T$的意义，因为本身输出句子的多样性不能满足这里的要求，所以我们对beam search进行了更改。</p>
-<p>一般beam search在到下一节点时，我们是通过混合所有父节点的字节点，统一进行比较，然后取整体概率最大的$N$个选择，这里我们更改为，针对每一个父节点，我们先对其对应的字节点按先后顺序将其概率从上往下减去一个越来越大的数，使得我们能更好的保存更多不同的父节点，自然句子的多样性也就增加了。具体例子见下图<img src="/public/images/image/beam_search_anti_bidi.png" alt="beamsearch_antibidi"><br>另外，也在anti-bidi中，做了同anti-LM相同的处理，增加了回复长度的影响。</p>
-<p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句与回答的余弦相似性来减少重复问题的回答</p>
-<h5 id="anti-bidi-VS-anti-LM"><a href="#anti-bidi-VS-anti-LM" class="headerlink" title="anti-bidi VS anti-LM"></a>anti-bidi VS anti-LM</h5><ol>
-<li>两者虽然都是使用的MMI，但是使用的公式不一样，背后的逻辑原理也不一样</li>
-<li>anti-bidi比anti-LM要更耗时，因为他要经过两次模型，且非常依赖于beam search生成的句子的多样性</li>
-</ol>
-<h5 id="anti-LM的具体实现"><a href="#anti-LM的具体实现" class="headerlink" title="anti-LM的具体实现"></a>anti-LM的具体实现</h5><p>如何计算P(T)<br>首先应该意识到P(T)应该是一个语言模型学习出来的结果，而不简单的是联合概率的乘积。那么如何得到这个模型学习出来的结果呢？在实现时需要在decoder的输入端输入一个全零的初始化状态，具体做法可以输入一句话长度的pad标志符，让decoder生成结果，得到P(T)</p>
-<p>详见<code>just_another_seq2seq_master</code>里<code>train-anti.py</code>中第86～88行和第98～101行。</p>
-<p>下面代码见前三行和中间的<code>add_loss</code>：</p>
-<ol>
-<li>前三行代码：输入为一定维度的PAD</li>
-<li><code>add_loss</code>计算的是输入为PAD时(即初始状态下)的输出，即$P(T)$</li>
-<li><code>add_loss *= -0.5</code>表示每次计算完$P(T)$后乘以$-0.5$，即$\lambda&#x3D;0.5$</li>
-<li>我们没有用$U(T)$，但是并没有明显输出语句不通顺的情况</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dummy_encoder_inputs = np.array([</span><br><span class="line">    np.array([WordSequence.PAD]) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(batch_size)])</span><br><span class="line">dummy_encoder_inputs_lengths = np.array([<span class="number">1</span>] * batch_size)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_epoch + <span class="number">1</span>):</span><br><span class="line">    costs = []</span><br><span class="line">    bar = tqdm(<span class="built_in">range</span>(steps), total=steps,</span><br><span class="line">                desc=<span class="string">&#x27;epoch &#123;&#125;, loss=0.000000&#x27;</span>.<span class="built_in">format</span>(epoch))</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> bar:</span><br><span class="line">        x, xl, y, yl = <span class="built_in">next</span>(flow)</span><br><span class="line">        x = np.flip(x, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        add_loss = model.train(sess,</span><br><span class="line">                                dummy_encoder_inputs,</span><br><span class="line">                                dummy_encoder_inputs_lengths,</span><br><span class="line">                                y, yl, loss_only=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        add_loss *= -<span class="number">0.5</span></span><br><span class="line">        <span class="comment"># print(x, y)</span></span><br><span class="line">        cost, lr = model.train(sess, x, xl, y, yl,</span><br><span class="line">                                return_lr=<span class="literal">True</span>, add_loss=add_loss)</span><br><span class="line">        costs.append(cost)</span><br><span class="line">        bar.set_description(<span class="string">&#x27;epoch &#123;&#125; loss=&#123;:.6f&#125; lr=&#123;:.6f&#125;&#x27;</span>.<span class="built_in">format</span>(</span><br><span class="line">            epoch,</span><br><span class="line">            np.mean(costs),</span><br><span class="line">            lr</span><br><span class="line">        ))</span><br><span class="line"></span><br><span class="line">    model.save(sess, save_path)</span><br></pre></td></tr></table></figure>
-
-<h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><h4 id="anti-lm"><a href="#anti-lm" class="headerlink" title="anti-lm"></a>anti-lm</h4><h5 id="最大互信息"><a href="#最大互信息" class="headerlink" title="最大互信息"></a>最大互信息</h5><h4 id="attention-LSTM"><a href="#attention-LSTM" class="headerlink" title="attention+LSTM"></a>attention+LSTM</h4><h5 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h5><h5 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h5><h4 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h4><p>闲聊的评估是带有非常大的主观性的，而且场景不同，用户不同，对相同结果的满意度也会不一样，所以我们对模型的评估希望从更客观、更基础的地方来进行评估和改进：</p>
-<ol>
-<li>无意义回答的频率&#x2F;百分比</li>
-<li>相似回答的频率&#x2F;百分比</li>
-<li>正确回答的百分比</li>
-<li>简单问题正确回答的百分比</li>
-<li>相同问题，是否能给出相同答案</li>
-<li>过于简短回答的百分比</li>
-<li>对话内容大多无意义，无法深入交谈具体事情</li>
-</ol>
-<h4 id="努力方向"><a href="#努力方向" class="headerlink" title="努力方向"></a>努力方向</h4><ol>
-<li>模型优化</li>
-<li>数据集质量优化+数据集扩充</li>
-</ol>
-]]></content>
-      <categories>
-        <category>项目总结</category>
-      </categories>
-      <tags>
-        <tag>chitchat</tag>
-        <tag>seq2seq</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tensorflow和GPU的某些问题</title>
-    <url>/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
-    <content><![CDATA[<h1 id="Tensorflow和GPU的某些问题"><a href="#Tensorflow和GPU的某些问题" class="headerlink" title="Tensorflow和GPU的某些问题"></a>Tensorflow和GPU的某些问题</h1><h2 id="设置GPU的使用率"><a href="#设置GPU的使用率" class="headerlink" title="设置GPU的使用率"></a>设置GPU的使用率</h2><h3 id="常规情况"><a href="#常规情况" class="headerlink" title="常规情况"></a>常规情况</h3><p>在加载模型的代码中加入以下代码</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gpu_option = tf.GPUOptions(per+process_gpu_memory_fraction=<span class="number">0.3</span>)</span><br><span class="line">self.session= tf.Session(</span><br><span class="line">    config=tf.ConfigProto(gpu_options=gpu_option),</span><br><span class="line">    graph=tf.Graph()</span><br><span class="line">)</span><br><span class="line"><span class="keyword">with</span> self.session.graph.as_default():</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-
-<h3 id="用tfserving部署模型"><a href="#用tfserving部署模型" class="headerlink" title="用tfserving部署模型"></a>用tfserving部署模型</h3><p>在使用docker run 启动模型时，在后面加入 –per_process_gpu_memory_graction&#x3D;0.3</p>
-<p>具体启动命令示例如下：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --name <span class="variable">$&#123;container-name&#125;</span> --runtime=nvidia -p <span class="variable">$&#123;port-local&#125;</span>:8501 --mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=<span class="variable">$&#123;model-source-dir&#125;</span>,target=/models/<span class="variable">$&#123;model-name&#125;</span> -e MODEL_NAME=<span class="variable">$&#123;model-name&#125;</span> -itd tensorflow/serving:1.14.0-gpu --enable_batching=<span class="literal">true</span> --per_process_gpu_memory_fraction=0.3</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="报错RuntimeError-can’t-start-new-thread"><a href="#报错RuntimeError-can’t-start-new-thread" class="headerlink" title="报错RuntimeError: can’t start new thread"></a>报错RuntimeError: can’t start new thread</h2><p>测试时如果内存不够，但是又想继续启新的线程（比如压测的时候），这时可能会报<code>RuntimeError: can&#39;t start new thread</code>。换一个内存使用率稍低的显卡就能改善问题</p>
-<h2 id="报错cuda-0-not-supported-xla"><a href="#报错cuda-0-not-supported-xla" class="headerlink" title="报错cuda 0 not supported xla"></a>报错cuda 0 not supported xla</h2><p>报错<code>cuda 0 not supported xla</code>通常也是因为GPU显存问题，换一个空闲的显卡可以改善问题</p>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>Tensorflow</category>
-      </categories>
-      <tags>
-        <tag>tensorflow</tag>
-        <tag>gpu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tf分布式 -- DistributionStrategy</title>
-    <url>/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/tf%E5%88%86%E5%B8%83%E5%BC%8F--DistributionStrategy/</url>
-    <content><![CDATA[<h1 id="tf分布式-–-DistributionStrategy"><a href="#tf分布式-–-DistributionStrategy" class="headerlink" title="tf分布式 – DistributionStrategy"></a>tf分布式 – DistributionStrategy</h1><p>以下内容摘抄自：<br><a href="http://jcf94.com/2018/10/21/2018-10-21-tfunpacking9/">TensorFlow 拆包（九）：High Level APIs \| Chenfan Blog</a></p>
-<p><strong>看一下官方文档中对 <code>DistributionStrategy</code> 的设计思想。</strong></p>
-<p>首先是一些底层的概念：</p>
-<ul>
-<li>Wrapped values：跨设备相关的变量可以被封装为两种类别，PerDevice 对象表示的变量在每个设备上的值不同，Mirrored 对象表示的变量在每个设备上的值都相同</li>
-<li>Unwrapping and merging：考虑前面提过的这个函数 <code>call_for_each_tower(fn, w)</code>，<code>fn</code> 是模型函数，<code>w</code> 代表一些 Wrapped values。这个函数的调用过程中就包含了变量的 unwrapping 和 merging，假定在设备 <code>d0</code> 上 <code>fn(w0)</code> 得到的结果是 <code>(x, a, v0)</code>，在设备 <code>d1</code> 上 <code>fn(w1)</code> 得到的结果是 <code>(x, b, v1)</code>。首先在调用函数之前，<code>w</code> 需要被解包变成 <code>w0</code> 和 <code>w1</code> 然后分别调用 <code>fn</code> 函数。返回的结果有三种情况，第一个值都返回了一个相同的对象 <code>x</code>，则最终 <code>merge</code> 之后还是对象 <code>x</code>；第二个值是每个设备不一样的，则 <code>merge</code> 之后是一个 <code>PerDevice</code> 对象（其实就是个设备和对应值的 <code>map</code>）；第三个值是每个设备返回的分别是一组 <code>Mirrored</code> 对象的成员，则 <code>merge</code> 之后是一个 <code>Mirrored</code> 对象。所以 <code>call_for_each_tower(fn, w)</code> 在这里返回得到的就是一组 <code>(x, PerDevice&#123;...&#125;, Mirrored&#123;...&#125;)</code></li>
-<li>Tower context vs. Cross-tower context：Tower context 指的是对每个设备的封装上下文，通常对每个设备分别跑一遍模型函数就需要这种封装；Cross-tower context 指的是跨设备的封装上下文，比如说像 <code>reduce()</code> 这种所有设备共同参与的一个操作就需要这种封装</li>
-<li>Worker devices vs. parameter devices：负责计算的设备和存参数的设备，没啥好说的。</li>
-</ul>
-<p>更新一个变量的常规操作如下：</p>
-<ol>
-<li>把输入数据集封装在 <code>d.distribute_dataset()</code> 中，然后创建一个 iterator</li>
-<li>对每一个设备共同调用 d.call_for_each_tower() 来分别创建网络模型，并且最终各自得到一组梯度&#x2F;变量对：<code>d0</code> 上有 <code>&#123;(g0, v0), (g1, v1), ...&#125;</code>，<code>d1</code> 上有 <code>&#123;(g&#39;0, v0), (g&#39;1, v1), ...&#125;</code> 等等这样</li>
-<li>调用<code>d.reduce(VariableAggregation.SUM, t, v)</code> 或者 <code>d.batch_reduce()</code> 来对梯度求和，并且对应到各自的变量上：<code>&#123;(Sum(g0, g&#39;0), v0), (Sum(g1, g&#39;1), v1), ...&#125;</code></li>
-<li>调用 <code>d.update(v)</code> 来对每一个变量进行更新</li>
-</ol>
-<p>3、4 两步如果用 <code>Optimizer</code> 中的 <code>apply_gradients()</code> 方法可以自动完成（……这就是 <code>Optimizer</code> 后来加进去那部分代码的作用），或者在一个 <code>Cross-tower context</code> 中调用 <code>_distributed_apply()</code> 方法也可以。常规的网络层都应该在 <code>Tower context</code> 中被调用。</p>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>Tensorflow</category>
-      </categories>
-      <tags>
-        <tag>tensorflow</tag>
-        <tag>分布式</tag>
-        <tag>DistributionStrategy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>服务器上使用Tensorboard，在本地查看图像</title>
-    <url>/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8Tensorboard%EF%BC%8C%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%9F%A5%E7%9C%8B%E5%9B%BE%E5%83%8F/</url>
-    <content><![CDATA[<h1 id="服务器上使用Tensorboard，在本地查看图像"><a href="#服务器上使用Tensorboard，在本地查看图像" class="headerlink" title="服务器上使用Tensorboard，在本地查看图像"></a>服务器上使用Tensorboard，在本地查看图像</h1><ol>
-<li>记录<br>使用<code>Tensorboard</code>，一般要用<code>tf.summary</code>记录训练过程中的数值到某个地方，如下面的 <code>train_summary_dir</code> 和 <code>train_log_dir</code><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> self<span class="selector-class">.train_summary_dir</span>:</span><br><span class="line">    self<span class="selector-class">.loss_summary_reranker</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&quot;loss_reranker&quot;</span>, self.cost)</span><br><span class="line">    self<span class="selector-class">.train_summary_op</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.merge</span>(<span class="selector-attr">[self.loss_summary_reranker]</span>)</span><br><span class="line">    self<span class="selector-class">.train_summary_writer</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.FileWriter</span>(</span><br><span class="line">        os<span class="selector-class">.path</span><span class="selector-class">.join</span>(self<span class="selector-class">.train_summary_dir</span>, <span class="string">&quot;reranker&quot;</span>), self<span class="selector-class">.session</span>.graph)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<span id="more"></span>
-
-<p>或者</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">current_time = datetime<span class="selector-class">.datetime</span><span class="selector-class">.now</span>()<span class="selector-class">.strftime</span>(<span class="string">&quot;%Y%m%d-%H%M%S&quot;</span>)</span><br><span class="line">train_log_dir = <span class="string">&#x27;logs/gradient_tape/&#x27;</span> + current_time + <span class="string">&#x27;/train&#x27;</span></span><br><span class="line">test_log_dir = <span class="string">&#x27;logs/gradient_tape/&#x27;</span> + current_time + <span class="string">&#x27;/test&#x27;</span></span><br><span class="line">train_summary_writer = tf<span class="selector-class">.summary</span><span class="selector-class">.create_file_writer</span>(train_log_dir)</span><br><span class="line">test_summary_writer = tf<span class="selector-class">.summary</span><span class="selector-class">.create_file_writer</span>(test_log_dir)</span><br><span class="line">with train_summary_writer<span class="selector-class">.as_default</span>():</span><br><span class="line">    tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&#x27;loss&#x27;</span>, train_loss<span class="selector-class">.result</span>(), step=epoch)</span><br><span class="line">    tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&#x27;accuracy&#x27;</span>, train_accuracy<span class="selector-class">.result</span>(), step=epoch)</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>打通本地和服务器端口：<code>ssh -L 16006:127.0.0.1:6006 username@remote_server_ip</code><br><code>16006</code> 是本地端口，<code>6006</code>是服务器上<code>Tensorboard</code>的端口<br><code>username</code>和<code>remote_server_ip</code>分别对应服务器用户名和ip地址</p>
-</li>
-<li><p>使用上面命令成功登陆服务器后，执行命令 <code>tensorboard --logdir=&#39;logs/train_logs&#39; --port=6006</code></p>
-</li>
-<li><p>本地打开 <code>http://127.0.0.1:16006/</code> 即可查看</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>Tensorflow</category>
-      </categories>
-      <tags>
-        <tag>tensorflow</tag>
-        <tag>tensorboard</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用tensorflow实现seq2seq</title>
-    <url>/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/%E7%94%A8tensorflow%E5%AE%9E%E7%8E%B0seq2seq/</url>
-    <content><![CDATA[<h1 id="用tensorflow实现seq2seq"><a href="#用tensorflow实现seq2seq" class="headerlink" title="用tensorflow实现seq2seq"></a>用tensorflow实现seq2seq</h1><h2 id="用tensorflow实现seq2seq的细节问题"><a href="#用tensorflow实现seq2seq的细节问题" class="headerlink" title="用tensorflow实现seq2seq的细节问题"></a>用tensorflow实现seq2seq的细节问题</h2><h3 id="1-maximum-iteration"><a href="#1-maximum-iteration" class="headerlink" title="1. maximum_iteration"></a>1. maximum_iteration</h3><p>在<code>dynamic_decode</code>中有参数<code>maximum_iteration</code>。</p>
-<p>这个参数在<code>training</code>的时候并没有什么作用，因为在<code>training</code>时，<code>TrainingHelper</code>中有参数<code>sequence_length</code>，在解码到<code>sequence_length</code>的长度后，<code>TrainingHelper</code>会通过参数<code>finished</code>来告诉模型，解码已经结束。</p>
-<p>在<code>inference</code>的时候，则会因为没有<code>sequence_length</code>的限制，而会不知道该在哪里停止，或者解码的句子过长。所以<code>maximum_iteration</code>在<code>inference</code>的时候，最好是有设定的。</p>
-<h3 id="2-具体的seq2seq模型的输入和输出实例"><a href="#2-具体的seq2seq模型的输入和输出实例" class="headerlink" title="2. 具体的seq2seq模型的输入和输出实例"></a>2. 具体的seq2seq模型的输入和输出实例</h3><p><code>encoder_inputs</code>：length &#x3D; [3, 4]</p>
-<pre><code>&lt;sos&gt;, a, b, c, &lt;eos&gt;, &lt;pad&gt;
-&lt;sos&gt;, c, b, a, d, &lt;eos&gt;
-</code></pre>
-<p><code>decoder_inputs</code>: length &#x3D; [2, 3]</p>
-<pre><code>&lt;sos&gt;, e, f, &lt;eos&gt;
-&lt;sos&gt;, e, f, g
-</code></pre>
-<p><code>decoder_outputs</code>: length &#x3D; [2, 3]</p>
-<pre><code>e, f, &lt;eos&gt;, &lt;eos&gt;
-e, f, g, &lt;eos&gt;
-</code></pre>
-<p>可以看出，<code>&lt;sos&gt;</code>是不会出现在<code>decoder_outputs</code>里面的，无论是在<code>training</code>还是<code>inference</code>里，<code>decoder</code>的第一个输入都是<code>&lt;sos&gt;</code>，<code>decoder</code>的第一个输出就直接是句子的第一个字&#x2F;词。</p>
-<hr>
-<h2 id="变形seq2seq，即在training时，上一步的输出成为下一步的输入。"><a href="#变形seq2seq，即在training时，上一步的输出成为下一步的输入。" class="headerlink" title="变形seq2seq，即在training时，上一步的输出成为下一步的输入。"></a>变形seq2seq，即在training时，上一步的输出成为下一步的输入。</h2><p><strong>用<code>GreedyEmbeddingHelper</code>替换<code>TrainingHelper</code></strong></p>
-<h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h3><p>在seq2seq的training中，我们一般用<code>target</code>，即上一步正确的输出，作为下一步的输入。但是因为这样，同样一句话在train时的输出，后infer时的输出是完全不一样的（同事说是因为模型训练的还不够好，这点有待考证）。为了使自己在infer时的输出更可控，我改变了train时的模型，下一步的输入不再是<code>target</code>（上一步的<strong>正确输出</strong>），而是上一步模型的<strong>真实输出</strong>。</p>
-<h3 id="2-困难"><a href="#2-困难" class="headerlink" title="2. 困难"></a>2. 困难</h3><ul>
-<li><p>这样最大的困难就是在<code>sequence_loss</code>的计算时会因为shape不同而报错。<br>因为少了y_label的约束，真实输出的句子长度是完全不可控的，但是在计算<code>sequence_loss</code>时计算的是两者<code>label</code>的熵（<code>nn_ops.sparse_softmax_cross_entropy_with_logits</code>），所以我们需要统一两者的<code>shape</code>。</p>
-</li>
-<li><p>真实输出<code>self.decoder_logits_train=outputs.rnn_outputs</code>。<code>self.decoder_logits_train</code>的<code>shape</code>是<code>[batch_size, sequence_len, vocab_size]</code>。这里的<code>sequence_len</code>实际上是这个<code>batch_size</code>中，真实输出的<strong>最长句子的长度</strong>。<br>同样，这个<code>batch_size</code>的<code>targets</code>，也会有个最长句子的长度<code>self.max_decode_length</code>。我们只需要让每个<code>batch_size</code>中的<code>sequence_len=self.max_decode_length</code>就可以了。<br>如果<code>sequence_len</code>太短，就加到<code>self.max_decode_length</code>的长度，如果太长，就用<code>tf.slice</code>给切断。<br>但是问题又来了：</p>
-<ul>
-<li>因为<code>self.decoder_logits_train.shape[1]</code> <code>type</code>的问题，又因为它的值是<code>None</code>，想要比较它和<code>self.max_decode_length</code>非常困难</li>
-<li>就算比较了两者的值，想要把<code>self.decoder_logits_train</code>的第二维<code>tf.concat</code>到<code>self.max_decode_length</code>也要进行<code>tf.subtract(self.max_decode_length, self.decoder_logits_train.shape[1])</code>的运算。也会增加困难</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-解决方案"><a href="#3-解决方案" class="headerlink" title="3. 解决方案"></a>3. 解决方案</h3><p>好在我们在数据整理的时候去除了过长的句子，使得<code>targets</code>的最大长度不会超过50。所以<code>self.max_decode_length</code>不会大于50。</p>
-<p>我们可以直接<code>tf.concat</code> <code>self.decoder_logits_train</code>和一个<code>shape</code>为<code>[batch_size, 50, vocab_size]</code>的矩阵，然后用<code>tf.slice</code>把第二维按<code>self.max_decoce_length</code>来切断。这样无论<code>self.decoder_logits_train</code>是过长还是过短，我们都能得到最终想要的结果。</p>
-<h3 id="4-遗留问题"><a href="#4-遗留问题" class="headerlink" title="4.遗留问题"></a>4.遗留问题</h3><ul>
-<li>因为这里我们知道<code>self.max_decode_length</code>的最大长度，所以可以取巧，如果不知道的话，可能更麻烦一些。</li>
-<li>当句子过短时，会因为后面都是用<code>&lt;pad&gt;</code>补上，因此可以计算出正确的<code>loss</code>。<br>但是当句子过长时，因为我们把<code>self.max_decode_length</code>后面部分全部截断，因此这里<code>loss</code>只计算了前面一部分的句子，后面部分的句子并不可控（可能后面部分非常长，但是仍然只有截断时的那个字符的差别产生<code>loss</code>——即<strong>真实输出</strong>文字，<strong>正确输出</strong>是”\<eos>“）。<br>所以<strong>可能</strong>会导致模型生成特别特别长的句子，但是只有前半部分是我们想要的。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>Tensorflow</category>
-      </categories>
-      <tags>
-        <tag>seq2seq</tag>
-        <tag>tensorflow</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MacBook安装Xcode后VSCode运行报错</title>
-    <url>/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/MacBook%E5%AE%89%E8%A3%85Xcode%E5%90%8EVSCode%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<h1 id="MacBook安装Xcode后VSCode运行报错"><a href="#MacBook安装Xcode后VSCode运行报错" class="headerlink" title="MacBook安装Xcode后VSCode运行报错"></a>MacBook安装Xcode后VSCode运行报错</h1><p>Xcode更新后，可能VScode不能用，显示<code>java</code>相关问题，这时可以选择</p>
-<ol>
-<li>打开<code>launch.json</code>文件</li>
-<li>然后<code>add configuration</code></li>
-<li>选择<code>python</code></li>
-<li>删除<code>json</code>文件中关于<code>java</code>的语言设置，只保留<code>python</code>的</li>
-</ol>
-<p>这样就OK了</p>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>xcode</tag>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA 安装和配置 maven</title>
-    <url>/2021/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/IDEA-%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEmaven/</url>
-    <content><![CDATA[<h1 id="IDEA-安装和配置-maven"><a href="#IDEA-安装和配置-maven" class="headerlink" title="IDEA 安装和配置 maven"></a>IDEA 安装和配置 maven</h1><h3 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h3><ol>
-<li>已安装zsh和items2</li>
-<li>参考文章 <a href="https://www.jb51.net/article/190940.htm">https://www.jb51.net/article/190940.htm</a></li>
-</ol>
-<span id="more"></span>
-
-<h3 id="具体步骤："><a href="#具体步骤：" class="headerlink" title="具体步骤："></a>具体步骤：</h3><ol>
-<li><p>安装java，直接成功，并且java -v查看版本</p>
-</li>
-<li><p>安装maven，mac电脑官网下载Binary tar.gz archive下的apache-maven-3.8.3-bin.tar.gz。别的可能出错</p>
-<ul>
-<li>解压maven包，放到～&#x2F;下（这个随意，只要后面的配置按着这个路径来就可以）</li>
-<li>设置localRepository和镜像<ul>
-<li>local设置可以参考  <figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="language-xml">  <span class="comment">&lt;!-- localRepository</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    | The path to the local repository maven will use to store artifacts.</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    |</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    | Default: $</span></span><span class="template-variable">&#123;user.home&#125;</span><span class="language-xml"><span class="comment">/.m2/repository</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">    &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</span></span></span><br><span class="line"><span class="comment"><span class="language-xml">  --&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>/Users/dengshijiao1/apache-maven-3.8.3/repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
-<li>镜像可以使用默认镜像。网上很多文章说使用阿里云镜像，但是创建project的时候，有可能出现家在pom.xml文件出错的问题。</li>
-<li>配置maven路径  <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> <span class="attribute">MAVEN_HOME</span>=/Users/dengshijiao1/apache-maven-3.8.3</span><br><span class="line"><span class="built_in">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$MAVEN_HOME/bin</span><br></pre></td></tr></table></figure></li>
-<li>测试maven是否安装成功<code>mvn -v</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>idea中配置java</p>
-<ul>
-<li>打开file -&gt; project structure</li>
-<li>修改SDK配置为1.8<img src="/2021/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/IDEA-%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEmaven/IDEA-java-conf.png" alt="java配置"></li>
-</ul>
-</li>
-<li><p>idea中配置maven</p>
-<ul>
-<li><code>IntelliJ IDEA</code> -&gt; <code>preferences</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Build Tools</code> -&gt; <code>Maven</code>，设置<code>Maven home path</code>(刚刚放置<code>maven</code>解压文件的地方), <code>User setting file</code>和<code>Local repository</code>，并勾选☑️后两者的<code>override</code></li>
-<li>本人配置示例如下 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/Users/</span>dengshijiao1/apache-maven-<span class="number">3.8</span>.<span class="number">3</span></span><br><span class="line"><span class="regexp">/Users/</span>dengshijiao1<span class="regexp">/apache-maven-3.8.3/</span>conf/settings.xml</span><br><span class="line"><span class="regexp">/Users/</span>dengshijiao1<span class="regexp">/apache-maven-3.8.3/</span>repository</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>reload 和 generate source，基本上就OK了</p>
-</li>
-<li><p>add configuration</p>
-<ul>
-<li>配置了configuration才能运行代码并debug</li>
-<li>点击右上角的add configuration</li>
-<li>点击加号➕，并选择maven<img src="/2021/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/IDEA-%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEmaven/add-configuration.png" alt="add configuration"></li>
-<li>给这个项目的环境命名（可以使用默认的名字，自己能识别就好）</li>
-<li>然后点击运行</li>
-<li>如何报错，点击下方左侧红色感叹号那一行，看一下具体报错原因，一步步修改<img src="/2021/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/IDEA-%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEmaven/check-run-error.png" alt="check run error"></li>
-</ul>
-</li>
-<li><p>pom.xml</p>
-<ul>
-<li>如果pom.xml中的引入包爆红，进入<code>/Users/dengshijiao1/apache-maven-3.8.3/repository/</code>中，通过<code>groupId</code>找到爆红的文件，查看本地具体的包的版本，然后加入<version>x.x.x</version>&#96;，一般可以解决<br> <img src="/2021/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/IDEA-%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEmaven/find-version-of-plugins.png" alt="find version of plugins"></li>
-</ul>
-</li>
-<li><p>getXXX&#x2F;setXXX 爆红（包括@Slf4j中log的引用）</p>
-<ul>
-<li>一般是因为lombok插件没有安装。<img src="/2021/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/IDEA-%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEmaven/lombok-plugin.png" alt="lombok plugin"></li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>maven</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VSCode 使用SSH连接远程服务器</title>
-    <url>/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<h1 id="使用vscode远程连接服务器"><a href="#使用vscode远程连接服务器" class="headerlink" title="使用vscode远程连接服务器"></a>使用vscode远程连接服务器</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
-<li>在左侧“扩展”里选择并安装扩展 Remote-SSH</li>
-<li>点击左侧新增的扩展按钮，并点击左上角“+”号，然后会出现config的配置，按如下配置<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root</li>
-<li>此时配置好后尝试登陆，会需要输入密码</li>
-<li>可以用配置成不需要密码<ol>
-<li>本地建个ssh ssh-keygen -t rsa -b 4096 -f ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh，会生成id_rsa-remote-ssh和id_rsa-remote-ssh.pub两个文件</li>
-<li>将id_rsa-remote-ssh.pub配到服务器的authorized_keys（一般在～&#x2F;.ssh&#x2F;）文件里</li>
-<li>将id_rsa-remote-ssh配到本地的config中，即修改刚刚的config成如下<br> Host name-as-you-like<br> HostName 11.12.205.19<br> User root<br> IdentityFile ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh</li>
-</ol>
-</li>
-<li>可以连接远程服务器了</li>
-</ol>
-<h2 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h2><p>使用vscode连接远程服务器，也希望能够进行断点调试。</p>
-<ol>
-<li><p>进入扩展，搜索python（一般是第一个）</p>
-</li>
-<li><p>如果本地还没有安装，可以先点击安装</p>
-</li>
-<li><p>如果本地安装了，配备remote-ssh后，会显示“在remote-ssh上安装”，点击按钮进行安装就可以了</p>
-</li>
-<li><p>结果如下</p>
-<p> <img src="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8/vscode%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1python%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE.png" alt="vscode远程服务python断点调试配置"></p>
-</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a></p>
-<p><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a></p>
-<p><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a></p>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>离线安装VSCode及扩展组件</title>
-    <url>/2022/05/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85VSCode%E5%8F%8A%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6/</url>
-    <content><![CDATA[<h1 id="离线安装vscode和扩展组件"><a href="#离线安装vscode和扩展组件" class="headerlink" title="离线安装vscode和扩展组件"></a>离线安装vscode和扩展组件</h1><h2 id="离线安装vscode"><a href="#离线安装vscode" class="headerlink" title="离线安装vscode"></a>离线安装vscode</h2><p>远程一般安装的是<code>vscode-server</code></p>
-<ol>
-<li>下载<code>vscode-server-linux-x64.tar.gz</code>包，放到远程服务器</li>
-<li>不同服务器，下载版本不一致，确认<code>commitId</code></li>
-<li>将<code>vscode-server-linux-x64.tar.gz</code>解压到<code>~/.vscode-server/bin/$&#123;commitId&#125;</code></li>
-<li>在<code>$&#123;commitId&#125;</code>文件下创建文件<code>0</code></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">commit_id=f06011ac164ae4dc8e753a3fe7f9549844d15e35</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download url is: https://update.code.visualstudio.com/commit:$&#123;commit_id&#125;/server-linux-x64/stable</span></span><br><span class="line">curl -sSL <span class="string">&quot;https://update.code.visualstudio.com/commit:<span class="variable">$&#123;commit_id&#125;</span>/server-linux-x64/stable&quot;</span> -o vscode-server-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span></span><br><span class="line"><span class="comment"># assume that you upload vscode-server-linux-x64.tar.gz to /tmp dir</span></span><br><span class="line">tar zxvf /tmp/vscode-server-linux-x64.tar.gz -C ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span> --strip 1</span><br><span class="line"><span class="built_in">touch</span> ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span>/0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="离线安装扩展组件"><a href="#离线安装扩展组件" class="headerlink" title="离线安装扩展组件"></a>离线安装扩展组件</h2><ol>
-<li>下载组件，并传到远程服务器</li>
-<li><code>vscode</code>中，<code>ctrl+shift+p</code>打开命令行，输入<code>Extensions: install from VSIX</code></li>
-<li>选择上传的<code>vsix</code>扩展组件，开始安装</li>
-<li>重启<code>vscode</code></li>
-<li>如果安装失败，有可能是文件权限问题，可以先尝试<code>chmod -x -R ms-python-release.vsix</code>给扩展组件赋权，再进行安装</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>参考<br><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VSCode 设置代码长度分割线</title>
-    <url>/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/</url>
-    <content><![CDATA[<h1 id="VSCode-常见需求"><a href="#VSCode-常见需求" class="headerlink" title="VSCode 常见需求"></a>VSCode 常见需求</h1><p>增加代码长度分割线：</p>
-<ol>
-<li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
-<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
-<li>进入 <code>settings.json</code></li>
-<li>添加代码 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;[python]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;editor.rulers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">         <span class="number">80</span></span><br><span class="line">     <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ms-python.python&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JAVA 序列化和浅/深拷贝</title>
-    <url>/2022/03/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-%E6%B7%B1%E6%8B%B7%E8%B4%9D/</url>
-    <content><![CDATA[<h1 id="JAVA-序列化和浅-x2F-深拷贝"><a href="#JAVA-序列化和浅-x2F-深拷贝" class="headerlink" title="JAVA 序列化和浅&#x2F;深拷贝"></a>JAVA 序列化和浅&#x2F;深拷贝</h1><h2 id="序列化-x2F-深拷贝"><a href="#序列化-x2F-深拷贝" class="headerlink" title="序列化&#x2F;深拷贝"></a>序列化&#x2F;深拷贝</h2><p>Java里不能直接进行浅拷贝&#x2F;深拷贝</p>
-<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝</p>
-<span id="more"></span>
-
-<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>因为需要连同对象和对象的值一起拷贝到内存中一个新的地址，所以当对象为比较复杂的嵌套类时，性能就会成为一个问题，所以需要注意。<br>一般要实现深拷贝，都是对需要拷贝的类上贴上标签<code>implements Serializable</code>，并且给出一个序列化号<code>private static final long serialVersionUID = 3487495895819393L;</code><br>然后使用以下函数进行序列化和反序列化。<br>序列化和反序列化的本质是通过某种序列化的协议，将类整个转变成二进制信息，通过serialVersionUID比对再将二进制信息转换成类。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SerializationDemo</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String stringField;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> intField;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@T</span> 某个类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Serializable</span><span class="params">(SerializationDemo)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">ByteArrayOutputStream</span> <span class="variable">bout</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayOutputStream</span>();</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">out</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(bout);</span><br><span class="line">        out.writeObject(T);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(IOException) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 反序列化</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@data</span> 二进制</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">Deserializable</span><span class="params">(data)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">byte</span>[] data; <span class="comment">// read from file or request</span></span><br><span class="line">        <span class="type">ByteArrayInputStream</span> <span class="variable">bin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ByteArrayInputStream</span>(data);</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(bin);</span><br><span class="line">        <span class="type">SerializationDemo</span> <span class="variable">demo</span> <span class="operator">=</span> (SerializationDemo) in.readObject();</span><br><span class="line">        &#125; <span class="keyword">catch</span>(ClassNotFoundException) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="FastJson-VS-Gson"><a href="#FastJson-VS-Gson" class="headerlink" title="FastJson VS Gson"></a>FastJson VS Gson</h3><p>但当是嵌套类时，需要对类中的每一个类也都贴上序列化的标签，因此会变得很复杂。<br>此时可以引入<code>FastJson</code>类的第三方软件帮忙。（还有<code>gson</code>等）。但目前主流是<code>Gson</code>和<code>FastJson</code><br>性能上<code>FastJson</code>更好，功能上<code>Gson</code>更全，而且<code>Gson</code>不需要额外的<code>jar</code>包，且使用更简便<br>具体区别见文章<a href="https://blog.csdn.net/John8169/article/details/80767771">Gson与FastJson比较</a>，这篇文章分析的非常细致</p>
-<ol>
-<li><code>FastJson</code>需要有默认无参构造，可以直接使用<code>@NoArgsConstructor</code>。（有时候还需要加上<code>@AllArgsConstructor</code>，具体还不了解为什么）</li>
-<li>使用<code>FastJson</code>会有内存泄漏问题，具体实例见<a href="https://juejin.cn/post/6960695856127279111">FastJson使用不当导致内存泄漏排查及解决过程 ｜ Java Debug 笔记</a>，另一片文章<a href="https://segmentfault.com/a/1190000039980284">fastjson内存泄漏解决办法 - springboot实战电商项目mall4j</a></li>
-</ol>
-<h5 id="关于serialVersionUID"><a href="#关于serialVersionUID" class="headerlink" title="关于serialVersionUID"></a>关于serialVersionUID</h5><p>关于serialVersionUID：<br>1、serialVersionUID是序列化前后的唯一标识符<br>2、默认如果没有人为显式定义过serialVersionUID，那编译器会为它自动声明一个</p>
-<p>为什么要定义serialVersionUID：</p>
-<ol>
-<li>serialVersionUID序列化ID，可以看成是序列化和反序列化过程中的“暗号”，在反序列化时，JVM会把字节流中的序列号ID和被序列化类中的序列号ID做比对，只有两者一致，才能重新反序列化，否则就会报异常来终止反序列化的过程。</li>
-<li>如果在定义一个可序列化的类时，没有人为显式地给它定义一个serialVersionUID的话，则Java运行时环境会根据该类的各方面信息自动地为它生成一个默认的serialVersionUID，一旦像上面一样更改了类的结构或者信息，则类的serialVersionUID也会跟着变化</li>
-<li>为了serialVersionUID的确定性，建议凡是implements Serializable的类，都人为显式地为它声明一个serialVersionUID明确值</li>
-<li>如果不想手动赋值，IntelliJ IDEA中，使用alt + enter自动生成serialVersionUID字段</li>
-</ol>
-<h5 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h5><p>Serializable接口是一个里面什么都没有的接口<br>它的源代码是public interface Serializable{}，即什么都没有。<br>如果一个接口里面什么内容都没有，那么这个接口是一个标识接口，比如，一个学生遇到一个问题，排错排了几天也没解决，此时，她举手了（示意我去帮他解决），然后我过去，帮他解决了，那么这个举手其实就是一个标识，自己不能解决的问题标示我去帮他解决，在Java中的这个Serializable接口是给JVM看的，告诉JVM，我不做这个类的序列化了，你(JVM)给我序列化，序列化就是变成二进制流，比如云计算、Hadoop，特别是Hadoop完全就是分布式环境，那么就要涉及到对象要在网络中传输，里面的全是二进制流，当然你来做这个序列化操作也可以，但是这个类里面可能还有一个类，如果你把外面的类对象Person变成二进制，那么里面也要序列化（这要用到深度遍历，很麻烦），干脆告诉JVM，让他来帮你做。</p>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>JAVA</category>
-      </categories>
-      <tags>
-        <tag>深拷贝</tag>
-        <tag>序列化</tag>
-        <tag>JAVA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python中使用args和add_argument传参</title>
-    <url>/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E4%B8%AD%E4%BD%BF%E7%94%A8args%E5%92%8Cadd_argument%E4%BC%A0%E5%8F%82/</url>
-    <content><![CDATA[<h1 id="Python中使用args和add-argument传参"><a href="#Python中使用args和add-argument传参" class="headerlink" title="Python中使用args和add_argument传参"></a>Python中使用args和add_argument传参</h1><p>在Python中，args一般用来在外部运行 <code>convert.py</code> 时，从外部传参。但可以配合使用add_argument进行<b>内部或外部<b>传参。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    argp = argparse.ArgumentParser()</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;in_file&#x27;</span>, default=datapath_abs_test_machine, <span class="built_in">help</span>=<span class="string">&#x27;Input CSV file&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--out_name&#x27;</span>, default=<span class="string">&#x27;baseline-e2e-data&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Output files name prefix&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-a&#x27;</span>, <span class="string">&#x27;--abstract&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Comma-separated list of slots to be abstracted&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-m&#x27;</span>, <span class="string">&#x27;--multi-ref&#x27;</span>,</span><br><span class="line">                      <span class="built_in">help</span>=<span class="string">&#x27;Multiple reference mode: group by the same DA&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--no-refs&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Use a file without references, only produce DA files&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-n&#x27;</span>, <span class="string">&#x27;--slot-names&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Include slot names in delexicalized texts&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    args = argp.parse_args()</span><br><span class="line">    convert(args)</span><br></pre></td></tr></table></figure>
-
-
-<p>运行命令行如下：<br><code>python ./convert.py -a name,near -n /root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv train</code></p>
-<p>此时 <code>args.in_file=&#39;/root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv&#39;</code></p>
-<ol>
-<li><p>但是如果想要用软件，如vscode进行软件内debug，直接这样运行会报错。此时需要在前面加上“–”才不会报错，即：<code>argp.add_argument(&#39;--in_file&#39;, default=datapath_abs_test_machine, help=&#39;Input CSV file&#39;)</code></p>
-</li>
-<li> <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">发生异常: SystemExit</span></span><br><span class="line">2</span><br></pre></td></tr></table></figure>
-<p> 同上，也是“–”的问题，在add_argument第一个参数前加上“–”</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>args</tag>
-        <tag>add_argument</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>defaultdict</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/defaultdict/</url>
-    <content><![CDATA[<h1 id="defaultdict-function-factory"><a href="#defaultdict-function-factory" class="headerlink" title="defaultdict(function_factory)"></a>defaultdict(function_factory)</h1><p><strong>defaultdict</strong></p>
-<p>dict subclass that calls a factory function to supply missing values</p>
-<p><code>defaultdict</code>构建的是一个类似<code>dictionary</code>的对象，其中<code>keys</code>值自行确定赋值，但是<code>values</code>的类型是<code>fucntion_factory</code>的类实例，而且<strong>具有默认值</strong>。比如<code>defaultdict(list)</code>创建一个<code>dict</code>,对于任何一个还不存在的<code>dict[newkey]</code>都已经有一个默认<code>list</code>使得<code>dict[newkey].append</code>可以直接运行而不需要先运行<code>dict[newkey]=[]</code>。</p>
-<p>例子：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = [(<span class="string">&#x27;yellow&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;yellow&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;red&#x27;</span>, <span class="number">1</span>)]</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">d = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> s:</span><br><span class="line">    d[k].append(v)</span><br><span class="line"><span class="built_in">list</span>(d.items())</span><br><span class="line">[(<span class="string">&#x27;blue&#x27;</span>, [<span class="number">2</span>, <span class="number">4</span>]), (<span class="string">&#x27;red&#x27;</span>, [<span class="number">1</span>]), (<span class="string">&#x27;yellow&#x27;</span>, [<span class="number">1</span>, <span class="number">3</span>])]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>defaultdict</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python中某些常用符号的运用</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/is%E3%80%81==%E7%AD%89%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%BF%90%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="Python中某些常用符号的运用"><a href="#Python中某些常用符号的运用" class="headerlink" title="Python中某些常用符号的运用"></a>Python中某些常用符号的运用</h1><h2 id="is和-x3D-x3D-的区别"><a href="#is和-x3D-x3D-的区别" class="headerlink" title="is和&#x3D;&#x3D;的区别"></a>is和&#x3D;&#x3D;的区别</h2><p>在Python中一切都是对象。</p>
-<p>Python中对象包含的三个基本要素，分别是：</p>
-<ul>
-<li>id(身份标识)</li>
-<li>type(数据类型)</li>
-<li>value(值)</li>
-</ul>
-<p>对象之间比较是否相等可以用<code>==</code>，也可以用<code>is</code>。</p>
-<p><code>is</code> 和 <code>==</code> 都是对对象进行比较判断作用的，但对对象比较判断的内容并不相同。下面来看看具体区别在哪</p>
-<ul>
-<li><p><strong><code>is</code> 比较的是两个对象的 <code>id</code> 值是否相等，也就是比较两个对象是否为同一个实例对象，是否指向同一个内存地址</strong></p>
-</li>
-<li><p><strong><code>==</code> 比较的是两个对象的内容是否相等，默认会调用对象的 <code>__eq__()</code> 方法</strong></p>
-</li>
-</ul>
-<p><strong>&#x3D;&#x3D;比较操作符和is同一性运算符区别</strong></p>
-<p>&#x3D;&#x3D;是python标准操作符中的比较操作符，用来比较判断两个对象的value(值)是否相等。</p>
-<p>示例代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python3.5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a </span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a[:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b <span class="keyword">is</span> a</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b == a</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="是什么"><a href="#是什么" class="headerlink" title="^是什么"></a>^是什么</h2><p>这是Python中的异或运算符，表示对于操作符两侧数字的二进制数进行异或操作。</p>
-<p>异或操作的含义为：同一位置上的数字相等则得0，同一位置上的数字相异则得1。（二进制表达中只有0,1两个数字）</p>
-<p>例如：计算2^3首先要求得两数的二进制表达数，（十进制➡️二进制）：2➡️10，3➡️11</p>
-<p>按位异或得（二进制➡️十进制）01➡️1</p>
-<p>既2^3&#x3D;1</p>
-<h2 id="gt-gt-x3D-和-lt-lt-x3D-是什么"><a href="#gt-gt-x3D-和-lt-lt-x3D-是什么" class="headerlink" title="&gt;&gt;&#x3D; 和 &lt;&lt;&#x3D;是什么"></a>&gt;&gt;&#x3D; 和 &lt;&lt;&#x3D;是什么</h2><p>&gt;&gt; 和 &lt;&lt;都是位运算，对二进制数进bai行移位操作。</p>
-<p>&lt;&lt; 是左移，du末位补zhi0，类比十进制数在末尾添0相当于原数乘dao以10，x&lt;&lt;1是将x的二进制表示左移一位，相当于原数x乘2。比如整数4在二进制下是100，4&lt;&lt;1左移1位变成1000(二进制)，结果是8。</p>
-<p>&gt;&gt;是右移，右移1位相当于除以2。<br>而&gt;&gt;&#x3D;和&lt;&lt;&#x3D;，就是对变量进行位运算移位之后的结果再赋值给原来的变量，可以类比赋值运算符+&#x3D;和-&#x3D;可以理解。</p>
-<p>比如x&gt;&gt;&#x3D;2， 就是把变量x右移2位，再保留x操作后的值。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a &gt;&gt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b &lt;&lt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>is</tag>
-        <tag>==</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pandas聚合和分组运算之groupby</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pandas%E8%81%9A%E5%90%88%E5%92%8C%E5%88%86%E7%BB%84%E8%BF%90%E7%AE%97%E4%B9%8Bgroupby/</url>
-    <content><![CDATA[<h1 id="pandas聚合和分组运算之groupby"><a href="#pandas聚合和分组运算之groupby" class="headerlink" title="pandas聚合和分组运算之groupby"></a>pandas聚合和分组运算之groupby</h1><p>根据<code>key1</code>的值<code>a</code>,<code>b</code>来分组求<code>data1</code>的平均值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">data1     data2 key1 key2</span><br><span class="line"><span class="number">0</span> -<span class="number">0.410673</span>  <span class="number">0.519378</span>    a  one</span><br><span class="line"><span class="number">1</span> -<span class="number">2.120793</span>  <span class="number">0.199074</span>    a  two</span><br><span class="line"><span class="number">2</span>  <span class="number">0.642216</span> -<span class="number">0.143671</span>    b  one</span><br><span class="line"><span class="number">3</span>  <span class="number">0.975133</span> -<span class="number">0.592994</span>    b  two</span><br><span class="line"><span class="number">4</span> -<span class="number">1.017495</span> -<span class="number">0.530459</span>    a  one</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped = df[<span class="string">&#x27;data1&#x27;</span>].groupby(df[<span class="string">&#x27;key1&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped</span><br><span class="line">&lt;pandas.core.groupby.SeriesGroupBy <span class="built_in">object</span> at <span class="number">0x04120D70</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped.mean()</span><br><span class="line">key1</span><br><span class="line">a      -<span class="number">1.182987</span></span><br><span class="line">b       <span class="number">0.808674</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
-
-<p>根据<code>cpucore-</code>的类别，求所有数值形式列的平均值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>data_mac.groupby(<span class="string">&#x27;cpucore&#x27;</span>).mean()</span><br><span class="line">cpucore-	time_transform_bert	time_sess_run_bert	time_to_dict_bert	time_all_bert			</span><br><span class="line"><span class="number">1</span>	<span class="number">0.003124</span>	<span class="number">1.550403</span>	<span class="number">0.000032</span>	<span class="number">1.553559</span></span><br><span class="line"><span class="number">2</span>	<span class="number">0.001235</span>	<span class="number">0.730950</span>	<span class="number">0.000034</span>	<span class="number">0.732218</span></span><br><span class="line"><span class="number">3</span>	<span class="number">0.001565</span>	<span class="number">0.487936</span>	<span class="number">0.000037</span>	<span class="number">0.489538</span></span><br><span class="line"><span class="number">4</span>	<span class="number">0.001103</span>	<span class="number">0.323777</span>	<span class="number">0.000029</span>	<span class="number">0.324909</span></span><br><span class="line"><span class="number">5</span>	<span class="number">0.001185</span>	<span class="number">0.289874</span>	<span class="number">0.000033</span>	<span class="number">0.291093</span></span><br><span class="line"><span class="number">6</span>	<span class="number">0.001226</span>	<span class="number">0.284265</span>	<span class="number">0.000033</span>	<span class="number">0.285524</span></span><br><span class="line"><span class="number">0</span>	<span class="number">0.001225</span>	<span class="number">0.284462</span>	<span class="number">0.000032</span>	<span class="number">0.285719</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>groupby</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>map+zip实现矩阵转置</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/map+zip%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="map-zip实现矩阵转置"><a href="#map-zip实现矩阵转置" class="headerlink" title="map+zip实现矩阵转置"></a>map+zip实现矩阵转置</h1><p>map和zip配合使用，实现矩阵转置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rotate</span>(<span class="params">self, matrix</span>):  </span><br><span class="line">        matrix[:] = <span class="built_in">map</span>(<span class="built_in">list</span>,<span class="built_in">zip</span>(*matrix))</span><br><span class="line">        <span class="keyword">return</span> matrix</span><br><span class="line"><span class="built_in">print</span>(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>],</span><br><span class="line">    [<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-
-<p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a href="https://blog.csdn.net/shawpan/article/details/69663710">一行代码搞定矩阵旋转——python</a>。</p>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>矩阵转置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>判断某个key值是否在dict中</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%88%A4%E6%96%AD%E6%9F%90%E4%B8%AAkey%E5%80%BC%E6%98%AF%E5%90%A6%E5%9C%A8dict%E4%B8%AD/</url>
-    <content><![CDATA[<h1 id="判断某个key值是否在dict中"><a href="#判断某个key值是否在dict中" class="headerlink" title="判断某个key值是否在dict中"></a>判断某个key值是否在dict中</h1><p>有两种方法</p>
-<p>一：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#生成一个字典</span></span><br><span class="line">d = &#123;<span class="string">&#x27;name&#x27;</span>:&#123;&#125;,<span class="string">&#x27;age&#x27;</span>:&#123;&#125;,<span class="string">&#x27;sex&#x27;</span>:&#123;&#125;&#125;</span><br><span class="line"><span class="comment">#打印返回值</span></span><br><span class="line"><span class="built_in">print</span> d.has_key(<span class="string">&#x27;name&#x27;</span>)</span><br><span class="line"><span class="comment">#结果返回True</span></span><br></pre></td></tr></table></figure>
-<p>二：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#生成一个字典</span></span><br><span class="line">d = &#123;<span class="string">&#x27;name&#x27;</span>:&#123;&#125;,<span class="string">&#x27;age&#x27;</span>:&#123;&#125;,<span class="string">&#x27;sex&#x27;</span>:&#123;&#125;&#125;</span><br><span class="line"><span class="comment">#打印返回值，其中d.keys()是列出字典所有的key</span></span><br><span class="line"><span class="built_in">print</span> name <span class="keyword">in</span> d.keys()</span><br><span class="line"><span class="comment">#结果返回True</span></span><br></pre></td></tr></table></figure>
-<p>第二中<code>in</code>的方法更好更快，但是还是不知道他的速度是不是O(1)???????</p>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>dict</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>加载tf模型并使用Flask框架报错xxx is not a element of this graph</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%8A%A0%E8%BD%BDtf%E6%A8%A1%E5%9E%8B%E5%B9%B6%E4%BD%BF%E7%94%A8Flask%E6%A1%86%E6%9E%B6%E6%8A%A5%E9%94%99xxx%20is%20not%20a%20element%20of%20this%20graph/</url>
-    <content><![CDATA[<h1 id="加载tf模型并使用Flask框架报错xxx-is-not-a-element-of-this-graph"><a href="#加载tf模型并使用Flask框架报错xxx-is-not-a-element-of-this-graph" class="headerlink" title="加载tf模型并使用Flask框架报错xxx is not a element of this graph"></a>加载tf模型并使用Flask框架报错xxx is not a element of this graph</h1><p>如果使用flask部署，一般http会多线程请求，这样可能会报错<code>xxx is not a element of this graph</code></p>
-<p>网上查了很多种方法</p>
-<ol>
-<li><p>配置flask运行环境为单线程调用，然后运行flask run。但是因为工作机器上不方便配置环境，所以没有尝试这种方法<br>参考文章：<a href="https://blog.csdn.net/donaldsy/article/details/95097024">Flask网站中使用Keras时报错“Tensor Tensor(*) is not an element of this graph”</a></p>
-</li>
-<li><p>设置app.run(threaded&#x3D;False)，threaded默认为True，即多线程，改为False则为单线程。尝试后没有效果<br>参考文章：<a href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></p>
-</li>
-<li><p>加载模型时将thread_safe改为True，因为我用的是bert4keras里的加载方法，和解答不一样，所以没有详细找thread_safe的设置，因此不知道有没有效果<br>参考文章：<a href="https://github.com/OlafenwaMoses/ImageAI/issues/159">Error when implement ObjectDetection as API in flask</a></p>
-</li>
-<li><p>设置</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">global graph</span><br><span class="line">graph = tf.as_default()</span><br><span class="line">model = keras.models.load_model()</span><br><span class="line"></span><br><span class="line">with graph.as_default():</span><br><span class="line">  model.predict()</span><br></pre></td></tr></table></figure>
-<p>  因为代码中，模型加载和模型预测的代码是分开写的，即预测的代码在app.route下的函数内，但是加载的代码外部。估计是这个原因，导致graph里的变量名称忍让不同意，所以还是没效果<br>  参考文章：<a href="https://stackoverflow.com/questions/51127344/tensor-is-not-an-element-of-this-graph-deploying-keras-model">Tensor is not an element of this graph; deploying Keras model</a></p>
-</li>
-<li><p>固定一个session，将两部分都重新设置session</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">session = tf.Session(graph=tf.Graph())</span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  model = k.models.load_model(filepath)</span><br><span class="line"></span><br><span class="line">with session.graph.as_default():</span><br><span class="line">  k.backend.set_session(session)</span><br><span class="line">  model.predict(x, **kwargs)</span><br></pre></td></tr></table></figure>
-<p>  这种方式最终成功了！<br>  参考文章：<a href="https://github.com/keras-team/keras/issues/5640">Keras models do not seem to be thread safe</a></p>
-</li>
-</ol>
-<p>tf的session和graph还是一个大问题要弄透彻呀</p>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>flask</tag>
-        <tag>session</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>合并大list中的小list</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%90%88%E5%B9%B6%E5%A4%A7list%E4%B8%AD%E7%9A%84%E5%B0%8Flist/</url>
-    <content><![CDATA[<h1 id="合并大list中的小list"><a href="#合并大list中的小list" class="headerlink" title="合并大list中的小list"></a>合并大list中的小list</h1><p>性能最好的一种方法，来自<a href="https://blog.csdn.net/laiyibeijiweijiu/article/details/93891635">这里</a>，更多方法对比看<a href="https://blog.csdn.net/weixin_40539892/article/details/79103290">这里</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c=[<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> chain</span><br><span class="line">d = <span class="built_in">list</span>(chain(a, b, c))</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="comment">#[1, 2, 3, 3, 4, 5, 4, 4, 4]</span></span><br></pre></td></tr></table></figure>
-<p>上面的方法是a,b,c已经知道，但是在a,b,c还在大list中时，可以如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">newnums = []</span><br><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> nums:</span><br><span class="line">    newnums.extend(l)</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>list</tag>
-        <tag>合并</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>手动下载安装Python包</title>
-    <url>/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%89%8B%E5%8A%A8%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Python%E5%8C%85/</url>
-    <content><![CDATA[<h1 id="手动下载安装Python包"><a href="#手动下载安装Python包" class="headerlink" title="手动下载安装Python包"></a>手动下载安装Python包</h1><p>如果是类似github上面需要下载的安装包，如<a href="https://github.com/ufal/pytreex">pytreex</a>，在下载文件并解压到<code>pytreex</code>之后，直接使用<code>pip install pytreex</code>就可以<br>注意：解压后会生产文件包<code>pytreex-master</code>，此时如果直接<code>pip install pytreex-master</code>是不行的，需要将文件名更换成包名<code>pytreex</code>，然后再<code>pip install pytreex</code>才能成功，否则会报找不到的错误</p>
-<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ERROR: </span>Could not find a version that satisfies the requirement pytreex-master (from versions: none)</span><br><span class="line"><span class="keyword">ERROR: </span>No matching distribution found for pytreex-master</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>找到当前index在数组中对称的位置</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%89%BE%E5%88%B0%E5%BD%93%E5%89%8Dindex%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BD%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="找到当前index在数组中对称的位置"><a href="#找到当前index在数组中对称的位置" class="headerlink" title="找到当前index在数组中对称的位置"></a>找到当前index在数组中对称的位置</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">index = <span class="built_in">len</span>(nums)//<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(index) <span class="comment"># 3</span></span><br><span class="line"><span class="built_in">print</span>(~index) <span class="comment"># -4</span></span><br><span class="line">median = (nums[index] + nums[~index])/<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(median) <span class="comment"># 3.5</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>对称</tag>
-        <tag>index</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>求list的绝对值</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%B1%82list%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC/</url>
-    <content><![CDATA[<h1 id="求list的绝对值"><a href="#求list的绝对值" class="headerlink" title="求list的绝对值"></a>求list的绝对值</h1><p>求<code>list l = [-1,2,3,-4,-5,-6]</code>的绝对值的三种方法</p>
-<p>1.<br>   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">abs</span>, l))</span><br></pre></td></tr></table></figure></p>
-<p>2.<br>   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = [<span class="built_in">abs</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> l]</span><br></pre></td></tr></table></figure></p>
-<p>3.<br>   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">list_abs = <span class="built_in">list</span>(np.<span class="built_in">abs</span>(l))</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>list</tag>
-        <tag>绝对值</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Petite présentation renouvelée</title>
-    <url>/2021/08/15/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/Francais/Petite%20pr%C3%A9sentation%20renouvel%C3%A9e/</url>
-    <content><![CDATA[<h1 id="Petite-presentation-renouvelee"><a href="#Petite-presentation-renouvelee" class="headerlink" title="Petite présentation renouvelée"></a>Petite présentation renouvelée</h1><h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
-<p>Une petite présentation de soi-même qui dure moins de 5 minutes.</p>
-</blockquote>
-<p>En appréciant la logique des mathématiques et étant performante sur ce domaine, après avoir passé mon bac en Chine, j’ai poursuivi mes études en France par une licence des mathématiques. Même si j’étais à l’aise, je trouve ce domaine est assez théorique et je cherchais le côté plus concret à l’appliquer, donc j’ai appris un master à Nancy combinait les maths et aussi l’informatique.<br>A la sortie de mon master en 2016, je suis venue travailler en tant que Data Scientist à Reims chez Sikim, une PME spécialisée sur l’analyse des données. J’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une caisse régionale de Crédit Agricole, et il me permet de découvrir la réalisation et l’implication entier d’un Chatbot et aussi découvrir les travaux liés à l’intélligences artificielles. L’ambiance était très bonne au sein de le petit groupe, néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité étaient rares (Tandis que je travais que je n’avais pas assez de travail pour occuper pleinement mes journées).<br>J’ai ensuite été contactée par une entreprise chinoise SF Express, qui m’a proposé un poste à ShenZhen avec un meilleur salaire et davantage de responsabilité. Cela me permet également de me rapprocher à ma famille.<br>Après un an de travail chez SF Express, j’ai choisi de participer à JD en 2019, le 3ieme société de vente en ligne mondiale, une des meilleures entreprises d’Internet en Chine.<br>Au sein de l’entreprise, j’ai pu développer davantage mes compétences techniques, par exemple la mise en œuvre d’un Chatbot plus sophistiqué avec des algorithmes de Deep Learning plus complexe, et avoir l’expérience des algorithmes de NLG. Et j’ai eu la possibilité de diriger 3 Data Scientist, cela me permet d’avoir des expériences de management.<br>Avec les autorisés politiques en France pour le Covide, et ayant apprécié (je trouve cette expression qu’elle ne fait pas très orale, qu’est-ce que t’en penses ?) la période à laquelle j’ai vécu en France, m’a conduit à envisager un changement d’entreprise pour retrouver la possibilité d’installer en France ou je planifie à résider une longue durée.</p>
-]]></content>
-      <categories>
-        <category>面试记录与总结</category>
-        <category>Français</category>
-      </categories>
-      <tags>
-        <tag>présentation</tag>
-        <tag>entretien</tag>
-        <tag>français</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Présentation pour l&#39;entretien français</title>
-    <url>/2021/08/15/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/Francais/Pr%C3%A9sentation%20pour%20l&#39;entretien%20fran%C3%A7ais/</url>
-    <content><![CDATA[<h1 id="Presentation-pour-l’entretien-francais"><a href="#Presentation-pour-l’entretien-francais" class="headerlink" title="Présentation pour l’entretien français"></a>Présentation pour l’entretien français</h1><h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
-<p>La partie de Présentation a duré totalement 7min30 en oral.</p>
-</blockquote>
-<p>Phrase de préambule : Je m’excuse si mon français est un peu rouillé. </p>
-<span id="more"></span>
-
-<h4 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h4><p>En 2007, j’ai passé en Chine mon bac, appréciant la logique des mathématiques et étant performante sur ce domaine j’ai commencé des études scientifiques à l’université de Wuhan et j’y ai également appris des bases de Français. J’ai réalisé à Wuhan un Bac+2 et j’ai ensuite choisi de poursuivre mes études en France par une licence de mathématiques en 3 ans (la France a une bonne réputation dans ce domaine et j’avais envie de découvrir un nouveau pays et d’apprendre une nouvelle langue). </p>
-<p>Même si j’étais à l’aise en mathématiques, je trouvais le domaine trop théorique.  Je cherchais un domaine qui allie la logique des mathématiques et le coté très concret de l’informatique. J’ai appris qu’un master à Nancy combinait les deux et je suis donc partie là-bas. J’ai réalisé un stage chez Vize une start-up locale où j’ai découvert plus précisément les travaux liés à l’intelligence artificielle et de l’utilisation de la donnée (big data).</p>
-<h4 id="Carriere"><a href="#Carriere" class="headerlink" title="Carriere"></a>Carriere</h4><p>À la sortie de mon master en 2016, je suis venu travailler en tant que Data à Reims à SIKIM une autre PME spécialisée sur le domaine. J’y ai travaillé un peu plus de deux ans. L’ambiance était très bonne au sein de la petite équipe, j’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une Caisse régionale du Crédit Agricole. Techniquement néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité était rares tandis que je trouvais que je n’avais pas assez de travail ne serait ce que pour occuper pleinement mes journées. J’ai ensuite été contactée par une entreprise chinoise SF Express, c’était un grand groupe, le 4ème logisticien mondial, qui m’a proposé un poste à Shenzhen avec un meilleur salaire et davantage de responsabilité. Cela me permettait également de me rapprocher de ma famille. Au sein de l’entreprise j’ai pu développer davantage mes compétences techniques [Donner un ou deux exemples ?].<br>Avec projet Chabot de service client (qui serve à répondre des questions à nos clients), j’étais responsable de la module NLU (Compréhension du langage naturel), mise en l’œuvre des algorithmes de classification qui permettent au Chatbot de comprendre l’intention du client, des algorithmes de REN(reconnaissance d’entités nommés) qui permettent au Chatbot de reconnaissir les entités nommées, des algorithme, comme BERT, qui peut créer automatiquement plus de données pour que les algorithmes puissent avoir une meilleur performance.<br>Avec le Chit Chat Chatbot (une intelligence artificielle (IA) de type dialogueur pour apporter un certain soutien psychologique), j’ai pu mis en l’œuvre le modèle de NLG (Génération Automatique de Langage, il consiste à générer automatiquement du texte pour adresser des réponses personnalisées aux utilisateurs) en impliquant l’algorithme de génération de réponses, des algorithmes pour évaluer la sémantique du texte, des algorithme pour diversifier les réponses, etc.</p>
-<p>En raison de changements dans la structure organisationnelle de l’entreprise, j’ai quitté SF Express et rejoint à VIPKID en 2020. En tant qu’un Data Scientist, la formation de mathématiques ne m’a pas offert un grand avantage de coder, mais grâce à mes expériences dans VIPKID, j’ai pu approfondit ma capacité de coder surtout en réalisant un system de statistique à temps réel. Il recueillit des données de travail des employés sous de nombreux aspects, après le traitement statistique, on rend compte aux dirigent de tous les niveaux de l’entreprise avec une certaine fréquence chaque jour. Mes expériences dans VIPKID m’ont aussi entrainé ma capacité de management, et m’a permis d’avoir une vue complète de Chatbot. Avec trois autres collègues, on a réalisé une plateforme de Chatbot de A à Z, y inclus FAQ, NLU, Task Management et Dialogue Management, qui s’est appliqué aux services clients de toutes les fonctions (totalement 7) dans l’entreprise. Le taux de traitement par cette plateforme atteint à 79.6 (environ 10 milles de session par jour en total).<br>J’ai aussi pu approfondi ma capacité en NLG en réalisant un modèle de traduction automatique adapté aux besoins de l’entreprise. Il économise 10 milles euros par mois pour l’entreprise.</p>
-<h4 id="Situation-mnt"><a href="#Situation-mnt" class="headerlink" title="Situation mnt"></a>Situation mnt</h4><p>J’ai voulu revenir en France le moment que j’ai quitté SF Express, mais c’était pas la bonne occasion à cause du COVID 19. Et maintenant, en raison des politiques du pays vers des entreprise d’éducation et la diffusion de la vaccination (l’amélioration de COVID 19), je pense que c’est le bon moment de revenir en France où je planifie à résider une longue durée.</p>
-<p>A ce jour, j’ai accumulé 5 ans d’expériences dans le domaine de NLP, en particulier dans dialogue system et NLG. J’aimerai bien pouvoir avoir l’opportunité de connaître et d’appliquer des connaissances des autres domaine relative tels que CV (vision par l’ordinateur), l’apprentissage multimoda, basé sur mes compétences de NLP.</p>
-<p><font color="#989898" size=4> Les informations dans le monde réel se présentent généralement sous différentes modalités. Par exemple, les images sont généralement associées à des balises et à des explications textuelles ; les textes contiennent des images pour exprimer plus clairement l’idée principale de l’article. Différentes modalités sont caractérisées par des propriétés statistiques très différentes. Par exemple, les images sont généralement représentées sous forme d’intensités de pixels ou de sorties d’extracteurs de caractéristiques, tandis que les textes sont représentés sous forme de vecteurs de nombre de mots discrets. En raison des propriétés statistiques distinctes des différentes ressources d’information, il est très important de découvrir la relation entre les différentes modalités. L’apprentissage est un bon modèle pour représenter les représentations conjointes de différentes modalités. Le modèle d’apprentissage multimodal est également capable de combler la modalité manquante compte tenu de celles observées. Le modèle d’apprentissage multimodal combine deux machines de Boltzmann profondes correspondant chacune à une modalité. Une couche cachée supplémentaire est placé au-dessus des deux machines Boltzmann pour donner la représentation commune. </font></p>
-<h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><h3 id="Chatbot"><a href="#Chatbot" class="headerlink" title="Chatbot"></a>Chatbot</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
-<h3 id="Chit-Chat"><a href="#Chit-Chat" class="headerlink" title="Chit Chat"></a>Chit Chat</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
-<h3 id="Chercher-top-20-questions-a-l’entretien"><a href="#Chercher-top-20-questions-a-l’entretien" class="headerlink" title="Chercher top 20 questions à l’entretien"></a>Chercher top 20 questions à l’entretien</h3>]]></content>
-      <categories>
-        <category>面试记录与总结</category>
-        <category>Français</category>
-      </categories>
-      <tags>
-        <tag>présentation</tag>
-        <tag>entretien</tag>
-        <tag>français</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>中文面试自我简介 -- 待更新</title>
-    <url>/2021/08/15/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/%E4%B8%AD%E6%96%87/%E4%B8%AD%E6%96%87%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E7%AE%80%E4%BB%8B/</url>
-    <content><![CDATA[<h1 id="中文面试自我简介"><a href="#中文面试自我简介" class="headerlink" title="中文面试自我简介"></a>中文面试自我简介</h1><h2 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h2><p>高中毕业后通过武汉大学和拉罗舍尔大学的交流项目去到法国，后来也在法国洛林大学完成了硕士学业，学生期间一直就读数学和统计专业。</p>
-<p>毕业后因为觉得直接回国会很可惜，所以尝试在法国本地就业，之后顺利拿到长居，进入了Sikim公司，也是在这家公司，通过给当地银行做个智能客服的项目，了解到并进入了NLP领域。</p>
-<span id="more"></span>
-
-<p>18年回国加入到了顺丰科技，因为有过智能客服的项目经验，所以在顺丰中负责智能客服的NLU模块，这段智能客服经验加深了我对算法和深度模型的理解和落地经验，因为我一直对生成模型比较感兴趣，所以我主动申请了负责闲聊的项目，对生成模型的运行和落地有了了解</p>
-<p>20年加入到vipkid后，期间也继续过对话生成的项目，比如机器翻译，闲聊等等，但是主要负责智能客服的研发，虽然在不同公司都在做智能客服项目，但是幸运的是每次都会丰富和提升自己对对话机器人的了解。比如顺丰里主要负责的是算法的优化和准确率的提升，在vipkid，不仅需要解决算法的问题，也会专注于解决更业务层面的问题，比如DM的设计，模块之间的跳转，对话的设计（一句话多个意图，一段话分开说）等等</p>
-<p>期间当然还做过别的项目，比如主题提取，纠错，或者单纯工程开发的统计系统，但是总体，还是闲聊上对算法的实验相对较多，对对话机器人的项目了解更全面</p>
-<h4 id="自我介绍的目的"><a href="#自我介绍的目的" class="headerlink" title="自我介绍的目的"></a>自我介绍的目的</h4><ul>
-<li>我对当前职位的兴趣</li>
-<li>我的能力是否能够匹配当前职位</li>
-</ul>
-<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：好奇心强，责任心强，抗压能力强，协作沟通能力不错<br>缺点：拖沓，钻研度不够，会因为想要尝试，有时不太分主次，导致浪费很多时间</p>
-<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
-<li>数据如何</li>
-<li>背景如何</li>
-<li>模型如何</li>
-<li>准确率如何</li>
-<li>碰到哪些问题</li>
-<li>怎么解决（trick或者模型）</li>
-<li>为什么这么解决</li>
-<li>效果怎么样</li>
-<li>还有哪些可以改进的</li>
-<li>现有哪些更好的方法吗（新的论文）</li>
-</ol>
-<h4 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h4><p>我的优势：</p>
-<ol>
-<li>学历背景</li>
-<li>数学背景</li>
-<li>4年工作经验</li>
-<li>8年海外生活经验（适应力，学习能力）</li>
-<li>对智能客服了解比较全面</li>
-<li>对生成模型也有了解</li>
-<li>抗压，沟通，协作能力</li>
-<li>好奇心强，勇于实践</li>
-</ol>
-<p>职业能力：</p>
-<ol>
-<li><p>对智能客服的深耕</p>
-</li>
-<li><p>对闲聊很感兴趣，觉得闲聊是以后的重点，所以在进入顺丰后，在坚固智能客服的同时，主动选择了并不是很热门的闲聊（闲聊一定要再读几篇论文，再深耕一下）</p>
-</li>
-<li><p>对智能客服的了解比较全面，先是提高准确率的技术，后来是业务方面处理的技术（如DM，如用户一次说多句话是如何处理的，如一句话有多个意图是如何处理的，等等）</p>
-<p> <a href="https://www.infoq.cn/article/pryrhwq1pj6xkb59gbx6">为客服构建更加智能的对话机器人：多轮应答时机触发模型</a><br> <a href="https://cloud.tencent.com/developer/news/468354">人机对话关键技术及挑战</a><br> 文章提到了好几个闲聊重的优化技术，比如learning to start for sequence to sequence,Retrieval-Enhanced Adversarial Training For Neural Response Generation, etc.<br> <a href="http://www.woshipm.com/pd/4133505.html">任务驱动型人机对话系统设计</a></p>
-</li>
-<li><p>闲聊主要就聊技术</p>
-</li>
-<li><p>可以描述一下每次的变动是为什么，比如为什么毕业后想要留在国外，为什么会从顺丰离职，所以为什么现在会非常希望找到一个比较实践长久的工作等</p>
-</li>
-<li><p>如何在对话设计时，设计的是多次对话拼接到一起然后求他的意图，那么</p>
-<ol>
-<li>在训练时，如何解决训练的样本问题（人工可以标注，但是样本不是很多，SF为5000-10000条）</li>
-<li>训练时不会有不收敛的问题吗？因为同样一部分的语句在不同的类别中出现过（并且是肯定不能使用CNN这种对序列信息没有考虑的模型）</li>
-</ol>
-</li>
-<li><p>抗压能力：LP工作情况统计的项目</p>
-</li>
-</ol>
-<h2 id="明天"><a href="#明天" class="headerlink" title="明天"></a>明天</h2><ol start="5">
-<li>写下客服&#x2F;对话机器人的面试文章</li>
-<li>或者整理下智能客服的面试文章<ol>
-<li>Sbert</li>
-<li>学习曲线</li>
-</ol>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>面试记录与总结</category>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>简介</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>某次面试感触</title>
-    <url>/2019/12/08/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/%E4%B8%AD%E6%96%87/%E6%9F%90%E6%AC%A1%E9%9D%A2%E8%AF%95%E6%84%9F%E8%A7%A6/</url>
-    <content><![CDATA[<h1 id="某次面试感触"><a href="#某次面试感触" class="headerlink" title="某次面试感触"></a>某次面试感触</h1><h2 id="恒昌第三轮面试"><a href="#恒昌第三轮面试" class="headerlink" title="恒昌第三轮面试"></a>恒昌第三轮面试</h2><p>今年下午两点和恒昌第三轮面试完。</p>
-<p>面试官整体给我的感觉是一种艺术家气息，举例用的是文艺复兴时期绘画的例子，他说那时候有钱人才能用蓝色，特殊人，比如天使才可以用蓝色还说那时候画家并不是创作画家，而是甲方要什么，画家就要一点不差的按照他们的要求来画，和我们现在的算法工程师一样，都是工人，并不是工程师。工程师是可以从现实中抽象建模的人。但这并不是一个人题，因为凡事都是需要经历这样一个过程的，从一点一点的模仿，到熟练，再到创新。我们工程目前还处于一个比较笨的状态，还是工人角色，远没到创新的时候，而且现在人工智能的浪潮也再一次落下，我们已经在尾声，如果以后我出去说自己是做深度学习的，可能就找不到工作了。</p>
-<p>听了它说的，我越来越觉得，真的不同的人有不同的看法，他会问我是否学过scala，但是爱奇艺的面试官会说他不会因为我会Hadoop或者不会Hadoop而决定是否录用我。</p>
-<p>虽然两者并不矛盾，但是凸显了他们对这个应聘者、甚至这个领域工作者的一个不同的要求和需求。</p>
-]]></content>
-      <categories>
-        <category>面试记录与总结</category>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>感触</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>面试代码题一次记录</title>
-    <url>/2019/12/08/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/%E4%B8%AD%E6%96%87/%E9%9D%A2%E8%AF%95%E4%BB%A3%E7%A0%81%E9%A2%98%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h1 id="面试代码题一次记录"><a href="#面试代码题一次记录" class="headerlink" title="面试代码题一次记录"></a>面试代码题一次记录</h1><p>n个无序数组，求top K</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def TopK(listArray, K):</span><br><span class="line">    k = 0</span><br><span class="line">    for i in range(len(listArray)):</span><br><span class="line">        if k + len(listArray[i]) &gt; K:</span><br><span class="line">            listK += listArray[i][:K-k]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>面试记录与总结</category>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>智能客服项目</title>
-    <url>/2019/12/08/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<h2 id="智能客服项目"><a href="#智能客服项目" class="headerlink" title="智能客服项目"></a>智能客服项目</h2><p>智能客服项目主要有三个模块FAQ、任务型对话和闲聊，用户输入一个句子后是进入FAQ、任务型对话还是闲聊，是由一个大的顶层分类器来决定。</p>
-<p>FAQ和闲聊都是单轮对话，所以用户后面的输入都会重新进入到顶层分类器再次进行分类。</p>
-<p>任务型对话则是多轮的，如果一个句子被顶层分类器划分到任务型对话中，那么在这个任务结束以前，用户后面的输入都会不经过顶层分类器而直接进入到任务型对话中。<br>判断任务型对话是否结束有两种方式：</p>
-<ul>
-<li>一是这个任务已经完成</li>
-<li>二是虽然任务还未完成，但是模型判断需要跳出任务，此时直接结束任务返回通过顶层分类器进行模块判别的进程。</li>
-</ul>
-<p>在所有的任务中，我们都需要先为这个任务建立一个baseline，通常为相关任务常用的相对简单的模型。</p>
-<span id="more"></span>
-
-
-<hr>
-<h3 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h3><h4 id="词嵌入"><a href="#词嵌入" class="headerlink" title="词嵌入"></a>词嵌入</h4><p>在NLP中，词嵌入是一个非常重要和基本的点。不同于图片领域，可以直接将图片色彩值、像素值等直接拿来进行学习，在NLP领域中，字、词是需要转换成数值，然后才能用一些算法来进行学习，而这个将词&#x2F;字转换成数值的方法，就叫做词嵌入 word embedding。</p>
-<p>最简单的词嵌入就是ont-hot方法了，但是在都拥有大数据集的情况下，one-hot不仅使得词维度过大，而且并不能够表示文档、字词之间的表意关系。</p>
-<p>词嵌入如此重要，我们在词嵌入方向也做了很多研究，并且现在已有很多种效果很好的词嵌入的方法。</p>
-<ol>
-<li><p>最开始自己在为法国农业银行做智能客服时使用的tf-idf就是一个比较经典的词嵌入方法，但是它仍然有维度过大和不能表示词表意之间的关系</p>
-</li>
-<li><p>我们这里主要要讲的就是我们经常用到的word2vec词向量方法。word2vec词向量主要有两种计算方法，一种是skip-gram，另一种就是CBOW</p>
-<ol>
-<li>skip-gram</li>
-</ol>
-<p>   skip-gram是通过在已知当前词的情况下，预测前n个词和后n个词</p>
-<p>   当前词作为中心词时，因此要预测前n个词和后n个词，所以是从2*n个词的地方来进行参数优化，即进行学习，所以得到的词向量更准确一些，因此对于一些低频词较多的情况下，可以酌情使用这种方法，但是计算量会更大一些</p>
-<ol start="2">
-<li>CBOW</li>
-</ol>
-<p>   CBOW是在已知前面n个词和后面n个词的情况下，对当前词进行预测</p>
-<p>   通过前n个词和后n个词来预测当前词，学习效率快，但是相对而言，优化的次数要少，因此得到的词向量会相对没有那么精确，但是因为计算量相对较小，而且这种方法得到的词向量已经满足常规使用需求了，所以这种方法的词向量被使用的更频发</p>
-<ol start="3">
-<li><p>两者都是通过对目标函数的优化，来优化隐藏层的参数W，而这个W就是我们的词向量</p>
-</li>
-<li><p>这两种计算方法其实计算量都特别大，所以有两种优化方法，一种是负采样，一种是softmax方法，我并没有细看</p>
-</li>
-</ol>
-</li>
-</ol>
-<p>其实并没有规避one-hot维度大、没有词表意之间练习的问题，我们只是把这个问题提前解决了之后，再拿来使用，所以这应该也算是迁移学习吧</p>
-<hr>
-<h3 id="顶层分类器"><a href="#顶层分类器" class="headerlink" title="顶层分类器"></a>顶层分类器</h3><hr>
-<h3 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h3><p>FAQ经历的漫长的演变。</p>
-<ol>
-<li><p>第一版</p>
-<ul>
-<li>最开始做的FAQ就是tf-idf加上余弦相似度</li>
-<li>缺点：<ul>
-<li>词包模型，没有句子中词汇出现的顺序信息</li>
-<li>有的词汇出现频繁，但并不是很重要的词汇；相反有的词汇出现频率相对较小，但是确实非常重要的判别词汇，所以tf-idf给予字词的权重有待优化</li>
-</ul>
-</li>
-<li>导致：<ul>
-<li>有些句子可能在距离上更接近A句子，其实是相似于B句子，比如句式相似，只有一两个重点字不同</li>
-</ul>
-</li>
-<li>为了优化这个方法对词汇权重计算的偏差问题（重要词汇的权重不够大），又找出了所有的重要词汇，并且计算每个句子中重要词汇的杰卡德系数</li>
-<li>最后结合余弦相似度和杰卡德系数来判断两个句子的相似性</li>
-<li>此时因为数据量小，句子相对简单，top1值并不高60%，但是top3值可以达到95%，剩下的95%是因为数据库中不存在相关语句</li>
-</ul>
-</li>
-<li><p>第二版</p>
-<ul>
-<li>后来用的是深度学习加上余弦相似</li>
-<li>深度学习主要是用word2vec和LSTM得到句子的embedding</li>
-<li>有目标句子Anchor，同类（答案相同的）问题中抽取一个正例Positive，非同类问题中抽取一个负例Negative</li>
-<li>d(a,p) &lt;&#x3D; d(a,n)，所以d(a,p)-d(a,n) &lt;&#x3D; 0，所以d(a,p)-d(a,n)+margin &lt;&#x3D; 0</li>
-<li>对于新输入的句子，训练好的模型唯一的用途就是embedding，用模型embedding出来的数值计算余弦相似度进行排序</li>
-<li>缺点：<ul>
-<li>因为负采样的原因不稳定，每一对&lt;a,p,n&gt;中，正采样可以用的样本过少，负采样样本较多，且大概率负样本很容易满足d(a,p)&lt;&#x3D;d(a,n)的限制，因为一般情况下，负样本都比正样本离目标样本远的多</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>第三版</p>
-<ul>
-<li><p>loss中使用am-softmax。以前的<strong>loss</strong>是简单的取交叉熵，现在是</p>
-<ul>
-<li>对两个vector都做了归一化，即求内积变为求余弦相似度</li>
-<li>增加类间距离，缩小类内距离：每个样本所属类的距离，必须<strong>远</strong>小于它跟其它类的距离。这个<strong>远</strong>可以是<strong>到其它类距离的1&#x2F;2</strong>，可以是<strong>到其它类的距离减去某个值: dist()-m</strong>，等。这里用的是第二种，即余弦相似度减去某个值m</li>
-<li>为了让概率P更均匀的分布在0-1之间，对余弦相似度进行了s倍的缩放</li>
-</ul>
-</li>
-<li><p>用了triplet loss中online采样的变体：</p>
-<ul>
-<li>假设包含B个图片的banch有P个不同的人组成，每人有K个图片，即B&#x3D;PK。两种在线采样策略分别是：<ul>
-<li>batch all: 取目标样本下所有的正样本和所有的负样本（PK*(K-1)*(P-1)K个triplet，PK为所有样本数，K-1为正样本树，(P-1)K为负样本树）</li>
-<li>batch hard: 取目标样本下距离最小的负样本和距离最大的正样本（PK个triplet）</li>
-</ul>
-</li>
-<li>这两个采样策略，一个太复杂，计算量太大，一个太极端，不稳定。所以我们取了中和的方法，即<strong>取目标样本下每个类别中距离最小的m个负样本和距离最大的m个正样本，然后一一对应来计算（PK * m * (P-1)m个triplet with m &lt;&lt; K）</strong></li>
-<li>offline采样：这个方法不够高效，因为最初要把所有的训练数据喂给神经网络，而且每过1个或几个epoch，可能还要重新对negative examples进行分类</li>
-</ul>
-</li>
-<li><p>triplet loss中的分类是以问答相似&#x2F;相同为标准的小类大约3500个，还有一个大类，即我们把FAQ问题整体分了个类，约840个类，FAQ整体数据大概10W。我们在得到一个新的输入句子时，会从840个类中分别抽取3个query，来计算相似度，我们取平均值最高的5个类，然后在只取这5个类中所有的问题来和新输入的句子进行相似度匹配，来得到需要输出的答案。</p>
-<ul>
-<li>第一次类的寻找，是为了节约时间，不让输入的query和10W个句子暴力匹配</li>
-<li>第二次在5个类中找到需要的结果，是对具体回答的答案的寻找</li>
-<li>是否直接输出找到的最匹配的答案，还有一个阈值来决定</li>
-<li>如果我们对第一选项不确定，即没有超过相关阈值，那么我们可以推荐前三个相似度最高的问题，让用户选择</li>
-<li>用户的选择，能够为我们带来新的数据，帮助优化模型</li>
-<li>如果所有问题都没有超过推荐阈值，那么需要用户重新输入</li>
-</ul>
-</li>
-<li><p>第三版使用了triplet loss改进后，top1值提高到了87%，top3值提高到了94%</p>
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="相似度计算方法"><a href="#相似度计算方法" class="headerlink" title="相似度计算方法"></a>相似度计算方法</h4><p>最长公共子序列、最长公共子串和编辑距离，都用的是动态规划，代码中需要注意：</p>
-<ol>
-<li>矩阵的建立</li>
-<li>循环时，A，B指针和矩阵下标的对应</li>
-</ol>
-<h5 id="levenshtein"><a href="#levenshtein" class="headerlink" title="levenshtein"></a>levenshtein</h5><p>当i&#x3D;0 or j&#x3D;0,res[i][j]&#x3D;0<br>res[i][j]&#x3D;min{res[i-1][j]+1,res[i][j-1]+1,res[i-1][j-1]+flag}, flag&#x3D;0 if A[i]&#x3D;B[j], flag&#x3D;1 if A[i]!&#x3D;B[j]</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">levenshtein</span>(<span class="params">seq1, seq2</span>):</span><br><span class="line">    size_x = <span class="built_in">len</span>(seq1) + <span class="number">1</span></span><br><span class="line">    size_y = <span class="built_in">len</span>(seq2) + <span class="number">1</span></span><br><span class="line">    matrix = np.zeros ((size_x, size_y))</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xrange(size_x):</span><br><span class="line">        matrix [x, <span class="number">0</span>] = x</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> xrange(size_y):</span><br><span class="line">        matrix [<span class="number">0</span>, y] = y</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">1</span>, size_x):</span><br><span class="line">        <span class="keyword">for</span> y <span class="keyword">in</span> xrange(<span class="number">1</span>, size_y):</span><br><span class="line">            <span class="keyword">if</span> seq1[x-<span class="number">1</span>] == seq2[y-<span class="number">1</span>]:</span><br><span class="line">                matrix [x,y] = <span class="built_in">min</span>(</span><br><span class="line">                    matrix[x-<span class="number">1</span>, y] + <span class="number">1</span>,</span><br><span class="line">                    matrix[x-<span class="number">1</span>, y-<span class="number">1</span>],</span><br><span class="line">                    matrix[x, y-<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                matrix [x,y] = <span class="built_in">min</span>(</span><br><span class="line">                    matrix[x-<span class="number">1</span>,y] + <span class="number">1</span>,</span><br><span class="line">                    matrix[x-<span class="number">1</span>,y-<span class="number">1</span>] + <span class="number">1</span>,</span><br><span class="line">                    matrix[x,y-<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                )</span><br><span class="line">    <span class="built_in">print</span> (matrix)</span><br><span class="line">    <span class="keyword">return</span> (matrix[size_x - <span class="number">1</span>, size_y - <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-
-<h5 id="最长公共子串"><a href="#最长公共子串" class="headerlink" title="最长公共子串"></a>最长公共子串</h5><p>当i&#x3D;0 or j&#x3D;0,res[i][j]&#x3D;0<br>当A[i]&#x3D;B[j],res[i][j]&#x3D;res[i-1][j-1]+1<br>当A[i]!&#x3D;B[j],res[i][j]&#x3D;0</p>
-<h5 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h5><p>当i&#x3D;0 or j&#x3D;0,res[i][j]&#x3D;0<br>当A[i]&#x3D;B[j],res[i][j]&#x3D;res[i-1][j-1]+1<br>当A[i]!&#x3D;B[j],res[i][j]&#x3D;max{res[i-1][j],res[i][j-1]}</p>
-<hr>
-<h3 id="任务型对话"><a href="#任务型对话" class="headerlink" title="任务型对话"></a>任务型对话</h3><p>任务型对话主要有时效运费、查单、转寄退回等几个场景，这里主要用时效运费的场景来说明项目过程。</p>
-<p>在时效运费场景中，NLU主要有两个模块，意图识别和NER。</p>
-<h4 id="意图识别"><a href="#意图识别" class="headerlink" title="意图识别"></a>意图识别</h4><p>意图识别总共有8类，总数据量是1万5，留了1500个数据做测试集，3000个数据做验证集。</p>
-<p>最开始使用的是stacking，后来随着数据量的增加，改用深度学习。<br>深度学习测试了cnn+rnn和cnn，发现cnn的效果比cnn+rnn好，应该是：</p>
-<ul>
-<li><p>数据本身都是比较短的句子，且序列性不强，所以rnn的优势没有体现出来</p>
-</li>
-<li><p>只有cnn更好的保存了提取的特征，优化了分类效果</p>
-</li>
-</ul>
-<h5 id="如何优化分类问题"><a href="#如何优化分类问题" class="headerlink" title="如何优化分类问题"></a>如何优化分类问题</h5><h6 id="类别F1值分析"><a href="#类别F1值分析" class="headerlink" title="类别F1值分析"></a>类别F1值分析</h6><p>分析整体F1值，看主要影响效果的是哪一个&#x2F;哪几个类，然后针对性分析，提高优化效果。<br>针对F1值过低的类别，仔细分析错误分类的数据，找出原因</p>
-<h6 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h6><p>根据学习曲线，可以找出当前模型训练出最佳结果所需要的最少的数据数，可以避免资源的浪费，也可以排除结果不佳可能是数据集不够的困惑。</p>
-<h5 id="说一下stacking以及它在这个项目中的应用"><a href="#说一下stacking以及它在这个项目中的应用" class="headerlink" title="说一下stacking以及它在这个项目中的应用"></a>说一下stacking以及它在这个项目中的应用</h5><p>stacking中我们用了两层分类器，第一层有三个基分类器RF，NB，LR，第二层分类器是线性核函数的SVM，folder&#x3D;3，</p>
-<ol>
-<li><p>先用tf-idf提取特征</p>
-</li>
-<li><p>第二层的输入为第一层的输出，不包括原始数据</p>
-</li>
-<li><p>第二层分类器如果是更简单的分类器，效果更好，比如我们用的是线性核函数SVM。</p>
-<ul>
-<li><p>可能因为上一层的几个基分类器多维度提取特征已经比较复杂，所以第二层的分类器过于复杂会造成过拟合。</p>
-</li>
-<li><p>输出是概率，更符合分类的要求</p>
-</li>
-</ul>
-</li>
-<li><p>较小数据集上stacking的表现并不如意，有时甚至比单独的分类器的效果要差</p>
-</li>
-<li><p>基分类器中如果有效果特别差的，可以将其移除，可能优化最后的结果</p>
-</li>
-<li><p>stacking的预测需要时间相对较长</p>
-</li>
-</ol>
-<h6 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h6><p>逻辑回归是一个判别模型<br>通过对激活函数sigmoid的引入，使得线性回归中的$W^T · x$映射到(0,1)之间，使逻辑回归成为一个概率预测问题，参数就是$W^T$<br>为了使逻辑回归公式$P(y|x) &#x3D; p_1^y·p_0^{1-y}$最大，我们引入最大似然估计</p>
-<p>逻辑回归假设数据符合伯努利分布，所以是一个参数模型。<br>通过引入sigmoid函数，将输出映射到[0,1]之间，</p>
-<p>逻辑回归本来是二元分类，但是也可以用作多元分类。<br>如果逻辑回归中引入正则化，我们需要对特征进行标准化，在这标准化也可以加快训练。</p>
-<p>最大似然(max最大化问题) 可以导出 loss funcition(min Cross Entropy最小化问题)</p>
-<p>方法：</p>
-<ul>
-<li><p>one VS all，选择计算结果最高的那个类。</p>
-</li>
-<li><p>引入softmax</p>
-</li>
-</ul>
-<p>缺点：样本不均衡，因为1 VS all</p>
-<ol>
-<li>损失函数</li>
-</ol>
-<p>欠拟合：增加特性，增加数据<br>过拟合：正则化，dropout，提前停止训练，减少模型复杂度</p>
-<p><strong>在统计学中对变量进行线行回归分析，采用最小二乘法进行参数估计时，R平方为回归平方和与总离差平方和的比值，表示总离差平方和中可以由回归平方和解释的比例，这一比例越大知越好，模型越精确，回归效果越显著。R平方介于0~1之间，越接近1，回归拟合效果越好，一道般认为超过0.8的模型拟合优度比较高。</strong><br><img src="/public/images/image/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-R2.png" alt="逻辑回归-R2"></p>
-<h6 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h6><p>今天终于感觉自己终于懂了SVM的一点皮毛。</p>
-<ol>
-<li><p><strong>SVM：Support Vector Machine支持向量机</strong></p>
-<p> SVM一般用于二元分类，但是因为one-vs-all的存在，我们也可以用它来进行多元分类。</p>
-<p> SVM的效果一般特别好，特点是计算量比较大，但是他对数据的分布没有要求，它通过最大化到超平面最近点的距离，来进行分类。</p>
-</li>
-<li><p><strong>Python &gt;&gt; sklearn中的SVM：</strong></p>
-<p> SVC: Support Vector Classification 支持向量用于分类<br> SVR: Support Vector Regression 支持向量用于回归<br> LinearSVC: Linear SVC 核函数为<strong>线性核函数</strong>的支持向量</p>
-</li>
-<li><p><strong>SVM几种常用核函数：</strong></p>
-<p><img src="/../../public/images/image/SVM%E5%B8%B8%E7%94%A8%E6%A0%B8%E5%87%BD%E6%95%B0.svg" alt="核函数"></p>
-</li>
-<li><p><strong>核函数的选择</strong>（吴恩达教授说）：</p>
-<ul>
-<li>如果Feature的数量很大，跟样本数量差不多，这时候选用LR或者是Linear Kernel的SVM</li>
-<li>如果Feature的数量比较小，样本数量一般，不算大也不算小，选用SVM+Gaussian Kernel (“rbf”)</li>
-<li>如果Feature的数量比较小，而样本数量很多，需要手工添加一些feature变成第一种情况</li>
-</ul>
-</li>
-<li><p>参考视频：<br><a href="https://www.bilibili.com/video/av75892058/">SVM核函数–表示这个视频真的很好</a></p>
-</li>
-<li><p>自己对核函数的总结：</p>
-<ul>
-<li>核函数最重要的作用就是映射，不同的核函数提供不同的映射方法</li>
-<li>核函数和normalization有点相似，都是对点的映射，只是目标和方式不同，normalization是为了让数据分布更均匀，而SVM中的核函数是为了让数据分布更开散、更易分割</li>
-<li>核函数的加入，是的SVM的计算量增大，尤其是使用高斯核函数和多项核函数的时候</li>
-<li>在文本分类项目中的stacking方法中，我们使用的是LinearSVC</li>
-<li>一般情况下，对非线性数据使用默认的高斯核函数会有比较好的效果</li>
-<li>自己只是了解皮毛，对于核函数公式的推导，如何知道一个核函数是否是有效核函数等，都还不是太清楚</li>
-</ul>
-</li>
-</ol>
-<h5 id="介绍一下CNN以及在这个项目中的应用"><a href="#介绍一下CNN以及在这个项目中的应用" class="headerlink" title="介绍一下CNN以及在这个项目中的应用"></a>介绍一下CNN以及在这个项目中的应用</h5><p>在CNN中，<strong>卷积</strong>的作用是<strong>特征提取</strong>（比如图像中的边缘检测），<strong>池化</strong>的作用是压缩特征数，对<strong>特征进行降维</strong>。</p>
-<p>在CNN分类模型中，我们简单的使用了三个卷积核(大小为filter_size*embedding_size)，加入了L2正则化。</p>
-<p><strong>如何让CNN也能解决序列问题</strong></p>
-<ul>
-<li>CNN在卷基层后，还是保留了句子的顺序关系的，但是在经过max pooling对特征降维后，就打乱了这种顺序，所以我们其实可以去掉max pooling，只让CNN做卷积</li>
-<li>或者也可以在CNN中加入位置信息</li>
-</ul>
-<h5 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h5><ol>
-<li><p>样本不均衡</p>
-<ul>
-<li>过采样：不易太过，否则容易过拟合，但是预测效果很差</li>
-<li>欠采样：当数据样本足够多时才能使用</li>
-</ul>
-<p> 除了样本不均衡本身带来的训练问题，在测试集中，因为样本严重不均衡，且需要尽量保证测试集和训练集的分布一样，所以可能存在测试集中某些类只有几个数据，导致结果随机性较大不可靠，这时应该尽量把真实数据留在测试集中</p>
-</li>
-<li><p>阈值难以确定<br>每一次的预测，有所有类别的概率[0.1, 0.2, 0.3, 0.4, 0.5]，然后取概率最大的那个类别当作预测结果。<br>但是因为这个结果在每个类别中的边界线并不稳定，所以我们尝试对预测概率[0.1, 0.2, 0.3, 0.4, 0.5]的熵的分析来进一步判别。</p>
-</li>
-<li><p>任务结束前如何判断用户是否更改意图，跳出当前场景</p>
-<p> 我们增加了一个类others，包含所有肯定不属于当前场景的对话数据，比如：“我要投诉”，“今天天气适合登山”等等。</p>
-<p> 对于需要跳出当前场景的对话，如果我们没有跳出，比不需要跳出场景对话但是却跳出了的结果要更严重，所以我们主要要考虑others类的准确率，其次是F1值和召回率。</p>
-<p> 这里为了使得others相对于召回率有更大的准确率，我们增加了这个类的权重（求完各个类的交叉熵后，乘以权重系数，即增加这个类对loss的敏感度）。如果训练时间足够长，是否增加权重最后的结果都是相同的，但是增加权重后，模型会优先保证others这一类的准确率，所以我们可以让训练停在others有较大准确率、且总体结果比较符合我们要求的时候。即牺牲别的类的准确率来优先保证others的准确率。</p>
-</li>
-<li><p>过拟合</p>
-<p> 表现为训练集的F1值不断上升但是验证集的变化不大。原因是数据量很多，但是类别很少，且句子都很简短。</p>
-<p> 解决方法：</p>
-<ul>
-<li>加入L2正则化：加入L2正则化初期效果很好，后面慢慢还是会过拟合</li>
-<li>停止训练：在发现训练集不断上升但是验证集结果变化不大时，及时停止训练。</li>
-</ul>
-</li>
-<li><p>在计算损失函数时，不要允许概率直接等于0，而是加上一个极小的正数，这样会减少信息的丢失，整体的概率和与1有一点偏差并不影响</p>
-</li>
-</ol>
-<h4 id="NER"><a href="#NER" class="headerlink" title="NER"></a>NER</h4><p>一共有15000个数据，12个类别（连上不属于这12个类别的数据，如“的”、“你们”等，共13个类别），如”出发地”，”出发时间”，”类型”，”物品”，”体积”,”重量”等。</p>
-<p>训练集：14000，验证集：，测试集：1000。</p>
-<p>baseline用的是LSTM+CRF，后来改为BiLSTM+CRF后，效果有一定提升。optimizer选用的是Adam。</p>
-<p>准确率达97.4%，但F1值只有87.4%<br>主要是对时间的获取准确率太低，DUR和TIM分别只有43%和50%</p>
-<h4 id="BiLSTM-CRF"><a href="#BiLSTM-CRF" class="headerlink" title="BiLSTM+CRF"></a>BiLSTM+CRF</h4><h5 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h5><ol>
-<li>条件：判别式模型；随机场：无向图模型</li>
-<li>判别模型P(Y|X)</li>
-<li>打破了观测独立假设（朴素贝叶斯假设就是观测独立假设）</li>
-<li>全局归一化（MEMM最大熵马尔可夫模型是局部归一化）</li>
-<li>一般的深度学习模型只是学习了文本&#x2F;特征上下文的关系(BiLSTM)，但是CRF的加入可以让它还学到label上下之间的关系，加入了一个相邻序列间转换的概率</li>
-<li><img src="/public/images/image/BiLSTM+CRF&#32;loss.png" alt="BiLSTM+CRF的loss求解"></li>
-</ol>
-<h6 id="CRF和HMM、MEMM相比的优势"><a href="#CRF和HMM、MEMM相比的优势" class="headerlink" title="CRF和HMM、MEMM相比的优势"></a>CRF和HMM、MEMM相比的优势</h6><ul>
-<li>CRF没有HMM严格的独立假设条件，所以可以容纳更多的上下文信息（HMM独立假设：输出仅如当前状态相关）</li>
-<li>CRF相比MEMM，统计了全局的概率，考虑的数据在全局的分布，并归一化，克服了MEMM模型标记偏置（局部归一化的原因）的缺点</li>
-<li>CRF是在给定需要标记的观察序列的条件下，计算整个标记序列的联合概率分布，而不是在给定当前状态条件下，计算下一个状态的概率分布</li>
-</ul>
-<p><strong>RF和HMM都利用了图的知识，但是CRF利用的是马尔科夫随机场（无向图），而HMM的基础是贝叶斯网络（有向图）。而且CRF也有：概率计算问题、学习问题和预测问题。大致计算方法和HMM类似，只不过不需要EM算法进行学习问题。</strong></p>
-<p><strong>HMM和CRF对比： 其根本还是在于基本的理念不同，一个是生成模型，一个是判别模型，这也就导致了求解方式的不同。</strong></p>
-<h6 id="自编码-VS-自回归"><a href="#自编码-VS-自回归" class="headerlink" title="自编码 VS 自回归"></a>自编码 VS 自回归</h6><p>自回归模型：ELMo，GPT，GPT2，XLNet<br>自编码模型：Bert</p>
-<h6 id="ELMo"><a href="#ELMo" class="headerlink" title="ELMo"></a>ELMo</h6><p>双向自回归语言模型，使用的是从左到右、从右到左的两个LSTM的拼接，特征提取能力不如Transformer。只提供拼接后的词向量</p>
-<h6 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h6><p>单向自回归语言模型，使用的是transformer，但是是left-to-right的单向transformer：transformer decoder，用到的self-attention是masked-multi-self-attention。可以fine-turning</p>
-<h6 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h6><p>双向自编码语言模型，其中的mask有加噪音的效果，且有增强上下文信息获取的效果。可以fine-turning<br>优点：</p>
-<ul>
-<li>双向transformer，所以可以获取上下文信息</li>
-<li>用到transformer，可以并行运算</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>mask在预测中没有，影响模型的泛化能力</li>
-<li>缺乏生成能力</li>
-<li>没有考虑预测的mask间的相关性</li>
-</ul>
-<h6 id="XLNet"><a href="#XLNet" class="headerlink" title="XLNet"></a>XLNet</h6><p>优点：</p>
-<ul>
-<li>用随机采样句子分解的顺序，来解决自回归模型不能联系上下文的问题</li>
-<li>解决了预测词间没有依赖的问题</li>
-<li>attention mask是的模型可以看到自己那个词attent到它前面分解的词，但是不attent到它看不到的后面分解的词</li>
-<li>原自回归模型中永远都是预测下一个词，但是这里因为打乱了句子的分解顺序，所以不知道下一个预测的词是哪个位置的词，或者说预测哪里都一样，所以就变成了bow词包性质的预测，那么建模就没有那么强的序列性。所以我们决定，不用知道下一个词在哪里，我们就预测当前位置的词，那么我们会天然把当前输入encoder到信息中。但是这回带来另一个问题，就是可能要预测的当前词就是输入，那就没有任何意义。但是当我们到另外一个位置时，当前位置的信息需要encoder到里面，所以发生了一个矛盾点，即当前位置信息，某些情况需要encoder到信息中，某些情况又不能encoder到信息中。所以我们就提出了two stream attention，把feature拆成两组，一组encoder当前输入，一组不用，context stream encoder当前输入，用作fine-turning，query stream 不 encoder当前输入，用作预测，并且两个stream参数共享</li>
-</ul>
-<h6 id="ALBert"><a href="#ALBert" class="headerlink" title="ALBert"></a>ALBert</h6><p>改进：</p>
-<ul>
-<li>词向量降维</li>
-<li>权重共享</li>
-<li>更轻，效果更好</li>
-<li>NSP 改为了 SOP，即负样本为反转句子</li>
-<li>增加了数据量和训练时间</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>减少了内存占用，但是并没有减少计算量</li>
-</ul>
-<h6 id="RoBerta"><a href="#RoBerta" class="headerlink" title="RoBerta"></a>RoBerta</h6><p>改进：</p>
-<ul>
-<li>静态mask变为动态mask:而RoBERTa一开始把预训练的数据复制10份，每一份都随机选择15%的Tokens进行Masking，也就是说，同样的一句话有10种不同的mask方式</li>
-<li>with NSP vs without NSP:roberta用的是full-sentence</li>
-<li>更大的mini-batch：256 -&gt; 2K</li>
-<li>更多的数据和更长的训练时间</li>
-</ul>
-<h6 id="为什么用Transformer？Transformer相比于RNN和CNN有什么异同？"><a href="#为什么用Transformer？Transformer相比于RNN和CNN有什么异同？" class="headerlink" title="为什么用Transformer？Transformer相比于RNN和CNN有什么异同？"></a>为什么用Transformer？Transformer相比于RNN和CNN有什么异同？</h6><ul>
-<li><pre><code>Transformer和CNN都不存在序列依赖问题，可以并行计算（计算能力不是问题？？），但是Transformer相对于CNN保留了序列关系，他有RNN的优点，却没有RNN计算能力相对差的缺点
-</code></pre>
-<ul>
-<li><pre><code>CNN中卷基层无法捕捉远距离特征（依赖于卷积层的设定），但是Transformer中，self-attention可以获取前后文所有词与当前词的相关性
-</code></pre>
-<ul>
-<li><pre><code>RNN和Transformer都可以解决句子中的依赖问题（有点同上面提到的序列问题相似），而是Transformer做的更好，他可以得到句子中每个单词间的相关性，并且一步到位
-</code></pre>
-<ul>
-<li><pre><code>Transformer的缺点是，当输入文本特别长的时候，他的计算量会飞速增长。
-</code></pre>
-<ul>
-<li><pre><code>Transformer中的self-attention不存在梯度消失的问题，所以可以更好的看到更远距离的信息
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h6 id="Viterbi算法"><a href="#Viterbi算法" class="headerlink" title="Viterbi算法"></a>Viterbi算法</h6><h5 id="Lattice-LSTM"><a href="#Lattice-LSTM" class="headerlink" title="Lattice+LSTM"></a>Lattice+LSTM</h5><p>NER中一般采用BIEO标注的方法，这种方法一般需要把字一个个的分开标注，所以用的是字向量。<br>字向量：</p>
-<ul>
-<li>优点<ul>
-<li>嵌入字向量，不会有OOV</li>
-<li>语料多少，不会影响向量整体大小所占内存</li>
-</ul>
-</li>
-<li>缺点<ul>
-<li>缺少字词之间的语义关系</li>
-</ul>
-</li>
-</ul>
-<p>词向量</p>
-<ul>
-<li>优点<ul>
-<li>完整的嵌入词语信息</li>
-</ul>
-</li>
-<li>缺点<ul>
-<li>性能依赖分词精度</li>
-<li>开放领域，跨领域分词是一个难题</li>
-<li>会有OOV影响模型性能</li>
-<li>语料大时，词典容量大，占用内存资源大</li>
-</ul>
-</li>
-</ul>
-<p>可见NER中用字向量有很大优势，可以在用词向量的基础上，也加入词向量来嵌入词语的信息吗？</p>
-<p>如果使用分词，对词向量进行标注<br>Lattice是除了使用词向量外，还把字向量作为特征也加入进去了，所以整个计算复杂度升高了很多。</p>
-<h5 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h5><p>在测试完Lattice LSTM后，发现整体F1值虽然增加了2%，但是速度却下降了特别多（将近5倍），所以最后还是选用的BiLSTM+CRF</p>
-<hr>
-<h3 id="Bert-1"><a href="#Bert-1" class="headerlink" title="Bert"></a>Bert</h3><h4 id="Bert的两大亮点"><a href="#Bert的两大亮点" class="headerlink" title="Bert的两大亮点"></a>Bert的两大亮点</h4><ul>
-<li>MASK机制：随机mask一些token来预测</li>
-<li>next sentence predict：判断句子B是否是句子A的下一句话</li>
-</ul>
-<p>有三个输入：字向量，位置向量，句子向量<br>15%的词mask，这15%中有80%是真的用MASK来代替，10%是原有单词，10%是随机选择的单词<br>优点：</p>
-<ul>
-<li>只有80%的字为MASK是因为微调时，输入数据中不会有MASK</li>
-<li>10%错误是因为这样模型不能100%确定当前字一定是正确的，所以迫使模型更多的依赖上下文</li>
-</ul>
-<h4 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h4><p><a href="https://www.bilibili.com/video/av56239558/?spm_id_from=333.788.videocard.0">超厉害的transformer讲解视频，看完就明朗！</a></p>
-<ol>
-<li><p>transformer最重要的组成部分就是self-attention</p>
-</li>
-<li><p>attention的计算中，$alpha_{1,i} &#x3D; q^1 · k^i &#x2F; \sqrt{d}$，这里除以$\sqrt{d}$是因为作者认为在前面求内积时，如果$q^1$和$k^i$的dimension越大，自然$q^1 · k^i$内积也会<strong>相对</strong>越大，所以要除以$q^1$和$k^i$的dimension $d$来平衡。</p>
-</li>
-<li><p>self-attention输出的seq中，输出$y_i$是同CNN中一样，可以并行计算的</p>
-</li>
-<li><p><img src="/public/images/image/self-attention.png" alt="self-attention"></p>
-</li>
-<li><p>表示位置position的向量$e^i$不是学出来的，而是开始的时候就设置了的，通过$e^i$的数值，可以直接判断出当前输入在句子中是在什么位置</p>
-</li>
-<li><p>为什么直接把位置信息$e^i$加到$a^i$上，而不是concat呢？这样会不会造成信息混乱呢？</p>
-<p>那么我们试着不把$e^i$直接加入到$a^i$，而是在输入处，让位置信息$e$和输入信息$x$直接concat，得到比如$X$，他们乘以把$W_e$和$W_x$ concat在一起的矩阵$W$，我们会发现$W·X &#x3D; W_e · e + W_x · x &#x3D; W_e · e + a$，所以最后得到的结果还是相加的，具体情况如下图<br><img src="/public/images/image/self-attention-2.png" alt="positioninfo"></p>
-</li>
-<li><p>layer norm VS batch norm</p>
-</li>
-<li><p>为什么layer norm一般会搭配RNN使用？</p>
-</li>
-<li><p>在transformer的decoder中，中间的multi-head attention的前两个输入来自于encoder的输出，最后一个的输入来自于decoder，前两个是$Q$和$K$，他们是用来计算attention的，后面一个是$V$，计算出来的attention矩阵和$V$进行运算来看attention和$V$的关联度。</p>
-</li>
-<li><p>multi-head attention里之所以用几个attention是因为不同的attention专注点不同，如果句子里有很多需要关联的关系来学习的化，multi-head attention就会大大提升效果</p>
-</li>
-</ol>
-<h4 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h4><p>常见的两种attentio机制</p>
-<h4 id="数据增广"><a href="#数据增广" class="headerlink" title="数据增广"></a>数据增广</h4><ul>
-<li>数据增广中，我们不需要用到segment embedding，因为我们都是同一个句子，但是意图分类中我们可以加入intent embedding</li>
-<li>随机mask 15%的token，其中10%的单词会被替代成其他单词，10%的单词不替换，剩下80%才被替换为[MASK]</li>
-<li>当作一个seq2seq模型来使用，让模型直接输出句子，即mask会被替换成别的单词&#x2F;词语</li>
-<li><ol>
-<li>用词向量比字向量好，用字向量会出现错误的词组</li>
-<li>词向量需要自己重新训练，中文的Bert是字向量，所以失去了迁移模型的优势</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h3 id="纠错"><a href="#纠错" class="headerlink" title="纠错"></a>纠错</h3><h4 id="N-gram"><a href="#N-gram" class="headerlink" title="N-gram"></a>N-gram</h4><h4 id="levenshtein-1"><a href="#levenshtein-1" class="headerlink" title="levenshtein"></a>levenshtein</h4><h4 id="最长公共子串-1"><a href="#最长公共子串-1" class="headerlink" title="最长公共子串"></a>最长公共子串</h4><hr>
-<h3 id="概述历程"><a href="#概述历程" class="headerlink" title="概述历程"></a>概述历程</h3><h4 id="法国"><a href="#法国" class="headerlink" title="法国"></a>法国</h4><h4 id="顺丰"><a href="#顺丰" class="headerlink" title="顺丰"></a>顺丰</h4><h3 id="几大模块"><a href="#几大模块" class="headerlink" title="几大模块"></a>几大模块</h3><h2 id="待写文章"><a href="#待写文章" class="headerlink" title="待写文章"></a>待写文章</h2><ol>
-<li><p>过拟合欠拟合</p>
-</li>
-<li><p>样本不均衡</p>
-</li>
-<li><p>batch norm详述及优缺点</p>
-</li>
-<li><p>batch norm和layer norm的不同</p>
-</li>
-</ol>
-<h3 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h3><p>自己的优势是对整个产品流程的理解，和对产品如何更好面向客户的技术上的着重点的理解</p>
-]]></content>
-      <categories>
-        <category>项目总结</category>
-      </categories>
-      <tags>
-        <tag>智能客服</tag>
-        <tag>CNN</tag>
-        <tag>stacking</tag>
-        <tag>LR</tag>
-        <tag>SVM</tag>
-      </tags>
-  </entry>
-</search>
+<li><p>v1.1 是所有以�

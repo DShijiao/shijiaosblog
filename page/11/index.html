@@ -178,6 +178,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/LSTM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/LSTM/" class="post-title-link" itemprop="url">LSTM</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-06T00:00:00+08:00">2019-12-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-11 11:24:17" itemprop="dateModified" datetime="2022-07-11T11:24:17+08:00">2022-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><h2 id="LSTM来源"><a href="#LSTM来源" class="headerlink" title="LSTM来源"></a>LSTM来源</h2><p>LSTM由RNN变化而来，所以在介绍LSTM前，我们先了解一下RNN。</p>
+<p>RNN是一类用来处理序列数据的神经网络，当前状态不仅受到当前输入$x_t$的影响，也受前面状态$h_{t-1}$的影响</p>
+<p>$h_t&#x3D;\delta (W^{h_{t-1}} \cdot h_{t-1} + W^{x_t} \cdot x_t)$<br>$y&#x3D;\delta (W^y \cdot h_t)$</p>
+<pre><code>ignore bais here
+</code></pre>
+<p>且神经元是共享权重W的，即:<br>$W^{h_{t-1}}&#x3D;W^{h_{t}}$<br>$W^{x_{t-1}}&#x3D;W^{x_t}$<br>$W^{y-1}&#x3D;W^y$</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/LSTM/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Docker%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -599,100 +685,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/tf%E5%88%86%E5%B8%83%E5%BC%8F--DistributionStrategy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/tf%E5%88%86%E5%B8%83%E5%BC%8F--DistributionStrategy/" class="post-title-link" itemprop="url">tf分布式 -- DistributionStrategy</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-16T00:00:00+08:00">2019-01-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 10:11:36" itemprop="dateModified" datetime="2022-07-11T10:11:36+08:00">2022-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/" itemprop="url" rel="index"><span itemprop="name">Tensorflow</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="tf分布式-–-DistributionStrategy"><a href="#tf分布式-–-DistributionStrategy" class="headerlink" title="tf分布式 – DistributionStrategy"></a>tf分布式 – DistributionStrategy</h1><p>以下内容摘抄自：<br><a target="_blank" rel="noopener" href="http://jcf94.com/2018/10/21/2018-10-21-tfunpacking9/">TensorFlow 拆包（九）：High Level APIs \| Chenfan Blog</a></p>
-<p><strong>看一下官方文档中对 <code>DistributionStrategy</code> 的设计思想。</strong></p>
-<p>首先是一些底层的概念：</p>
-<ul>
-<li>Wrapped values：跨设备相关的变量可以被封装为两种类别，PerDevice 对象表示的变量在每个设备上的值不同，Mirrored 对象表示的变量在每个设备上的值都相同</li>
-<li>Unwrapping and merging：考虑前面提过的这个函数 <code>call_for_each_tower(fn, w)</code>，<code>fn</code> 是模型函数，<code>w</code> 代表一些 Wrapped values。这个函数的调用过程中就包含了变量的 unwrapping 和 merging，假定在设备 <code>d0</code> 上 <code>fn(w0)</code> 得到的结果是 <code>(x, a, v0)</code>，在设备 <code>d1</code> 上 <code>fn(w1)</code> 得到的结果是 <code>(x, b, v1)</code>。首先在调用函数之前，<code>w</code> 需要被解包变成 <code>w0</code> 和 <code>w1</code> 然后分别调用 <code>fn</code> 函数。返回的结果有三种情况，第一个值都返回了一个相同的对象 <code>x</code>，则最终 <code>merge</code> 之后还是对象 <code>x</code>；第二个值是每个设备不一样的，则 <code>merge</code> 之后是一个 <code>PerDevice</code> 对象（其实就是个设备和对应值的 <code>map</code>）；第三个值是每个设备返回的分别是一组 <code>Mirrored</code> 对象的成员，则 <code>merge</code> 之后是一个 <code>Mirrored</code> 对象。所以 <code>call_for_each_tower(fn, w)</code> 在这里返回得到的就是一组 <code>(x, PerDevice&#123;...&#125;, Mirrored&#123;...&#125;)</code></li>
-<li>Tower context vs. Cross-tower context：Tower context 指的是对每个设备的封装上下文，通常对每个设备分别跑一遍模型函数就需要这种封装；Cross-tower context 指的是跨设备的封装上下文，比如说像 <code>reduce()</code> 这种所有设备共同参与的一个操作就需要这种封装</li>
-<li>Worker devices vs. parameter devices：负责计算的设备和存参数的设备，没啥好说的。</li>
-</ul>
-<p>更新一个变量的常规操作如下：</p>
-<ol>
-<li>把输入数据集封装在 <code>d.distribute_dataset()</code> 中，然后创建一个 iterator</li>
-<li>对每一个设备共同调用 d.call_for_each_tower() 来分别创建网络模型，并且最终各自得到一组梯度&#x2F;变量对：<code>d0</code> 上有 <code>&#123;(g0, v0), (g1, v1), ...&#125;</code>，<code>d1</code> 上有 <code>&#123;(g&#39;0, v0), (g&#39;1, v1), ...&#125;</code> 等等这样</li>
-<li>调用<code>d.reduce(VariableAggregation.SUM, t, v)</code> 或者 <code>d.batch_reduce()</code> 来对梯度求和，并且对应到各自的变量上：<code>&#123;(Sum(g0, g&#39;0), v0), (Sum(g1, g&#39;1), v1), ...&#125;</code></li>
-<li>调用 <code>d.update(v)</code> 来对每一个变量进行更新</li>
-</ol>
-<p>3、4 两步如果用 <code>Optimizer</code> 中的 <code>apply_gradients()</code> 方法可以自动完成（……这就是 <code>Optimizer</code> 后来加进去那部分代码的作用），或者在一个 <code>Cross-tower context</code> 中调用 <code>_distributed_apply()</code> 方法也可以。常规的网络层都应该在 <code>Tower context</code> 中被调用。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -764,7 +756,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
