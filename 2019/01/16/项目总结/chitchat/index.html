@@ -316,4 +316,403 @@
 <p>带入得到</p>
 <p>${\hat T}&#x3D;\underset{T}{argmax} {(1-\lambda)\log p(T|S)+\lambda \log p(S|T)}$</p>
 <p>因为$p(S|T)$需要通过生成的$T$来再次通过训练好的seq2seq模型再计算一遍，计算量特别大，所以我们通过beam search只取前$N$个$T$，比如200个，再计算$S$。</p>
-<p>但是在使用beam search的时候，我们知道，beam search有很多输出只是一两个字或者只
+<p>但是在使用beam search的时候，我们知道，beam search有很多输出只是一两个字或者只是符号发生了变化，减少了取$N$个不同输出$T$的意义，因为本身输出句子的多样性不能满足这里的要求，所以我们对beam search进行了更改。</p>
+<p>一般beam search在到下一节点时，我们是通过混合所有父节点的字节点，统一进行比较，然后取整体概率最大的$N$个选择，这里我们更改为，针对每一个父节点，我们先对其对应的字节点按先后顺序将其概率从上往下减去一个越来越大的数，使得我们能更好的保存更多不同的父节点，自然句子的多样性也就增加了。具体例子见下图<img src="/public/images/image/beam_search_anti_bidi.png" alt="beamsearch_antibidi"><br>另外，也在anti-bidi中，做了同anti-LM相同的处理，增加了回复长度的影响。</p>
+<p>闲聊用的是seq2seq，loss中加入了anti-lm来减少无意义回复，加入了问句与回答的余弦相似性来减少重复问题的回答</p>
+<h5 id="anti-bidi-VS-anti-LM"><a href="#anti-bidi-VS-anti-LM" class="headerlink" title="anti-bidi VS anti-LM"></a>anti-bidi VS anti-LM</h5><ol>
+<li>两者虽然都是使用的MMI，但是使用的公式不一样，背后的逻辑原理也不一样</li>
+<li>anti-bidi比anti-LM要更耗时，因为他要经过两次模型，且非常依赖于beam search生成的句子的多样性</li>
+</ol>
+<h5 id="anti-LM的具体实现"><a href="#anti-LM的具体实现" class="headerlink" title="anti-LM的具体实现"></a>anti-LM的具体实现</h5><p>如何计算P(T)<br>首先应该意识到P(T)应该是一个语言模型学习出来的结果，而不简单的是联合概率的乘积。那么如何得到这个模型学习出来的结果呢？在实现时需要在decoder的输入端输入一个全零的初始化状态，具体做法可以输入一句话长度的pad标志符，让decoder生成结果，得到P(T)</p>
+<p>详见<code>just_another_seq2seq_master</code>里<code>train-anti.py</code>中第86～88行和第98～101行。</p>
+<p>下面代码见前三行和中间的<code>add_loss</code>：</p>
+<ol>
+<li>前三行代码：输入为一定维度的PAD</li>
+<li><code>add_loss</code>计算的是输入为PAD时(即初始状态下)的输出，即$P(T)$</li>
+<li><code>add_loss *= -0.5</code>表示每次计算完$P(T)$后乘以$-0.5$，即$\lambda&#x3D;0.5$</li>
+<li>我们没有用$U(T)$，但是并没有明显输出语句不通顺的情况</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">dummy_encoder_inputs = np.array([</span><br><span class="line">    np.array([WordSequence.PAD]) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(batch_size)])</span><br><span class="line">dummy_encoder_inputs_lengths = np.array([<span class="number">1</span>] * batch_size)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_epoch + <span class="number">1</span>):</span><br><span class="line">    costs = []</span><br><span class="line">    bar = tqdm(<span class="built_in">range</span>(steps), total=steps,</span><br><span class="line">                desc=<span class="string">&#x27;epoch &#123;&#125;, loss=0.000000&#x27;</span>.<span class="built_in">format</span>(epoch))</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> bar:</span><br><span class="line">        x, xl, y, yl = <span class="built_in">next</span>(flow)</span><br><span class="line">        x = np.flip(x, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        add_loss = model.train(sess,</span><br><span class="line">                                dummy_encoder_inputs,</span><br><span class="line">                                dummy_encoder_inputs_lengths,</span><br><span class="line">                                y, yl, loss_only=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        add_loss *= -<span class="number">0.5</span></span><br><span class="line">        <span class="comment"># print(x, y)</span></span><br><span class="line">        cost, lr = model.train(sess, x, xl, y, yl,</span><br><span class="line">                                return_lr=<span class="literal">True</span>, add_loss=add_loss)</span><br><span class="line">        costs.append(cost)</span><br><span class="line">        bar.set_description(<span class="string">&#x27;epoch &#123;&#125; loss=&#123;:.6f&#125; lr=&#123;:.6f&#125;&#x27;</span>.<span class="built_in">format</span>(</span><br><span class="line">            epoch,</span><br><span class="line">            np.mean(costs),</span><br><span class="line">            lr</span><br><span class="line">        ))</span><br><span class="line"></span><br><span class="line">    model.save(sess, save_path)</span><br></pre></td></tr></table></figure>
+
+<h4 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h4><h4 id="anti-lm"><a href="#anti-lm" class="headerlink" title="anti-lm"></a>anti-lm</h4><h5 id="最大互信息"><a href="#最大互信息" class="headerlink" title="最大互信息"></a>最大互信息</h5><h4 id="attention-LSTM"><a href="#attention-LSTM" class="headerlink" title="attention+LSTM"></a>attention+LSTM</h4><h5 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h5><h5 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h5><h4 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h4><p>闲聊的评估是带有非常大的主观性的，而且场景不同，用户不同，对相同结果的满意度也会不一样，所以我们对模型的评估希望从更客观、更基础的地方来进行评估和改进：</p>
+<ol>
+<li>无意义回答的频率&#x2F;百分比</li>
+<li>相似回答的频率&#x2F;百分比</li>
+<li>正确回答的百分比</li>
+<li>简单问题正确回答的百分比</li>
+<li>相同问题，是否能给出相同答案</li>
+<li>过于简短回答的百分比</li>
+<li>对话内容大多无意义，无法深入交谈具体事情</li>
+</ol>
+<h4 id="努力方向"><a href="#努力方向" class="headerlink" title="努力方向"></a>努力方向</h4><ol>
+<li>模型优化</li>
+<li>数据集质量优化+数据集扩充</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Shijiao DENG
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/01/16/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/chitchat/" title="Chitchat">http://yoursite.com/2019/01/16/项目总结/chitchat/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/chitchat/" rel="tag"># chitchat</a>
+              <a href="/tags/seq2seq/" rel="tag"># seq2seq</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/tf%E5%88%86%E5%B8%83%E5%BC%8F--DistributionStrategy/" rel="prev" title="tf分布式 -- DistributionStrategy">
+      <i class="fa fa-chevron-left"></i> tf分布式 -- DistributionStrategy
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/HTTP%E5%92%8CgRPC%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="next" title="HTTP和gRPC的区别">
+      HTTP和gRPC的区别 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chitchat"><span class="nav-number">1.</span> <span class="nav-text">Chitchat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B0%E7%9B%AE%E5%89%8D%E4%B8%BA%E6%AD%A2%EF%BC%8C%E6%AF%8F%E4%B8%AAversion%E7%9A%84%E6%94%B9%E8%BF%9B%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">到目前为止，每个version的改进简介</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%B2%E8%81%8A"><span class="nav-number">1.2.</span> <span class="nav-text">闲聊</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.1.</span> <span class="nav-text">流程设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.2.</span> <span class="nav-text">模型问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#anti-LM"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">anti-LM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#anti-bidi"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">anti-bidi</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#anti-bidi-VS-anti-LM"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">anti-bidi VS anti-LM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#anti-LM%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">anti-LM的具体实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#seq2seq"><span class="nav-number">1.2.3.</span> <span class="nav-text">seq2seq</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#anti-lm"><span class="nav-number">1.2.4.</span> <span class="nav-text">anti-lm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E4%BA%92%E4%BF%A1%E6%81%AF"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">最大互信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attention-LSTM"><span class="nav-number">1.2.5.</span> <span class="nav-text">attention+LSTM</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#attention"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">attention</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#transformer"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">transformer</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="nav-number">1.2.6.</span> <span class="nav-text">模型评估</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%AA%E5%8A%9B%E6%96%B9%E5%90%91"><span class="nav-number">1.2.7.</span> <span class="nav-text">努力方向</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shijiao DENG"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shijiao DENG</p>
+  <div class="site-description" itemprop="description">记录工作，记录生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dengshijiao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dengshijiao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:d.shijiao@gmail.com" title="E-Mail → mailto:d.shijiao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-coffee"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shijiao DENG</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+    </div>
+</body>
+</html>
