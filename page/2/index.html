@@ -178,6 +178,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E4%B8%AD%E4%BD%BF%E7%94%A8args%E5%92%8Cadd_argument%E4%BC%A0%E5%8F%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E4%B8%AD%E4%BD%BF%E7%94%A8args%E5%92%8Cadd_argument%E4%BC%A0%E5%8F%82/" class="post-title-link" itemprop="url">Python中使用args和add_argument传参</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-07 19:32:02" itemprop="dateCreated datePublished" datetime="2022-07-07T19:32:02+08:00">2022-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-11 11:51:51" itemprop="dateModified" datetime="2022-07-11T11:51:51+08:00">2022-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Python中使用args和add-argument传参"><a href="#Python中使用args和add-argument传参" class="headerlink" title="Python中使用args和add_argument传参"></a>Python中使用args和add_argument传参</h1><p>在Python中，args一般用来在外部运行 <code>convert.py</code> 时，从外部传参。但可以配合使用add_argument进行<b>内部或外部<b>传参。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    argp = argparse.ArgumentParser()</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;in_file&#x27;</span>, default=datapath_abs_test_machine, <span class="built_in">help</span>=<span class="string">&#x27;Input CSV file&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--out_name&#x27;</span>, default=<span class="string">&#x27;baseline-e2e-data&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Output files name prefix&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-a&#x27;</span>, <span class="string">&#x27;--abstract&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Comma-separated list of slots to be abstracted&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-m&#x27;</span>, <span class="string">&#x27;--multi-ref&#x27;</span>,</span><br><span class="line">                      <span class="built_in">help</span>=<span class="string">&#x27;Multiple reference mode: group by the same DA&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--no-refs&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Use a file without references, only produce DA files&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-n&#x27;</span>, <span class="string">&#x27;--slot-names&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Include slot names in delexicalized texts&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    args = argp.parse_args()</span><br><span class="line">    convert(args)</span><br></pre></td></tr></table></figure>
+
+
+<p>运行命令行如下：<br><code>python ./convert.py -a name,near -n /root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv train</code></p>
+<p>此时 <code>args.in_file=&#39;/root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv&#39;</code></p>
+<ol>
+<li><p>但是如果想要用软件，如vscode进行软件内debug，直接这样运行会报错。此时需要在前面加上“–”才不会报错，即：<code>argp.add_argument(&#39;--in_file&#39;, default=datapath_abs_test_machine, help=&#39;Input CSV file&#39;)</code></p>
+</li>
+<li> <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">发生异常: SystemExit</span></span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<p> 同上，也是“–”的问题，在add_argument第一个参数前加上“–”</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%89%8B%E5%8A%A8%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Python%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -572,92 +662,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-%E6%B7%B1%E6%8B%B7%E8%B4%9D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-%E6%B7%B1%E6%8B%B7%E8%B4%9D/" class="post-title-link" itemprop="url">JAVA 序列化和浅/深拷贝</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-05 19:08:52" itemprop="dateCreated datePublished" datetime="2022-03-05T19:08:52+08:00">2022-03-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 11:46:34" itemprop="dateModified" datetime="2022-07-11T11:46:34+08:00">2022-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="JAVA-序列化和浅-x2F-深拷贝"><a href="#JAVA-序列化和浅-x2F-深拷贝" class="headerlink" title="JAVA 序列化和浅&#x2F;深拷贝"></a>JAVA 序列化和浅&#x2F;深拷贝</h1><h2 id="序列化-x2F-深拷贝"><a href="#序列化-x2F-深拷贝" class="headerlink" title="序列化&#x2F;深拷贝"></a>序列化&#x2F;深拷贝</h2><p>Java里不能直接进行浅拷贝&#x2F;深拷贝</p>
-<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>看了很多文章，都解释了什么是浅拷贝，但是没有说什么情况下需要进行浅拷贝</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/JAVA/JAVA-%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E6%B5%85-%E6%B7%B1%E6%8B%B7%E8%B4%9D/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -729,7 +733,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -742,7 +746,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

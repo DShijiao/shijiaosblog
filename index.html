@@ -178,6 +178,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/" class="post-title-link" itemprop="url">DeBERTa</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-26 14:15:49 / 修改时间：15:22:29" itemprop="dateCreated datePublished" datetime="2022-07-26T14:15:49+08:00">2022-07-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="DeBERTa"><a href="#DeBERTa" class="headerlink" title="DeBERTa"></a>DeBERTa</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>DeBERTa是微软在2021年提出的基于BERT的深度学习方法。全称Deconding-enhanced BERT with disentangled attention。主要提出了两个改进方法disentangled attention和enhanced mask decoder(EMD)，以及一个fine-turn的trick。</p>
+<p>该方法在GLUE大部分数据集上超过RoBERTa等模型。（提升真的只有一点点…）</p>
+<blockquote>
+<p>自然语言处理（NLP）主要自然语言理解（NLU）和自然语言生成（NLG）。为了让NLU任务发挥最大的作用，来自纽约大学、华盛顿大学等机构创建了一个多任务的自然语言理解基准和分析平台，也就是GLUE（General Language Understanding Evaluation）。</p>
+<p>GLUE包含九项NLU任务，语言均为英语。GLUE九项任务涉及到自然语言推断、文本蕴含、情感分析、语义相似等多个任务。像BERT、XLNet、RoBERTa、ERINE、T5等知名模型都会在此基准上进行测试。目前，大家要把预测结果上传到官方的网站上，官方会给出测试的结果。 </p>
+<p>数据集详细介绍见：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/135283598">GLUE基准数据集介绍及下载</a></p>
+</blockquote>
+<p><img src="/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B%E5%9B%BE.jpeg" alt="相对距离--源码"></p>
+<h2 id="模型改进点"><a href="#模型改进点" class="headerlink" title="模型改进点"></a>模型改进点</h2><h3 id="Disentangled-attention-解耦注意机制"><a href="#Disentangled-attention-解耦注意机制" class="headerlink" title="Disentangled attention 解耦注意机制"></a>Disentangled attention 解耦注意机制</h3><p>作者认为在一个句子中，每个token间的相对距离是非常重要的信息，因为作者希望把相对位置信息引入到计算中。</p>
+<p>作者的做法是：</p>
+<ol>
+<li>在文本输入层只要word embedding，不要pos embedding</li>
+<li>在attention计算时引入相对位置信息</li>
+<li>内容编码间的信息很重要，但是内容编码与相对位置编码间的信息也很重要。如何 <code>H</code> 和 <code>P</code> 分别代表内容编码和位置编码，则attention计算方式如下：（注意HP和PH都是相对原BERT计算新多出来的，即content-to-position，position-to-content）<br><img src="/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/attention%E8%AE%A1%E7%AE%971.png" alt="attention计算"></li>
+<li>位置编码间的相互信息影响不大，因此在后面的运算中去除了第四项，具体计算如下：<br><img src="/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/attention%E8%AE%A1%E7%AE%972.png" alt="attention计算"></li>
+<li>其中相对距离的计算方式如下：<br><img src="/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/%E7%9B%B8%E5%AF%B9%E8%B7%9D%E7%A6%BB.png" alt="相对距离"></li>
+<li>为了方便计算，论文中主张将<code>k</code>设定为<code>512</code>，在计算attention时，与每个<code>query</code>内容编码相乘的相对位置编码则相同，可以压缩时间（复杂度变成O（kd），这里逻辑我还没有梳理清楚）</li>
+</ol>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><h4 id="相对位置距离的计算源码"><a href="#相对位置距离的计算源码" class="headerlink" title="相对位置距离的计算源码"></a>相对位置距离的计算源码</h4><p><img src="/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/%E7%9B%B8%E5%AF%B9%E8%B7%9D%E7%A6%BB--%E6%BA%90%E7%A0%81.png" alt="相对距离--源码"></p>
+<h4 id="Disentangled-attention计算源码"><a href="#Disentangled-attention计算源码" class="headerlink" title="Disentangled attention计算源码"></a>Disentangled attention计算源码</h4><p><img src="/DeBERTa/disentangled%20attention--%E6%BA%90%E7%A0%81.png" alt="disentangled%20attention--源码"></p>
+<h3 id="Enhanced-Mask-Decoder"><a href="#Enhanced-Mask-Decoder" class="headerlink" title="Enhanced Mask Decoder"></a>Enhanced Mask Decoder</h3><p>作者没有同BERT一样在input层加入pos embedding，而是在所有Transformer layers之后，softmax之前，为所有masked了需要预测的token加入绝对位置信息。此时DeBERTa在获得所有相对位置信息，并且仅在解码masked words时加入绝对位置信息，称之为Enhanced Mask Decoder(EMD)。<br>在比较结果后发现EMD效果要好很多，因此作者推测过早的加入绝对位置信息，可能阻碍了模型对足够相对位置信息的学习。（就不放论文原图了，没看出作者是啥意思…）</p>
+<h2 id="fine-turn的小技巧"><a href="#fine-turn的小技巧" class="headerlink" title="fine turn的小技巧"></a>fine turn的小技巧</h2><p>本文提到的小技巧是从虚拟对抗来的。</p>
+<p>一般情况下，虚拟对抗学习是一个提高模型泛化能力的正则化方法。其通过使用”对抗实例“来提高一个模型的鲁棒性。而构建”对抗实例“的时候，具体是通过对输入加入small perturbations（轻微扰动）来构造出来的。</p>
+<p>在NLP任务中，干扰（perturbation）通常是加在word embedding中，而不是原始文本。所以当模型很大参数很多是，往往方差也会很大，影响对抗训练的稳定性。因此作者提出：applying the perturbations to the <strong>normalized</strong> word embeddings。即：</p>
+<ol>
+<li>SiFT将word emebdding标准化为随机向量（为什么标准化为<strong>随机</strong>向量呢？）</li>
+<li>在标准化后的word embedding上加入干扰</li>
+</ol>
+<p>作者实验后发现效果很好：</p>
+<p><img src="/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/SiFT.jpeg" alt="SiFT"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>原论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.03654.pdf">DeBERTa</a></p>
+<p>可以参考文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/395086745">DeBERTa-使用解绑注意力的解码增强BERT</a>。这篇文章作者比较有自己的想法，讲解也相对详细且有理有据。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/12/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/K-fold%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -543,96 +642,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E4%B8%AD%E4%BD%BF%E7%94%A8args%E5%92%8Cadd_argument%E4%BC%A0%E5%8F%82/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E4%B8%AD%E4%BD%BF%E7%94%A8args%E5%92%8Cadd_argument%E4%BC%A0%E5%8F%82/" class="post-title-link" itemprop="url">Python中使用args和add_argument传参</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-07 19:32:02" itemprop="dateCreated datePublished" datetime="2022-07-07T19:32:02+08:00">2022-07-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 11:51:51" itemprop="dateModified" datetime="2022-07-11T11:51:51+08:00">2022-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Python中使用args和add-argument传参"><a href="#Python中使用args和add-argument传参" class="headerlink" title="Python中使用args和add_argument传参"></a>Python中使用args和add_argument传参</h1><p>在Python中，args一般用来在外部运行 <code>convert.py</code> 时，从外部传参。但可以配合使用add_argument进行<b>内部或外部<b>传参。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    argp = argparse.ArgumentParser()</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;in_file&#x27;</span>, default=datapath_abs_test_machine, <span class="built_in">help</span>=<span class="string">&#x27;Input CSV file&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--out_name&#x27;</span>, default=<span class="string">&#x27;baseline-e2e-data&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Output files name prefix&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-a&#x27;</span>, <span class="string">&#x27;--abstract&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Comma-separated list of slots to be abstracted&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-m&#x27;</span>, <span class="string">&#x27;--multi-ref&#x27;</span>,</span><br><span class="line">                      <span class="built_in">help</span>=<span class="string">&#x27;Multiple reference mode: group by the same DA&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;--no-refs&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Use a file without references, only produce DA files&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    argp.add_argument(<span class="string">&#x27;-n&#x27;</span>, <span class="string">&#x27;--slot-names&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Include slot names in delexicalized texts&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>)</span><br><span class="line">    args = argp.parse_args()</span><br><span class="line">    convert(args)</span><br></pre></td></tr></table></figure>
-
-
-<p>运行命令行如下：<br><code>python ./convert.py -a name,near -n /root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv train</code></p>
-<p>此时 <code>args.in_file=&#39;/root/project/live-streaming/baseline-model/tgen-master/e2e-dataset/trainset.csv&#39;</code></p>
-<ol>
-<li><p>但是如果想要用软件，如vscode进行软件内debug，直接这样运行会报错。此时需要在前面加上“–”才不会报错，即：<code>argp.add_argument(&#39;--in_file&#39;, default=datapath_abs_test_machine, help=&#39;Input CSV file&#39;)</code></p>
-</li>
-<li> <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">发生异常: SystemExit</span></span><br><span class="line">2</span><br></pre></td></tr></table></figure>
-<p> 同上，也是“–”的问题，在add_argument第一个参数前加上“–”</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -704,7 +713,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -717,7 +726,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -894,61 +903,6 @@ window.addEventListener('pjax:success', () => {
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-          load: ['[tex]/mhchem'],
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['mhchem']},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
