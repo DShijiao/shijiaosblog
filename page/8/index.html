@@ -432,87 +432,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/map+zip%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/map+zip%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE/" class="post-title-link" itemprop="url">map+zip实现矩阵转置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 10:31:49" itemprop="dateModified" datetime="2022-07-11T10:31:49+08:00">2022-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="map-zip实现矩阵转置"><a href="#map-zip实现矩阵转置" class="headerlink" title="map+zip实现矩阵转置"></a>map+zip实现矩阵转置</h1><p>map和zip配合使用，实现矩阵转置</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rotate</span>(<span class="params">self, matrix</span>):  </span><br><span class="line">        matrix[:] = <span class="built_in">map</span>(<span class="built_in">list</span>,<span class="built_in">zip</span>(*matrix))</span><br><span class="line">        <span class="keyword">return</span> matrix</span><br><span class="line"><span class="built_in">print</span>(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>],</span><br><span class="line">    [<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-
-<p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a target="_blank" rel="noopener" href="https://blog.csdn.net/shawpan/article/details/69663710">一行代码搞定矩阵旋转——python</a>。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/is%E3%80%81==%E7%AD%89%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%BF%90%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -601,6 +520,88 @@
 <p>&gt;&gt;是右移，右移1位相当于除以2。<br>而&gt;&gt;&#x3D;和&lt;&lt;&#x3D;，就是对变量进行位运算移位之后的结果再赋值给原来的变量，可以类比赋值运算符+&#x3D;和-&#x3D;可以理解。</p>
 <p>比如x&gt;&gt;&#x3D;2， 就是把变量x右移2位，再保留x操作后的值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a &gt;&gt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b &lt;&lt;= <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pandas%E8%81%9A%E5%90%88%E5%92%8C%E5%88%86%E7%BB%84%E8%BF%90%E7%AE%97%E4%B9%8Bgroupby/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pandas%E8%81%9A%E5%90%88%E5%92%8C%E5%88%86%E7%BB%84%E8%BF%90%E7%AE%97%E4%B9%8Bgroupby/" class="post-title-link" itemprop="url">pandas聚合和分组运算之groupby</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-11 10:31:54" itemprop="dateModified" datetime="2022-07-11T10:31:54+08:00">2022-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="pandas聚合和分组运算之groupby"><a href="#pandas聚合和分组运算之groupby" class="headerlink" title="pandas聚合和分组运算之groupby"></a>pandas聚合和分组运算之groupby</h1><p>根据<code>key1</code>的值<code>a</code>,<code>b</code>来分组求<code>data1</code>的平均值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">data1     data2 key1 key2</span><br><span class="line"><span class="number">0</span> -<span class="number">0.410673</span>  <span class="number">0.519378</span>    a  one</span><br><span class="line"><span class="number">1</span> -<span class="number">2.120793</span>  <span class="number">0.199074</span>    a  two</span><br><span class="line"><span class="number">2</span>  <span class="number">0.642216</span> -<span class="number">0.143671</span>    b  one</span><br><span class="line"><span class="number">3</span>  <span class="number">0.975133</span> -<span class="number">0.592994</span>    b  two</span><br><span class="line"><span class="number">4</span> -<span class="number">1.017495</span> -<span class="number">0.530459</span>    a  one</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped = df[<span class="string">&#x27;data1&#x27;</span>].groupby(df[<span class="string">&#x27;key1&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped</span><br><span class="line">&lt;pandas.core.groupby.SeriesGroupBy <span class="built_in">object</span> at <span class="number">0x04120D70</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>grouped.mean()</span><br><span class="line">key1</span><br><span class="line">a      -<span class="number">1.182987</span></span><br><span class="line">b       <span class="number">0.808674</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+
+<p>根据<code>cpucore-</code>的类别，求所有数值形式列的平均值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>data_mac.groupby(<span class="string">&#x27;cpucore&#x27;</span>).mean()</span><br><span class="line">cpucore-	time_transform_bert	time_sess_run_bert	time_to_dict_bert	time_all_bert			</span><br><span class="line"><span class="number">1</span>	<span class="number">0.003124</span>	<span class="number">1.550403</span>	<span class="number">0.000032</span>	<span class="number">1.553559</span></span><br><span class="line"><span class="number">2</span>	<span class="number">0.001235</span>	<span class="number">0.730950</span>	<span class="number">0.000034</span>	<span class="number">0.732218</span></span><br><span class="line"><span class="number">3</span>	<span class="number">0.001565</span>	<span class="number">0.487936</span>	<span class="number">0.000037</span>	<span class="number">0.489538</span></span><br><span class="line"><span class="number">4</span>	<span class="number">0.001103</span>	<span class="number">0.323777</span>	<span class="number">0.000029</span>	<span class="number">0.324909</span></span><br><span class="line"><span class="number">5</span>	<span class="number">0.001185</span>	<span class="number">0.289874</span>	<span class="number">0.000033</span>	<span class="number">0.291093</span></span><br><span class="line"><span class="number">6</span>	<span class="number">0.001226</span>	<span class="number">0.284265</span>	<span class="number">0.000033</span>	<span class="number">0.285524</span></span><br><span class="line"><span class="number">0</span>	<span class="number">0.001225</span>	<span class="number">0.284462</span>	<span class="number">0.000032</span>	<span class="number">0.285719</span></span><br></pre></td></tr></table></figure>
 
       
     </div>

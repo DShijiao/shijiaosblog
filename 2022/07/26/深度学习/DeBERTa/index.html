@@ -32,10 +32,10 @@
 <meta property="og:image" content="http://yoursite.com/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/attention%E8%AE%A1%E7%AE%972.png">
 <meta property="og:image" content="http://yoursite.com/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/%E7%9B%B8%E5%AF%B9%E8%B7%9D%E7%A6%BB.png">
 <meta property="og:image" content="http://yoursite.com/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/%E7%9B%B8%E5%AF%B9%E8%B7%9D%E7%A6%BB--%E6%BA%90%E7%A0%81.png">
-<meta property="og:image" content="http://yoursite.com/disentangled%20attention--%E6%BA%90%E7%A0%81.png">
+<meta property="og:image" content="http://yoursite.com/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/disentangled-attention--%E6%BA%90%E7%A0%81.png">
 <meta property="og:image" content="http://yoursite.com/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/SiFT.jpeg">
 <meta property="article:published_time" content="2022-07-26T06:15:49.000Z">
-<meta property="article:modified_time" content="2022-07-26T07:39:07.045Z">
+<meta property="article:modified_time" content="2022-07-26T07:40:12.620Z">
 <meta property="article:author" content="Shijiao DENG">
 <meta property="article:tag" content="deberta">
 <meta name="twitter:card" content="summary">
@@ -214,7 +214,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-26 14:15:49 / 修改时间：15:39:07" itemprop="dateCreated datePublished" datetime="2022-07-26T14:15:49+08:00">2022-07-26</time>
+              <time title="创建时间：2022-07-26 14:15:49 / 修改时间：15:40:12" itemprop="dateCreated datePublished" datetime="2022-07-26T14:15:49+08:00">2022-07-26</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,7 +263,7 @@
 <li>为了方便计算，论文中主张将<code>k</code>设定为<code>512</code>，在计算attention时，与每个<code>query</code>内容编码相乘的相对位置编码则相同，可以压缩时间（复杂度变成O（kd），这里逻辑我还没有梳理清楚）</li>
 </ol>
 <h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><h5 id="相对位置距离的计算源码"><a href="#相对位置距离的计算源码" class="headerlink" title="相对位置距离的计算源码"></a>相对位置距离的计算源码</h5><p><img src="/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/%E7%9B%B8%E5%AF%B9%E8%B7%9D%E7%A6%BB--%E6%BA%90%E7%A0%81.png" alt="相对距离--源码"></p>
-<h5 id="Disentangled-attention计算源码"><a href="#Disentangled-attention计算源码" class="headerlink" title="Disentangled attention计算源码"></a>Disentangled attention计算源码</h5><p><img src="/disentangled%20attention--%E6%BA%90%E7%A0%81.png" alt="disentangled%20attention--源码"></p>
+<h5 id="Disentangled-attention计算源码"><a href="#Disentangled-attention计算源码" class="headerlink" title="Disentangled attention计算源码"></a>Disentangled attention计算源码</h5><p><img src="/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/disentangled-attention--%E6%BA%90%E7%A0%81.png" alt="disentangled attention--源码"></p>
 <h3 id="Enhanced-Mask-Decoder"><a href="#Enhanced-Mask-Decoder" class="headerlink" title="Enhanced Mask Decoder"></a>Enhanced Mask Decoder</h3><p>作者没有同BERT一样在input层加入pos embedding，而是在所有Transformer layers之后，softmax之前，为所有masked了需要预测的token加入绝对位置信息。此时DeBERTa在获得所有相对位置信息，并且仅在解码masked words时加入绝对位置信息，称之为Enhanced Mask Decoder(EMD)。<br>在比较结果后发现EMD效果要好很多，因此作者推测过早的加入绝对位置信息，可能阻碍了模型对足够相对位置信息的学习。（就不放论文原图了，没看出作者是啥意思…）</p>
 <h2 id="fine-turn的小技巧"><a href="#fine-turn的小技巧" class="headerlink" title="fine turn的小技巧"></a>fine turn的小技巧</h2><p>本文提到的小技巧是从虚拟对抗来的。</p>
 <p>一般情况下，虚拟对抗学习是一个提高模型泛化能力的正则化方法。其通过使用”对抗实例“来提高一个模型的鲁棒性。而构建”对抗实例“的时候，具体是通过对输入加入small perturbations（轻微扰动）来构造出来的。</p>

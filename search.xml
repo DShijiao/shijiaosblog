@@ -1,144 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>SVM核函数本质</title>
-    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/SVM%E6%A0%B8%E5%87%BD%E6%95%B0%E6%9C%AC%E8%B4%A8/</url>
-    <content><![CDATA[<h1 id="SVM核函数本质"><a href="#SVM核函数本质" class="headerlink" title="SVM核函数本质"></a>SVM核函数本质</h1><p>核函数的本质</p>
-<ol>
-<li>实际中，我们会经常遇到线性不可分的样例，此时，我们的常用做法是把样例特征映射到高维空间中去(如上文2.2节最开始的那幅图所示，映射到高维空间后，相关特征便被分开了，也就达到了分类的目的)；</li>
-<li>但进一步，如果凡是遇到线性不可分的样例，一律映射到高维空间，那么这个维度大小是会高到可怕的(如上文中19维乃至无穷维的例子)。那咋办呢？</li>
-<li>此时，核函数就隆重登场了，核函数的价值在于它虽然也是讲特征进行从低维到高维的转换，但核函数绝就绝在它事先在低维上进行计算，而将实质上的分类效果表现在了高维上，也就如上文所说的避免了直接在高维空间中的复杂计算。</li>
-</ol>
-<p><a href="https://blog.csdn.net/u010199356/article/details/88836026">核函数解释博客</a><br>很有意思，有空可以自己试试用matlab画图看看</p>
-<p><a href="https://zhuanlan.zhihu.com/p/77750026">SVM推导过程</a><br>也可以看看李航的统计书里的推导</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>核函数</tag>
-        <tag>svm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>斐波那契数列</title>
-    <url>/2020/07/07/%E6%95%B0%E5%AD%A6/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/</url>
-    <content><![CDATA[<h1 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h1><p>斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：$1、1、2、3、5、8、13、21、34、……$在数学上，斐波那契数列以如下被以递推的方法定义：$F(1)&#x3D;1$，$F(2)&#x3D;1$, $F(n)&#x3D;F(n - 1)+F(n - 2)（n ≥ 3，n ∈ N*）$在现代物理、准晶体结构、化学等领域，斐波纳契数列都有直接的应用，为此，美国数学会从 1963 年起出版了以《斐波纳契数列季刊》为名的一份数学杂志，用于专门刊载这方面的研究成果。</p>
-<p><b>斐波那契弧线<b></p>
-<p><img src="/2020/07/07/%E6%95%B0%E5%AD%A6/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91.jpeg" alt="fibonacci"></p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#################### 输出第n个斐波那契数 ####################</span></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci1</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="comment">## 这种方法，每次都要嵌套循环，不能记录上一次的结果之间用，所以时间复杂度非常高！！</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">n</span>):</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> fib(n-<span class="number">1</span>) + fib(n-<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> fib(n)</span><br><span class="line"></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci2</span>(<span class="params">n</span>):</span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= n:</span><br><span class="line">        l.append(l[i-<span class="number">1</span>]+l[i-<span class="number">2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l[i-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fibonacci1(<span class="number">20</span>))</span><br><span class="line"><span class="built_in">print</span>(fibonacci2(<span class="number">20</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#################### 输出前n个斐波那契数 ####################</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci</span>(<span class="params">n</span>):</span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; n:</span><br><span class="line">        l.append(l[i-<span class="number">1</span>]+l[i-<span class="number">2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fibonacci(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>斐波那契数列</tag>
-        <tag>黄金分割</tag>
-        <tag>兔子数列</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>牛顿法--优化算法</title>
-    <url>/2020/07/07/%E6%95%B0%E5%AD%A6/%E7%89%9B%E9%A1%BF%E6%B3%95--%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h1><p>牛顿迭代法（Newton’s method）又称为牛顿-拉夫逊（拉弗森）方法（Newton-Raphson method），它是牛顿在17世纪提出的一种在实数域和复数域上近似求解方程的方法。</p>
-<p>牛顿法迭代法解非线性方程，是把非线性方程 $f(x)&#x3D;0$ 线性化的一种近似方法。把 $f(x)$ 在点 $x_0$ 的某领域内展开成泰勒级数 $f(x)&#x3D;f(x_0)+f^{‘}(x_0)(x-x_0)+ \frac{f^{‘’}(x_0)(x-x_0)^2}{2!}+…+ \frac{f^{n}(x_0)(x-x_0)^n}{n!}+R_n(x)$ ，取其线性部分，即展开式的前两项 $f(x_0)+f^{‘}(x_0)(x-x_0)$ ，令其等于0，以此作为非线性方程 $f(x)&#x3D;0$ 的近似方程，若 $f^{‘}(x_0) \neq 0$ ，则解为 $x_1&#x3D;x_0- \frac {f(x_0)} {f^{‘}(x_0)}$ ，这样我们得到牛顿迭代法的一个迭代关系式</p>
-<p>Python代码实例展示求解方程 $(x-3)^3&#x3D;0$ 的根</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> (x-<span class="number">3</span>)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fd</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*(x-<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">newtonMethod</span>(<span class="params">n, assum</span>):</span><br><span class="line">    time = n</span><br><span class="line">    x = assum</span><br><span class="line">    Next = <span class="number">0</span></span><br><span class="line">    A = f(x)</span><br><span class="line">    B = fd(x)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;A = &#x27;</span> + <span class="built_in">str</span>(A) + <span class="string">&#x27;,B = &#x27;</span> + <span class="built_in">str</span>(B) + <span class="string">&#x27;,time = &#x27;</span> + <span class="built_in">str</span>(time))</span><br><span class="line">    <span class="keyword">if</span> f(x) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> time, x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        Next = x - A/B</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Next x = &#x27;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 1.</span></span><br><span class="line">    <span class="comment">## 这里设置的迭代条件不是当前值和最优值之间的距离，而是相比于上一个值的变化要小于某个值</span></span><br><span class="line">    <span class="comment">## 但我们要求的就是最优值，所以我们并不知道最优值的具体值，不能的到他们的距离</span></span><br><span class="line">    <span class="comment">## 所以要通过每次A的变化，来估计最优值</span></span><br><span class="line">    <span class="keyword">if</span> A - f(Next) &lt; <span class="number">1e-6</span>: </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Meet f(x) = 0, x = &quot;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 2.</span></span><br><span class="line">    <span class="comment"># ## 所以这里其实是不是也可以通过x的变化，来估计最优值？</span></span><br><span class="line">    <span class="comment"># if A/B &lt; 1e-4:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## 3.</span></span><br><span class="line">    <span class="comment"># ## 这里当然也能用 if time &gt; m 来设置跳出循环的条件，但是相对 A - f(Next) 得到的值会更不精确一些</span></span><br><span class="line">    <span class="comment"># if time &gt; 10:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> newtonMethod(n+<span class="number">1</span>, Next)</span><br><span class="line"></span><br><span class="line">newtonMethod(<span class="number">0</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>牛顿法</tag>
-        <tag>优化算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>欧几里得算法--求最大公约数</title>
-    <url>/2020/07/07/%E6%95%B0%E5%AD%A6/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h1><p>欧几里德算法是用来求两个正整数最大公约数的算法。是由古希腊数学家欧几里德在其著作《The Elements》中最早描述了这种算法,所以被命名为欧几里德算法。扩展欧几里德算法可用于RSA加密等领域。</p>
-<p>假如需要求 1997 和 615 两个正整数的最大公约数,用欧几里德算法，是这样进行的：</p>
-<figure class="highlight basic"><table><tr><td class="code"><pre><span class="line"><span class="symbol">1997 </span>/ <span class="number">615</span> = <span class="number">3</span> (余 <span class="number">152</span>)</span><br><span class="line"><span class="symbol">615 </span>/ <span class="number">152</span> = <span class="number">4</span>(余<span class="number">7</span>)</span><br><span class="line"><span class="symbol">152 </span>/ <span class="number">7</span> = <span class="number">21</span>(余<span class="number">5</span>)</span><br><span class="line"><span class="symbol">7 </span>/ <span class="number">5</span> = <span class="number">1</span> (余<span class="number">2</span>)</span><br><span class="line"><span class="symbol">5 </span>/ <span class="number">2</span> = <span class="number">2</span> (余<span class="number">1</span>)</span><br><span class="line"><span class="symbol">2 </span>/ <span class="number">1</span> = <span class="number">2</span> (余<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-<p>至此，最大公约数为1</p>
-<p>以除数和余数反复做除法运算，当余数为 0 时，取当前算式除数为最大公约数，所以就得出了 1997 和 615 的最大公约数 1。</p>
-<h3 id="计算证明"><a href="#计算证明" class="headerlink" title="计算证明"></a>计算证明</h3><p>其计算原理依赖于下面的定理：</p>
-<p>定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数。最大公约数（Greatest Common Divisor）缩写为GCD。<br>$gcd(a,b) &#x3D; gcd(b,a \mod b)$ (不妨设$a&gt;b$ 且$r&#x3D;a \mod b$ ,$r$不为$0$)</p>
-<h4 id="证法一"><a href="#证法一" class="headerlink" title="证法一"></a>证法一</h4><ul>
-<li><p>正</p>
-<ul>
-<li>$a$可以表示成$a &#x3D; kb + r$（$a$，$b$，$k$，$r$皆为正整数，且$r&lt;b$），则$r &#x3D; a \mod b$</li>
-<li>假设$d$是$a$,$b$的一个公约数，记作$d|a$,$d|b$，即$a$和$b$都可以被$d$整除。</li>
-<li>而$r &#x3D; a - kb$，两边同时除以$d$，$r&#x2F;d&#x3D;a&#x2F;d-kb&#x2F;d&#x3D;m$，由等式右边可知$m$为整数，因此$d|r$</li>
-<li>因此$d$也是$b$,$a \mod b$的公约数</li>
-</ul>
-</li>
-<li><p>反</p>
-<ul>
-<li>假设$d$是$b$,$a \mod b$的公约数, 则$d|b$,$d|(a-k*b)$,$k$是一个整数。</li>
-<li>进而$d|a$，因此$d$也是$a$,$b$的公约数</li>
-<li>因此$(a,b)$和$(b,a \mod b)$的公约数是一样的，其最大公约数也必然相等</li>
-</ul>
-</li>
-<li><p>得证</p>
-</li>
-</ul>
-<h4 id="证法二"><a href="#证法二" class="headerlink" title="证法二"></a>证法二</h4><p>假设c &#x3D; gcd(a,b),则存在m,n，使a &#x3D; mc, b &#x3D; nc;<br>令r &#x3D; a mod b，即存在k，使r &#x3D; a-kb &#x3D; mc - knc &#x3D; (m-kn)c;<br>故gcd(b,a mod b) &#x3D; gcd(b,r) &#x3D; gcd(nc,(m-kn)c) &#x3D; gcd(n,m-kn)*c;<br>假设d &#x3D; gcd(n,m-kn), 则存在x,y, 使n &#x3D; xd, m-kn &#x3D; yd; 故m &#x3D; yd+kn &#x3D; yd+kxd &#x3D; (y+kx)d;<br>故有a &#x3D; mc &#x3D; (y+kx)dc, b &#x3D; nc &#x3D; xdc; 可得 gcd(a,b) &#x3D; gcd((y+kx)dc,xdc) &#x3D; dc;<br>由于gcd(a,b) &#x3D; c, 故d &#x3D; 1;<br>即gcd(n,m-kn) &#x3D; 1, 故可得gcd(b,a mod b) &#x3D; c;<br>故得证gcd(a,b) &#x3D; gcd(b,a mod b).<br>注意:两种方法是有区别的。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>自己写的</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    c = a%b</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b) <span class="keyword">if</span> c==<span class="number">0</span> <span class="keyword">else</span> gcd(b, c)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
-
-<p>百度百科上的</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">while</span> a != <span class="number">0</span>:</span><br><span class="line">        a, b = b % a, a</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h2><p>扩展欧几里得算法（英语：Extended Euclidean algorithm）是欧几里得算法（又叫辗转相除法）的扩展。已知整数$a$、$b$，扩展欧几里得算法可以在求得$a$、$b$的最大公约数的同时，能找到整数$x$、$y$（其中一个很可能是负数），使它们满足贝祖等式</p>
-<p>$ax+by&#x3D;gcd(a,b)$</p>
-<p>如果a是负数，可以把问题转化成$|a|(-x)+by&#x3D;gcd(|a|,b)$，然后令$x^{‘}&#x3D;(-x)$。</p>
-<p>扩展欧几里得算法可以用来计算模反元素(也叫模逆元)，而模反元素在RSA加密算法中有举足轻重的地位。</p>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">ext_euclid</span>(<span class="params">a, b</span>):     </span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:         </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>, <span class="number">0</span>, a     </span><br><span class="line">    <span class="keyword">else</span>:         </span><br><span class="line">        x, y, q = ext_euclid(b, a % b) </span><br><span class="line">        <span class="comment"># q = gcd(a, b) = gcd(b, a%b)   </span></span><br><span class="line"></span><br><span class="line">        <span class="comment">## 这一行怎么求的，有时间可以论证一下      </span></span><br><span class="line">        x, y = y, (x - (a // b) * y)     </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x, y, q</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>欧几里得</tag>
-        <tag>最大公约数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>白化和归一化</title>
-    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/%E7%99%BD%E5%8C%96%E5%92%8C%E5%BD%92%E4%B8%80%E5%8C%96/</url>
-    <content><![CDATA[<h1 id="白化和归一化"><a href="#白化和归一化" class="headerlink" title="白化和归一化"></a>白化和归一化</h1><h3 id="白化"><a href="#白化" class="headerlink" title="白化"></a>白化</h3><p>白话的目的就是去除输入数据的冗余信息。经过白化处理后，生成新数据集满足两个条件：</p>
-<ul>
-<li>特征相关性较低</li>
-<li>特征具有相同的方差</li>
-</ul>
-<p>白化算法实现的过程：</p>
-<ul>
-<li>第一步是进行PCA操作，将数据降维</li>
-<li>第二步是对新的坐标进行归一化操作</li>
-</ul>
-<h3 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h3><p>数据归一化的目的就是为了把不同来源的数据统一到同一数量级(一个参考坐标系下)，这样使得比较起来更加有意义。归一化使得后面数据的处理更为方便，它有两大有点：</p>
-<ul>
-<li>归一化提高梯度下降求最优解的速度</li>
-<li>归一化有可能提高精度</li>
-</ul>
-<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>看了下博客，都是抄来抄去，没有明确解释两者区别的，个人认为区别如下：</p>
-<ul>
-<li>白化里会用来归一化来统一降维后数据的量级，但是归一化不会用到白化</li>
-<li>白化的主要目的是特征提取，尽量获取相互独立的特征进行分析</li>
-<li>归一化的主要目的是统一特征数据的量级（取值范围）</li>
-</ul>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>白化</tag>
-        <tag>归一化</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker安装和基础使用</title>
     <url>/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Docker%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Docker安装和基础使用"><a href="#Docker安装和基础使用" class="headerlink" title="Docker安装和基础使用"></a>Docker安装和基础使用</h1><h2 id="SF-配置并使用-Docker"><a href="#SF-配置并使用-Docker" class="headerlink" title="SF 配置并使用 Docker"></a>SF 配置并使用 Docker</h2><h3 id="Install-Docker"><a href="#Install-Docker" class="headerlink" title="Install Docker"></a>Install Docker</h3><ol>
@@ -249,6 +111,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Git 的使用</title>
+    <url>/2022/01/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="Git-的使用"><a href="#Git-的使用" class="headerlink" title="Git 的使用"></a>Git 的使用</h1><h3 id="Git-diff-时代码显示颜色"><a href="#Git-diff-时代码显示颜色" class="headerlink" title="Git diff 时代码显示颜色"></a>Git diff 时代码显示颜色</h3><p>git diff 时增删代码颜色相同想要更改颜色：git config –global color.ui true</p>
+<h3 id="Git-常用命令速查表"><a href="#Git-常用命令速查表" class="headerlink" title="Git 常用命令速查表"></a>Git 常用命令速查表</h3><p><img src="/2022/01/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8.png" alt="Git常用命令速查表"></p>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTTP和gRPC的区别</title>
+    <url>/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/HTTP%E5%92%8CgRPC%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h1 id="HTTP和gRPC的区别"><a href="#HTTP和gRPC的区别" class="headerlink" title="HTTP和gRPC的区别"></a>HTTP和gRPC的区别</h1><ol>
+<li><code>http</code>和<code>grpc</code>都是通过<code>tcp</code>运行。</li>
+<li>不同的是<code>grpc</code>会将信息转换成二进制格式，因此传输更快，所需内存更小，效率更高。<br>但是因为<code>grpc</code>中，双方都需要编写相同的<code>.proto</code>，彼此传输的格式要固定，因此要求相对更严格一些。而http则没有这种要求，双方并没有格式的约定，所以<code>http</code>也更大一些，速度相对更慢一些。</li>
+<li><code>http</code>通过<code>&quot;\\r\\n&quot;</code>来分隔信息。<code>grpc</code>则要通过<code>.proto</code>文件里的<code>message</code>严格规范信息的数目、类型等。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+        <tag>grpc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Elasticsearch 的安装与使用</title>
     <url>/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Elasticsearch-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Elasticsearch-的使用"><a href="#Elasticsearch-的使用" class="headerlink" title="Elasticsearch 的使用"></a>Elasticsearch 的使用</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
@@ -281,13 +173,7 @@
 <h3 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h3><h4 id="通过id查询文档"><a href="#通过id查询文档" class="headerlink" title="通过id查询文档"></a>通过id查询文档</h4><p><code>id</code> 为 <code>3</code> 时：</p>
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">GET http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_doc/<span class="number">3</span>?pretty</span><br></pre></td></tr></table></figure>
 
-<h4 id="通过计算余弦相似度检索文档"><a href="#通过计算余弦相似度检索文档" class="headerlink" title="通过计算余弦相似度检索文档"></a>通过计算余弦相似度检索文档</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;script_score&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;query&quot;</span> : &#123;<span class="string">&quot;match_all&quot;</span>: &#123;&#125;&#125;,</span><br><span class="line">      <span class="string">&quot;script&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;source&quot;</span>: <span class="string">&quot;cosineSimilarity(params.query_vector, &#x27;vector&#x27;) + 1.0&quot;</span>, </span><br><span class="line">        <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">          <span class="string">&quot;query_vector&quot;</span>: [<span class="number">4</span>, <span class="number">3.4</span>, -<span class="number">0.2</span>, <span class="number">0.1</span>, -<span class="number">3</span>]  </span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="通过简单的字符串匹配查询文档"><a href="#通过简单的字符串匹配查询文档" class="headerlink" title="通过简单的字符串匹配查询文档"></a>通过简单的字符串匹配查询文档</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;match&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;sentence&quot;</span>: <span class="string">&quot;我想要查询的文档&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="通过阈值筛选"><a href="#通过阈值筛选" class="headerlink" title="通过阈值筛选"></a>通过阈值筛选</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;min_score&quot;</span>: <span class="number">0.5</span></span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="regexp">//</span> ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="每页展示的结果数（response-“hits”-“hits”-的数目）"><a href="#每页展示的结果数（response-“hits”-“hits”-的数目）" class="headerlink" title="每页展示的结果数（response[“hits”][“hits”]的数目）"></a>每页展示的结果数（response[“hits”][“hits”]的数目）</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;size&quot;</span>: <span class="number">50</span> <span class="regexp">//</span> 默认<span class="number">10000</span></span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="regexp">//</span> ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="通过计算余弦相似度检索文档"><a href="#通过计算余弦相似度检索文档" class="headerlink" title="通过计算余弦相似度检索文档"></a>通过计算余弦相似度检索文档</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;script_score&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;query&quot;</span> : &#123;<span class="string">&quot;match_all&quot;</span>: &#123;&#125;&#125;,</span><br><span class="line">      <span class="string">&quot;script&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;source&quot;</span>: <span class="string">&quot;cosineSimilarity(params.query_vector, &#x27;vector&#x27;) + 1.0&quot;</span>, </span><br><span class="line">        <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">          <span class="string">&quot;query_vector&quot;</span>: [<span class="number">4</span>, <span class="number">3.4</span>, -<span class="number">0.2</span>, <span class="number">0.1</span>, -<span class="number">3</span>]  </span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;size&quot;</span>: <span class="number">50</span> <span class="regexp">//</span> 默认<span class="number">10000</span></span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="regexp">//</span> ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="通过某个item筛选"><a href="#通过某个item筛选" class="headerlink" title="通过某个item筛选"></a>通过某个item筛选</h4><p><code>item</code> 为 <code>enabled_status</code>，且 <code>enabled_status</code> 是<code>boolean</code> 时</p>
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;bool&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;filter&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;item&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;enabled_status&quot;</span>: true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -303,6 +189,19 @@
       </categories>
       <tags>
         <tag>Elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 的使用</title>
+    <url>/2022/01/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="Git-的使用"><a href="#Git-的使用" class="headerlink" title="Git 的使用"></a>Git 的使用</h1><h3 id="Git-diff-时代码显示颜色"><a href="#Git-diff-时代码显示颜色" class="headerlink" title="Git diff 时代码显示颜色"></a>Git diff 时代码显示颜色</h3><p>git diff 时增删代码颜色相同想要更改颜色：git config –global color.ui true</p>
+<h3 id="Git-常用命令速查表"><a href="#Git-常用命令速查表" class="headerlink" title="Git 常用命令速查表"></a>Git 常用命令速查表</h3><p><img src="/2022/01/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8.png" alt="Git常用命令速查表"></p>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -366,19 +265,6 @@
       <tags>
         <tag>JMETER</tag>
         <tag>压测</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 的使用</title>
-    <url>/2022/01/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="Git-的使用"><a href="#Git-的使用" class="headerlink" title="Git 的使用"></a>Git 的使用</h1><h3 id="Git-diff-时代码显示颜色"><a href="#Git-diff-时代码显示颜色" class="headerlink" title="Git diff 时代码显示颜色"></a>Git diff 时代码显示颜色</h3><p>git diff 时增删代码颜色相同想要更改颜色：git config –global color.ui true</p>
-<h3 id="Git-常用命令速查表"><a href="#Git-常用命令速查表" class="headerlink" title="Git 常用命令速查表"></a>Git 常用命令速查表</h3><p><img src="/2022/01/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8.png" alt="Git常用命令速查表"></p>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -651,6 +537,144 @@
       </tags>
   </entry>
   <entry>
+    <title>SVM核函数本质</title>
+    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/SVM%E6%A0%B8%E5%87%BD%E6%95%B0%E6%9C%AC%E8%B4%A8/</url>
+    <content><![CDATA[<h1 id="SVM核函数本质"><a href="#SVM核函数本质" class="headerlink" title="SVM核函数本质"></a>SVM核函数本质</h1><p>核函数的本质</p>
+<ol>
+<li>实际中，我们会经常遇到线性不可分的样例，此时，我们的常用做法是把样例特征映射到高维空间中去(如上文2.2节最开始的那幅图所示，映射到高维空间后，相关特征便被分开了，也就达到了分类的目的)；</li>
+<li>但进一步，如果凡是遇到线性不可分的样例，一律映射到高维空间，那么这个维度大小是会高到可怕的(如上文中19维乃至无穷维的例子)。那咋办呢？</li>
+<li>此时，核函数就隆重登场了，核函数的价值在于它虽然也是讲特征进行从低维到高维的转换，但核函数绝就绝在它事先在低维上进行计算，而将实质上的分类效果表现在了高维上，也就如上文所说的避免了直接在高维空间中的复杂计算。</li>
+</ol>
+<p><a href="https://blog.csdn.net/u010199356/article/details/88836026">核函数解释博客</a><br>很有意思，有空可以自己试试用matlab画图看看</p>
+<p><a href="https://zhuanlan.zhihu.com/p/77750026">SVM推导过程</a><br>也可以看看李航的统计书里的推导</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>核函数</tag>
+        <tag>svm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>斐波那契数列</title>
+    <url>/2020/07/07/%E6%95%B0%E5%AD%A6/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/</url>
+    <content><![CDATA[<h1 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h1><p>斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：$1、1、2、3、5、8、13、21、34、……$在数学上，斐波那契数列以如下被以递推的方法定义：$F(1)&#x3D;1$，$F(2)&#x3D;1$, $F(n)&#x3D;F(n - 1)+F(n - 2)（n ≥ 3，n ∈ N*）$在现代物理、准晶体结构、化学等领域，斐波纳契数列都有直接的应用，为此，美国数学会从 1963 年起出版了以《斐波纳契数列季刊》为名的一份数学杂志，用于专门刊载这方面的研究成果。</p>
+<p><b>斐波那契弧线<b></p>
+<p><img src="/2020/07/07/%E6%95%B0%E5%AD%A6/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91.jpeg" alt="fibonacci"></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#################### 输出第n个斐波那契数 ####################</span></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci1</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="comment">## 这种方法，每次都要嵌套循环，不能记录上一次的结果之间用，所以时间复杂度非常高！！</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">n</span>):</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> fib(n-<span class="number">1</span>) + fib(n-<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> fib(n)</span><br><span class="line"></span><br><span class="line"><span class="meta">@fn_timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci2</span>(<span class="params">n</span>):</span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= n:</span><br><span class="line">        l.append(l[i-<span class="number">1</span>]+l[i-<span class="number">2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l[i-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fibonacci1(<span class="number">20</span>))</span><br><span class="line"><span class="built_in">print</span>(fibonacci2(<span class="number">20</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#################### 输出前n个斐波那契数 ####################</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci</span>(<span class="params">n</span>):</span><br><span class="line">    l = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; n:</span><br><span class="line">        l.append(l[i-<span class="number">1</span>]+l[i-<span class="number">2</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fibonacci(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>斐波那契数列</tag>
+        <tag>黄金分割</tag>
+        <tag>兔子数列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>欧几里得算法--求最大公约数</title>
+    <url>/2020/07/07/%E6%95%B0%E5%AD%A6/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h1><p>欧几里德算法是用来求两个正整数最大公约数的算法。是由古希腊数学家欧几里德在其著作《The Elements》中最早描述了这种算法,所以被命名为欧几里德算法。扩展欧几里德算法可用于RSA加密等领域。</p>
+<p>假如需要求 1997 和 615 两个正整数的最大公约数,用欧几里德算法，是这样进行的：</p>
+<figure class="highlight basic"><table><tr><td class="code"><pre><span class="line"><span class="symbol">1997 </span>/ <span class="number">615</span> = <span class="number">3</span> (余 <span class="number">152</span>)</span><br><span class="line"><span class="symbol">615 </span>/ <span class="number">152</span> = <span class="number">4</span>(余<span class="number">7</span>)</span><br><span class="line"><span class="symbol">152 </span>/ <span class="number">7</span> = <span class="number">21</span>(余<span class="number">5</span>)</span><br><span class="line"><span class="symbol">7 </span>/ <span class="number">5</span> = <span class="number">1</span> (余<span class="number">2</span>)</span><br><span class="line"><span class="symbol">5 </span>/ <span class="number">2</span> = <span class="number">2</span> (余<span class="number">1</span>)</span><br><span class="line"><span class="symbol">2 </span>/ <span class="number">1</span> = <span class="number">2</span> (余<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>至此，最大公约数为1</p>
+<p>以除数和余数反复做除法运算，当余数为 0 时，取当前算式除数为最大公约数，所以就得出了 1997 和 615 的最大公约数 1。</p>
+<h3 id="计算证明"><a href="#计算证明" class="headerlink" title="计算证明"></a>计算证明</h3><p>其计算原理依赖于下面的定理：</p>
+<p>定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数。最大公约数（Greatest Common Divisor）缩写为GCD。<br>$gcd(a,b) &#x3D; gcd(b,a \mod b)$ (不妨设$a&gt;b$ 且$r&#x3D;a \mod b$ ,$r$不为$0$)</p>
+<h4 id="证法一"><a href="#证法一" class="headerlink" title="证法一"></a>证法一</h4><ul>
+<li><p>正</p>
+<ul>
+<li>$a$可以表示成$a &#x3D; kb + r$（$a$，$b$，$k$，$r$皆为正整数，且$r&lt;b$），则$r &#x3D; a \mod b$</li>
+<li>假设$d$是$a$,$b$的一个公约数，记作$d|a$,$d|b$，即$a$和$b$都可以被$d$整除。</li>
+<li>而$r &#x3D; a - kb$，两边同时除以$d$，$r&#x2F;d&#x3D;a&#x2F;d-kb&#x2F;d&#x3D;m$，由等式右边可知$m$为整数，因此$d|r$</li>
+<li>因此$d$也是$b$,$a \mod b$的公约数</li>
+</ul>
+</li>
+<li><p>反</p>
+<ul>
+<li>假设$d$是$b$,$a \mod b$的公约数, 则$d|b$,$d|(a-k*b)$,$k$是一个整数。</li>
+<li>进而$d|a$，因此$d$也是$a$,$b$的公约数</li>
+<li>因此$(a,b)$和$(b,a \mod b)$的公约数是一样的，其最大公约数也必然相等</li>
+</ul>
+</li>
+<li><p>得证</p>
+</li>
+</ul>
+<h4 id="证法二"><a href="#证法二" class="headerlink" title="证法二"></a>证法二</h4><p>假设c &#x3D; gcd(a,b),则存在m,n，使a &#x3D; mc, b &#x3D; nc;<br>令r &#x3D; a mod b，即存在k，使r &#x3D; a-kb &#x3D; mc - knc &#x3D; (m-kn)c;<br>故gcd(b,a mod b) &#x3D; gcd(b,r) &#x3D; gcd(nc,(m-kn)c) &#x3D; gcd(n,m-kn)*c;<br>假设d &#x3D; gcd(n,m-kn), 则存在x,y, 使n &#x3D; xd, m-kn &#x3D; yd; 故m &#x3D; yd+kn &#x3D; yd+kxd &#x3D; (y+kx)d;<br>故有a &#x3D; mc &#x3D; (y+kx)dc, b &#x3D; nc &#x3D; xdc; 可得 gcd(a,b) &#x3D; gcd((y+kx)dc,xdc) &#x3D; dc;<br>由于gcd(a,b) &#x3D; c, 故d &#x3D; 1;<br>即gcd(n,m-kn) &#x3D; 1, 故可得gcd(b,a mod b) &#x3D; c;<br>故得证gcd(a,b) &#x3D; gcd(b,a mod b).<br>注意:两种方法是有区别的。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>自己写的</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    c = a%b</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b) <span class="keyword">if</span> c==<span class="number">0</span> <span class="keyword">else</span> gcd(b, c)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
+
+<p>百度百科上的</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">while</span> a != <span class="number">0</span>:</span><br><span class="line">        a, b = b % a, a</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">print</span>(b)</span><br><span class="line"></span><br><span class="line">gcd(<span class="number">1997</span>, <span class="number">615</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h2><p>扩展欧几里得算法（英语：Extended Euclidean algorithm）是欧几里得算法（又叫辗转相除法）的扩展。已知整数$a$、$b$，扩展欧几里得算法可以在求得$a$、$b$的最大公约数的同时，能找到整数$x$、$y$（其中一个很可能是负数），使它们满足贝祖等式</p>
+<p>$ax+by&#x3D;gcd(a,b)$</p>
+<p>如果a是负数，可以把问题转化成$|a|(-x)+by&#x3D;gcd(|a|,b)$，然后令$x^{‘}&#x3D;(-x)$。</p>
+<p>扩展欧几里得算法可以用来计算模反元素(也叫模逆元)，而模反元素在RSA加密算法中有举足轻重的地位。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">ext_euclid</span>(<span class="params">a, b</span>):     </span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:         </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>, <span class="number">0</span>, a     </span><br><span class="line">    <span class="keyword">else</span>:         </span><br><span class="line">        x, y, q = ext_euclid(b, a % b) </span><br><span class="line">        <span class="comment"># q = gcd(a, b) = gcd(b, a%b)   </span></span><br><span class="line"></span><br><span class="line">        <span class="comment">## 这一行怎么求的，有时间可以论证一下      </span></span><br><span class="line">        x, y = y, (x - (a // b) * y)     </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x, y, q</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>欧几里得</tag>
+        <tag>最大公约数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>牛顿法--优化算法</title>
+    <url>/2020/07/07/%E6%95%B0%E5%AD%A6/%E7%89%9B%E9%A1%BF%E6%B3%95--%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h1><p>牛顿迭代法（Newton’s method）又称为牛顿-拉夫逊（拉弗森）方法（Newton-Raphson method），它是牛顿在17世纪提出的一种在实数域和复数域上近似求解方程的方法。</p>
+<p>牛顿法迭代法解非线性方程，是把非线性方程 $f(x)&#x3D;0$ 线性化的一种近似方法。把 $f(x)$ 在点 $x_0$ 的某领域内展开成泰勒级数 $f(x)&#x3D;f(x_0)+f^{‘}(x_0)(x-x_0)+ \frac{f^{‘’}(x_0)(x-x_0)^2}{2!}+…+ \frac{f^{n}(x_0)(x-x_0)^n}{n!}+R_n(x)$ ，取其线性部分，即展开式的前两项 $f(x_0)+f^{‘}(x_0)(x-x_0)$ ，令其等于0，以此作为非线性方程 $f(x)&#x3D;0$ 的近似方程，若 $f^{‘}(x_0) \neq 0$ ，则解为 $x_1&#x3D;x_0- \frac {f(x_0)} {f^{‘}(x_0)}$ ，这样我们得到牛顿迭代法的一个迭代关系式</p>
+<p>Python代码实例展示求解方程 $(x-3)^3&#x3D;0$ 的根</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> (x-<span class="number">3</span>)**<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fd</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*(x-<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">newtonMethod</span>(<span class="params">n, assum</span>):</span><br><span class="line">    time = n</span><br><span class="line">    x = assum</span><br><span class="line">    Next = <span class="number">0</span></span><br><span class="line">    A = f(x)</span><br><span class="line">    B = fd(x)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;A = &#x27;</span> + <span class="built_in">str</span>(A) + <span class="string">&#x27;,B = &#x27;</span> + <span class="built_in">str</span>(B) + <span class="string">&#x27;,time = &#x27;</span> + <span class="built_in">str</span>(time))</span><br><span class="line">    <span class="keyword">if</span> f(x) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> time, x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        Next = x - A/B</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Next x = &#x27;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 1.</span></span><br><span class="line">    <span class="comment">## 这里设置的迭代条件不是当前值和最优值之间的距离，而是相比于上一个值的变化要小于某个值</span></span><br><span class="line">    <span class="comment">## 但我们要求的就是最优值，所以我们并不知道最优值的具体值，不能的到他们的距离</span></span><br><span class="line">    <span class="comment">## 所以要通过每次A的变化，来估计最优值</span></span><br><span class="line">    <span class="keyword">if</span> A - f(Next) &lt; <span class="number">1e-6</span>: </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Meet f(x) = 0, x = &quot;</span> + <span class="built_in">str</span>(Next))</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 2.</span></span><br><span class="line">    <span class="comment"># ## 所以这里其实是不是也可以通过x的变化，来估计最优值？</span></span><br><span class="line">    <span class="comment"># if A/B &lt; 1e-4:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## 3.</span></span><br><span class="line">    <span class="comment"># ## 这里当然也能用 if time &gt; m 来设置跳出循环的条件，但是相对 A - f(Next) 得到的值会更不精确一些</span></span><br><span class="line">    <span class="comment"># if time &gt; 10:</span></span><br><span class="line">    <span class="comment">#     print(&quot;Meet f(x) = 0, x = &quot; + str(Next))</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> newtonMethod(n+<span class="number">1</span>, Next)</span><br><span class="line"></span><br><span class="line">newtonMethod(<span class="number">0</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>牛顿法</tag>
+        <tag>优化算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>白化和归一化</title>
+    <url>/2020/02/19/%E6%95%B0%E5%AD%A6/%E7%99%BD%E5%8C%96%E5%92%8C%E5%BD%92%E4%B8%80%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="白化和归一化"><a href="#白化和归一化" class="headerlink" title="白化和归一化"></a>白化和归一化</h1><h3 id="白化"><a href="#白化" class="headerlink" title="白化"></a>白化</h3><p>白话的目的就是去除输入数据的冗余信息。经过白化处理后，生成新数据集满足两个条件：</p>
+<ul>
+<li>特征相关性较低</li>
+<li>特征具有相同的方差</li>
+</ul>
+<p>白化算法实现的过程：</p>
+<ul>
+<li>第一步是进行PCA操作，将数据降维</li>
+<li>第二步是对新的坐标进行归一化操作</li>
+</ul>
+<h3 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h3><p>数据归一化的目的就是为了把不同来源的数据统一到同一数量级(一个参考坐标系下)，这样使得比较起来更加有意义。归一化使得后面数据的处理更为方便，它有两大有点：</p>
+<ul>
+<li>归一化提高梯度下降求最优解的速度</li>
+<li>归一化有可能提高精度</li>
+</ul>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>看了下博客，都是抄来抄去，没有明确解释两者区别的，个人认为区别如下：</p>
+<ul>
+<li>白化里会用来归一化来统一降维后数据的量级，但是归一化不会用到白化</li>
+<li>白化的主要目的是特征提取，尽量获取相互独立的特征进行分析</li>
+<li>归一化的主要目的是统一特征数据的量级（取值范围）</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>白化</tag>
+        <tag>归一化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AM-softmax</title>
     <url>/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/AM-softmax/</url>
     <content><![CDATA[<h1 id="AM-softmax"><a href="#AM-softmax" class="headerlink" title="AM-softmax"></a>AM-softmax</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>基于已有的L-softmax, A-softmax，作者提出了AM-softmax，一个适用于分类模型的loss计算方法。主要用于增加类间距离，减小类内距离</p>
@@ -750,7 +774,7 @@
 <li>为了方便计算，论文中主张将<code>k</code>设定为<code>512</code>，在计算attention时，与每个<code>query</code>内容编码相乘的相对位置编码则相同，可以压缩时间（复杂度变成O（kd），这里逻辑我还没有梳理清楚）</li>
 </ol>
 <h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><h5 id="相对位置距离的计算源码"><a href="#相对位置距离的计算源码" class="headerlink" title="相对位置距离的计算源码"></a>相对位置距离的计算源码</h5><p><img src="/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/%E7%9B%B8%E5%AF%B9%E8%B7%9D%E7%A6%BB--%E6%BA%90%E7%A0%81.png" alt="相对距离--源码"></p>
-<h5 id="Disentangled-attention计算源码"><a href="#Disentangled-attention计算源码" class="headerlink" title="Disentangled attention计算源码"></a>Disentangled attention计算源码</h5><p><img src="/disentangled%20attention--%E6%BA%90%E7%A0%81.png" alt="disentangled%20attention--源码"></p>
+<h5 id="Disentangled-attention计算源码"><a href="#Disentangled-attention计算源码" class="headerlink" title="Disentangled attention计算源码"></a>Disentangled attention计算源码</h5><p><img src="/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/disentangled-attention--%E6%BA%90%E7%A0%81.png" alt="disentangled attention--源码"></p>
 <h3 id="Enhanced-Mask-Decoder"><a href="#Enhanced-Mask-Decoder" class="headerlink" title="Enhanced Mask Decoder"></a>Enhanced Mask Decoder</h3><p>作者没有同BERT一样在input层加入pos embedding，而是在所有Transformer layers之后，softmax之前，为所有masked了需要预测的token加入绝对位置信息。此时DeBERTa在获得所有相对位置信息，并且仅在解码masked words时加入绝对位置信息，称之为Enhanced Mask Decoder(EMD)。<br>在比较结果后发现EMD效果要好很多，因此作者推测过早的加入绝对位置信息，可能阻碍了模型对足够相对位置信息的学习。（就不放论文原图了，没看出作者是啥意思…）</p>
 <h2 id="fine-turn的小技巧"><a href="#fine-turn的小技巧" class="headerlink" title="fine turn的小技巧"></a>fine turn的小技巧</h2><p>本文提到的小技巧是从虚拟对抗来的。</p>
 <p>一般情况下，虚拟对抗学习是一个提高模型泛化能力的正则化方法。其通过使用”对抗实例“来提高一个模型的鲁棒性。而构建”对抗实例“的时候，具体是通过对输入加入small perturbations（轻微扰动）来构造出来的。</p>
@@ -1213,6 +1237,37 @@
       </categories>
   </entry>
   <entry>
+    <title>DM任务</title>
+    <url>/2021/08/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/DM%E4%BB%BB%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何</li>
+<li>背景如何</li>
+<li>模型如何</li>
+<li>准确率如何</li>
+<li>碰到哪些问题</li>
+<li>怎么解决（trick或者模型）</li>
+<li>为什么这么解决</li>
+<li>效果怎么样</li>
+<li>还有哪些可以改进的</li>
+<li>现有哪些更好的方法吗（新的论文）</li>
+</ol>
+<span id="more"></span>
+
+<p>对话机器人中碰到的问题：</p>
+<ol>
+<li>解决语言的多样性和歧义性问题</li>
+<li>槽位模块中如何提高抽取模型的复用性</li>
+<li>解决实体消歧问题</li>
+<li>上下文理解</li>
+<li>场景可移植性</li>
+<li>多轮（ner可以加到多轮里，比如学生教学场景，可以聊ner和dm结合rasa的设计）</li>
+</ol>
+]]></content>
+      <categories>
+        <category>项目总结</category>
+      </categories>
+  </entry>
+  <entry>
     <title>FAQ</title>
     <url>/2019/12/08/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/FAQ/</url>
     <content><![CDATA[<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为了降本增效，我们规划了八大任务型场景，并以FAQ为辅，构建智能在线客服。总场景覆盖率是87.6%，其中FAQ覆盖率为16.7%</p>
@@ -1432,97 +1487,6 @@
       </tags>
   </entry>
   <entry>
-    <title>INTENT任务</title>
-    <url>/2021/08/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/INTENT%E4%BB%BB%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
-<li>数据如何</li>
-</ol>
-<h4 id="SF"><a href="#SF" class="headerlink" title="SF"></a>SF</h4><p>共有15000条数据，10个类别（如「信息」，「询问到达时间」，「询问费用」，「询问到达时间——是否」，「询问费用——是否」，「肯定」，「否定」，「」等） + 1个「others」类<br>其中将近5000是数据增强的</p>
-<p>样本最多的类别others，样本数可达5000<br>样本最少的类别比如「否定」，样本数只有100多（最后两少的三个类别，取了三倍过采样，过多和过少都会降低F1值）</p>
-<span id="more"></span>
-
-<ol start="2">
-<li><p>背景如何<br>比如其中一个多轮场景是「寄快递」</p>
-</li>
-<li><p>模型如何<br>baseline上的是rnn<br>后来改为cnn<br>也同bert比较了，bert出了收敛较cnn更快一些外，最终效果并不比cnn好</p>
-</li>
-<li><p>准确率如何<br>最后F1达到95%，达到业务要求</p>
-</li>
-<li><p>碰到哪些问题</p>
-<ol>
-<li>F1值不够95%<ol>
-<li>数据增强</li>
-<li>错误样本分析（尤其对准确率很低的类别，针对行进行分析）<ol>
-<li>我们通过错误样本分析，找到了几个准确率特别低的样本，进行过采样，提升了效果</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>样本不均衡的问题<ol>
-<li>低样本的三个类别进行了三倍过采样</li>
-<li>数据增强（尝试了使用bert的mask进行数据增强）</li>
-</ol>
-</li>
-<li>多轮之间通过意图跳转<ol>
-<li>尝试过使用熵来替代概率，效果不好</li>
-<li>最后通过调节weight，然后跟踪整体准确率和召回率的变化，提前中断训练，使得others类的准确率能达到99%（因为在调大others的weight后，训练会优先照顾这个类别，因为一开始，others的召回特别低，但是准确率特别高，然后在整体F1值慢慢上升后，others的准确率会开始下降，这时需要终止训练，这里牺牲了整体1个百分点的F1值）</li>
-</ol>
-</li>
-<li>曾经出现过一个句子分属多个类别的情况<ol>
-<li>进行数据梳理后，发现两个类别可以分开。对这两个类别的数据重新进行梳理，准确率大幅提升</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>还有哪些可以改进的</p>
-<ol>
-<li>对于分属多个类别的语句，是否也可以尝试进行多标签分类</li>
-<li>更可以改进的是DM的设置<ol>
-<li>每个多轮都有一个others，比较累赘，说明每个多轮都需要找过others的准确率，而影响整体的准确率</li>
-<li>是否可以通过记住当前多轮所在状态和所在的bot，然后将再此进入多轮的句子进行更精确的分类和进入判别，这样就不用每个多轮里面都加一个others类别了</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>现有哪些更好的方法吗（新的论文）</p>
-<ol>
-<li>对于分类，cnn和rnn有时候就很够用了，再不行上bert也差不多，然后就是数据的问题了，模型帮助不大</li>
-<li>对于对话机器人更好的想法，如上5.2.2</li>
-</ol>
-</li>
-</ol>
-<h4 id="VIPKid"><a href="#VIPKid" class="headerlink" title="VIPKid"></a>VIPKid</h4><ol>
-<li>数据如何</li>
-<li>背景如何</li>
-<li>模型如何</li>
-<li>准确率如何</li>
-<li>碰到哪些问题</li>
-<li>怎么解决（trick或者模型）</li>
-<li>为什么这么解决</li>
-<li>效果怎么样</li>
-<li>还有哪些可以改进的</li>
-<li>现有哪些更好的方法吗（新的论文）</li>
-</ol>
-<h2 id="重难点"><a href="#重难点" class="headerlink" title="重难点"></a>重难点</h2><h3 id="Bert数据增强"><a href="#Bert数据增强" class="headerlink" title="Bert数据增强"></a>Bert数据增强</h3><p>分类碰到的问题：</p>
-<ol>
-<li>使用某个模型前，也可以先做一个学习曲线，判断使用的样本是否足够</li>
-<li>进行错误样本分析</li>
-<li>调节weight，优化不同类别的presicion</li>
-<li>如果某一类别的F1值过低，可以看下是否是样本不足的原因</li>
-<li>做数据增强</li>
-<li>如果是两个类别经常混淆，可以先将其归为一类，之后在下一层，用规则或模型进行细分<ol>
-<li>对下一层分类起，是模型加针对性的数据增强</li>
-<li>这里数据增强有用，但是整体数据增强，不一定能增加准确率，比如“蓝屏”，在这里是“noshow”的意思，但是在别的地方有可能是指机器故障（看下数据，找个好点的例子）</li>
-</ol>
-</li>
-<li>叠加分类器</li>
-</ol>
-]]></content>
-      <categories>
-        <category>项目总结</category>
-      </categories>
-  </entry>
-  <entry>
     <title>FAQ任务</title>
     <url>/2021/08/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/FAQ%E4%BB%BB%E5%8A%A1/</url>
     <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><h3 id="SF"><a href="#SF" class="headerlink" title="SF"></a>SF</h3><ol>
@@ -1654,9 +1618,66 @@
       </categories>
   </entry>
   <entry>
-    <title>DM任务</title>
-    <url>/2021/08/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/DM%E4%BB%BB%E5%8A%A1/</url>
+    <title>INTENT任务</title>
+    <url>/2021/08/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/INTENT%E4%BB%BB%E5%8A%A1/</url>
     <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
+<li>数据如何</li>
+</ol>
+<h4 id="SF"><a href="#SF" class="headerlink" title="SF"></a>SF</h4><p>共有15000条数据，10个类别（如「信息」，「询问到达时间」，「询问费用」，「询问到达时间——是否」，「询问费用——是否」，「肯定」，「否定」，「」等） + 1个「others」类<br>其中将近5000是数据增强的</p>
+<p>样本最多的类别others，样本数可达5000<br>样本最少的类别比如「否定」，样本数只有100多（最后两少的三个类别，取了三倍过采样，过多和过少都会降低F1值）</p>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>背景如何<br>比如其中一个多轮场景是「寄快递」</p>
+</li>
+<li><p>模型如何<br>baseline上的是rnn<br>后来改为cnn<br>也同bert比较了，bert出了收敛较cnn更快一些外，最终效果并不比cnn好</p>
+</li>
+<li><p>准确率如何<br>最后F1达到95%，达到业务要求</p>
+</li>
+<li><p>碰到哪些问题</p>
+<ol>
+<li>F1值不够95%<ol>
+<li>数据增强</li>
+<li>错误样本分析（尤其对准确率很低的类别，针对行进行分析）<ol>
+<li>我们通过错误样本分析，找到了几个准确率特别低的样本，进行过采样，提升了效果</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>样本不均衡的问题<ol>
+<li>低样本的三个类别进行了三倍过采样</li>
+<li>数据增强（尝试了使用bert的mask进行数据增强）</li>
+</ol>
+</li>
+<li>多轮之间通过意图跳转<ol>
+<li>尝试过使用熵来替代概率，效果不好</li>
+<li>最后通过调节weight，然后跟踪整体准确率和召回率的变化，提前中断训练，使得others类的准确率能达到99%（因为在调大others的weight后，训练会优先照顾这个类别，因为一开始，others的召回特别低，但是准确率特别高，然后在整体F1值慢慢上升后，others的准确率会开始下降，这时需要终止训练，这里牺牲了整体1个百分点的F1值）</li>
+</ol>
+</li>
+<li>曾经出现过一个句子分属多个类别的情况<ol>
+<li>进行数据梳理后，发现两个类别可以分开。对这两个类别的数据重新进行梳理，准确率大幅提升</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>还有哪些可以改进的</p>
+<ol>
+<li>对于分属多个类别的语句，是否也可以尝试进行多标签分类</li>
+<li>更可以改进的是DM的设置<ol>
+<li>每个多轮都有一个others，比较累赘，说明每个多轮都需要找过others的准确率，而影响整体的准确率</li>
+<li>是否可以通过记住当前多轮所在状态和所在的bot，然后将再此进入多轮的句子进行更精确的分类和进入判别，这样就不用每个多轮里面都加一个others类别了</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>现有哪些更好的方法吗（新的论文）</p>
+<ol>
+<li>对于分类，cnn和rnn有时候就很够用了，再不行上bert也差不多，然后就是数据的问题了，模型帮助不大</li>
+<li>对于对话机器人更好的想法，如上5.2.2</li>
+</ol>
+</li>
+</ol>
+<h4 id="VIPKid"><a href="#VIPKid" class="headerlink" title="VIPKid"></a>VIPKid</h4><ol>
 <li>数据如何</li>
 <li>背景如何</li>
 <li>模型如何</li>
@@ -1668,16 +1689,19 @@
 <li>还有哪些可以改进的</li>
 <li>现有哪些更好的方法吗（新的论文）</li>
 </ol>
-<span id="more"></span>
-
-<p>对话机器人中碰到的问题：</p>
+<h2 id="重难点"><a href="#重难点" class="headerlink" title="重难点"></a>重难点</h2><h3 id="Bert数据增强"><a href="#Bert数据增强" class="headerlink" title="Bert数据增强"></a>Bert数据增强</h3><p>分类碰到的问题：</p>
 <ol>
-<li>解决语言的多样性和歧义性问题</li>
-<li>槽位模块中如何提高抽取模型的复用性</li>
-<li>解决实体消歧问题</li>
-<li>上下文理解</li>
-<li>场景可移植性</li>
-<li>多轮（ner可以加到多轮里，比如学生教学场景，可以聊ner和dm结合rasa的设计）</li>
+<li>使用某个模型前，也可以先做一个学习曲线，判断使用的样本是否足够</li>
+<li>进行错误样本分析</li>
+<li>调节weight，优化不同类别的presicion</li>
+<li>如果某一类别的F1值过低，可以看下是否是样本不足的原因</li>
+<li>做数据增强</li>
+<li>如果是两个类别经常混淆，可以先将其归为一类，之后在下一层，用规则或模型进行细分<ol>
+<li>对下一层分类起，是模型加针对性的数据增强</li>
+<li>这里数据增强有用，但是整体数据增强，不一定能增加准确率，比如“蓝屏”，在这里是“noshow”的意思，但是在别的地方有可能是指机器故障（看下数据，找个好点的例子）</li>
+</ol>
+</li>
+<li>叠加分类器</li>
 </ol>
 ]]></content>
       <categories>
@@ -1808,6 +1832,29 @@
       </tags>
   </entry>
   <entry>
+    <title>Tensorflow和GPU的某些问题</title>
+    <url>/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <content><![CDATA[<h1 id="Tensorflow和GPU的某些问题"><a href="#Tensorflow和GPU的某些问题" class="headerlink" title="Tensorflow和GPU的某些问题"></a>Tensorflow和GPU的某些问题</h1><h2 id="设置GPU的使用率"><a href="#设置GPU的使用率" class="headerlink" title="设置GPU的使用率"></a>设置GPU的使用率</h2><h3 id="常规情况"><a href="#常规情况" class="headerlink" title="常规情况"></a>常规情况</h3><p>在加载模型的代码中加入以下代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gpu_option = tf.GPUOptions(per+process_gpu_memory_fraction=<span class="number">0.3</span>)</span><br><span class="line">self.session= tf.Session(</span><br><span class="line">    config=tf.ConfigProto(gpu_options=gpu_option),</span><br><span class="line">    graph=tf.Graph()</span><br><span class="line">)</span><br><span class="line"><span class="keyword">with</span> self.session.graph.as_default():</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="用tfserving部署模型"><a href="#用tfserving部署模型" class="headerlink" title="用tfserving部署模型"></a>用tfserving部署模型</h3><p>在使用docker run 启动模型时，在后面加入 –per_process_gpu_memory_graction&#x3D;0.3</p>
+<p>具体启动命令示例如下：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --name <span class="variable">$&#123;container-name&#125;</span> --runtime=nvidia -p <span class="variable">$&#123;port-local&#125;</span>:8501 --mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=<span class="variable">$&#123;model-source-dir&#125;</span>,target=/models/<span class="variable">$&#123;model-name&#125;</span> -e MODEL_NAME=<span class="variable">$&#123;model-name&#125;</span> -itd tensorflow/serving:1.14.0-gpu --enable_batching=<span class="literal">true</span> --per_process_gpu_memory_fraction=0.3</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="报错RuntimeError-can’t-start-new-thread"><a href="#报错RuntimeError-can’t-start-new-thread" class="headerlink" title="报错RuntimeError: can’t start new thread"></a>报错RuntimeError: can’t start new thread</h2><p>测试时如果内存不够，但是又想继续启新的线程（比如压测的时候），这时可能会报<code>RuntimeError: can&#39;t start new thread</code>。换一个内存使用率稍低的显卡就能改善问题</p>
+<h2 id="报错cuda-0-not-supported-xla"><a href="#报错cuda-0-not-supported-xla" class="headerlink" title="报错cuda 0 not supported xla"></a>报错cuda 0 not supported xla</h2><p>报错<code>cuda 0 not supported xla</code>通常也是因为GPU显存问题，换一个空闲的显卡可以改善问题</p>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+        <category>Tensorflow</category>
+      </categories>
+      <tags>
+        <tag>tensorflow</tag>
+        <tag>gpu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Chitchat</title>
     <url>/2019/01/16/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/chitchat/</url>
     <content><![CDATA[<h2 id="Chitchat"><a href="#Chitchat" class="headerlink" title="Chitchat"></a>Chitchat</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>chitchat持续的时间很长了。每次进步不大，但是至少都在前进。因为持续时间长，每次想法和改动的地方比较多，也是学到了不少东西，想要把这些都记录下来，所以开了这个文档。</p>
@@ -1923,29 +1970,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Tensorflow和GPU的某些问题</title>
-    <url>/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/Tensorflow%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
-    <content><![CDATA[<h1 id="Tensorflow和GPU的某些问题"><a href="#Tensorflow和GPU的某些问题" class="headerlink" title="Tensorflow和GPU的某些问题"></a>Tensorflow和GPU的某些问题</h1><h2 id="设置GPU的使用率"><a href="#设置GPU的使用率" class="headerlink" title="设置GPU的使用率"></a>设置GPU的使用率</h2><h3 id="常规情况"><a href="#常规情况" class="headerlink" title="常规情况"></a>常规情况</h3><p>在加载模型的代码中加入以下代码</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gpu_option = tf.GPUOptions(per+process_gpu_memory_fraction=<span class="number">0.3</span>)</span><br><span class="line">self.session= tf.Session(</span><br><span class="line">    config=tf.ConfigProto(gpu_options=gpu_option),</span><br><span class="line">    graph=tf.Graph()</span><br><span class="line">)</span><br><span class="line"><span class="keyword">with</span> self.session.graph.as_default():</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-
-<h3 id="用tfserving部署模型"><a href="#用tfserving部署模型" class="headerlink" title="用tfserving部署模型"></a>用tfserving部署模型</h3><p>在使用docker run 启动模型时，在后面加入 –per_process_gpu_memory_graction&#x3D;0.3</p>
-<p>具体启动命令示例如下：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --name <span class="variable">$&#123;container-name&#125;</span> --runtime=nvidia -p <span class="variable">$&#123;port-local&#125;</span>:8501 --mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=<span class="variable">$&#123;model-source-dir&#125;</span>,target=/models/<span class="variable">$&#123;model-name&#125;</span> -e MODEL_NAME=<span class="variable">$&#123;model-name&#125;</span> -itd tensorflow/serving:1.14.0-gpu --enable_batching=<span class="literal">true</span> --per_process_gpu_memory_fraction=0.3</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="报错RuntimeError-can’t-start-new-thread"><a href="#报错RuntimeError-can’t-start-new-thread" class="headerlink" title="报错RuntimeError: can’t start new thread"></a>报错RuntimeError: can’t start new thread</h2><p>测试时如果内存不够，但是又想继续启新的线程（比如压测的时候），这时可能会报<code>RuntimeError: can&#39;t start new thread</code>。换一个内存使用率稍低的显卡就能改善问题</p>
-<h2 id="报错cuda-0-not-supported-xla"><a href="#报错cuda-0-not-supported-xla" class="headerlink" title="报错cuda 0 not supported xla"></a>报错cuda 0 not supported xla</h2><p>报错<code>cuda 0 not supported xla</code>通常也是因为GPU显存问题，换一个空闲的显卡可以改善问题</p>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>Tensorflow</category>
-      </categories>
-      <tags>
-        <tag>tensorflow</tag>
-        <tag>gpu</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>tf分布式 -- DistributionStrategy</title>
     <url>/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/tf%E5%88%86%E5%B8%83%E5%BC%8F--DistributionStrategy/</url>
     <content><![CDATA[<h1 id="tf分布式-–-DistributionStrategy"><a href="#tf分布式-–-DistributionStrategy" class="headerlink" title="tf分布式 – DistributionStrategy"></a>tf分布式 – DistributionStrategy</h1><p>以下内容摘抄自：<br><a href="http://jcf94.com/2018/10/21/2018-10-21-tfunpacking9/">TensorFlow 拆包（九）：High Level APIs \| Chenfan Blog</a></p>
@@ -2049,8 +2073,8 @@ e, f, g, &lt;eos&gt;
         <category>Tensorflow</category>
       </categories>
       <tags>
-        <tag>seq2seq</tag>
         <tag>tensorflow</tag>
+        <tag>seq2seq</tag>
       </tags>
   </entry>
   <entry>
@@ -2292,39 +2316,6 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
-    <title>defaultdict</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/defaultdict/</url>
-    <content><![CDATA[<h1 id="defaultdict-function-factory"><a href="#defaultdict-function-factory" class="headerlink" title="defaultdict(function_factory)"></a>defaultdict(function_factory)</h1><p><strong>defaultdict</strong></p>
-<p>dict subclass that calls a factory function to supply missing values</p>
-<p><code>defaultdict</code>构建的是一个类似<code>dictionary</code>的对象，其中<code>keys</code>值自行确定赋值，但是<code>values</code>的类型是<code>fucntion_factory</code>的类实例，而且<strong>具有默认值</strong>。比如<code>defaultdict(list)</code>创建一个<code>dict</code>,对于任何一个还不存在的<code>dict[newkey]</code>都已经有一个默认<code>list</code>使得<code>dict[newkey].append</code>可以直接运行而不需要先运行<code>dict[newkey]=[]</code>。</p>
-<p>例子：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = [(<span class="string">&#x27;yellow&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;yellow&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;red&#x27;</span>, <span class="number">1</span>)]</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">d = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> s:</span><br><span class="line">    d[k].append(v)</span><br><span class="line"><span class="built_in">list</span>(d.items())</span><br><span class="line">[(<span class="string">&#x27;blue&#x27;</span>, [<span class="number">2</span>, <span class="number">4</span>]), (<span class="string">&#x27;red&#x27;</span>, [<span class="number">1</span>]), (<span class="string">&#x27;yellow&#x27;</span>, [<span class="number">1</span>, <span class="number">3</span>])]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>defaultdict</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>map+zip实现矩阵转置</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/map+zip%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="map-zip实现矩阵转置"><a href="#map-zip实现矩阵转置" class="headerlink" title="map+zip实现矩阵转置"></a>map+zip实现矩阵转置</h1><p>map和zip配合使用，实现矩阵转置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rotate</span>(<span class="params">self, matrix</span>):  </span><br><span class="line">        matrix[:] = <span class="built_in">map</span>(<span class="built_in">list</span>,<span class="built_in">zip</span>(*matrix))</span><br><span class="line">        <span class="keyword">return</span> matrix</span><br><span class="line"><span class="built_in">print</span>(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>],</span><br><span class="line">    [<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-
-<p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a href="https://blog.csdn.net/shawpan/article/details/69663710">一行代码搞定矩阵旋转——python</a>。</p>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>矩阵转置</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python中某些常用符号的运用</title>
     <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/is%E3%80%81==%E7%AD%89%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%BF%90%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Python中某些常用符号的运用"><a href="#Python中某些常用符号的运用" class="headerlink" title="Python中某些常用符号的运用"></a>Python中某些常用符号的运用</h1><h2 id="is和-x3D-x3D-的区别"><a href="#is和-x3D-x3D-的区别" class="headerlink" title="is和&#x3D;&#x3D;的区别"></a>is和&#x3D;&#x3D;的区别</h2><p>在Python中一切都是对象。</p>
@@ -2365,6 +2356,39 @@ e, f, g, &lt;eos&gt;
       <tags>
         <tag>is</tag>
         <tag>==</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>defaultdict</title>
+    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/defaultdict/</url>
+    <content><![CDATA[<h1 id="defaultdict-function-factory"><a href="#defaultdict-function-factory" class="headerlink" title="defaultdict(function_factory)"></a>defaultdict(function_factory)</h1><p><strong>defaultdict</strong></p>
+<p>dict subclass that calls a factory function to supply missing values</p>
+<p><code>defaultdict</code>构建的是一个类似<code>dictionary</code>的对象，其中<code>keys</code>值自行确定赋值，但是<code>values</code>的类型是<code>fucntion_factory</code>的类实例，而且<strong>具有默认值</strong>。比如<code>defaultdict(list)</code>创建一个<code>dict</code>,对于任何一个还不存在的<code>dict[newkey]</code>都已经有一个默认<code>list</code>使得<code>dict[newkey].append</code>可以直接运行而不需要先运行<code>dict[newkey]=[]</code>。</p>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = [(<span class="string">&#x27;yellow&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;yellow&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;blue&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;red&#x27;</span>, <span class="number">1</span>)]</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">d = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> s:</span><br><span class="line">    d[k].append(v)</span><br><span class="line"><span class="built_in">list</span>(d.items())</span><br><span class="line">[(<span class="string">&#x27;blue&#x27;</span>, [<span class="number">2</span>, <span class="number">4</span>]), (<span class="string">&#x27;red&#x27;</span>, [<span class="number">1</span>]), (<span class="string">&#x27;yellow&#x27;</span>, [<span class="number">1</span>, <span class="number">3</span>])]</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>defaultdict</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>map+zip实现矩阵转置</title>
+    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/map+zip%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="map-zip实现矩阵转置"><a href="#map-zip实现矩阵转置" class="headerlink" title="map+zip实现矩阵转置"></a>map+zip实现矩阵转置</h1><p>map和zip配合使用，实现矩阵转置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rotate</span>(<span class="params">self, matrix</span>):  </span><br><span class="line">        matrix[:] = <span class="built_in">map</span>(<span class="built_in">list</span>,<span class="built_in">zip</span>(*matrix))</span><br><span class="line">        <span class="keyword">return</span> matrix</span><br><span class="line"><span class="built_in">print</span>(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>],</span><br><span class="line">    [<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+
+<p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a href="https://blog.csdn.net/shawpan/article/details/69663710">一行代码搞定矩阵旋转——python</a>。</p>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>矩阵转置</tag>
       </tags>
   </entry>
   <entry>
@@ -2475,20 +2499,21 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
-    <title>求list的绝对值</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%B1%82list%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC/</url>
-    <content><![CDATA[<h1 id="求list的绝对值"><a href="#求list的绝对值" class="headerlink" title="求list的绝对值"></a>求list的绝对值</h1><p>求<code>list l = [-1,2,3,-4,-5,-6]</code>的绝对值的三种方法</p>
-<p>1.<br>   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">abs</span>, l))</span><br></pre></td></tr></table></figure></p>
-<p>2.<br>   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = [<span class="built_in">abs</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> l]</span><br></pre></td></tr></table></figure></p>
-<p>3.<br>   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">list_abs = <span class="built_in">list</span>(np.<span class="built_in">abs</span>(l))</span><br></pre></td></tr></table></figure></p>
+    <title>Petite présentation renouvelée</title>
+    <url>/2021/08/15/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/Francais/Petite%20pr%C3%A9sentation%20renouvel%C3%A9e/</url>
+    <content><![CDATA[<h1 id="Petite-presentation-renouvelee"><a href="#Petite-presentation-renouvelee" class="headerlink" title="Petite présentation renouvelée"></a>Petite présentation renouvelée</h1><h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
+<p>Une petite présentation de soi-même qui dure moins de 5 minutes.</p>
+</blockquote>
+<p>En appréciant la logique des mathématiques et étant performante sur ce domaine, après avoir passé mon bac en Chine, j’ai poursuivi mes études en France par une licence des mathématiques. Même si j’étais à l’aise, je trouve ce domaine est assez théorique et je cherchais le côté plus concret à l’appliquer, donc j’ai appris un master à Nancy combinait les maths et aussi l’informatique.<br>A la sortie de mon master en 2016, je suis venue travailler en tant que Data Scientist à Reims chez Sikim, une PME spécialisée sur l’analyse des données. J’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une caisse régionale de Crédit Agricole, et il me permet de découvrir la réalisation et l’implication entier d’un Chatbot et aussi découvrir les travaux liés à l’intélligences artificielles. L’ambiance était très bonne au sein de le petit groupe, néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité étaient rares (Tandis que je travais que je n’avais pas assez de travail pour occuper pleinement mes journées).<br>J’ai ensuite été contactée par une entreprise chinoise SF Express, qui m’a proposé un poste à ShenZhen avec un meilleur salaire et davantage de responsabilité. Cela me permet également de me rapprocher à ma famille.<br>Après un an de travail chez SF Express, j’ai choisi de participer à JD en 2019, le 3ieme société de vente en ligne mondiale, une des meilleures entreprises d’Internet en Chine.<br>Au sein de l’entreprise, j’ai pu développer davantage mes compétences techniques, par exemple la mise en œuvre d’un Chatbot plus sophistiqué avec des algorithmes de Deep Learning plus complexe, et avoir l’expérience des algorithmes de NLG. Et j’ai eu la possibilité de diriger 3 Data Scientist, cela me permet d’avoir des expériences de management.<br>Avec les autorisés politiques en France pour le Covide, et ayant apprécié (je trouve cette expression qu’elle ne fait pas très orale, qu’est-ce que t’en penses ?) la période à laquelle j’ai vécu en France, m’a conduit à envisager un changement d’entreprise pour retrouver la possibilité d’installer en France ou je planifie à résider une longue durée.</p>
 ]]></content>
       <categories>
-        <category>编程语言</category>
-        <category>Python</category>
+        <category>面试记录与总结</category>
+        <category>Français</category>
       </categories>
       <tags>
-        <tag>list</tag>
-        <tag>绝对值</tag>
+        <tag>présentation</tag>
+        <tag>entretien</tag>
+        <tag>français</tag>
       </tags>
   </entry>
   <entry>
@@ -2510,24 +2535,6 @@ e, f, g, &lt;eos&gt;
 <h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><h3 id="Chatbot"><a href="#Chatbot" class="headerlink" title="Chatbot"></a>Chatbot</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
 <h3 id="Chit-Chat"><a href="#Chit-Chat" class="headerlink" title="Chit Chat"></a>Chit Chat</h3><p>输入，输出，数据量，数据类型，如何做数据增广，使用的模型，碰到了哪些问题，如何解决的</p>
 <h3 id="Chercher-top-20-questions-a-l’entretien"><a href="#Chercher-top-20-questions-a-l’entretien" class="headerlink" title="Chercher top 20 questions à l’entretien"></a>Chercher top 20 questions à l’entretien</h3>]]></content>
-      <categories>
-        <category>面试记录与总结</category>
-        <category>Français</category>
-      </categories>
-      <tags>
-        <tag>présentation</tag>
-        <tag>entretien</tag>
-        <tag>français</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Petite présentation renouvelée</title>
-    <url>/2021/08/15/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%80%BB%E7%BB%93/Francais/Petite%20pr%C3%A9sentation%20renouvel%C3%A9e/</url>
-    <content><![CDATA[<h1 id="Petite-presentation-renouvelee"><a href="#Petite-presentation-renouvelee" class="headerlink" title="Petite présentation renouvelée"></a>Petite présentation renouvelée</h1><h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Présentation"></a>Présentation</h2><blockquote>
-<p>Une petite présentation de soi-même qui dure moins de 5 minutes.</p>
-</blockquote>
-<p>En appréciant la logique des mathématiques et étant performante sur ce domaine, après avoir passé mon bac en Chine, j’ai poursuivi mes études en France par une licence des mathématiques. Même si j’étais à l’aise, je trouve ce domaine est assez théorique et je cherchais le côté plus concret à l’appliquer, donc j’ai appris un master à Nancy combinait les maths et aussi l’informatique.<br>A la sortie de mon master en 2016, je suis venue travailler en tant que Data Scientist à Reims chez Sikim, une PME spécialisée sur l’analyse des données. J’ai eu l’opportunité de travailler là-bas sur un projet de Chatbot pour une caisse régionale de Crédit Agricole, et il me permet de découvrir la réalisation et l’implication entier d’un Chatbot et aussi découvrir les travaux liés à l’intélligences artificielles. L’ambiance était très bonne au sein de le petit groupe, néanmoins, j’avais l’impression de stagner et les projets requérant une réelle technicité étaient rares (Tandis que je travais que je n’avais pas assez de travail pour occuper pleinement mes journées).<br>J’ai ensuite été contactée par une entreprise chinoise SF Express, qui m’a proposé un poste à ShenZhen avec un meilleur salaire et davantage de responsabilité. Cela me permet également de me rapprocher à ma famille.<br>Après un an de travail chez SF Express, j’ai choisi de participer à JD en 2019, le 3ieme société de vente en ligne mondiale, une des meilleures entreprises d’Internet en Chine.<br>Au sein de l’entreprise, j’ai pu développer davantage mes compétences techniques, par exemple la mise en œuvre d’un Chatbot plus sophistiqué avec des algorithmes de Deep Learning plus complexe, et avoir l’expérience des algorithmes de NLG. Et j’ai eu la possibilité de diriger 3 Data Scientist, cela me permet d’avoir des expériences de management.<br>Avec les autorisés politiques en France pour le Covide, et ayant apprécié (je trouve cette expression qu’elle ne fait pas très orale, qu’est-ce que t’en penses ?) la période à laquelle j’ai vécu en France, m’a conduit à envisager un changement d’entreprise pour retrouver la possibilité d’installer en France ou je planifie à résider une longue durée.</p>
-]]></content>
       <categories>
         <category>面试记录与总结</category>
         <category>Français</category>
@@ -2613,6 +2620,23 @@ e, f, g, &lt;eos&gt;
       </categories>
       <tags>
         <tag>简介</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>求list的绝对值</title>
+    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%B1%82list%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC/</url>
+    <content><![CDATA[<h1 id="求list的绝对值"><a href="#求list的绝对值" class="headerlink" title="求list的绝对值"></a>求list的绝对值</h1><p>求<code>list l = [-1,2,3,-4,-5,-6]</code>的绝对值的三种方法</p>
+<p>1.<br>   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">abs</span>, l))</span><br></pre></td></tr></table></figure></p>
+<p>2.<br>   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_abs = [<span class="built_in">abs</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> l]</span><br></pre></td></tr></table></figure></p>
+<p>3.<br>   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">list_abs = <span class="built_in">list</span>(np.<span class="built_in">abs</span>(l))</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>list</tag>
+        <tag>绝对值</tag>
       </tags>
   </entry>
   <entry>
