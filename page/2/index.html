@@ -178,6 +178,200 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">VSCode 使用SSH连接远程服务器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-07 19:43:39" itemprop="dateCreated datePublished" datetime="2022-07-07T19:43:39+08:00">2022-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-11 14:44:18" itemprop="dateModified" datetime="2022-07-11T14:44:18+08:00">2022-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="使用vscode远程连接服务器"><a href="#使用vscode远程连接服务器" class="headerlink" title="使用vscode远程连接服务器"></a>使用vscode远程连接服务器</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>在左侧“扩展”里选择并安装扩展 Remote-SSH</li>
+<li>点击左侧新增的扩展按钮，并点击左上角“+”号，然后会出现config的配置，按如下配置<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root</li>
+<li>此时配置好后尝试登陆，会需要输入密码</li>
+<li>可以用配置成不需要密码<ol>
+<li>本地建个ssh ssh-keygen -t rsa -b 4096 -f ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh，会生成id_rsa-remote-ssh和id_rsa-remote-ssh.pub两个文件</li>
+<li>将id_rsa-remote-ssh.pub配到服务器的authorized_keys（一般在～&#x2F;.ssh&#x2F;）文件里</li>
+<li>将id_rsa-remote-ssh配到本地的config中，即修改刚刚的config成如下<br> Host name-as-you-like<br> HostName 11.12.205.19<br> User root<br> IdentityFile ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh</li>
+</ol>
+</li>
+<li>可以连接远程服务器了</li>
+</ol>
+<h2 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h2><p>使用vscode连接远程服务器，也希望能够进行断点调试。</p>
+<ol>
+<li><p>进入扩展，搜索python（一般是第一个）</p>
+</li>
+<li><p>如果本地还没有安装，可以先点击安装</p>
+</li>
+<li><p>如果本地安装了，配备remote-ssh后，会显示“在remote-ssh上安装”，点击按钮进行安装就可以了</p>
+</li>
+<li><p>结果如下</p>
+<p> <img src="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8/vscode%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1python%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE.png" alt="vscode远程服务python断点调试配置"></p>
+</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a></p>
+<p><a target="_blank" rel="noopener" href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">VSCode 常用命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-07 19:43:08" itemprop="dateCreated datePublished" datetime="2022-07-07T19:43:08+08:00">2022-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-22 11:26:29" itemprop="dateModified" datetime="2022-08-22T11:26:29+08:00">2022-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="VSCode-设置代码长度分割线"><a href="#VSCode-设置代码长度分割线" class="headerlink" title="VSCode 设置代码长度分割线"></a>VSCode 设置代码长度分割线</h1><p>增加代码长度分割线：</p>
+<ol>
+<li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
+<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
+<li>进入 <code>settings.json</code></li>
+<li>添加代码 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;[python]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;editor.rulers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">         <span class="number">80</span></span><br><span class="line">     <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ms-python.python&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="VSCode-激活conda环境失败"><a href="#VSCode-激活conda环境失败" class="headerlink" title="VSCode 激活conda环境失败"></a>VSCode 激活conda环境失败</h1><ol>
+<li>打开vscode设置，Code -&gt; Preference -&gt; Settings </li>
+<li>找到Terminal.Integrated.Automation Shell: OSX，打开settings.json</li>
+<li>加入 <code>&quot;terminal.integrated.env.osx&quot;: &#123;&quot;PATH&quot;: &quot;&quot;&#125;,</code></li>
+<li>重启vscode即可</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/07/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E4%B8%AD%E4%BD%BF%E7%94%A8args%E5%92%8Cadd_argument%E4%BC%A0%E5%8F%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -461,211 +655,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/01/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%8E%8B%E6%B5%8B%E6%AD%A5%E9%AA%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/01/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%8E%8B%E6%B5%8B%E6%AD%A5%E9%AA%A4/" class="post-title-link" itemprop="url">JMETER-参数解析与压测步骤</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-01 20:26:55" itemprop="dateCreated datePublished" datetime="2022-07-01T20:26:55+08:00">2022-07-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 11:47:54" itemprop="dateModified" datetime="2022-07-11T11:47:54+08:00">2022-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="JMETER-参数解析与压测步骤"><a href="#JMETER-参数解析与压测步骤" class="headerlink" title="JMETER-参数解析与压测步骤"></a>JMETER-参数解析与压测步骤</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><img src="/2022/07/01/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/JMETER-%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%8E%8B%E6%B5%8B%E6%AD%A5%E9%AA%A4/JMeter%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B.png" alt="参数展示"></p>
-<ul>
-<li>Number of Thread：该线程组包括的线程数,可理解为虚拟用户数</li>
-<li>Ramp-up Period：即设置线程数在多少秒内启动完毕，即如果线程数设置为10，而此项设置也设置为5，那么会每隔10&#x2F;5&#x3D;2秒,启动一个线程.</li>
-<li>Loop Count：即设置的线程数循环的次数，如果勾选永远，则会一直循环（注意：如果勾选了永远且调度器配置中设置了持续时间，则会在持续时间到达之后结束循环）.</li>
-<li>Delay Thread creation until needed：此选项和Ramp-up 时间（秒）设置配合使用，举例说明：如过设置线程数为10，Ramp-up 时间（秒）时间为100，则如果不勾选此项则此次测试会每隔10s创建并启动一个线程，那么100s后会有1-10个线程在运行；但是如果勾选此项，那么线程组会每隔10s创建一个线程但并不启动，而是会等待10个线程都创建好之后同时启动.</li>
-<li>Scheduler：勾选此项则打开调度器配置</li>
-<li>duration：即本线程组测试的持续时间，到时间后则停止此次测试，注意这个时间设置不要设置的比Ramp-up 时间（秒）小，如果勾选了循环次数中的永远，那么测试一样会在此持续时间到达后结束；</li>
-<li>start up delay：此项设置为在我们启动测试后多久时间开始创建线程组，通常用于定时</li>
-<li>Listner：较常用的是View Results Tree和Aggregate Report</li>
-<li>terminer中可以使用GUI，生成HTML报告，更方便分析，目前还没有弄通…</li>
-</ul>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
-<li>先需要找到最大TPS(Transactions Per Second)，即JMETER结果表格中的Thoughout</li>
-<li>每个事物如果只请求一次，则TPS&#x3D;QPS</li>
-<li>因为实际线上会是多个用户同时请求，而非一个用户多次请求，所以压测是，我们主要通过逐步增加线程数（Number of Threads），模拟实际线上用户数的增加，来找到最高TPS</li>
-<li>线程循环次数（loop count）无需过多改变和设置的太高，因为同一用户的调用次数往往是非常有限的</li>
-</ol>
-<h2 id="压测"><a href="#压测" class="headerlink" title="压测"></a>压测</h2><h3 id="Windows界面压测"><a href="#Windows界面压测" class="headerlink" title="Windows界面压测"></a>Windows界面压测</h3><p>简单的压测可以按如下步骤进行：</p>
-<ol>
-<li>设置第一次压测的线程数（Number of Threads），如20</li>
-<li>设置Ramp-Up Period，可以根据线程数来设置，主要保证此参数要小于整体压测时间（Duration）</li>
-<li>每个用户调用次数Loop Count可以设置成持续调用（Forever），并勾选Scheduler</li>
-<li>Scheduler Configuration里主要要设置Duration，即压测持续时间。这个时间一定要大于线程启动时间（Ramp-Up Period），即【Duration】 - 【Ramp-Up Period】 &#x3D; 【所有线程启动后希望压测的时间】</li>
-</ol>
-<h3 id="Linux压测"><a href="#Linux压测" class="headerlink" title="Linux压测"></a>Linux压测</h3><ol>
-<li>在有界面可视化的 <code>JMETER</code> 上（如 <code>Windows</code> 系统上），配置好需要压测的参数</li>
-<li>储存成 <code>test.jmx</code> 文件</li>
-<li>将 <code>test.jmx</code> 文件传输到 <code>Linux</code> 上</li>
-<li>进入 <code>Linux</code> 上 <code>JMETER</code> 的 <code>bin</code> 文件夹下，运行 <code>jmeter -n -t /path/to/your/test.jmx -l /path/to/results/file.jtl</code></li>
-<li>将 <code>file.jtl</code> 传到 <code>Windows</code> 上，导入 <code>JMETER</code> 中即可</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>TPS、线程数、响应时间等之间的分析见博客<a target="_blank" rel="noopener" href="https://www.cnblogs.com/happyliuyi/p/10755837.html">happy刘艺<br>性能测试入门（五）实践得出系统最佳线程数设置(压测最佳线程数&lt;真实设置的线程数量&lt;内存极限线程数)</a>和博客<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1771176">【修正版】QPS、TPS、RT、并发数、吞吐量理解和性能优化深入思考</a></p>
-<p>结果大概就一个表格，可以参见博客 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42579328/article/details/108243059">Jmeter使用教程（四）—测试结果分析</a> </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85VSCode%E5%8F%8A%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85VSCode%E5%8F%8A%E6%89%A9%E5%B1%95%E7%BB%84%E4%BB%B6/" class="post-title-link" itemprop="url">离线安装VSCode及扩展组件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-07 19:44:10" itemprop="dateCreated datePublished" datetime="2022-05-07T19:44:10+08:00">2022-05-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 14:44:01" itemprop="dateModified" datetime="2022-07-11T14:44:01+08:00">2022-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="离线安装vscode和扩展组件"><a href="#离线安装vscode和扩展组件" class="headerlink" title="离线安装vscode和扩展组件"></a>离线安装vscode和扩展组件</h1><h2 id="离线安装vscode"><a href="#离线安装vscode" class="headerlink" title="离线安装vscode"></a>离线安装vscode</h2><p>远程一般安装的是<code>vscode-server</code></p>
-<ol>
-<li>下载<code>vscode-server-linux-x64.tar.gz</code>包，放到远程服务器</li>
-<li>不同服务器，下载版本不一致，确认<code>commitId</code></li>
-<li>将<code>vscode-server-linux-x64.tar.gz</code>解压到<code>~/.vscode-server/bin/$&#123;commitId&#125;</code></li>
-<li>在<code>$&#123;commitId&#125;</code>文件下创建文件<code>0</code></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">commit_id=f06011ac164ae4dc8e753a3fe7f9549844d15e35</span><br><span class="line"></span><br><span class="line"><span class="comment"># Download url is: https://update.code.visualstudio.com/commit:$&#123;commit_id&#125;/server-linux-x64/stable</span></span><br><span class="line">curl -sSL <span class="string">&quot;https://update.code.visualstudio.com/commit:<span class="variable">$&#123;commit_id&#125;</span>/server-linux-x64/stable&quot;</span> -o vscode-server-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span></span><br><span class="line"><span class="comment"># assume that you upload vscode-server-linux-x64.tar.gz to /tmp dir</span></span><br><span class="line">tar zxvf /tmp/vscode-server-linux-x64.tar.gz -C ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span> --strip 1</span><br><span class="line"><span class="built_in">touch</span> ~/.vscode-server/bin/<span class="variable">$&#123;commit_id&#125;</span>/0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="离线安装扩展组件"><a href="#离线安装扩展组件" class="headerlink" title="离线安装扩展组件"></a>离线安装扩展组件</h2><ol>
-<li>下载组件，并传到远程服务器</li>
-<li><code>vscode</code>中，<code>ctrl+shift+p</code>打开命令行，输入<code>Extensions: install from VSIX</code></li>
-<li>选择上传的<code>vsix</code>扩展组件，开始安装</li>
-<li>重启<code>vscode</code></li>
-<li>如果安装失败，有可能是文件权限问题，可以先尝试<code>chmod -x -R ms-python-release.vsix</code>给扩展组件赋权，再进行安装</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>参考<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a><br><a target="_blank" rel="noopener" href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a><br><a target="_blank" rel="noopener" href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline">How can I install vscode-server in linux offline</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44489823/article/details/114791597">远程服务器离线安装vscode及扩展组件</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -733,7 +726,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -746,7 +739,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

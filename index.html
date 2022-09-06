@@ -178,6 +178,156 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/09/06/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/06/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">智能客服问题总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-06 14:32:26 / 修改时间：14:55:49" itemprop="dateCreated datePublished" datetime="2022-09-06T14:32:26+08:00">2022-09-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">项目总结</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="rockemq中broker连接问题"><a href="#rockemq中broker连接问题" class="headerlink" title="rockemq中broker连接问题"></a>rockemq中broker连接问题</h2><h4 id="具体情况："><a href="#具体情况：" class="headerlink" title="具体情况："></a>具体情况：</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">INFO</span>] rocketmqremoting closeChannel: <span class="keyword">close</span> the <span class="keyword">connection</span> <span class="keyword">to</span> remote address[<span class="number">192.</span>xxx.xxx.xxx:<span class="number">10911</span>] result: <span class="keyword">true</span></span><br><span class="line">[<span class="keyword">INFO</span>] rocketmqremoting closeChannel: <span class="keyword">close</span> the <span class="keyword">connection</span> <span class="keyword">to</span> remote address[<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9876</span>] result: <span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+<p>并未报错，但是会启动失败。</p>
+<h4 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h4><p>mq启动在一台<code>ip</code>为<code>192.168.43.188</code>的机器上，所以连接不上<code>127.0.0.1:9876</code>是正常的，但是<code>producer</code>的<code>nameserver</code>和配置文件中的<code>ip</code>都已经配置为<code>192.168.43.188</code>了，不知道是哪里来的<code>127.0.0.1:9876</code>。</p>
+<p>经过查询，看解释说<code>rockermq</code>会从<code>broker.conf</code>中取<code>brokerIP1</code>的<code>ip</code>，于是将<code>broker.conf</code>中的<code>brokerIP1</code>改为<code>192.168.43.188</code>后，问题解决了。</p>
+<p>注意：如果【JAVA服务】和【RockerMQ】都是在同一台机器上，那么<code>brokerIP1</code>设置为<code>127.0.0.1</code>其实是没有问题的。这里关键在于两个服务分别在两台电脑上，后续rockermq直接取用了<code>brokerIP1</code>的地址，而没有将<code>127.0.0.1</code>映射成局域网中本机ip地址<code>192.168.43.188</code>。因此<code>broker.conf</code>中ip的配置需要格外注意。</p>
+<p>详细broker.conf配置见下方：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">brokerClusterName</span> = DefaultCluster</span><br><span class="line"><span class="attr">brokerName</span> = broker-a</span><br><span class="line"><span class="attr">brokerId</span> = <span class="number">0</span></span><br><span class="line"><span class="attr">deleteWhen</span> = <span class="number">04</span></span><br><span class="line"><span class="attr">fileReservedTime</span> = <span class="number">48</span></span><br><span class="line"><span class="attr">brokerRole</span> = ASYNC_MASTER</span><br><span class="line"><span class="attr">flushDiskType</span> = ASYNC_FLUSH</span><br><span class="line"><span class="attr">brokerIP1</span> = <span class="number">127.0</span>.<span class="number">0.1</span> <span class="comment"># brokerIP1 = 192.168.43.188</span></span><br><span class="line"><span class="attr">autoCreateTopicEnable</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">JAVA_OPT</span>=<span class="string">&quot;$&#123;JAVA_OPT&#125; -server -Xms4g -Xmx4g -Xmn1g -Drocketmq.broker.diskSpaceWarningLevelRatio=0.98&quot;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/08/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/conda-%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/conda-%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">conda 的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-19 14:50:04" itemprop="dateCreated datePublished" datetime="2022-08-19T14:50:04+08:00">2022-08-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-06 13:53:31" itemprop="dateModified" datetime="2022-09-06T13:53:31+08:00">2022-09-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h1><ol>
+<li>创建新环境：conda create -n envName python&#x3D;3.8</li>
+<li>激活环境：conda activate envName</li>
+<li>退出环境：conda deactivate </li>
+<li>安装tensorflow：pip install tensorflow-gpu&#x3D;2.4</li>
+<li>使用其他镜像加快下载速度：-i <a target="_blank" rel="noopener" href="https://pypi.douban.com/simple">https://pypi.douban.com/simple</a> –trusted-host pypi.douban.com</li>
+<li>查看现有虚拟环境：conda list –env</li>
+<li>删除虚拟环境：conda env remove –name envName</li>
+</ol>
+<h2 id="linux环境，通过shell启动conda环境"><a href="#linux环境，通过shell启动conda环境" class="headerlink" title="linux环境，通过shell启动conda环境"></a>linux环境，通过shell启动conda环境</h2><p>linux环境激活conda环境，有时会报错cannot found conda command</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CommandNotFoundError: Your shell has not been properly configured to use <span class="string">&#x27;conda activate&#x27;</span>.</span><br><span class="line">To initialize your shell, run</span><br><span class="line">    $ conda init &lt;SHELL_NAME&gt;</span><br><span class="line">Currently supported shells are:</span><br><span class="line">   - bash</span><br><span class="line">   - fish</span><br><span class="line">   - tcsh</span><br><span class="line">   - xonsh</span><br><span class="line">   - zsh</span><br><span class="line">   - powershell</span><br><span class="line">See <span class="string">&#x27;conda init --help&#x27;</span> <span class="keyword">for</span> more information and options.</span><br><span class="line">IMPORTANT: You may need to close and restart your shell after running <span class="string">&#x27;conda init&#x27;</span>.</span><br></pre></td></tr></table></figure>
+<p>在~&#x2F;.bashrc文件中找到如下代码并粘贴到shell文件开头：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">&gt;&gt;&gt; conda init &gt;&gt;&gt;</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!! Contents within this block are managed by <span class="string">&#x27;conda init&#x27;</span> !!</span></span><br><span class="line">__conda_setup=&quot;$(CONDA_REPORT_ERRORS=false &#x27;/home/cc/anaconda3/bin/conda&#x27; shell.bash hook 2&gt; /dev/null)&quot;</span><br><span class="line">if [ $? -eq 0 ]; then</span><br><span class="line">    \eval &quot;$__conda_setup&quot;</span><br><span class="line">else</span><br><span class="line">    if [ -f &quot;/home/cc/anaconda3/etc/profile.d/conda.sh&quot; ]; then</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">. <span class="string">&quot;/home/cc/anaconda3/etc/profile.d/conda.sh&quot;</span>  <span class="comment"># commented out by conda initialize</span></span></span><br><span class="line">        CONDA_CHANGEPS1=false conda activate base</span><br><span class="line">    else</span><br><span class="line">        \export PATH=&quot;/home/cc/anaconda3/bin:$PATH&quot;</span><br><span class="line">    fi</span><br><span class="line">fi</span><br><span class="line">unset __conda_setup</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">&lt;&lt;&lt; <span class="string">conda init &lt;&lt;&lt;</span></span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/DeBERTa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -454,198 +604,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">VSCode 使用SSH连接远程服务器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-07 19:43:39" itemprop="dateCreated datePublished" datetime="2022-07-07T19:43:39+08:00">2022-07-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 14:44:18" itemprop="dateModified" datetime="2022-07-11T14:44:18+08:00">2022-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="使用vscode远程连接服务器"><a href="#使用vscode远程连接服务器" class="headerlink" title="使用vscode远程连接服务器"></a>使用vscode远程连接服务器</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
-<li>在左侧“扩展”里选择并安装扩展 Remote-SSH</li>
-<li>点击左侧新增的扩展按钮，并点击左上角“+”号，然后会出现config的配置，按如下配置<br>Host name-as-you-like<br> HostName 11.12.205.19<br> User root</li>
-<li>此时配置好后尝试登陆，会需要输入密码</li>
-<li>可以用配置成不需要密码<ol>
-<li>本地建个ssh ssh-keygen -t rsa -b 4096 -f ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh，会生成id_rsa-remote-ssh和id_rsa-remote-ssh.pub两个文件</li>
-<li>将id_rsa-remote-ssh.pub配到服务器的authorized_keys（一般在～&#x2F;.ssh&#x2F;）文件里</li>
-<li>将id_rsa-remote-ssh配到本地的config中，即修改刚刚的config成如下<br> Host name-as-you-like<br> HostName 11.12.205.19<br> User root<br> IdentityFile ~&#x2F;.ssh&#x2F;id_rsa-remote-ssh</li>
-</ol>
-</li>
-<li>可以连接远程服务器了</li>
-</ol>
-<h2 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h2><p>使用vscode连接远程服务器，也希望能够进行断点调试。</p>
-<ol>
-<li><p>进入扩展，搜索python（一般是第一个）</p>
-</li>
-<li><p>如果本地还没有安装，可以先点击安装</p>
-</li>
-<li><p>如果本地安装了，配备remote-ssh后，会显示“在remote-ssh上安装”，点击按钮进行安装就可以了</p>
-</li>
-<li><p>结果如下</p>
-<p> <img src="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8/vscode%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1python%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE.png" alt="vscode远程服务python断点调试配置"></p>
-</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a></p>
-<p><a target="_blank" rel="noopener" href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/" class="post-title-link" itemprop="url">VSCode 设置代码长度分割线</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-07 19:43:08" itemprop="dateCreated datePublished" datetime="2022-07-07T19:43:08+08:00">2022-07-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 14:44:14" itemprop="dateModified" datetime="2022-07-11T14:44:14+08:00">2022-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">常用软件和系统</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="VSCode-常见需求"><a href="#VSCode-常见需求" class="headerlink" title="VSCode 常见需求"></a>VSCode 常见需求</h1><p>增加代码长度分割线：</p>
-<ol>
-<li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
-<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E5%88%86%E5%89%B2%E7%BA%BF/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
-<li>进入 <code>settings.json</code></li>
-<li>添加代码 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;[python]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;editor.rulers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">         <span class="number">80</span></span><br><span class="line">     <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ms-python.python&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -713,7 +675,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -726,7 +688,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -903,6 +865,61 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
