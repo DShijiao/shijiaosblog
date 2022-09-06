@@ -259,100 +259,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%95%B0%E5%AD%A6/%E7%99%BD%E5%8C%96%E5%92%8C%E5%BD%92%E4%B8%80%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shijiao DENG">
-      <meta itemprop="description" content="记录工作，记录生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="panna cotta">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/%E6%95%B0%E5%AD%A6/%E7%99%BD%E5%8C%96%E5%92%8C%E5%BD%92%E4%B8%80%E5%8C%96/" class="post-title-link" itemprop="url">白化和归一化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 11:14:54" itemprop="dateModified" datetime="2022-07-11T11:14:54+08:00">2022-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="白化和归一化"><a href="#白化和归一化" class="headerlink" title="白化和归一化"></a>白化和归一化</h1><h3 id="白化"><a href="#白化" class="headerlink" title="白化"></a>白化</h3><p>白话的目的就是去除输入数据的冗余信息。经过白化处理后，生成新数据集满足两个条件：</p>
-<ul>
-<li>特征相关性较低</li>
-<li>特征具有相同的方差</li>
-</ul>
-<p>白化算法实现的过程：</p>
-<ul>
-<li>第一步是进行PCA操作，将数据降维</li>
-<li>第二步是对新的坐标进行归一化操作</li>
-</ul>
-<h3 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h3><p>数据归一化的目的就是为了把不同来源的数据统一到同一数量级(一个参考坐标系下)，这样使得比较起来更加有意义。归一化使得后面数据的处理更为方便，它有两大有点：</p>
-<ul>
-<li>归一化提高梯度下降求最优解的速度</li>
-<li>归一化有可能提高精度</li>
-</ul>
-<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>看了下博客，都是抄来抄去，没有明确解释两者区别的，个人认为区别如下：</p>
-<ul>
-<li>白化里会用来归一化来统一降维后数据的量级，但是归一化不会用到白化</li>
-<li>白化的主要目的是特征提取，尽量获取相互独立的特征进行分析</li>
-<li>归一化的主要目的是统一特征数据的量级（取值范围）</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/AM-softmax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -482,6 +388,79 @@
           
 
         </div>
+      </header<h3 id="公式更直观"><a href="#公式更直观" class="headerlink" title="公式更直观"></a>公式更直观</h3><p>相对于L-softmax，AM-softmax的参数简单直观</p>
+<h3 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h3><p>使用加法$cos(&#x2F;delta)-m$，不同于L-softmax中使用乘法cos(m*&#x2F;delta)，超参数直接作用于cos(&#x2F;delta)更好，因为：cos(&#x2F;delta)和delta虽然是一一对应，但是变化趋势不同，cos(&#x2F;delta)在pai处更密集。因此在乘法中，得到wf后需要进行反余弦计算，因此会消耗更多的算力</p>
+<h3 id="两个超参数"><a href="#两个超参数" class="headerlink" title="两个超参数"></a>两个超参数</h3><p>e的右上角公式为s(cos(&#x2F;delta)-m)</p>
+<ul>
+<li>其中m是用来增加类间距离，强行使两个类的边缘样本有一定的距离而更不容易混淆</li>
+<li>反向传播是，x的导数为1，前面增加一个s则反向求导后gradient会变为s，使用一个s是为了让好样本的梯度更大，来减小类内样本的方差，也就是更快的减小类内距离</li>
+</ul>
+<h3 id="Feature-Normalization"><a href="#Feature-Normalization" class="headerlink" title="Feature Normalization"></a>Feature Normalization</h3><p>对于质量较好的样本，不需要进行feature normalization。<br>但是对于质量较差的样本，使用feature normalization后，效果会有提升。<br>因为质量越差，特征归一化的值越小，因此反向传播中受到的关于越大（1&#x2F;alpha），所以特征归一化更适合图像质量差的任务</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Bert/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shijiao DENG">
+      <meta itemprop="description" content="记录工作，记录生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panna cotta">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Bert/" class="post-title-link" itemprop="url">Bert中的一些重点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-14 11:16:41" itemprop="dateModified" datetime="2022-07-14T11:16:41+08:00">2022-07-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
       </header>
 
     
@@ -524,7 +503,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/SBert/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/T5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -538,7 +517,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/SBert/" class="post-title-link" itemprop="url">SBert</a>
+            <a href="/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/T5/" class="post-title-link" itemprop="url">T5</a>
         </h2>
 
         <div class="post-meta">
@@ -555,7 +534,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-11 11:25:25" itemprop="dateModified" datetime="2022-07-11T11:25:25+08:00">2022-07-11</time>
+                <time title="修改时间：2022-07-11 09:33:05" itemprop="dateModified" datetime="2022-07-11T09:33:05+08:00">2022-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -578,10 +557,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="SBert"><a href="#SBert" class="headerlink" title="SBert"></a>SBert</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>SBert针对句子匹配问题，提出了一种新的想法。没有很复杂的公式，可以理解为，是一些常见的计算进行各种融合的实战经验总结。<br>主要思想也是对bert进行fine tuning，来获取语义上有意义的空间向量<br>    语义上有意义：论文中有解释，是指句子意思相近的句子在空间向量上也相近</p>
+          <h1 id="T5"><a href="#T5" class="headerlink" title="T5"></a>T5</h1><h2 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h2><p>1、中文分词(Chinese Word Segmentation) 指的是将一个汉字序列切分成一个一个单独的词。分词就是将连续的字序列按照一定的规范重新组合成词序列的过程 </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/SBert/#more" rel="contents">
+              <a class="btn" href="/2020/02/19/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/T5/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -883,6 +862,8 @@ window.addEventListener('pjax:success', () => {
         renderActions: {
           findScript: [10, doc => {
             document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, uerySelectorAll('script[type^="math/tex"]').forEach(node => {
               const display = !!node.type.match(/; *mode=display/);
               const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
               const text = document.createTextNode('');
