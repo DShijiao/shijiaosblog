@@ -1,6 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Docker安装和基础使用</title>
+    <url>/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Docker%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="Docker安装和基础使用"><a href="#Docker安装和基础使用" class="headerlink" title="Docker安装和基础使用"></a>Docker安装和基础使用</h1><h2 id="SF-配置并使用-Docker"><a href="#SF-配置并使用-Docker" class="headerlink" title="SF 配置并使用 Docker"></a>SF 配置并使用 Docker</h2><h3 id="Install-Docker"><a href="#Install-Docker" class="headerlink" title="Install Docker"></a>Install Docker</h3><ol>
+<li><p>Homebrew 安装命令：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew cask install docker</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试 Docker：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 80:80 --name webserver nginx</span><br></pre></td></tr></table></figure>
+
+<p> 打开 <code>http://localhost</code>，看到 <code>Welcome to nginx!</code> 说明 Docker 安装成功！</p>
+<ul>
+<li>-d: 让容器在后台运行</li>
+<li>-p: 将容器内部使用的网络端口映射到我们使用的主机上</li>
+</ul>
+</li>
+<li><p>停止 Nginx 服务器并删除：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker stop webserver</span><br><span class="line">docker rm webserver</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>国内镜像加速</p>
+<p> Docker -&gt; Preferences -&gt; Daemon -&gt; Registry mirrors 添加：<code>https://registry.docker-cn.com</code></p>
+</li>
+<li><p>测试加速器</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<p> 如有以下配置内容，说明加速器配置成功：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Registry Mirrors:</span><br><span class="line">    https://registry.docker-cn.com/</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="Docker-Image"><a href="#Docker-Image" class="headerlink" title="Docker Image"></a>Docker Image</h3><blockquote>
+<p>个人偏好：仅配置一个镜像 (我以<em><strong>湖人总冠军</strong></em>命名 <code>lakers_champion</code>，不包含任何代码数据)，仅仅把需要安装的package封装好<br>这样就避免不用每个项目都给它单独弄一个镜像，10G+占空间啊！</p>
+</blockquote>
+<ol>
+<li><p>本地build镜像</p>
+<p> 新建 Dockerfile，e.g.,</p>
+ <figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> okwrtdsh/anaconda3:pytorch-<span class="number">10.0</span>-cudnn7</span><br><span class="line"><span class="keyword">MAINTAINER</span> kun.xie@sfmail.sf-express.com</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update \\</span></span><br><span class="line"><span class="language-bash">&amp;&amp; pip install --upgrade pip \\</span></span><br><span class="line"><span class="language-bash">&amp;&amp; pip install tqdm \\</span></span><br><span class="line"><span class="language-bash">&amp;&amp; pip install jieba \\</span></span><br><span class="line"><span class="language-bash">&amp;&amp; pip install gensim \\</span></span><br><span class="line"><span class="language-bash">&amp;&amp; apt-get install -y vim</span></span><br><span class="line">&amp;&amp; apt-get install -y git</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com tensorflow tensorboardX</span></span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple cupy pynvrtc --trusted-host mirrors.aliyun.com</span><br><span class="line">&amp;&amp; pip install git+https://github.com/salesforce/pytorch-qrnn</span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com torchtext</span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com jieba gensim</span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com opencc-python-reimplemented</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span></span><br><span class="line">&amp;&amp; conda config --<span class="keyword">add</span><span class="language-bash"> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span></span><br><span class="line">&amp;&amp; conda config --<span class="keyword">add</span><span class="language-bash"> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</span></span><br><span class="line">&amp;&amp; conda config --<span class="keyword">add</span><span class="language-bash"> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/</span></span><br><span class="line">&amp;&amp; conda config --set show_channel_urls yes</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> conda install jupyter -y --quiet</span></span><br><span class="line">&amp;&amp; conda install pytorch torchvision -c pytorch</span><br><span class="line">&amp;&amp; conda install scikit-learn -y --quiet</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ADD . /kxie</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">mkdir</span> kxie</span></span><br><span class="line"><span class="comment">### 其实以上安装的package可以简单点写到文件requirements.txt中，以下一行命令就能完成安装操作 -- 因为懒没做！ ###</span></span><br><span class="line"><span class="comment"># RUN pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com -r ./requirements.txt</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /kxie</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [ <span class="string">&quot;/bin/bash&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>加了 命令 <code>CMD [&quot;/bin/bash&quot;]</code>后，我们直接<code>docker run -it name_of_mirror</code>后就能直接进入<code>/bin/bash/</code>了。</li>
+<li>我们也可以在运行时指定别的命令，如<code>docker run -it name_of_mirror cat /etc/os-release</code>，就是用<code>cat /etc/os-release</code>替换了<code>/bin/bash</code>命令。</li>
+</ul>
+<p> 随后在当前目录下 <code>build</code>：<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#! /bin/bash</span><br><span class="line">docker build -t 10.202.107.19/sfai/lakers_champion .</span><br></pre></td></tr></table></figure><br> 可以查看本地已经build好的镜像：<code>docker images</code><br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker images</span><br><span class="line">REPOSITORY                                            TAG                 IMAGE ID               CREATED                   SIZE</span><br><span class="line">10.202.107.19/sfai/lakers_champion   latest               25473e876cd6        About an hour ago   11.1GB</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>把本地build好的镜像push到Harbor</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#! /bin/bash</span><br><span class="line">docker login 10.202.107.19</span><br><span class="line">docker push 10.202.107.19/sfai/lakers_champion:latest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在server上把镜像从Harbor中pull下来</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ssh 01366808@10.202.90.201</span><br><span class="line">sudo docker pull 10.202.107.19/sfai/lakers_champion:latest</span><br></pre></td></tr></table></figure>
+<p> <code>docker images</code> 同样可以查看server上目前已有的镜像</p>
+</li>
+<li><p>server上运行</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo nvidia-docker run -i -t --rm -p &lt;随便设置_1&gt;:8888 -p &lt;随便设置_2&gt;:6006 -v /HDATA/1/01366808/shijiao/test_map:/shijiao 10.202.107.19/sfai/tf1.12-cuda10-cudnn7-speech:latest bash</span><br></pre></td></tr></table></figure>
+ <p><font color="#989898">
+ <ul>
+ <li>`<随便设置_1>` & `<随便设置_2>` 按个人喜好自行更改，避免冲突</li>
+ <li>我把所有的代码以及数据放在了server上个人文件夹`~/kxie/`里面</li>
+ <li>之后打开Jupyter Notebook页面的时候由于映射关系，能看到所有数据以及代码！很方便！！</li>
+ </ul>
+ </font></p>
+ 
+<p> 运行 <code>ternsorboard</code> &amp; <code>Jupyter Notebook</code>：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/bin/bash -</span><br><span class="line">nohup tensorboard --host=0.0.0.0 --logdir=/data/log/kxie &amp;</span><br><span class="line">/opt/conda/bin/jupyter notebook  --ip=&#x27;*&#x27; --no-browser --allow-root --NotebookApp.token= --notebook-dir=&#x27;/shijiao&#x27;</span><br></pre></td></tr></table></figure>
+<p> 这样就可以打开网页 <code>http://10.202.90.201:&lt;随便设置_1&gt;</code> 跑代码了！Jupyter的可视化还是很方便的，从本地copy paste也容易！</p>
+<p> <strong>具体命令分析，可以看新工作笔记第二页</strong></p>
+</li>
+</ol>
+<h2 id="docker-挂载"><a href="#docker-挂载" class="headerlink" title="docker 挂载"></a>docker 挂载</h2><p>前面是本地文件，后面是镜像文件：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo docker run -it --cpus=<span class="number">3</span> -v <span class="regexp">/Users/</span>shijiao<span class="regexp">/Documents/</span>Bert<span class="regexp">/:/</span>shijiao/mkl conda-origin bash</span><br></pre></td></tr></table></figure>
+
+<p><code>--cpus=8</code>设置的是cpu利用百分比，而不是个数，因为报错中，<code>Range of CPUs</code>是小数，而不是整数。</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">sudo docker run -it --cpus=8 -v /Users/shijiao/Documents/Bert/:/shijiao/mkl conda-origin bash</span><br><span class="line"><span class="keyword">Error </span>response from daemon: Range of CPUs is from 0.01 to 6.00, as there are only 6 CPUs available.</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h3 id="想修改镜像内容怎么办？"><a href="#想修改镜像内容怎么办？" class="headerlink" title="想修改镜像内容怎么办？"></a>想修改镜像内容怎么办？</h3><p>进入docker镜像里面改：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -it 10.202.107.19/sfai/lakers_champion /bin/bash </span><br><span class="line">修改内容 # 然后退出并记住 ***Container ID***</span><br><span class="line">docker commit &lt;ID&gt; 10.202.107.19/sfai/lakers_champion</span><br><span class="line">docker push 10.202.107.19/sfai/lakers_champion:latest</span><br><span class="line">server上重新pull: sudo docker pull 10.202.107.19/sfai/lakers_champion</span><br></pre></td></tr></table></figure>
+<p>e.g., 修改本地镜像，使得能够使用<code>fzf</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -it 10.202.107.19/sfai/lakers_champion</span><br><span class="line"># after enter into this image:</span><br><span class="line">cd</span><br><span class="line">git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf</span><br><span class="line">~/.fzf/install</span><br><span class="line">vi .vimrc</span><br><span class="line">set rtp+=~/.fzf</span><br><span class="line">exit # and remember container id</span><br><span class="line">docker commit &lt;container id&gt; 10.202.107.19/sfai/lakers_champion:latest</span><br><span class="line">docker push 10.202.107.19/sfai/lakers_champion:latest</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/junegunn/fzf">GitHub - junegunn&#x2F;fzf: A command-line fuzzy finder</a></p>
+<p>将本地文件添加到镜像中：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp &lt;local source&gt; &lt;Container ID&gt;:&lt;dest&gt;</span><br><span class="line"># 然后同上commit</span><br></pre></td></tr></table></figure>
+<p>Terminal过段时间就会中断 <code>timed out: Connection to 10.202.90.201 closed.</code> 如何重新进入正在后台运行的Docker？<br>(当然也有办法永不中断，自行Google)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ssh 01366808@10.202.90.201</span><br><span class="line">sudo docker exec -it &lt;ID&gt; bash</span><br></pre></td></tr></table></figure>
+
+<p>可以用 <code>docker ps</code> 查看Docker进程以及ID</p>
+<p>删除镜像：<code>sudo docker rmi &lt;ID&gt;</code></p>
+<p>结束运行的容器：<code>sudo docker stop &lt;ID&gt;</code></p>
+<p>修改镜像名字或者tag：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker tag &lt;old_name:old_tag&gt; &lt;new_name:new_tag&gt;</span><br><span class="line"># or</span><br><span class="line">docker tag &lt;ID&gt; &lt;new_name:new_tag&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Sync"><a href="#Sync" class="headerlink" title="Sync"></a>Sync</h3><p><font color="#989898">好像server上不连网的，没法Git同步，影响效率！</font></p>
+
+<ol>
+<li><p>从本地scp到服务器上:</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp -r &lt;source&gt; 01366808@10.202.90.201:~/&lt;dest&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>rsync</code>：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rsync -av -e ssh --exclude=&#x27;excluded dir&#x27; &lt;source&gt; 01366808@10.202.90.201:~/&lt;dest&gt;</span><br></pre></td></tr></table></figure>
+<p> <code>--exclude=&#39;excluded dir&#39;</code>：本地<source>中有些目录的内容是你不想传到server上的</p>
+ <p><font color="#989898">
+ <ul>
+ <li>一般情况：本地修改完代码，使用上面rysnc命令同步到server上 (或者简单点通过Jupyter copy paste)，然后跑吧！</li>
+ <li>交换 source dest 位置实现反向同步</li>
+ </ul>
+ </font></p></li>
+</ol>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Elasticsearch 的安装与使用</title>
     <url>/2022/07/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Elasticsearch-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Elasticsearch-的使用"><a href="#Elasticsearch-的使用" class="headerlink" title="Elasticsearch 的使用"></a>Elasticsearch 的使用</h1><h2 id="ES-安装"><a href="#ES-安装" class="headerlink" title="ES 安装"></a>ES 安装</h2><h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>直接到官网下载文件，并放置某个路径 <code>path/</code> 下<br>如果需要启动，进入 <code>path/</code>，运行 <code>bin/elasticsearch</code> 即可</p>
@@ -93,90 +203,25 @@
       </tags>
   </entry>
   <entry>
-    <title>Docker安装和基础使用</title>
-    <url>/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Docker%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="Docker安装和基础使用"><a href="#Docker安装和基础使用" class="headerlink" title="Docker安装和基础使用"></a>Docker安装和基础使用</h1><h2 id="SF-配置并使用-Docker"><a href="#SF-配置并使用-Docker" class="headerlink" title="SF 配置并使用 Docker"></a>SF 配置并使用 Docker</h2><h3 id="Install-Docker"><a href="#Install-Docker" class="headerlink" title="Install Docker"></a>Install Docker</h3><ol>
-<li><p>Homebrew 安装命令：</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew cask install docker</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>测试 Docker：</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 80:80 --name webserver nginx</span><br></pre></td></tr></table></figure>
-
-<p> 打开 <code>http://localhost</code>，看到 <code>Welcome to nginx!</code> 说明 Docker 安装成功！</p>
-<ul>
-<li>-d: 让容器在后台运行</li>
-<li>-p: 将容器内部使用的网络端口映射到我们使用的主机上</li>
-</ul>
-</li>
-<li><p>停止 Nginx 服务器并删除：</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker stop webserver</span><br><span class="line">docker rm webserver</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>国内镜像加速</p>
-<p> Docker -&gt; Preferences -&gt; Daemon -&gt; Registry mirrors 添加：<code>https://registry.docker-cn.com</code></p>
-</li>
-<li><p>测试加速器</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
-
-<p> 如有以下配置内容，说明加速器配置成功：</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Registry Mirrors:</span><br><span class="line">    https://registry.docker-cn.com/</span><br></pre></td></tr></table></figure></li>
+    <title>Linux 常用命令</title>
+    <url>/2021/10/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h1><ol>
+<li>快速查看端口占用情况<code>lsof -i tcp:8080</code>或者<code>netstat -nlp</code></li>
+<li>查看PID具体信息<code>ll /proc/PID</code></li>
+<li>同样，查看CPU和内存信息可以使用<code>cat /proc/cupinfo</code> 和 <code>cat /proc/meminfo</code>。更详细CPU信息查询可以使用<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c </code>和<code>cat /proc/cpuinfo | grep physical | uniq -c</code></li>
+<li>查看显卡信息可以使用命令<code>lspci | grep -i vga</code></li>
+<li>查看磁盘使用情况<code>df -k</code>或<code>df -m</code>，分别以kb或mb为单位，查看磁盘使用量</li>
+<li>GPU当前使用状况：<code>nvidia-smi</code></li>
+<li>每10秒，更新一次GPU情况：<code>watch -n 10 nvidia-smi</code></li>
+<li><code>free -h</code>看内存情况</li>
 </ol>
-<h3 id="Docker-Image"><a href="#Docker-Image" class="headerlink" title="Docker Image"></a>Docker Image</h3><blockquote>
-<p>个人偏好：仅配置一个镜像 (我以<em><strong>湖人总冠军</strong></em>命名 <code>lakers_champion</code>，不包含任何代码数据)，仅仅把需要安装的package封装好<br>这样就避免不用每个项目都给它单独弄一个镜像，10G+占空间啊！</p>
-</blockquote>
-<ol>
-<li><p>本地build镜像</p>
-<p> 新建 Dockerfile，e.g.,</p>
- <figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> okwrtdsh/anaconda3:pytorch-<span class="number">10.0</span>-cudnn7</span><br><span class="line"><span class="keyword">MAINTAINER</span> kun.xie@sfmail.sf-express.com</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update \\</span></span><br><span class="line"><span class="language-bash">&amp;&amp; pip install --upgrade pip \\</span></span><br><span class="line"><span class="language-bash">&amp;&amp; pip install tqdm \\</span></span><br><span class="line"><span class="language-bash">&amp;&amp; pip install jieba \\</span></span><br><span class="line"><span class="language-bash">&amp;&amp; pip install gensim \\</span></span><br><span class="line"><span class="language-bash">&amp;&amp; apt-get install -y vim</span></span><br><span class="line">&amp;&amp; apt-get install -y git</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com tensorflow tensorboardX</span></span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple cupy pynvrtc --trusted-host mirrors.aliyun.com</span><br><span class="line">&amp;&amp; pip install git+https://github.com/salesforce/pytorch-qrnn</span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com torchtext</span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com jieba gensim</span><br><span class="line">&amp;&amp; pip install -i https://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com opencc-python-reimplemented</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span></span><br><span class="line">&amp;&amp; conda config --<span class="keyword">add</span><span class="language-bash"> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span></span><br><span class="line">&amp;&amp; conda config --<span class="keyword">add</span><span class="language-bash"> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</span></span><br><span class="line">&amp;&amp; conda config --<span class="keyword">add</span><span class="language-bash"> channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/</span></span><br><span class="line">&amp;&amp; conda config --set show_channel_urls yes</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> conda install jupyter -y --quiet</span></span><br><span class="line">&amp;&amp; conda install pytorch torchvision -c pytorch</span><br><span class="line">&amp;&amp; conda install scikit-learn -y --quiet</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ADD . /kxie</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="b class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;size&quot;</span>: <span class="number">50</span> <span class="regexp">//</span> 默认<span class="number">10000</span></span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="regexp">//</span> ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="通过某个item筛选"><a href="#通过某个item筛选" class="headerlink" title="通过某个item筛选"></a>通过某个item筛选</h4><p><code>item</code> 为 <code>enabled_status</code>，且 <code>enabled_status</code> 是<code>boolean</code> 时</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;bool&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;filter&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;item&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;enabled_status&quot;</span>: true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>item</code> 为 <code>classe</code>，且 <code>classe</code> 包含关键词 <code>FAQ</code> 时:</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;item&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;classe&quot;</span>: <span class="string">&quot;FAQ&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>item</code> 为 <code>classe</code>，且 <code>classe</code> 包含多个关键词 <code>FAQ</code> <code>greeting</code> 时:</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;items&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;classe&quot;</span>: [<span class="string">&quot;FAQ&quot;</span>, <span class="string">&quot;greeting&quot;</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="余弦相似度-筛选条件-组合查询"><a href="#余弦相似度-筛选条件-组合查询" class="headerlink" title="余弦相似度+筛选条件 组合查询"></a>余弦相似度+筛选条件 组合查询</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">POST http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/test123/</span>_search</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;size&quot;</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="string">&quot;min_score&quot;</span>: <span class="number">1.5</span>,</span><br><span class="line">    <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;script_score&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;bool&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;filter&quot;</span>: &#123;</span><br><span class="line">                        <span class="string">&quot;term&quot;</span>: &#123;</span><br><span class="line">                            <span class="string">&quot;enabled_status&quot;</span>: true</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;script&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;scource&quot;</span>: <span class="string">&quot;cosineSimilarity(params.query_vector, &#x27;vector&#x27;) + 1.0&quot;</span>,</span><br><span class="line">                <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;query_vector&quot;</span>: [<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考文章：<a href="https://cloud.tencent.com/developer/article/1721406">Linux系统查看CPU、机器型号、内存等信息</a></p>
 ]]></content>
       <categories>
         <category>常用软件和系统</category>
       </categories>
       <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 的使用</title>
-    <url>/2022/01/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="Git-的使用"><a href="#Git-的使用" class="headerlink" title="Git 的使用"></a>Git 的使用</h1><h3 id="Git-diff-时代码显示颜色"><a href="#Git-diff-时代码显示颜色" class="headerlink" title="Git diff 时代码显示颜色"></a>Git diff 时代码显示颜色</h3><p>git diff 时增删代码颜色相同想要更改颜色：git config –global color.ui true</p>
-<h3 id="Git控制已有git的代码"><a href="#Git控制已有git的代码" class="headerlink" title="Git控制已有git的代码"></a>Git控制已有git的代码</h3><p>对于已经用git控制过的代码文件，如果想要重新建个文件夹进行管理，则需要先删除以前的git记录：</p>
-<ol>
-<li>进入原文件中 <code>ls -la</code></li>
-<li>找到.git文件 <code>rm -rf .git</code></li>
-</ol>
-<h3 id="Git-常用命令速查表"><a href="#Git-常用命令速查表" class="headerlink" title="Git 常用命令速查表"></a>Git 常用命令速查表</h3><p><img src="/2022/01/06/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Git-%E7%9A%84%E4%BD%BF%E7%94%A8/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8.png" alt="Git常用命令速查表"></p>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HTTP和gRPC的区别</title>
-    <url>/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/HTTP%E5%92%8CgRPC%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h1 id="HTTP和gRPC的区别"><a href="#HTTP和gRPC的区别" class="headerlink" title="HTTP和gRPC的区别"></a>HTTP和gRPC的区别</h1><ol>
-<li><code>http</code>和<code>grpc</code>都是通过<code>tcp</code>运行。</li>
-<li>不同的是<code>grpc</code>会将信息转换成二进制格式，因此传输更快，所需内存更小，效率更高。<br>但是因为<code>grpc</code>中，双方都需要编写相同的<code>.proto</code>，彼此传输的格式要固定，因此要求相对更严格一些。而http则没有这种要求，双方并没有格式的约定，所以<code>http</code>也更大一些，速度相对更慢一些。</li>
-<li><code>http</code>通过<code>&quot;\\r\\n&quot;</code>来分隔信息。<code>grpc</code>则要通过<code>.proto</code>文件里的<code>message</code>严格规范信息的数目、类型等。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-      </categories>
-      <tags>
-        <tag>http</tag>
-        <tag>grpc</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -218,28 +263,7 @@
 <p>结果大概就一个表格，可以参见博客 <a href="https://blog.csdn.net/weixin_42579328/article/details/108243059">Jmeter使用教程（四）—测试结果分析</a> </p>
 ]]></content>
       <categories>
-        <category>常用软件和系统</category>
-      </categories>
-      <tags>
-        <tag>JMETER</tag>
-        <tag>压测</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux 常用命令</title>
-    <url>/2021/10/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h1><ol>
-<li>快速查看端口占用情况<code>lsof -i tcp:8080</code>或者<code>netstat -nlp</code></li>
-<li>查看PID具体信息<code>ll /proc/PID</code></li>
-<li>同样，查看CPU和内存信息可以使用<code>cat /proc/cupinfo</code> 和 <code>cat /proc/meminfo</code>。更详细CPU信息查询可以使用<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c </code>和<code>cat /proc/cpuinfo | grep physical | uniq -c</code></li>
-<li>查看显卡信息可以使用命令<code>lspci | grep -i vga</code></li>
-<li>查看磁盘使用情况<code>df -k</code>或<code>df -m</code>，分别以kb或mb为单位，查看磁盘使用量</li>
-<li>GPU当前使用状况：<code>nvidia-smi</code></li>
-<li>每10秒，更新一次GPU情况：<code>watch -n 10 nvidia-smi</code></li>
-<li><code>free -h</code>看内存情况</li>
-</ol>
-<p>参考文章：<a href="https://cloud.tencent.com/developer/article/1721406">Linux系统查看CPU、机器型号、内存等信息</a></p>
-]]></content>
+ontent>
       <categories>
         <category>常用软件和系统</category>
       </categories>
@@ -1253,31 +1277,18 @@
       </categories>
   </entry>
   <entry>
-    <title>DM任务</title>
-    <url>/2021/08/19/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/DM%E4%BB%BB%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="项目叙述"><a href="#项目叙述" class="headerlink" title="项目叙述"></a>项目叙述</h2><ol>
-<li>数据如何</li>
-<li>背景如何</li>
-<li>模型如何</li>
-<li>准确率如何</li>
-<li>碰到哪些问题</li>
-<li>怎么解决（trick或者模型）</li>
-<li>为什么这么解决</li>
-<li>效果怎么样</li>
-<li>还有哪些可以改进的</li>
-<li>现有哪些更好的方法吗（新的论文）</li>
+    <title>DM任务</titl�一个句号能让PPL波动几十，标点的预测总是不稳定；</li>
+<li>预测语句中的“的，了”等词也对PPL有很大影响，可能“我借你的书”比“我借你书”的指标值小几十，但从语义上分析有没有这些停用词并不能完全代表句子生成的好坏。</li>
 </ol>
-<span id="more"></span>
-
-<p>对话机器人中碰到的问题：</p>
-<ol>
-<li>解决语言的多样性和歧义性问题</li>
-<li>槽位模块中如何提高抽取模型的复用性</li>
-<li>解决实体消歧问题</li>
-<li>上下文理解</li>
-<li>场景可移植性</li>
-<li>多轮（ner可以加到多轮里，比如学生教学场景，可以聊ner和dm结合rasa的设计）</li>
+</li>
+<li>需要具体了解一下ppl，出自哪里，怎么计算，如何评价生成的文本而非模型</li>
+<li>可以看一下上次做的ppt</li>
 </ol>
+</li>
+<li>20年google出了另一种评价指标BLEURT</li>
+<li><a href="https://cloud.tencent.com/developer/news/468354">人机对话关键技术及挑战</a><br>文章提到了好几个闲聊重的优化技术，比如learning to start for sequence to sequence,Retrieval-Enhanced Adversarial Training For Neural Response Generation, etc.</li>
+</ol>
+<p>好好研究一下<a href="https://www.infoq.cn/profile/90B7FCCBE83037/publish">滴滴技术</a></p>
 ]]></content>
       <categories>
         <category>项目总结</category>
@@ -2008,35 +2019,6 @@
       </tags>
   </entry>
   <entry>
-    <title>服务器上使用Tensorboard，在本地查看图像</title>
-    <url>/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8Tensorboard%EF%BC%8C%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%9F%A5%E7%9C%8B%E5%9B%BE%E5%83%8F/</url>
-    <content><![CDATA[<h1 id="服务器上使用Tensorboard，在本地查看图像"><a href="#服务器上使用Tensorboard，在本地查看图像" class="headerlink" title="服务器上使用Tensorboard，在本地查看图像"></a>服务器上使用Tensorboard，在本地查看图像</h1><ol>
-<li>记录<br>使用<code>Tensorboard</code>，一般要用<code>tf.summary</code>记录训练过程中的数值到某个地方，如下面的 <code>train_summary_dir</code> 和 <code>train_log_dir</code><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> self<span class="selector-class">.train_summary_dir</span>:</span><br><span class="line">    self<span class="selector-class">.loss_summary_reranker</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&quot;loss_reranker&quot;</span>, self.cost)</span><br><span class="line">    self<span class="selector-class">.train_summary_op</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.merge</span>(<span class="selector-attr">[self.loss_summary_reranker]</span>)</span><br><span class="line">    self<span class="selector-class">.train_summary_writer</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.FileWriter</span>(</span><br><span class="line">        os<span class="selector-class">.path</span><span class="selector-class">.join</span>(self<span class="selector-class">.train_summary_dir</span>, <span class="string">&quot;reranker&quot;</span>), self<span class="selector-class">.session</span>.graph)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<span id="more"></span>
-
-<p>或者</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">current_time = datetime<span class="selector-class">.datetime</span><span class="selector-class">.now</span>()<span class="selector-class">.strftime</span>(<span class="string">&quot;%Y%m%d-%H%M%S&quot;</span>)</span><br><span class="line">train_log_dir = <span class="string">&#x27;logs/gradient_tape/&#x27;</span> + current_time + <span class="string">&#x27;/train&#x27;</span></span><br><span class="line">test_log_dir = <span class="string">&#x27;logs/gradient_tape/&#x27;</span> + current_time + <span class="string">&#x27;/test&#x27;</span></span><br><span class="line">train_summary_writer = tf<span class="selector-class">.summary</span><span class="selector-class">.create_file_writer</span>(train_log_dir)</span><br><span class="line">test_summary_writer = tf<span class="selector-class">.summary</span><span class="selector-class">.create_file_writer</span>(test_log_dir)</span><br><span class="line">with train_summary_writer<span class="selector-class">.as_default</span>():</span><br><span class="line">    tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&#x27;loss&#x27;</span>, train_loss<span class="selector-class">.result</span>(), step=epoch)</span><br><span class="line">    tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&#x27;accuracy&#x27;</span>, train_accuracy<span class="selector-class">.result</span>(), step=epoch)</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>打通本地和服务器端口：<code>ssh -L 16006:127.0.0.1:6006 username@remote_server_ip</code><br><code>16006</code> 是本地端口，<code>6006</code>是服务器上<code>Tensorboard</code>的端口<br><code>username</code>和<code>remote_server_ip</code>分别对应服务器用户名和ip地址</p>
-</li>
-<li><p>使用上面命令成功登陆服务器后，执行命令 <code>tensorboard --logdir=&#39;logs/train_logs&#39; --port=6006</code></p>
-</li>
-<li><p>本地打开 <code>http://127.0.0.1:16006/</code> 即可查看</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>Tensorflow</category>
-      </categories>
-      <tags>
-        <tag>tensorflow</tag>
-        <tag>tensorboard</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>tf分布式 -- DistributionStrategy</title>
     <url>/2019/01/16/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/tf%E5%88%86%E5%B8%83%E5%BC%8F--DistributionStrategy/</url>
     <content><![CDATA[<h1 id="tf分布式-–-DistributionStrategy"><a href="#tf分布式-–-DistributionStrategy" class="headerlink" title="tf分布式 – DistributionStrategy"></a>tf分布式 – DistributionStrategy</h1><p>以下内容摘抄自：<br><a href="http://jcf94.com/2018/10/21/2018-10-21-tfunpacking9/">TensorFlow 拆包（九）：High Level APIs \| Chenfan Blog</a></p>
@@ -2065,6 +2047,35 @@
         <tag>tensorflow</tag>
         <tag>分布式</tag>
         <tag>DistributionStrategy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>服务器上使用Tensorboard，在本地查看图像</title>
+    <url>/2020/02/19/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/Tensorflow/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8Tensorboard%EF%BC%8C%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%9F%A5%E7%9C%8B%E5%9B%BE%E5%83%8F/</url>
+    <content><![CDATA[<h1 id="服务器上使用Tensorboard，在本地查看图像"><a href="#服务器上使用Tensorboard，在本地查看图像" class="headerlink" title="服务器上使用Tensorboard，在本地查看图像"></a>服务器上使用Tensorboard，在本地查看图像</h1><ol>
+<li>记录<br>使用<code>Tensorboard</code>，一般要用<code>tf.summary</code>记录训练过程中的数值到某个地方，如下面的 <code>train_summary_dir</code> 和 <code>train_log_dir</code><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> self<span class="selector-class">.train_summary_dir</span>:</span><br><span class="line">    self<span class="selector-class">.loss_summary_reranker</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&quot;loss_reranker&quot;</span>, self.cost)</span><br><span class="line">    self<span class="selector-class">.train_summary_op</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.merge</span>(<span class="selector-attr">[self.loss_summary_reranker]</span>)</span><br><span class="line">    self<span class="selector-class">.train_summary_writer</span> = tf<span class="selector-class">.summary</span><span class="selector-class">.FileWriter</span>(</span><br><span class="line">        os<span class="selector-class">.path</span><span class="selector-class">.join</span>(self<span class="selector-class">.train_summary_dir</span>, <span class="string">&quot;reranker&quot;</span>), self<span class="selector-class">.session</span>.graph)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+
+<p>或者</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">current_time = datetime<span class="selector-class">.datetime</span><span class="selector-class">.now</span>()<span class="selector-class">.strftime</span>(<span class="string">&quot;%Y%m%d-%H%M%S&quot;</span>)</span><br><span class="line">train_log_dir = <span class="string">&#x27;logs/gradient_tape/&#x27;</span> + current_time + <span class="string">&#x27;/train&#x27;</span></span><br><span class="line">test_log_dir = <span class="string">&#x27;logs/gradient_tape/&#x27;</span> + current_time + <span class="string">&#x27;/test&#x27;</span></span><br><span class="line">train_summary_writer = tf<span class="selector-class">.summary</span><span class="selector-class">.create_file_writer</span>(train_log_dir)</span><br><span class="line">test_summary_writer = tf<span class="selector-class">.summary</span><span class="selector-class">.create_file_writer</span>(test_log_dir)</span><br><span class="line">with train_summary_writer<span class="selector-class">.as_default</span>():</span><br><span class="line">    tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&#x27;loss&#x27;</span>, train_loss<span class="selector-class">.result</span>(), step=epoch)</span><br><span class="line">    tf<span class="selector-class">.summary</span><span class="selector-class">.scalar</span>(<span class="string">&#x27;accuracy&#x27;</span>, train_accuracy<span class="selector-class">.result</span>(), step=epoch)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>打通本地和服务器端口：<code>ssh -L 16006:127.0.0.1:6006 username@remote_server_ip</code><br><code>16006</code> 是本地端口，<code>6006</code>是服务器上<code>Tensorboard</code>的端口<br><code>username</code>和<code>remote_server_ip</code>分别对应服务器用户名和ip地址</p>
+</li>
+<li><p>使用上面命令成功登陆服务器后，执行命令 <code>tensorboard --logdir=&#39;logs/train_logs&#39; --port=6006</code></p>
+</li>
+<li><p>本地打开 <code>http://127.0.0.1:16006/</code> 即可查看</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+        <category>Tensorflow</category>
+      </categories>
+      <tags>
+        <tag>tensorflow</tag>
+        <tag>tensorboard</tag>
       </tags>
   </entry>
   <entry>
@@ -2212,31 +2223,6 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
-    <title>VSCode 常用命令</title>
-    <url>/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="VSCode-设置代码长度分割线"><a href="#VSCode-设置代码长度分割线" class="headerlink" title="VSCode 设置代码长度分割线"></a>VSCode 设置代码长度分割线</h1><p>增加代码长度分割线：</p>
-<ol>
-<li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
-<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
-<li>进入 <code>settings.json</code></li>
-<li>添加代码 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;[python]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;editor.rulers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">         <span class="number">80</span></span><br><span class="line">     <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ms-python.python&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="VSCode-激活conda环境失败"><a href="#VSCode-激活conda环境失败" class="headerlink" title="VSCode 激活conda环境失败"></a>VSCode 激活conda环境失败</h1><ol>
-<li>打开vscode设置，Code -&gt; Preference -&gt; Settings </li>
-<li>找到Terminal.Integrated.Automation Shell: OSX，打开settings.json</li>
-<li>加入 <code>&quot;terminal.integrated.env.osx&quot;: &#123;&quot;PATH&quot;: &quot;&quot;&#125;,</code></li>
-<li>重启vscode即可</li>
-</ol>
-]]></content>
-      <categories>
-        <category>常用软件和系统</category>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VSCode 使用SSH连接远程服务器</title>
     <url>/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E4%BD%BF%E7%94%A8SSH%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<h1 id="使用vscode远程连接服务器"><a href="#使用vscode远程连接服务器" class="headerlink" title="使用vscode远程连接服务器"></a>使用vscode远程连接服务器</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
@@ -2266,6 +2252,31 @@ e, f, g, &lt;eos&gt;
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/weixin_43669941/article/details/102778991">使用Visual Studio Code连接远程Linux服务器</a></p>
 <p><a href="https://qlzhu.github.io/blog/15892/">Mac 配置 VSCode Remote-SSH</a></p>
 <p><a href="https://www.qikqiak.com/post/use-vscode-remote-dev-debug/">使用 VSCode 远程开发调试</a></p>
+]]></content>
+      <categories>
+        <category>常用软件和系统</category>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VSCode 常用命令</title>
+    <url>/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="VSCode-设置代码长度分割线"><a href="#VSCode-设置代码长度分割线" class="headerlink" title="VSCode 设置代码长度分割线"></a>VSCode 设置代码长度分割线</h1><p>增加代码长度分割线：</p>
+<ol>
+<li>点击左下角的齿轮⚙️图标，选择 <code>Settings</code></li>
+<li>输入 <code>ruler</code> 找到 <code>Editor: Rulers</code>，如上图 <img src="/2022/07/07/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%B3%BB%E7%BB%9F/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/VSCode-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/vscode-edit-ruler.png" alt="vscode远程服务python断点调试配置"></li>
+<li>进入 <code>settings.json</code></li>
+<li>添加代码 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;[python]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;editor.rulers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">         <span class="number">80</span></span><br><span class="line">     <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ms-python.python&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="VSCode-激活conda环境失败"><a href="#VSCode-激活conda环境失败" class="headerlink" title="VSCode 激活conda环境失败"></a>VSCode 激活conda环境失败</h1><ol>
+<li>打开vscode设置，Code -&gt; Preference -&gt; Settings </li>
+<li>找到Terminal.Integrated.Automation Shell: OSX，打开settings.json</li>
+<li>加入 <code>&quot;terminal.integrated.env.osx&quot;: &#123;&quot;PATH&quot;: &quot;&quot;&#125;,</code></li>
+<li>重启vscode即可</li>
+</ol>
 ]]></content>
       <categories>
         <category>常用软件和系统</category>
@@ -2384,22 +2395,6 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
-    <title>map+zip实现矩阵转置</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/map+zip%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="map-zip实现矩阵转置"><a href="#map-zip实现矩阵转置" class="headerlink" title="map+zip实现矩阵转置"></a>map+zip实现矩阵转置</h1><p>map和zip配合使用，实现矩阵转置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rotate</span>(<span class="params">self, matrix</span>):  </span><br><span class="line">        matrix[:] = <span class="built_in">map</span>(<span class="built_in">list</span>,<span class="built_in">zip</span>(*matrix))</span><br><span class="line">        <span class="keyword">return</span> matrix</span><br><span class="line"><span class="built_in">print</span>(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>],</span><br><span class="line">    [<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-
-<p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a href="https://blog.csdn.net/shawpan/article/details/69663710">一行代码搞定矩阵旋转——python</a>。</p>
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>矩阵转置</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python中某些常用符号的运用</title>
     <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/is%E3%80%81==%E7%AD%89%E7%AC%A6%E5%8F%B7%E7%9A%84%E8%BF%90%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Python中某些常用符号的运用"><a href="#Python中某些常用符号的运用" class="headerlink" title="Python中某些常用符号的运用"></a>Python中某些常用符号的运用</h1><h2 id="is和-x3D-x3D-的区别"><a href="#is和-x3D-x3D-的区别" class="headerlink" title="is和&#x3D;&#x3D;的区别"></a>is和&#x3D;&#x3D;的区别</h2><p>在Python中一切都是对象。</p>
@@ -2443,6 +2438,22 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
+    <title>map+zip实现矩阵转置</title>
+    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/map+zip%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="map-zip实现矩阵转置"><a href="#map-zip实现矩阵转置" class="headerlink" title="map+zip实现矩阵转置"></a>map+zip实现矩阵转置</h1><p>map和zip配合使用，实现矩阵转置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">原矩阵</span><br><span class="line">matrix = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">]</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rotate</span>(<span class="params">self, matrix</span>):  </span><br><span class="line">        matrix[:] = <span class="built_in">map</span>(<span class="built_in">list</span>,<span class="built_in">zip</span>(*matrix))</span><br><span class="line">        <span class="keyword">return</span> matrix</span><br><span class="line"><span class="built_in">print</span>(Solution().rotate(matrix))</span><br><span class="line">[</span><br><span class="line">    [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>],</span><br><span class="line">    [<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+
+<p>更多关于<code>map</code>和<code>zip</code>的解释，请看<a href="https://blog.csdn.net/shawpan/article/details/69663710">一行代码搞定矩阵旋转——python</a>。</p>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>矩阵转置</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>pandas聚合和分组运算之groupby</title>
     <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pandas%E8%81%9A%E5%90%88%E5%92%8C%E5%88%86%E7%BB%84%E8%BF%90%E7%AE%97%E4%B9%8Bgroupby/</url>
     <content><![CDATA[<h1 id="pandas聚合和分组运算之groupby"><a href="#pandas聚合和分组运算之groupby" class="headerlink" title="pandas聚合和分组运算之groupby"></a>pandas聚合和分组运算之groupby</h1><p>根据<code>key1</code>的值<code>a</code>,<code>b</code>来分组求<code>data1</code>的平均值</p>
@@ -2478,24 +2489,6 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
-    <title>合并大list中的小list</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%90%88%E5%B9%B6%E5%A4%A7list%E4%B8%AD%E7%9A%84%E5%B0%8Flist/</url>
-    <content><![CDATA[<h1 id="合并大list中的小list"><a href="#合并大list中的小list" class="headerlink" title="合并大list中的小list"></a>合并大list中的小list</h1><p>性能最好的一种方法，来自<a href="https://blog.csdn.net/laiyibeijiweijiu/article/details/93891635">这里</a>，更多方法对比看<a href="https://blog.csdn.net/weixin_40539892/article/details/79103290">这里</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c=[<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> chain</span><br><span class="line">d = <span class="built_in">list</span>(chain(a, b, c))</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="comment">#[1, 2, 3, 3, 4, 5, 4, 4, 4]</span></span><br></pre></td></tr></table></figure>
-<p>上面的方法是a,b,c已经知道，但是在a,b,c还在大list中时，可以如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">newnums = []</span><br><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> nums:</span><br><span class="line">    newnums.extend(l)</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>list</tag>
-        <tag>合并</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>加载tf模型并使用Flask框架报错xxx is not a element of this graph</title>
     <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%8A%A0%E8%BD%BDtf%E6%A8%A1%E5%9E%8B%E5%B9%B6%E4%BD%BF%E7%94%A8Flask%E6%A1%86%E6%9E%B6%E6%8A%A5%E9%94%99xxx%20is%20not%20a%20element%20of%20this%20graph/</url>
     <content><![CDATA[<h1 id="加载tf模型并使用Flask框架报错xxx-is-not-a-element-of-this-graph"><a href="#加载tf模型并使用Flask框架报错xxx-is-not-a-element-of-this-graph" class="headerlink" title="加载tf模型并使用Flask框架报错xxx is not a element of this graph"></a>加载tf模型并使用Flask框架报错xxx is not a element of this graph</h1><p>如果使用flask部署，一般http会多线程请求，这样可能会报错<code>xxx is not a element of this graph</code></p>
@@ -2527,16 +2520,21 @@ e, f, g, &lt;eos&gt;
       </tags>
   </entry>
   <entry>
-    <title>找到当前index在数组中对称的位置</title>
-    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%89%BE%E5%88%B0%E5%BD%93%E5%89%8Dindex%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BD%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="找到当前index在数组中对称的位置"><a href="#找到当前index在数组中对称的位置" class="headerlink" title="找到当前index在数组中对称的位置"></a>找到当前index在数组中对称的位置</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">index = <span class="built_in">len</span>(nums)//<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(index) <span class="comment"># 3</span></span><br><span class="line"><span class="built_in">print</span>(~index) <span class="comment"># -4</span></span><br><span class="line">median = (nums[index] + nums[~index])/<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(median) <span class="comment"># 3.5</span></span><br></pre></td></tr></table></figure>]]></content>
+    <title>合并大list中的小list</title>
+    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%90%88%E5%B9%B6%E5%A4%A7list%E4%B8%AD%E7%9A%84%E5%B0%8Flist/</url>
+    <content><![CDATA[<h1 id="合并大list中的小list"><a href="#合并大list中的小list" class="headerlink" title="合并大list中的小list"></a>合并大list中的小list</h1><p>性能最好的一种方法，来自<a href="https://blog.csdn.net/laiyibeijiweijiu/article/details/93891635">这里</a>，更多方法对比看<a href="https://blog.csdn.net/weixin_40539892/article/details/79103290">这里</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c=[<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> chain</span><br><span class="line">d = <span class="built_in">list</span>(chain(a, b, c))</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="comment">#[1, 2, 3, 3, 4, 5, 4, 4, 4]</span></span><br></pre></td></tr></table></figure>
+<p>上面的方法是a,b,c已经知道，但是在a,b,c还在大list中时，可以如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">newnums = []</span><br><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> nums:</span><br><span class="line">    newnums.extend(l)</span><br></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
         <category>编程语言</category>
         <category>Python</category>
       </categories>
       <tags>
-        <tag>对称</tag>
-        <tag>index</tag>
+        <tag>list</tag>
+        <tag>合并</tag>
       </tags>
   </entry>
   <entry>
@@ -2548,6 +2546,19 @@ e, f, g, &lt;eos&gt;
         <category>编程语言</category>
         <category>Python</category>
       </categories>
+  </entry>
+  <entry>
+    <title>找到当前index在数组中对称的位置</title>
+    <url>/2020/02/19/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%89%BE%E5%88%B0%E5%BD%93%E5%89%8Dindex%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BD%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="找到当前index在数组中对称的位置"><a href="#找到当前index在数组中对称的位置" class="headerlink" title="找到当前index在数组中对称的位置"></a>找到当前index在数组中对称的位置</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">index = <span class="built_in">len</span>(nums)//<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(index) <span class="comment"># 3</span></span><br><span class="line"><span class="built_in">print</span>(~index) <span class="comment"># -4</span></span><br><span class="line">median = (nums[index] + nums[~index])/<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(median) <span class="comment"># 3.5</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>对称</tag>
+        <tag>index</tag>
+      </tags>
   </entry>
   <entry>
     <title>求list的绝对值</title>
